@@ -1,8 +1,11 @@
 name: "PR Merge on time v2"
 
 on:
+<<<<<<< HEAD
   schedule:
     - cron: '0 13,19 * * *'
+=======
+>>>>>>> 6966e7d (Create merge-pr.yml)
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -15,7 +18,11 @@ jobs:
       - name: "Merge pull request"
         uses: "actions/github-script@v3"
         with:
+<<<<<<< HEAD
           github-token: ${{secrets.GITHUB_TOKEN}}
+=======
+          github-token: ${{secrets.TOKEN}}
+>>>>>>> 6966e7d (Create merge-pr.yml)
           script: |
             const query = `query($owner:String!, $name:String!) {
               repository(owner: $owner, name: $name) {
@@ -65,4 +72,8 @@ jobs:
                } catch (e) {
                  console.log("error", e);
                }
+<<<<<<< HEAD
             }
+=======
+            }
+>>>>>>> 6966e7d (Create merge-pr.yml)
