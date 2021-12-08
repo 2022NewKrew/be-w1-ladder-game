@@ -19,10 +19,14 @@ jobs:
         uses: "actions/github-script@v3"
         with:
 <<<<<<< HEAD
+<<<<<<< HEAD
           github-token: ${{secrets.GITHUB_TOKEN}}
 =======
           github-token: ${{secrets.TOKEN}}
 >>>>>>> 6966e7d (Create merge-pr.yml)
+=======
+          github-token: ${{secrets.GITHUB_TOKEN}}
+>>>>>>> 5024f25 (Fix workflow error)
           script: |
             const query = `query($owner:String!, $name:String!) {
               repository(owner: $owner, name: $name) {
