@@ -1,11 +1,8 @@
 name: "PR Merge on time v2"
 
 on:
-<<<<<<< HEAD
   schedule:
     - cron: '0 13,19 * * *'
-=======
->>>>>>> 6966e7d (Create merge-pr.yml)
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -13,20 +10,12 @@ jobs:
   merge:
     name: "Auto Merge on time"
     runs-on: "ubuntu-latest"
-    
+
     steps:
       - name: "Merge pull request"
         uses: "actions/github-script@v3"
         with:
-<<<<<<< HEAD
-<<<<<<< HEAD
           github-token: ${{secrets.GITHUB_TOKEN}}
-=======
-          github-token: ${{secrets.TOKEN}}
->>>>>>> 6966e7d (Create merge-pr.yml)
-=======
-          github-token: ${{secrets.GITHUB_TOKEN}}
->>>>>>> 5024f25 (Fix workflow error)
           script: |
             const query = `query($owner:String!, $name:String!) {
               repository(owner: $owner, name: $name) {
@@ -76,8 +65,4 @@ jobs:
                } catch (e) {
                  console.log("error", e);
                }
-<<<<<<< HEAD
             }
-=======
-            }
->>>>>>> 6966e7d (Create merge-pr.yml)
