@@ -9,11 +9,11 @@ public class Application {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("참여할 사람은 몇 명인가요?");
-        int n = Integer.parseInt(br.readLine());
+        int people = Integer.parseInt(br.readLine());
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int m = Integer.parseInt(br.readLine());
+        int height = Integer.parseInt(br.readLine());
 
-        Ladder ladder = new Ladder(n, m);
+        Ladder ladder = new Ladder(people, height);
         ladder.printLadder();
     }
 }
