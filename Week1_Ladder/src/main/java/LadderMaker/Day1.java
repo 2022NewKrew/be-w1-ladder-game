@@ -33,13 +33,18 @@ public class Day1 {
         return new Scanner(System.in).nextInt();
     }
 
+    private boolean isEvenNumber(int j){
+        if((j & 1) == 0) return true;
+        return false;
+    }
+
     /**
      * return random Character
       * @param j
      * @return
      */
     private char randomCharacter(int j){
-        if((j & 1) == 0) return '|';
+        if(isEvenNumber(j)) return '|';
         else return ladderList[random.nextInt(ladderList.length)];
     }
 
@@ -49,10 +54,10 @@ public class Day1 {
      * @param ladder
      */
     private void makeLadderWithNoArray(int person, int ladder){
-        StringBuilder sb = new StringBuilder(person << 1);
+        StringBuilder sb = new StringBuilder(person * 2);
 
         for(int i = 0; i < ladder; i++){
-            for(int j = 0; j < (person << 1) - 1; j++) sb.append(randomCharacter(j));
+            for(int j = 0; j < (person * 2) - 1; j++) sb.append(randomCharacter(j));
             System.out.println(sb.toString());
             sb.setLength(0);
         }
@@ -64,7 +69,7 @@ public class Day1 {
      * @param ladder
      */
     private void makeLadderWith2DArrayList(int person, int ladder){
-        ArrayList<ArrayList<Character>> arrayList = make2DArrayList(person << 1, ladder);
+        ArrayList<ArrayList<Character>> arrayList = make2DArrayList(person * 2, ladder);
         arrayList.stream()
                 .forEach(arrayCharacter -> arrayCharacter.stream()
                                                         .forEach(System.out::print));
@@ -94,7 +99,7 @@ public class Day1 {
      * @param ladder
      */
     private void makeLadderWithSingleArrayList(int person, int ladder){
-        ArrayList<StringBuilder> arrayList = makeSingleArrayList(person << 1, ladder);
+        ArrayList<StringBuilder> arrayList = makeSingleArrayList(person * 2, ladder);
         arrayList.stream()
                 .forEach(System.out::println);
     }
@@ -121,9 +126,9 @@ public class Day1 {
      * @param ladder
      */
     private void makeLadderWith2DArray(int person, int ladder){
-        char[][] array = make2DArray(person << 1, ladder);
+        char[][] array = make2DArray(person * 2, ladder);
         for(int i = 0; i < ladder; i++)
-            for(int j = 0; j < person << 1; j++)
+            for(int j = 0; j < person * 2; j++)
                 System.out.print(array[i][j]);
     }
 
