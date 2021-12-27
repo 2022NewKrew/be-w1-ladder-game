@@ -1,6 +1,3 @@
-import java.lang.Math;
-import java.util.Arrays;
-
 public class Ladder {
     private int width;
     private int height;
