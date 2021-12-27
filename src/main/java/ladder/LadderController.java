@@ -10,7 +10,7 @@ public class LadderController {
         ladder = Ladder.valueOf(countOfPerson, ladderHeight);
     }
 
-    public Ladder result() {
+    public Ladder getLadder() {
         return ladder;
     }
 }

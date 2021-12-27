@@ -1,22 +1,22 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
+import ladder.dto.LadderDto;
+import ladder.dto.LineDto;
 
 public class OutputView {
 
     private OutputView() {
     }
 
-    public static void printLadder(Ladder result) {
-        for (Line line : result.getLines()) {
-            printLine(line);
+    public static void printLadder(LadderDto ladderDto) {
+        for (LineDto lineDto : ladderDto.getLineDtos()) {
+            printLine(lineDto);
         }
     }
 
-    private static void printLine(Line line) {
+    private static void printLine(LineDto lineDto) {
         final StringBuilder stringBuilder = new StringBuilder("|");
-        for (boolean point : line.getPoints()) {
+        for (boolean point : lineDto.getPoints()) {
             stringBuilder.append(getSignature(point))
                 .append("|");
         }

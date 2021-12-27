@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.Ladder;
+import ladder.dto.LadderDto;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -11,7 +12,7 @@ public class Application {
         final int ladderHeight = InputView.inputLadderHeight();
 
         final LadderController ladderController = new LadderController(countOfPerson, ladderHeight);
-        final Ladder result = ladderController.result();
-        OutputView.printLadder(result);
+        final Ladder ladder = ladderController.getLadder();
+        OutputView.printLadder(LadderDto.ladderToDto(ladder));
     }
 }
