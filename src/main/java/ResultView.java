@@ -1,14 +1,19 @@
 package main.java;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ResultView {
     private ResultView() {
     }
-    public static void printResult(List<String> lines) {
-        lines
+    public static void printLadder(ArrayList<ArrayList<String>> ladder) {
+        System.out.println();
+        ladder
                 .stream()
-                .map(result -> String.format("%2s", result))
+                .forEach(ResultView::printLine);
+    }
+    private static void printLine(ArrayList<String> line) {
+        line
+                .stream()
                 .forEach(System.out::print);
         System.out.println();
     }

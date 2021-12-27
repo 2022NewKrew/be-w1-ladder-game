@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ladder {
-    private final static String DOWN = "|";
+    private final static String DOWN = "| ";
     private final static String RIGHT = "|-";
 
     public static void main(String[] args) {
-        ResultView.printResult(generateLadder(InputView.enterPlayers(), InputView.enterHeight()));
+        ResultView.printLadder(generateLadder(InputView.enterPlayers(), InputView.enterHeight()));
     }
 
     private static ArrayList<ArrayList<String>> generateLadder(int playerNum, int height) {

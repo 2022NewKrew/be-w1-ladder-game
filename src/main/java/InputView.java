@@ -25,7 +25,6 @@ public class InputView {
     }
 
     public static int enterHeight(){
-        System.out.println();
         System.out.println(MESSAGE_HEIGHT);
         return checkNumeric(scanner.nextLine());
     }
