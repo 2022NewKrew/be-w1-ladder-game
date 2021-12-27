@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Ladder {
 
-    static final private Random randomGenerator = new Random();
+    static private final Random randomGenerator = new Random();
     private final List<String> shape = new ArrayList<>();
 
     public Ladder(int numberOfPerson, int ladderHeight) throws IllegalArgumentException {
@@ -32,7 +32,7 @@ public class Ladder {
         int ladderSize = numberOfPerson * 2 - 1;
         for (int i = 0; i < ladderSize; i++) {
             if (i % 2 == 1) {
-                generatedLine.append(generateBranch());
+                generatedLine.append(generateStep());
                 continue;
             }
             generatedLine.append("|");
@@ -40,7 +40,7 @@ public class Ladder {
         return generatedLine.toString();
     }
 
-    private char generateBranch() {
+    private char generateStep() {
         if (randomGenerator.nextBoolean()) {
             return '-';
         }

@@ -2,7 +2,7 @@ import java.util.List;
 
 public class LadderGame {
 
-    final Ladder ladder;
+    private final Ladder ladder;
 
     public LadderGame(int numberOfPeople, int ladderHeight) throws IllegalArgumentException {
         ladder = new Ladder(numberOfPeople, ladderHeight);

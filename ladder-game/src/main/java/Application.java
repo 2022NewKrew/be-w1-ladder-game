@@ -1,6 +1,6 @@
 public class Application {
     static public void main(String[] args) {
-        try{
+        try {
             LadderGame ladderGame = new LadderGame(UserInput.getNumberOfPeople(), UserInput.getLadderHeight());
             ladderGame.printLadderShape();
         } catch (IllegalArgumentException illegalArgumentException) {
