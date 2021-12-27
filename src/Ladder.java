@@ -1,25 +1,24 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MakeSadari {
-
+public class Ladder {
     public static ArrayList<String> makeNewSadari(int people, int height) {
         ArrayList<String> sadari = new ArrayList<String>();
-        String s;
+        StringBuilder sb = new StringBuilder();
         double randNum;
         for(int i=0;i<height;i++) {
-            s = "";
+            sb.setLength(0);
             for(int j=1;j<people;j++) {
-                s += '|';
+                sb.append('|');
                 // 0 ~ 1 사이의 난수를 가지고 0.5보다 크다면 공백, 0.5보다 작다면 -를 넣는다
                 randNum = Math.random();
                 if(randNum >= 0.5)
-                    s += ' ';
+                    sb.append(' ');
                 else
-                    s += '-';
+                    sb.append('-');
             }
-            s += '|';
-            sadari.add(s);
+            sb.append('|');
+            sadari.add(sb.toString());
         }
         return sadari;
     }
@@ -38,7 +37,7 @@ public class MakeSadari {
         people = s.nextInt();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         height = s.nextInt();
-        
+
         ArrayList<String> sadari = makeNewSadari(people, height);
         printSadari(sadari);
     }
