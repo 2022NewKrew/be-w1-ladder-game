@@ -27,27 +27,32 @@ public class Ladder {
         this.bridge = bridge;
     }
 
-    public String getLadderString() {
+    public String getLadderString() throws Exception {
         StringBuilder stringBuilder = new StringBuilder();
 
         try {
             for (int i = 0; i < this.ladderHeight; i++) {
                 for (int j = 0; j < this.numberOfParticipants * 2 - 1; j++) {
-                    if (j % 2 == 0) {
-                        stringBuilder.append("|");
-                    } else if (this.bridge[i][j / 2]) {
-                        stringBuilder.append("-");
-                    } else {
-                        stringBuilder.append(" ");
-                    }
+                    stringBuilder.append(getBridgeChar(i, j));
                 }
                 stringBuilder.append("\n");
             }
         } catch (Exception e) {
             System.err.println("error message : " + e.getMessage());
             e.printStackTrace();
+            throw new Exception(e);
         }
 
         return stringBuilder.toString();
+    }
+
+    private String getBridgeChar(int row, int col) {
+        if (col % 2 == 0) {
+            return "|";
+        } else if (this.bridge[row][col / 2]) {
+            return "-";
+        } else {
+            return " ";
+        }
     }
 }
