@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MakeSadari {
 
@@ -30,7 +31,15 @@ public class MakeSadari {
     }
 
     public static void main(String[] args) {
-        ArrayList<String> sadari = makeNewSadari(3, 5);
+        Scanner s = new Scanner(System.in);
+        int people, height;
+
+        System.out.println("참여할 사람은 몇 명인가요?");
+        people = s.nextInt();
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        height = s.nextInt();
+        
+        ArrayList<String> sadari = makeNewSadari(people, height);
         printSadari(sadari);
     }
 }
