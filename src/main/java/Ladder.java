@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private List<Row> rows;
+    private final List<Row> rows;
 
     public Ladder(int people, int heightLadder) {
         rows = new ArrayList<>();
