@@ -1,68 +1,52 @@
-import Domain.*;
-import View.Input;
-import View.UserInterface;
-
-import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 public class LadderGame {
+    char[][] output;
+    int N;
+    int H;
 
-    private final UserInterface userInterface;
-    private final LadderService ladderService;
-    private final PlayerService playerService;
-    private final ResultService resultService;
-    private final CalculateService calculateService;
-
-    private LadderGame() {
-        this.userInterface = new UserInterface();
-        this.ladderService = new LadderService();
-        this.playerService = new PlayerService();
-        this.resultService = new ResultService();
-        this.calculateService = new CalculateService(ladderService, playerService, resultService);
+    private void getInput(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("참여할 사람은 몇 명 인가요");
+        N = scanner.nextInt();
+        System.out.println("최대 사다리 높이는 몇 개 인가요?");
+        H = scanner.nextInt();
     }
 
-    public static void main(String[] args) {
-        LadderGame ladderGame = new LadderGame();
-        ladderGame.initData();
-        ladderGame.printData();
-        ladderGame.loopQuery();
+    private void initOutput(){
+        output = new char[H][N-1];
     }
 
-    private void initData() {
-        Input<ArrayList<String>> playersInput = userInterface.readPlayers();
-        Input<ArrayList<String>> resultInput = userInterface.readResult(playersInput.getValue().size());
-        Input<Integer> heightInput = userInterface.readHeight();
-        ladderService.makeLadder(heightInput.getValue(), playersInput.getValue().size());
-        playerService.makePlayerList(playersInput);
-        resultService.makeResultList(resultInput);
-
-
-    }
-
-    private void printData() {
-        userInterface.printPlayers(playerService.getPlayerList());
-        userInterface.printLadder(ladderService.getLadder());
-        userInterface.printResults(resultService.getResultList());
-    }
-
-    private boolean readQuery(){
-        Input<ArrayList<String>> queryPlayers = userInterface.readQuery();
-        String cmd = queryPlayers.getValue().get(0);
-        if(userInterface.isEnd(cmd)){
-            userInterface.printBye();
-            return false;
+    private void makeLadder(){
+        Random rand = new Random();
+        for(int i=0; i<output.length; i++){
+            for(int j=0; j<output[i].length; j++){
+                if(rand.nextBoolean()){
+                    output[i][j] = ' ';
+                }else{
+                    output[i][j] = '-';
+                }
+            }
         }
-        if(userInterface.isAll(cmd)){
-            ResultList resultList = calculateService.calculateAllPlayerResult();
-            PlayerList playerList = playerService.getPlayerList();
-            userInterface.printAllPlayerAndResult(playerList, resultList);
-            return true;
-        }
-        userInterface.printResultForQuery(calculateService.calculatePlayerResult(queryPlayers));
-        return true;
     }
 
-    public void loopQuery(){
-        while(readQuery());
+    private void printOutput(){
+        for(int i=0; i<output.length; i++){
+            for(int j=0; j<output[i].length; j++){
+                System.out.print('|');
+                System.out.print(output[i][j]);
+            }
+            System.out.println('|');
+        }
+    }
+
+    public static void main(String[] args){
+        LadderGame lg = new LadderGame();
+        lg.getInput();
+        lg.initOutput();
+        lg.makeLadder();
+        lg.printOutput();
     }
 
 }
