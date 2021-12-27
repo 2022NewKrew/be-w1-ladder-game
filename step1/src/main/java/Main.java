@@ -15,12 +15,12 @@ public class Main {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         setLadderVariable(ladder,"height");
 
+        //입력받은 정보에 따라 사다리 모양을 콘솔에 출력합니다.
         ladder.drawLadder();
-
-
     }
 
 
+    // variable 옵션에 따라 ladder의 변수를 설정합니다.
     private static void setLadderVariable(Ladder ladder,String variable){
         int input = sc.nextInt();
         if(variable.equals("numOfPeople")){

@@ -1,10 +1,10 @@
 package main;
-import java.util.*;
 
 public class Ladder {
     private int height;
     private int numOfPeople;
     private double[][] structure;
+    private double base=0.5;
 
     public Ladder() {
 
@@ -31,8 +31,16 @@ public class Ladder {
         return numOfPeople;
     }
 
-    public void setStructure(){
-        this.structure = new double[height][numOfPeople-1];
+    //입력에 따라 data Structure를 구성합니다.
+    public void setStructureType(String dataStructure) {
+        if(dataStructure.equals("Array"))
+            this.structure = new double[height][numOfPeople - 1];
+
+    }
+
+    //  Array로 구성된 Structure를 생성합니다. Math.random() 함수를 사용하여 사다리 각 위치에 0~1사이의 랜덤값을 생성합니다.
+    public void setArrayStructure(){
+        setStructureType("Array");
         for(int i=0;i<height;i++)
             for(int j=0;j<numOfPeople-1;j++){
                 this.structure[i][j] = Math.random();
@@ -43,18 +51,17 @@ public class Ladder {
         return this.structure;
     }
 
-    public boolean isLadderLine(double[][] structure,int heightNum,int widthNum){
-        if(structure[heightNum][widthNum]>=0.5)
-            return true;
-        else
-            return false;
+    // 사다리의 라인 (-)의 유무를 random 값으로 구성된 structure에서 base 값과의 크기 비교를 통해 생성합니다.
+    public boolean isLadderLine(double[][] structure,int heightNum,int widthNum,double base){
+        return structure[heightNum][widthNum] >= base;
     }
 
+    //
     public void printLadder(double[][] structure){
         for(int i=0;i<structure.length;i++){
             System.out.print("|");
             for(int j=0;j<structure[0].length;j++){
-                if(isLadderLine(structure,i,j))
+                if(isLadderLine(structure,i,j,base))
                     System.out.print("-");
                 else
                     System.out.print(" ");
@@ -65,8 +72,9 @@ public class Ladder {
         }
     }
 
-    public void drawLadder(){
-        this.setStructure();
+    // Array 구조를 생성하고, 2중 배열에 랜덤 데이터를 추가한 후, 랜덤값에 따라 - 모양을 넣어 사다리를 출력합니다.
+    public void drawArrayLadder(){
+        this.setArrayStructure();
         structure = this.getStructure();
         this.printLadder(structure);
     }
