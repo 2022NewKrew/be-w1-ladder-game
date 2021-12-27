@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class LadderGame {
 
-    private static LadderGenerator ladderGenerator = new NormalLadderGenerator();
+    private static final LadderGenerator ladderGenerator = new NormalLadderGenerator();
 
     public static void main(String[] args) {
         int participants, heights;

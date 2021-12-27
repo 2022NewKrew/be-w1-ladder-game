@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class Ladder {
-    private ArrayList<StringBuilder> ladder = new ArrayList<>();
-    private int heights;
-    private int noParticipants;
+    private final ArrayList<StringBuilder> ladder = new ArrayList<>();
+    private final int heights;
+    private final int noParticipants;
 
     public Ladder(int heights, int noParticipants) {
         this.noParticipants = noParticipants;
