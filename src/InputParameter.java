@@ -33,6 +33,10 @@ public class InputParameter {
 
         final int fixed = CheckBound.checkIntBound(member, MIN_MEMBER, MAX_MEMBER);
         if (member != fixed) {
+            System.out.println(
+                    "제한 범위[" + MIN_MEMBER + ", " + MAX_MEMBER + "]를 벗어났으므로 " +
+                    "수정된 " + fixed + "명을 사용합니다"
+            );
             member = fixed;
         }
     }
@@ -53,6 +57,10 @@ public class InputParameter {
 
         final int fixed = CheckBound.checkIntBound(ladderHeight, MIN_LADDER_HEIGHT, MAX_LADDER_HEIGHT);
         if (ladderHeight != fixed) {
+            System.out.println(
+                    "제한 범위[" + MIN_LADDER_HEIGHT + ", " + MAX_LADDER_HEIGHT + "]를 벗어났으므로 " +
+                    "수정된 " + fixed + "개를 사용합니다"
+            );
             ladderHeight = fixed;
         }
     }
