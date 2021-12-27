@@ -3,10 +3,13 @@ public class LadderGameStep1 implements LadderGame {
     @Override
     public boolean[][] createMap(Ladder ladder) {
 
-        boolean[][] ladderMap = new boolean[ladder.getLadderHeight()][ladder.getNumberOfParticipants() -1];
+        int row = ladder.getLadderHeight();
+        int col = ladder.getNumberOfParticipants() - 1;
 
-        for (int i = 0; i < ladderMap.length; i++) {
-            for (int j = 0; j < ladderMap[0].length; j++) {
+        boolean[][] ladderMap = new boolean[row][col];
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 ladderMap[i][j] = trueAndFalseGenerator();
             }
         }

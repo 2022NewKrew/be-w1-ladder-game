@@ -34,11 +34,11 @@ public class Ladder {
         try {
             for (int i = 0; i < this.ladderHeight; i++) {
                 for (int j = 0; j < this.numberOfParticipants * 2 - 1; j++) {
-                    if( j%2 == 0) {
+                    if (j % 2 == 0) {
                         stringBuilder.append("|");
-                    }else if(this.bridge[i][j/2]) {
+                    } else if (this.bridge[i][j / 2]) {
                         stringBuilder.append("-");
-                    }else {
+                    } else {
                         stringBuilder.append(" ");
                     }
                 }

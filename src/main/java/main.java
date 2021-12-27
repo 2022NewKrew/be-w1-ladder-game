@@ -20,7 +20,6 @@ public class main {
         }
     }
 
-
     private static Ladder input() throws IOException {
         Ladder ladder = new Ladder();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
