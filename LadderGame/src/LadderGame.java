@@ -2,12 +2,15 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LadderGame {
     private BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
     private BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     private int width, height;
+    private List<List<Boolean>> ladder;
 
     // 입력함수
     public void inputWidth () throws Exception {
@@ -21,12 +24,27 @@ public class LadderGame {
 
     // 사다리 생성
     public void makeLadder() throws Exception {
+        this.inputWidth();
+        this.inputHeight();
+
+        this.ladder = new ArrayList<>(); // 새 사다리
+        for(int h=0; h<this.height; h++) {
+            List<Boolean> row = new ArrayList<>(); // 한 줄
+            for(int w=1; w<this.width; w++) row.add((int)(Math.random() * 2) != 0); // 연결점 생성
+            ladder.add(row);
+        }
+    }
+
+    // 사다리 출력
+    public void printLadder() throws Exception {
+        this.makeLadder();
+
         StringBuilder sb = new StringBuilder();
-        for(int h=0; h<height; h++){ // 높이
+        for(List<Boolean> row: this.ladder){ // 높이
             sb.append('|'); // 첫 막대기
-            for(int w=1; w<width; w++){ // 너비
-                // 중간다리를 난수로 생성
-                sb.append((int) (Math.random() * 2) != 0 ? ' ' : '-');
+            for(Boolean bridge: row){ // 너비
+                // 중간다리 판단
+                sb.append(bridge ? '-' : ' ');
                 sb.append('|');
             }
             sb.append('\n'); // 줄바꿈
@@ -37,10 +55,6 @@ public class LadderGame {
 
     public static void main(String[] args) throws Exception {
         LadderGame lg = new LadderGame();
-
-        lg.inputWidth();
-        lg.inputHeight();
-
-        lg.makeLadder();
+        lg.printLadder();
     }
 }
