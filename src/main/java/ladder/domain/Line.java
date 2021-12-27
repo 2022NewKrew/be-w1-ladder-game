@@ -9,11 +9,12 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(List<Boolean> points) {
+        // todo - size 0 이하면 에러처리
         this.points = new ArrayList<>(points);
     }
 
     public static Line valueOf(int person) {
-        List<Boolean> points = new ArrayList<>();
+        final List<Boolean> points = new ArrayList<>();
         for (int i = 0; i < person - 1; i++) {
             points.add(RandomUtils.nextBoolean());
         }

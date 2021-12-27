@@ -16,20 +16,18 @@ public class OutputView {
     }
 
     private static void printLine(Line line) {
-        List<Boolean> points = line.getPoints();
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("|");
-        for (boolean point : points) {
-            String value;
-            if (point) {
-                value = "-";
-            } else {
-                value = " ";
-            }
-            stringBuilder.append(value);
-            stringBuilder.append("|");
+        StringBuilder stringBuilder = new StringBuilder("|");
+        for (boolean point : line.getPoints()) {
+            stringBuilder.append(getSignature(point))
+                .append("|");
         }
+        System.out.println(stringBuilder);
+    }
 
-        System.out.println(stringBuilder);;
+    private static String getSignature(boolean point) {
+        if (point) {
+            return "-";
+        }
+        return " ";
     }
 }
