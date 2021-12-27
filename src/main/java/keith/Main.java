@@ -22,6 +22,7 @@ public class Main {
     static StringBuilder GenerateLadder(int num) {
         ArrayList<Boolean> connection = new ArrayList<>(num - 1);
         Random random = new Random();
+
         for (int i = 0; i < num - 1; i++) {
             connection.add(random.nextBoolean());
         }
@@ -31,11 +32,13 @@ public class Main {
 
     static StringBuilder LadderToString(ArrayList<Boolean> connection) {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < connection.size(); i++) {
+
+        for (Boolean isConnected : connection) {
             result.append('|');
-            result.append(connection.get(i) ? '-' : ' ');
+            result.append(isConnected ? '-' : ' ');
         }
         result.append('|');
+
         return result;
     }
 }
