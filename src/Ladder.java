@@ -1,6 +1,6 @@
 public class Ladder {
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     private boolean[][] line;
 
     public Ladder(int numPeople, int ladderHeight) {
@@ -21,14 +21,14 @@ public class Ladder {
 
     @Override
     public String toString() {
-        String ladder = "";
+        StringBuilder ladder = new StringBuilder();
         for (int h = 0; h < height; h++) {
-            ladder += "|";
+            ladder.append("|");
             for (int w = 0; w < width; w++) {
-                ladder += (line[h][w] == true ? "-" : " ") + "|";
+                ladder.append(line[h][w] ? "-" : " ").append("|");
             }
-            ladder += "\n";
+            ladder.append("\n");
         }
-        return ladder;
+        return ladder.toString();
     }
 }
