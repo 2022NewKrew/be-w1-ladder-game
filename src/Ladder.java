@@ -1,20 +1,25 @@
+import java.util.Random;
+
 public class Ladder {
     private final int width;
     private final int height;
-    private boolean[][] line;
+    private final boolean[][] bridge;
+
+    private static final int WIDTH_CORRECTION = 1;
 
     public Ladder(int numPeople, int ladderHeight) {
-        this.width = numPeople - 1;
+        this.width = numPeople - WIDTH_CORRECTION;
         this.height = ladderHeight;
-        makeLines();
+        this.bridge = new boolean[height][width];
+        initializeBridge();
     }
 
-    private void makeLines() {
-        line = new boolean[height][width];
+    private void initializeBridge() {
+        final Random RANDOM = new Random();
 
         for (int h = 0; h < height; h++) {
             for (int w = 0; w < width; w++) {
-                line[h][w] = Math.random() > 0.5;
+                bridge[h][w] = RANDOM.nextBoolean();
             }
         }
     }
@@ -25,7 +30,7 @@ public class Ladder {
         for (int h = 0; h < height; h++) {
             ladder.append("|");
             for (int w = 0; w < width; w++) {
-                ladder.append(line[h][w] ? "-" : " ").append("|");
+                ladder.append(bridge[h][w] ? "-" : " ").append("|");
             }
             ladder.append("\n");
         }
