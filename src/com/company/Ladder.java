@@ -15,9 +15,9 @@ public class Ladder {
 
     private void makeNewLadder() {
         Random random = new Random();
-        ladder = new boolean[height][numPeople];
+        ladder = new boolean[height][numPeople-1];
         for(int y = 0; y < height; y++) {
-            for(int x = 0; x < numPeople; x++) {
+            for(int x = 0; x < numPeople-1; x++) {
                 if(random.nextBoolean()) {
                     ladder[y][x] = true;
                     x++;
@@ -28,7 +28,7 @@ public class Ladder {
 
     public void printLadder() {
         for(int y = 0; y < height; y++) {
-            for(int x = 0; x < numPeople; x++) {
+            for(int x = 0; x < numPeople-1; x++) {
                 System.out.print("|");
                 if(ladder[y][x])
                     System.out.print("-");
