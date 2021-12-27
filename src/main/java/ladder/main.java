@@ -31,6 +31,10 @@ public class main {
                     ladder[i][j] = ' ';
             }
             ladder[i][(int) (Math.random() * (col / 2)) * 2 + 1] = '-';
+            
+            int randomIndex = (int) (Math.random() * (col / 2)) * 2 + 1;
+            ladder[i][randomIndex] = '-';
+
         }
     }
 
