@@ -10,8 +10,8 @@ public class LadderGame {
 
     private static void printLadder(InputController inputController, LadderGenerator ladderGenerator) {
         int heights = inputController.getHeights();
-        int noParticipants = inputController.getNoParticipants();
-        Ladder ladder = ladderGenerator.buildLadder(heights, noParticipants);
+        int numberOfParticipants = inputController.getNoParticipants();
+        Ladder ladder = ladderGenerator.buildLadder(heights, numberOfParticipants);
         System.out.println(ladder);
     }
 }
