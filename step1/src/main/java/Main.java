@@ -16,7 +16,7 @@ public class Main {
         setLadderVariable(ladder,"height");
 
         //입력받은 정보에 따라 사다리 모양을 콘솔에 출력합니다.
-        ladder.drawLadder();
+        ladder.drawArrayLadder();
     }
 
 
