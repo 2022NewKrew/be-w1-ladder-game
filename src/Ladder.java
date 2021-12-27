@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ladder {
-    public static ArrayList<String> makeNewSadari(int people, int height) {
+    public static ArrayList<String> makeLadder(int people, int height) {
         ArrayList<String> sadari = new ArrayList<String>();
         StringBuilder sb = new StringBuilder();
         double randNum;
@@ -23,7 +23,7 @@ public class Ladder {
         return sadari;
     }
 
-    public static void printSadari(ArrayList<String> sadari) {
+    public static void printLadder(ArrayList<String> sadari) {
         for(String s : sadari) {
             System.out.println(s);
         }
@@ -38,7 +38,7 @@ public class Ladder {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         height = s.nextInt();
 
-        ArrayList<String> sadari = makeNewSadari(people, height);
-        printSadari(sadari);
+        ArrayList<String> sadari = makeLadder(people, height);
+        printLadder(sadari);
     }
 }
