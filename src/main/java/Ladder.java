@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
-    private final ArrayList<StringBuilder> ladder = new ArrayList<>();
+    private final List<StringBuilder> ladder = new ArrayList<>();
     private final int heights;
     private final int noParticipants;
 
