@@ -13,7 +13,7 @@ public class Ladder {
         this.ladder = new ArrayList<ArrayList<String>>(depth);
     }
 
-    void randomLine(){
+    public void randomLine(){
         String current;
         for(int i=0;i<depth;i++){
             ArrayList<String> line = new ArrayList<>();
@@ -25,7 +25,7 @@ public class Ladder {
         }
     }
 
-    void print(){
+    public void print(){
         for(int i=0;i<depth;i++){
             System.out.println(String.join("",ladder.get(i)));
         }
