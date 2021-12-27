@@ -1,22 +1,15 @@
 package ladderStage1;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Ladder {
-    private int manCnt;
-    private int maxHeight;
-    private boolean[][] ladderArr;
+    private final int manCnt;
+    private final int maxHeight;
+    private final boolean[][] ladderArr;
 
-    public void init() {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("참여할 사람은 몇 명인가요?");
-        manCnt = sc.nextInt();
-
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        maxHeight = sc.nextInt();
-
+    Ladder(int manCnt, int maxHeight) {
+        this.manCnt = manCnt;
+        this.maxHeight = maxHeight;
         ladderArr = new boolean[maxHeight][manCnt - 1];
     }
 
