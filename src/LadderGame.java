@@ -27,19 +27,19 @@ public class LadderGame {
         this.ladderHeight = scan.nextInt();
     }
 
+    void setLadderLineFlag() {
+        this.ladderLineFlag = new boolean[ladderWidth - 1][ladderHeight];
+        for (int i = 0; i < ladderWidth - 1; i++)
+            for (int j = 0; j < ladderHeight; j++)
+                ladderLineFlag[i][j] = getRandomFlag();
+    }
+
     boolean getRandomFlag() {
         double randomValue = (int) (Math.random() * 100);
         if (randomValue <= RANDOM_FLAG_THRESHOLD)
             return true;
         else
             return false;
-    }
-
-    void setLadderLineFlag() {
-        this.ladderLineFlag = new boolean[ladderWidth - 1][ladderHeight];
-        for (int i = 0; i < ladderWidth - 1; i++)
-            for (int j = 0; j < ladderHeight; j++)
-                ladderLineFlag[i][j] = getRandomFlag();
     }
 
     void printLadder() {
