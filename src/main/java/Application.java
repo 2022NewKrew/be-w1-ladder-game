@@ -19,7 +19,7 @@ public class Application {
 
         return Arrays.stream(nameOfParticipants).map(Participant::new).collect(Collectors.toList());
     }
-
+    
     public static void printParticipants(List<Participant> participants) {
         List<String> names = participants.stream().map(Participant::getName).collect(Collectors.toList());
         System.out.println(String.join("", names));
