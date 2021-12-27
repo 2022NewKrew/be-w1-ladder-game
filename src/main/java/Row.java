@@ -1,28 +1,30 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Row {
-    private final boolean[] bridges;
+    private final List<Boolean> bridges;
 
     public Row(int people) {
-        bridges = new boolean[people];
-        makeBridges();
-    }
-
-    private void makeBridges() {
         Random RANDOM = new Random();
-        for (int i = 0; i < bridges.length - 1; i++) {
-            bridges[i] = RANDOM.nextBoolean();
-        }
+        bridges = new ArrayList<>();
+        IntStream.range(0, people)
+                .forEach(i -> {
+                    if (i < people - 1) {
+                        bridges.add(RANDOM.nextBoolean());
+                    } else {
+                        bridges.add(false);
+                    }
+                });
     }
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
-        for (boolean bridge : bridges) {
-            sb.append('|');
-            sb.append(bridge ? '-' : ' ');
-        }
-        sb.append('\n');
-        return sb.toString();
+        return "|" + bridges.stream()
+                .map(e -> e ? "-" : " ")
+                .collect(Collectors.joining("|"))
+                + "\n";
     }
 }
