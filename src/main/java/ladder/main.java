@@ -30,7 +30,8 @@ public class main {
                 else
                     arr[i][j] = ' ';
             }
-            arr[i][(int) (Math.random() * (col / 2)) * 2 + 1] = '-';
+            int randomIndex = (int) (Math.random() * (col / 2)) * 2 + 1;
+            arr[i][randomIndex] = '-';
         }
     }
 
