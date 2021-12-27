@@ -3,7 +3,6 @@ public class Ladder {
     private int ladderHeight;
     private boolean[][] bridge;
 
-
     public int getNumberOfParticipants() {
         return numberOfParticipants;
     }
@@ -45,7 +44,7 @@ public class Ladder {
                 stringBuilder.append("\n");
             }
         } catch (Exception e) {
-            System.out.println("error message : " + e.getMessage());
+            System.err.println("error message : " + e.getMessage());
             e.printStackTrace();
         }
 
