@@ -19,6 +19,7 @@ public class LadderGame {
     }
 
     private void makeLadder(){
+        initOutput();
         Random rand = new Random();
         for(int i=0; i<output.length; i++){
             for(int j=0; j<output[i].length; j++){
@@ -44,7 +45,6 @@ public class LadderGame {
     public static void main(String[] args){
         LadderGame lg = new LadderGame();
         lg.getInput();
-        lg.initOutput();
         lg.makeLadder();
         lg.printOutput();
     }
