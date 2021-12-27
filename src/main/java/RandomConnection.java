@@ -1,9 +1,9 @@
 import java.util.Random;
 
 public class RandomConnection {
+    private static final Random random = new Random();
+
     public static String randomConnection() {
-        Random random = new Random();
-        int value = random.nextInt(10);
-        return value > 4 ? "-" : " ";
+        return random.nextInt(10) > 4 ? "-" : " ";
     }
 }
