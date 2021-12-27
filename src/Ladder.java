@@ -5,9 +5,10 @@ public class Ladder {
     private int width;
     private char[][] ladder;
 
-    public Ladder(int height, int width) {
+    public Ladder(int height, int width, char[][] ladder) {
         this.height = height;
         this.width = width;
+        this.ladder = ladder;
     }
 
     public int getHeight() {
@@ -18,9 +19,6 @@ public class Ladder {
         return width;
     }
 
-    public void setLadder(char[][] ladder) {
-        this.ladder = ladder;
-    }
     public char[][] getLadder() {
         return ladder;
     }
