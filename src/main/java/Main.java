@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     /**
@@ -46,10 +43,21 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        System.out.println("참여할 사람은 몇 명인가요?");
-        int n = in.nextInt();
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int m = in.nextInt();
+        int n = 0, m = 0;
+
+        try {
+            System.out.println("참여할 사람은 몇 명인가요?");
+            n = in.nextInt();
+            System.out.println("최대 사다리 높이는 몇 개인가요?");
+            m = in.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("정수를 입력해주세요");
+            e.printStackTrace();
+            return ;
+        }
+
+        if (n <= 0 || m <= 0)
+            System.out.println("0보다 큰 정수를 입력해주세요");
 
         char[][] ladder = makeLadder(n, m);
         printLadder(ladder);
