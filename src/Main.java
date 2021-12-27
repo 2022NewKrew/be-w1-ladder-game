@@ -1,5 +1,11 @@
 public class Main {
+
     public static void main(String[] args) {
-        System.out.println("사다리 게임");
+        LadderGame ladderGame = new LadderGame();
+
+        ladderGame.requestParameter();
+        ladderGame.createLadder();
+        ladderGame.printLadder();
+        ladderGame.closeGame();
     }
 }
