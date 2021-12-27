@@ -29,26 +29,26 @@ public class Ladder {
     }
 
     public String getLadderString() {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
 
         try {
             for (int i = 0; i < this.ladderHeight; i++) {
                 for (int j = 0; j < this.numberOfParticipants * 2 - 1; j++) {
                     if( j%2 == 0) {
-                        stringBuffer.append("|");
+                        stringBuilder.append("|");
                     }else if(this.bridge[i][j/2]) {
-                        stringBuffer.append("-");
+                        stringBuilder.append("-");
                     }else {
-                        stringBuffer.append(" ");
+                        stringBuilder.append(" ");
                     }
                 }
-                stringBuffer.append("\n");
+                stringBuilder.append("\n");
             }
         } catch (Exception e) {
             System.out.println("error message : " + e.getMessage());
             e.printStackTrace();
         }
 
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 }
