@@ -35,12 +35,12 @@ public class ladder {
         return ladder;
     }
 
-    private static Character getLadderElement(int j) {
-        if(j%2==1){
+    private static Character getLadderElement(int columnNumber) {
+        if(columnNumber%2==0){
             return 'ㅣ';
         }
-        boolean isRandomZero = new Random().nextInt(2) == 0;
-        if(isRandomZero){
+        boolean isLadderBridge = new Random().nextInt(100) >= 50;
+        if(isLadderBridge){
             return '-';
         }
         return ' ';
