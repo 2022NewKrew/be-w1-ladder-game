@@ -20,12 +20,8 @@ public class LadderMain {
     }
 
     public static void printLadder(Ladder ladder) {
-        for (int i = 0; i < ladder.getHeight(); i++) {
-            for (int j = 0; j < ladder.getWidth(); j++) {
-                System.out.print(ladder.getLadder()[i][j]);
-            }
-            System.out.print('\n');
-        }
+        for (char[] line : ladder.getLadder())
+            System.out.println(line);
     }
 
 }

@@ -17,8 +17,7 @@ public class LadBuilder {
                 }
             }
         }
-        Ladder ladder = new Ladder(height, width, ladder_temp);
-        return ladder;
+        return new Ladder(height, width, ladder_temp);
     }
 
     private char getRandomLine() {
