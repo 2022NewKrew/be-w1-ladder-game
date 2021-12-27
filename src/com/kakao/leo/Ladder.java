@@ -54,21 +54,21 @@ public class Ladder {
     int height = config.getHeight();
     int count = config.getCount();
     for(int i = 0; i < height; i++) {
-      floors.add(getFloor(count));
+      floors.add(createFloor(count));
     }
   }
 
 
-  private List<Character> getFloor(int count) {
+  private List<Character> createFloor(int count) {
     List<Character> floor = new ArrayList<>();
     for(int i = 0; i < count; i++) {
-      addCharacter(floor, i, count - 1);
+      addCell(floor, i, count - 1);
     }
     return floor;
   }
 
 
-  private void addCharacter(List<Character> floor, int current, int lastIndex) {
+  private void addCell(List<Character> floor, int current, int lastIndex) {
     floor.add('|');
     if(current < lastIndex) {
       floor.add(getSeparator());
@@ -80,7 +80,5 @@ public class Ladder {
     Random random = new Random();
     return random.nextBoolean() ? ' ' : '-';
   }
-
-
 
 }
