@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class LadderGame {
@@ -15,7 +16,22 @@ public class LadderGame {
         inputScanner.close();
     }
 
+    public static void makeLadder(){
+        Random randomInstance = new Random();
+
+        for (int i = 0; i < ladderHeight; i++){
+            for(int j = 0; j < peopleNum; j++){
+                System.out.print("|");
+                if(j == peopleNum-1) break;
+                else if(randomInstance.nextBoolean()) System.out.print("-");
+                else System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         inputData();
+        makeLadder();
     }
 }
