@@ -7,10 +7,7 @@ public class Ladder {
         this.numberOfPeople = numberOfPeople;
         this.ladderHeight = ladderHeight;
 
-        ladder = new char[ladderHeight][];
-        for(int i = 0; i < ladderHeight; i++) {
-            ladder[i] = new char[numberOfPeople*2-1];
-        }
+        ladder = new char[ladderHeight][numberOfPeople * 2 - 1];
         makeLine();
     }
 
