@@ -8,15 +8,15 @@ public class LadderGame {
 
     private Ladder ladder;
 
-    public void printLadder(int userCount, int ladderCount) {
+    public void printLadder(int ladderCount) {
         for (int i = 0; i < ladderCount; i++) {
-            ladder.getLadder().get(i).forEach(this::printEachRow);
+            ladder.getLadder().get(i).forEach(this::printEachLadderComponent);
             System.out.println();
         }
     }
 
-    private void printEachRow(LadderComponent ladder) {
-        if (ladder.getHasVertical()) {
+    private void printEachLadderComponent(LadderComponent ladderComponent) {
+        if (ladderComponent.getHasVertical()) {
             System.out.print("|-");
         } else {
             System.out.print("| ");

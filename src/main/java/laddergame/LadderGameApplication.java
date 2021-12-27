@@ -12,7 +12,7 @@ public class LadderGameApplication {
         ladder.makeLadder(userCount, ladderCount);
         ladderGame.setLadder(ladder);
 
-        ladderGame.printLadder(userCount, ladderCount);
+        ladderGame.printLadder(ladderCount);
     }
 
 }
