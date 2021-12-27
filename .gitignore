@@ -186,4 +186,26 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
-# End of https://www.toptal.com/developers/gitignore/api/gradle,java,macos,intellij
+# End of https://www.toptal.com/developers/gitignore/api/gradle,java,macos,intelli
+
+.DS_Store
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+/out/
+/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
