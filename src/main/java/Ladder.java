@@ -4,26 +4,21 @@ import java.util.Random;
 public class Ladder {
 
     private int personNum, ladderHeight;
-    int[][] ladder;
-    //ArrayList<ArrayList<Integer>> ladder = new ArrayList<ArrayList<Integer>>();
+    private boolean[][] ladder;
 
     public Ladder(int personNum, int ladderHeight) {
         this.personNum = personNum;
         this.ladderHeight = ladderHeight;
-        for(int i=0; i<personNum; i++){
-            for(int j=0; j<ladderHeight; j++){
-            }
-        }
-        this.ladder = new int[personNum-1][ladderHeight];
+        this.ladder = new boolean[personNum-1][ladderHeight];
         setLadder(personNum,ladderHeight);
     }
 
     void setLadder(int personNum, int ladderHeight){
+        Random random = new Random();
         for(int i=0; i<personNum-1; i++){
             for(int j=0; j<ladderHeight; j++){
-                int n = (int)(Math.random()*2);
-                if(n == 0){
-                    this.ladder[i][j] = 1;
+                if(random.nextBoolean()){
+                    ladder[i][j] = true;
                 }
             }
         }
@@ -33,7 +28,7 @@ public class Ladder {
         for(int i=0; i<ladderHeight; i++){
             System.out.print("|");
             for(int j=0; j<personNum-1; j++){
-                if(this.ladder[j][i]==1){
+                if(ladder[j][i]){
                     System.out.print("-|");
                 }
                 else{
