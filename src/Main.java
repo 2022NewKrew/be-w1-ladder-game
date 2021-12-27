@@ -6,9 +6,9 @@ public class Main {
     private static final Scanner sc = new Scanner(System.in);
     private static final Random random = new Random();
 
-    public static final char LADDER_FENCE = '|';
-    public static final char LADDER_SPACE = ' ';
-    public static final char LADDER_CONNECT = '-';
+    public static final char LADDER_LINE = '|';
+    public static final char LADDER_EMPTY = ' ';
+    public static final char LADDER_EXIST = '-';
 
     public static void main(String[] args) {
         startLadderGame();
@@ -31,7 +31,7 @@ public class Main {
         char[][] ladderInfo = new char[ladderHeight][numParticipants - 1];
         for (char[] ladderRow : ladderInfo) {
             for (int i = 0; i < ladderRow.length; i++) {
-                ladderRow[i] = random.nextBoolean() ? LADDER_CONNECT : LADDER_SPACE;
+                ladderRow[i] = random.nextBoolean() ? LADDER_EXIST : LADDER_EMPTY;
             }
         }
         return ladderInfo;
@@ -40,9 +40,9 @@ public class Main {
     private static void printLadder(char[][] ladderInfo) {
         StringBuilder sb = new StringBuilder();
         for (char[] ladderRow : ladderInfo) {
-            sb.append("\n").append(LADDER_FENCE);
+            sb.append("\n").append(LADDER_LINE);
             for (char ladderCell : ladderRow) {
-                sb.append(ladderCell).append(LADDER_FENCE);
+                sb.append(ladderCell).append(LADDER_LINE);
             }
         }
         System.out.println(sb);
