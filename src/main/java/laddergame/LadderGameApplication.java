@@ -7,10 +7,7 @@ public class LadderGameApplication {
         LadderGame ladderGame = new LadderGame();
         Integer userCount = ladderGame.readUserCount();
         Integer ladderCount = ladderGame.readLadderCount();
-
-        Ladder ladder = new Ladder();
-        ladder.makeLadder(userCount, ladderCount);
-        ladderGame.setLadder(ladder);
+        ladderGame.makeLadder(userCount, ladderCount);
 
         ladderGame.printLadder(ladderCount);
     }

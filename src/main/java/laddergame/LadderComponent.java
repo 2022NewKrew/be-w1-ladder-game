@@ -12,7 +12,7 @@ public class LadderComponent {
         this.hasVertical = !isEnd && makeRandomVertical();
     }
 
-    public Boolean getHasVertical() {
+    public Boolean hasVertical() {
         return hasVertical;
     }
 

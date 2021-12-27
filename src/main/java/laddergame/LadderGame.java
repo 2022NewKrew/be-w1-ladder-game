@@ -4,9 +4,13 @@ import java.util.Scanner;
 
 public class LadderGame {
 
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     private Ladder ladder;
+
+    public void makeLadder(int userCount, int ladderCount) {
+        this.ladder = new Ladder(userCount, ladderCount);
+    }
 
     public void printLadder(int ladderCount) {
         for (int i = 0; i < ladderCount; i++) {
@@ -16,7 +20,7 @@ public class LadderGame {
     }
 
     private void printEachLadderComponent(LadderComponent ladderComponent) {
-        if (ladderComponent.getHasVertical()) {
+        if (ladderComponent.hasVertical()) {
             System.out.print("|-");
         } else {
             System.out.print("| ");
@@ -31,9 +35,5 @@ public class LadderGame {
     public Integer readLadderCount() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return scanner.nextInt();
-    }
-
-    public void setLadder(Ladder ladder) {
-        this.ladder = ladder;
     }
 }

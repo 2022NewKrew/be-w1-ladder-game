@@ -7,13 +7,17 @@ public class Ladder {
 
     private List<List<LadderComponent>> ladder;
 
-    public void makeLadder(int userCount, int ladderCount) {
+    public Ladder(int userCount, int ladderCount) {
+        this.ladder = makeLadder(userCount, ladderCount);
+    }
+
+    public List<List<LadderComponent>> makeLadder(int userCount, int ladderCount) {
         List<List<LadderComponent>> ladder = new ArrayList<>();
 
         for(int i = 0; i < ladderCount; i++) {
             ladder.add(makeLadderRow(userCount));
         }
-        this.ladder = ladder;
+        return ladder;
     }
 
     private List<LadderComponent> makeLadderRow(int userCount) {
