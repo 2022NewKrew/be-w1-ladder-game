@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class LadderGame {
 
     public static int peopleNum, ladderHeight;
+    public static boolean[][] hasRightLadder;
 
     public static void inputData(){
         Scanner inputScanner = new Scanner(System.in);
@@ -16,22 +17,33 @@ public class LadderGame {
         inputScanner.close();
     }
 
-    public static void makeLadder(){
-        Random randomInstance = new Random();
+    public static void printLadder(){
+        makeLadder();
 
         for (int i = 0; i < ladderHeight; i++){
             for(int j = 0; j < peopleNum; j++){
                 System.out.print("|");
-                if(j == peopleNum-1) break;
-                else if(randomInstance.nextBoolean()) System.out.print("-");
+                if(hasRightLadder[i][j]) System.out.print("-");
                 else System.out.print(" ");
             }
             System.out.println();
         }
     }
 
+    public static void makeLadder(){
+        Random randomInstance = new Random();
+        int ladderWidth = peopleNum;
+        hasRightLadder = new boolean[ladderHeight][ladderWidth];
+
+        for(int ladderRow = 0; ladderRow < ladderHeight; ladderRow++){
+            for(int ladderCol = 0; ladderCol< ladderWidth-1; ladderCol++){
+                hasRightLadder[ladderRow][ladderCol] = randomInstance.nextBoolean();
+            }
+        }
+    }
+
     public static void main(String[] args) {
         inputData();
-        makeLadder();
+        printLadder();
     }
 }
