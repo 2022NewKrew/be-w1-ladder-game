@@ -1,19 +1,21 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class Ladder {
-    private Row[] rows;
+    private List<Row> rows;
 
     public Ladder(int people, int heightLadder) {
-        rows = new Row[heightLadder];
-        for (int i = 0; i < rows.length; i++) {
-            rows[i] = new Row(people);
-        }
+        rows = new ArrayList<>();
+        IntStream.range(0, heightLadder)
+                .forEach(e -> rows.add(new Row(people)));
     }
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
-        for (Row row : rows) {
-            sb.append(row);
-        }
-        return sb.toString();
+        return rows.stream()
+                .map(Row::toString)
+                .collect(Collectors.joining(""));
     }
 }
