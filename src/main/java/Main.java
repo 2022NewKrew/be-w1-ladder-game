@@ -56,8 +56,10 @@ public class Main {
             return ;
         }
 
-        if (n <= 0 || m <= 0)
+        if (n <= 0 || m <= 0) {
             System.out.println("0보다 큰 정수를 입력해주세요");
+            return ;
+        }
 
         char[][] ladder = makeLadder(n, m);
         printLadder(ladder);
