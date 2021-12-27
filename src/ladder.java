@@ -8,6 +8,16 @@ public class ladder {
     public static void main(String[] args) throws IOException{
         int[] twoParameters = getConsoleTwoParameter();
         ArrayList<ArrayList<Character>> ladder = getLadder(twoParameters);
+        showLadder(ladder);
+    }
+
+    private static void showLadder(ArrayList<ArrayList<Character>> ladder) {
+        for(ArrayList<Character> line : ladder){
+            for(Character element : line){
+                System.out.print(element);
+            }
+            System.out.println();
+        }
     }
 
     private static ArrayList<ArrayList<Character>> getLadder(int[] twoParameters) {
