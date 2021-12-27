@@ -30,7 +30,6 @@ public class main {
                 else
                     ladder[i][j] = ' ';
             }
-
             int randomIndex = (int) (Math.random() * (col / 2)) * 2 + 1;
             ladder[i][randomIndex] = '-';
 
