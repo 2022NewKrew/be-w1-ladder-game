@@ -6,8 +6,8 @@ public class LadderController {
 
     private final Ladder ladder;
 
-    public LadderController(int person, int ladderCount) {
-        ladder = Ladder.valueOf(person, ladderCount);
+    public LadderController(int countOfPerson, int ladderHeight) {
+        ladder = Ladder.valueOf(countOfPerson, ladderHeight);
     }
 
     public Ladder result() {

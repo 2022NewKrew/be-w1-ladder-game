@@ -8,7 +8,7 @@ public class OutputView {
 
     private OutputView() {}
 
-    public static void printResult(Ladder result) {
+    public static void printLadder(Ladder result) {
         List<Line> lines = result.getLines();
         for (Line line : lines) {
             printLine(line);

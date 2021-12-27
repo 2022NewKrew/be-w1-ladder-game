@@ -13,9 +13,9 @@ public class Line {
         this.points = new ArrayList<>(points);
     }
 
-    public static Line valueOf(int person) {
+    public static Line valueOf(int countOfPerson) {
         final List<Boolean> points = new ArrayList<>();
-        for (int i = 0; i < person - 1; i++) {
+        for (int i = 0; i < countOfPerson - 1; i++) {
             points.add(RandomUtils.nextBoolean());
         }
         return new Line(points);

@@ -12,10 +12,10 @@ public class Ladder {
         this.lines = new ArrayList<>(lines);
     }
 
-    public static Ladder valueOf(int person, int ladder) {
+    public static Ladder valueOf(int countOfPerson, int ladderHeight) {
         final List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < ladder; i++) {
-            lines.add(Line.valueOf(person));
+        for (int i = 0; i < ladderHeight; i++) {
+            lines.add(Line.valueOf(countOfPerson));
         }
         return new Ladder(lines);
     }

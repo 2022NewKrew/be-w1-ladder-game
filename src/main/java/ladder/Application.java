@@ -7,11 +7,11 @@ import ladder.view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        int person = InputView.inputPerson();
-        int ladder = InputView.inputLadder();
+        int countOfPerson = InputView.inputCountOfPerson();
+        int ladderHeight = InputView.inputLadderHeight();
 
-        LadderController ladderController = new LadderController(person, ladder);
+        LadderController ladderController = new LadderController(countOfPerson, ladderHeight);
         Ladder result = ladderController.result();
-        OutputView.printResult(result);
+        OutputView.printLadder(result);
     }
 }
