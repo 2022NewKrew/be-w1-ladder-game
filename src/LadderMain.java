@@ -1,13 +1,14 @@
 import java.util.Scanner;
 
 public class LadderMain {
-    private static int numPeople;
-    private static int height;
+    public static int numPeople;
+    public static int height;
+    public static LadBuilder ladBuilder = new LadBuilder();
 
     public static void main(String[] args) {
         getInput();
-        Ladder ladder = new Ladder(height, numPeople);
-        ladder.printLadder();
+        Ladder ladder = ladBuilder.createLadder(height, numPeople);
+        printLadder(ladder);
     }
 
     public static void getInput() {
@@ -17,4 +18,14 @@ public class LadderMain {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         height = scanner.nextInt();
     }
+
+    public static void printLadder(Ladder ladder) {
+        for (int i = 0; i < ladder.getHeight(); i++) {
+            for (int j = 0; j < ladder.getWidth(); j++) {
+                System.out.print(ladder.getLadder()[i][j]);
+            }
+            System.out.print('\n');
+        }
+    }
+
 }
