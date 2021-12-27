@@ -1,8 +1,7 @@
 import java.util.Random;
 
 public class Row {
-    private boolean[] bridges;
-    private final Random RANDOM = new Random();
+    private final boolean[] bridges;
 
     public Row(int people) {
         bridges = new boolean[people];
@@ -10,6 +9,7 @@ public class Row {
     }
 
     private void makeBridges() {
+        Random RANDOM = new Random();
         for (int i = 0; i < bridges.length - 1; i++) {
             bridges[i] = RANDOM.nextBoolean();
         }
