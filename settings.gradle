@@ -1,0 +1,3 @@
+rootProject.name = 'be-w1-ladder-game'
+include 'src'
+
