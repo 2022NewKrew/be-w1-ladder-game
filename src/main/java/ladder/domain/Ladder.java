@@ -8,8 +8,14 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(List<Line> lines) {
-        // todo - 사이즈가 0 이하면 에러 처리하기
+        validate(lines);
         this.lines = new ArrayList<>(lines);
+    }
+
+    private void validate(List<Line> lines) {
+        if (lines.isEmpty()) {
+            throw new IllegalArgumentException("사다리의 높이는 0이 될 수 없습니다.");
+        }
     }
 
     public static Ladder valueOf(int countOfPerson, int ladderHeight) {

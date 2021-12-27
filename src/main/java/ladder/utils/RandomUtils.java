@@ -6,7 +6,8 @@ public class RandomUtils {
 
     private static final Random random = new Random();
 
-    private RandomUtils() {}
+    private RandomUtils() {
+    }
 
     public static boolean nextBoolean() {
         return random.nextBoolean();
