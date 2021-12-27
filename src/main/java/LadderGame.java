@@ -1,5 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
-import java.util.Vector;
 
 public class LadderGame {
 
@@ -13,16 +14,16 @@ public class LadderGame {
             return;
         }
 
-        Vector<Vector<Integer>> gameBoard = makeGameBoard(person, ladder);
+        List<List<Integer>> gameBoard = makeGameBoard(person, ladder);
         printGameBoard(gameBoard);
     }
 
-    private Vector<Vector<Integer>> makeGameBoard(int person, int ladder) {
+    private List<List<Integer>> makeGameBoard(int person, int ladder) {
         Random random = new Random();
-        Vector<Vector<Integer>> gameBoard = new Vector<>();
+        List<List<Integer>> gameBoard = new ArrayList<>();
 
         for (int i = 0; i < ladder; i++) {
-            Vector<Integer> curLine = new Vector<>();
+            List<Integer> curLine = new ArrayList<>();
             for (int j = 0; j < person - 1; j++) {
                 curLine.add(random.nextInt(2));
             }
@@ -32,13 +33,15 @@ public class LadderGame {
         return gameBoard;
     }
 
-    private void printGameBoard(Vector<Vector<Integer>> gameBoard) {
-        for (int i = 0; i < gameBoard.size(); i++) {
-            for (int j = 0; j < gameBoard.get(0).size(); j++) {
-                char shape = gameBoard.get(i).get(j) > 0 ? '-' : ' ';
-                System.out.print("|" + shape);
+    private void printGameBoard(List<List<Integer>> gameBoard) {
+        for (List<Integer> line : gameBoard) {
+            String buffer = "";
+            for (int space : line) {
+                char shape = space == 1 ? '-' : ' ';
+                buffer += "|" + shape;
             }
-            System.out.println("|");
+            buffer += "|";
+            System.out.println(buffer);
         }
     }
 }
