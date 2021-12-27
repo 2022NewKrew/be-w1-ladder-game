@@ -1,22 +1,21 @@
-import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class SadariGame {
 
-    private static int numberOfPeople;
-    private static int numberOfLadder;
-
-    public static void main(String[] args) throws IOException {
-        input();
-        printSadariGame(numberOfPeople * 2 - 1, numberOfLadder);
+    public static void main(String[] args) {
+        SadariInfo sadariInfo = input();
+        printSadariGame(sadariInfo.getNumberOfColumn(), sadariInfo.getNumberOfRow());
     }
 
-    private static void input() {
+    private static SadariInfo input() {
         Scanner sc = new Scanner(System.in);
         System.out.println("참여할 사람은 몇명인가요?");
-        numberOfPeople = sc.nextInt();
+        int numberOfPeople = sc.nextInt();
         System.out.println("최대 사다리 높이는 몇 개 인가요?");
-        numberOfLadder = sc.nextInt();
+        int numberOfLadder = sc.nextInt();
+
+        return new SadariInfo(numberOfPeople, numberOfLadder);
     }
 
     private static void printSadariGame(int numberOfColumnLine, int numberOfRowLine) {
@@ -51,7 +50,7 @@ public class SadariGame {
     }
 
     private static boolean canPrintSadariLine() {
-        // 0~1 정수를 랜덤하게 가져와 0이면 사다리 라인을 그린다.
-        return (int)(Math.random()*2) == 0;
+        return new Random().nextBoolean();
+
     }
 }
