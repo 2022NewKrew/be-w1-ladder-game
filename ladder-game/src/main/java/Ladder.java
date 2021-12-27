@@ -7,17 +7,31 @@ public class Ladder {
     static final private Random randomGenerator = new Random();
     private final List<String> shape = new ArrayList<>();
 
-    public Ladder(int numberOfPerson, int ladderHeight){
-        for(int i = 0; i < ladderHeight; i++){
+    public Ladder(int numberOfPerson, int ladderHeight) throws IllegalArgumentException {
+        checkNumberOfPerson(numberOfPerson);
+        checkLadderHeight(ladderHeight);
+        for (int i = 0; i < ladderHeight; i++) {
             shape.add(generateLadderLine(numberOfPerson));
         }
     }
 
-    private String generateLadderLine(int numberOfPerson){
+    private void checkNumberOfPerson(int numberOfPerson) throws IllegalArgumentException {
+        if (numberOfPerson < 1) {
+            throw new IllegalArgumentException("참여하는 사람의 수는 양의 정수여야 합니다.");
+        }
+    }
+
+    private void checkLadderHeight(int ladderHeight) throws IllegalArgumentException {
+        if (ladderHeight < 1) {
+            throw new IllegalArgumentException("사다리의 높이는 양의 정수여야 합니다.");
+        }
+    }
+
+    private String generateLadderLine(int numberOfPerson) {
         StringBuilder generatedLine = new StringBuilder();
         int ladderSize = numberOfPerson * 2 - 1;
-        for(int i = 0 ; i < ladderSize; i++){
-            if(i % 2 == 1){
+        for (int i = 0; i < ladderSize; i++) {
+            if (i % 2 == 1) {
                 generatedLine.append(generateBranch());
                 continue;
             }
@@ -26,8 +40,8 @@ public class Ladder {
         return generatedLine.toString();
     }
 
-    private char generateBranch(){
-        if(randomGenerator.nextBoolean()){
+    private char generateBranch() {
+        if (randomGenerator.nextBoolean()) {
             return '-';
         }
         return ' ';
