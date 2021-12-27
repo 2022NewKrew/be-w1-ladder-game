@@ -12,7 +12,7 @@ public class Application {
         ladder.makeRandom();
         ladder.print();
     }
-
+    
     public static void input() {
         Scanner scanner = new Scanner(System.in);
 
