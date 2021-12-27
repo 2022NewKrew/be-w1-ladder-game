@@ -15,7 +15,14 @@ public class LadderGame {
     }
 
     private void initOutput(){
-        output = new char[H][N-1];
+        int n,h;
+        n = N-1;
+        h = H;
+        if(h <= 0 || n < 0) {
+            n = 0;
+            h = 0;
+        }
+        output = new char[h][n];
     }
 
     private void makeLadder(){
