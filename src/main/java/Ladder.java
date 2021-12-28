@@ -1,27 +1,18 @@
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Ladder {
-    int MAX_RANDOM = 10;
-    int RANDOM_RANGE = 3;
     String SIDE_RAIL = "|";
     String RUNG = "-";
     String SPACE = " ";
 
     int numberOfRung = 0;
     int heightOfLadder = 0;
-    ArrayList<Boolean> rungs;
-    Random random = new Random();
+    ArrayList<Boolean> lines;
 
-    /**
-     * 한 줄에 Rung이 몇 개인지, 사다리의 길이는 얼마인지 저장하고 사다리를 생성한다.
-     * @param numberOfPlayer
-     * @param height
-     */
-    Ladder(int numberOfPlayer, int height) {
-        numberOfRung = numberOfPlayer - 1;
-        heightOfLadder = height;
-        makeLadder();
+    Ladder(int numberOfRung, int heightOfLadder, ArrayList<Boolean> lines) {
+        this.numberOfRung = numberOfRung;
+        this.heightOfLadder = heightOfLadder;
+        this.lines = lines;
     }
 
     /**
@@ -33,7 +24,7 @@ public class Ladder {
         StringBuilder line = new StringBuilder(SIDE_RAIL);
 
         for (int i = 0; i < numberOfRung; i++) {
-            line.append(rungs.get(numberOfRung * heightIdx + i) ? RUNG : SPACE);
+            line.append(lines.get(numberOfRung * heightIdx + i) ? RUNG : SPACE);
             line.append(SIDE_RAIL);
         }
         return line.toString();
@@ -48,25 +39,5 @@ public class Ladder {
         for (int i = 0; i < heightOfLadder; i++)
             lines.append(makeLine(i)).append("\n");
         System.out.println(lines);
-    }
-
-    /**
-     * 렌덤값에 따라 Rung 값을 생성해준다
-     * @return Rung이 있다면 true를 없다면 false를 반환한다
-     */
-    Boolean getRungElement() {
-        return random.nextInt(MAX_RANDOM) < RANDOM_RANGE;
-    }
-
-    /**
-     * 사다리를 만드는 메서드
-     * Rung 리스트를 만들어준다
-     */
-    void makeLadder() {
-        rungs = new ArrayList<>();
-
-        for (int i = 0; i < numberOfRung * heightOfLadder; i++) {
-            rungs.add(getRungElement());
-        }
     }
 }

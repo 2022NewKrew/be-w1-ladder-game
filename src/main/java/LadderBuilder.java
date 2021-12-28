@@ -1,40 +1,40 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class LadderBuilder {
-    int numberOfPlayer = 0;
-    int height = 0;
+    private final int MAX_RANDOM = 10;
+    private final int RANDOM_RANGE = 3;
+    private int numberOfPlayer = 0;
+    private int height = 0;
+    private final Random random = new Random();
 
-    /**
-     * 입력이 올바른지 확인하는 메서드
-     * @param input 입력받은 인자를 받는다
-     * @throws InputMismatchException 양의 정수가 아닌 다른 정수가 들어오면 예외를 던진다
-     */
-    void validateInput(int input) throws InputMismatchException {
-        if (input <= 0)
-            throw new InputMismatchException();
+    LadderBuilder(int numberOfPlayer, int height) {
+        this.numberOfPlayer = numberOfPlayer;
+        this.height = height;
     }
 
     /**
-     * 입력을 받는 메서드
-     * @throws InputMismatchException 양의 정수가 아닌 다른 정수가 들어오면 예외를 던진다
+     * 렌덤값에 따라 Rung 값을 생성해준다
+     *
+     * @return Rung이 있다면 true를 없다면 false를 반환한다
      */
-    void input() throws InputMismatchException {
-        Scanner in = new Scanner(System.in);
-
-        System.out.println("참여할 사람은 몇 명인가요?");
-        numberOfPlayer = in.nextInt();
-        validateInput(numberOfPlayer);
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        height = in.nextInt();
-        validateInput(height);
+    Boolean getLineElement() {
+        return random.nextInt(MAX_RANDOM) < RANDOM_RANGE;
     }
 
     /**
-     * 새로운 사다리를 만드는 메서드
-     * @return 새 사다리를 반환한다
+     * 사다리를 만드는 메서드
+     * Ladder 객체를 반환해준다
+     * @return
      */
-    Ladder buildLadder() {
-        return new Ladder(numberOfPlayer, height);
+    Ladder makeLadder() {
+        ArrayList<Boolean> lines = new ArrayList<>();
+        int numberOfRung = numberOfPlayer - 1;
+        int heightOfLadder = height;
+
+        for (int i = 0; i < numberOfRung * heightOfLadder; i++) {
+            lines.add(getLineElement());
+        }
+        return new Ladder(numberOfRung, heightOfLadder, lines);
     }
 }
