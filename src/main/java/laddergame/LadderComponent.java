@@ -10,7 +10,7 @@ public class LadderComponent {
     private final Boolean hasLeftVertical;
 
     public LadderComponent(Boolean isEnd, Boolean hasLeftVertical) {
-        this.hasRightVertical = !isEnd && !hasLeftVertical && makeRandomVertical();
+        this.hasRightVertical = makeRightVertical(isEnd, hasLeftVertical);
         this.hasLeftVertical = hasLeftVertical;
     }
 
@@ -29,5 +29,17 @@ public class LadderComponent {
         } catch (NoSuchAlgorithmException e) {
             return false;
         }
+    }
+
+    private Boolean makeRightVertical(Boolean isEnd, Boolean hasLeftVertical) {
+        if (isEnd) {
+            return false;
+        }
+
+        if (hasLeftVertical) {
+            return false;
+        }
+
+        return makeRandomVertical();
     }
 }
