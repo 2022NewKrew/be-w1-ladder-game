@@ -20,9 +20,9 @@ public class Ladder {
     private void construct() {
         Random random = new Random();
 
-        for (int i=0; i<height; ++i) {
-            for (int j=0; j<getWidth(); ++j) {
-                if (j%2 == 0) {
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < getWidth(); ++j) {
+                if (j % 2 == 0) {
                     ladder[i][j] = '|';
                 } else {
                     ladder[i][j] = (random.nextBoolean() ? '-' : ' ');
@@ -35,8 +35,8 @@ public class Ladder {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        for (char[] row: ladder) {
-            for (char c: row) {
+        for (char[] row : ladder) {
+            for (char c : row) {
                 sb.append(c);
             }
             sb.append('\n');
