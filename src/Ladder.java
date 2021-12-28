@@ -1,4 +1,5 @@
-package main;
+package ladderGame;
+
 import java.util.*;
 
 public class Ladder {

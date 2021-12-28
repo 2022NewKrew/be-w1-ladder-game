@@ -1,6 +1,10 @@
+package ladderGame;
+
 import java.io.IOException;
-import java.util.*;
-import main.Ladder;
+import java.util.Scanner;
+
+import ladderGame.Ladder;
+import ladderGame.LadderIO;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
@@ -9,19 +13,16 @@ public class Main {
 
         Ladder ladder = new Ladder();
 
-        System.out.println("참여 할 사람은 몇 명인가요?");
-        setLadderVariable(ladder,"numOfPeople");
-
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        setLadderVariable(ladder,"height");
+        LadderIO ladderIO = new LadderIO();
+        ladderIO.getNumOfPeopleIO(ladder);
+        ladderIO.getLadderHeightIO(ladder);
 
         ladder.drawLadder();
-
 
     }
 
 
-    private static void setLadderVariable(Ladder ladder,String variable){
+    private static void setLadderVariable(Ladder ladder, String variable){
         int input = sc.nextInt();
         if(variable.equals("numOfPeople")){
             ladder.setNumOfPeople(input);
