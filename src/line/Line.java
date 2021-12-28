@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Line {
 
-    private int id;
-    private int height;
-    private List<Connection> connections = new ArrayList<>();
+    private final int id;
+    private final int height;
+    private final List<Connection> connections = new ArrayList<>();
 
     public Line(int id, int height) {
         this.id = id;

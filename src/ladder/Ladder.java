@@ -13,7 +13,7 @@ public class Ladder {
 
     private final int height;
     private final Connector connector;
-    private List<Line> lines = new ArrayList<>();
+    private final List<Line> lines = new ArrayList<>();
 
     public Ladder(int numOfPlayer, int height, Connector connector) {
         this.height = height;
