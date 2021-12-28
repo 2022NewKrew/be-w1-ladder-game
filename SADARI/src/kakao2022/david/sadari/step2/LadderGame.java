@@ -1,4 +1,4 @@
-package step2;
+package david.sadari.step2;
 
 public class LadderGame {
 
