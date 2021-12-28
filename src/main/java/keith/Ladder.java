@@ -11,7 +11,7 @@ public class Ladder {
 
     private final List<List<Boolean>> connections;
 
-    Ladder(int width, int height) {
+    public Ladder(int width, int height) {
         this.connections = new ArrayList<>();
         Random random = new Random();
 
