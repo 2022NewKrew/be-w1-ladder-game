@@ -1,6 +1,6 @@
 package com.laddergame;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class View {
@@ -22,11 +22,11 @@ public class View {
         return scanner.nextInt();
     }
 
-    static public void outputLadderGameResult(ArrayList<ArrayList<Boolean>> result) {
+    static public void outputLadderGameResult(List<List<Boolean>> result) {
         result.forEach(View::outputRoundResult);
     }
 
-    static private void outputRoundResult(ArrayList<Boolean> roundResult) {
+    static private void outputRoundResult(List<Boolean> roundResult) {
         roundResult.forEach(hasLadder -> {
             System.out.print(VERTICAL_LINE);
             String eachResult = hasLadder ? LADDER_DELIMITER : EMPTY_STRING;

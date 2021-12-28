@@ -1,10 +1,11 @@
 package com.laddergame;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class LadderGame {
-    private final ArrayList<ArrayList<Boolean>> results = new ArrayList<>();
+    private final List<List<Boolean>> results = new ArrayList<>();
 
     public int participantNumber;
 
@@ -15,17 +16,17 @@ public class LadderGame {
         this.ladderHeight = ladderHeight;
     }
 
-    public ArrayList<ArrayList<Boolean>> startGame() {
+    public List<List<Boolean>> startGame() {
         Random random = new Random();
         for(int i = 0; i < ladderHeight; i++) {
-            ArrayList<Boolean> roundResults = startEachRound(random);
+            List<Boolean> roundResults = startEachRound(random);
             results.add(roundResults);
         }
         return results;
     }
 
-    private ArrayList<Boolean> startEachRound(Random random) {
-        ArrayList<Boolean> results = new ArrayList<>();
+    private List<Boolean> startEachRound(Random random) {
+        List<Boolean> results = new ArrayList<>();
         for(int i = 0; i < participantNumber - 1; i++) {
             int randomNumber = random.nextInt(RANDOM_NUMBER_UPPER_BOUND);
             boolean result = randomNumber < RANDOM_NUMBER_UPPER_BOUND / 2;
