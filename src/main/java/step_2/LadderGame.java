@@ -10,11 +10,11 @@ public class LadderGame {
     private final LadderBuilder ladderBuilder = new LadderBuilder();
 
     public void start() throws Exception {
-        this.inputGameConditions(this);
+        inputGameConditions(this);
 
-        this.ladder = ladderBuilder.buildLadder(this.ladderWidth, this.ladderHeight);
+        ladder = ladderBuilder.buildLadder(ladderWidth, ladderHeight);
 
-        this.printLadder();
+        printLadder();
     }
 
     private void inputGameConditions(LadderGame ladderGame) throws Exception {
@@ -30,6 +30,6 @@ public class LadderGame {
     }
 
     private void printLadder() {
-        System.out.println(this.ladder.shape);
+        System.out.println(ladder.shape);
     }
 }

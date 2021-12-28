@@ -20,7 +20,7 @@ public class LadderBuilder {
 
     private void buildLineOfLadder(int ladderWidth) {
         ladder.append(LadderCharacter.COLOMN);
-        IntStream.range(0, ladderWidth)
+        IntStream.range(0, ladderWidth - 1)
                 .forEach(col -> ladder.append(getLadderConnection()));
         ladder.append(LadderCharacter.CHANGE_LINE);
     }
