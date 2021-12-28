@@ -18,10 +18,6 @@ public class LadderComponent {
         return hasRightVertical;
     }
 
-    public Boolean hasLeftVertical() {
-        return hasLeftVertical;
-    }
-
     private Boolean makeRandomVertical() {
         try {
             Random rand = SecureRandom.getInstanceStrong();
