@@ -32,19 +32,19 @@ public class Ladder {
     }
 
     public void printLadder() {
-        for (int row = 0; row < ladderHeight; row++) {
-            for (int col = 0; col < ladderWidth-1; col++) {
-                System.out.print("|");
-                System.out.print(isLadderLocated(row, col));
-            }
-            System.out.println("|");
-        }
+        hasRightLadder.forEach((this::printLadderRow));
     }
 
-    public char isLadderLocated(int row, int col){
-        if(hasRightLadder.get(row).get(col)){
-            return '-';
-        }
+    public void printLadderRow(ArrayList<Boolean> ladderRow){
+        ladderRow.forEach(chkLadder->{
+            System.out.print("|");
+            System.out.print(isLadderLocated(chkLadder));
+        });
+        System.out.println("|");
+    }
+
+    public char isLadderLocated(Boolean chkLadder){
+        if(chkLadder) return '-';
         return ' ';
     }
 }
