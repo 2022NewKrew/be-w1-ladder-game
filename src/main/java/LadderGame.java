@@ -1,7 +1,8 @@
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 public class LadderGame {
     private int numberOfParticipants;
     private int ladderHeight;
@@ -21,17 +22,11 @@ public class LadderGame {
     public String getLadderString() throws Exception {
         StringBuilder stringBuilder = new StringBuilder();
 
-        try {
-            for (int i = 0; i < this.ladderHeight; i++) {
-                for (int j = 0; j < this.numberOfParticipants * 2 - 1; j++) {
-                    stringBuilder.append(getBridgeChar(i, j));
-                }
-                stringBuilder.append("\n");
+        for (int i = 0; i < this.ladderHeight; i++) {
+            for (int j = 0; j < this.numberOfParticipants * 2 - 1; j++) {
+                stringBuilder.append(getBridgeChar(i, j));
             }
-        } catch (Exception e) {
-            System.err.println("error message : " + e.getMessage());
-            e.printStackTrace();
-            throw new Exception(e);
+            stringBuilder.append("\n");
         }
 
         return stringBuilder.toString();
