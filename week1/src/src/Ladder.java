@@ -30,7 +30,6 @@ public class Ladder {
     public void showMap(){
         for(Line line : map) {
             System.out.println(line);
-            //
         }
     }
 }
