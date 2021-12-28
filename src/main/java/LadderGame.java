@@ -1,17 +1,19 @@
-import java.util.Scanner;
+import dto.Ladder;
+import input.CommandLineInputController;
+import input.InputController;
+import dto.LadderInfo;
+import output.CommandLineOutputController;
+import service.LadderGenerator;
+import service.RandomLadderGenerator;
 
 public class LadderGame {
+    private final InputController inputController = new CommandLineInputController();
+    private final LadderGenerator ladderGenerator = new RandomLadderGenerator();
+    private final CommandLineOutputController commandLineOutputController = new CommandLineOutputController();
 
-    public static void main(String[] args) {
-        InputController inputController = new InputController();
-        LadderGenerator ladderGenerator = new NormalLadderGenerator();
-        printLadder(inputController, ladderGenerator);
-    }
-
-    private static void printLadder(InputController inputController, LadderGenerator ladderGenerator) {
-        int heights = inputController.getHeights();
-        int numberOfParticipants = inputController.getNoParticipants();
-        Ladder ladder = ladderGenerator.buildLadder(heights, numberOfParticipants);
-        System.out.println(ladder);
+    public void start(){
+        LadderInfo ladderInfo = inputController.createLadderInfo();
+        Ladder ladder = ladderGenerator.buildLadder(ladderInfo.getHeights(), ladderInfo.getNumberOfParticipants());
+        commandLineOutputController.printLadder(ladder);
     }
 }
