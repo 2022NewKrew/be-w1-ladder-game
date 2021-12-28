@@ -8,9 +8,8 @@ public class Application {
         input();
 
         Ladder ladder = new Ladder(heightOfLadder, numOfPeople);
-        ladder.initialize();
-        ladder.makeRandom();
-        ladder.print();
+        ladder.makeRandomLadder();
+        ladder.printLadder();
     }
 
     public static void input() {

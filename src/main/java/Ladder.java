@@ -9,9 +9,10 @@ public class Ladder {
         this.height = height;
         this.width = numOfPeople * 2 - 1;
         this.ladder = new char[this.height][this.width];
+        initializeLadder();
     }
 
-    public void initialize() {
+    public void initializeLadder() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 if (j % 2 == 0) {
@@ -23,7 +24,7 @@ public class Ladder {
         }
     }
 
-    public void makeRandom() {
+    public void makeRandomLadder() {
         Random random = new Random();
 
         for (int i = 0; i < height; i++) {
@@ -39,7 +40,7 @@ public class Ladder {
         }
     }
 
-    public void print() {
+    public void printLadder() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 System.out.print(ladder[i][j]);
