@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class LadderGameServiceImpl implements LadderGameService {
 
     @Override
@@ -15,6 +17,6 @@ public class LadderGameServiceImpl implements LadderGameService {
     }
 
     private boolean trueAndFalseGenerator() {
-        return ((int) (Math.random() * 2)) % 2 == 0;
+        return new Random().nextBoolean();
     }
 }
