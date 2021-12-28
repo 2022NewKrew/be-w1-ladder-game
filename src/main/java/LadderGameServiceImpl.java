@@ -1,10 +1,7 @@
-public class LadderGameStep1 implements LadderGame {
+public class LadderGameServiceImpl implements LadderGameService {
 
     @Override
-    public boolean[][] createMap(Ladder ladder) {
-
-        int row = ladder.getLadderHeight();
-        int col = ladder.getNumberOfParticipants() - 1;
+    public boolean[][] createMap(int row, int col) {
 
         boolean[][] ladderMap = new boolean[row][col];
 
