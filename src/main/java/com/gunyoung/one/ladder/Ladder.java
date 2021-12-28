@@ -64,7 +64,9 @@ public final class Ladder {
         }
 
         private Bridge(Ladder ladder, BridgeMakeStrategy makeStrategy) {
-            this.bridges = new boolean[ladder.getLadderHeight()][ladder.getNumOfUser()];
+            int ladderHeight = ladder.getLadderHeight();
+            int maxNumOfBridgesForEachRow = ladder.getNumOfUser() - 1;
+            this.bridges = new boolean[ladderHeight][maxNumOfBridgesForEachRow];
             this.makeStrategy = makeStrategy;
         }
 
