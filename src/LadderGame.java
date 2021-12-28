@@ -29,37 +29,18 @@ public class LadderGame {
         boolean isOccurredBefore = false;
         for (int i = 0; i < numberOfPlayers - 1; i++) {
             builder.append(LADDER_VERTICAL);
-            Piece piece = buildPiece(isOccurredBefore);
-            builder.append(piece.getPiece());
-            isOccurredBefore = piece.isOccurredBefore();
+            String piece = buildPiece(isOccurredBefore);
+            isOccurredBefore = piece.equals(LADDER_HORIZONTAL);
+            builder.append(piece);
         }
         builder.append(LADDER_VERTICAL);
         return builder.toString();
     }
 
-    private Piece buildPiece(boolean isOccurredBefore) {
+    private String buildPiece(boolean isOccurredBefore) {
         if (isOccurredBefore) {
-            return new Piece(LADDER_EMPTY, false);
+            return LADDER_EMPTY;
         }
-        boolean isOccurredNow = random.nextBoolean();
-        return new Piece(isOccurredNow ? LADDER_HORIZONTAL : LADDER_EMPTY, isOccurredNow);
-    }
-
-    private static class Piece {
-        private final String piece;
-        private final boolean isOccurredBefore;
-
-        public Piece(String piece, boolean isOccurredBefore) {
-            this.piece = piece;
-            this.isOccurredBefore = isOccurredBefore;
-        }
-
-        public String getPiece() {
-            return piece;
-        }
-
-        public boolean isOccurredBefore() {
-            return isOccurredBefore;
-        }
+        return random.nextBoolean() ? LADDER_HORIZONTAL : LADDER_EMPTY;
     }
 }
