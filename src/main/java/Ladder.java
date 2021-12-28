@@ -15,21 +15,21 @@ public class Ladder {
 
     private void createLadder(){
         ladder = new ArrayList<>();
+        Random random = new Random();
         for(int i = 0; i < height; i++){
-            ladder.add(createRow());
+            ladder.add(createRow(random));
         }
     }
 
-    private ArrayList<Boolean> createRow(){
+    private ArrayList<Boolean> createRow(Random random){
         ArrayList<Boolean> row = new ArrayList<>();
         for(int j = 0; j < numParticipant - 1; j++){
-            row.add(createCell(row, j));
+            row.add(createCell(random, row, j));
         }
         return row;
     }
 
-    private Boolean createCell(ArrayList<Boolean> row, int colIndex){
-        Random random = new Random();
+    private Boolean createCell(Random random, ArrayList<Boolean> row, int colIndex){
         if(colIndex == 0 || Boolean.FALSE.equals(row.get(colIndex - 1))){
             return random.nextBoolean();
         }
