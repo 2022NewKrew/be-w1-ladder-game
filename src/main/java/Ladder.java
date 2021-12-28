@@ -43,7 +43,7 @@ public class Ladder {
 
         System.out.println(ladderEntire.toString());
     }
-
+    
     private String makeLadderRow(int row) {
         StringBuffer ladderRow = new StringBuffer();
 
