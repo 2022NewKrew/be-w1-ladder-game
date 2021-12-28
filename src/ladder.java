@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -21,7 +23,9 @@ public class Ladder {
         List<List<Character>> createdLadder = new ArrayList<>();
 
         for(int i=0; i<column; i++ ){
-            List<Character> line = getLadderOneLine();
+            List<Character> line = IntStream.range(0, row)
+                    .mapToObj(this::getLadderElement)
+                    .collect(Collectors.toList());
             createdLadder.add(line);
         }
         return createdLadder;
@@ -54,12 +58,10 @@ public class Ladder {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for(List<Character> line : ladder){
-            for(Character element : line){
-                result.append(element);
-            }
+        ladder.forEach( line-> {
+            line.forEach(result::append);
             result.append("\n");
-        }
+        } );
         return result.toString();
     }
 }
