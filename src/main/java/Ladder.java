@@ -37,22 +37,22 @@ public class Ladder {
         System.out.println(ladderEntire.toString());
     }
 
-    public String makeLadderRow(int row) {
+    private String makeLadderRow(int row) {
         StringBuffer ladderRow = new StringBuffer();
 
-        ladderRow.append("|");
+        ladderRow.append(LadderShape.VERTICAL);
         for (int col = 0; col < this.numParticipants - 1; col++) {
             ladderRow.append(selectCharacter(this.shape[row][col]));
-            ladderRow.append("|");
+            ladderRow.append(LadderShape.VERTICAL);
         }
         ladderRow.append("\n");
 
         return ladderRow.toString();
     }
 
-    public String selectCharacter(boolean isExistHorizon) {
-        if (isExistHorizon) return "-";
-        return " ";
+    private String selectCharacter(boolean isExistHorizon) {
+        if (isExistHorizon) return LadderShape.BRANCH;
+        return LadderShape.NO_BRANCH;
     }
 
 }
