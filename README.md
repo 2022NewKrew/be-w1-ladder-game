@@ -31,8 +31,9 @@
 * 구현 순서를 고려하면서 프로그래밍한다.
 * naming convention을 지키면서 프로그래밍한다
 
+### DONE
+* 구현 순서를 고려하면서 프로그래밍
 ### TODO
 * naming convention ==> 1일차 피드백 때 적용
 * indent depth 조정
 * else 삭제 ==> 이미 없는것으로 파악 but, depth 조정 때 생기는걸 조심!
-* 구현 순서를 고려하면서 프로그래밍
