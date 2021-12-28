@@ -11,12 +11,11 @@ public class LadderGame {
     }
 
     public void play() {
-        ladder.initLadder();
         printLadder();
     }
 
     private void printLadder() {
-        System.out.println(ladder.generateLadderShape());
+        System.out.println(ladder.getLadderShape());
     }
 
 }
