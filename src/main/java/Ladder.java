@@ -1,35 +1,34 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
     private int numOfPeople;
     private int height;
-    private ArrayList<ArrayList<String>> ladder = new ArrayList<ArrayList<String>>();
+    private String[][] ladder;
 
     Ladder(int numOfPeople, int height) {
         this.numOfPeople = numOfPeople;
         this.height = height;
+        this.ladder = new String[height][numOfPeople*2-1];
         setLadder();
     }
 
     private void setLadder() {
         Random random = new Random();
-        for(int i = 0; i < height; ++i) {
-            ArrayList<String> temparray = new ArrayList<String>();
-            temparray.add("|");
-            for(int j = 1; j < numOfPeople; ++j) {
-                String temp = random.nextBoolean() ? "-" : " ";
-                temparray.add(temp);
-                temparray.add("|");
+        for(int i = 0; i < height; i++) {
+            ladder[i][0] = "|";
+            for(int j = 1; j < numOfPeople*2-1; j+=2) {
+                ladder[i][j] = random.nextBoolean() ? "-" : " ";
+                ladder[i][j+1] = "|";
             }
-            ladder.add(temparray);
         }
     }
 
     public void show() {
-        for (ArrayList<String> row : ladder) {
-            for (String el : row) {
-                System.out.print(el);
+        for(int i = 0; i < height; ++i) {
+            for(int j = 0; j < numOfPeople*2-1; j++) {
+                System.out.print(ladder[i][j]);
             }
             System.out.println();
         }
