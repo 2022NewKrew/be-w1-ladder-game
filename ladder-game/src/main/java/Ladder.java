@@ -5,7 +5,10 @@ import java.util.StringJoiner;
 
 public class Ladder {
 
-    static private final Random randomGenerator = new Random();
+    private static final String STEP = "-";
+    private static final String EMPTY_SPACE = " ";
+    private static final String PILLAR = "|";
+    private static final Random randomGenerator = new Random();
     private final List<String> shape = new ArrayList<>();
 
     public Ladder(int numberOfPerson, int ladderHeight) throws IllegalArgumentException {
@@ -45,15 +48,15 @@ public class Ladder {
         return generatedLine.toString();
     }
 
-    private char generateStep() {
+    private String generateStep() {
         if (randomGenerator.nextBoolean()) {
-            return '-';
+            return STEP;
         }
-        return ' ';
+        return EMPTY_SPACE;
     }
 
     private String ladderLineToString(String ladderLine) {
-        StringJoiner stringJoiner = new StringJoiner("|", "|", "|\n");
+        StringJoiner stringJoiner = new StringJoiner(PILLAR, PILLAR, PILLAR + "\n");
         for (String step : ladderLine.split("")) {
             stringJoiner.add(step);
         }
