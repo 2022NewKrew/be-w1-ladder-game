@@ -15,7 +15,7 @@ public class PeopleCount {
 
     private void validatePeopleCount(int peopleCount) {
         if(peopleCount < 0) {
-            throw new IllegalArgumentException("양수를 입력하세요.");
+            throw new IllegalArgumentException("사람수는 양수를 입력해주세요~");
         }
     }
 }

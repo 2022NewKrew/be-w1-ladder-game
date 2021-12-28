@@ -15,7 +15,7 @@ public class LadderHeight {
 
     private void validateMaxHeight(int maxHeight) {
         if(maxHeight < 0) {
-            throw new IllegalArgumentException("양수를 입력하세요.");
+            throw new IllegalArgumentException("사다리 높이는 양수를 입력해주세요~");
         }
     }
 }
