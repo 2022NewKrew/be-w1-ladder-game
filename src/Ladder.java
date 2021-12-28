@@ -2,14 +2,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-class Ladder {
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+public class Ladder {
     int person;
     int height;
     int width;
     char[][] ladder;
 
-
+    Ladder(int person, int height) {
+        self.person = person;
+        self.height = height;
+        self.width = 2 * person - 1;
+    }
+    
     void setPerson() throws IOException {
         person = Integer.parseInt(br.readLine());
     }
@@ -47,16 +51,3 @@ class Ladder {
     }
 }
 
-public class Laddergame {
-    public static void main(String[] args) throws IOException {
-        Ladder ladder = new Ladder();
-        System.out.println("참여할 사람은 몇 명인가요?");
-        ladder.setPerson();
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        ladder.setHeight();
-        ladder.setWidth();
-        ladder.initializeLadder();
-        ladder.setLadder();
-        ladder.printLadder();
-    }
-}
