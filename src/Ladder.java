@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -6,8 +7,8 @@ import java.util.stream.Stream;
 
 public class Ladder {
     private static final Random random = new Random();
-    private ArrayList<String> stateAsListOfString;
-    private int width, height;
+    private List<String> stateAsListOfString;
+    private final int width, height;
 
     public Ladder(int width, int height) {
         this.width = width;
@@ -15,20 +16,20 @@ public class Ladder {
     }
 
     public void generateSimpleRandom() {
-        this.stateAsListOfString = new ArrayList<>();
-        for (int lineNo = 0; lineNo < this.height; lineNo++) {
-            this.stateAsListOfString.add(Stream.generate(() -> this.random.nextBoolean() ? "-" : " ").limit(this.width - 1).collect(Collectors.joining("|", "|", "|")));
+        stateAsListOfString = new ArrayList<>();
+        for (int lineNo = 0; lineNo < height; lineNo++) {
+            stateAsListOfString.add(Stream.generate(() -> random.nextBoolean() ? "-" : " ").limit(width - 1).collect(Collectors.joining("|", "|", "|")));
         }
     }
 
     public String toPrettyString() {
-        return String.join(System.lineSeparator(), this.stateAsListOfString);
+        return String.join(System.lineSeparator(), stateAsListOfString);
     }
 
     @Override
     public String toString() {
         return getClass().getName() + "("
-                + "width=" + this.width + ", "
-                + "height=" + this.height + ")";
+                + "width=" + width + ", "
+                + "height=" + height + ")";
     }
 }
