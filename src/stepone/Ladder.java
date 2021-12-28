@@ -12,10 +12,11 @@ class Ladder {
     public Ladder(int ladderHeight, int numPlayers) {
         this.ladderHeight = ladderHeight;
         this.numPlayers = numPlayers;
+        getLadder();
     }
 
     // gets each level of ladder
-    String getLevel() {
+    private String getLevel() {
         StringBuilder sb = new StringBuilder();
         sb.append('|');
         for (int i = 0; i < numPlayers - 1; i += 1) {

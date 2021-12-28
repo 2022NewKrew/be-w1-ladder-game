@@ -13,7 +13,6 @@ public class LadderStepOne {
         scanner.close();
 
         Ladder ladder = new Ladder(ladderHeight, numPlayers);
-        ladder.getLadder();
         ladder.printLadder();
     }
 
