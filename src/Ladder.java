@@ -1,33 +1,57 @@
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class Ladder {
-    int num;
-    int depth;
-    ArrayList<ArrayList<String>> ladder;
-    Random rd = new Random();
+    private final int numOfPeople;
+    private final int depth;
+    private final ArrayList<Line> ladder = new ArrayList<>();
 
-    Ladder(int num, int depth){
-        this.num = num;
+
+    Ladder(int numOfPeople, int depth){
+        this.numOfPeople = numOfPeople;
         this.depth = depth;
-        this.ladder = new ArrayList<ArrayList<String>>(depth);
+        setLadder();
     }
 
-    public void randomLine(){
-        String current;
+
+    private void setLadder(){
         for(int i=0;i<depth;i++){
-            ArrayList<String> line = new ArrayList<>();
-            for(int j=0;j<num*2-1;j++){
-                current = (j%2 == 0) ? "|" : (rd.nextInt(2) == 1) ? "-" : " ";
-                line.add(current);
+            Line line = new Line(numOfPeople);
+            ladder.add(line);
+        }
+    }
+
+    public void printLadder(){
+        for(int i=0;i<depth;i++){
+            ladder.get(i).printLine();
+        }
+    }
+
+    private static class Line {
+        private final ArrayList<String> statusCase = new ArrayList<>(List.of("-", " "));
+        private final String defaultCase = "|";
+        private final int numOfStatus;
+        private final Random rd = new Random();
+        private ArrayList<String> line;
+
+
+        Line(int numOfPeople){
+            this.numOfStatus = numOfPeople-1;
+            setLine();
+        }
+
+
+        private void setLine(){
+            line = new ArrayList<>();
+            for(int i=0;i<numOfStatus;i++){
+                line.add(statusCase.get(rd.nextInt(numOfStatus)));
             }
-            this.ladder.add(line);
+        }
+
+        public void printLine(){
+            for(int i=0;i<numOfStatus;i++)
+                System.out.print(defaultCase + line.get(i));
+            System.out.println(defaultCase);
         }
     }
 
-    public void print(){
-        for(int i=0;i<depth;i++){
-            System.out.println(String.join("",ladder.get(i)));
-        }
-    }
 }
