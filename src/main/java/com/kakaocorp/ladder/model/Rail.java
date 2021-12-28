@@ -1,0 +1,20 @@
+package com.kakaocorp.ladder.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Rail {
+
+    private final List<Node> nodes;
+
+    public Rail(int height) {
+        nodes = new ArrayList<>(height);
+        for (int i = 0; i < height; i++) {
+            nodes.add(new Node());
+        }
+    }
+
+    public List<Node> getNodes() {
+        return nodes;
+    }
+}

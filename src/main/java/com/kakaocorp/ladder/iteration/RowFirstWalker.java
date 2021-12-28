@@ -2,7 +2,7 @@ package com.kakaocorp.ladder.iteration;
 
 import com.kakaocorp.ladder.model.Ladder;
 import com.kakaocorp.ladder.model.Node;
-import com.kakaocorp.ladder.model.Stick;
+import com.kakaocorp.ladder.model.Rail;
 
 import java.util.List;
 
@@ -14,17 +14,17 @@ public class RowFirstWalker extends MultipleNodesWalker {
 
     @Override
     public void walk(Ladder ladder) {
-        List<Stick> sticks = ladder.getSticks();
+        List<Rail> rails = ladder.getSticks();
         for (int i = 0; i < ladder.getHeight(); i++) {
-            processRow(sticks, i);
+            processRow(rails, i);
         }
     }
 
-    private void processRow(List<Stick> sticks, int row) {
+    private void processRow(List<Rail> rails, int row) {
         Node left = null;
         Node right;
-        for (Stick stick : sticks) {
-            right = stick.getNodes().get(row);
+        for (Rail rail : rails) {
+            right = rail.getNodes().get(row);
             callback.process(left, right);
             left = right;
         }
