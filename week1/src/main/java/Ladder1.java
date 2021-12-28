@@ -1,61 +1,63 @@
-import java.io.IOException;
-import java.util.InputMismatchException;
-import java.util.Random;
 import java.util.Scanner;
 
 class Ladder {
 
   int col, row;
 
-  Ladder() {
-    inputLadderSize();
-  }
-
-  private void inputLadderSize() {
+  public void inputLadderSize() {
     Scanner scanner = new Scanner(System.in);
 
     System.out.println("참여할 사람은 몇 명인가요?");
-    final int col = scanner.nextInt();
+    String col = scanner.nextLine().trim();
 
     System.out.println("최대 사다리 높이는 몇 개인가요?");
-    final int row = scanner.nextInt();
+    String row = scanner.nextLine().trim();
 
     if (validateLadderSize(col, row)) {
-      this.col = col;
-      this.row = row;
+      this.col = Integer.parseInt(col);
+      this.row = Integer.parseInt(row);
     } else {
       System.out.println("양의 정수만 입력해주세요.");
       inputLadderSize();
     }
   }
 
-  private boolean validateLadderSize(int col, int row) {
-    return col > 0 & row > 0;
-  }
+  private boolean validateLadderSize(String col, String row) {
+    int colNum, rowNum;
 
-  @Override
-  public String toString() {
-    final Random random = new Random();
-    StringBuilder stringBuilder = new StringBuilder();
-
-//    시각적 구분을 위한 한줄 공백
-    stringBuilder.append("\n");
-
-    for (int i = 0; i < this.row; i++) {
-      for (int j = 0; j < this.col - 1; j++) {
-        stringBuilder.append(random.nextBoolean() ? "| " : "|-");
-      }
-      stringBuilder.append("|\n");
+    try {
+      colNum = Integer.parseInt(col);
+      rowNum = Integer.parseInt(row);
+    } catch (NumberFormatException e) {
+      return false;
     }
 
-    return stringBuilder.toString();
+    return colNum > 0 & rowNum > 0 ? true : false;
+  }
+
+  public void drawLadder() {
+//    한줄 공백
+    System.out.println();
+
+    for (int i=0; i < this.row; i++) {
+      for (int j=0; j < this.col - 1; j++) {
+        System.out.print(Math.random() > 0.5 ? "| " : "|-");
+      }
+      System.out.println("|");
+    }
   }
 }
 
 public class Ladder1 {
 
   public static void main(String[] args) {
+//    인스턴스 생성
     Ladder ladder = new Ladder();
-    System.out.println(ladder);
+
+//    사용자 인풋
+    ladder.inputLadderSize();
+
+//    사다리 출력
+    ladder.drawLadder();
   }
 }
