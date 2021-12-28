@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ladder {
-    private final static String DOWN = "| ";
-    private final static String RIGHT = "|-";
+    private static final String DOWN = "| ";
+    private static final String RIGHT = "|-";
 
     public static void main(String[] args) {
         ResultView.printLadder(generateLadder(InputView.enterPlayers(), InputView.enterHeight()));
