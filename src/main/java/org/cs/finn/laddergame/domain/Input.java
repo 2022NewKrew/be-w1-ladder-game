@@ -15,7 +15,7 @@ public class Input {
         return member;
     }
 
-    public void setMember(int member) {
+    public void setMember(final int member) {
         this.member = member;
     }
 
@@ -23,7 +23,7 @@ public class Input {
         return ladderHeight;
     }
 
-    public void setLadderHeight(int ladderHeight) {
+    public void setLadderHeight(final int ladderHeight) {
         this.ladderHeight = ladderHeight;
     }
 }

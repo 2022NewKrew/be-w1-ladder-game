@@ -2,9 +2,10 @@ package org.cs.finn.laddergame.domain;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
-    private final ArrayList<String> ladderRows = new ArrayList<>();
+    private final List<String> ladderRows = new ArrayList<>();
     private final SecureRandom sRand = new SecureRandom();
 
     public void build(final Input iPara) {
@@ -23,7 +24,7 @@ public class Ladder {
         }
     }
 
-    public ArrayList<String> getLadderRows() {
+    public List<String> getLadderRows() {
         return this.ladderRows;
     }
 }
