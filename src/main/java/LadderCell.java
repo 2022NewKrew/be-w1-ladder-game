@@ -11,8 +11,12 @@ public class LadderCell {
         return ladderCell;
     }
 
+    public boolean getIsHorizontal(){
+        return isHorizontal;
+    }
+
     public String toString() {
-        if (isHorizontal) return "-";
-        return " ";
+        if (isHorizontal) return "-----";
+        return "     ";
     }
 }
