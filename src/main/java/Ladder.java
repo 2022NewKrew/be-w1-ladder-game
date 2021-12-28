@@ -39,7 +39,7 @@ public class Ladder {
     public void draw(){
         ladder.stream().forEach(row -> {
             System.out.print("|");
-            row.stream().forEach(item -> System.out.print(item ? "─|" : " |"));
+            row.forEach(item -> System.out.print(item ? "─|" : " |"));
             System.out.println();
         });
     }
