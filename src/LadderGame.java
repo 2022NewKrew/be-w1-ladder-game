@@ -1,7 +1,11 @@
 public class LadderGame {
+    public static final char VERTICAL_LINE = '|';
+    public static final char HORIZONTAL_LINE = '-';
+    public static final char EMPTY_SPACE = ' ';
+
     private final int numberOfPeople;
     private final int height;
-    private char[][] cells;
+    private boolean[][] isHorizontalLines;
 
     public LadderGame(int numberOfPeople, int height) {
         this.numberOfPeople = numberOfPeople;
@@ -13,19 +17,26 @@ public class LadderGame {
      * 사다리 상태를 세팅한다.
      */
     private void setCells() {
-        this.cells = new char[height][numberOfPeople * 2 - 1];
-        for (int i = 0; i < this.cells.length; i++) {
-            for (int j = 0; j < this.cells[i].length; j++) {
-                this.cells[i][j] = j % 2 == 0 ? '|' : getRandomCell();
+        this.isHorizontalLines = new boolean[height][numberOfPeople - 1];
+        for (int i = 0; i < this.isHorizontalLines.length; i++) {
+            for (int j = 0; j < this.isHorizontalLines[i].length; j++) {
+                this.isHorizontalLines[i][j] = generateRandomBoolean();
             }
         }
     }
 
     /**
-     * 0 ~ 1 사이의 난수를 생성하여, 0 이라면 ' '(공백)을 반환하고, 1 이라면 '-'을 반환한다.
+     * 랜덤으로 true 또는 false 를 생성한다.
      */
-    private char getRandomCell() {
-        return (int) (Math.random() * 2) % 2 == 0 ? ' ' : '-';
+    private boolean generateRandomBoolean() {
+        return (int) (Math.random() * 2) % 2 == 0;
+    }
+
+    /**
+     * 전달하는 파라미터가 true 라면 '-', false 라면 ' '(공백)을 반환한다.
+     */
+    private char parseHorizontalLineChar(boolean isHorizontalLine) {
+        return isHorizontalLine ? HORIZONTAL_LINE : EMPTY_SPACE;
     }
 
     /**
@@ -33,9 +44,9 @@ public class LadderGame {
      */
     public String getLadderStatus() {
         StringBuilder gameStatus = new StringBuilder();
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                gameStatus.append(cells[i][j]);
+        for (boolean[] isHorizontalLine : isHorizontalLines) {
+            for (int j = 0; j < numberOfPeople * 2 - 1; j++) {
+                gameStatus.append(j % 2 == 0 ? VERTICAL_LINE : parseHorizontalLineChar(isHorizontalLine[j / 2]));
             }
             gameStatus.append("\n");
         }
