@@ -26,5 +26,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'com.chanminkim.w1.App'
+    mainClass = 'com.chanminkim.w1.Main'
 }
