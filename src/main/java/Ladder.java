@@ -7,13 +7,13 @@ public class Ladder {
     public static final String LINE_VERTICAL = "|";
     public static final String LINE_HORIZONTAL_TRUE = "-";
     public static final String LINE_HORIZONTAL_FALSE = " ";
-    private final int NUMBER;
-    private final int HEIGHT;
+    private final int PLAYER_NUMBER;
+    private final int LADDER_HEIGHT;
     private final List<Object> LADDER_RESULT = new ArrayList<>();
 
     public Ladder(int number, int height) {
-        this.NUMBER = number;
-        this.HEIGHT = height;
+        this.PLAYER_NUMBER = number;
+        this.LADDER_HEIGHT = height;
         setLadder();
     }
 
@@ -30,10 +30,10 @@ public class Ladder {
 
     private void setLadder() {
         Random random = new Random();
-        for (int i = 0; i < HEIGHT; i++) {
+        for (int i = 0; i < LADDER_HEIGHT; i++) {
             StringBuilder sb = new StringBuilder();
             addLine(sb, LINE_VERTICAL);
-            for (int j = 0; j < NUMBER - 1; j++) {
+            for (int j = 0; j < PLAYER_NUMBER - 1; j++) {
                 addLine(sb, isLineHorizontal(random.nextBoolean()));
                 addLine(sb, LINE_VERTICAL);
             }
@@ -42,7 +42,7 @@ public class Ladder {
     }
 
     public void printLadder() {
-        for (int i = 0; i < HEIGHT; i++) {
+        for (int i = 0; i < LADDER_HEIGHT; i++) {
             System.out.println(LADDER_RESULT.get(i));
         }
     }
