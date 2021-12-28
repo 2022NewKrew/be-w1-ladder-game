@@ -1,14 +1,14 @@
 package com.company;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Ladder {
-    private int numPeople;
-    private int height;
+    private final int numPeople;
+    private final int height;
     private String[] ladder;
-    private Random random;
-    private static String[] pattern = {"- ", " "};
+    private final Random random;
+    private static final String[] pattern = {"- ", " "};
+
     public Ladder(int numPeople, int height) {
         this.numPeople = numPeople;
         this.height = height;
@@ -18,22 +18,26 @@ public class Ladder {
 
     private void makeNewLadder() {
         ladder = new String[height];
-        for(int y = 0; y < height; y++)
-            ladder[y] = makeNewLine(numPeople-1);
+        for (int y = 0; y < height; y++) {
+            ladder[y] = makeNewLine(numPeople - 1);
+        }
     }
 
     private String makeNewLine(int width) {
-        String ret = "";
-        while(ret.length() < width)
-            ret += pattern[random.nextInt(2)];
+        StringBuilder ret = new StringBuilder();
+        while (ret.length() < width) {
+            ret.append(pattern[random.nextInt(2)]);
+        }
         return ret.substring(0, width);
     }
 
     public void printLadder() {
-        for(int y = 0; y < height; y++)
+        for (int y = 0; y < height; y++) {
             printLine(y);
+        }
     }
+
     public void printLine(int y) {
-        System.out.println("|" + String.join("|", ladder[y].split("")) + "|");
+        System.out.printf("|%s|\n", String.join("|", ladder[y].split("")));
     }
 }
