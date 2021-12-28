@@ -35,6 +35,13 @@ public class Ladder {
         }
     }
 
+    @Override
+    public String toString() {
+        return  "참여한 사람의 수 : " + this.numOfPersons + "\n" +
+                "사다리 높이 : " + this.ladderHeight + "\n" +
+                this.ladderToStr();
+    }
+
     /*
     사다리 연결 정보(rows)로 현재 만들어진 사다리의 형태를 문자열로 반환하는 메서드
     '-----'는 양 옆이 연결돼있다는 뜻이고, '     '(공백)은 양 옆이 연결되지 않았다는 뜻이다.
@@ -47,12 +54,5 @@ public class Ladder {
         this.rows.forEach(row -> sb.append(row));
 
         return sb.toString();
-    }
-
-    @Override
-    public String toString() {
-        return  "참여한 사람의 수 : " + this.numOfPersons + "\n" +
-                "사다리 높이 : " + this.ladderHeight + "\n" +
-                this.ladderToStr();
     }
 }

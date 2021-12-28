@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
+    private static final String IS_LINKED = "-----";
+    private static final String IS_NOT_LINKED = "     ";
     private int numOfColumns;
     private List<Boolean> linked;
 
@@ -20,23 +22,23 @@ public class Row {
     public void makeLine() {
         this.linked = new ArrayList<>();
         for (int i = 0; i < this.numOfColumns - 1; i++) {
-            boolean temp = false;
-            if(i == 0 || !this.linked.get(i - 1)) {
-                temp = Math.random() >= 0.5;
-            }
-            this.linked.add(temp);
+            createLine(i);
         }
     }
 
-    public List<Boolean> getLinked() {
-        return this.linked;
+    private void createLine(int i) {
+        boolean hasLink = false;
+        if(i == 0 || !this.linked.get(i - 1)) {
+            hasLink = Math.random() >= 0.5;
+        }
+        this.linked.add(hasLink);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("|");
-        this.linked.forEach(e -> sb.append(e ? "-----" : "     ").append("|"));
+        this.linked.forEach(e -> sb.append(e ? IS_LINKED : IS_NOT_LINKED).append("|"));
         sb.append("\n");
 
         return sb.toString();
