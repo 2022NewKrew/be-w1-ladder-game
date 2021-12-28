@@ -1,4 +1,4 @@
-package Step2;
+package step2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ public class Ladder {
 	private static final char VERTICAL_LINE = '|';
 	private static final char HORIZONTAL_LINE = '-';
 	private static final char EMPTY = ' ';
+	private static final Random RANDOM = new Random();
 
 	private List<Character>[] ladder;
 	private int numberOfPlayer;
@@ -23,9 +24,6 @@ public class Ladder {
 
 		for (int height = 0; height < ladderHeight; height++) {
 			ladder[height] = new ArrayList<>();
-		}
-
-		for (int height = 0; height < ladderHeight; height++) {
 			makeLine(height);
 		}
 	}
@@ -42,7 +40,7 @@ public class Ladder {
 			return EMPTY;
 		}
 
-		boolean isEmpty = new Random().nextBoolean();
+		boolean isEmpty = RANDOM.nextBoolean();
 
 		return isEmpty ? EMPTY : HORIZONTAL_LINE;
 	}
@@ -57,6 +55,7 @@ public class Ladder {
 		for (char ch : ladder[height]) {
 			System.out.print(ch);
 		}
+
 		System.out.println();
 	}
 }
