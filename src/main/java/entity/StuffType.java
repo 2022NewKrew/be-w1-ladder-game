@@ -1,3 +1,5 @@
+package entity;
+
 public enum StuffType {
     // 0: 기둥, 1: 다리, 2: 공백
     COLUMN("|"),
