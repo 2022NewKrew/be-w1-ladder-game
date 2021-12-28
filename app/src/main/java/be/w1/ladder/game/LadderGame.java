@@ -1,4 +1,4 @@
-package com.kakao.newcrew;
+package be.w1.ladder.game;
 
 import java.util.Random;
 
@@ -34,38 +34,53 @@ public class LadderGame {
         printResult();
     }
 
-    private void validatePeopleCount(int peopleCount) {
+    private void validatePeopleCount(int peopleCount) throws IllegalArgumentException {
         if (peopleCount < LEAST_PEOPLE_COUNT) {
             throw new IllegalArgumentException(ILLEGAL_PEOPLE_COUNT_MESSAGE);
         }
     }
 
-    private void validateLadderHeight(int ladderHeight) {
-        if (ladderHeight >= LEAST_LADDER_HEIGHT) {
+    private void validateLadderHeight(int ladderHeight) throws IllegalArgumentException {
+        if (ladderHeight < LEAST_LADDER_HEIGHT) {
             throw new IllegalArgumentException(ILLEGAL_LADDER_HEIGHT_MESSAGE);
         }
     }
 
     private void createLadder() {
+        for (int lineNumber = 0; lineNumber < ladderHeight; ++lineNumber) {
+            createLine(lineNumber);
+        }
+    }
+
+    private void createLine(int lineNumber) {
         Random random = new Random();
 
-        for (int i = 0; i < ladderHeight; ++i) {
-            for (int j = 0; j < ladderCount; ++j) {
-                ladderArray[i][j] = random.nextBoolean() ? EMPTY_LADDER : FULL_LADDER;
-            }
+        for (int ladderNumber = 0; ladderNumber < ladderCount; ++ladderNumber) {
+            ladderArray[lineNumber][ladderNumber] = random.nextBoolean() ? EMPTY_LADDER : FULL_LADDER;
         }
     }
 
     private void printResult() {
         StringBuilder result = new StringBuilder();
 
-        for (char[] row : ladderArray) {
-            for (char ladder : row) {
-                result.append(LADDER_SEPARATOR).append(ladder);
-            }
-            result.append(LADDER_SEPARATOR).append(NEWLINE);
+        for (int lineNumber = 0; lineNumber < ladderHeight; ++lineNumber) {
+            StringBuilder line = getLadderByLine(lineNumber);
+            result.append(line)
+                  .append(LADDER_SEPARATOR)
+                  .append(NEWLINE);
         }
 
         System.out.print(result);
+    }
+
+    private StringBuilder getLadderByLine(int lineNumber) {
+        StringBuilder result = new StringBuilder();
+
+        for (int ladderNumber = 0; ladderNumber < ladderCount; ++ladderNumber) {
+            result.append(LADDER_SEPARATOR)
+                  .append(ladderArray[lineNumber][ladderNumber]);
+        }
+
+        return result;
     }
 }
