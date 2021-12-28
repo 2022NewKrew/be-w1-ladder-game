@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class LadderGame {
     int people;
     int height;
-    ArrayList<StringBuilder> ladder = new ArrayList<>();
+    List<StringBuilder> ladder = new ArrayList<>();
 
     LadderGame() {
         Scanner sc = new Scanner(System.in);
@@ -16,17 +17,15 @@ public class LadderGame {
     }
 
     public void makeLadder() {
-        for (int r=0; r<height; r++) {
+        for (int r = 0; r < height; r++) {
             StringBuilder row = new StringBuilder();
             Random random = new Random();
-            for (int c=0; c<2*people-1; c++) {
-                if (c%2 == 0) {
+            for (int c = 0; c < 2 * people - 1; c++) {
+                if (c % 2 == 0) {
                     row.append('|');
-                }
-                else if (random.nextBoolean()) {
+                } else if (random.nextBoolean()) {
                     row.append('-');
-                }
-                else {
+                } else {
                     row.append(' ');
                 }
             }
@@ -35,7 +34,7 @@ public class LadderGame {
     }
 
     public void printLadder() {
-        for (int r=0; r<height; r++) {
+        for (int r = 0; r < height; r++) {
             System.out.println(ladder.get(r));
         }
     }
