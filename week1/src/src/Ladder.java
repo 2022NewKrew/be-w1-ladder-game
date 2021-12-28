@@ -10,6 +10,7 @@ public class Ladder {
         map = new ArrayList<Line>();
         this.width = peopleNum;
         this.height = height;
+        this.setMap();
     }
 
     public void setMap(){
@@ -19,8 +20,6 @@ public class Ladder {
     }
 
     public void showMap(){
-        System.out.println("실행결과");
-        System.out.println();
         for(Line line : map) {
             System.out.println(line);
         }

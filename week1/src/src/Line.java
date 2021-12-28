@@ -11,7 +11,7 @@ public class Line {
     }
 
     public void getPoint(int peopleNum) {
-        for(int i = 0; i < peopleNum; i++) {
+        for(int i = 0; i < peopleNum - 1; i++) {
             points.add(getRandomAndNotDuplicate());
         }
     }
