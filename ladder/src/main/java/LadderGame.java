@@ -1,18 +1,31 @@
-import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.Random;
 
 
 public class LadderGame {
-    public static int numOfPlayers;
-    public static int height;
-    public static void main(String[] args){
-        getValue();   // numOfPlayers, height 값들을 받아옴
+    private static char[][] ladder;
+
+
+    public static void makeLadder(int numOfPlayers, int height) {
+        Random random = new Random();
+        int width = numOfPlayers * 2 - 1;
+        ladder = new char[height][width];
+
+        for (int i = 0; i < height; i++){
+            for (int j = 0; j < width; j++){
+                ladder[i][j] = (j % 2 == 0) ? '|' : (random.nextBoolean() ? ' ' : '-');
+            }
+        }
     }
-    public static void getValue(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("참여할 사람은 몇 명인가요?");
-        numOfPlayers = scanner.nextInt();
-        System.out.println("최대 사다리 높이는 얼마인가요?");
-        height = scanner.nextInt();
+
+    public static void drawLadder(int numOfPlayers, int height) {
+        StringBuilder sb = new StringBuilder();
+        int width = numOfPlayers * 2 - 1;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                sb.append(ladder[i][j]);
+            }
+            sb.append('\n');
+        }
+        System.out.println(sb);
     }
 }
