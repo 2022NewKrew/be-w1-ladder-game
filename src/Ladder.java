@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 public class Ladder {
     private static final Random random = new Random();
-    private ArrayList<String> stringRepr;
+    private ArrayList<String> stateAsListOfString;
     private int width, height;
 
     public Ladder(int width, int height) {
@@ -15,13 +15,13 @@ public class Ladder {
     }
 
     public void generateSimpleRandom() {
-        this.stringRepr = new ArrayList<>();
+        this.stateAsListOfString = new ArrayList<>();
         for (int lineNo = 0; lineNo < this.height; lineNo++) {
-            this.stringRepr.add(Stream.generate(() -> this.random.nextBoolean() ? "-" : " ").limit(this.width - 1).collect(Collectors.joining("|", "|", "|")));
+            this.stateAsListOfString.add(Stream.generate(() -> this.random.nextBoolean() ? "-" : " ").limit(this.width - 1).collect(Collectors.joining("|", "|", "|")));
         }
     }
 
     public String toString() {
-        return String.join("\n", this.stringRepr);
+        return String.join("\n", this.stateAsListOfString);
     }
 }
