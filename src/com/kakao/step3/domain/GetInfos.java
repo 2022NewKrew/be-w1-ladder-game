@@ -10,7 +10,7 @@ public class GetInfos {
 
         while(names == null) {
             System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-            names = Validator.checkPeopleInput(SCAN.nextLine());
+            names = ManipulateInfos.splitToNames(SCAN.nextLine());
         }
 
         return names;

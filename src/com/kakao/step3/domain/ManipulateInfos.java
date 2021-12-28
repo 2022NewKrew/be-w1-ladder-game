@@ -3,6 +3,24 @@ package com.kakao.step3.domain;
 import static com.kakao.step3.config.Constants.MAX_NAME_LEN;
 
 public class ManipulateInfos {
+    public static String[] splitToNames(String input) {
+        String[] names = input.split(",");
+
+        if (!Validator.checkPeopleNames(names)) {
+            return null;
+        }
+
+        return trimAllNames(names);
+    }
+
+    private static String[] trimAllNames(String[] names) {
+        for (int i = 0, size = names.length; i < size; i++) {
+            names[i] = names[i].trim();
+        }
+
+        return names;
+    }
+
     public static String makeNameLine(String[] names) {
         StringBuilder sb = new StringBuilder();
 
@@ -39,13 +57,5 @@ public class ManipulateInfos {
         for (int i = 0; i < quotient; i++) {
             sb.append(" ");
         }
-    }
-
-    public static String[] trimAllNames(String[] names) {
-        for (int i = 0, size = names.length; i < size; i++) {
-            names[i] = names[i].trim();
-        }
-
-        return names;
     }
 }

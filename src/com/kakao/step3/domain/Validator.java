@@ -5,19 +5,9 @@ import java.util.ArrayList;
 import static com.kakao.step3.config.Constants.*;
 
 public class Validator {
-    public static String[] checkPeopleInput(String input) {
-        String[] names = input.split(",");
-
-        if (!checkPeopleNames(names)) {
-            return null;
-        }
-
-        return ManipulateInfos.trimAllNames(names);
-    }
-
-    private static boolean checkPeopleNames(String[] names) {
-        for (int i = 0, size = names.length; i < size; i++) {
-            if (names[i].trim().length() > MAX_NAME_LEN) return false;
+    public static boolean checkPeopleNames(String[] names) {
+        for (String name : names) {
+            if (name.trim().length() > MAX_NAME_LEN) return false;
         }
 
         return true;
