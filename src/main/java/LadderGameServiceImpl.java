@@ -2,6 +2,8 @@ import java.util.Random;
 
 public class LadderGameServiceImpl implements LadderGameService {
 
+    private static final Random randomInstance = new Random();
+
     @Override
     public boolean[][] createLadderMap(int row, int col) {
 
@@ -17,6 +19,6 @@ public class LadderGameServiceImpl implements LadderGameService {
     }
 
     private boolean trueAndFalseGenerator() {
-        return new Random().nextBoolean();
+        return randomInstance.nextBoolean();
     }
 }
