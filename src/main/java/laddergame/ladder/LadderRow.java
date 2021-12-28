@@ -3,6 +3,7 @@ package laddergame.ladder;
 import java.util.Random;
 
 class LadderRow {
+    private final Random rd = new Random();
     private final char[] ladderMap;
 
     public LadderRow(int participantsNum) {
@@ -16,8 +17,6 @@ class LadderRow {
     }
 
     private char createRandomConnection() {
-        Random rd = new Random();
-
         if (rd.nextBoolean())
             return '-';
         return ' ';
