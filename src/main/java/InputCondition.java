@@ -3,22 +3,23 @@ public class InputCondition {
     private int limit;
     private String errorMsg;
 
-    public InputCondition(String query, int limit, String errorMsg) {
+    public InputCondition(String query, int limit, String errorMsg){
         this.query = query;
         this.limit = limit;
         this.errorMsg = errorMsg;
     }
 
-    public boolean isValid(int input) {
-        if (input > limit) return true;
+    public boolean isValid(int input){
+        if(input > limit) return true;
+        System.out.println(getErrorMsg());
         return false;
     }
 
-    public String getQuery() {
+    public String getQuery(){
         return query;
     }
 
-    public String getErrorMsg() {
+    private String getErrorMsg(){
         return errorMsg;
     }
 
