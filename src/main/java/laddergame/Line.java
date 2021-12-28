@@ -1,6 +1,7 @@
 package laddergame;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -24,5 +25,9 @@ public class Line {
         if (previousConnection && currentConnection) {
             connectionList.set(connectionList.size() - 1, false);
         }
+    }
+
+    public List<Boolean> getConnectionList() {
+        return Collections.unmodifiableList(connectionList);
     }
 }
