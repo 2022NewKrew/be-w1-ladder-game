@@ -34,8 +34,9 @@ public class Ladder {
     }
 
     private Character fillLine(int colIdx) {
-        if (colIdx % 2 == 0)
+        if (colIdx % 2 == 0) {
             return '|';
+        }
         List<Character> randLine = Arrays.asList(' ', '-');
         return randLine.get(rand.nextInt(randLine.size()));
     }
