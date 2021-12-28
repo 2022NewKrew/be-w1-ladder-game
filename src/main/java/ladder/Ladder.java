@@ -15,9 +15,13 @@ public class Ladder {
 
     private void connectBridges() {
         for (int currentHeight = 0; currentHeight < height; currentHeight++) {
-            for (int currentWidth = 0; currentWidth < participants - 1; currentWidth++) {
-                connectBridge(currentWidth, currentHeight);
-            }
+            connectRowBridges(currentHeight);
+        }
+    }
+
+    private void connectRowBridges(int currentHeight) {
+        for (int currentWidth = 0; currentWidth < participants - 1; currentWidth++) {
+            connectBridge(currentWidth, currentHeight);
         }
     }
 

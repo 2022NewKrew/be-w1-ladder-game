@@ -8,17 +8,22 @@ public class LadderRenderer {
 
     public static void render(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
-        int participants = ladder.getParticipants();
         int height = ladder.getHeight();
 
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < participants - 1; x++) {
-                sb.append(VERTICAL_LINE);
-                sb.append((ladder.isConnected(x, y)) ? HORIZONTAL_LINE : EMPTY_LINE);
-            }
-            sb.append(VERTICAL_LINE + "\n");
+        for (int currentHeight = 0; currentHeight < height; currentHeight++) {
+            renderRow(sb, ladder, currentHeight);
         }
         System.out.print(sb);
+    }
+
+    private static void renderRow(StringBuilder sb, Ladder ladder, int currentHeight) {
+        int participants = ladder.getParticipants();
+
+        for (int currentWidth = 0; currentWidth < participants - 1; currentWidth++) {
+            sb.append(VERTICAL_LINE);
+            sb.append((ladder.isConnected(currentWidth, currentHeight)) ? HORIZONTAL_LINE : EMPTY_LINE);
+        }
+        sb.append(VERTICAL_LINE + "\n");
     }
 
 }
