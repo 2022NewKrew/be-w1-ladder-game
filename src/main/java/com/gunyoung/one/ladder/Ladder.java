@@ -40,24 +40,24 @@ public final class Ladder {
     public String getShapeOfLadder() {
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < ladderHeight; row++) {
-            getShapeForEachRow(sb, row);
+            getShapeOfLadderForEachRow(sb, row);
         }
         return sb.toString();
     }
 
-    private void getShapeForEachRow(StringBuilder sb, int row) {
+    private void getShapeOfLadderForEachRow(StringBuilder sb, int row) {
         sb.append("|");
-        for(int col = 1; col < numOfUser; col++) {
-            sb.append(
-                    bridge.getSignatureOfBridge(row, col)
-            ).append("|");
+        char[] signaturesOfBridges = bridge.getSignaturesOf(row);
+        for(char signature: signaturesOfBridges) {
+            sb.append(signature)
+                    .append("|");
         }
         sb.append("\n");
     }
 
     private static class Bridge {
         private final boolean[][] bridges;
-        private BridgeMakeStrategy makeStrategy;
+        private final BridgeMakeStrategy makeStrategy;
 
         private Bridge(Ladder ladder) {
             this(ladder, new RandomBridgeStrategy());
@@ -72,10 +72,18 @@ public final class Ladder {
             makeStrategy.makeBridges(bridges);
         }
 
-        private String getSignatureOfBridge(int row, int col) {
-            if(bridges[row][col-1])
-                return "-";
-            return " ";
+        private char[] getSignaturesOf(int row) {
+            char[] signatures = new char[bridges[row].length];
+            for(int i = 0; i < signatures.length; i ++) {
+                signatures[i] = getSignatureOf(row, i);
+            }
+            return signatures;
+        }
+
+        private char getSignatureOf(int row, int col) {
+            if(bridges[row][col])
+                return '-';
+            return ' ';
         }
 
     }
