@@ -28,19 +28,31 @@ public class Ladder {
     }
 
     public void printLadder() {
-        StringBuffer sb = new StringBuffer();
+        StringBuffer ladderEntire = new StringBuffer();
 
         for(int row = 0; row < this.height; row++) {
-            sb.append("|");
-            for (int col = 0; col < this.numParticipants - 1; col++) {
-                if(this.shape[row][col]) sb.append(" ");
-                else sb.append("-");
-                sb.append("|");
-            }
-            sb.append("\n");
+            ladderEntire.append(makeLadderRow(row));
         }
 
-        System.out.println(sb.toString());
+        System.out.println(ladderEntire.toString());
+    }
+
+    public String makeLadderRow(int row) {
+        StringBuffer ladderRow = new StringBuffer();
+
+        ladderRow.append("|");
+        for (int col = 0; col < this.numParticipants - 1; col++) {
+            ladderRow.append(selectCharacter(this.shape[row][col]));
+            ladderRow.append("|");
+        }
+        ladderRow.append("\n");
+
+        return ladderRow.toString();
+    }
+
+    public String selectCharacter(boolean isExistHorizon) {
+        if (isExistHorizon) return "-";
+        return " ";
     }
 
 }
