@@ -1,7 +1,10 @@
-public class Player {
+package players;
+
+//플레이어 정보
+public class PlayersInfo {
     private int totalNum; //플레이어 수
 
-    public Player(int totalNum) {
+    public PlayersInfo(int totalNum) {
         this.totalNum = totalNum;
     }
 
@@ -9,7 +12,4 @@ public class Player {
         return totalNum;
     }
 
-    public void setTotalNum(int totalNum) {
-        this.totalNum = totalNum;
-    }
 }
