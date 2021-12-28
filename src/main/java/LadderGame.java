@@ -1,30 +1,24 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class LadderGame {
 
-    // 0: 기둥, 1: 다리, 2: 공백
-    private static String[] STRINGS = {"|", "-", " "};
     private static Random rd = new Random();
 
     public static void main(String[] args) {
 
         // 입력 받기
-        int[] heightAndPeople = inputHeightAndPeople();
-        int people = heightAndPeople[0];
-        int height = heightAndPeople[1];
+        Ladder ladder = inputHeightAndPeople();
 
         // 사다리 만들기
-        String[][] ladder = createLadder(people, height);
+        String[][] ladderShape = createLadder(ladder.getPeople(), ladder.getHeight());
 
         // 출력
-        StringBuilder ladderStringBuilder = ladderToString(ladder);
-        System.out.println(ladderStringBuilder);
+        String ladderString = ladderToString(ladderShape);
+        System.out.println(ladderString);
     }
 
-    private static int[] inputHeightAndPeople(){
+    private static Ladder inputHeightAndPeople(){
         try(Scanner sc = new Scanner(System.in)) {
             System.out.println("참여할 사람은 몇 명인가요?");
             int people = sc.nextInt();
@@ -32,7 +26,7 @@ public class LadderGame {
             int height = sc.nextInt();
             int[] rtn = {people, height};
 
-            return rtn;
+            return new Ladder(people, height);
         }
     }
 
@@ -45,14 +39,14 @@ public class LadderGame {
         String[][] ladder = new String[height][(people-1)*2 +1];
         for (int i = 0; i < height; i++){
             for (int j = 0 ; j < (people-1)*2 + 1; j++) {
-                if (j % 2 == 0) ladder[i][j] = STRINGS[0];
-                else ladder[i][j] = randomBoolean(rd) ? STRINGS[1] : STRINGS[2];
+                if (j % 2 == 0) ladder[i][j] = StuffType.COLUMN.getStuff();
+                else ladder[i][j] = randomBoolean(rd) ? StuffType.BRIDGE.getStuff() : StuffType.SPACE.getStuff();
             }
         }
         return ladder;
     }
 
-    private static StringBuilder ladderToString(String[][] array){
+    private static String ladderToString(String[][] array){
         StringBuilder sb = new StringBuilder();
         for(String[] innerArray : array){
             for(String st : innerArray){
@@ -60,6 +54,6 @@ public class LadderGame {
             }
             sb.append('\n');
         }
-        return sb;
+        return sb.toString();
     }
 }
