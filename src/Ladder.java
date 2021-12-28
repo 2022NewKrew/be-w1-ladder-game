@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 public class Ladder {
     // 4. Fields to save ladder state
+    private static final Random random = new Random();
     private int width, height;
     private ArrayList<String> stringRepr;
 
@@ -19,11 +20,9 @@ public class Ladder {
 
     // 2. Method to (re)generate ladder
     public void generateSimpleRandom() {
-        Random rand = new Random();
-
         this.stringRepr = new ArrayList<>();
         for (int lineNo = 0; lineNo < this.height; lineNo++) {
-            this.stringRepr.add(Stream.generate(() -> rand.nextBoolean() ? "-" : " ").limit(this.width - 1).collect(Collectors.joining("|", "|", "|")));
+            this.stringRepr.add(Stream.generate(() -> this.random.nextBoolean() ? "-" : " ").limit(this.width - 1).collect(Collectors.joining("|", "|", "|")));
         }
     }
 
