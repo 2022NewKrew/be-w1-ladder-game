@@ -20,7 +20,7 @@ public class LadderGame {
     }
 
     private void printEachLadderComponent(LadderComponent ladderComponent) {
-        if (ladderComponent.hasRightVertical()) {
+        if (ladderComponent.hasRightHorizon()) {
             System.out.print("|-");
             return;
         }
