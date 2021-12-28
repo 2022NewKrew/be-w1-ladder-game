@@ -1,11 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Ladder {
-    private int numOfPeople;
-    private int height;
-    private String[][] ladder;
+    private final int numOfPeople;
+    private final int height;
+    private final String[][] ladder;
 
     Ladder(int numOfPeople, int height) {
         this.numOfPeople = numOfPeople;
@@ -25,13 +23,8 @@ public class Ladder {
         }
     }
 
-    public void show() {
-        for(int i = 0; i < height; ++i) {
-            for(int j = 0; j < numOfPeople*2-1; j++) {
-                System.out.print(ladder[i][j]);
-            }
-            System.out.println();
-        }
+    public String[][] getLadder() {
+        return ladder;
     }
 
 }
