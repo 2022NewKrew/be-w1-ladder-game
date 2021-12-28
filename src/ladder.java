@@ -12,31 +12,20 @@ public class Ladder {
         this.ladder = getLadder();
     }
 
-    private static void showLadder(ArrayList<ArrayList<Character>> ladder) {
-        for(ArrayList<Character> line : ladder){
-            for(Character element : line){
-                System.out.print(element);
-            }
-            System.out.println();
-        }
-    }
-
-    private static ArrayList<ArrayList<Character>> getLadder(int[] twoParameters) {
-        ArrayList<ArrayList<Character>> ladder = new ArrayList<>();
-        int column = twoParameters[1];
-        int row = 2*twoParameters[0]-1;
+    private ArrayList<ArrayList<Character>> getLadder() {
+        ArrayList<ArrayList<Character>> createdLadder = new ArrayList<>();
 
         for(int i=0; i<column; i++ ){
             ArrayList<Character> line = new ArrayList<>();
-            for(int j=0; j<row; j++){
+            for(int j=0; j<row; j++) {
                 line.add(getLadderElement(j));
             }
-            ladder.add(line);
+            createdLadder.add(line);
         }
-        return ladder;
+        return createdLadder;
     }
 
-    private static Character getLadderElement(int columnNumber) {
+    private Character getLadderElement(int columnNumber) {
         if(columnNumber%2==0){
             return 'ㅣ';
         }
