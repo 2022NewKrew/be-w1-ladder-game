@@ -1,6 +1,8 @@
 package service;
 
 import configuration.LadderGameConfiguration;
+import configuration.LadderHeight;
+import configuration.PeopleCount;
 
 public class LadderGameService {
 
@@ -19,9 +21,11 @@ public class LadderGameService {
         // 현재 게임의 기능은 사다리생성/사다리출력만 있으며,
         // 추가로 게임의 로직이 정해지면 아래에 추가할 것.
         // 1. 사다리 생성
+        LadderHeight maxLadderHeight = ladderGameConfiguration.getMaxLadderHeight();
+        PeopleCount peopleCount = ladderGameConfiguration.getPeopleCount();
         ladderStatus = ladderGenerator.generate(
-                ladderGameConfiguration.getMaxHeightOfLadder(),
-                ladderGameConfiguration.getNumberOfMan() - 1
+                maxLadderHeight.getValue(),
+                peopleCount.getValue() - 1
         );
 
         // 2. 사다리 출력
