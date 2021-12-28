@@ -5,20 +5,15 @@ import java.util.stream.Stream;
 
 
 public class Ladder {
-    // 4. Fields to save ladder state
     private static final Random random = new Random();
-    private int width, height;
     private ArrayList<String> stringRepr;
+    private int width, height;
 
-
-    // 1. Constructor to initialize ladder parameters(width(number of players), height)
     public Ladder(int width, int height) {
         this.width = width;
         this.height = height;
     }
 
-
-    // 2. Method to (re)generate ladder
     public void generateSimpleRandom() {
         this.stringRepr = new ArrayList<>();
         for (int lineNo = 0; lineNo < this.height; lineNo++) {
@@ -26,8 +21,6 @@ public class Ladder {
         }
     }
 
-
-    // 3. toString() method
     public String toString() {
         return String.join("\n", this.stringRepr);
     }
