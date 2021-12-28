@@ -5,9 +5,9 @@ public class LadderGame {
     private final int maxHeight;
     private final Ladder ladder;
 
-    public LadderGame(int numberOfGamer, int maxHeight) {
-        this.numberOfGamer = numberOfGamer;
-        this.maxHeight = maxHeight;
+    public LadderGame() {
+        this.numberOfGamer = InputView.inputNumberOfGamer();
+        this.maxHeight = InputView.inputLadderHeight();
         this.ladder = new Ladder(numberOfGamer, maxHeight);
     }
 
