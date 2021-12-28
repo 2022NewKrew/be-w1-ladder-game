@@ -3,10 +3,6 @@ package com.chanminkim.w1;
 import java.util.Random;
 
 public class LadderGame {
-    private static final String LADDER_EMPTY = " ";
-    private static final String LADDER_VERTICAL = "|";
-    private static final String LADDER_HORIZONTAL = "-";
-
     private final Integer numberOfPlayers;
     private final Integer heightOfLadder;
     private final Random random;
@@ -30,19 +26,19 @@ public class LadderGame {
         StringBuilder builder = new StringBuilder();
         boolean isOccurredBefore = false;
         for (int i = 0; i < numberOfPlayers - 1; i++) {
-            builder.append(LADDER_VERTICAL);
+            builder.append(LadderState.VERTICAL.getValue());
             String piece = buildPiece(isOccurredBefore);
-            isOccurredBefore = piece.equals(LADDER_HORIZONTAL);
+            isOccurredBefore = piece.equals(LadderState.HORIZONTAL.getValue());
             builder.append(piece);
         }
-        builder.append(LADDER_VERTICAL);
+        builder.append(LadderState.VERTICAL.getValue());
         return builder.toString();
     }
 
     private String buildPiece(boolean isOccurredBefore) {
         if (isOccurredBefore) {
-            return LADDER_EMPTY;
+            return LadderState.EMPTY.getValue();
         }
-        return random.nextBoolean() ? LADDER_HORIZONTAL : LADDER_EMPTY;
+        return random.nextBoolean() ? LadderState.HORIZONTAL.getValue() : LadderState.EMPTY.getValue();
     }
 }
