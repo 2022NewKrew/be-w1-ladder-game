@@ -1,25 +1,35 @@
 package LadderMaker.Day1;
 
+import java.util.Arrays;
+
 public class LadderWith2DArray extends Ladder{
     public LadderWith2DArray(int person, int height){
         ladderFlow(person, height);
     }
 
     @Override
-    public Object makeLadder(int person, int height) {
+    protected Object makeLadder(int person, int height) {
         char[][] ladderList = new char[height][person * 2];
-        for(int i = 0; i < height; i++){
-            for(int j = 0; j < person * 2 - 1; j++) ladderList[i][j] = randomCharacter(j);
-            ladderList[i][person * 2 - 1] = '\n';
-        }
+        for(int i = 0; i < height; i++) { makeRow(ladderList[i], person); }
 
         return ladderList;
     }
 
     @Override
-    public void drawLadder(Object ladder) {
+    protected void drawLadder(Object ladder) {
         char[][] ladderList = (char[][]) ladder;
-        for(int i = 0; i < ladderList.length; i++)
-            for(int j = 0; j < ladderList[i].length; j++) System.out.print(ladderList[i][j]);
+        Arrays.stream(ladderList)
+                .forEach(rowList -> printCharArray(rowList));
+    }
+
+    private void makeRow(char[] rowList, int person){
+        for(int i = 0; i < person * 2 - 1; i++) { rowList[i] = randomCharacter(i); }
+        rowList[person * 2 - 1] = '\n';
+    }
+
+    private void printCharArray(char[] array){
+        for(int i = 0; i < array.length; i++){
+            System.out.print(array[i]);
+        }
     }
 }

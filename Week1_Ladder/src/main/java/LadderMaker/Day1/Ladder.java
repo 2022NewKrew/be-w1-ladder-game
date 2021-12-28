@@ -9,7 +9,7 @@ public abstract class Ladder {
      * @return
      */
     private boolean isEvenNumber(int j){
-        if((j & 1) == 0) return true;
+        if((j & 1) == 0) { return true; }
         return false;
     }
 
@@ -21,14 +21,15 @@ public abstract class Ladder {
     protected char randomCharacter(int j){
         char[] ladderList = {'-', ' '};
         Random random = new Random();
-        if(isEvenNumber(j)) return '|';
-        else return ladderList[random.nextInt(ladderList.length)];
+
+        if(isEvenNumber(j)) { return '|'; }
+        return ladderList[random.nextInt(ladderList.length)];
     }
 
     protected void ladderFlow(int person, int height){
         drawLadder(makeLadder(person, height));
     }
 
-    public abstract Object makeLadder(int person, int height);
-    public abstract void drawLadder(Object ladder);
+    protected abstract Object makeLadder(int person, int height);
+    protected abstract void drawLadder(Object ladder);
 }
