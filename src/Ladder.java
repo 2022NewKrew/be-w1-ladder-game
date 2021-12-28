@@ -32,20 +32,23 @@ public class Ladder {
 
     private String makeLadderLine(int idx) {
         Boolean isOdd = idx % 2 == 0;
-        if (isOdd) return DEFAULT_LADDER_LINE;
+        if (isOdd)
+            return DEFAULT_LADDER_LINE;
 
         return getRandomLadderLine();
     }
 
     private String getRandomLadderLine() {
-        if (getRandomFlag()) return RANDOM_LADDER_LINE;
+        if (getRandomFlag())
+            return RANDOM_LADDER_LINE;
 
         return NO_LADDER_LINE;
     }
 
     private boolean getRandomFlag() {
         double randomValue = (int) (Math.random() * 100);
-        if (randomValue <= RANDOM_FLAG_THRESHOLD) return true;
+        if (randomValue <= RANDOM_FLAG_THRESHOLD)
+            return true;
 
         return false;
     }
