@@ -39,7 +39,7 @@ public class Ladder {
 
     private String generateLadderLine(int numberOfPerson) {
         StringBuilder generatedLine = new StringBuilder();
-        for (int i = 0; i < numberOfPerson; i++) {
+        for (int i = 0; i < numberOfPerson - 1; i++) {
             generatedLine.append(generateStep());
         }
         return generatedLine.toString();
