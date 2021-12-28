@@ -27,14 +27,12 @@ public class Engine {
         for (int i = 0; i < userNum; i++) {
             ladders.add(new Ladder());
         }
-
-        Ladder lastLadder = ladders.get(ladders.size() - 1);
-        lastLadder.setLastLadder(true);
     }
 
-    public void connectRandomBridges(int bridgeNum){
+    public void connectRandomBridges(){
         int count = 0;
         Random random = new Random();
+        int bridgeNum = random.nextInt((userNum - 1) * ladderHeight);
 
         while(count < bridgeNum){
             int ladderIdx = random.nextInt(userNum-1);
@@ -51,12 +49,13 @@ public class Engine {
     public void printLadder() {
         for (int i = 0; i < ladderHeight; i++) {
             StringBuilder builder = new StringBuilder();
-            for (Ladder ladder : ladders) {
+            for (int j = 0; j < userNum; j++){
                 builder.append(Ladder.ladderLine.charAt(i));
-                if (!ladder.isLastLadder()) {
-                    builder.append(ladder.getBridgeLine().charAt(i));
-                }
+
+                if(j == userNum-1) continue;
+                builder.append(ladders.get(j).getBridgeLine().charAt(i));
             }
+
             System.out.println(builder);
         }
     }
