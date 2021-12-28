@@ -1,20 +1,13 @@
 package com.kakao.leo;
 
-import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Ladder, 사다리 좌표를 보관 및 생성한다.
- *
- * @author leo.jung
- * @since 1.0
- */
 public class Ladder {
 
-  private final List<List<LadderCell>> floors;
+  private final List<List<Character>> floors;
   private final Random random;
 
   private Ladder() throws Exception {
@@ -29,7 +22,7 @@ public class Ladder {
   }
 
 
-  public static Ladder ofInput(ReadManager inputManager) throws Exception {
+  public static Ladder ofInput(InputManager inputManager) throws Exception {
     return Ladder.of(inputManager.getOptions());
   }
 
@@ -39,7 +32,12 @@ public class Ladder {
   }
 
 
-  public void drawWith(WriteManager writeManager) throws IOException {
+  public void draw() {
+    draw(ConsoleWriteManager.create());
+  }
+
+
+  public void draw(WriteManager writeManager) {
     writeManager.draw(toString());
   }
 
@@ -56,33 +54,33 @@ public class Ladder {
 
 
   private void setFloors(LadderConfig config) {
-    int numberOfPeople = config.getNumberOfPeople();
     int height = config.getHeight();
+    int count = config.getCount();
     for(int i = 0; i < height; i++) {
-      floors.add(createFloor(numberOfPeople));
+      floors.add(createFloor(count));
     }
   }
 
 
-  private List<LadderCell> createFloor(int numberOfPeople) {
-    List<LadderCell> floor = new ArrayList<>();
-    for(int i = 0; i < numberOfPeople; i++) {
-      addCell(floor, i, numberOfPeople - 1);
+  private List<Character> createFloor(int count) {
+    List<Character> floor = new ArrayList<>();
+    for(int i = 0; i < count; i++) {
+      addCell(floor, i, count - 1);
     }
     return floor;
   }
 
 
-  private void addCell(List<LadderCell> floor, int current, int lastIndex) {
-    floor.add(LadderCell.LINE);
+  private void addCell(List<Character> floor, int current, int lastIndex) {
+    floor.add('|');
     if(current < lastIndex) {
       floor.add(getSeparator());
     }
   }
 
 
-  private LadderCell getSeparator() {
-    return random.nextBoolean() ? LadderCell.SEPARATOR : LadderCell.EMPTY_SEPARATOR;
+  private Character getSeparator() {
+    return random.nextBoolean() ? ' ' : '-';
   }
 
 }
