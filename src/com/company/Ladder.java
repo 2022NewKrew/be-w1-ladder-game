@@ -38,6 +38,6 @@ public class Ladder {
     }
 
     public void printLine(int y) {
-        System.out.printf("|%s|\n", String.join("|", ladder[y].split("")));
+        System.out.println("|" + String.join("|", ladder[y].split("")) + "|");
     }
 }
