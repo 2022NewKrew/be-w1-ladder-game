@@ -16,12 +16,12 @@ public class ConsoleInputManager implements InputManager {
 
   @Override
   public LadderConfig getOptions() {
-    int count = getCountFromScanner();
+    int numberOfPeople = getNumberOfPeopleFromScanner();
     int height = getHeightFromScanner();
-    return LadderConfig.of(count, height);
+    return LadderConfig.of(numberOfPeople, height);
   }
 
-  private int getCountFromScanner() {
+  private int getNumberOfPeopleFromScanner() {
     System.out.println("참여할 사람은 몇 명인가요?");
     return scanner.nextInt();
   }
