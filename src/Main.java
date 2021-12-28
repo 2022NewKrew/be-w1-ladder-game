@@ -13,15 +13,25 @@ public class Main {
     }
 
     /**
-     * @return {@code scanner}로부터 입력받은 정수
+     * @return {@code scanner}로부터 입력받은 양의 정수
      */
     private static int _getIntegerFromScanner(Scanner scanner, String prompt) {
-        System.out.print(prompt);
-        while (!scanner.hasNextInt()) {
-            System.out.println("** 정수를 입력해주세요 **");
-            scanner.next();
-        }
-        return scanner.nextInt();
+        int input = -1;
+
+        do {
+            System.out.print(prompt);
+            if (scanner.hasNextInt()) {
+                input = scanner.nextInt();
+                if (input <= 0) {
+                    System.out.println("** 양수를 입력해주세요 **");
+                }
+            } else {
+                System.out.println("** 정수를 입력해주세요 **");
+                scanner.next();
+            }
+        } while (input <= 0);
+
+        return input;
     }
 
     /**
