@@ -1,7 +1,5 @@
 package com.kakao.leo;
 
-import java.util.Scanner;
-
 public class ConsoleWriteManager implements WriteManager {
 
   private ConsoleWriteManager() {}

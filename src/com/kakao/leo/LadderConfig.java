@@ -1,7 +1,5 @@
 package com.kakao.leo;
 
-import java.util.List;
-
 public class LadderConfig {
 
   private int count;
