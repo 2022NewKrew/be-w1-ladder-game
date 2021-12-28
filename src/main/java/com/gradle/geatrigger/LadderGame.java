@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class LadderGame {
     static int[][] ladder;
     static int cnt, height;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("참여할 사람은 몇 명인가요?");
@@ -17,8 +18,8 @@ public class LadderGame {
     }
 
     private static void MakeLadder() {
-        for(int i = 0; i < height; i++) {
-            for(int j = 0; j < cnt - 1; j++) {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < cnt - 1; j++) {
                 if (Math.random() > 0.5)
                     ladder[i][j] = 1;
                 else
