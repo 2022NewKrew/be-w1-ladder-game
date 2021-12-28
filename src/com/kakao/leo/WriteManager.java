@@ -1,7 +1,5 @@
 package com.kakao.leo;
 
-import java.io.IOException;
-
 /**
  * 다양한 String 값을 출력하는 Writer 인터페이스
  * Ladder 클래스의 toString 으로 받은 사다리 게임을 출력한다.
@@ -11,6 +9,6 @@ import java.io.IOException;
  */
 public interface WriteManager {
 
-  void draw(String str) throws IOException;
+  void draw(String str);
 
 }
