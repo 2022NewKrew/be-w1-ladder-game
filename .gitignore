@@ -186,4 +186,12 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+
+# User Area
+.idea/
+*.iml
+*.ipr
+.iws
+*/out
+
 # End of https://www.toptal.com/developers/gitignore/api/gradle,java,macos,intellij
