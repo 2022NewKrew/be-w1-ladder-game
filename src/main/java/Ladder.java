@@ -1,6 +1,8 @@
 import java.util.Random;
 
 public class Ladder {
+    private static final Random RANDOM = new Random();
+
     private int height;
     private int width;
     private char[][] ladder;
@@ -15,25 +17,15 @@ public class Ladder {
     public void initializeLadder() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (j % 2 == 0) {
-                    ladder[i][j] = '|';
-                } else {
-                    ladder[i][j] = ' ';
-                }
+                ladder[i][j] = (j % 2 == 0) ? '|' : ' ';
             }
         }
     }
 
     public void makeRandomLadder() {
-        Random random = new Random();
-
         for (int i = 0; i < height; i++) {
             for (int j = 1; j < width; j += 2) {
-                if (j - 2 >= 0 && ladder[i][j - 2] == '-') {
-                    continue;
-                }
-
-                if (random.nextBoolean()) {
+                if (isAvailableLocation(i, j)) {
                     ladder[i][j] = '-';
                 }
             }
@@ -47,5 +39,17 @@ public class Ladder {
             }
             System.out.print('\n');
         }
+    }
+
+    private boolean isAvailableLocation(int y, int x) {
+        if (x - 2 >= 0 && ladder[y][x - 2] == '-') {
+            return false;
+        }
+
+        if (!RANDOM.nextBoolean()) {
+            return false;
+        }
+
+        return true;
     }
 }
