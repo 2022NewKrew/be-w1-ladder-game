@@ -1,4 +1,4 @@
-package com.kakao.step2.domain;
+package com.kakao.step2.model;
 
 import java.util.ArrayList;
 

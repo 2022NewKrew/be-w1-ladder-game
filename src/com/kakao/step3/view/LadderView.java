@@ -1,6 +1,6 @@
-package com.kakao.step2.view;
+package com.kakao.step3.view;
 
-import com.kakao.step2.model.Ladder;
+import com.kakao.step3.model.Ladder;
 
 import java.util.ArrayList;
 
