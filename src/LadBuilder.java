@@ -15,17 +15,16 @@ public class LadBuilder {
         return new Ladder(height, width, ladder_temp);
     }
 
-    private char[] buildRow(){
+    private char[] buildRow() {
         char[] row = new char[width];
-        for(int i=0; i<width; i++){
+        for (int i = 0; i < width; i++) {
             row[i] = getChar(i);
         }
         return row;
     }
 
-    private char getChar(int index){
-        if(index%2==0) return '|';
-        return getRandomChar();
+    private char getChar(int index) {
+        return index % 2 == 0 ? '|' : getRandomChar();
     }
 
     private char getRandomChar() {
