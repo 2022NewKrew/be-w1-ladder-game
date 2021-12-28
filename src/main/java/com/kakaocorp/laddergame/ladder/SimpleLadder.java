@@ -4,11 +4,10 @@ import java.util.*;
 
 public class SimpleLadder extends Ladder {
 
-    List<String> rowItems = Arrays.asList("-", " ");
-    Random rand = new Random();
+    final private List<String> rowItems = Arrays.asList("-", " ");
 
     @Override
-    public void start() {
+    public boolean start() {
         Scanner sc = new Scanner(System.in);
         System.out.println("참여할 사람은 몇 명인가요?");
         setNumber(sc.nextInt());
@@ -16,6 +15,9 @@ public class SimpleLadder extends Ladder {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         setHeight(sc.nextInt());
         sc.close();
+
+        // SimpleLadder에서는 입력 값 검증 X
+        return true;
     }
 
     @Override

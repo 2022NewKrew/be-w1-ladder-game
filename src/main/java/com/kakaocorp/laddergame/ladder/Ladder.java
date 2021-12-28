@@ -1,9 +1,11 @@
 package com.kakaocorp.laddergame.ladder;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public abstract class Ladder {
+
+    final Random rand = new Random();
 
     int number;
     int height;
@@ -25,7 +27,7 @@ public abstract class Ladder {
         this.height = height;
     }
 
-    public abstract void start();
+    public abstract boolean start();
     public abstract void makeLadder();
     public abstract void printLadder();
 
