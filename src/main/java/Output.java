@@ -20,7 +20,12 @@ public class Output {
     /**
      * 사다리를 화면에 출력하는 메서드
      */
-    static void printLadder(ArrayList<Line> lines) {
+    static void printLadder(ArrayList<String> names, ArrayList<Line> lines) {
+        for (String name: names) {
+            System.out.printf("%s\t ", name);
+        }
+        System.out.println();
+
         for (Line line : lines) {
             printLine(line.getLine());
             System.out.println();

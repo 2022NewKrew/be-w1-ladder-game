@@ -3,11 +3,11 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        int numberOfPlayer = Input.inputNumberOfPlayer();
+        ArrayList<String> names = Input.inputName();
         int height = Input.inputHeight();
 
-        LadderBuilder ladderBuilder = new LadderBuilder(numberOfPlayer, height);
+        LadderBuilder ladderBuilder = new LadderBuilder(names.size(), height);
         Ladder ladder = ladderBuilder.makeLadder();
-        Output.printLadder(ladder.getLadder());
+        Output.printLadder(names, ladder.getLadder());
     }
 }
