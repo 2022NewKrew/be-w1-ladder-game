@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class LadderBuilder {
     private int height = 0;
-    LineBuilder lineBuilder;
+    private final LineBuilder lineBuilder;
 
     LadderBuilder(int numberOfPlayer, int height) {
         this.height = height;
