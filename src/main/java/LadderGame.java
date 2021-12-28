@@ -6,6 +6,7 @@ public class LadderGame {
 
     private final Random random;
 
+    private final String BAR = "|";
     private final String CONNECT = "-";
     private final String BLANK = " ";
 
@@ -14,12 +15,12 @@ public class LadderGame {
     }
 
     public void run(int numberOfPerson, int heightOfLadder) {
-        System.out.println("게임 설정");
-        System.out.println("사용자 : " + numberOfPerson + "명");
-        System.out.println("사다리 높이 : " + heightOfLadder + "\n");
+        System.out.println("게임 설정" + System.lineSeparator()
+            + "사용자 : " + numberOfPerson + "명" + System.lineSeparator()
+            + "사다리 높이 : " + heightOfLadder);
 
         if (numberOfPerson < 2) {
-            System.out.println("사다리 게임은 혼자서 플레이할 수 없어요!!!");
+            System.err.println("사다리 게임은 혼자서 플레이할 수 없어요!!!");
             return;
         }
 
@@ -51,16 +52,16 @@ public class LadderGame {
             printBoard.add(shapeLine(line));
         }
 
-        System.out.println(String.join("\n", printBoard));
+        System.out.println(String.join(System.lineSeparator(), printBoard));
     }
 
     private String shapeLine(List<Integer> line) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int space : line) {
-            stringBuilder.append("|")
+            stringBuilder.append(BAR)
                 .append(isConnected(space) ? CONNECT : BLANK);
         }
-        return stringBuilder.append("|")
+        return stringBuilder.append(BAR)
             .toString();
     }
 
