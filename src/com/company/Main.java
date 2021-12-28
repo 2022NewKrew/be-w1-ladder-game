@@ -10,6 +10,7 @@ public class Main {
         int numOfPeople = sc.nextInt();
         System.out.println("사다리 높이를 입력해주세요.");
         int height = sc.nextInt();
+
         Ladder ladder = new Ladder(numOfPeople, height);
         ladder.printLadder();
     }

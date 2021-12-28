@@ -1,41 +1,43 @@
 package com.company;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Ladder {
-    private int numPeople;
-    private int height;
-    private boolean[][] ladder;
+    private final int numPeople;
+    private final int height;
+    private String[] ladder;
+    private final Random random;
+    private static final String[] pattern = {"- ", " "};
+
     public Ladder(int numPeople, int height) {
         this.numPeople = numPeople;
         this.height = height;
+        random = new Random();
         makeNewLadder();
     }
 
     private void makeNewLadder() {
-        Random random = new Random();
-        ladder = new boolean[height][numPeople-1];
-        for(int y = 0; y < height; y++) {
-            for(int x = 0; x < numPeople-1; x++) {
-                if(random.nextBoolean()) {
-                    ladder[y][x] = true;
-                    x++;
-                }
-            }
+        ladder = new String[height];
+        for (int y = 0; y < height; y++) {
+            ladder[y] = makeNewLine(numPeople - 1);
         }
     }
 
-    public void printLadder() {
-        for(int y = 0; y < height; y++) {
-            for(int x = 0; x < numPeople-1; x++) {
-                System.out.print("|");
-                if(ladder[y][x])
-                    System.out.print("-");
-                else
-                    System.out.print(" ");
-            }
-            System.out.println("|");
+    private String makeNewLine(int width) {
+        StringBuilder ret = new StringBuilder();
+        while (ret.length() < width) {
+            ret.append(pattern[random.nextInt(2)]);
         }
+        return ret.substring(0, width);
+    }
+
+    public void printLadder() {
+        for (int y = 0; y < height; y++) {
+            printLine(y);
+        }
+    }
+
+    public void printLine(int y) {
+        System.out.println("|" + String.join("|", ladder[y].split("")) + "|");
     }
 }
