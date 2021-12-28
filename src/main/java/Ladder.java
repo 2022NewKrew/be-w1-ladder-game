@@ -7,13 +7,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    /**
-     * 사다리를 화면에 출력하는 메서드
-     */
-    void printLadder() {
-        for (Line line : lines) {
-            line.printLine();
-            System.out.println();
-        }
+    ArrayList<Line> getLadder() {
+        return lines;
     }
 }
