@@ -4,6 +4,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Row {
+    private static final String PILLAR = "|";
+    private static final String BRIDGE = "-";
+    private static final String EMPTY = " ";
     private final List<Boolean> bridges;
 
     public Row(int numOfBridges) {
@@ -15,9 +18,9 @@ public class Row {
 
     @Override
     public String toString() {
-        return "|" + bridges.stream()
-                .map(e -> e ? "-" : " ")
-                .collect(Collectors.joining("|"))
-                + "\n";
+        return PILLAR + bridges.stream()
+                .map(e -> e ? BRIDGE : EMPTY)
+                .collect(Collectors.joining(PILLAR))
+                + PILLAR + "\n";
     }
 }
