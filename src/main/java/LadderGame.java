@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.Scanner;
 
 public class LadderGame {
@@ -17,7 +16,7 @@ public class LadderGame {
         input.close();
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         setLadderGameInfo();
         ladderGameInfo.makeLadder();
         ladderGameInfo.drawLadder();
