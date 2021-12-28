@@ -25,13 +25,19 @@ public class Ladder {
     }
 
     public void printLadder() {
-        for (int i = 0; i < ladderHeight; i++) {
-            for (int j = 0; j < ladderWidth; j++) {
+        for (int row = 0; row < ladderHeight; row++) {
+            for (int col = 0; col < ladderWidth; col++) {
                 System.out.print("|");
-                if (hasRightLadder[i][j]) System.out.print("-");
-                else System.out.print(" ");
+                System.out.print(isLadderLocated(row, col));
             }
             System.out.println();
         }
+    }
+
+    public char isLadderLocated(int row, int col){
+        if(hasRightLadder[row][col]){
+            return '-';
+        }
+        return ' ';
     }
 }
