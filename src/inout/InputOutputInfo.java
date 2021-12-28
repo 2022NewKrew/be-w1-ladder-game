@@ -9,7 +9,6 @@ import java.util.stream.IntStream;
 
 //입출력 담당 클래스
 public class InputOutputInfo {
-    private static InputOutputInfo inputOutputInfo = null;
     private Scanner scanner;
 
     private InputOutputInfo() {
