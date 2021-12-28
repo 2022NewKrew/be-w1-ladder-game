@@ -1,3 +1,7 @@
+import input.ConfigReader;
+import input.ConfigReaderHeightAndWidthImpl;
+import input.LadderConfig;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -7,29 +11,19 @@ import java.util.stream.IntStream;
 public class LadderGame {
 
     private static Random rd = new Random();
+    private static ConfigReader configReader = new ConfigReaderHeightAndWidthImpl();
 
     public static void main(String[] args) {
 
         // 입력 받기
-        Inputs inputs = inputHeightAndWidth();
+        LadderConfig ladderConfig = configReader.readLadderConfig();
 
         // 사다리 만들기
-        Ladder ladder = createLadder(inputs.getWidth(), inputs.getHeight());
+        Ladder ladder = createLadder(ladderConfig.getWidth(), ladderConfig.getHeight());
 
         // 출력
         String ladderString = ladderToString(ladder.getLadderShape());
         System.out.println(ladderString);
-    }
-
-    // input 을 받아서 Inputs 라는 객체에 저장
-    private static Inputs inputHeightAndWidth(){
-        try(Scanner sc = new Scanner(System.in)) {
-            System.out.println("참여할 사람은 몇 명인가요?");
-            int width = sc.nextInt();
-            System.out.println("최대 사다리 높이는 몇 개인가요?");
-            int height = sc.nextInt();
-            return new Inputs(width, height);
-        }
     }
 
     // 랜덤 Boolean 반환
@@ -41,13 +35,13 @@ public class LadderGame {
     private static Ladder createLadder(int width, int height){
         Ladder ladder = new Ladder(width, height);
         List<List<String>> ladderShape = new ArrayList<>();
-        IntStream.range(0, height).forEach(j -> ladderShape.add(createLow(width)));
+        IntStream.range(0, height).forEach(j -> ladderShape.add(createRow(width)));
         ladder.setLadderShape(ladderShape);
         return ladder;
     }
 
     // 사다리 한 줄을 생성
-    private static List<String> createLow(int width) {
+    private static List<String> createRow(int width) {
         List<String> row = new ArrayList<>();
         IntStream.range(0, (width-1)*2 + 1)
                 .forEach(i -> row.add(decideStuff(i, row)));
@@ -57,7 +51,8 @@ public class LadderGame {
     // 사다리 한 줄 에서 해당 칸에 들어갈 Stuff 를 결정
     private static String decideStuff(int i, List<String> row) {
         // 짝수 칸은 기둥으로 고정
-        if (i % 2 == 0) return StuffType.COLUMN.getStuff();
+        final boolean isUserLine = i % 2 == 0;
+        if (isUserLine) return StuffType.COLUMN.getStuff();
         if (randomBoolean(rd)) {
             return bridgeDuplicationCheck(row);
         }
