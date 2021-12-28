@@ -6,6 +6,7 @@ public class Input {
 
     /**
      * 입력이 올바른지 확인하는 메서드
+     *
      * @param input 입력받은 인자를 받는다
      * @throws InputMismatchException 양수가 아니면 예외를 던진다
      */
@@ -16,6 +17,7 @@ public class Input {
 
     /**
      * 사람 수를 입력 받는 메서드
+     *
      * @throws InputMismatchException 양의 정수가 아닌 다른 정수가 들어오면 예외를 던진다
      */
     static int inputNumberOfPlayer() throws InputMismatchException {
@@ -28,6 +30,7 @@ public class Input {
 
     /**
      * 사다리 높이를 입력 받는 메서드
+     *
      * @throws InputMismatchException 양의 정수가 아닌 다른 정수가 들어오면 예외를 던진다
      */
     static int inputHeight() throws InputMismatchException {

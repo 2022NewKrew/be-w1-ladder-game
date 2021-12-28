@@ -2,11 +2,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class LadderBuilder {
-    private final int MAX_RANDOM = 10;
-    private final int RANDOM_RANGE = 3;
+    private final Random random = new Random();
     private int numberOfPlayer = 0;
     private int height = 0;
-    private final Random random = new Random();
 
     LadderBuilder(int numberOfPlayer, int height) {
         this.numberOfPlayer = numberOfPlayer;
@@ -14,27 +12,41 @@ public class LadderBuilder {
     }
 
     /**
-     * 렌덤값에 따라 Rung 값을 생성해준다
+     * 가로 막대를 포함시킬지 말지 결정하는 메서드
      *
-     * @return Rung이 있다면 true를 없다면 false를 반환한다
+     * @return 포함시키면 true를 포함시키지 않으면 false를 반환한다
      */
-    Boolean getLineElement() {
+    private Boolean getLineElement() {
+        int MAX_RANDOM = 10;
+        int RANDOM_RANGE = 3;
+
         return random.nextInt(MAX_RANDOM) < RANDOM_RANGE;
     }
 
     /**
+     * Line을 만드는 메서드
+     * 한 줄을 만들어서 반환한다
+     *
+     * @return Line 객체를 반환한다
+     */
+    private Line makeLine() {
+        ArrayList<Boolean> line = new ArrayList<>();
+
+        for (int i = 0; i < numberOfPlayer - 1; i++)
+            line.add(getLineElement());
+        return new Line(line);
+    }
+
+    /**
      * 사다리를 만드는 메서드
-     * Ladder 객체를 반환해준다
-     * @return
+     *
+     * @return Ladder 객체를 반환한다
      */
     Ladder makeLadder() {
-        ArrayList<Boolean> lines = new ArrayList<>();
-        int numberOfRung = numberOfPlayer - 1;
-        int heightOfLadder = height;
+        ArrayList<Line> lines = new ArrayList<>();
 
-        for (int i = 0; i < numberOfRung * heightOfLadder; i++) {
-            lines.add(getLineElement());
-        }
-        return new Ladder(numberOfRung, heightOfLadder, lines);
+        for (int i = 0; i < height; i++)
+            lines.add(makeLine());
+        return new Ladder(lines);
     }
 }
