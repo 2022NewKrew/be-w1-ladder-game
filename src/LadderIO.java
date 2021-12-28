@@ -6,26 +6,32 @@ import ladderGame.Ladder;
 public class LadderIO {
 
     static Scanner sc = new Scanner(System.in);
+    static int numOfPeople;
+    static int ladderHeight;
 
-    public static void getNumOfPeopleIO(Ladder ladder){
+    public static void getNumOfPeopleIO(){
         System.out.println("참여 할 사람은 몇 명인가요?");
-        setLadderVariable(ladder,"numOfPeople");
+        setLadderVariable("numOfPeople");
     }
 
-    public static void getLadderHeightIO(Ladder ladder) {
+    public static void getLadderHeightIO() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        setLadderVariable(ladder,"height");
+        setLadderVariable("ladderHeight");
     }
 
-
-    private static void setLadderVariable(Ladder ladder, String variable){
+    public static void setLadderVariable(String variable){
         int input = sc.nextInt();
         if(variable.equals("numOfPeople")){
-            ladder.setNumOfPeople(input);
+            numOfPeople = input;
         }
-        if(variable.equals("height")){
-            ladder.setHeight(input);
+        if(variable.equals("ladderHeight")){
+            ladderHeight = input;
         }
+    }
+
+    public static Ladder constructLadder(){
+        Ladder ladder = new Ladder(ladderHeight,numOfPeople);
+        return ladder;
     }
 
 }
