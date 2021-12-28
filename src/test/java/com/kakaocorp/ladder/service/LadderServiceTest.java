@@ -14,6 +14,11 @@ class LadderServiceTest {
 
     private static final int HEIGHT = 4;
     private static final int WIDTH = 7;
+    private static final String TEST_LADDER_PRINTED =
+            "| | | | | | | \n" +
+            "|-| | | | | | \n" +
+            "| | | | | | | \n" +
+            "| |-| | | |-| \n";
 
     @Test
     void initialize_requestedDimension() {
@@ -40,12 +45,7 @@ class LadderServiceTest {
 
         String result = LadderService.buildString(ladder);
 
-        assertEquals("""
-| | | | | | |\040
-|-| | | | | |\040
-| | | | | | |\040
-| |-| | | |-|\040
-""", result);
+        assertEquals(TEST_LADDER_PRINTED, result);
     }
 
     private void assertMutualNeighbors(List<Node> nodes) {
