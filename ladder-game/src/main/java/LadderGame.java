@@ -1,12 +1,21 @@
 public class LadderGame {
 
-    private final Ladder ladder;
+    public static LadderGame INSTANCE;
 
-    public LadderGame(int numberOfPeople, int ladderHeight) throws IllegalArgumentException {
+    private final Ladder ladder;
+    private LadderGame(int numberOfPeople, int ladderHeight) throws IllegalArgumentException {
         ladder = new Ladder(numberOfPeople, ladderHeight);
+    }
+
+    public static LadderGame getInstance(int numberOfPeople, int ladderHeight) throws IllegalArgumentException {
+        if(INSTANCE == null){
+            INSTANCE = new LadderGame(numberOfPeople, ladderHeight);
+        }
+        return INSTANCE;
     }
 
     public void printLadder(){
         System.out.println(ladder);
     }
+
 }
