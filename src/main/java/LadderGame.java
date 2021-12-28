@@ -1,16 +1,10 @@
-import entity.LadderBuilder;
-import entity.StuffType;
+import domain.LadderBuilder;
 import input.ConfigReader;
 import input.ConfigReaderHeightAndWidthImpl;
 import input.LadderConfig;
-import entity.Ladder;
+import domain.Ladder;
 import output.LadderPrinter;
 import output.LadderPrinterImpl;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 public class LadderGame {
 

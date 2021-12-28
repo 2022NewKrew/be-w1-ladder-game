@@ -1,4 +1,6 @@
-package entity;
+package domain;
+
+import type.StuffType;
 
 import java.util.ArrayList;
 import java.util.List;
