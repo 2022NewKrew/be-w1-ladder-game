@@ -1,36 +1,6 @@
 package stepone;
 
 import java.util.Scanner;
-import java.util.Random;
-
-class Ladder {
-    int ladderHeight, numPlayers;
-    char[][] ladderArray;
-
-    public Ladder(int ladderHeight, int numPlayers) {
-        this.ladderHeight = ladderHeight;
-        this.numPlayers = numPlayers;
-    }
-
-    void getLadder() {
-        Random random = new Random();
-        char[][] ladderArray = new char[ladderHeight][2*numPlayers-1];
-        for (int i=0; i<ladderArray.length; i++) {
-            ladderArray[i][0] = '|';
-            for (int j=1; j<ladderArray[i].length; j+=2) {
-                boolean isStep = random.nextBoolean();
-                ladderArray[i][j] = isStep? '-' : ' ';
-                ladderArray[i][j+1] = '|';
-            }
-        }
-        this.ladderArray = ladderArray;
-    }
-
-    void printLadder() {
-        for (char[] array : ladderArray)
-            System.out.println(array);
-    }
-}
 
 public class LadderStepOne {
 
