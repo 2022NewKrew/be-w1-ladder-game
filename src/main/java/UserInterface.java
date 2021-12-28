@@ -4,6 +4,7 @@ public class UserInterface {
 
     private Ladder ladder;
     private Scanner scanner;
+    private List<String> players;
 
     public UserInterface(Scanner scanner) {
         this.scanner = scanner;
@@ -16,32 +17,31 @@ public class UserInterface {
         ArrayList<StrCond> playerConds = new ArrayList<>(Arrays.asList(new LstSizeStrCond(1), new LenLTStrCond(5)));
         players = readStrInput(new StrInputCondition("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요.", playerConds, "2명 이상의 사람 수를 입력해주세요!"));
         height = readIntInput(new IntInputCondition("사다리의 최대 높이는 몇 개 인가요?", 0, "1 이상의 사다리 높이를 입력해주세요!"));
+        this.players = players;
         ladder = Ladder.getInstance(height, players.size());
     }
 
-
-
-    private List<String> readStrInput(StrInputCondition strInputCondition){
+    private List<String> readStrInput(StrInputCondition strInputCondition) {
         List<String> input = null;
-        do{
+        do {
             System.out.println(strInputCondition.getQuery());
-            input = Arrays.asList(readStr().split(","));
-        }while(!isValid(new Input<List<String>>(input), strInputCondition));
+            input = new ArrayList<>(Arrays.asList(readStr().split(",")));
+        } while (!isValid(new Input<List<String>>(input), strInputCondition));
         return input;
     }
 
-    private String readStr(){
+    private String readStr() {
         Input<String> target = new Input<>();
-        while(!setStrInput(target));
+        while (!setStrInput(target)) ;
         return target.getValue();
     }
 
-    private boolean setStrInput(Input target){
+    private boolean setStrInput(Input target) {
         String input;
-        try{
+        try {
             input = scanner.next();
             target.setValue(input);
-        }catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("문자열을 입력해주세요!");
             flush();
             return false;
@@ -86,6 +86,22 @@ public class UserInterface {
         boolean res = inputCondition.isValid(input);
         if (res == false) System.out.println(inputCondition.getErrorMsg());
         return res;
+    }
+
+    public void printPlayers(){
+        StringBuilder sb = new StringBuilder();
+        int len = (players.size()+1)*5 + players.size();
+
+        for(int i=0; i<len; i++)
+            sb.append(" ");
+
+        for(int i=0; i<players.size(); i++){
+            int cursor = 5+6*i;
+            String player = players.get(i);
+            int mid = player.length()/2;
+            sb.replace(cursor-mid, cursor-mid+player.length(), player);
+        }
+        System.out.println(sb.toString());
     }
 
     public void printLadder() {

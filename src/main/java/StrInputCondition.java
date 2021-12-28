@@ -28,11 +28,11 @@ public class StrInputCondition implements InputCondition{
 
     @Override
     public String getQuery() {
-        return null;
+        return query;
     }
 
     @Override
     public String getErrorMsg() {
-        return null;
+        return errorMsg;
     }
 }
