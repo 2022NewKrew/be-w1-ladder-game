@@ -17,44 +17,7 @@ public class LadderGame {
         height = scanner.nextInt();
 
         ladder = new Ladder(height, players*2 - 1);
-        makeLadder(ladder);
-        printLadder(ladder);
-
-    }
-
-    static void makeLadder(Ladder ladder) {
-        int height = ladder.getHeight();
-        int width = ladder.getWidth();
-        char[][] l = new char[height][width];
-        Random rand = new Random();
-
-        for (int i=0; i<height; i++) {
-            l[i][0] = '|';
-            int bridge = rand.nextInt(width/2);
-            for (int j=1; j<width; j++) {
-                if (bridge == j/2) {
-                    l[i][j++] = '-';
-                } else {
-                    l[i][j++] = ' ';
-                }
-                l[i][j] = '|';
-            }
-        }
-        ladder.setLadder(l);
-    }
-
-    static void printLadder(Ladder ladder){
-        int height = ladder.getHeight();
-        int width = ladder.getWidth();
-        char[][] l = ladder.getLadder();
-        StringBuilder output = new StringBuilder();
-
-        for (int i=0; i<height; i++) {
-            for (int j=0; j<width; j++) {
-                output.append(l[i][j]);
-            }
-            output.append("\n");
-        }
-        System.out.println(output);
+        ladder.makeLadder();
+        ladder.printLadder();
     }
 }
