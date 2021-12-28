@@ -42,24 +42,24 @@ public final class Ladder {
         }
     }
 
-    void drawLadder() {
+    String getShapeOfLadder() {
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < ladderHeight; row++) {
-            drawLadderForEachRow(sb, row);
+            getShapeForEachRow(sb, row);
         }
-        System.out.println(sb);
+        return sb.toString();
     }
 
-    private void drawLadderForEachRow(StringBuilder sb, int row) {
+    private void getShapeForEachRow(StringBuilder sb, int row) {
         sb.append("|");
         for(int col = 1; col < numOfUser; col++) {
-            sb.append(getSignatureForBridge(row, col))
+            sb.append(getSignatureOfBridge(row, col))
                     .append("|");
         }
         sb.append("\n");
     }
 
-    private String getSignatureForBridge(int row, int col) {
+    private String getSignatureOfBridge(int row, int col) {
         if(bridges[row][col-1])
             return "-";
         return " ";

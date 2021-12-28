@@ -1,6 +1,6 @@
 package com.gunyoung.one.boot;
 
-import java.util.Scanner;
+import com.gunyoung.one.view.View;
 
 public class GameStarter {
 
@@ -17,7 +17,7 @@ public class GameStarter {
         return INSTANCE;
     }
 
-    private final Scanner scanner = new Scanner(System.in);
+    private final View view = new View();
 
     /**
      * 게임을 시작한다
@@ -34,16 +34,15 @@ public class GameStarter {
     }
 
     private int inputNumberOfUser() {
-        System.out.println("참여할 사람은 몇 명인가요?");
-        return scanner.nextInt();
+        return view.inputIntWithMessage("참여할 사람은 몇 명인가요?");
     }
 
     private int inputLadderHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return scanner.nextInt();
+        return view.inputIntWithMessage("최대 사다리 높이는 몇 개인가요?");
     }
 
     private void drawLadder() {
-        Ladder.getInstance().drawLadder();
+        String ladderFeature = Ladder.getInstance().getShapeOfLadder();
+        view.output(ladderFeature);
     }
 }
