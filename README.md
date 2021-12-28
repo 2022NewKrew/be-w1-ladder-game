@@ -73,6 +73,8 @@
       - 입력받을 때 요구사항에 맞게 입력됐는지 Validator 클래스를 통해 확인
     - ManipulateInfos
       - 입력된 이름 앞 뒤 공백을 없애거나 출력하기 위한 형식으로 바꿔주는 메소드들이 포함됨
+      - 이름 출력 시 변환 방법
+        ![image](https://user-images.githubusercontent.com/31435103/147546431-830733dc-a370-48d0-acf8-68b80ced661a.png)
     - Validator
       - 입력된 값이 올바른지, 각 라인을 그릴 수 있는지 확인해주는 메소드들이 포함됨
   - model: DTO들을 담음
