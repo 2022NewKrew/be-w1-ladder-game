@@ -4,9 +4,9 @@ import configuration.LadderGameConfiguration;
 
 public class LadderGameService {
 
-    private LadderGameConfiguration ladderGameConfiguration;
+    private final LadderGameConfiguration ladderGameConfiguration;
 
-    private LadderGenerator ladderGenerator;
+    private final LadderGenerator ladderGenerator;
 
     private boolean[][] ladderStatus;
 
@@ -25,10 +25,10 @@ public class LadderGameService {
         );
 
         // 2. 사다리 출력
-        printLadder();
+        printLadderRows();
     }
 
-    private void printLadder() {
+    private void printLadderRows() {
         int height = ladderStatus.length;
         for(int row = 0; row < height; row++) {
             printLadderRow(row);
@@ -36,16 +36,14 @@ public class LadderGameService {
     }
 
     private void printLadderRow(int rowIndex) {
-
         int width = ladderStatus[0].length;
 
         StringBuilder stringBuilder = new StringBuilder();
         for(int colIndex = 0; colIndex < width; colIndex++) {
-
-            stringBuilder.append("|");
-
+            String ladder = "| ";
             boolean existLadder = ladderStatus[rowIndex][colIndex];
-            String ladder = existLadder ? "-" : " ";
+            if(existLadder) { ladder = "|-"; }
+
             stringBuilder.append(ladder);
         }
         stringBuilder.append("|");
