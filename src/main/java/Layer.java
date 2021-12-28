@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Layer {
-
     private final List<Boolean> horizontalLines;
 
     public Layer(int peopleSize) {
@@ -16,18 +15,7 @@ public class Layer {
         }
     }
 
-    public void printLayer() {
-        System.out.print("|");
-        for (Boolean horizontalLine : this.horizontalLines) {
-            System.out.print(this.horizontalLineToString(horizontalLine));
-        }
-        System.out.println();
-    }
-
-    private String horizontalLineToString(Boolean horizontalLine) {
-        if (horizontalLine) {
-            return "-|";
-        }
-        return " |";
+    public List<Boolean> getHorizontalLines() {
+        return horizontalLines;
     }
 }

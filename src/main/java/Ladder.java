@@ -12,9 +12,7 @@ public class Ladder {
         }
     }
 
-    public void printLadder() {
-        for (Layer layer : this.layers) {
-            layer.printLayer();
-        }
+    public List<Layer> getLayers () {
+        return layers;
     }
 }
