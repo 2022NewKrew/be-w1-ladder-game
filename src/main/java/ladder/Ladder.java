@@ -18,7 +18,7 @@ public class Ladder {
     만약 linked[0][0] = true 라면,
     맨 위 행의 첫번째 사람의 줄과, 두번째 사람의 줄 사이가 연결된 것을 말한다.
     */
-    private boolean[][] linked;
+    private Boolean[][] linked;
 
     /*
     참여할 사람의 수와 사다리 높이를 입력받아 저장하는 메서드
@@ -46,7 +46,7 @@ public class Ladder {
     양 옆이 연결될 확률은 50%로 정했다.
      */
     private void makeLadder() {
-        this.linked = new boolean[this.ladderHeight][this.numOfPersons - 1];
+        this.linked = new Boolean[this.ladderHeight][this.numOfPersons - 1];
         for (int i = 0; i < this.ladderHeight; i++) {
             for (int j = 0; j < this.numOfPersons - 1; j++) {
                 this.linked[i][j] = Math.random() >= 0.5;
@@ -65,13 +65,11 @@ public class Ladder {
     private String ladderToStr() {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < this.ladderHeight; i++) {
+        Arrays.stream(this.linked).forEach(e -> {
             sb.append("|");
-            for (int j = 0; j < this.numOfPersons - 1; j++) {
-                sb.append(this.linked[i][j] ? "-" : " ").append("|");
-            }
+            Arrays.stream(e).forEach(b -> sb.append(b ? "-" : " ").append("|"));
             sb.append("\n");
-        }
+        });
 
         return sb.toString();
     }
