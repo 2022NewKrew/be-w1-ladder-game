@@ -1,6 +1,9 @@
 package org.cs.finn.laddergame.util;
 
 public class CheckBound {
+
+    private CheckBound() {}
+
     public static void checkIntBound (
             final int val,
             final int min,
