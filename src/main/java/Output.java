@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Output {
     static final String SIDE_RAIL = "|";
-    static final String RUNG = "-";
-    static final String SPACE = " ";
+    static final String RUNG = "-----";
+    static final String SPACE = "     ";
 
     /**
      * 한 줄을 출력하는 메서드
@@ -20,15 +20,17 @@ public class Output {
     /**
      * 사다리를 화면에 출력하는 메서드
      */
-    static void printLadder(ArrayList<String> names, ArrayList<Line> lines) {
-        for (String name: names) {
-            System.out.printf("%s\t ", name);
-        }
-        System.out.println();
-
+    static void printLadder(ArrayList<Line> lines) {
         for (Line line : lines) {
             printLine(line.getLine());
             System.out.println();
         }
+    }
+
+    static void printName(ArrayList<String> names) {
+        for (String name: names) {
+            System.out.printf("%s\t ", name);
+        }
+        System.out.println();
     }
 }

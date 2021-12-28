@@ -8,6 +8,7 @@ public class Main {
 
         LadderBuilder ladderBuilder = new LadderBuilder(names.size(), height);
         Ladder ladder = ladderBuilder.makeLadder();
-        Output.printLadder(names, ladder.getLadder());
+        Output.printName(names);
+        Output.printLadder(ladder.getLadder());
     }
 }
