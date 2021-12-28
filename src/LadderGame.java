@@ -1,11 +1,14 @@
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 import java.util.Scanner;
 
 public class LadderGame {
     int people;
     int height;
-    ArrayList<StringBuilder> ladder = new ArrayList<>();
+    List<StringBuilder> ladder = new ArrayList<>();
+    private final int LADDER = 124;
+    private final int CONNECTION = 45;
+    private final int SPACE = 32;
 
     LadderGame() {
         Scanner sc = new Scanner(System.in);
@@ -15,13 +18,16 @@ public class LadderGame {
         height = sc.nextInt();
     }
 
-    // 아스키코드를 이용해서 사다리 element를 stringbuilder에 추가한다
-    // '|' : 124, ' ' : 32, '-' : 45
+    // else 문을 제거하기 위해선 if ~ 후 return하는 방법도 있지만, 문자 고유의 아스키코드가 있다는 점에 착안했습니다.
+    // 변화하는 c값(column값)에 따라 적절한 아스키코드값을 가질 수 있다면, if문을 아예 쓰지 않아도 되리라 판단하고 메서드를 작성했습니다.
+    private char ladderElement(int c) {
+        int ascii = LADDER - (c%2) * (LADDER - CONNECTION + (CONNECTION-SPACE) * (int)(Math.random()*2));
+        return (char)ascii;
+    }
     private StringBuilder singleRow() {
         StringBuilder row = new StringBuilder();
         for (int c=0; c<2*people-1; c++) {
-            int ascii = 124 - (c%2) * ((int)(Math.random()*2)*13 + 79);
-            row.append((char)ascii);
+            row.append(ladderElement(c));
         }
         return row;
     }
