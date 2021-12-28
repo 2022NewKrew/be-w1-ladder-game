@@ -17,7 +17,6 @@ public class RandomLadderGenerator implements LadderGenerator {
         final int numOfPeople = ladderConfig.getNumOfPeople();
 
         List<Branch> branches = makeBranches(height, numOfPeople);
-        branches.forEach(this::generateRandomBranch);
 
         return new Ladder(branches);
     }
@@ -28,13 +27,19 @@ public class RandomLadderGenerator implements LadderGenerator {
         final int width = 2 * numOfPeople - 1;
 
         return IntStream.range(0, height)
-                .mapToObj(i -> Branch.of(width))
+                .mapToObj(i -> makeBranch(width))
                 .collect(Collectors.toList());
+    }
+
+    private Branch makeBranch(int width) {
+        Branch branch = Branch.of(width);
+        generateRandomBranch(branch);
+        return branch;
     }
 
     private void generateRandomBranch(Branch branch) {
         IntStream.range(0, branch.getWidth())
-                .forEach(i -> connectBranch(branch, i));
+                .forEach(index -> connectBranch(branch, index));
     }
 
     private void connectBranch(Branch branch, int index) {

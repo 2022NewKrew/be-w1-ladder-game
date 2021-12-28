@@ -18,7 +18,6 @@ public class Branch {
         Branch branch = new Branch();
         IntStream.range(0, width)
                 .forEach(branch::connectIfUserLine);
-
         return branch;
     }
 
