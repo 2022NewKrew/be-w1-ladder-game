@@ -15,33 +15,31 @@ public class BridgeBuilder {
     }
 
     public boolean[][] build() {
-        connectBridges(participants, height);
+        connectBridges();
         return bridges;
     }
 
-    private void connectBridges(int participants, int height) {
+    private void connectBridges() {
         for (int currentHeight = 0; currentHeight < height; currentHeight++) {
-            connectRowBridges(participants, currentHeight);
+            connectRowBridges(currentHeight);
         }
     }
 
-    private void connectRowBridges(int participants, int currentHeight) {
+    private void connectRowBridges(int currentHeight) {
         for (int currentWidth = 0; currentWidth < participants - 1; currentWidth++) {
             connectBridge(currentWidth, currentHeight);
         }
     }
 
     private void connectBridge(int bridgeWidth, int bridgeHeight) {
-        if (isValidConnection(bridgeWidth, bridgeHeight)) {
-            bridges[bridgeHeight][bridgeWidth] = true;
-        }
+        bridges[bridgeHeight][bridgeWidth] = isConnectableBridge(bridgeWidth, bridgeHeight);
     }
 
-    private boolean isValidConnection(int bridgeWidth, int bridgeHeight) {
+    private boolean isConnectableBridge(int bridgeWidth, int bridgeHeight) {
         if (bridgeWidth == 0) {
-            return randomBridgeManger.getRandomBoolean();
+            return randomBridgeManger.isConnectableBridgeByRandom();
         }
-        return !isAlreadyConnected(bridgeWidth, bridgeHeight) && randomBridgeManger.getRandomBoolean();
+        return !isAlreadyConnected(bridgeWidth, bridgeHeight) && randomBridgeManger.isConnectableBridgeByRandom();
     }
 
     private boolean isAlreadyConnected(int bridgeWidth, int bridgeHeight) {

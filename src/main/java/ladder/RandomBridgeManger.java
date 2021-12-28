@@ -10,7 +10,7 @@ public class RandomBridgeManger {
         this.random = new Random(seed);
     }
 
-    public boolean getRandomBoolean() {
+    public boolean isConnectableBridgeByRandom() {
         return random.nextBoolean();
     }
 }
