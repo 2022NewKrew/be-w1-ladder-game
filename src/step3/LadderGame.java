@@ -1,4 +1,5 @@
-import java.lang.reflect.Array;
+package step3;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
