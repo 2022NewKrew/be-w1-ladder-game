@@ -1,9 +1,26 @@
-public interface InputCondition {
+public class InputCondition {
+    private String query;
+    private int limit;
+    private String errorMsg;
 
-    public boolean isValid(Object input);
+    public InputCondition(String query, int limit, String errorMsg){
+        this.query = query;
+        this.limit = limit;
+        this.errorMsg = errorMsg;
+    }
 
-    public String getQuery();
+    public boolean isValid(int input){
+        if(input > limit) return true;
+        System.out.println(getErrorMsg());
+        return false;
+    }
 
-    public String getErrorMsg();
+    public String getQuery(){
+        return query;
+    }
+
+    private String getErrorMsg(){
+        return errorMsg;
+    }
 
 }

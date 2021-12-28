@@ -6,41 +6,31 @@ public class LadderRow {
     private int cellCount;
     private ArrayList<LadderCell> row;
 
-    private LadderRow(int manCount) {
-        this.manCount = manCount;
-        this.cellCount = this.manCount - 1;
-        this.row = new ArrayList<>();
-    }
-
-    public static LadderRow getInstance(int manCount) {
+    public static LadderRow getInstance(int manCount){
         LadderRow ladderRow = new LadderRow(manCount);
         ladderRow.makeRow();
         return ladderRow;
     }
 
-    public void makeRow() {
-        for (int i = 0; i < cellCount; i++)
-            row.add(LadderCell.getInstance(decideHorizon(row, i)));
+    private LadderRow(int manCount){
+        this.manCount = manCount;
+        this.cellCount = this.manCount-1;
+        this.row = new ArrayList<>();
     }
 
-    public boolean decideHorizon(ArrayList<LadderCell> row, int idx) {
+    public void makeRow(){
         Random rand = new Random();
-        if (idx != 0 && row.get(idx - 1).getIsHorizontal()) return false;
-        return rand.nextBoolean();
+        for(int i=0; i<cellCount; i++)
+            row.add(LadderCell.getInstance(rand.nextBoolean()));
     }
 
-    public String toString() {
+    public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("     |");
-        for (LadderCell cell : row) {
+        sb.append("|");
+        for(LadderCell cell : row) {
             sb.append(cell.toString());
             sb.append("|");
         }
-        sb.append("     ");
         return sb.toString();
-    }
-
-    public ArrayList<LadderCell> getRow(){
-        return row;
     }
 }

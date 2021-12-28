@@ -6,35 +6,36 @@ public class Ladder {
     private int manCount;
     private ArrayList<LadderRow> ladderMap;
 
-    private Ladder(int height, int manCount) {
+    private Ladder(int height, int manCount){
         this.height = height;
         this.manCount = manCount;
         this.ladderMap = new ArrayList<>();
-        makeMap();
     }
 
-    public static Ladder getInstance(int height, int manCount) {
+    public static Ladder getInstance(int height, int manCount){
         Ladder ladder = new Ladder(height, manCount);
+        ladder.makeMap();
         return ladder;
     }
 
-    private void makeMap() {
-        for (int i = 0; i < height; i++)
+    public void makeMap(){
+        for(int i=0; i<height; i++)
             makeRow(manCount);
     }
 
-    private void makeRow(int manCount) {
+    public void makeRow(int manCount){
         ladderMap.add(LadderRow.getInstance(manCount));
     }
 
-    public String toString() {
+    public String toString(){
         StringBuilder sb = new StringBuilder();
-        for (LadderRow row : ladderMap) {
+        for(LadderRow row : ladderMap){
             sb.append(row.toString());
             sb.append("\n");
         }
         return sb.toString();
     }
+
 
 
 }
