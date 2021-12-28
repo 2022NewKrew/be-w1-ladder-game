@@ -11,13 +11,7 @@ public class Row {
         Random RANDOM = new Random();
         bridges = new ArrayList<>();
         IntStream.range(0, people)
-                .forEach(i -> {
-                    if (i < people - 1) {
-                        bridges.add(RANDOM.nextBoolean());
-                    } else {
-                        bridges.add(false);
-                    }
-                });
+                .forEach(i -> bridges.add((i == people - 1) ? false : RANDOM.nextBoolean()));
     }
 
     @Override
