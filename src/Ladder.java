@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
@@ -5,32 +7,31 @@ public class Ladder {
     public static final char LADDER_EMPTY = ' ';
     public static final char LADDER_EXIST = '-';
 
-    private static final Random random = new Random();
-
-    private final int numOfPlayer;
     private final int height;
-    private final char[][] connections;
+    private final Connector connector;
+    private List<Line> lines = new ArrayList<>();
 
-    public Ladder(int numOfPlayer, int height) {
-        this.numOfPlayer = numOfPlayer;
+    public Ladder(int numOfPlayer, int height, Connector connector) {
         this.height = height;
-        this.connections = new char[height][numOfPlayer - 1];
+        this.connector = connector;
+        for (int i = 0; i < numOfPlayer; i++) {
+            lines.add(new Line(i, height));
+        }
     }
 
-    public void connect() {
-        for (char[] ladderRow : connections) {
-            for (int i = 0; i < ladderRow.length; i++) {
-                ladderRow[i] = random.nextBoolean() ? LADDER_EXIST : LADDER_EMPTY;
-            }
+    public void make() {
+        for (int i = 0; i < lines.size() - 1; i++) {
+            connector.connectLine(lines.get(i), lines.get(i + 1));
         }
     }
 
     public void print() {
         StringBuilder sb = new StringBuilder();
-        for (char[] ladderRow : connections) {
+        for (int i = 0; i < height; i++) {
             sb.append("\n").append(LADDER_LINE);
-            for (char ladderCell : ladderRow) {
-                sb.append(ladderCell).append(LADDER_LINE);
+            for (int k = 0; k < lines.size() - 1; k++) {
+                char status = connector.isConnected(lines.get(k), lines.get(k + 1), i) ? LADDER_EXIST : LADDER_EMPTY;
+                sb.append(status).append(LADDER_LINE);
             }
         }
         System.out.println(sb);
