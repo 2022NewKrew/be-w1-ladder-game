@@ -9,6 +9,7 @@ public class ResultView {
         System.out.println();
         ladder.forEach(ResultView::printLine);
     }
+
     private static void printLine(List<String> line) {
         line.forEach(System.out::print);
         System.out.println();
