@@ -1,8 +1,6 @@
 public class StandardOutDisplayLadder implements DisplayLadder{
-    private Ladder ladder;
-
     @Override
-    public void display() {
+    public void display(Ladder ladder) {
         if (ladder == null) {
             throw new RuntimeException(
                     "You must set the property ladder of class: "
@@ -11,10 +9,5 @@ public class StandardOutDisplayLadder implements DisplayLadder{
         }
 
         System.out.println(ladder);
-    }
-
-    @Override
-    public void setLadder(Ladder ladder) {
-        this.ladder = ladder;
     }
 }

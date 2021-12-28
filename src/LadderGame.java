@@ -6,10 +6,9 @@ public class LadderGame {
     LadderGame(int numberOfParticipants, int height) {
         ladder = new Ladder(numberOfParticipants, height);
         renderer = new StandardOutDisplayLadder();
-        renderer.setLadder(ladder);
     }
 
     public void displayLadder() {
-        renderer.display();
+        renderer.display(ladder);
     }
 }

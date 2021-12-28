@@ -1,4 +1,3 @@
 public interface DisplayLadder {
-    void display();
-    void setLadder(Ladder ladder);
+    void display(Ladder ladder);
 }
