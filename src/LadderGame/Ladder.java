@@ -5,11 +5,14 @@ import java.util.Random;
 
 public class Ladder {
     public int ladderWidth, ladderHeight;
+    public Random randomInstance;
+
     public ArrayList<ArrayList<Boolean>> hasRightLadder;
 
     public Ladder(int ladderWidth, int ladderHeight) {
         this.ladderWidth = ladderWidth;
         this.ladderHeight = ladderHeight;
+        this.randomInstance = new Random();
         this.hasRightLadder = makeHasRightLadder();
     }
 
@@ -23,8 +26,6 @@ public class Ladder {
     }
 
     public ArrayList<Boolean> makeHasRightLadderRow(){
-        Random randomInstance = new Random();
-
         ArrayList<Boolean> ladderRow = new ArrayList<>();
         for (int ladderCol = 0; ladderCol < ladderWidth-1; ladderCol++){
             ladderRow.add(randomInstance.nextBoolean());
@@ -46,7 +47,6 @@ public class Ladder {
 
     public char printLocatedLadder(Boolean chkLadder){
         if(chkLadder) return '-';
-
         return ' ';
     }
 }
