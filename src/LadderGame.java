@@ -17,7 +17,7 @@ public class LadderGame {
 
     // 아스키코드를 이용해서 사다리 element를 stringbuilder에 추가한다
     // '|' : 124, ' ' : 32, '-' : 45
-    public StringBuilder singleRow() {
+    private StringBuilder singleRow() {
         StringBuilder row = new StringBuilder();
         for (int c=0; c<2*people-1; c++) {
             int ascii = 124 - (c%2) * ((int)(Math.random()*2)*13 + 79);
