@@ -16,7 +16,7 @@ public class Ladder {
 
     public void printLadder(){
         for(int i = 0 ; i < lines.size() ; i++) {
-            System.out.println(lines.get(i).printLine());
+            System.out.println(lines.get(i).toString());
         }
     }
 }

@@ -28,7 +28,7 @@ public class Line {
         return newPoint;
     }
 
-    public String printLine(){
+    public String toString(){
         StringBuilder result = new StringBuilder("  |");
         for(int i = 0; i<points.size(); i++){
             result.append(convertBoolToString.get(points.get(i)));
