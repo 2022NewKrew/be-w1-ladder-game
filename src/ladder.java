@@ -20,13 +20,18 @@ public class Ladder {
         ArrayList<ArrayList<Character>> createdLadder = new ArrayList<>();
 
         for(int i=0; i<column; i++ ){
-            ArrayList<Character> line = new ArrayList<>();
-            for(int j=0; j<row; j++) {
-                line.add(getLadderElement(j));
-            }
+            ArrayList<Character> line = getLadderOneLine();
             createdLadder.add(line);
         }
         return createdLadder;
+    }
+
+    private ArrayList<Character> getLadderOneLine(){
+        ArrayList<Character> result = new ArrayList<>();
+        for(int i = 0; i<row; i++) {
+            result.add(getLadderElement(i));
+        }
+        return result;
     }
 
     private Character getLadderElement(int columnNumber) {
