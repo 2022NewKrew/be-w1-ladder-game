@@ -29,16 +29,17 @@ public class Ladder {
         if(columnNumber%2==0){
             return 'ㅣ';
         }
-        boolean isLadderBridge = new Random().nextInt(100) >= 50;
+
+        boolean isLadderBridge = getRandomBridgeByPercent(50);
         if(isLadderBridge){
             return '-';
         }
         return ' ';
     }
 
-    private static int[] getConsoleTwoParameter() throws IOException {
-        int [] twoParameters = new int[2];
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private boolean getRandomBridgeByPercent(int percent){
+        return new Random().nextInt(100) >= percent;
+    }
 
         System.out.println("참여할 사람은 몇 명인가요 ?");
         twoParameters[0] = Integer.parseInt(bufferedReader.readLine());
