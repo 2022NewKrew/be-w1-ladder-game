@@ -2,13 +2,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
+    private ArrayList<String> users;
     private Ladder ladder;
     private Scanner sc = new Scanner(System.in);
 
-    private int inputCountOfPerson(){
-        System.out.println("참여할 사람은 몇 명인가요?");
-        int countOfPerson = sc.nextInt();
-        return countOfPerson;
+    private ArrayList<String> inputUsers(){
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        String input = sc.nextLine();
+        ArrayList<String> arraylist = new ArrayList<String>();
+        for (String name : input.split(",")){
+            arraylist.add(Util.resizeString(name, 5));
+        };
+        return arraylist;
     }
 
     private int inputLadderHeight(){
@@ -18,7 +23,8 @@ public class Game {
     }
 
     public void init(){
-        ladder = new Ladder(inputCountOfPerson(), inputLadderHeight());
+        users = inputUsers();
+        ladder = new Ladder(users.size(), inputLadderHeight());
         ladder.printLadder();
     }
 }
