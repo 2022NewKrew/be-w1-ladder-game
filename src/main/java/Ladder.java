@@ -23,24 +23,8 @@ public class Ladder {
         }
     }
 
-    public void printLadder(){
-        StringBuilder ladder = new StringBuilder();
-        String vLine = "|";
-
-        for(int i=0; i<maxHeight; i++){
-            for(int j = 0; j< numPeople -1; j++){
-                ladder.append(vLine).append(isLadder(i, j));
-            }
-            ladder.append(vLine).append("\n");
-        }
-        System.out.println(ladder);
-    }
-
-    private String isLadder(int i, int j){
-        String hLine = "-";
-        String space = " ";
-
-        return ladder[i][j]? hLine : space;
+    public boolean[][] getLadder() {
+        return ladder;
     }
 }
 
