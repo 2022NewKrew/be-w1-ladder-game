@@ -3,33 +3,19 @@ import java.util.List;
 import java.util.Random;
 
 public class Ladder {
-    private final List<List<Boolean>> layers;
+    private final List<Layer> layers;
 
     public Ladder(int peopleSize, int height) {
-        Random random = new Random();
         this.layers = new ArrayList<>();
 
         for (int heightCounter = 0 ; heightCounter < height ; heightCounter++) {
-            List<Boolean> layer = new ArrayList<>();
-            for (int peopleCounter = 0 ; peopleCounter < peopleSize - 1 ; peopleCounter++) {
-                layer.add(random.nextBoolean());
-            }
-            this.layers.add(layer);
+            this.layers.add(new Layer(peopleSize));
         }
     }
 
     public void printLadder() {
-        for (List<Boolean> layer : this.layers) {
-            System.out.print("|");
-            for (Boolean horizontalLineExists : layer) {
-                if (horizontalLineExists) {
-                    System.out.print("-|");
-                }
-                else {
-                    System.out.print(" |");
-                }
-            }
-            System.out.println();
+        for (Layer layer : this.layers) {
+            layer.printLayer();
         }
     }
 }
