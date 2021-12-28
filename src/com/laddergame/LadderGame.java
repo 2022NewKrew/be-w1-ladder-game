@@ -2,7 +2,6 @@ package com.laddergame;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class LadderGame {
     private final List<List<Boolean>> results = new ArrayList<>();
@@ -17,23 +16,22 @@ public class LadderGame {
     }
 
     public List<List<Boolean>> startGame() {
-        Random random = new Random();
         for(int i = 0; i < ladderHeight; i++) {
-            List<Boolean> roundResults = startEachRound(random);
+            List<Boolean> roundResults = startEachRound();
             results.add(roundResults);
         }
         return results;
     }
 
-    private List<Boolean> startEachRound(Random random) {
+    private List<Boolean> startEachRound() {
         List<Boolean> results = new ArrayList<>();
         for(int i = 0; i < participantNumber - 1; i++) {
-            int randomNumber = random.nextInt(RANDOM_NUMBER_UPPER_BOUND);
-            boolean result = randomNumber < RANDOM_NUMBER_UPPER_BOUND / 2;
-            results.add(result);
+            results.add(hasLadderOrNot());
         }
         return results;
     }
 
-    static int RANDOM_NUMBER_UPPER_BOUND = 10;
+    private boolean hasLadderOrNot() {
+        return RandomNumberUtil.exceedsHalfRandomNumberUpperBound();
+    }
 }
