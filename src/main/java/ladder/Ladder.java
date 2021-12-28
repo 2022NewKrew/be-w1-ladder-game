@@ -4,26 +4,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ladder {
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     private ArrayList<StringBuilder> ladder;
 
-    public Ladder() {
-    }
-
     public Ladder(int width, int height) {
+        if(width < 1) throw new IllegalArgumentException("참여인원이 잘못 입력되었습니다.");
+        if(height < 1) throw new IllegalArgumentException("높이가 잘못 입력되었습니다.");
         this.width = width;
         this.height = height;
-    }
-
-    public Ladder width(int width) {
-        this.width = width;
-        return this;
-    }
-
-    public Ladder height(int height) {
-        this.height = height;
-        return this;
     }
 
     public Ladder buildLadder(){
@@ -51,7 +40,6 @@ public class Ladder {
     }
 
     public void print() {
-        //변수명 고민 depth? level? floor?
         for (StringBuilder floor : ladder) {
             System.out.println(floor);
         }

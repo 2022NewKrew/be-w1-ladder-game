@@ -10,6 +10,17 @@ class MainTest {
 
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(str.getBytes());
         System.setIn(byteArrayInputStream);
+
+        Main.main(null);
+    }
+
+
+    @Test
+    public void 정상실행30x30(){
+        String str = "30\n30";
+
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(str.getBytes());
+        System.setIn(byteArrayInputStream);
         Main.main(null);
     }
 
