@@ -1,3 +1,6 @@
+package laddergame;
+
+import laddergame.ladder.Ladder;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -30,7 +33,6 @@ public class LadderGame {
         maxHeight = sc.nextInt();
         if (participantsNum <= 0 || maxHeight <= 0)
             throw new InputMismatchException();
-
         return new Ladder(participantsNum, maxHeight);
     }
 }
