@@ -6,14 +6,20 @@ import java.util.Random;
 
 public class LadderComponent {
 
-    private final Boolean hasVertical;
+    private final Boolean hasRightVertical;
+    private final Boolean hasLeftVertical;
 
-    public LadderComponent(Boolean isEnd) {
-        this.hasVertical = !isEnd && makeRandomVertical();
+    public LadderComponent(Boolean isEnd, Boolean hasLeftVertical) {
+        this.hasRightVertical = !isEnd && !hasLeftVertical && makeRandomVertical();
+        this.hasLeftVertical = hasLeftVertical;
     }
 
-    public Boolean hasVertical() {
-        return hasVertical;
+    public Boolean hasRightVertical() {
+        return hasRightVertical;
+    }
+
+    public Boolean hasLeftVertical() {
+        return hasLeftVertical;
     }
 
     private Boolean makeRandomVertical() {
