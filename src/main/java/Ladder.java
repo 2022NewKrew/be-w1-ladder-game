@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.Scanner;
 
 public class Ladder {
@@ -10,8 +9,6 @@ public class Ladder {
     private static final char BLANK = ' ';
     private static final char VER_BAR = '|';
     private static final double UPPERBOUND = 0.3;
-
-    private static final Random random = new Random();
 
     Ladder() {
         getArrParams();
@@ -44,9 +41,7 @@ public class Ladder {
         horizBarArr = new char[arrHeight][arrWidth];
 
         for (int i = 0; i < arrHeight; i++) {
-            for (int j = 0; j < arrWidth; j++) {
-                horizBarArr[i][j] = BLANK;
-            }
+            setRow(i, 1.0, BLANK);
         }
     }
 
@@ -55,14 +50,31 @@ public class Ladder {
      * 가로막대 생성 조건 : 각각의 가로막대 위치에 대해 확률적으로 생성
      * 생성 확률 : UPPERBOUND
      */
-    public void setLadder() {
+    private void setLadder() {
         for (int i = 0; i < arrHeight; i++) {
-            for (int j = 0; j < arrWidth; j++) {
-                double randVal = Math.random();
-                if (randVal < UPPERBOUND) {
-                    horizBarArr[i][j] = HOR_BAR;
-                }
-            }
+            setRow(i, UPPERBOUND, HOR_BAR);
+        }
+    }
+
+    private void setRow(int rowIdx, double probability, char value) {
+        for (int j = 0; j < arrWidth; j++) {
+            setCell(rowIdx, j, probability, value);
+        }
+    }
+
+    private void setCell(int rowIdx, int colIdx, double probability, char value) {
+        if (probability >= 1.0) {
+            horizBarArr[rowIdx][colIdx] = value;
+        }
+
+        if (probability <= 0.0) {
+            return;
+        }
+
+        double randVal = Math.random();
+
+        if (randVal < probability) {
+            horizBarArr[rowIdx][colIdx] = value;
         }
     }
 
@@ -70,11 +82,15 @@ public class Ladder {
      */
     public void printLadder() {
         for (char[] r : horizBarArr) {
-            for (char cell : r) {
-                System.out.print(VER_BAR);
-                System.out.print(cell);
-            }
-            System.out.println(VER_BAR);
+            printRow(r);
         }
+    }
+
+    private void printRow(char [] r) {
+        for (char cell : r) {
+            System.out.print(VER_BAR);
+            System.out.print(cell);
+        }
+        System.out.println(VER_BAR);
     }
 }
