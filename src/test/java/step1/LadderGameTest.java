@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import step1.LadderGame;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 class LadderGameTest {
 
