@@ -1,30 +1,45 @@
 import java.util.Random;
 
 public class Ladder {
-    private final int participantsNum;
     private final int maxHeight;
+    private final LadderRow[] ladderRows;
 
-    private final boolean[][] ladderMap;
+    static class LadderRow {
+        private final char[] ladderMap;
+
+        public LadderRow(int participantsNum) {
+            int length = participantsNum * 2 - 1;
+
+            ladderMap = new char[length];
+            for (int i=0; i<length; i=i+2)
+                ladderMap[i] = '|';
+            for (int i=1; i<length; i=i+2)
+                ladderMap[i] = createRandomConnection();
+        }
+
+        private char createRandomConnection() {
+            Random rd = new Random();
+
+            if (rd.nextBoolean())
+                return '-';
+            return ' ';
+        }
+
+        public void printRow() {
+            System.out.println(ladderMap);
+        }
+    }
 
     public Ladder(int participantsNum, int maxHeight) {
-        this.participantsNum = participantsNum;
         this.maxHeight = maxHeight;
 
-        ladderMap = new boolean[maxHeight][participantsNum-1];
-        Random rd = new Random();
+        ladderRows = new LadderRow[maxHeight];
         for (int i=0; i<maxHeight; i++)
-            for (int j=0; j<participantsNum-1; j++)
-                ladderMap[i][j] = rd.nextBoolean();
+            ladderRows[i] = new LadderRow(participantsNum);
     }
 
     public void printLadder() {
-        for (int i=0; i<maxHeight; i++) {
-            for (int j = 0; j<participantsNum-1; j++) {
-                System.out.print("|");
-                if (ladderMap[i][j]) System.out.print("-");
-                else System.out.print(" ");
-            }
-            System.out.println("|");
-        }
+        for (int i=0; i<maxHeight; i++)
+            ladderRows[i].printRow();
     }
 }
