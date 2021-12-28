@@ -4,8 +4,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int count = _getIntegerFromScanner(scanner, "참여할 사람은 몇 명인가요? ");
-        int height = _getIntegerFromScanner(scanner, "사다리 높이는 몇개인가요? ");
+        int count = _getIntFromScanner(scanner, "참여할 사람은 몇 명인가요? ");
+        int height = _getIntFromScanner(scanner, "사다리 높이는 몇개인가요? ");
 
         char[][] ladder = _generateLadder(count, height);
         _fillLadder(ladder);
@@ -15,7 +15,7 @@ public class Main {
     /**
      * @return {@code scanner}로부터 입력받은 양의 정수
      */
-    private static int _getIntegerFromScanner(Scanner scanner, String prompt) {
+    private static int _getIntFromScanner(Scanner scanner, String prompt) {
         int input = -1;
 
         do {
