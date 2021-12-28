@@ -18,6 +18,7 @@ public class Ladder {
         peopleNum = sc.nextInt();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         height = sc.nextInt();
+        sc.close();
     }
 
     public void setMap(){
@@ -29,6 +30,7 @@ public class Ladder {
     public void showMap(){
         for(Line line : map) {
             System.out.println(line);
+            //
         }
     }
 }
