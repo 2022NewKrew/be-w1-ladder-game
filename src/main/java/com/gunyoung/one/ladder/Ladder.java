@@ -50,7 +50,7 @@ public final class Ladder {
     private void getShapeOfLadderForEachRow(StringBuilder sb, int row) {
         sb.append("|");
         char[] signaturesOfBridges = bridge.getSignaturesOf(row);
-        for(char signature: signaturesOfBridges) {
+        for (char signature : signaturesOfBridges) {
             sb.append(signature)
                     .append("|");
         }
@@ -78,14 +78,14 @@ public final class Ladder {
 
         private char[] getSignaturesOf(int row) {
             char[] signatures = new char[bridges[row].length];
-            for(int i = 0; i < signatures.length; i ++) {
+            for (int i = 0; i < signatures.length; i++) {
                 signatures[i] = getSignatureOf(row, i);
             }
             return signatures;
         }
 
         private char getSignatureOf(int row, int col) {
-            if(bridges[row][col])
+            if (bridges[row][col])
                 return '-';
             return ' ';
         }

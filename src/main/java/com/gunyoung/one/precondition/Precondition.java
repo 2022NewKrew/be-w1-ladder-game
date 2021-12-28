@@ -2,7 +2,8 @@ package com.gunyoung.one.precondition;
 
 public class Precondition {
 
-    private Precondition() {}
+    private Precondition() {
+    }
 
     public static <T> T notNull(T object, String message) throws PreconditionViolationException {
         condition(object != null, message);
@@ -15,7 +16,7 @@ public class Precondition {
     }
 
     private static void condition(boolean predicate, String message) {
-        if(!predicate)
+        if (!predicate)
             throw new PreconditionViolationException(message);
     }
 }

@@ -14,7 +14,7 @@ public class RandomBridgeStrategy implements BridgeMakeStrategy {
     }
 
     private void makeBridgesForEachRowRandomly(boolean[][] bridges, int row) {
-        for(int col = 0; col < bridges[row].length ; col++) {
+        for (int col = 0; col < bridges[row].length; col++) {
             bridges[row][col] = random.nextBoolean();
         }
     }

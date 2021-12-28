@@ -10,10 +10,11 @@ public class GameStarter {
      */
     private static GameStarter INSTANCE;
 
-    private GameStarter() {}
+    private GameStarter() {
+    }
 
     public static GameStarter getInstance() {
-        if(INSTANCE == null)
+        if (INSTANCE == null)
             INSTANCE = new GameStarter();
         return INSTANCE;
     }
