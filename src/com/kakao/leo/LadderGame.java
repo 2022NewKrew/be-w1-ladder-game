@@ -13,8 +13,8 @@ public class LadderGame {
   private final WriteManager writeManager;
 
   public LadderGame() {
-    this.readManager = ConsoleReadManager.create();
-    this.writeManager = ConsoleWriteManager.create();
+    this.readManager = BufferedReadManager.create();
+    this.writeManager = BufferedWriteManager.create();
   }
 
   public void run() throws Exception {

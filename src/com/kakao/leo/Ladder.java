@@ -1,5 +1,6 @@
 package com.kakao.leo;
 
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class Ladder {
   }
 
 
-  public void drawWith(WriteManager writeManager) {
+  public void drawWith(WriteManager writeManager) throws IOException {
     writeManager.draw(toString());
   }
 
