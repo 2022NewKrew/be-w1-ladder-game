@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.Line;
 
 public class OutputView {
 
@@ -9,21 +10,17 @@ public class OutputView {
 
     public static void printLadder(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
-        for (boolean[] branch : ladder.getIsBranch()) {
-            sb.append(printLine(branch)).append("\n");
+        for (Line line : ladder.getLines()) {
+            sb.append(printLine(line)).append("\n");
         }
         System.out.println(sb);
     }
 
-    private static String printLine(boolean[] branch) {
-        StringBuilder sb = new StringBuilder("|");
-        for (boolean oneBranch : branch) {
-            sb.append(existBranch(oneBranch)).append("|");
+    private static String printLine(Line line) {
+        StringBuilder sb = new StringBuilder();
+        for (String bridge : line.getBridges()) {
+            sb.append(bridge);
         }
         return sb.toString();
-    }
-
-    private static String existBranch(boolean oneBranch) {
-        return oneBranch ? "-" : " ";
     }
 }

@@ -1,34 +1,26 @@
 package ladder.domain;
 
-import ladder.util.RandomUtil;
+import static ladder.domain.Line.makeLine;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Ladder {
 
-    private final boolean[][] branches;
+    private final List<Line> lines;
 
-    public Ladder(boolean[][] branches) {
-        this.branches = copyArray(branches);
+    public Ladder(ArrayList<Line> lines) {
+        this.lines = new ArrayList<>(lines);
     }
 
-    private boolean[][] copyArray(boolean[][] array) {
-        boolean[][] copiedArray = new boolean[array.length][array[0].length];
-        for (int i = 0; i < array.length; i++) {
-            System.arraycopy(array[i], 0, copiedArray[i], 0, array[i].length);
-        }
-        return copiedArray;
-    }
-
-    public boolean[][] getIsBranch() {
-        return branches;
-    }
-
-    public static Ladder makeRandomBranch(int countOfPerson, int ladderHeight) {
+    public static Ladder makeLadder(int countOfPerson, int ladderHeight) {
         validate(countOfPerson,ladderHeight);
-        boolean[][] branches = new boolean[ladderHeight][countOfPerson - 1];
+        ArrayList<Line> lines = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            branches[i] = makeRandomBranchLine(countOfPerson);
+            lines.add(makeLine(countOfPerson));
         }
-        return new Ladder(branches);
+        return new Ladder(lines);
     }
 
     private static void validate(int countOfPerson, int ladderHeight) {
@@ -40,11 +32,7 @@ public class Ladder {
         }
     }
 
-    private static boolean[] makeRandomBranchLine(int countOfPerson) {
-        boolean[] branchLine = new boolean[countOfPerson - 1];
-        for (int i = 0; i < countOfPerson - 1; i++) {
-            branchLine[i] = RandomUtil.generateBoolean();
-        }
-        return branchLine;
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(this.lines);
     }
 }
