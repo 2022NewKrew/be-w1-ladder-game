@@ -31,14 +31,6 @@ public class Ladder {
         return createdLadder;
     }
 
-    private List<Character> getLadderOneLine(){
-        List<Character> result = new ArrayList<>();
-        for(int i = 0; i<row; i++) {
-            result.add(getLadderElement(i));
-        }
-        return result;
-    }
-
     private Character getLadderElement(int columnNumber) {
         if(columnNumber%2==0){
             return 'ㅣ';
