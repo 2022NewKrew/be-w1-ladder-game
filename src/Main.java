@@ -16,14 +16,11 @@ public class Main {
      */
     private static int getPositiveIntFromScanner(Scanner scanner, String prompt) {
         int input;
-        while (true) {
-            System.out.print(prompt);
-            if (scanner.hasNextInt() && (input = scanner.nextInt()) > 0) {
-                return input;
-            }
-
-            System.out.println("** 정수를 입력해주세요 **");
+        System.out.print(prompt);
+        while (!scanner.hasNextInt() || (input = scanner.nextInt()) <= 0) {
+            System.out.println("** 양의 정수를 입력해주세요 **");
             scanner.next();
         }
+        return input;
     }
 }
