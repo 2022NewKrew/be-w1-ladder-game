@@ -16,10 +16,10 @@ public class Ladder {
 
     private void setLadder() {
         Random random = new Random();
-        for(int i=0; i<HEIGHT; i++) {
+        for (int i = 0; i < HEIGHT; i++) {
             StringBuilder sb = new StringBuilder();
             sb.append("|");
-            for(int j=0; j<NUMBER-1; j++) {
+            for (int j = 0; j < NUMBER - 1; j++) {
                 if (random.nextInt(2) == 1) {
                     sb.append("-");
                 } else {
@@ -32,7 +32,7 @@ public class Ladder {
     }
 
     public void printLadder() {
-        for(int i=0; i<HEIGHT; i++) {
+        for (int i = 0; i < HEIGHT; i++) {
             System.out.println(LADDER_RESULT.get(i));
         }
     }
