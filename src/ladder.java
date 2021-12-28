@@ -1,14 +1,15 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ladder {
-    public static void main(String[] args) throws IOException{
-        int[] twoParameters = getConsoleTwoParameter();
-        ArrayList<ArrayList<Character>> ladder = getLadder(twoParameters);
-        showLadder(ladder);
+public class Ladder {
+    private final int column;
+    private final int row;
+    private final ArrayList<ArrayList<Character>> ladder;
+
+    public Ladder(int[] inputNumber) {
+        this.column = inputNumber[1];
+        this.row = 2 * inputNumber[0]-1;
+        this.ladder = getLadder();
     }
 
     private static void showLadder(ArrayList<ArrayList<Character>> ladder) {
