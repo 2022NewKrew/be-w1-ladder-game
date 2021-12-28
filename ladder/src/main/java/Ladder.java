@@ -3,25 +3,29 @@ import java.util.List;
 import java.util.Random;
 
 public class Ladder{
-    private final List<List<Boolean>> ladderShape = new ArrayList<>();
+    private final List<List<Boolean>> ladderShape;
     private final int numOfParticipants;
     private final int numOfLadderHeight;
 
     public Ladder(int numOfParticipants, int numOfLadderHeight){
         this.numOfParticipants = numOfParticipants;
         this.numOfLadderHeight = numOfLadderHeight;
+        ladderShape = new ArrayList<>();
     }
 
     public void build(){
-        Random random = new Random(System.currentTimeMillis());
-        List<Boolean> newRow;
+        for (int row = 0; row < numOfLadderHeight; row++)
+            ladderShape.add(createRow());
+    }
 
-        for (int row = 0; row < numOfLadderHeight; row++) {
-            newRow = new ArrayList<>();
-            for (int bar = 0; bar < numOfParticipants - 1; bar++)
-                newRow.add(random.nextBoolean());
-            ladderShape.add(newRow);
-        }
+    private List<Boolean> createRow(){
+        List<Boolean> newRow = new ArrayList<>();
+        Random random = new Random();
+
+        for (int bar = 0; bar < numOfParticipants - 1; bar++)
+            newRow.add(random.nextBoolean());
+
+        return newRow;
     }
 
     public void printShape(){
