@@ -2,6 +2,9 @@ import java.util.Random;
 
 public class Ladder {
     private static final Random RANDOM = new Random();
+    private static final char VERTICAL_BAR = '|';
+    private static final char CROSS_BAR = '-';
+    private static final char BLANK = ' ';
 
     private int height;
     private int width;
@@ -17,7 +20,7 @@ public class Ladder {
     public void initializeLadder() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                ladder[i][j] = (j % 2 == 0) ? '|' : ' ';
+                ladder[i][j] = (j % 2 == 0) ? VERTICAL_BAR : BLANK;
             }
         }
     }
@@ -42,7 +45,7 @@ public class Ladder {
     }
 
     private boolean isAvailableLocation(int y, int x) {
-        if (x - 2 >= 0 && ladder[y][x - 2] == '-') {
+        if (x - 2 >= 0 && ladder[y][x - 2] == CROSS_BAR) {
             return false;
         }
 
