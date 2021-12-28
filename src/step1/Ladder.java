@@ -1,19 +1,19 @@
-package mission1;
+package step1;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class Mission1 {
+public class Ladder {
     int n;
     int m;
     char[][] ladder;
 
-    Mission1() {
+    Ladder() {
         input();
         createLadder();
     }
 
-    Mission1(int n, int m) {
+    Ladder(int n, int m) {
         this.n = n;
         this.m = m;
         createLadder();
@@ -21,6 +21,7 @@ public class Mission1 {
 
     void input() {
         Scanner sc = new Scanner(System.in);
+
         System.out.println("참여할 사람은 몇 명인가요?");
         n = sc.nextInt();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
@@ -44,7 +45,7 @@ public class Mission1 {
         }
     }
 
-    void output() {
+    void printLeader() {
         for (int i = 0; i < m; i++) {
             System.out.print('|');
             for (int j = 0; j < n - 1; j++) {
