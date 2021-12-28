@@ -32,7 +32,8 @@ public class LadderBuilder {
         List<String> row = new ArrayList<>();
 
         // 각 칸의 Stuff(기둥, 다리, 공간) 을 decideStuff 가 결정하여 반환해줌
-        IntStream.range(0, (width-1)*2 + 1)
+        final int rowListSize = (width - 1) * 2 + 1;
+        IntStream.range(0, rowListSize)
                 .forEach(i -> row.add(decideStuff(i, row)));
         return row;
     }
@@ -40,8 +41,8 @@ public class LadderBuilder {
     // 사다리 한 줄 에서 해당 칸에 들어갈 Stuff 를 결정
     private static String decideStuff(int i, List<String> row) {
         // 짝수 칸은 기둥으로 고정
-        final boolean isUserLine = i % 2 == 0;
-        if (isUserLine) return StuffType.COLUMN.getStuff();
+        final boolean isColumnLine = i % 2 == 0;
+        if (isColumnLine) return StuffType.COLUMN.getStuff();
         if (randomBoolean(rd)) {
             // 이전에 다리가 있었는지 중복 체크
             return bridgeDuplicationCheck(row);
@@ -52,9 +53,11 @@ public class LadderBuilder {
     // 다리가 놓여질 경우 이전 Stuff 가 다리였는지
     private static String bridgeDuplicationCheck(List<String> row) {
         // 맨 앞은 검사 생략
-        if (row.size() < 3) return StuffType.BRIDGE.getStuff();
+        final boolean isFirstBridge = row.size() < 3;
+        if (isFirstBridge) return StuffType.BRIDGE.getStuff();
 
-        if (row.get(row.size() - 2) == StuffType.BRIDGE.getStuff()) return StuffType.SPACE.getStuff();
+        String previousStuff = row.get(row.size() - 2);
+        if (previousStuff == StuffType.BRIDGE.getStuff()) return StuffType.SPACE.getStuff();
         return StuffType.BRIDGE.getStuff();
     }
 }
