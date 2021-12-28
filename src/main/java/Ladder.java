@@ -9,6 +9,9 @@ public class Ladder {
     private final String BAR = "-";
     private final String BLANK = " ";
 
+    private final String BAR = "-";
+    private final String BLANK = " ";
+
     ArrayList<ArrayList<Boolean>> ladder = new ArrayList<ArrayList<Boolean>>();
 
     Ladder() {
