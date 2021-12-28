@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class LadderGame {
     public static final char VERTICAL_LINE = '|';
     public static final char HORIZONTAL_LINE = '-';
@@ -5,7 +8,7 @@ public class LadderGame {
 
     private final int numberOfPeople;
     private final int height;
-    private boolean[][] isHorizontalLines;
+    private boolean[][] cells;
 
     public LadderGame(int numberOfPeople, int height) {
         this.numberOfPeople = numberOfPeople;
@@ -17,11 +20,19 @@ public class LadderGame {
      * 사다리 상태를 세팅한다.
      */
     private void setCells() {
-        this.isHorizontalLines = new boolean[height][numberOfPeople - 1];
-        for (int i = 0; i < this.isHorizontalLines.length; i++) {
-            for (int j = 0; j < this.isHorizontalLines[i].length; j++) {
-                this.isHorizontalLines[i][j] = generateRandomBoolean();
-            }
+        boolean[][] cells = new boolean[height][numberOfPeople - 1];
+        for (boolean[] row : cells) {
+            setRow(row);
+        }
+        this.cells = cells;
+    }
+
+    /**
+     * 사다리 Row를 세팅한다.
+     */
+    private void setRow(boolean[] ladderRow) {
+        for (int i = 0; i < ladderRow.length; i++) {
+            ladderRow[i] = generateRandomBoolean();
         }
     }
 
@@ -40,16 +51,23 @@ public class LadderGame {
     }
 
     /**
-     * 사다리 상태를 반환한다.
+     * 사다리 상태를 문자열로 반환한다.
      */
     public String getLadderStatus() {
-        StringBuilder gameStatus = new StringBuilder();
-        for (boolean[] isHorizontalLine : isHorizontalLines) {
-            for (int j = 0; j < numberOfPeople * 2 - 1; j++) {
-                gameStatus.append(j % 2 == 0 ? VERTICAL_LINE : parseHorizontalLineChar(isHorizontalLine[j / 2]));
-            }
-            gameStatus.append("\n");
+        return Arrays.stream(cells)
+                .map(this::parseLadderRowStatus)
+                .collect(Collectors.joining());
+    }
+
+    /**
+     * 사다리 Row 상태를 문자열로 변환한다.
+     */
+    private String parseLadderRowStatus(boolean[] ladderRow) {
+        StringBuilder ladderLine = new StringBuilder();
+        for (int i = 0; i < numberOfPeople * 2 - 1; i++) {
+            ladderLine.append(i % 2 == 0 ? VERTICAL_LINE : parseHorizontalLineChar(ladderRow[i / 2]));
         }
-        return gameStatus.toString();
+        ladderLine.append("\n");
+        return ladderLine.toString();
     }
 }
