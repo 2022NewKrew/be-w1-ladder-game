@@ -1,3 +1,5 @@
+package line;
+
 public class Connection {
 
     private ConnectionState STATE = ConnectionState.UNCONNECTED;

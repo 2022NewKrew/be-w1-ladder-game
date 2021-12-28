@@ -1,3 +1,7 @@
+package connector;
+
+import line.Line;
+
 import java.util.Random;
 
 public class RandomConnector implements Connector {

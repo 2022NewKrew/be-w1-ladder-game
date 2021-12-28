@@ -1,3 +1,5 @@
+import ladder.LadderGame;
+
 import java.util.Scanner;
 
 public class Main {

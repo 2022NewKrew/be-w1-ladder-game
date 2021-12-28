@@ -1,3 +1,7 @@
+package ladder;
+
+import connector.RandomConnector;
+
 public class LadderGame {
 
     private final Ladder ladder;
