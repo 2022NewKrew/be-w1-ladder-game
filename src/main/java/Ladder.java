@@ -1,7 +1,10 @@
+import java.util.List;
+
 public class Ladder {
-    // 불변
+
     private final int people;
     private final int height;
+    private List<List<String>> ladderShape;
 
     public Ladder(int people, int height) {
         this.people = people;
@@ -14,5 +17,13 @@ public class Ladder {
 
     public int getHeight() {
         return height;
+    }
+
+    public List<List<String>> getLadderShape() {
+        return ladderShape;
+    }
+
+    public void setLadderShape(List<List<String>> ladderShape) {
+        this.ladderShape = ladderShape;
     }
 }
