@@ -6,7 +6,7 @@ import java.util.Random;
 
 class Ladder {
     final int ladderHeight, numPlayers;
-    List<String> ladderArray = new ArrayList<>();
+    private List<String> ladderArray = new ArrayList<>();
     Random random = new Random();
 
     public Ladder(int ladderHeight, int numPlayers) {
