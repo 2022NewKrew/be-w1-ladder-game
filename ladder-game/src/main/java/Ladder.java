@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.StringJoiner;
 
 public class Ladder {
 
@@ -13,6 +14,15 @@ public class Ladder {
         for (int i = 0; i < ladderHeight; i++) {
             shape.add(generateLadderLine(numberOfPerson));
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder convertResult = new StringBuilder();
+        for (String ladderLine : shape) {
+            convertResult.append(ladderLineToString(ladderLine));
+        }
+        return convertResult.toString();
     }
 
     private void checkNumberOfPerson(int numberOfPerson) throws IllegalArgumentException {
@@ -40,6 +50,14 @@ public class Ladder {
             return '-';
         }
         return ' ';
+    }
+
+    private String ladderLineToString(String ladderLine) {
+        StringJoiner stringJoiner = new StringJoiner("|", "|", "|\n");
+        for (String step : ladderLine.split("")) {
+            stringJoiner.add(step);
+        }
+        return stringJoiner.toString();
     }
 
     public List<String> getShape() {
