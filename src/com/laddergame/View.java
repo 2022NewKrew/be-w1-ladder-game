@@ -6,11 +6,18 @@ import java.util.Scanner;
 public class View {
     static Scanner scanner = new Scanner(System.in);
 
-    static String LADDER_DELIMITER = "-";
-    
-    static String EMPTY_STRING = " ";
-    
-    static String VERTICAL_LINE = "|";
+    private enum DELIMITER {
+        LADDER("-"),
+        NO_LADDER(" "),
+        VERTICAL_LINE("|")
+        ;
+
+        DELIMITER(String delimiter) {
+            this.value = delimiter;
+        }
+
+        private final String value;
+    }
 
     static public int inputParticipantNumber() {
         System.out.println("참여할 사람은 몇 명인가요?");
@@ -28,10 +35,10 @@ public class View {
 
     static private void outputRoundResult(List<Boolean> roundResult) {
         roundResult.forEach(hasLadder -> {
-            System.out.print(VERTICAL_LINE);
-            String eachResult = hasLadder ? LADDER_DELIMITER : EMPTY_STRING;
+            System.out.print(DELIMITER.VERTICAL_LINE.value);
+            String eachResult = hasLadder ? DELIMITER.LADDER.value : DELIMITER.NO_LADDER.value;
             System.out.print(eachResult);
         });
-        System.out.println(VERTICAL_LINE);
+        System.out.println(DELIMITER.VERTICAL_LINE.value);
     }
 }

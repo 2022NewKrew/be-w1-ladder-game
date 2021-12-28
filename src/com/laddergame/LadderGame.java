@@ -32,6 +32,6 @@ public class LadderGame {
     }
 
     private boolean hasLadderOrNot() {
-        return RandomNumberUtil.exceedsHalfRandomNumberUpperBound();
+        return RandomNumberUtil.exceedsThreshold();
     }
 }

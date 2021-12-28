@@ -11,7 +11,7 @@ public class RandomNumberUtil {
         private static final Random random = new Random();
     }
 
-    public static boolean exceedsHalfRandomNumberUpperBound() {
+    public static boolean exceedsThreshold() {
         int randomNumber = RandomNumberUtil.generateRandomNumber();
         return randomNumber > RandomNumberUtil.RANDOM_NUMBER_UPPER_BOUND / 2;
     }
