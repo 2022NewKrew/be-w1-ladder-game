@@ -2,16 +2,22 @@ package com.kakao.leo;
 
 import java.util.Scanner;
 
-public class ConsoleInputManager implements InputManager {
+/**
+ * Scanner 로 입력을 받아 LadderConfig 를 세팅하는 InputManager 구현체
+ *
+ * @author leo.jung
+ * @since 1.0
+ */
+public class ConsoleReadManager implements ReadManager {
 
   private final Scanner scanner;
 
-  private ConsoleInputManager() {
+  private ConsoleReadManager() {
     this.scanner = new Scanner(System.in);
   }
 
-  public static ConsoleInputManager create() {
-    return new ConsoleInputManager();
+  public static ConsoleReadManager create() {
+    return new ConsoleReadManager();
   }
 
   @Override

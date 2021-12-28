@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Ladder, 사다리 좌표를 보관 및 생성한다.
+ *
+ * @author leo.jung
+ * @since 1.0
+ */
 public class Ladder {
 
   private final List<List<Character>> floors;
@@ -22,7 +28,7 @@ public class Ladder {
   }
 
 
-  public static Ladder ofInput(InputManager inputManager) throws Exception {
+  public static Ladder ofInput(ReadManager inputManager) throws Exception {
     return Ladder.of(inputManager.getOptions());
   }
 
@@ -32,12 +38,7 @@ public class Ladder {
   }
 
 
-  public void draw() {
-    draw(ConsoleWriteManager.create());
-  }
-
-
-  public void draw(WriteManager writeManager) {
+  public void drawWith(WriteManager writeManager) {
     writeManager.draw(toString());
   }
 
