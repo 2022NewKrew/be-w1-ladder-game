@@ -19,10 +19,13 @@ public class Ladder {
                 else
                     array[i][j] = ' ';
             }
-            // 한 줄에 하나씩만 bridge 연결하도록 설정
-            int randomIndex = (int) (Math.random() * (col / 2)) * 2 + 1;
-            array[i][randomIndex] = '-';
+            makeRandomBridge(i);
         }
+    }
+    private void makeRandomBridge(int row) {
+        // 한 줄에 하나씩만 bridge 연결하도록 설정
+        int randomIndex = (int) (Math.random() * (col / 2)) * 2 + 1;
+        array[row][randomIndex] = '-';
     }
 
     public void printLadder() {
