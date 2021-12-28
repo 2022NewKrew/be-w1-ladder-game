@@ -32,7 +32,7 @@ public class LadderFactory {
         System.out.println("최대 사다리 높이는 몇 개 인가요?");
 
         try{
-            height = scanner.nextInt();
+            this.height = scanner.nextInt();
         } catch (NoSuchElementException | IllegalStateException exception) {
             System.err.println("입력을 처리할 수 없습니다.");
             System.exit(1);

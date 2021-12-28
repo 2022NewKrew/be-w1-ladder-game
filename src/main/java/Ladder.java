@@ -7,19 +7,19 @@ public class Ladder {
 
     public Ladder(int peopleSize, int height) {
         Random random = new Random();
-        layers = new ArrayList<>();
+        this.layers = new ArrayList<>();
 
         for (int heightCounter = 0 ; heightCounter < height ; heightCounter++) {
             List<Boolean> layer = new ArrayList<>();
             for (int peopleCounter = 0 ; peopleCounter < peopleSize - 1 ; peopleCounter++) {
                 layer.add(random.nextBoolean());
             }
-            layers.add(layer);
+            this.layers.add(layer);
         }
     }
 
     public void printLadder() {
-        for (List<Boolean> layer : layers) {
+        for (List<Boolean> layer : this.layers) {
             System.out.print("|");
             for (Boolean horizontalLineExists : layer) {
                 if (horizontalLineExists) {
