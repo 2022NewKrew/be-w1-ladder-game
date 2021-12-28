@@ -2,6 +2,7 @@ package configuration;
 
 public class LadderGameConfiguration {
 
+    // 게임의 각각 설정은 게임 시작 후 변경 불가능하다고 가정. 생성자로만 입력받게함.
     private final int numberOfMan;
 
     private final int maxHeightOfLadder;
