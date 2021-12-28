@@ -4,13 +4,12 @@ import java.util.Random;
 
 public class Ladder {
 
+    public static final String LINE_VERTICAL = "|";
+    public static final String LINE_HORIZONTAL_TRUE = "-";
+    public static final String LINE_HORIZONTAL_FALSE = " ";
     private final int NUMBER;
     private final int HEIGHT;
     private final List<Object> LADDER_RESULT = new ArrayList<>();
-
-    private final String LINE_TRUE = "-";
-    private final String LINE_FALSE = " ";
-    private final String LINE_VERTICAL = "|";
 
     public Ladder(int number, int height) {
         this.NUMBER = number;
@@ -18,18 +17,25 @@ public class Ladder {
         setLadder();
     }
 
+    private String isLineHorizontal(boolean isLine) {
+        if (isLine) {
+            return LINE_HORIZONTAL_TRUE;
+        }
+        return LINE_HORIZONTAL_FALSE;
+    }
+
+    private void addLine(StringBuilder sb, String line) {
+        sb.append(line);
+    }
+
     private void setLadder() {
         Random random = new Random();
         for (int i = 0; i < HEIGHT; i++) {
             StringBuilder sb = new StringBuilder();
-            sb.append(LINE_VERTICAL);
+            addLine(sb, LINE_VERTICAL);
             for (int j = 0; j < NUMBER - 1; j++) {
-                if (random.nextInt(2) == 1) {
-                    sb.append(LINE_TRUE);
-                } else {
-                    sb.append(LINE_FALSE);
-                }
-                sb.append(LINE_VERTICAL);
+                addLine(sb, isLineHorizontal(random.nextBoolean()));
+                addLine(sb, LINE_VERTICAL);
             }
             LADDER_RESULT.add(sb.toString());
         }
