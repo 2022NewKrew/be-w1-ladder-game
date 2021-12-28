@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class LineBuilder {
+    private final int MAX_RANDOM = 10;
+    private final int RANDOM_RANGE = 3;
     private final Random random = new Random();
     private int numberOfPlayer = 0;
 
@@ -15,9 +17,6 @@ public class LineBuilder {
      * @return 포함시키면 true를 포함시키지 않으면 false를 반환한다
      */
     private Boolean getLineElement() {
-        int MAX_RANDOM = 10;
-        int RANDOM_RANGE = 3;
-
         return random.nextInt(MAX_RANDOM) < RANDOM_RANGE;
     }
 
