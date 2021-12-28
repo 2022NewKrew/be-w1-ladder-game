@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
@@ -6,7 +7,7 @@ public class Ladder {
     // 인스턴스 변수
     private final int column;
     private final int row;
-    private final ArrayList<ArrayList<Character>> ladder;
+    private final List<List<Character>> ladder;
 
     // 생성자
     public Ladder(int[] inputNumber) {
@@ -16,18 +17,18 @@ public class Ladder {
     }
 
     // 메소드
-    private ArrayList<ArrayList<Character>> getLadder() {
-        ArrayList<ArrayList<Character>> createdLadder = new ArrayList<>();
+    private List<List<Character>> getLadder() {
+        List<List<Character>> createdLadder = new ArrayList<>();
 
         for(int i=0; i<column; i++ ){
-            ArrayList<Character> line = getLadderOneLine();
+            List<Character> line = getLadderOneLine();
             createdLadder.add(line);
         }
         return createdLadder;
     }
 
-    private ArrayList<Character> getLadderOneLine(){
-        ArrayList<Character> result = new ArrayList<>();
+    private List<Character> getLadderOneLine(){
+        List<Character> result = new ArrayList<>();
         for(int i = 0; i<row; i++) {
             result.add(getLadderElement(i));
         }
@@ -53,7 +54,7 @@ public class Ladder {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for(ArrayList<Character> line : ladder){
+        for(List<Character> line : ladder){
             for(Character element : line){
                 result.append(element);
             }
