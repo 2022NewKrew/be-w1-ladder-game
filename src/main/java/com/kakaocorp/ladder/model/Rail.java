@@ -14,7 +14,7 @@ public class Rail {
         }
     }
 
-    public List<Node> getNodes() {
-        return nodes;
+    public Node getNodeAt(int index) {
+        return nodes.get(index);
     }
 }
