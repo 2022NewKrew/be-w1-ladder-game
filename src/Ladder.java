@@ -1,52 +1,46 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 public class Ladder {
-    int person;
-    int height;
-    int width;
-    char[][] ladder;
+    private int person;
+    private final int height;
+    private final int width;
+    private final char[][] ladder;
 
     Ladder(int person, int height) {
-        self.person = person;
-        self.height = height;
-        self.width = 2 * person - 1;
-    }
-    
-    void setPerson() throws IOException {
-        person = Integer.parseInt(br.readLine());
-    }
-
-    void setHeight() throws IOException {
-        height = Integer.parseInt(br.readLine());
-    }
-
-    void setWidth() {
-        width = 2 * person - 1;
-    }
-
-    void initializeLadder() {
+        this.person = person;
+        this.height = height;
+        this.width = 2 * person - 1;
         ladder = new char[height][width];
     }
 
-    void setLadder() {
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if (j % 2 == 0) ladder[i][j] = '|';
-                else {
-                    ladder[i][j] = Math.random() < 0.5 ? ' ' : '-';
-                }
-            }
+    public void makeLadder() {
+        for (int row = 0; row < height; row++) {
+            makeLadderRow(row);
         }
     }
 
-    void printLadder() {
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                System.out.print(ladder[i][j]);
-            }
+    private void makeLadderRow(int row) {
+        for (int col = 0; col < width; col++) {
+            ladder[row][col] = decideLadderCell(col);
+        }
+    }
+
+    private char decideLadderCell(int col) {
+        char AXIS_VER = '|';
+        char AXIS_VOID = ' ';
+        char AXIS_HOR = '-';
+        if (col % 2 == 0) return AXIS_VER;
+        return Math.random() < 0.5 ? AXIS_VOID : AXIS_HOR;
+    }
+
+    public void printLadder() {
+        for (int row = 0; row < height; row++) {
+            printLadderRow(row);
             System.out.println();
+        }
+    }
+
+    private void printLadderRow(int row) {
+        for (int col = 0; col < width; col++) {
+            System.out.print(ladder[row][col]);
         }
     }
 }
