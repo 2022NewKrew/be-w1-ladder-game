@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
-    private BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-    private BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    private final BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+    private final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     private int userCnt, ladderHeight;
     private List<List<Boolean>> ladder;
