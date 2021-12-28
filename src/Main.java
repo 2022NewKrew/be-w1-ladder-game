@@ -4,10 +4,10 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int count = _getIntFromScanner(scanner, "참여할 사람은 몇 명인가요? ");
+        int numOfPeople = _getIntFromScanner(scanner, "참여할 사람은 몇 명인가요? ");
         int height = _getIntFromScanner(scanner, "사다리 높이는 몇개인가요? ");
 
-        Ladder ladder = new Ladder(count, height);
+        Ladder ladder = new Ladder(numOfPeople, height);
         System.out.println(ladder);
     }
 
