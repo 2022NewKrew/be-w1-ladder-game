@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26936b7b-23ee-425c-95ac-f83e4b3ffd04" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ladderGame.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/ladder/Ladder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ladder/Ladder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/ladder/ladder.java~Stashed changes" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +115,7 @@
       <option name="presentableId" value="Default" />
       <updated>1640580102713</updated>
       <workItem from="1640676374117" duration="408000" />
-      <workItem from="1640676801415" duration="583000" />
+      <workItem from="1640676801415" duration="717000" />
     </task>
     <servers />
   </component>
