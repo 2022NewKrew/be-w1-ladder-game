@@ -1,5 +1,6 @@
 package com.gunyoung.one.boot;
 
+import com.gunyoung.one.ladder.Ladder;
 import com.gunyoung.one.view.View;
 
 public class GameStarter {
