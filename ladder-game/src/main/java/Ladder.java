@@ -29,13 +29,8 @@ public class Ladder {
 
     private String generateLadderLine(int numberOfPerson) {
         StringBuilder generatedLine = new StringBuilder();
-        int ladderSize = numberOfPerson * 2 - 1;
-        for (int i = 0; i < ladderSize; i++) {
-            if (i % 2 == 1) {
-                generatedLine.append(generateStep());
-                continue;
-            }
-            generatedLine.append("|");
+        for (int i = 0; i < numberOfPerson; i++) {
+            generatedLine.append(generateStep());
         }
         return generatedLine.toString();
     }
