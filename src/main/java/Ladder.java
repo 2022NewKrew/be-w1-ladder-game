@@ -11,9 +11,10 @@ public class Ladder {
     public Ladder(int number, int height) {
         this.NUMBER = number;
         this.HEIGHT = height;
+        setLadder();
     }
 
-    public void setLadder() {
+    private void setLadder() {
         Random random = new Random();
         for(int i=0; i<HEIGHT; i++) {
             StringBuilder sb = new StringBuilder();

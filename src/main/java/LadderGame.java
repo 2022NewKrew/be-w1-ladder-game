@@ -9,7 +9,6 @@ public class LadderGame {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         height = sc.nextInt();
         Ladder ld = new Ladder(number, height);
-        ld.setLadder();
         ld.printLadder();
     }
 }
