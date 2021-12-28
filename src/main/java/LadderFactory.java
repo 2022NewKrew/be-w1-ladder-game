@@ -1,10 +1,6 @@
 public class LadderFactory {
 
-    public LadderFactory() {
-
-    }
-
-    public Ladder buildLadder(int peopleSize, int height) {
+    public static Ladder buildLadder(int peopleSize, int height) {
         return new Ladder(peopleSize, height);
     }
 }
