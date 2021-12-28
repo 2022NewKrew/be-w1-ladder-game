@@ -1,6 +1,7 @@
 package com.gunyoung.one.boot;
 
 import com.gunyoung.one.exceptions.NonInitializationException;
+import com.gunyoung.one.precondition.Precondition;
 
 import java.util.Random;
 
@@ -13,8 +14,7 @@ public final class Ladder {
     private boolean[][] bridges;
 
     public static Ladder getInstance() {
-        if (INSTANCE == null)
-            throw new NonInitializationException("Ladder is not initialized");
+        Precondition.notNull(INSTANCE, "Ladder is not initialized");
         return INSTANCE;
     }
 
@@ -23,6 +23,9 @@ public final class Ladder {
     }
 
     private Ladder(int numOfUser, int ladderHeight) {
+        Precondition.notLessThanInt(numOfUser, 1, "유저의 수는 한명 이상이여야 합니다.");
+        Precondition.notLessThanInt(ladderHeight, 1, "사다리의 높이는 1 이상이여야 합니다.");
+
         this.numOfUser = numOfUser;
         this.ladderHeight = ladderHeight;
         makeBridge();
