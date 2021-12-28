@@ -22,7 +22,13 @@ public class UserInput {
         return this.input;
     }
 
-    private int request(String msg, int min, int max, int init) {
+    private int requestIntBound(
+            final String msg,
+            final int min,
+            final int max,
+            final int init
+    )
+    {
         System.out.println(msg + " [" + min + ", " + max + "]");
 
         try {
@@ -39,7 +45,7 @@ public class UserInput {
     }
 
     private void requestMember() {
-        final int member = request(
+        final int member = requestIntBound(
                 "참여할 사람은 몇 명인가요?",
                 Input.MIN_MEMBER,
                 Input.MAX_MEMBER,
@@ -49,7 +55,7 @@ public class UserInput {
     }
 
     private void requestLadderHeight() {
-        final int ladderHeight = request(
+        final int ladderHeight = requestIntBound(
                 "최대 사다리 높이는 몇 개인가요?",
                 Input.MIN_LADDER_HEIGHT,
                 Input.MAX_LADDER_HEIGHT,

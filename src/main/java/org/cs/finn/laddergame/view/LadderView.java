@@ -4,7 +4,7 @@ import org.cs.finn.laddergame.domain.Ladder;
 
 public class LadderView {
 
-    public void print(Ladder ladder) {
+    public void print(final Ladder ladder) {
         for (String bridge : ladder.getLadderRows()) {
             printOneHeight(bridge);
         }
