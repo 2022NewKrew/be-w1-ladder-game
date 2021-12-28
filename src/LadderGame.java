@@ -14,6 +14,6 @@ public class LadderGame {
         Ladder ladder = new Ladder(numOfPlayers, heightOfLadder);
         ladder.generateSimpleRandom();
 
-        System.out.println("\n" + ladder);
+        System.out.println(System.lineSeparator() + ladder.toPrettyString());
     }
 }

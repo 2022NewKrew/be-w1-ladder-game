@@ -21,7 +21,14 @@ public class Ladder {
         }
     }
 
+    public String toPrettyString() {
+        return String.join(System.lineSeparator(), this.stateAsListOfString);
+    }
+
+    @Override
     public String toString() {
-        return String.join("\n", this.stateAsListOfString);
+        return getClass().getName() + "("
+                + "width=" + this.width + ", "
+                + "height=" + this.height + ")";
     }
 }
