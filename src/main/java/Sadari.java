@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Sadari {
 
+    private final Random random = new Random();
     private final List<List<LineStatus>> sadariGameMap = new ArrayList<>();
     private final int numberOfColumn;
     private final int numberOfRow;
@@ -15,18 +16,15 @@ public class Sadari {
     }
 
     private void initialSadariGameMap(int numberOfLadder) {
-        for(int i=0 ; i<numberOfLadder ; i++)
+        for (int i = 0; i < numberOfLadder; i++) {
             sadariGameMap.add(new ArrayList<>());
-    }
-
-    public void printSadariGame() {
-        for (List<LineStatus> lines : sadariGameMap)
-            lines.forEach(LineStatus::printStatus);
+        }
     }
 
     public void makeSadariGame() {
-        for (int i = 0; i < numberOfRow; i++)
+        for (int i = 0; i < numberOfRow; i++) {
             makeRow(i);
+        }
     }
 
     private void makeRow(int rowNumber) {
@@ -55,7 +53,13 @@ public class Sadari {
         sadariGameMap.get(rowNumber).add(LineStatus.EMPTY);
     }
 
-    private static boolean canMakeSadariLine() {
-        return new Random().nextBoolean();
+    private boolean canMakeSadariLine() {
+        return random.nextBoolean();
+    }
+
+    public void printSadariGame() {
+        for (List<LineStatus> lines : sadariGameMap) {
+            lines.forEach(LineStatus::printStatus);
+        }
     }
 }
