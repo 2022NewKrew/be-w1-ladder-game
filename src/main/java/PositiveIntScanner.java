@@ -20,15 +20,20 @@ public class PositiveIntScanner {
         }
     }
 
-    public int nextPositiveInt() throws PositiveIntException {
+    private int nextPositiveInt() {
+        int value;
         try {
-            int value = scanner.nextInt();
-            if (value < 1) {
-                throw new PositiveIntException("오류: 입력값은 0보다 커야합니다.");
-            }
-            return value;
+            value = scanner.nextInt();
         } catch (InputMismatchException e) {
             throw new PositiveIntException("오류: 입력값은 정수여야 합니다.");
+        }
+        checkValid(value);
+        return value;
+    }
+
+    private void checkValid(int value) {
+        if (value < 1) {
+            throw new PositiveIntException("오류: 입력값은 0보다 커야합니다.");
         }
     }
 }

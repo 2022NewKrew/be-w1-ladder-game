@@ -24,9 +24,9 @@ public class Ladder {
         ArrayList<Boolean> rungCol = new ArrayList<>();
         boolean leftRungExist = false;
         for (int i = 0; i < numParticipants - 1; ++i) {
-            boolean isRungExist = !leftRungExist && isLadderExist();
-            rungCol.add(isRungExist);
-            leftRungExist = isRungExist;
+            boolean rungExist = !leftRungExist && isLadderExist();
+            rungCol.add(rungExist);
+            leftRungExist = rungExist;
         }
         return rungCol;
     }
@@ -38,15 +38,22 @@ public class Ladder {
 
     public void draw() {
         for (ArrayList<Boolean> rungCol : rungArray) {
-            for (Boolean isRungExist : rungCol) {
-                System.out.print("|");
-                if (isRungExist) {
-                    System.out.print("-");
-                } else {
-                    System.out.print(" ");
-                }
-            }
-            System.out.println("|");
+            drawCol(rungCol);
         }
+    }
+
+    private void drawCol(ArrayList<Boolean> rungCol) {
+        for (Boolean rungExist : rungCol) {
+            System.out.print("|");
+            System.out.print(getRungString(rungExist));
+        }
+        System.out.println("|");
+    }
+
+    private String getRungString(boolean isRungExist) {
+        if (isRungExist) {
+            return "-";
+        }
+        return " ";
     }
 }
