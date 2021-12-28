@@ -1,21 +1,32 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Ladder {
     private int numberOfGamers;
     private int heightOfLadder;
 
+    private final String BAR = "-";
+    private final String BLANK = " ";
+
     ArrayList<ArrayList<Boolean>> ladder = new ArrayList<ArrayList<Boolean>>();
 
-    Ladder(int n, int h) {
-        numberOfGamers = n;
-        heightOfLadder = h;
+    Ladder() {
+        makeLadder();
         for(int i = 0 ; i < heightOfLadder ; i++) {
             ladder.add(makeRow());
         }
     }
 
-    public ArrayList<Boolean> makeRow() {
+    private void makeLadder() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("참여할 사람은 몇 명인가요?");
+        numberOfGamers = scanner.nextInt();
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        heightOfLadder = scanner.nextInt();
+    }
+
+    private ArrayList<Boolean> makeRow() {
         Random random = new Random();
         ArrayList<Boolean> row = new ArrayList<Boolean>();
         for(int i = 0 ; i < numberOfGamers - 1 ; i++) {
@@ -41,8 +52,8 @@ public class Ladder {
 
     private String isLadder(Boolean ladderBoolean) {
         if (ladderBoolean) {
-            return "-";
+            return BAR;
         }
-        return " ";
+        return BLANK;
     }
 }
