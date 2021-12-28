@@ -32,9 +32,6 @@ public class Ladder {
     public List<String> getParticipants() {
         return participants;
     }
-
-    //LadderFloor은 Ladder, LadderBuilder 에서 사용하기 때문에 외부에서
-    //LadderFloor에 대한 의존성이 생길 가능성을 배제하기 위해 getter를 두지 않았습니다.
 }
 
 

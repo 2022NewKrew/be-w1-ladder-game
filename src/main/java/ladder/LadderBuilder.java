@@ -2,7 +2,7 @@ package ladder;
 
 import ladder.dto.Ladder;
 import ladder.dto.LadderFloor;
-import vo.LadderInfo;
+import ladder.vo.LadderInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,6 @@ public class LadderBuilder {
         return new Ladder(participants, height, buildLadder());
     }
 
-    // 스트림 써보기
     private List<LadderFloor> buildLadder(){
         List<LadderFloor> ladder = new ArrayList<>(ladderInfo.getHeight());
         for (int i = 0; i < ladderInfo.getHeight(); i++) {

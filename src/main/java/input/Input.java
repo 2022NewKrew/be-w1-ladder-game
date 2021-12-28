@@ -14,7 +14,6 @@ public class Input {
      *  2. 받고나서 5글자 넘으면 자르기 ✔
      *  3. 5글자 넘으면 Exception
      **/
-
     public static List<String> inputParticipantsName() {
         String beforeParsing = scanner.nextLine();
         return Arrays.asList(beforeParsing.split(","))
