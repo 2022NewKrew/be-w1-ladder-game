@@ -74,7 +74,7 @@ public class Ladder {
             StringBuilder builder = new StringBuilder();
             builder.append(PILLAR);
             for(int i=0; i<n-1; i++){
-                builder.append(row.get(i) == true? BRIDGE : BLANK);
+                builder.append(row.get(i) ? BRIDGE : BLANK);
                 builder.append(PILLAR);
             }
             return builder.toString();
