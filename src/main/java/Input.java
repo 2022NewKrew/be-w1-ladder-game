@@ -2,6 +2,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Input {
+    private static final String PLAYER_NUMBERS = "참여할 사람은 몇 명인가요?";
+    private static final String MAXIMUM_HEIGHT_LADDER = "최대 사다리 높이는 몇 개인가요";
     private static final Scanner in = new Scanner(System.in);
 
     /**
@@ -21,7 +23,7 @@ public class Input {
      * @throws InputMismatchException 양의 정수가 아닌 다른 정수가 들어오면 예외를 던진다
      */
     static int inputNumberOfPlayer() throws InputMismatchException {
-        System.out.println("참여할 사람은 몇 명인가요?");
+        System.out.println(PLAYER_NUMBERS);
 
         int numberOfPlayer = in.nextInt();
         validateInput(numberOfPlayer);
@@ -34,7 +36,7 @@ public class Input {
      * @throws InputMismatchException 양의 정수가 아닌 다른 정수가 들어오면 예외를 던진다
      */
     static int inputHeight() throws InputMismatchException {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println(MAXIMUM_HEIGHT_LADDER);
 
         int height = in.nextInt();
         validateInput(height);
