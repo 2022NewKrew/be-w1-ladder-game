@@ -10,25 +10,26 @@ public class Ladder {
     public Ladder(int ladderWidth, int ladderHeight) {
         this.ladderWidth = ladderWidth;
         this.ladderHeight = ladderHeight;
-        this.hasRightLadder = makeRightLadder();
+        this.hasRightLadder = makeHasRightLadder();
     }
 
-    public ArrayList<ArrayList<Boolean>> makeRightLadder() {
+    public ArrayList<ArrayList<Boolean>> makeHasRightLadder() {
         ArrayList<ArrayList<Boolean>> hasRightLadder = new ArrayList<>();
 
         for (int ladderRow = 0; ladderRow < ladderHeight; ladderRow++) {
-            hasRightLadder.add(makeLadderRow());
+            hasRightLadder.add(makeHasRightLadderRow());
         }
         return hasRightLadder;
     }
 
-    public ArrayList<Boolean> makeLadderRow(){
+    public ArrayList<Boolean> makeHasRightLadderRow(){
         Random randomInstance = new Random();
-        ArrayList<Boolean> chkLine = new ArrayList<>();
+
+        ArrayList<Boolean> ladderRow = new ArrayList<>();
         for (int ladderCol = 0; ladderCol < ladderWidth-1; ladderCol++){
-            chkLine.add(randomInstance.nextBoolean());
+            ladderRow.add(randomInstance.nextBoolean());
         }
-        return chkLine;
+        return ladderRow;
     }
 
     public void printLadder() {
@@ -36,15 +37,16 @@ public class Ladder {
     }
 
     public void printLadderRow(ArrayList<Boolean> ladderRow){
-        ladderRow.forEach(chkLadder->{
+        ladderRow.forEach(ladderCol->{
             System.out.print("|");
-            System.out.print(isLadderLocated(chkLadder));
+            System.out.print(printLocatedLadder(ladderCol));
         });
         System.out.println("|");
     }
 
-    public char isLadderLocated(Boolean chkLadder){
+    public char printLocatedLadder(Boolean chkLadder){
         if(chkLadder) return '-';
+
         return ' ';
     }
 }
