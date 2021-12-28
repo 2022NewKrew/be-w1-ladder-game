@@ -1,49 +1,35 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.Scanner;
 
 public class Ladder {
 
-    public static final String LINE_VERTICAL = "|";
-    public static final String LINE_HORIZONTAL_TRUE = "-";
-    public static final String LINE_HORIZONTAL_FALSE = " ";
-    private final int PLAYER_NUMBER;
-    private final int LADDER_HEIGHT;
-    private final List<Object> LADDER_RESULT = new ArrayList<>();
+    private int PLAYER_NUMBER;
+    private int LADDER_HEIGHT;
+    private final List<Line> LINE_LIST = new ArrayList<>();
 
-    public Ladder(int number, int height) {
-        this.PLAYER_NUMBER = number;
-        this.LADDER_HEIGHT = height;
-        setLadder();
+    public Ladder() {
+        getLadderInfo();
+        setLineList();
     }
 
-    private String isLineHorizontal(boolean isLine) {
-        if (isLine) {
-            return LINE_HORIZONTAL_TRUE;
-        }
-        return LINE_HORIZONTAL_FALSE;
+    private void getLadderInfo() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("참여할 사람은 몇 명인가요?");
+        PLAYER_NUMBER = sc.nextInt();
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        LADDER_HEIGHT = sc.nextInt();
     }
 
-    private void addLine(StringBuilder sb, String line) {
-        sb.append(line);
-    }
-
-    private void setLadder() {
-        Random random = new Random();
+    private void setLineList() {
         for (int i = 0; i < LADDER_HEIGHT; i++) {
-            StringBuilder sb = new StringBuilder();
-            addLine(sb, LINE_VERTICAL);
-            for (int j = 0; j < PLAYER_NUMBER - 1; j++) {
-                addLine(sb, isLineHorizontal(random.nextBoolean()));
-                addLine(sb, LINE_VERTICAL);
-            }
-            LADDER_RESULT.add(sb.toString());
+            LINE_LIST.add(new Line(PLAYER_NUMBER));
         }
     }
 
     public void printLadder() {
         for (int i = 0; i < LADDER_HEIGHT; i++) {
-            System.out.println(LADDER_RESULT.get(i));
+            LINE_LIST.get(i).printLine();
         }
     }
 }
