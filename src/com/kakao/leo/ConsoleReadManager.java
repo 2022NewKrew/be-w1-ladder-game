@@ -20,6 +20,7 @@ public class ConsoleReadManager implements ReadManager {
     return new ConsoleReadManager();
   }
 
+
   @Override
   public LadderConfig getOptions() {
     int numberOfPeople = getNumberOfPeopleFromScanner();
@@ -27,10 +28,12 @@ public class ConsoleReadManager implements ReadManager {
     return LadderConfig.of(numberOfPeople, height);
   }
 
+
   private int getNumberOfPeopleFromScanner() {
     System.out.println("참여할 사람은 몇 명인가요?");
     return scanner.nextInt();
   }
+
 
   private int getHeightFromScanner() {
     System.out.println("최대 사다리 높이는 몇 개인가요?");
