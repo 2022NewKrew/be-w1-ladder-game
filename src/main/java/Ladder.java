@@ -1,59 +1,52 @@
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Ladder {
-    private int numberOfGamers;
+    private int countOfPerson;
     private int heightOfLadder;
-    private final int nameLength = 5;
-    private final String BAR = "-".repeat(nameLength);
-    private final String BLANK = " ".repeat(nameLength);
 
-    ArrayList<ArrayList<Boolean>> ladder = new ArrayList<ArrayList<Boolean>>();
+    private List<String> people = new ArrayList<String>();
+    private ArrayList<Line> ladder = new ArrayList<Line>();
 
     Ladder() {
-        makeLadder();
+        inputLadder();
         for(int i = 0 ; i < heightOfLadder ; i++) {
-            ladder.add(makeRow());
+            Line line = new Line(countOfPerson);
+            ladder.add(line);
         }
     }
 
-    private void makeLadder() {
+    private void inputLadder() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("참여할 사람은 몇 명인가요?");
-        numberOfGamers = scanner.nextInt();
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        people = Arrays.asList(scanner.nextLine().split(","));
+        countOfPerson = people.size();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         heightOfLadder = scanner.nextInt();
     }
 
-    private ArrayList<Boolean> makeRow() {
-        Random random = new Random();
-        ArrayList<Boolean> row = new ArrayList<Boolean>();
-        for(int i = 0 ; i < numberOfGamers - 1 ; i++) {
-            row.add(random.nextBoolean());
-        }
-        return row;
-    }
-
     public void printLadder() {
+        System.out.println(printNames());
         for(int i = 0 ; i < heightOfLadder ; i++) {
-            printLadderRow(i);
-            System.out.println();
+            System.out.println(ladder.get(i).printLine(countOfPerson));
         }
     }
 
-    private void printLadderRow(int rowNum) {
-        ArrayList<Boolean> row = ladder.get(rowNum);
-        System.out.print("|");
-        for(int i = 0 ; i < numberOfGamers - 1 ; i++) {
-            System.out.print(isLadder(row.get(i))+"|");
+    public String printNames() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0 ; i < countOfPerson ; i++) {
+            stringBuilder.append(printName(people.get(i)));
         }
+        return stringBuilder.toString();
     }
 
-    private String isLadder(Boolean ladderBoolean) {
-        if (ladderBoolean) {
-            return BAR;
+    public String printName(String name) {
+        int nameLength = name.length();
+        if (nameLength >= 5) {
+            return name.substring(0,5) + " ";
         }
-        return BLANK;
+        return " ".repeat((6-nameLength)/2) + name + " ".repeat((7-nameLength)/2);
     }
 }
