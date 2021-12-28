@@ -2,8 +2,6 @@ package ladder;
 
 public class Ladder {
 
-    // TODO - 1. 들여쓰기를 1단계로 줄일 것
-
     private final int participants;
     private final int height;
     private final boolean[][] bridges;
@@ -16,44 +14,43 @@ public class Ladder {
     }
 
     private void connectBridges() {
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < participants - 1; x++) {
-                connectBridge(x, y);
+        for (int currentHeight = 0; currentHeight < height; currentHeight++) {
+            for (int currentWidth = 0; currentWidth < participants - 1; currentWidth++) {
+                connectBridge(currentWidth, currentHeight);
             }
         }
     }
 
-    private void connectBridge(int x, int y) {
-        if (isValidConnection(x, y)) {
-            bridges[y][x] = true;
+    private void connectBridge(int bridgeWidth, int bridgeHeight) {
+        if (isValidConnection(bridgeWidth, bridgeHeight)) {
+            bridges[bridgeHeight][bridgeWidth] = true;
         }
     }
 
-    private boolean isValidConnection(int x, int y) {
-        if (x == 0) {
+    private boolean isValidConnection(int bridgeWidth, int bridgeHeight) {
+        if (bridgeWidth == 0) {
             return getRandomBoolean();
         }
-        return !isAlreadyConnected(x, y) && getRandomBoolean();
+        return !isAlreadyConnected(bridgeWidth, bridgeHeight) && getRandomBoolean();
     }
 
-    private boolean isAlreadyConnected(int x, int y) {
-        return bridges[y][x - 1];
+    private boolean isAlreadyConnected(int bridgeWidth, int bridgeHeight) {
+        return bridges[bridgeHeight][bridgeWidth - 1];
     }
 
     private boolean getRandomBoolean() {
         return Math.random() > 0.5;
     }
 
-    public void print() {
-        StringBuilder sb = new StringBuilder();
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < participants - 1; x++) {
-                sb.append("|");
-                sb.append((bridges[y][x]) ? "-" : " ");
-            }
-            sb.append("|\n");
-        }
-        System.out.print(sb);
+    public int getParticipants() {
+        return participants;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
+    public boolean isConnected(int bridgeWidth, int bridgeHeight) {
+        return bridges[bridgeHeight][bridgeWidth];
+    }
 }

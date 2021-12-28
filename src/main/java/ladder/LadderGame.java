@@ -2,7 +2,7 @@ package ladder;
 
 import java.util.Scanner;
 
-public class Main {
+public class LadderGame {
 
     public static void main(String[] args) {
 
@@ -14,7 +14,7 @@ public class Main {
         int height = sc.nextInt();
 
         Ladder ladder = new Ladder(participants, height);
-        ladder.print();
+        LadderRenderer.render(ladder);
     }
 
 }
