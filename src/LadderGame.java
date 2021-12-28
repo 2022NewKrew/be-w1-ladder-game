@@ -15,22 +15,20 @@ public class LadderGame {
         height = sc.nextInt();
     }
 
+    // 아스키코드를 이용해서 사다리 element를 stringbuilder에 추가한다
+    // '|' : 124, ' ' : 32, '-' : 45
+    public StringBuilder singleRow() {
+        StringBuilder row = new StringBuilder();
+        for (int c=0; c<2*people-1; c++) {
+            int ascii = 124 - (c%2) * ((int)(Math.random()*2)*13 + 79);
+            row.append((char)ascii);
+        }
+        return row;
+    }
+
     public void makeLadder() {
         for (int r=0; r<height; r++) {
-            StringBuilder row = new StringBuilder();
-            Random random = new Random();
-            for (int c=0; c<2*people-1; c++) {
-                if (c%2 == 0) {
-                    row.append('|');
-                }
-                else if (random.nextBoolean()) {
-                    row.append('-');
-                }
-                else {
-                    row.append(' ');
-                }
-            }
-            ladder.add(row);
+            ladder.add(singleRow());
         }
     }
 
