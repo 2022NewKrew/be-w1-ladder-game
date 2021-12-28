@@ -14,6 +14,6 @@ public class Main {
         System.out.printf("참여인원: %d, 최대 사다리 높이: %d\n",n_people, max_height);
 
         Ladder test1 = new Ladder(n_people, max_height);
-        test1.print_ladder();
+        test1.printLadder();
     }
 }
