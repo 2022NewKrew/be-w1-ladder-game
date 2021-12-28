@@ -3,13 +3,10 @@ import java.util.ArrayList;
 
 public class Ladder {
     private final int numberOfLegs;
-    private final int height;
-
     private final List<Line> ladder;
 
     Ladder(int numberOfPeople, int height) {
         this.numberOfLegs = numberOfPeople;
-        this.height = height;
 
         ladder = new ArrayList<>();
         for(int i = 0; i < height; i++)

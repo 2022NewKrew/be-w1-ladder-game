@@ -3,35 +3,40 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    private final List<Character> line;
+    private static final Character STRIPE = '|';
+    private static final Character BRIDGE = '-';
+    private static final Character SPACE = ' ';
+
+    private final List<Boolean> line;
 
     Line(int numberOfLegs) {
         line = new ArrayList<>();
-        drawLines(numberOfLegs * 2 - 1);
+        drawLines(numberOfLegs);
     }
 
     private void drawLines(int width) {
-        for(int i = 0; i < width; i++) {
-            line.add(getLine(i));
-        }
-    }
-
-    private Character getLine(int currentIndex) {
-        if(currentIndex % 2 == 0) {
-            return '|';
-        }
-        return randomBridge();
-    }
-
-    private Character randomBridge() {
         Random random = new Random();
-        return random.nextBoolean() ? '-' : ' ';
+        for(int i = 0; i < width - 1; i++) {
+            line.add(getLine(random));
+        }
+    }
+
+    private Boolean getLine(Random random) {
+        return randomBridge(random);
+    }
+
+    private Boolean randomBridge(Random random) {
+        return random.nextBoolean();
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        line.forEach(sb::append);
+        sb.append(STRIPE);
+        line.forEach(e -> {
+            sb.append(e ? BRIDGE : SPACE);
+            sb.append(STRIPE);
+        });
 
         return sb.toString();
     }
