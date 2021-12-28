@@ -10,8 +10,22 @@ public class Line {
 
     public Line(int countOfPerson){
         for(int i=0; i<countOfPerson-1; i++){
-            points.add(Util.generateTrueOrFalseByRandom());
+            addPoint(Util.generateTrueOrFalseByRandom());
         }
+    }
+
+    public void addPoint(Boolean newPoint){
+        points.add(checkDoubleStair(newPoint));
+    }
+
+    private Boolean checkDoubleStair(Boolean newPoint){
+        if(points.size() == 0){
+            return newPoint;
+        }
+        if (points.get(points.size()-1) == true && newPoint == true){
+            return false;
+        };
+        return newPoint;
     }
 
     public String printLine(){
