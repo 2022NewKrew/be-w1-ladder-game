@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ladder {
+    private final static String VERTICAL_LINE = "|";
+    private final static String HORIZONTAL_LINE = "-";
+    private final static String BLANK = " ";
+
     private final int ladderWidth, ladderHeight;
     private final Random randomInstance;
 
@@ -38,15 +42,15 @@ public class Ladder {
     }
 
     private void printLadderRow(ArrayList<Boolean> ladderRow){
-        ladderRow.forEach(ladderCol->{
-            System.out.print("|");
+        ladderRow.forEach(ladderCol -> {
+            System.out.print(VERTICAL_LINE);
             System.out.print(printLocatedLadder(ladderCol));
         });
-        System.out.println("|");
+        System.out.println(VERTICAL_LINE);
     }
 
     private String printLocatedLadder(Boolean chkLadder){
-        if(chkLadder) return "-";
-        return " ";
+        if(chkLadder) return HORIZONTAL_LINE;
+        return BLANK;
     }
 }
