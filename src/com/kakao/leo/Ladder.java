@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class Ladder {
 
-  private final List<List<Character>> floors;
+  private final List<List<LadderCell>> floors;
   private final Random random;
 
   private Ladder() throws Exception {
@@ -63,8 +63,8 @@ public class Ladder {
   }
 
 
-  private List<Character> createFloor(int numberOfPeople) {
-    List<Character> floor = new ArrayList<>();
+  private List<LadderCell> createFloor(int numberOfPeople) {
+    List<LadderCell> floor = new ArrayList<>();
     for(int i = 0; i < numberOfPeople; i++) {
       addCell(floor, i, numberOfPeople - 1);
     }
@@ -72,16 +72,16 @@ public class Ladder {
   }
 
 
-  private void addCell(List<Character> floor, int current, int lastIndex) {
-    floor.add('|');
+  private void addCell(List<LadderCell> floor, int current, int lastIndex) {
+    floor.add(LadderCell.LINE);
     if(current < lastIndex) {
       floor.add(getSeparator());
     }
   }
 
 
-  private Character getSeparator() {
-    return random.nextBoolean() ? ' ' : '-';
+  private LadderCell getSeparator() {
+    return random.nextBoolean() ? LadderCell.SEPARATOR : LadderCell.EMPTY_SEPARATOR;
   }
 
 }
