@@ -10,24 +10,28 @@ public class Ladder {
         this.height = height;
         this.ladder = new char[height][getWidth()];
 
-        construct();
+        fillLadder();
     }
 
     private int getWidth() {
         return numOfPeople * 2 - 1;
     }
 
-    private void construct() {
+    private void fillLadder() {
         Random random = new Random();
 
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < getWidth(); ++j) {
-                if (j % 2 == 0) {
-                    ladder[i][j] = '|';
-                } else {
-                    ladder[i][j] = (random.nextBoolean() ? '-' : ' ');
-                }
+                fillLadderCell(random, i, j);
             }
+        }
+    }
+
+    private void fillLadderCell(Random random, int i, int j) {
+        if (j % 2 == 0) {
+            ladder[i][j] = '|';
+        } else {
+            ladder[i][j] = (random.nextBoolean() ? '-' : ' ');
         }
     }
 
