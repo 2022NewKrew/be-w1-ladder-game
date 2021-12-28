@@ -1,21 +1,15 @@
 public class LadderGame {
 
-    private final int numberOfParticipants;
-    private final int height;
     private final Ladder ladder;
+    private final DisplayLadder renderer;
 
     LadderGame(int numberOfParticipants, int height) {
-        this.numberOfParticipants = numberOfParticipants;
-        this.height = height;
-
         ladder = new Ladder(numberOfParticipants, height);
+        renderer = new StandardOutDisplayLadder();
+        renderer.setLadder(ladder);
     }
 
     public void displayLadder() {
-        System.out.println(ladder);
-    }
-
-    public void play() {
-
+        renderer.display();
     }
 }
