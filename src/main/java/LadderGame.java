@@ -16,14 +16,18 @@ public class LadderGame {
 
     static int inputNumber() {
         try {
-            Integer value = Integer.valueOf(in.nextLine());
-            if (value <= 0) {
-                throw new NumberFormatException();
-            }
-            return value;
+            return getPositiveInteger();
         } catch (NumberFormatException e) {
             System.out.println("양의 정수를 입력해주세요.");
             return inputNumber();
         }
+    }
+
+    private static Integer getPositiveInteger() {
+        Integer value = Integer.valueOf(in.nextLine());
+        if (value <= 0) {
+            throw new NumberFormatException();
+        }
+        return value;
     }
 }
