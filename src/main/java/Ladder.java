@@ -8,6 +8,10 @@ public class Ladder {
     private final int HEIGHT;
     private final List<Object> LADDER_RESULT = new ArrayList<>();
 
+    private final String LINE_TRUE = "-";
+    private final String LINE_FALSE = " ";
+    private final String LINE_VERTICAL = "|";
+
     public Ladder(int number, int height) {
         this.NUMBER = number;
         this.HEIGHT = height;
@@ -18,14 +22,14 @@ public class Ladder {
         Random random = new Random();
         for (int i = 0; i < HEIGHT; i++) {
             StringBuilder sb = new StringBuilder();
-            sb.append("|");
+            sb.append(LINE_VERTICAL);
             for (int j = 0; j < NUMBER - 1; j++) {
                 if (random.nextInt(2) == 1) {
-                    sb.append("-");
+                    sb.append(LINE_TRUE);
                 } else {
-                    sb.append(" ");
+                    sb.append(LINE_FALSE);
                 }
-                sb.append("|");
+                sb.append(LINE_VERTICAL);
             }
             LADDER_RESULT.add(sb.toString());
         }
