@@ -1,3 +1,5 @@
+package com.chanminkim.w1;
+
 import java.security.SecureRandom;
 import java.util.Scanner;
 
