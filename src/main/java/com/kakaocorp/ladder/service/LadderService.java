@@ -13,15 +13,16 @@ public class LadderService {
 
     public static Ladder initialize(int height, int participants) {
         Ladder ladder = new Ladder(height, participants);
-        MultipleNodesWalker walker = new PossibleNeighborsWalker(LadderService::connectNeighbors);
+        MultipleNodesWalker.Callback cb = LadderService::connectNeighbors;
+        MultipleNodesWalker walker = new PossibleNeighborsWalker(cb);
         walker.walk(ladder);
         return ladder;
     }
 
     public static String buildString(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
-        LadderPrinter printer = new LadderPrinter(sb);
-        MultipleNodesWalker walker = new RowFirstWalker(printer);
+        MultipleNodesWalker.Callback cb = new LadderPrinter(sb);
+        MultipleNodesWalker walker = new RowFirstWalker(cb);
         walker.walk(ladder);
         return sb.toString();
     }
