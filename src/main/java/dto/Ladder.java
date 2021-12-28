@@ -13,7 +13,7 @@ public class Ladder {
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder("\n");
-        for (StringBuilder ladderLine : ladder){
+        for (StringBuilder ladderLine : ladder) {
             res.append(ladderLine.toString()).append("\n");
         }
         return res.toString();

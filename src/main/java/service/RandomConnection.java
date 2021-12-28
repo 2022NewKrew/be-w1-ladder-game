@@ -1,6 +1,6 @@
 package service;
 
-import vo.LadderCharacter;
+import dto.LadderCharacter;
 
 import java.util.Random;
 

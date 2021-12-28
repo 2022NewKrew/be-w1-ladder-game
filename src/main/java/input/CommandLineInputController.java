@@ -4,12 +4,12 @@ import dto.LadderInputInfo;
 
 import java.util.Scanner;
 
-import static validator.Validator.*;
+import static validator.Validator.checkPositiveInteger;
 
 public class CommandLineInputController implements InputController {
 
     @Override
-    public LadderInputInfo createLadderInfo() {
+    public LadderInputInfo inputLadderInfo() {
         try (Scanner sc = new Scanner(System.in)) {
             int numberOfParticipants = typeParticipants(sc);
             int heights = typeHeights(sc);
@@ -17,7 +17,7 @@ public class CommandLineInputController implements InputController {
         }
     }
 
-    public int typeParticipants(Scanner sc) {
+    private int typeParticipants(Scanner sc) {
         try {
             System.out.println("참여할 사람은 몇 명인가요?");
             int numberOfParticipants = sc.nextInt();
@@ -29,7 +29,7 @@ public class CommandLineInputController implements InputController {
         }
     }
 
-    public int typeHeights(Scanner sc) {
+    private int typeHeights(Scanner sc) {
         try {
             System.out.println("최대 사다리 높이는 몇 개인가요?");
             int heights = sc.nextInt();
