@@ -3,9 +3,9 @@ package LadderGame;
 import java.util.Scanner;
 
 public class LadderGame {
-    public int peopleNum, ladderHeight;
+    private int peopleNum, ladderHeight;
 
-    public void inputData() {
+    private void inputData() {
         Scanner inputScanner = new Scanner(System.in);
         System.out.println("참여할 사람은 몇 명인가요?");
         peopleNum = inputScanner.nextInt();

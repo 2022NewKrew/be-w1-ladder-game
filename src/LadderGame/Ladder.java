@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ladder {
-    public int ladderWidth, ladderHeight;
-    public Random randomInstance;
+    private final int ladderWidth, ladderHeight;
+    private final Random randomInstance;
 
-    public ArrayList<ArrayList<Boolean>> hasRightLadder;
+    private final ArrayList<ArrayList<Boolean>> hasRightLadder;
 
     public Ladder(int ladderWidth, int ladderHeight) {
         this.ladderWidth = ladderWidth;
@@ -16,7 +16,7 @@ public class Ladder {
         this.hasRightLadder = makeHasRightLadder();
     }
 
-    public ArrayList<ArrayList<Boolean>> makeHasRightLadder() {
+    private ArrayList<ArrayList<Boolean>> makeHasRightLadder() {
         ArrayList<ArrayList<Boolean>> hasRightLadder = new ArrayList<>();
 
         for (int ladderRow = 0; ladderRow < ladderHeight; ladderRow++) {
@@ -25,7 +25,7 @@ public class Ladder {
         return hasRightLadder;
     }
 
-    public ArrayList<Boolean> makeHasRightLadderRow(){
+    private ArrayList<Boolean> makeHasRightLadderRow(){
         ArrayList<Boolean> ladderRow = new ArrayList<>();
         for (int ladderCol = 0; ladderCol < ladderWidth-1; ladderCol++){
             ladderRow.add(randomInstance.nextBoolean());
@@ -37,7 +37,7 @@ public class Ladder {
         hasRightLadder.forEach((this::printLadderRow));
     }
 
-    public void printLadderRow(ArrayList<Boolean> ladderRow){
+    private void printLadderRow(ArrayList<Boolean> ladderRow){
         ladderRow.forEach(ladderCol->{
             System.out.print("|");
             System.out.print(printLocatedLadder(ladderCol));
@@ -45,8 +45,8 @@ public class Ladder {
         System.out.println("|");
     }
 
-    public char printLocatedLadder(Boolean chkLadder){
-        if(chkLadder) return '-';
-        return ' ';
+    private String printLocatedLadder(Boolean chkLadder){
+        if(chkLadder) return "-";
+        return " ";
     }
 }
