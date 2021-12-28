@@ -3,10 +3,9 @@ import java.util.List;
 import java.util.Random;
 
 public class Ladder {
-    private List<ArrayList<Boolean>> ladder;
     private final int numParticipant;
     private final int height;
-    Random random = new Random();
+    private List<ArrayList<Boolean>> ladder;
 
     public Ladder(int numParticipant, int height) {
         this.numParticipant = numParticipant;
@@ -30,21 +29,18 @@ public class Ladder {
     }
 
     private Boolean createCell(ArrayList<Boolean> row, int colIndex){
+        Random random = new Random();
         if(colIndex == 0 || Boolean.FALSE.equals(row.get(colIndex - 1))){
             return random.nextBoolean();
         }
-        else{
-            return Boolean.FALSE;
-        }
+        return Boolean.FALSE;
     }
 
     public void draw(){
-        for(ArrayList<Boolean> row : ladder){
+        ladder.stream().forEach(row -> {
             System.out.print("|");
-            for(Boolean item : row){
-                System.out.print(item ? "─|" : " |");
-            }
+            row.stream().forEach(item -> System.out.print(item ? "─|" : " |"));
             System.out.println();
-        }
+        });
     }
 }
