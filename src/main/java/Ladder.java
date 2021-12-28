@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
 
     int number;
     int height;
-    ArrayList<String> ladderResult = new ArrayList<>();
+    List<Object> ladderResult = new ArrayList<>();
 
     public Ladder(int number, int height) {
         this.number = number;
