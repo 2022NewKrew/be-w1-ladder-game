@@ -13,16 +13,17 @@ public class LadderService {
 
     public static Ladder initialize(int height, int participants) {
         Ladder ladder = new Ladder(height, participants);
-        MultipleNodesWalker walker = new PossibleNeighborsWalker();
-        walker.walk(ladder, LadderService::connectNeighbors);
+        MultipleNodesWalker walker = new PossibleNeighborsWalker(LadderService::connectNeighbors);
+        walker.walk(ladder);
         return ladder;
     }
 
     public static String buildString(Ladder ladder) {
-        MultipleNodesWalker walker = new RowFirstWalker();
-        LadderPrinter printer = new LadderPrinter();
-        walker.walk(ladder, printer);
-        return printer.buildString();
+        StringBuilder sb = new StringBuilder();
+        LadderPrinter printer = new LadderPrinter(sb);
+        MultipleNodesWalker walker = new RowFirstWalker(printer);
+        walker.walk(ladder);
+        return sb.toString();
     }
 
     private static void connectNeighbors(Node node1, Node node2) {
@@ -38,7 +39,11 @@ public class LadderService {
 
     private static class LadderPrinter implements MultipleNodesWalker.Callback {
 
-        private final StringBuilder sb = new StringBuilder();
+        private final StringBuilder sb;
+
+        public LadderPrinter(StringBuilder sb) {
+            this.sb = sb;
+        }
 
         @Override
         public void process(Node node1, Node node2) {
@@ -52,10 +57,6 @@ public class LadderService {
                 return;
             }
             sb.append(' ');
-        }
-
-        public String buildString() {
-            return sb.toString();
         }
     }
 }

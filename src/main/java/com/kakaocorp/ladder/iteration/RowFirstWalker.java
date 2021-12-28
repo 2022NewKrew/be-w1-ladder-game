@@ -6,17 +6,21 @@ import com.kakaocorp.ladder.model.Stick;
 
 import java.util.List;
 
-public class RowFirstWalker implements MultipleNodesWalker {
+public class RowFirstWalker extends MultipleNodesWalker {
+
+    public RowFirstWalker(Callback callback) {
+        super(callback);
+    }
 
     @Override
-    public void walk(Ladder ladder, Callback callback) {
+    public void walk(Ladder ladder) {
         List<Stick> sticks = ladder.getSticks();
         for (int i = 0; i < ladder.getHeight(); i++) {
-            processRow(sticks, i, callback);
+            processRow(sticks, i);
         }
     }
 
-    private void processRow(List<Stick> sticks, int row, Callback callback) {
+    private void processRow(List<Stick> sticks, int row) {
         Node left = null;
         Node right;
         for (Stick stick : sticks) {

@@ -3,12 +3,18 @@ package com.kakaocorp.ladder.iteration;
 import com.kakaocorp.ladder.model.Ladder;
 import com.kakaocorp.ladder.model.Node;
 
-public interface MultipleNodesWalker {
+public abstract class MultipleNodesWalker {
 
-    interface Callback {
+    protected Callback callback;
+
+    public MultipleNodesWalker(Callback callback) {
+        this.callback = callback;
+    }
+
+    public interface Callback {
 
         void process(Node node1, Node node2);
     }
 
-    void walk(Ladder ladder, Callback callback);
+    public abstract void walk(Ladder ladder);
 }
