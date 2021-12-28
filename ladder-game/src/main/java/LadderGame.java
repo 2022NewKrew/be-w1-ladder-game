@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class LadderGame {
 
     private final Ladder ladder;
@@ -8,10 +6,7 @@ public class LadderGame {
         ladder = new Ladder(numberOfPeople, ladderHeight);
     }
 
-    public void printLadderShape() {
-        List<String> ladderShape = ladder.getShape();
-        for (String ladderLine : ladderShape) {
-            System.out.println(ladderLine);
-        }
+    public void printLadder(){
+        System.out.println(ladder);
     }
 }
