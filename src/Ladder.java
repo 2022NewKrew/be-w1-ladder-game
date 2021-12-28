@@ -2,16 +2,18 @@ import java.util.Arrays;
 import java.util.Random;
 
 public final class Ladder {
-    private final int n_people;
-    private final int max_height;
-    private char[][] arr; // 크기를 나중에 할당해서 그런지 final을 설정할 수가 없네요ㅠㅠ 다른 방법이 있을까요..?
+    private final int nPeople;
+    private final int maxHeight;
+    private char[][] arr;
+    private final int nCol;
     Random random = new Random();
 
 
     //constructor
     public Ladder(int n, int m) {
-        this.n_people = n;
-        this.max_height = m;
+        this.nPeople = n;
+        this.maxHeight = m;
+        this.nCol = 2 * n -1;
 
         buildColumns();
         buildSteps();
@@ -19,44 +21,64 @@ public final class Ladder {
 
     // build base columns '|'
     public void buildColumns() {
-        int n_col = 2 * this.n_people -1;
 
-        this.arr = new char[n_col][max_height];
-        for (int i=0; i<this.arr.length; i++) {
-            for (int j=0; j<this.arr[0].length; j+=2) {
-                this.arr[i][j]='|';
-            }
+        this.arr = new char[this.nCol][maxHeight];
+
+        for (int i=0; i<this.maxHeight; i++) {
+            buildColumnsPerRow(i);
+        }
+    }
+
+    // build base columns for each row
+    public void buildColumnsPerRow(int i) {
+        for (int j=0; j<this.nCol; j+=2) {
+            this.arr[i][j]='|';
         }
     }
 
 
     // build steps '-'
     public void buildSteps() {
-        for (int i=0; i<this.arr.length; i++) {
-            for (int j=1; j<this.arr[0].length; j+=2) {
-
-                float random_float = random.nextFloat();
-
-                if (random_float <0.5) { // make each step by 50% probability
-                    this.arr[i][j]='-';
-                }else{
-                    this.arr[i][j]=' ';
-                }
-            }
+        for (int i=0; i<this.maxHeight; i++) {
+            buildStepsPerRow(i);
         }
+    }
+
+    // build base steps for each row
+    public void buildStepsPerRow(int i) {
+        for (int j=1; j<this.maxHeight; j+=2) {
+            buildStepsPerCell(i,j);
+        }
+    }
+
+    // build base steps for each cell
+    public void buildStepsPerCell(int i, int j){
+        float random_float = random.nextFloat();
+
+        if (random_float <0.5) { // make each step by 50% probability
+            this.arr[i][j] = '-';
+            return;
+        }
+        this.arr[i][j]=' ';
     }
 
     // print ladder as string
     public void printLadder() {
 
-        for (char[] each_row : this.arr) {
-            StringBuilder sb = new StringBuilder();
-            for (char ch : each_row) {
-                sb.append(ch);
-            }
-            String row = sb.toString();
-            System.out.println(row);
+        for (char[] row : this.arr) {
+            String strRow = readRow(row);
+            System.out.println(strRow);
 
         }
+    }
+
+    // read row as string
+    public String readRow( char[] row) {
+        StringBuilder sb = new StringBuilder();
+        for (char ch : row) {
+            sb.append(ch);
+        }
+        String strRow = sb.toString();
+        return strRow;
     }
 }
