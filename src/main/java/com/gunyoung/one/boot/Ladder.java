@@ -1,6 +1,6 @@
 package com.gunyoung.one.boot;
 
-import com.gunyoung.one.exceptions.NonInilizationException;
+import com.gunyoung.one.exceptions.NonInitializationException;
 
 import java.util.Random;
 
@@ -14,7 +14,7 @@ public final class Ladder {
 
     public static Ladder getInstance() {
         if (INSTANCE == null)
-            throw new NonInilizationException("Ladder is not initialized");
+            throw new NonInitializationException("Ladder is not initialized");
         return INSTANCE;
     }
 
