@@ -1,8 +1,8 @@
 import java.util.Random;
 
-public class LadBuilder {
+public class LadderBuilder {
 
-    public LadBuilder() {
+    public LadderBuilder() {
     }
 
     public Ladder createLadder(int height, int people) {

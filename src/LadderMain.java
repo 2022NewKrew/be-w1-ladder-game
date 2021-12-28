@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class LadderMain {
     public static int numPeople;
     public static int height;
-    public static LadBuilder ladBuilder = new LadBuilder();
+    public static LadderBuilder ladderBuilder = new LadderBuilder();
 
     public static void main(String[] args) {
         getInput();
-        Ladder ladder = ladBuilder.createLadder(height, numPeople);
+        Ladder ladder = ladderBuilder.createLadder(height, numPeople);
         printLadder(ladder);
     }
 
