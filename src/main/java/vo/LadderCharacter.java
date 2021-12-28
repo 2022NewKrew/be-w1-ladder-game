@@ -1,4 +1,4 @@
-package dto;
+package vo;
 
 public class LadderCharacter {
     public static final String CONNECTED = "-";

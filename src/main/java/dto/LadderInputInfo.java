@@ -1,10 +1,10 @@
 package dto;
 
-public class LadderInfo {
+public class LadderInputInfo {
     private final int numberOfParticipants;
     private final int heights;
 
-    public LadderInfo(int numberOfParticipants, int heights) {
+    public LadderInputInfo(int numberOfParticipants, int heights) {
         this.numberOfParticipants = numberOfParticipants;
         this.heights = heights;
     }

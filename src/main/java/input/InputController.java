@@ -1,7 +1,7 @@
 package input;
 
-import dto.LadderInfo;
+import dto.LadderInputInfo;
 
 public interface InputController {
-    LadderInfo createLadderInfo();
+    LadderInputInfo createLadderInfo();
 }

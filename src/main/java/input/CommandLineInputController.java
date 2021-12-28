@@ -1,17 +1,19 @@
 package input;
 
-import dto.LadderInfo;
+import dto.LadderInputInfo;
 
 import java.util.Scanner;
+
+import static validator.Validator.*;
 
 public class CommandLineInputController implements InputController {
 
     @Override
-    public LadderInfo createLadderInfo() {
+    public LadderInputInfo createLadderInfo() {
         try (Scanner sc = new Scanner(System.in)) {
             int numberOfParticipants = typeParticipants(sc);
             int heights = typeHeights(sc);
-            return new LadderInfo(numberOfParticipants, heights);
+            return new LadderInputInfo(numberOfParticipants, heights);
         }
     }
 
@@ -19,11 +21,9 @@ public class CommandLineInputController implements InputController {
         try {
             System.out.println("참여할 사람은 몇 명인가요?");
             int numberOfParticipants = sc.nextInt();
-            if (numberOfParticipants < 0) {
-                throw new NumberFormatException();
-            }
+            checkPositiveInteger(numberOfParticipants);
             return numberOfParticipants;
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("양의 정수를 입력해주세요");
             return typeParticipants(sc);
         }
@@ -33,11 +33,9 @@ public class CommandLineInputController implements InputController {
         try {
             System.out.println("최대 사다리 높이는 몇 개인가요?");
             int heights = sc.nextInt();
-            if (heights < 0) {
-                throw new NumberFormatException();
-            }
+            checkPositiveInteger(heights);
             return heights;
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("양의 정수를 입력해주세요");
             return typeHeights(sc);
         }

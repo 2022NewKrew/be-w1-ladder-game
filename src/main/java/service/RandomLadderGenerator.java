@@ -1,12 +1,10 @@
 package service;
 
 import dto.Ladder;
-import dto.LadderCharacter;
+import vo.LadderCharacter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.*;
 
