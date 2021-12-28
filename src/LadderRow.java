@@ -32,15 +32,15 @@ public class LadderRow {
 
     LadderRow(int numOfPeople) {
         for (int i=0; i<numOfPeople; ++i) {
-            steps.add(decideNextStep());
+            steps.add(getNextStep());
         }
     }
 
     /**
-     * 다음 step에 발판이 들어와야 하는지 결정하는 함수
+     * 다음에 들어갈 {@link StepType}을 반환하는 함수
      * <p>|----|----| 처럼 가로가 겹치지 않게 한다
      */
-    private StepType decideNextStep() {
+    private StepType getNextStep() {
         if (steps.isEmpty() || steps.get(steps.size() - 1) == StepType.EMPTY) {
             return StepType.getRandomStep();
         }
