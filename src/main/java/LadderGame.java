@@ -14,7 +14,7 @@ public class LadderGame {
         System.out.println(ladder);
     }
 
-    static int inputNumber() {
+    private static int inputNumber() {
         try {
             return getPositiveInteger();
         } catch (NumberFormatException e) {
