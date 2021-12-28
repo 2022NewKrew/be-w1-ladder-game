@@ -1,6 +1,7 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -48,15 +49,18 @@ public class Engine {
 
     public void printLadder() {
         for (int i = 0; i < ladderHeight; i++) {
-            StringBuilder builder = new StringBuilder();
-            for (int j = 0; j < userNum; j++){
-                builder.append(Ladder.ladderLine.charAt(i));
-
-                if(j == userNum-1) continue;
-                builder.append(ladders.get(j).getBridgeLine().charAt(i));
-            }
-
-            System.out.println(builder);
+            System.out.println(printLadderLineAt(i));
         }
+    }
+
+    public String printLadderLineAt(int index) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < userNum; i++){
+            builder.append(Ladder.ladderLine.charAt(index));
+
+            if(i == userNum-1) continue;
+            builder.append(ladders.get(i).getBridgeLine().charAt(index));
+        }
+        return builder.toString();
     }
 }

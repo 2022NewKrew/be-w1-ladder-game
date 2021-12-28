@@ -12,9 +12,7 @@ public class Ladder {
 
     public static void initLadder(int ladderHeight) {
         if (ladderHeight > 0) {
-            System.out.println(ladderHeight);
             height = ladderHeight;
-
             Ladder.ladderLine = "|".repeat(ladderHeight);
         }
     }
