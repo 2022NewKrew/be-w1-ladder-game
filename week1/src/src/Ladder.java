@@ -6,10 +6,12 @@ public class Ladder {
     private ArrayList<Line> map;
     private int peopleNum;
     private int height;
+    private ArrayList<String> participants;
 
     Ladder(){
+        map = new ArrayList<Line>();
+        participants = new ArrayList<String>();
         getInput();
-        map = new ArrayList<>();
     }
 
     public void getInput(){
@@ -28,6 +30,8 @@ public class Ladder {
     }
 
     public void showMap(){
+        System.out.println("실행결과");
+        System.out.println();
         for(Line line : map) {
             System.out.println(line);
         }
