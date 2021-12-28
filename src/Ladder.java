@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Ladder {
     public static final char LADDER_LINE = '|';
@@ -28,12 +27,16 @@ public class Ladder {
     public void print() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < height; i++) {
-            sb.append("\n").append(LADDER_LINE);
-            for (int k = 0; k < lines.size() - 1; k++) {
-                char status = connector.isConnected(lines.get(k), lines.get(k + 1), i) ? LADDER_EXIST : LADDER_EMPTY;
-                sb.append(status).append(LADDER_LINE);
-            }
+            appendLadderRow(sb, i);
         }
         System.out.println(sb);
+    }
+
+    private void appendLadderRow(StringBuilder sb, int i) {
+        sb.append("\n").append(LADDER_LINE);
+        for (int k = 0; k < lines.size() - 1; k++) {
+            char status = connector.isConnected(lines.get(k), lines.get(k + 1), i) ? LADDER_EXIST : LADDER_EMPTY;
+            sb.append(status).append(LADDER_LINE);
+        }
     }
 }
