@@ -4,9 +4,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 class Ladder{
-    private int playerNum;
-    private int height;
-    private boolean[][] line;
+    private int playerNum;      // 참가자 수
+    private int height;         // 사다리의 높이
+    private boolean[][] line;   // 선이 그어진 위치
 
     Ladder(){}
     Ladder(int pn, int h){
