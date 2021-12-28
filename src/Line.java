@@ -3,6 +3,6 @@ import java.util.List;
 
 public class Line {
 
-    List<Long> value;
+    public List<Long> value;
 
 }
