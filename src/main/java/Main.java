@@ -19,7 +19,7 @@ public class Main {
             int maxHeightOfLadder = getUserInputInt("최대 사다리 높이는 몇 개인가요?");
             LadderHeight maxLadderHeight = new LadderHeight(maxHeightOfLadder);
 
-            // 2. 입력 받은 설정을 기반으로 사다리게임 초기화하기
+            // 2. 입력 받은 설정을 기반으로 사다리게임 서비스 만들기
             LadderGameService ladderGameService = makeLadderGameService(peopleCount, maxLadderHeight);
 
             // 3. 사다리 게임 시작
@@ -31,13 +31,13 @@ public class Main {
         }
     }
 
-    public static LadderGameService makeLadderGameService(PeopleCount peopleCount, LadderHeight maxLadderHeight) {
+    private static LadderGameService makeLadderGameService(PeopleCount peopleCount, LadderHeight maxLadderHeight) {
         LadderGameConfiguration ladderGameConfiguration = new LadderGameConfiguration(peopleCount, maxLadderHeight);
         LadderGenerator ladderGenerator = new LadderGenerator();
         return new LadderGameService(ladderGameConfiguration, ladderGenerator);
     }
 
-    public static int getUserInputInt(String message) {
+    private static int getUserInputInt(String message) {
         System.out.println(message);
         return scanner.nextInt();
     }

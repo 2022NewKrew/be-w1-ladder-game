@@ -23,6 +23,7 @@ public class LadderGameService {
         // 1. 사다리 생성
         LadderHeight maxLadderHeight = ladderGameConfiguration.getMaxLadderHeight();
         PeopleCount peopleCount = ladderGameConfiguration.getPeopleCount();
+
         ladderStatus = ladderGenerator.generate(
                 maxLadderHeight.getValue(),
                 peopleCount.getValue() - 1
@@ -40,13 +41,17 @@ public class LadderGameService {
     }
 
     private void printLadderRow(int rowIndex) {
-        int width = ladderStatus[0].length;
 
+        int width = ladderStatus[0].length;
         StringBuilder stringBuilder = new StringBuilder();
+
         for(int colIndex = 0; colIndex < width; colIndex++) {
             String ladder = "| ";
+
             boolean existLadder = ladderStatus[rowIndex][colIndex];
-            if(existLadder) { ladder = "|-"; }
+            if(existLadder) {
+                ladder = "|-";
+            }
 
             stringBuilder.append(ladder);
         }
