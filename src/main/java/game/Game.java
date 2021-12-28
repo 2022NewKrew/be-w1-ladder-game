@@ -2,9 +2,9 @@ package game;
 
 public interface Game {
 
-    public void init();
+    void init();
 
-    public void start();
+    void start();
 
-    public void printResult();
+    void printResult();
 }
