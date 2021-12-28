@@ -17,16 +17,8 @@ public class Line {
     private void drawLines(int width) {
         Random random = new Random();
         for(int i = 0; i < width - 1; i++) {
-            line.add(getLine(random));
+            line.add(random.nextBoolean());
         }
-    }
-
-    private Boolean getLine(Random random) {
-        return randomBridge(random);
-    }
-
-    private Boolean randomBridge(Random random) {
-        return random.nextBoolean();
     }
 
     @Override
