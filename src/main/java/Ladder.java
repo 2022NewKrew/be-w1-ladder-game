@@ -86,7 +86,7 @@ public class Ladder {
         }
     }
 
-    private void printRow(char [] r) {
+    private void printRow(char[] r) {
         for (char cell : r) {
             System.out.print(VER_BAR);
             System.out.print(cell);
