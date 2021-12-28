@@ -5,7 +5,7 @@ public class Ladder {
     private int height;
     private ArrayList<Line> lines;
 
-    Ladder(int countOfPerson, int height){
+    public Ladder(int countOfPerson, int height){
         this.countOfPerson = countOfPerson;
         this.height = height;
         lines = new ArrayList<Line>();

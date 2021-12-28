@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Line {
     private ArrayList<Boolean> points = new ArrayList<>();
 
-    Line(int countOfPerson){
+    public Line(int countOfPerson){
         for(int i=0; i<countOfPerson-1; i++){
             if(Math.random() > 0.5){
                 points.add(true);
