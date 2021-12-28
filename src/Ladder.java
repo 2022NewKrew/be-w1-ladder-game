@@ -1,34 +1,28 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public class Ladder {
-    private int numberOfPeople;
-    private int ladderHeight;
-    private char[][] ladder;
+    private final int numberOfLegs;
+    private final int height;
 
-    Ladder(int numberOfPeople, int ladderHeight) {
-        this.numberOfPeople = numberOfPeople;
-        this.ladderHeight = ladderHeight;
+    private final List<Line> ladder;
 
-        ladder = new char[ladderHeight][numberOfPeople * 2 - 1];
-        makeLine();
+    Ladder(int numberOfPeople, int height) {
+        this.numberOfLegs = numberOfPeople;
+        this.height = height;
+
+        ladder = new ArrayList<>();
+        for(int i = 0; i < height; i++)
+            ladder.add(new Line(numberOfLegs));
     }
 
-    private void makeLine() {
-        for(int i = 0; i < ladderHeight; i++) {
-            for(int j = 0; j < ladder[i].length; j++) {
-                if(j % 2 == 1) { //랜덤 '-'
-                    ladder[i][j] = ((int)(Math.random()*2) == 1) ? '-' : ' ';
-                } else {
-                    ladder[i][j] = '|';
-                }
-            }
-        }
-    }
+    //시작 인덱스 주면 도착 인덱스 반환해주는 메서드?
 
     @Override
     public String toString() {
-        String ret = "";
-        for (char[] chars : ladder) {
-            ret += String.valueOf(chars) + "\n";
-        }
-        return ret;
+        StringBuilder sb = new StringBuilder();
+        ladder.forEach(line -> sb.append(line).append("\n"));
+
+        return sb.toString();
     }
 }
