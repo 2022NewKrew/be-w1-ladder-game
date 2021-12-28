@@ -13,30 +13,31 @@ public class Ladder {
     public void makeLadder() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < cnt - 1; j++) {
-                ladder[i][j] = (int)Math.round(Math.random());
+                ladder[i][j] = (int) Math.round(Math.random());
             }
             ladder[i][cnt - 1] = 0;
         }
     }
 
-    public void drawLadder() {
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < cnt; j++) {
-                drawVertical();
-                drawHorizon(ladder[i][j]);
+                sb.append(makeVerticals());
+                sb.append(makeHorizons(ladder[i][j]));
             }
-            System.out.println();
+            sb.append("\n");
         }
+        return sb.toString();
     }
 
-    private void drawHorizon(int cnt) {
-        for (int i = 0; i < cnt; i++)
-            System.out.print("-");
+    private String makeHorizons(int cnt) {
         if (cnt == 0)
-            System.out.print(" ");
+            return " ";
+        return "-".repeat(cnt);
     }
 
-    private void drawVertical() {
-        System.out.print("|");
+    private String makeVerticals() {
+        return "|";
     }
 }

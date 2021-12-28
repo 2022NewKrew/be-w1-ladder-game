@@ -14,7 +14,7 @@ public class LadderGame {
         Ladder ladder = new Ladder(cnt, height);
 
         ladder.makeLadder();
-        ladder.drawLadder();
+        System.out.println(ladder.toString());
     }
 
 }
