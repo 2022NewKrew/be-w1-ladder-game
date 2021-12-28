@@ -1,4 +1,4 @@
-package david.sadari.step2;
+package kakao2022.david.sadari.step2;
 
 public class LadderGame {
 

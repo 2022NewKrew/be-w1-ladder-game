@@ -1,16 +1,17 @@
-package david.sadari.step2;
+package kakao2022.david.sadari.step2;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Ladder {
+    public static Random random = new Random();
+    public static Scanner scanner = new Scanner(System.in);
     private final int people;
     private final int ladderHeight;
     private final ArrayList<ArrayList<String>> ladderBoard;
 
     public Ladder(){
-        Scanner scanner = new Scanner(System.in);
         System.out.println("참여할 사람은 몇 명인가요?");
         people = scanner.nextInt();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
@@ -26,15 +27,15 @@ public class Ladder {
 
     private void drawLine(){
         ArrayList<String> lineList = new ArrayList<>();
-        for(int j = 0; j < 2 * people -1; j++){
+        int ladderWidth = 2 * people - 1;
+        for(int j = 0; j < ladderWidth; j++){
             lineList.add(getLine(j));
         }
         ladderBoard.add(lineList);
     }
 
-    private String getLine(int j){
-        Random random = new Random();
-        if(j % 2 == 0){
+    private String getLine(int index){
+        if(index % 2 == 0){
             return "|";
         }
         return random.nextBoolean()? "-" : " ";
