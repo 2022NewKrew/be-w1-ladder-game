@@ -25,15 +25,18 @@ public class GameStarter {
      * 게임을 시작한다
      */
     public void start() {
-        inputDataForLadder();
+        inputDataForGame();
         drawLadder();
     }
 
-    // todo : User class 추가 시 변경
-    private void inputDataForLadder() {
-        int numOfUser = inputNumberOfUser();
+    private void inputDataForGame() {
+        String userNames = inputUserNames();
         int ladderHeight = inputLadderHeight();
-        Ladder.init(numOfUser, ladderHeight);
+        Ladder.init(userNames, ladderHeight);
+    }
+
+    private String inputUserNames() {
+        return view.inputStringWithMessage("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
     }
 
     private int inputNumberOfUser() {
