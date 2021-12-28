@@ -1,3 +1,7 @@
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class LadderGame {
     private int numberOfParticipants;
     private int ladderHeight;
@@ -6,22 +10,6 @@ public class LadderGame {
 
     public LadderGame(LadderGameService ladderGameService) {
         this.ladderGameService = ladderGameService;
-    }
-
-    public int getNumberOfParticipants() {
-        return numberOfParticipants;
-    }
-
-    public void setNumberOfParticipants(int numberOfParticipants) {
-        this.numberOfParticipants = numberOfParticipants;
-    }
-
-    public int getLadderHeight() {
-        return ladderHeight;
-    }
-
-    public void setLadderHeight(int ladderHeight) {
-        this.ladderHeight = ladderHeight;
     }
 
     public void createBridge() {
