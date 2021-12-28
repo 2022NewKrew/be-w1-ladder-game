@@ -15,5 +15,6 @@ public class Main {
 
         Ladder test1 = new Ladder(n_people, max_height);
         test1.printLadder();
+
     }
 }
