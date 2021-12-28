@@ -4,8 +4,8 @@ import java.util.HashMap;
 public class Line {
     private ArrayList<Boolean> points = new ArrayList<>();
     private HashMap<Boolean,String> convertBoolToString = new HashMap<Boolean,String>(){{
-        put(true,"-|");
-        put(false," |");
+        put(true,"-----|");
+        put(false,"     |");
     }};
 
     public Line(int countOfPerson){
@@ -29,7 +29,7 @@ public class Line {
     }
 
     public String printLine(){
-        StringBuilder result = new StringBuilder("|");
+        StringBuilder result = new StringBuilder("  |");
         for(int i = 0; i<points.size(); i++){
             result.append(convertBoolToString.get(points.get(i)));
         }

@@ -22,9 +22,18 @@ public class Game {
         return height;
     }
 
+    private void printGame(){
+        for (String name : users){
+            System.out.print(String.format("%5s",name));
+            System.out.print(" ");
+        };
+        System.out.println();
+        ladder.printLadder();
+    }
+
     public void init(){
         users = inputUsers();
         ladder = new Ladder(users.size(), inputLadderHeight());
-        ladder.printLadder();
+        printGame();
     }
 }
