@@ -1,17 +1,21 @@
-import java.util.Scanner;
-
 public class LadderGame {
 
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+    private final int numberOfParticipants;
+    private final int height;
+    private final Ladder ladder;
 
-        System.out.println("참여할 사람은 몇 명인가요?");
-        int n = scan.nextInt();
+    LadderGame(int numberOfParticipants, int height) {
+        this.numberOfParticipants = numberOfParticipants;
+        this.height = height;
 
-        System.out.println("최대 사다리 높이는 몇 개 인가요?");
-        int m = scan.nextInt();
+        ladder = new Ladder(numberOfParticipants, height);
+    }
 
-        Ladder ladder = new Ladder(n, m);
+    public void displayLadder() {
         System.out.println(ladder);
+    }
+
+    public void play() {
+
     }
 }
