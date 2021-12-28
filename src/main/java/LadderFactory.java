@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -22,6 +23,7 @@ public class LadderFactory {
 
         try{
             this.peopleSize = scanner.nextInt();
+            this.validatePositiveInteger(this.peopleSize);
         } catch (NoSuchElementException | IllegalStateException exception) {
             System.err.println("입력을 처리할 수 없습니다.");
             System.exit(1);
@@ -33,9 +35,16 @@ public class LadderFactory {
 
         try{
             this.height = scanner.nextInt();
+            this.validatePositiveInteger(this.height);
         } catch (NoSuchElementException | IllegalStateException exception) {
             System.err.println("입력을 처리할 수 없습니다.");
             System.exit(1);
+        }
+    }
+
+    private void validatePositiveInteger(int value) throws InputMismatchException {
+        if (value <= 0) {
+            throw new InputMismatchException();
         }
     }
 }
