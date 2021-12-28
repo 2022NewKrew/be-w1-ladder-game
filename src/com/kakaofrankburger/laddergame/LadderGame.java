@@ -1,3 +1,6 @@
+package com.kakaofrankburger.laddergame;
+
+
 import java.util.Scanner;
 
 
