@@ -9,7 +9,6 @@ public class Ladder {
         ladderRows = makeLadders(info);
     }
 
-
     private List<LadderRow> makeLadders(LadderInfo info) {
         List<LadderRow> ladderRows = new ArrayList<>();
         for (int i = 0; i < info.height; i++) {
@@ -18,7 +17,6 @@ public class Ladder {
         }
         return ladderRows;
     }
-
 
     public List<LadderRow> getLadderRows() {
         return ladderRows;
