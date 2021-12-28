@@ -11,14 +11,6 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
     public char[][] getLadder() {
         return ladder;
     }
