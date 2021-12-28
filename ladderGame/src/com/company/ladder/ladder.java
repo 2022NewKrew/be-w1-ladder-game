@@ -6,54 +6,51 @@ public class Ladder {
     private int attendantNum;
     private int ladderNum;
     private boolean ladder[][] = null;
+    private static final Random random = new Random();
+
 
     public Ladder(int attendantNum, int ladderNum){
         this.attendantNum = attendantNum;
         this.ladderNum = ladderNum;
-        assignArray();
-    }
-
-    private void assignArray(){
-        ladder = new boolean[ladderNum][];
-        for(int i = 0; i < ladderNum; i++){
-            ladder[i] = new boolean[attendantNum];
-        }
+        ladder = new boolean[ladderNum][attendantNum];
     }
 
     public void makeRandomLadder(){
-        for(int i = 0; i < ladderNum; i++){
-            for(int j = 0; j < attendantNum; j++){
-                ladder[i][j] = isPrevLadder(i,j);
-            }
+        for(int ladderIndex = 0; ladderIndex < ladderNum; ladderIndex++){
+            makeOneLineLadder(ladderIndex);
         }
     }
 
-    private boolean isPrevLadder(int i, int j) {
-        Random random = new Random();
+    private void makeOneLineLadder(int ladderIndex) {
+        for(int attendantIndex = 0; attendantIndex < attendantNum; attendantIndex++){
+            ladder[ladderIndex][attendantIndex] = getNewLadder(ladderIndex,attendantIndex);
+        }
+    }
 
-        boolean prevLadderExist = j == 0 || (j > 0 && !ladder[i][j-1]);
-        if(prevLadderExist) {
+    private boolean getNewLadder(int ladderIndex, int attendantIndex) {
+        boolean isPrevLadder = attendantIndex == 0 || (attendantIndex > 0 && !ladder[ladderIndex][attendantIndex-1]);
+        if(isPrevLadder) {
             return random.nextBoolean();
         }
         return false;
     }
 
     public void print(){
-        for(int i = 0; i < ladderNum; i++){
-            drawOneLine(i);
+        for(int ladderIndex= 0; ladderIndex < ladderNum; ladderIndex++){
+            drawOneLine(ladderIndex);
         }
     }
 
-    private void drawOneLine(int index) {
+    private void drawOneLine(int ladderIndex) {
         System.out.printf("|");
-        for(int i = 0; i < attendantNum; i++){
-            System.out.printf(drawLadder(index, i));
+        for(int attendantIndex = 0; attendantIndex < attendantNum; attendantIndex++){
+            System.out.printf(drawLadder(ladderIndex, attendantIndex));
         }
         System.out.printf("\n");
     }
 
-    private String drawLadder(int i, int j) {
-        if(ladder[i][j]){
+    private String drawLadder(int ladderIndex, int attendantIndex) {
+        if(ladder[ladderIndex][attendantIndex]){
             return "-|";
         }
         return " |";
