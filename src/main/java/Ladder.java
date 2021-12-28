@@ -1,9 +1,11 @@
+import java.security.SecureRandom;
 import java.util.Random;
 
 public class Ladder {
     private final int numPeople;
     private final int maxHeight;
     private final boolean[][] ladder;
+    private final Random rand = new Random();
 
     public Ladder(int numPeople, int maxHeight){
         this.numPeople = numPeople;
@@ -14,11 +16,9 @@ public class Ladder {
     }
 
     private void makeLadder() {
-        Random random = new Random();
-
         for (int i = 0; i < maxHeight; i++) {
             for (int j = 0; j < numPeople - 1; j++) {
-                ladder[i][j] = random.nextBoolean();
+                ladder[i][j] = rand.nextBoolean();
             }
         }
     }
