@@ -7,6 +7,9 @@ import java.util.stream.IntStream;
 public class LadderFloor {
     private List<Boolean> isConnected;
 
+    protected LadderFloor() {
+    }
+
     public LadderFloor(List<Boolean> isConnected) {
         this.isConnected = isConnected;
     }

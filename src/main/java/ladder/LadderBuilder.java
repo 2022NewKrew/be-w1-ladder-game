@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.dto.Ladder;
 import ladder.dto.LadderFloor;
+import ladder.dto.LadderFloorProxy;
 import ladder.vo.LadderInfo;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class LadderBuilder {
     private List<LadderFloor> buildLadder(){
         List<LadderFloor> ladder = new ArrayList<>(ladderInfo.getHeight());
         for (int i = 0; i < ladderInfo.getHeight(); i++) {
-            ladder.add(new LadderFloor(createFloorConnectInfo()));
+            ladder.add(new LadderFloorProxy(new LadderFloor(createFloorConnectInfo())));
         }
         return ladder;
     }
