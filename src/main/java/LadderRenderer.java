@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class LadderRenderer {
-    public void render(Ladder ladder){
+    public static void render(Ladder ladder){
         StringBuilder ladderString = new StringBuilder();
         int heightOfLadder = ladder.getInfo().getHeightOfLadder();
 
@@ -10,7 +10,7 @@ public class LadderRenderer {
         System.out.println(ladderString);
     }
 
-    public StringBuilder renderOneLine(int numOfPeople, ArrayList<ArrayList<Boolean>> connections, int layer){
+    public static StringBuilder renderOneLine(int numOfPeople, ArrayList<ArrayList<Boolean>> connections, int layer){
         StringBuilder ladderStringOneLine = new StringBuilder();
 
         for(int person = 0; person < numOfPeople-1; person++){

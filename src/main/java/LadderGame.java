@@ -4,7 +4,6 @@ public class LadderGame {
 
         Ladder ladder = new Ladder(info);
 
-        LadderRenderer renderer = new LadderRenderer();
-        renderer.render(ladder);
+        LadderRenderer.render(ladder);
     }
 }
