@@ -1,8 +1,6 @@
 package LadderGame;
 
-import java.io.*;
 import java.util.*;
-import LadderGame.Ladder;
 
 public class LadderGame {
     public static void main(String[] args) {
