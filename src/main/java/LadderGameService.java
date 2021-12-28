@@ -1,3 +1,3 @@
 public interface LadderGameService {
-    boolean[][] createMap(int row, int col);
+    boolean[][] createLadderMap(int row, int col);
 }

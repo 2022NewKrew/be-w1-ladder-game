@@ -1,7 +1,7 @@
 public class LadderGameServiceImpl implements LadderGameService {
 
     @Override
-    public boolean[][] createMap(int row, int col) {
+    public boolean[][] createLadderMap(int row, int col) {
 
         boolean[][] ladderMap = new boolean[row][col];
 

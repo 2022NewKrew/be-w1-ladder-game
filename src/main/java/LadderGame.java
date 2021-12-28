@@ -27,7 +27,7 @@ public class LadderGame {
     public void createBridge() {
         int row = this.getLadderHeight();
         int col = this.getNumberOfParticipants() - 1;
-        this.bridge = ladderGameService.createMap(row, col);
+        this.bridge = ladderGameService.createLadderMap(row, col);
     }
 
     public String getLadderString() throws Exception {
