@@ -7,8 +7,8 @@ public class main {
     public static void main(String[] args) {
         try {
 
-            LadderGame ladder = input();
-            String output = ladder.getLadderString();
+            LadderSimpleGame ladderSimpleGame = input();
+            String output = ladderSimpleGame.getLadderString();
             System.out.println(output);
 
         } catch (Exception e) {
@@ -16,19 +16,19 @@ public class main {
         }
     }
 
-    private static LadderGame input() throws IOException {
-        LadderGame ladder = new LadderGame( new LadderGameServiceImpl());
+    private static LadderSimpleGame input() throws IOException {
+        LadderSimpleGame ladderSimpleGame = new LadderSimpleGame(new LadderGameServiceImpl());
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("참여할 사람은 몇명인가요?");
-        ladder.setNumberOfParticipants(Integer.parseInt(bufferedReader.readLine()));
+        ladderSimpleGame.setNumberOfParticipants(Integer.parseInt(bufferedReader.readLine()));
 
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        ladder.setLadderHeight(Integer.parseInt(bufferedReader.readLine()));
+        ladderSimpleGame.setLadderHeight(Integer.parseInt(bufferedReader.readLine()));
 
-        ladder.createBridge();
+        ladderSimpleGame.createBridge();
 
-        return ladder;
+        return ladderSimpleGame;
     }
 }
