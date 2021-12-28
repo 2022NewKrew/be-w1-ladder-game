@@ -4,6 +4,8 @@ public class Ladder {
     private boolean[][] ladder;
 
     public Ladder(int width, int height){
+        if(width < 1 || height < 1)
+            throw new IllegalArgumentException("유효하지 않은 입력값 입니다.");
         this.width = width;
         this.height = height;
     }
@@ -27,12 +29,13 @@ public class Ladder {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0 ; i < height; ++i){
-            for(int j = 0 ; j < width-1; ++j){
-                stringBuilder.append(ladder[i][j] ? "|-" : "| " );
+        for(int r = 0 ; r < height; ++r){
+            for(int c = 0 ; c < width-1; ++c){
+                stringBuilder.append(ladder[r][c] ? "|-" : "| " );
             }
             stringBuilder.append("|\n");
         }
         return stringBuilder.toString();
     }
+
 }
