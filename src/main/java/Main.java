@@ -16,7 +16,8 @@ public class Main {
             System.out.println("최대 사다리 높이는 몇인가요?");
             int maxHeightOfLadder = scanner.nextInt();
 
-            return LadderBuilder.createLadder(numOfParticipant, maxHeightOfLadder);
+            LadderBuilder ladderBuilder = new LadderBuilder();
+            return ladderBuilder.createLadder(numOfParticipant, maxHeightOfLadder);
         }
     }
 }
