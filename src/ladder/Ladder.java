@@ -6,46 +6,47 @@ import java.util.List;
 import java.util.Random;
 
 public class Ladder {
+    static Random rand = new Random();
+
     private final int height;
     private final int width;
+    private final List<List<Character>> ladder;
 
     public Ladder(int people, int height) {
         this.height = height;
         width = people * 2 - 1;
+        ladder = new ArrayList<>();
+        buildLadder();
+    }
+
+    private void buildLadder() {
+        for (int i = 0; i < height; i++) {
+            ladder.add(buildRow());
+        }
     }
 
     private List<Character> buildRow() {
         List<Character> row = new ArrayList<>();
         for (int i = 0; i < width; i++) {
-            if (i % 2 == 0) {
-                row.add('|');
-            } else {
-                row.add(fillLine());
-            }
+            row.add(fillLine(i));
         }
         return row;
     }
 
-    private Character fillLine() {
-        List<Character> rndLine = Arrays.asList(' ', '-');
-        return rndLine.get(new Random().nextInt(rndLine.size()));
+    private Character fillLine(int colIdx) {
+        if (colIdx % 2 == 0)
+            return '|';
+        List<Character> randLine = Arrays.asList(' ', '-');
+        return randLine.get(rand.nextInt(randLine.size()));
     }
 
-    private List<List<Character>> buildLadder() {
-        List<List<Character>> ladder = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            ladder.add(buildRow());
-        }
-        return ladder;
-    }
-
-    public void printLadder() {
-        List<List<Character>> ladder = buildLadder();
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                System.out.print(ladder.get(i).get(j));
-            }
-            System.out.println();
-        }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        ladder.forEach(row -> {
+            row.forEach(sb::append);
+            sb.append('\n');
+        });
+        return sb.toString();
     }
 }
