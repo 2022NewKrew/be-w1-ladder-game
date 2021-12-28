@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class LadderBuilder {
-    private int height = 0;
+    private final int height;
     private final LineBuilder lineBuilder;
 
     LadderBuilder(int numberOfPlayer, int height) {

@@ -5,7 +5,7 @@ public class LineBuilder {
     private final int MAX_RANDOM = 10;
     private final int RANDOM_RANGE = 3;
     private final Random random = new Random();
-    private int numberOfPlayer = 0;
+    private final int numberOfPlayer;
 
     LineBuilder(int numberOfPlayer) {
         this.numberOfPlayer = numberOfPlayer;
