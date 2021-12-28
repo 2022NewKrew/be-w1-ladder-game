@@ -2,17 +2,17 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class LadderGame {
-    static Random random = new Random();
+    private static Random random = new Random();
 
     public void start(){
-        Ladder ladderObj = input();
+        Ladder ladder = input();
 
-        makeLadder(ladderObj);
-        System.out.println(ladderObj);
+        makeLadder(ladder);
+        System.out.println(ladder);
     }
 
     private Ladder input(){
-        int width, height;
+        int width=0, height=0;
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("참여할 사람은 몇 명인가요?");
             width = scanner.nextInt();
@@ -22,13 +22,20 @@ public class LadderGame {
         return new Ladder(width, height);
     }
 
-    private void makeLadder(Ladder ladderObj){
-        boolean[][] ladder = new boolean[ladderObj.getHeight()][ladderObj.getWidth()-1];
-        for(int i = 0 ; i < ladderObj.getHeight(); ++i){
-            for(int j = 0 ; j < ladderObj.getWidth()-1; ++j){
-                ladder[i][j] = (j > 0 && ladder[i][j-1])? false : random.nextBoolean();
-            }
+    private void makeLadder(Ladder ladder){
+        boolean[][] shape = new boolean[ladder.getHeight()][];
+        for(int i = 0 ; i < ladder.getHeight(); ++i){
+            shape[i] = makeSingleRow(ladder.getWidth());
         }
-        ladderObj.setLadder(ladder);
+        ladder.setShape(shape);
     }
+    private boolean[] makeSingleRow(int width){
+        boolean[] singleRow = new boolean[width - 1];
+        for(int col = 0 ; col < width-1; ++col){
+            boolean isLeftBridge = col > 0 && singleRow[col-1];
+            singleRow[col] = isLeftBridge ? false : random.nextBoolean();
+        }
+        return singleRow;
+    }
+
 }
