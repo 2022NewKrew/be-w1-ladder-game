@@ -1,26 +1,31 @@
 package step01;
 
-public class Ladder {
-    private int width;
-    private int height;
-    private char[][] result;
+import java.util.Random;
 
-    public Ladder() {
-    }
+public final class Ladder {
+    private final int width;
+    private final int height;
+    private final char[][] result;
+    private final Random random;
 
-    public Ladder(int n, int m) {
-        this.width = n * 2 - 1;
-        this.height = m;
+    private Ladder(int people, int ladderHeight) {
+        this.width = people * 2 - 1;
+        this.height = ladderHeight;
         this.result = new char[this.height][this.width];
+        this.random = new Random();
+        initLadder();
+    }
+    public static Ladder of(int n, int m){
+        return new Ladder(n, m);
     }
 
-    public void initLadder() {
+    private void initLadder() {
         for(int i = 0; i < this.height; ++i) {
             for(int j = 0; j < this.width; ++j) {
                 if (j % 2 == 0) {
                     this.result[i][j] = '|';
                 } else {
-                    this.result[i][j] = (char)((int)(Math.random() * 10.0D) % 2 == 0 ? 45 : 32);
+                    this.result[i][j] =  random.nextBoolean() ? ' ' : '-';
                 }
             }
         }
