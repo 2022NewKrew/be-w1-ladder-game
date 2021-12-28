@@ -29,7 +29,6 @@ public class Line {
             s.append(isLine(point));
         }
         s.append("|");
-
         return s.toString();
     }
 }
