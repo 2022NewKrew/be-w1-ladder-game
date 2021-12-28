@@ -5,7 +5,7 @@ import java.io.ByteArrayInputStream;
 class MainTest {
     @Test
     public void 정상실행10x10(){
-        String str = "10\n10";
+        String str = "name,ssss2,adds,brian,james\n6";
 
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(str.getBytes());
         System.setIn(byteArrayInputStream);

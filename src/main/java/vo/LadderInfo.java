@@ -1,4 +1,4 @@
-package ladder;
+package vo;
 
 public class LadderInfo {
     private int width;
