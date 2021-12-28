@@ -10,7 +10,7 @@ public class View {
     }
 
     public int inputIntWithMessage(String message) {
-        System.out.println(message);
+        output(message);
         return scanner.nextInt();
     }
 

@@ -28,6 +28,7 @@ public class GameStarter {
         drawLadder();
     }
 
+    // todo : User class 추가 시 변경
     private void inputDataForLadder() {
         int numOfUser = inputNumberOfUser();
         int ladderHeight = inputLadderHeight();

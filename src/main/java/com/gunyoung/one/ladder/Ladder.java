@@ -2,6 +2,8 @@ package com.gunyoung.one.ladder;
 
 import com.gunyoung.one.precondition.Precondition;
 
+// todo: 추후 User 클래스 추가 시 Drawer 클래스 추가하여 그리기 위임, (User, Ladder, Bridge) 정보 --> (Drawer) = 그림 구조
+//
 public final class Ladder {
 
     private static Ladder INSTANCE;
