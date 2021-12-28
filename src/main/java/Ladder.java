@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class Ladder {
     private int numberOfGamers;
     private int heightOfLadder;
-
-    private final String BAR = "-";
-    private final String BLANK = " ";
+    private final int nameLength = 5;
+    private final String BAR = "-".repeat(nameLength);
+    private final String BLANK = " ".repeat(nameLength);
 
     ArrayList<ArrayList<Boolean>> ladder = new ArrayList<ArrayList<Boolean>>();
 
