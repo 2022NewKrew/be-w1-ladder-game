@@ -2,16 +2,20 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ladder {
+
+    // 인스턴스 변수
     private final int column;
     private final int row;
     private final ArrayList<ArrayList<Character>> ladder;
 
+    // 생성자
     public Ladder(int[] inputNumber) {
         this.column = inputNumber[1];
         this.row = 2 * inputNumber[0]-1;
         this.ladder = getLadder();
     }
 
+    // 메소드
     private ArrayList<ArrayList<Character>> getLadder() {
         ArrayList<ArrayList<Character>> createdLadder = new ArrayList<>();
 
