@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //입력 부 변경?
         Scanner scan = new Scanner(System.in);
 
         System.out.println("참여할 사람은 몇 명인가요?");

@@ -16,8 +16,6 @@ public class Ladder {
             ladder.add(new Line(numberOfLegs));
     }
 
-    //시작 인덱스 주면 도착 인덱스 반환해주는 메서드?
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
