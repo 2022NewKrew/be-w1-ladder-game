@@ -1,18 +1,13 @@
 package com.kakao.step1;
 
-import java.util.AbstractMap;
 import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Map;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * author    : brody.moon
- * version   : 1.0
+ * version   : 1.1
  * 사다리 클래스입니다.
  * 모든 멤버 변수가 final 이라 immutable class 입니다.
- * 초기화 할 때 사용자 입력을 받기 때문에 InputMismatchException 을 발생 시킬 수 있습니다.
  */
 class Ladder {
     /**
@@ -23,38 +18,27 @@ class Ladder {
     private final int memberNum;
     private final int ladderHeight;
     private final State[][] ladderStatus;
+    private final Random random;
 
     /**
      * 사다리 연결 부분이 있는지 없는지를 enum 으로 만들었습니다.
+     * EXIST    연결 부분 존재
+     * NONEXIST 연결 부분 없음
      */
     private enum State {
         EXIST, NONEXIST
     }
 
     /**
-     * @throws InputMismatchException 입력이 정수로 들어오지 않는 경우 발생
+     * @param input 사용자 입력
      */
-    public Ladder(Map.Entry<Integer, Integer> entry) throws InputMismatchException {
-        memberNum = entry.getKey();
-        ladderHeight = entry.getValue();
-        ladderStatus = new State[ladderHeight][memberNum];
+    public Ladder(UserInput input) {
+        this.memberNum = input.getMemberNum() - 1;
+        this.ladderHeight = input.getLadderHeight();
+        this.ladderStatus = new State[ladderHeight][memberNum];
+        this.random = new Random();
 
         initLadderStatus();
-    }
-
-    public static Map.Entry<Integer, Integer> initInput(){
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("참여할 사람은 몇 명인가요?");
-        int memberNum = sc.nextInt() - 1;
-
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int ladderHeight = sc.nextInt();
-
-        if(memberNum < 0 || ladderHeight <= 0)
-            throw new InputMismatchException();
-
-        return new AbstractMap.SimpleEntry<>(memberNum,ladderHeight);
     }
 
     /**
@@ -63,12 +47,23 @@ class Ladder {
      * @param
      */
     private void initLadderStatus() {
-        Random random = new Random();
-
         for (int i = 0; i < ladderHeight; i++) {
-            for (int j = 0; j < memberNum; j++) {
-                ladderStatus[i][j] = (random.nextInt(2) == 0) ? State.EXIST : State.NONEXIST;
-            }
+            initLadderColStatus(i);
+        }
+    }
+
+    /**
+     * 사다리 상태 한 행을 초기화 해주는 함수입니다.
+     * 연속적인 연결은 제거합니다.
+     *
+     * @param row 배열 row 정보
+     */
+    private void initLadderColStatus(int row) {
+        ladderStatus[row][0] = random.nextBoolean() ? State.EXIST : State.NONEXIST;
+
+        for (int i = 1; i < memberNum; i++) {
+            ladderStatus[row][i] = ladderStatus[row][i - 1] == State.EXIST ? State.NONEXIST
+                    : random.nextBoolean() ? State.EXIST : State.NONEXIST;
         }
     }
 
