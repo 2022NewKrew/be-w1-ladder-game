@@ -1,5 +1,5 @@
 public class Application {
-    static public void main(String[] args) {
+    public static void main(String[] args) {
         try {
             LadderGame ladderGame = LadderGame.getInstance(UserInput.getNumberOfPeople(), UserInput.getLadderHeight());
             ladderGame.printLadder();
