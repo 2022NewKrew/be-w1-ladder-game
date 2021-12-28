@@ -12,15 +12,15 @@ public class RandomConnector {
         int line = random.nextInt(ladder.getPlayerNum() - 1);
         int height = random.nextInt(ladder.getMaxLadderHeight());
 
-        while(isDuplicated(ladder, line, height)) {
+        while(!isConnectable(ladder, line, height)) {
             line = random.nextInt(ladder.getPlayerNum() - 1);
             height = random.nextInt(ladder.getMaxLadderHeight());
         }
 
-        ladder.connect(line, line + 1, height);
+        ladder.connectToRight(line, height);
     }
 
-    private boolean isDuplicated(Ladder ladder, int line, int height) {
-        return ladder.isConnected(line, line + 1, height);
+    private boolean isConnectable(Ladder ladder, int line, int height) {
+        return ladder.isConnectableToRight(line, height);
     }
 }
