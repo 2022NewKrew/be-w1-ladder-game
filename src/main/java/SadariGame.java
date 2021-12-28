@@ -3,7 +3,9 @@ import java.util.Scanner;
 public class SadariGame {
 
     public static void main(String[] args) {
-        printSadariGame(input());
+        Sadari sadari = input();
+        makeSadariGame(sadari);
+        printSadariGame(sadari);
     }
 
     private static Sadari input() {
@@ -14,6 +16,10 @@ public class SadariGame {
         int numberOfLadder = sc.nextInt();
 
         return new Sadari(numberOfPeople, numberOfLadder);
+    }
+
+    private static void makeSadariGame(Sadari sadari) {
+        sadari.makeSadariGame();
     }
 
     private static void printSadariGame(Sadari sadari) {

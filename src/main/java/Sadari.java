@@ -1,55 +1,61 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Sadari {
 
+    private final List<List<LineStatus>> sadariGameMap = new ArrayList<>();
     private final int numberOfColumn;
     private final int numberOfRow;
 
     public Sadari(int numberOfPeople, int numberOfLadder) {
+        initialSadariGameMap(numberOfLadder);
         this.numberOfColumn = numberOfPeople * 2 - 1;
         this.numberOfRow = numberOfLadder;
     }
 
-    public int getNumberOfColumn() {
-        return numberOfColumn;
-    }
-
-    public int getNumberOfRow() {
-        return numberOfRow;
+    private void initialSadariGameMap(int numberOfLadder) {
+        for(int i=0 ; i<numberOfLadder ; i++)
+            sadariGameMap.add(new ArrayList<>());
     }
 
     public void printSadariGame() {
-        for (int i = 0; i < getNumberOfRow(); i++)
-            printRowLine();
+        for (List<LineStatus> lines : sadariGameMap)
+            lines.forEach(LineStatus::printStatus);
     }
 
-    private void printRowLine() {
-        for (int i = 0; i < getNumberOfColumn(); i++)
-            printSadariStatus(i);
-
-        System.out.println();
+    public void makeSadariGame() {
+        for (int i = 0; i < numberOfRow; i++)
+            makeRow(i);
     }
 
-    private void printSadariStatus(int columnNumberOfRow) {
-        if (SadariStatus.isBorder(columnNumberOfRow)) {
-            SadariStatus.BORDER.printStatus();
+    private void makeRow(int rowNumber) {
+        for (int i = 0; i < numberOfColumn; i++) {
+            makeLine(rowNumber,i);
+        }
+
+        sadariGameMap.get(rowNumber).add(LineStatus.END);
+    }
+
+    private void makeLine(int rowNumber, int columnNumberOfRow) {
+        if (LineStatus.isBorder(columnNumberOfRow)) {
+            sadariGameMap.get(rowNumber).add(LineStatus.BORDER);
             return;
         }
 
-        printSadariLine();
+        makeSadariLine(rowNumber);
     }
 
-    private static void printSadariLine() {
-        if (canPrintSadariLine()) {
-            SadariStatus.LINE.printStatus();
+    private void makeSadariLine(int rowNumber) {
+        if (canMakeSadariLine()) {
+            sadariGameMap.get(rowNumber).add(LineStatus.SADARI_LINE);
             return;
         }
 
-        SadariStatus.EMPTY.printStatus();
+        sadariGameMap.get(rowNumber).add(LineStatus.EMPTY);
     }
 
-    private static boolean canPrintSadariLine() {
+    private static boolean canMakeSadariLine() {
         return new Random().nextBoolean();
     }
-
 }
