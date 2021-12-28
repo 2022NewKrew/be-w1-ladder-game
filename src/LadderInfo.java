@@ -1,7 +1,7 @@
 public class LadderInfo {
-    int width,height;
+    final int width, height;
 
-    LadderInfo(int width,int height){
+    LadderInfo(int width, int height) {
         this.width = width;
         this.height = height;
     }

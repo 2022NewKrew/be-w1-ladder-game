@@ -1,10 +1,8 @@
 public class LadderGame {
-    private final LadderInfoScanner input = new LadderInfoScanner();
-    private final LadderPrinter printer = new LadderPrinter();
 
-    void startLadderGame(){
-        LadderInfo info = input.getLadderInfo();
+    public static void startLadderGame(){
+        LadderInfo info = LadderInfoScanner.getLadderInfo();
         Ladder ladder = new Ladder(info);
-        printer.printLadder(ladder);
+        LadderPrinter.printLadder(ladder);
     }
 }

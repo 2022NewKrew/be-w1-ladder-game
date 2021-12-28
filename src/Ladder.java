@@ -1,34 +1,26 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Ladder {
 
-    private final List<List<Boolean>> ladders = new ArrayList<>();
-    private final Random random = new Random();
-    private final LadderInfo info;
+    private final List<LadderRow> ladderRows;
 
-    Ladder(LadderInfo info) {
-        this.info = info;
-        makeLadders();
+    public Ladder(LadderInfo info) {
+        ladderRows = makeLadders(info);
     }
 
 
-    private void makeLadders() {
+    private List<LadderRow> makeLadders(LadderInfo info) {
+        List<LadderRow> ladderRows = new ArrayList<>();
         for (int i = 0; i < info.height; i++) {
-            setLaddersData();
+            LadderRow lineData = new LadderRow(info.width);
+            ladderRows.add(lineData);
         }
+        return ladderRows;
     }
 
-    private void setLaddersData() {
-        List<Boolean> line = new ArrayList<>();
-        for (int j = 0; j < info.width - 1; j++) {
-            line.add(random.nextBoolean());
-        }
-        ladders.add(line);
-    }
 
-    List<List<Boolean>> getLadderData() {
-        return ladders;
+    public List<LadderRow> getLadderRows() {
+        return ladderRows;
     }
 }
