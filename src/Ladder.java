@@ -21,13 +21,25 @@ public class Ladder {
         this.players = players;
         this.width = players.size();
         this.height = height;
-        this.generateSimpleRandom();
+        this.makeRandomLadder();
     }
 
-    public void generateSimpleRandom() {
+    private String makeRandomLine() {
+        StringBuilder line = new StringBuilder(FIRST_BEAM);
+        boolean isLastBeamAvailable = true;
+        for (int beamNo = 0; beamNo < width - 1; beamNo++) {
+            boolean isCurrentBeamUsed = isLastBeamAvailable && random.nextBoolean();
+            line.append(isCurrentBeamUsed ? STEP : NO_STEP);
+            line.append(BEAM);
+            isLastBeamAvailable = !isCurrentBeamUsed;
+        }
+        return line.toString();
+    }
+
+    private void makeRandomLadder() {
         stateAsListOfString = new ArrayList<>();
         for (int lineNo = 0; lineNo < height; lineNo++) {
-            stateAsListOfString.add(Stream.generate(() -> random.nextBoolean() ? STEP : NO_STEP).limit(width - 1).collect(Collectors.joining(BEAM, FIRST_BEAM, BEAM)));
+            stateAsListOfString.add(makeRandomLine());
         }
     }
 
