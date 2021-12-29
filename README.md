@@ -159,7 +159,7 @@ public class Line {
     // ...
 }
 ```
-- 위와 같이 `Line` 객체를 추가하면 `ArrayList<ArrayList<Boolean>>` 코드를 ArrayList<Line>과 같이 구현하는 것이 가능해진다.
+- 위와 같이 `Line` 객체를 추가하면 `ArrayList<ArrayList<Boolean>>` 코드를 `ArrayList<Line>`과 같이 구현하는 것이 가능해진다.
 
 ## 4단계
 
