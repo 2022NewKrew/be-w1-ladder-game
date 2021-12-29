@@ -7,36 +7,33 @@ import java.util.List;
 import java.util.Map;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
-    private Map<Boolean,String> convertBoolToString = new HashMap<Boolean,String>(){{
-        put(true,"-----|");
-        put(false,"     |");
-    }};
+    private List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson){
         for(int i=0; i<countOfPerson-1; i++){
-            addPoint(Util.generateTrueOrFalseByRandom());
+            addPoint(new Point(Util.generateTrueOrFalseByRandom()));
         }
     }
 
-    public void addPoint(Boolean newPoint) {
-        points.add(isDoubleStair(newPoint));
+    public void addPoint(Point newPoint) {
+        points.add(removeStairIfDoubleStair(newPoint));
     }
 
-    private Boolean isDoubleStair(Boolean newPoint){
+    private Point removeStairIfDoubleStair(Point newPoint){
         if(points.isEmpty()){
             return newPoint;
         }
-        if (points.get(points.size()-1) && newPoint){
-            return false;
+        if (points.get(points.size()-1).getIsStair() && newPoint.getIsStair()){
+            newPoint.setIsStair(false);
+            return newPoint;
         };
         return newPoint;
     }
 
     public String toString(){
         StringBuilder result = new StringBuilder("  |");
-        for(Boolean point : points){
-            result.append(convertBoolToString.get(point));
+        for(Point point : points){
+            result.append(point.toString());
         }
         return result.toString();
     }
