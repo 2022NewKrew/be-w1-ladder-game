@@ -3,34 +3,32 @@ package main.java;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class LadderController {
-    private static final String DOWN = "| ";
-    private static final String RIGHT = "|-";
-    private static final Random random = new Random();
+    private Players players;
+    private Ladder ladder;
 
-    public static void main(String[] args) {
-        ResultView.printLadder(generateLadder(InputView.enterPlayers(), InputView.enterHeight()));
+    public LadderController() {
+        players = new Players(InputView.enterPlayers());
+        LadderGenerator ladderGenerator = new LadderGenerator();
+        ladder = ladderGenerator.generateLadder(players.numberOfPlayer(), InputView.enterHeight());
     }
 
-    private static List<List<String>> generateLadder(int playerNum, int height) {
-        List<List<String>> ladder = new ArrayList<>();
-        for(int i = 0; i < height; i++) {
-            ladder.add(generateLine(playerNum));
-        }
-        return ladder;
+    private void printPlayers() {
+        List<String> playersList = players.players()
+                .stream()
+                .map(player -> player.name())
+                .collect(Collectors.toList());
+        ResultView.printPlayers(playersList);
     }
 
-    private static List<String> generateLine(int playerNum) {
-        List<String> line = new ArrayList<>();
-        for(int i = 1; i < playerNum; i++) {
-            line.add(generatePoint());
-        }
-        line.add(DOWN);
-        return line;
+    private void printLadder() {
+        ResultView.printLadder(ladder);
     }
 
-    private static String generatePoint() {
-        return random.nextBoolean() ? RIGHT : DOWN;
+    public void run() {
+        printPlayers();
+        printLadder();
     }
 }
