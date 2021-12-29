@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ladder {
-    private final int numOfPeople;
+    private final String[] people;
     private final int heightOfLadder;
     private final ArrayList<ArrayList<Boolean>> connections;
     private final Random random = new Random();
 
-    public Ladder(int numOfPeople, int heightOfLadder) {
-        this.numOfPeople = numOfPeople;
+    public Ladder(String[] people, int heightOfLadder) {
+        this.people = people;
         this.heightOfLadder = heightOfLadder;
         connections = makeConnections();
     }
@@ -22,15 +22,16 @@ public class Ladder {
     }
 
     public ArrayList<Boolean> makeConnectionsOneLine() {
+        int numOfPeople = people.length;
         ArrayList<Boolean> connectionsOneLine = new ArrayList<>();
-        for(int person = 0; person < numOfPeople-1; person++) {
+        for(int person = 0; person < numOfPeople - 1; person++) {
             connectionsOneLine.add(random.nextBoolean());
         }
         return connectionsOneLine;
     }
 
-    public int getNumOfPeople() {
-        return numOfPeople;
+    public String[] getPeople() {
+        return people;
     }
 
     public int getHeightOfLadder() {
