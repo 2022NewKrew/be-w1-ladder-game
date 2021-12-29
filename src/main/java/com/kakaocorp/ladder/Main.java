@@ -17,7 +17,7 @@ public class Main {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int height = sc.nextInt();
 
-        Rule rule = new Rule(MAX_PARTICIPANT);
+        Rule rule = new Rule.Builder().maxNameLength(MAX_PARTICIPANT).build();
         LadderService service = new LadderService(rule);
         Ladder ladder = service.initialize(height, participants);
         String s = service.buildString(ladder);
