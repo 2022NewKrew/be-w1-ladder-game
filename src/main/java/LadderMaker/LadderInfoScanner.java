@@ -1,9 +1,6 @@
 package LadderMaker;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class LadderInfoScanner {
     private final Scanner sc;
@@ -13,20 +10,20 @@ public class LadderInfoScanner {
     }
 
     public Ladder getLadder(){
-        ArrayList<String> names = getNames();
+        List<String> names = getNames();
         int heightOfLadder = getHeightOfLadder();
 
         return new Ladder(heightOfLadder, names);
     }
 
-    private ArrayList<String> getNames(){
+    private List<String> getNames(){
         boolean valid;
-        ArrayList<String> splitNames;
+        List<String> splitNames;
 
         do {
             System.out.println("참여할 사람 이름을 입력하세요. (이름은 다섯글자 이하로 쉼표(,)로 구분하세요)");
             String names = sc.nextLine()
-                    .replaceAll(" ", "");
+                            .replaceAll(" ", "");
             valid = checkNumOfPeople(names);
             splitNames = new ArrayList<>(Arrays.asList(names.split(",")));
             valid = valid && checkNameLength(splitNames);
@@ -43,7 +40,7 @@ public class LadderInfoScanner {
         return true;
     }
 
-    private boolean checkNameLength(ArrayList<String> splitNames){
+    private boolean checkNameLength(List<String> splitNames){
         boolean anyNotValid = splitNames.stream()
                         .allMatch(name ->
                                 name.length() <= Constant.MAX_NAME_LENGTH && name.length() >= Constant.MIN_NAME_LENGTH);

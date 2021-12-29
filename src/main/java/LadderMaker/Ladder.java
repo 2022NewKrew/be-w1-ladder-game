@@ -1,15 +1,16 @@
 package LadderMaker;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class Ladder {
     private final int heightOfLadder;
     private final int numOfPeople;
-    private final ArrayList<Line> connectedInfo;
-    private final ArrayList<String> nameOfPeople;
+    private final List<Line> connectedInfo;
+    private final List<String> nameOfPeople;
 
-    public Ladder(int heightOfLadder, ArrayList<String> nameOfPeople){
+    public Ladder(int heightOfLadder, List<String> nameOfPeople){
         this.heightOfLadder = heightOfLadder;
         this.nameOfPeople = nameOfPeople;
         this.numOfPeople = nameOfPeople.size();
