@@ -1,50 +1,28 @@
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
+
 
 public class Ladder {
 
-    private int personNum, ladderHeight;
-    private boolean[][] ladder;
+    private final int personNum, ladderHeight;
+    private List<Line> ladder = new ArrayList<>();
 
     public Ladder(int personNum, int ladderHeight) {
         this.personNum = personNum;
         this.ladderHeight = ladderHeight;
-        this.ladder = new boolean[ladderHeight][personNum-1];
         makeLadder(personNum, ladderHeight);
     }
 
-    void makeLadder(int personNum, int ladderHeight) {
+    private void makeLadder(int personNum, int ladderHeight) {
         for (int i = 0; i < ladderHeight; i++) {
-            makeLine(personNum,ladder[i]);
+            ladder.add(new Line(personNum));
         }
     }
 
-    void makeLine(int personNum, boolean[] line){
-        Random random = new Random();
-        for(int i=0; i<personNum - 1; i++){
-            line[i] = random.nextBoolean();
-        }
-    }
-
-    void printLadder() {
+    public void printLadder() {
         for (int i = 0; i < ladderHeight; i++) {
-            System.out.print("|");
-            printLine(i);
-            System.out.println("");
+            System.out.println(ladder.get(i));
         }
-    }
-
-    void printLine(int h){
-        for (int i = 0; i < personNum - 1; i++) {
-            System.out.print(printUnit(ladder[h][i]));
-        }
-    }
-
-    String printUnit(boolean b){
-        if(b){
-            return "-|";
-        }
-        return " |";
     }
 
 }
