@@ -1,39 +1,19 @@
 package game;
 
+import java.util.ArrayList;
+
 public class Ladder {
-    private final int row;
-    private final int col;
-    private final char array[][];
 
-    public Ladder(int row, int col) {
-        this.row = row;
-        this.col = col;
-        this.array = new char[row][col];
-    }
+    private final ArrayList<LadderRow> rows = new ArrayList<>();
 
-    public void initLadder() {
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (j % 2 == 0)
-                    array[i][j] = '|';
-                else
-                    array[i][j] = ' ';
-            }
-            makeRandomBridge(i);
-        }
+    public Ladder(int numOfPerson, int height) {
+        for(int i = 0; i<height;i++ )
+            rows.add(new LadderRow(numOfPerson));
     }
-    private void makeRandomBridge(int row) {
-        // 한 줄에 하나씩만 bridge 연결하도록 설정
-        int randomIndex = (int) (Math.random() * (col / 2)) * 2 + 1;
-        array[row][randomIndex] = '-';
-    }
-
     public void printLadder() {
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                System.out.print(array[i][j]);
-            }
-            System.out.println();
+        for(LadderRow ladderRow : rows)
+        {
+            System.out.println(ladderRow.toString());
         }
     }
 }
