@@ -4,8 +4,6 @@ import com.kakaocorp.ladder.model.Ladder;
 import com.kakaocorp.ladder.model.Node;
 import com.kakaocorp.ladder.model.Rail;
 
-import java.util.List;
-
 public class RowFirstWalker extends MultipleNodesWalker {
 
     public RowFirstWalker(Callback callback) {
@@ -14,17 +12,17 @@ public class RowFirstWalker extends MultipleNodesWalker {
 
     @Override
     public void walk(Ladder ladder) {
-        List<Rail> rails = ladder.getSticks();
         for (int i = 0; i < ladder.getHeight(); i++) {
-            processRow(rails, i);
+            processRow(ladder, i);
         }
     }
 
-    private void processRow(List<Rail> rails, int row) {
+    private void processRow(Ladder ladder, int row) {
         Node left = null;
         Node right;
-        for (Rail rail : rails) {
-            right = rail.getNodes().get(row);
+        for (int i = 0; i < ladder.getWidth(); i++) {
+            Rail rail = ladder.getRailAt(i);
+            right = rail.getNodeAt(row);
             callback.process(left, right);
             left = right;
         }

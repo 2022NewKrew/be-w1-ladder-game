@@ -11,8 +11,8 @@ public class LadderService {
 
     private static final float NEIGHBOR_RATE = 0.5f;
 
-    public static Ladder initialize(int height, int participants) {
-        Ladder ladder = new Ladder(height, participants);
+    public static Ladder initialize(int height, int width) {
+        Ladder ladder = new Ladder(height, width);
         MultipleNodesWalker.Callback cb = LadderService::connectNeighbors;
         MultipleNodesWalker walker = new PossibleNeighborsWalker(cb);
         walker.walk(ladder);

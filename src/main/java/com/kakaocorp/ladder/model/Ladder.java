@@ -16,8 +16,12 @@ public class Ladder {
         }
     }
 
-    public List<Rail> getSticks() {
-        return rails;
+    public Rail getRailAt(int index) {
+        return rails.get(index);
+    }
+
+    public int getWidth() {
+        return rails.size();
     }
 
     public int getHeight() {
