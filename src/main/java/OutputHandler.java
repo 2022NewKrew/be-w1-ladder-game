@@ -1,7 +1,7 @@
 public class OutputHandler {
     private static final String VERTICAL_LINE = "|";
-    private static final String HORIZONTAL_LINE_FILLED = "-";
-    private static final String HORIZONTAL_LINE_EMPTY = " ";
+    private static final String HORIZONTAL_LINE_FILLED = "-----";
+    private static final String HORIZONTAL_LINE_EMPTY = "     ";
 
     public static void printLadder(Ladder ladder) {
         for (Layer layer : ladder.getLayers()) {
