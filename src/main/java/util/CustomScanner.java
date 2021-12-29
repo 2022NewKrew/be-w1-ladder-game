@@ -39,7 +39,7 @@ public final class CustomScanner {
         return value;
     }
 
-    public String nextLimitedLengthString(int maxLength, String message){
+    public String nextCommaSeperatedString(int maxLength, String message){
         String value;
         System.out.println(message);
 

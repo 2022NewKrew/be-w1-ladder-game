@@ -31,7 +31,7 @@ public class GameManager {
         ArrayList<Player> players = new ArrayList<>();
         while(players.size() < numParticipant){
             System.out.println();
-            String name = sc.nextLimitedLengthString(5, (players.size() + 1) + "번 플레이어의 이름을 입력하세요");
+            String name = sc.nextCommaSeperatedString(5, (players.size() + 1) + "번 플레이어의 이름을 입력하세요");
             players.add(new Player(name));
         }
         return players;
