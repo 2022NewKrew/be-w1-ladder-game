@@ -3,13 +3,13 @@ package ladder;
 public class BridgeBuilder {
 
     private final boolean[][] bridges;
-    private final int participants;
+    private final int numOfParticipants;
     private final int height;
     private final RandomBridgeManger randomBridgeManger;
 
-    public BridgeBuilder(int participants, int height, RandomBridgeManger randomBridgeManger) {
-        this.bridges = new boolean[height][participants - 1];
-        this.participants = participants;
+    public BridgeBuilder(String[] participants, int height, RandomBridgeManger randomBridgeManger) {
+        this.numOfParticipants = participants.length;
+        this.bridges = new boolean[height][numOfParticipants - 1];
         this.height = height;
         this.randomBridgeManger = randomBridgeManger;
     }
@@ -26,7 +26,7 @@ public class BridgeBuilder {
     }
 
     private void connectRowBridges(int currentHeight) {
-        for (int currentWidth = 0; currentWidth < participants - 1; currentWidth++) {
+        for (int currentWidth = 0; currentWidth < numOfParticipants - 1; currentWidth++) {
             connectBridge(currentWidth, currentHeight);
         }
     }
