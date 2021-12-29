@@ -2,9 +2,9 @@
 
 자바 웹 백엔드 1주차 사다리 게임
 
-# 2일차
+# step3
 - ## 요구사항  
-  - ### Step 1 PR 피드백 요구사항 
+  - ### Step 1 PR 피드백
     - Main 에 있는 IO 관련 프로세스를 함수화
     - numOfPeople , height 변수를 final 변수로 변경하고, setter 삭제.
     - 사용되지 않는 메소드 제거.
@@ -23,3 +23,20 @@
   - indent depth를 줄이고자 2기존의 Ladder를 2차원 Array로 표현하던 구조를 ArrayList 내 class로 변경.
     - ArrayList<Line> 를 이용하여 drawLadder 표현.
     - Line Clss를 만들어, 각 사다리의 높이 별로 각 줄을 생성
+  - 매번 print로 각 위치를 출력하는 것을 String 을 사용하여 줄단위로 print 하도록 수정. 
+# step3
+- ## 요구사항
+  - ### Step2 PR 피드백
+    - ArrayList 로 타입 선언된 객체를 List형으로 변경
+    - Ladder 클래스 내 structure를 final로 설정.
+    - gitignore을 통해 .idea, .iml 파일 push 되지 않도록 처리
+  - ### 개선 필요해 보이는 부분
+  - ### 3단계 요구사항
+    - 사람 이름 부여.
+    - 사다리의 폭 넓게 생성.
+    - ArrayList와 Generic을 활용해 구현.
+    - 사다리 라인이 겹치지 않도록 생성.
+  - ![img_1.png](img_1.png)
+
+- ## 구현 내용
+  - 
