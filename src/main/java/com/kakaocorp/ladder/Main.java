@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final int MAX_PARTICIPANT = 5;
+    private static final int MAX_NAME_LENGTH = 5;
 
     public static void main(String... args) {
         Scanner sc = new Scanner(System.in);
@@ -17,7 +17,7 @@ public class Main {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int height = sc.nextInt();
 
-        Rule rule = new Rule.Builder().maxNameLength(MAX_PARTICIPANT).build();
+        Rule rule = new Rule.Builder().maxNameLength(MAX_NAME_LENGTH).build();
         LadderService service = new LadderService(rule);
         Ladder ladder = service.initialize(height, participants);
         String s = service.buildString(ladder);
