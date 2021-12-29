@@ -7,8 +7,8 @@ public class Ladder {
 
     public int numParticipants;
     public int height;
-    public ArrayList<String> listOfParticipants = new ArrayList<>();
-    public ArrayList<LadderRow> shape = new ArrayList<>();
+    public final ArrayList<String> listOfParticipants = new ArrayList<>();
+    public final ArrayList<LadderRow> shape = new ArrayList<>();
 
     public void getInput() {
         Scanner sc = new Scanner(System.in);
