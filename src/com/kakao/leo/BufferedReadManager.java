@@ -59,7 +59,7 @@ public class BufferedReadManager implements ReadManager {
           .stream()
           .map(Person::new)
           .collect(Collectors.toList());
-    }catch(Exception e) {
+    } catch (Exception e) {
       println(WRONG_INPUT_PEOPLE_MENT + " [" + input + "]");
     }
     return null;

@@ -7,6 +7,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
 
+/**
+ * 사다리의 한 층을 나타내는 객체, 한 층의 Separator 생성 및 Separator 길이 활용을 담당.
+ *
+ * @author leo.jung
+ * @since 1.0
+ */
 public class Floor implements Iterable<LadderCell> {
 
   public static final int DEFAULT_SEPARATOR_LENGTH = 5;
@@ -43,7 +49,7 @@ public class Floor implements Iterable<LadderCell> {
 
 
   private LadderCell getSeparator(int current) {
-    if(isPrevSeparatorEmpty(current)) {
+    if (isPrevSeparatorEmpty(current)) {
       return random.nextBoolean() ? LadderCell.SEPARATOR : LadderCell.EMPTY_SEPARATOR;
     }
     return LadderCell.EMPTY_SEPARATOR;
@@ -66,12 +72,12 @@ public class Floor implements Iterable<LadderCell> {
 
 
   private void appendCell(StringBuilder sb, LadderCell ladderCell) {
-    if(ladderCell == LadderCell.LINE) {
+    if (ladderCell == LadderCell.LINE) {
       sb.append(ladderCell);
       return;
     }
 
-    for(int i = 0; i < separatorLength; i++) {
+    for (int i = 0; i < separatorLength; i++) {
       sb.append(ladderCell);
     }
   }

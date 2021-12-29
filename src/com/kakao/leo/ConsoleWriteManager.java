@@ -8,7 +8,8 @@ package com.kakao.leo;
  */
 public class ConsoleWriteManager implements WriteManager {
 
-  private ConsoleWriteManager() {}
+  private ConsoleWriteManager() {
+  }
 
   public static ConsoleWriteManager create() {
     return new ConsoleWriteManager();
