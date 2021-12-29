@@ -1,33 +1,20 @@
 package main.java;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class Ladder {
-    public static int height;
-    public static String ladderLine;
-    private String bridgeLine;
+    private final int height;
+    private List<LadderBrick> ladderBricks;
 
-    Ladder() {
-        bridgeLine = " ".repeat(height);
+
+    Ladder(int height) {
+        this.height = height;
+        this.ladderBricks = IntStream.range(0, height).mapToObj(e -> new LadderBrick()).collect(Collectors.toList());
     }
 
-
-    public static void initLadder(int ladderHeight) {
-        if (ladderHeight > 0) {
-            height = ladderHeight;
-            Ladder.ladderLine = "|".repeat(ladderHeight);
-        }
-    }
-
-    public boolean isConnectedAt(int heightIdx) {
-        return this.bridgeLine.charAt(heightIdx) == '-';
-    }
-
-    public void connectBridge(int heightIdx) {
-        StringBuilder builder = new StringBuilder(bridgeLine);
-        builder.setCharAt(heightIdx, '-');
-        bridgeLine = builder.toString();
-    }
-
-    public String getBridgeLine() {
-        return bridgeLine;
+    public LadderBrick getLadderBrickAt(int heightIdx){
+        return ladderBricks.get(heightIdx);
     }
 }

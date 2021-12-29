@@ -7,7 +7,6 @@ public class Main {
         engine.inputUser();
         engine.inputLadder();
         engine.createLadders();
-        engine.connectRandomBridges();
-        engine.printLadder();
+        engine.showLadders();
     }
 }
