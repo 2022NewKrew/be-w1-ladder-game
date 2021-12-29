@@ -7,7 +7,7 @@ public class LadderFrameLine {
 
     private final List<LadderFrame> ladderFrameList;
 
-    public LadderFrameLine(int frameLineLength){
+    public LadderFrameLine(int frameLineLength) {
         ladderFrameList = generateLadderLine(frameLineLength);
     }
 

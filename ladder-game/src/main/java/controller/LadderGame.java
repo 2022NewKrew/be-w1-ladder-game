@@ -13,7 +13,7 @@ public class LadderGame {
         ladder = new Ladder(numberOfPeople, ladderHeight);
     }
 
-    public static synchronized LadderGame getInstance(int numberOfPeople, int ladderHeight) throws IllegalArgumentException {
+    public static synchronized LadderGame getInstance(int numberOfPeople, int ladderHeight) {
         if (INSTANCE == null) {
             INSTANCE = new LadderGame(numberOfPeople, ladderHeight);
         }
