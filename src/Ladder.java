@@ -1,5 +1,6 @@
 import java.util.List;
-import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final int numberOfLegs;
@@ -8,9 +9,9 @@ public class Ladder {
     Ladder(int numberOfPeople, int height) {
         this.numberOfLegs = numberOfPeople;
 
-        ladder = new ArrayList<>();
-        for(int i = 0; i < height; i++)
-            ladder.add(new Line(numberOfLegs));
+        ladder = IntStream.range(0, height)
+                .mapToObj(e -> new Line(numberOfLegs))
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Override

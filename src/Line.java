@@ -1,24 +1,35 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Line {
-    private static final Character STRIPE = '|';
-    private static final Character BRIDGE = '-';
-    private static final Character SPACE = ' ';
+    private static final String STRIPE = "|";
+    private static final String BRIDGE = "-----";
+    private static final String SPACE = "     ";
 
     private final List<Boolean> line;
 
     Line(int numberOfLegs) {
-        line = new ArrayList<>();
-        drawLines(numberOfLegs);
+        line = drawLines(numberOfLegs);
     }
 
-    private void drawLines(int width) {
+    private List<Boolean> drawLines(int width) {
         Random random = new Random();
-        for(int i = 0; i < width - 1; i++) {
-            line.add(random.nextBoolean());
-        }
+        List<Boolean> line = new ArrayList<>();
+
+        IntStream.range(0, width-1).forEach( i -> {
+            line.add(!isPrevBridge(line, i) && random.nextBoolean());
+        });
+
+        return Collections.unmodifiableList(line);
+    }
+
+    private boolean isPrevBridge(List<Boolean> line, int idx) {
+        if(idx == 0)
+            return false;
+        return line.get(idx-1);
     }
 
     @Override
