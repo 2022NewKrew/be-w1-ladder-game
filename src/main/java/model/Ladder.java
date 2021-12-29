@@ -9,6 +9,7 @@ public class Ladder {
     private final int height;
     private List<ArrayList<Boolean>> connections;
     private ArrayList<Player> players;
+    private Random random = new Random();
 
     public Ladder(int numParticipant, int height, ArrayList<Player> players) {
         this.numParticipant = numParticipant;
@@ -31,21 +32,20 @@ public class Ladder {
 
     private void createLadder(){
         connections = new ArrayList<>();
-        Random random = new Random();
         for(int i = 0; i < height; i++){
-            connections.add(createRow(random));
+            connections.add(createRow());
         }
     }
 
-    private ArrayList<Boolean> createRow(Random random){
+    private ArrayList<Boolean> createRow(){
         ArrayList<Boolean> row = new ArrayList<>();
         for(int j = 0; j < numParticipant - 1; j++){
-            row.add(createCell(random, row, j));
+            row.add(createCell(row, j));
         }
         return row;
     }
 
-    private Boolean createCell(Random random, ArrayList<Boolean> row, int colIndex){
+    private Boolean createCell(ArrayList<Boolean> row, int colIndex){
         if(colIndex == 0 || Boolean.FALSE.equals(row.get(colIndex - 1))){
             return random.nextBoolean();
         }
