@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Ladder {
+public class LadderController {
     private static final String DOWN = "| ";
     private static final String RIGHT = "|-";
     private static final Random random = new Random();
