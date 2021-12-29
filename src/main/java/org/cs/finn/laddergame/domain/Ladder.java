@@ -20,7 +20,6 @@ public class Ladder {
         if (input == null) {
             throw new RuntimeException("Input for build Ladder is null!");
         }
-        ladderRows.clear();
 
         final int member = input.getMember();
         final int bound = 1 << (member - 1);
