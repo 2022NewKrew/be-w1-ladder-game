@@ -6,6 +6,7 @@ public class Main {
     final static String LADDER_PILLAR = "|";
     final static String LADDER_BRIDGE = "-----";
     final static String LADDER_EMPTY = "     ";
+    final static int MAX_NAME_LENGTH = 6;
 
     // 자주 쓸 것 같은 애들은 밖에다 빼놓기
     static List<String> peopleNameList;
@@ -44,7 +45,7 @@ public class Main {
 
     public static void printLadder(Ladder ladder) {
         for (String name : peopleNameList) {
-            String sortedName = center(6, name);
+            String sortedName = center(MAX_NAME_LENGTH, name);
             System.out.print(sortedName);
         }
 
