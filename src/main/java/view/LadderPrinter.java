@@ -18,25 +18,27 @@ public class LadderPrinter {
     }
 
     public void displayLadder(Ladder ladder){
-        printPlayer(ladder.getPlayers());
-        printLadder(ladder.getConnections());
+        StringBuilder sb = new StringBuilder();
+        printPlayer(sb, ladder.getPlayers());
+        printLadder(sb, ladder.getConnections());
+        System.out.print(sb.toString());
     }
 
-    private void printPlayer(ArrayList<Player> players){
+    private void printPlayer(StringBuilder sb, ArrayList<Player> players){
         players.forEach(player -> {
             String name = player.getName();
             int len = name.length();
             String paddedName = padRight(name, (5 - len) / 2 + len);
-            System.out.printf("%5s ", paddedName);
+            sb.append(String.format("%5s ", paddedName));
         });
-        System.out.println();
+        sb.append("\n");
     }
 
-    private void printLadder(List<ArrayList<Boolean>> connections){
+    private void printLadder(StringBuilder sb, List<ArrayList<Boolean>> connections){
         connections.forEach(row -> {
-            System.out.print("  │");
-            row.forEach(item -> System.out.print(item ? "-----│" : "     │"));
-            System.out.println();
+            sb.append("  │");
+            row.forEach(item -> sb.append(item ? "-----│" : "     │"));
+            sb.append("\n");
         });
     }
 }
