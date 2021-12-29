@@ -23,7 +23,8 @@ public class LadderSimpleGame extends LadderGame {
     private boolean[] createFloorMap(int col) {
         boolean[] map = new boolean[col];
         for (int j = 0; j < col; j++) {
-            map[j] = trueAndFalseGenerator();
+            // 연속된 다리가 나올수 없음.
+            map[j] = (j <= 0 || !map[j - 1]) && trueAndFalseGenerator();
         }
 
         return map;
