@@ -5,27 +5,27 @@ import java.util.Scanner;
 
 public class Ladder {
 
-    public int numParticipants;
-    public int height;
+    public static int numParticipants;
+    public static int height;
 
-    public final ArrayList<String> listOfParticipants = new ArrayList<>();
-    public final ArrayList<LadderRow> shape = new ArrayList<>();
+    public static final ArrayList<String> listOfParticipants = new ArrayList<>();
+    public static final ArrayList<LadderRow> shape = new ArrayList<>();
 
-    public void preprocessInput(String inputParticipants, int height) {
+    public static void preprocessInput(String participantsInput, int heightInput) {
 
-        tokenizeNameInput(inputParticipants);
-        this.height = height;
+        tokenizeNameInput(participantsInput);
+        height = heightInput;
         validateNonZero(height);
 
     }
 
-    public void makeLadder() {
-        for(int row = 0; row < this.height; row++) {
+    public static void makeLadder() {
+        for(int row = 0; row < height; row++) {
             shape.add(new LadderRow(numParticipants));
         }
     }
 
-    public void printLadder() {
+    public static void printLadder() {
         for(int i = 0; i < listOfParticipants.size(); i++) {
             System.out.print(listOfParticipants.get(i) + " ");
         }
@@ -33,18 +33,18 @@ public class Ladder {
 
         StringBuffer ladderEntire = new StringBuffer();
 
-        for(int row = 0; row < this.height; row++) {
+        for(int row = 0; row < height; row++) {
             ladderEntire.append(shape.get(row).toString());
         }
 
         System.out.println(ladderEntire.toString());
     }
 
-    private void validateNonZero (int input) {
+    private static void validateNonZero (int input) {
         if (input < 1) throw new IllegalArgumentException("양의 정수를 입력해주세요");
     }
 
-    private void tokenizeNameInput (String inputParticipants) {
+    private static void tokenizeNameInput (String inputParticipants) {
         String[] tempListOfParticipants;
 
         tempListOfParticipants = inputParticipants.split(",");
@@ -54,7 +54,7 @@ public class Ladder {
         }
     }
 
-    private String alignStringCenter(String inputStr) {
+    private static String alignStringCenter(String inputStr) {
         String str = inputStr.trim();
         if (str.length() > 5) throw new IllegalArgumentException("이름은 5글자 이하로 입력해주세요");
         if (str.length() == 1) return "  " + str + "  ";

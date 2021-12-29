@@ -7,18 +7,12 @@ import java.util.Scanner;
 
 public class LadderController {
 
-    private final LadderService ladderService;
-
-    public LadderController(LadderService ladderService) {
-        this.ladderService = ladderService;
-    }
-
-    public void startGame() {
+    public static void startGame() {
         LadderDto ladderDto = getInput();
-        ladderService.runLadderGame(ladderDto);
+        LadderService.runLadderGame(ladderDto);
     }
 
-    private LadderDto getInput() {
+    private static LadderDto getInput() {
         Scanner sc = new Scanner(System.in);
         String inputParticipants;
 
@@ -31,8 +25,5 @@ public class LadderController {
 
         return new LadderDto(inputParticipants, height);
     }
-
-
-
 
 }
