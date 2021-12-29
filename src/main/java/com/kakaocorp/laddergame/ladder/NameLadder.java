@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 public class NameLadder extends Ladder {
 
-    final private List<String> rowItems = Arrays.asList("-----", "     ");
-    List<String> members;
+    private final List<String> rowItems = Arrays.asList("-----", "     ");
+    private List<String> members;
 
     @Override
     public boolean start() {
@@ -46,18 +46,17 @@ public class NameLadder extends Ladder {
                 .map(String::trim)
                 .collect(Collectors.toList());
 
-        while (members.size() < 1) {
-            System.out.println("입력이 잘못되었습니다. 예시를 참고해주세요. 그만하고 싶으시면 exit를 입력해주세요.");
-            members = Arrays.stream(sc.nextLine().split(","))
-                    .map(String::trim)
-                    .collect(Collectors.toList());
+//        while (members.size() < 1) {
+//            System.out.println("입력이 잘못되었습니다. 예시를 참고해주세요. 그만하고 싶으시면 exit를 입력해주세요.");
+//            members = Arrays.stream(sc.nextLine().split(","))
+//                    .map(String::trim)
+//                    .collect(Collectors.toList());
+//
+//            if (members.size() > 0 && members.get(0).equals("exit")) {
+//                return false;
+//            }
+//        }
 
-            if (members.size() > 0 && members.get(0).equals("exit")) {
-                return false;
-            }
-        }
-
-        System.out.println(members);
         setNumber(members.size());
         return true;
     }
