@@ -3,9 +3,10 @@ package com.cold.ladderGame;
 public class LadderGame {
 
   public static void main(String[] args) {
-    Ladder ladder = new Ladder();
+    GameInfo gameInfo = new GameInfo();
+    gameInfo.setValues();
 
-    ladder.init();
-    ladder.printLadder();
+    Ladder ladder = new Ladder(gameInfo.getWidth(), gameInfo.getHeight());
+    ladder.printLadder(gameInfo.getUsers());
   }
 }
