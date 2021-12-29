@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class PrintManager {
 
     private static final String VLINE = "|";
-    private static final String HLINE = "----";
-    private static final String SPACE = "    ";
+    private static final String HLINE = "-----";
+    private static final String SPACE = "     ";
     private static final String DELIMITER = " ";
 
     public PrintManager() {
@@ -13,7 +13,7 @@ public class PrintManager {
         StringBuilder stringNamePeople = new StringBuilder();
 
         for(String name : namePeople){
-            stringNamePeople.append(String.format("%-5s",name));
+            stringNamePeople.append(String.format("%-6s",name));
         }
         System.out.println(stringNamePeople);
     }
