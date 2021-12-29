@@ -3,7 +3,6 @@ package com.chanminkim.w1.view;
 import com.chanminkim.w1.model.Ladder;
 import com.chanminkim.w1.model.LadderState;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -15,8 +14,8 @@ public class LadderConverter {
     );
 
     public static String convertToString(Ladder ladder) {
-        return Arrays.stream(ladder.getMap())
-                .map(line -> Arrays.stream(line)
+        return ladder.getMap().stream()
+                .map(line -> line.getStates().stream()
                         .map(STATE_STRING_MAP::get)
                         .collect(Collectors.joining()))
                 .collect(Collectors.joining("\n"));

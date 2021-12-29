@@ -1,13 +1,16 @@
 package com.chanminkim.w1.model;
 
-public class Ladder {
-    private final LadderState[][] map;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Ladder(LadderState[][] map) {
-        this.map = map;
+public class Ladder {
+    private final List<LadderLine> map = new ArrayList<>();
+
+    public void appendLine(LadderLine line) {
+        map.add(line);
     }
 
-    public LadderState[][] getMap() {
+    public List<LadderLine> getMap() {
         return map;
     }
 }

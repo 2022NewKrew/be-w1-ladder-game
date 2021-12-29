@@ -2,10 +2,10 @@ package com.chanminkim.w1.service;
 
 import com.chanminkim.w1.controller.LadderGameDTO;
 import com.chanminkim.w1.model.Ladder;
+import com.chanminkim.w1.model.LadderLine;
 import com.chanminkim.w1.model.LadderState;
 
 import java.security.SecureRandom;
-import java.util.Arrays;
 import java.util.Random;
 
 public class LadderGameService {
@@ -20,19 +20,21 @@ public class LadderGameService {
     }
 
     public Ladder buildLadder(LadderGameDTO dto) {
+        Ladder ladder = new Ladder();
         int widthOfLadder = dto.getNumberOfPlayers() * 2 - 1;
-        return new Ladder(Arrays.stream(new LadderState[dto.getHeightOfLadder()][widthOfLadder])
-                .map(this::buildLine)
-                .toArray(LadderState[][]::new));
+        for (int i = 0; i < dto.getHeightOfLadder(); i++) {
+            ladder.appendLine(buildLine(widthOfLadder));
+        }
+        return ladder;
     }
 
-    private LadderState[] buildLine(LadderState[] line) {
-        for (int i = 1; i < line.length - 1; i += 2) {
-            line[i - 1] = LadderState.VERTICAL;
-            boolean isOccurredBefore = i > 1 && line[i - 2].equals(LadderState.HORIZONTAL);
-            line[i] = buildPiece(isOccurredBefore);
+    private LadderLine buildLine(Integer width) {
+        LadderLine line = new LadderLine();
+        for (int i = 0; i < width - 1; i += 2) {
+            line.appendState(LadderState.VERTICAL);
+            line.appendState(buildPiece(line.isOccurredBefore()));
         }
-        line[line.length - 1] = LadderState.VERTICAL;
+        line.appendState(LadderState.VERTICAL);
         return line;
     }
 
