@@ -5,6 +5,8 @@ plugins {
 group 'com.kakaocorp'
 version '1.0.0.k'
 
+sourceCompatibility = JavaVersion.VERSION_11
+
 repositories {
     mavenCentral()
 }
