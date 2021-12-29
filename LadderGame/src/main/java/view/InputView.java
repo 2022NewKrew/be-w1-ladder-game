@@ -4,8 +4,8 @@ import domain.Ladder;
 import java.util.Scanner;
 
 public class InputView {
-    private String[] participants;
     private static Scanner sc = new Scanner(System.in);
+
     public InputView(){
     }
 

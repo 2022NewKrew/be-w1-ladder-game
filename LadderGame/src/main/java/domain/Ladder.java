@@ -7,9 +7,10 @@ public class Ladder {
 
     public Ladder(int peopleNum, int height){
         map = new ArrayList<Line>();
-        this.setMap(peopleNum, height);
+        this.makeMap(peopleNum, height);
     }
-        public void setMap(int peopleNum, int height){
+
+    private void makeMap(int peopleNum, int height){
         for(int i = 0; i < height; i++){
             this.map.add(new Line(peopleNum));
         }
