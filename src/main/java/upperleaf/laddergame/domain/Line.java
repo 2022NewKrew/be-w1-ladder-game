@@ -1,3 +1,5 @@
+package upperleaf.laddergame.domain;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,7 +7,7 @@ import java.util.List;
  * 선을 나타내는 객체입니다.
  * 왼쪽 선, 오른쪽 선과 연결되어있는지 확인하기 위해서 List<Boolean> 객체를 이용하고 있습니다. 인덱스는 높이를 의미하고, 값은 연결 여부를 의미합니다.
  */
-public class Line {
+class Line {
     private final List<Boolean> isLeftLineConnected;
     private final List<Boolean> isRightLineConnected;
 
@@ -24,6 +26,9 @@ public class Line {
      * 선을 오른쪽으로 연결합니다.
      */
     public void connectToRight(int height) {
+        if (isLastLine()) {
+           throw new IllegalStateException("마지막 선은 오른쪽으로 연결할 수 없습니다.");
+        }
         this.isRightLineConnected.set(height, true);
     }
 
@@ -31,6 +36,9 @@ public class Line {
      * 선을 왼쪽으로 연결합니다.
      */
     public void connectToLeft(int height) {
+        if (isFirstLine()) {
+            throw new IllegalStateException("첫번째 선은 왼쪽으로 연결할 수 없습니다.");
+        }
         this.isLeftLineConnected.set(height, true);
     }
 

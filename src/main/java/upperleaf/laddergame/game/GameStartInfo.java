@@ -1,3 +1,5 @@
+package upperleaf.laddergame.game;
+
 import java.util.List;
 
 /**
@@ -9,10 +11,17 @@ public class GameStartInfo {
     private final int gamePlayerNum;
     private final int maxLadderHeight;
 
-    public GameStartInfo(List<String> playerNames, int gamePlayerNum, int maxLadderHeight) {
-        this.gamePlayerNum = gamePlayerNum;
+    public GameStartInfo(List<String> playerNames, int maxLadderHeight) {
+        valid(playerNames, maxLadderHeight);
+        this.gamePlayerNum = playerNames.size();
         this.maxLadderHeight = maxLadderHeight;
         this.playerNames = playerNames;
+    }
+
+    private void valid(List<String> playerNames, int maxLadderHeight) {
+        if(playerNames.size() <= 0 || maxLadderHeight < 1) {
+            throw new IllegalArgumentException("게임 정보를 생성할 수 없습니다.");
+        }
     }
 
     public List<String> getPlayerNames() {
