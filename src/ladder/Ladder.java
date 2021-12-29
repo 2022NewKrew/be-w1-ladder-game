@@ -1,7 +1,6 @@
 package ladder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -35,10 +34,12 @@ public class Ladder {
 
     private Character fillLine(int colIdx) {
         if (colIdx % 2 == 0) {
-            return '|';
+            return LadderComponent.VERTICAL.getValue();
         }
-        List<Character> randLine = Arrays.asList(' ', '-');
-        return randLine.get(rand.nextInt(randLine.size()));
+        if(rand.nextBoolean()){
+            return LadderComponent.HORIZONTAL.getValue();
+        }
+        return LadderComponent.EMPTY.getValue();
     }
 
     @Override
