@@ -1,60 +1,50 @@
-import java.util.Random;
-import java.util.Scanner;
-
 public class Ladder {
-    public static void main(String[] args) {
-        //input
-        LadderObj ladderObj = input();
+    private final int width;
+    private final int height;
+    private boolean[][] shape;
 
-        //business logic
-        boolean[][] ladderGame = makeLadderGame(ladderObj);
-
-        //output
-        StringBuilder stringBuilder = output(ladderGame, ladderObj);
-        System.out.println(stringBuilder.toString());
+    public Ladder(int width, int height) {
+        if(width < 1 || height < 1)
+            throw new IllegalArgumentException("유효하지 않은 입력값 입니다.");
+        this.width = width;
+        this.height = height;
     }
 
-    public static LadderObj input(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("참여할 사람은 몇 명인가요?");
-        int members = scanner.nextInt();
-        System.out.println("최대 사다리 높이는 몇 개 인가요?");
-        int ladders = scanner.nextInt();
-        return new LadderObj(members, ladders);
+    public boolean[][] getShape() {
+        return shape;
     }
 
-    public static boolean[][] makeLadderGame(LadderObj ladderObj){
-        Random random = new Random();
-        random.setSeed(System.currentTimeMillis());
-        boolean[][] ladderGame = new boolean[ladderObj.ladders][ladderObj.members-1];
-        for(int i = 0 ; i < ladderObj.ladders; ++i){
-            for(int j = 0 ; j < ladderObj.members-1; ++j){
-                if(j != 0 && ladderGame[i][j-1]) continue;
-                if(random.nextInt(2) == 1) ladderGame[i][j] = true;
-            }
-        }
-        return ladderGame;
+    public int getWidth() {
+        return width;
     }
 
-    public static StringBuilder output(boolean[][] ladderGame, LadderObj ladderObj){
+    public int getHeight() {
+        return height;
+    }
+
+    public void setShape(boolean[][] shape) {
+        this.shape = shape;
+    }
+
+    private String getRowShape(int row){
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0 ; i < ladderObj.ladders; ++i){
-            stringBuilder.append("|");
-            for(int j = 0 ; j < ladderObj.members-1; ++j){
-                if(ladderGame[i][j]) stringBuilder.append("-|");
-                else stringBuilder.append(" |");
-            }
-            stringBuilder.append("\n");
+        for(int c = 0 ; c < shape[row].length-1; ++c){
+            stringBuilder.append(getMaterial(shape[row][c]));
         }
-        return stringBuilder;
+        stringBuilder.append("|\n");
+        return stringBuilder.toString();
     }
-}
+    private String getMaterial(boolean bridge){
+        return bridge? "|-" : "| ";
+    }
 
-class LadderObj{
-    int members;
-    int ladders;
-    public LadderObj(int members, int ladders){
-        this.members = members;
-        this.ladders = ladders;
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int r = 0 ; r < shape.length; ++r){
+            stringBuilder.append(getRowShape(r));
+        }
+        return stringBuilder.toString();
     }
+
 }
