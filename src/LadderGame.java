@@ -15,31 +15,11 @@ public class LadderGame {
         row = sc.nextInt();
     }
 
-    // 사다리 가로로 한줄을 만듦
-    // 사다리 대가 놓여지는 위치와 옆으로 넘어갈수 있는 칸을 구분하여 프린트
-    static void makeOneDepthLadder() {
-        for (int c = 0; c < col * 2-1; c++) {
-            if ((c & 1) == 0) {
-                System.out.print("|");
-            } else if (rand.nextBoolean()) {
-                System.out.print(" ");
-            } else {
-                System.out.print("-");
-            }
-        }
-    }
-
-    // 높이 별로 사다리를 만들고 한 높이를 다 만든 후에는 줄 바꿈
-    static void makeLadder() {
-        for (int r=0; r < row; r++) {
-            makeOneDepthLadder();
-            System.out.println();
-        }
-    }
 
     // 메서드들을 호출
     public static void main(String[] args) {
         getColAndRol();
-        makeLadder();
+        Ladder ladder = new Ladder(col, row);
+        ladder.printLadder();
  }
 }
