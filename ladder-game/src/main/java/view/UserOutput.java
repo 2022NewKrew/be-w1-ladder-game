@@ -38,17 +38,19 @@ public class UserOutput {
     }
 
     private static void printUserList(List<String> userList) {
-        int leftSpace;
-        int rightSpace = 0;
-        double temp;
         for (String userName : userList) {
-            temp = (7 - userName.length());
-            leftSpace = (int) Math.ceil(temp / 2) + rightSpace;
-            rightSpace = ((int) temp - leftSpace) - 1 + rightSpace;
-            leftSpace += userName.length();
-            System.out.printf("%" + leftSpace + "s", userName);
+            formattedPrintForUser(userName);
         }
         System.out.println();
+    }
+    private static void formattedPrintForUser(String userName) {
+        int leftSpace;
+        int rightSpace;
+        double temp;
+        temp = (7 - userName.length());
+        leftSpace = (int) Math.ceil(temp / 2);
+        rightSpace = ((int) temp - leftSpace) - 1;
+        System.out.print(" ".repeat(leftSpace) + userName + " ".repeat(rightSpace));
     }
 
 }
