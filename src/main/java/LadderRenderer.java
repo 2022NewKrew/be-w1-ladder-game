@@ -7,7 +7,7 @@ public class LadderRenderer {
         this.maxNameLength = maxNameLength;
     }
 
-    public void render(String[] people, int heightOfLadder, ArrayList<ArrayList<Boolean>> connections){
+    public void render(String[] people, int heightOfLadder, ArrayList<Line> connections){
         StringBuilder ladderString = new StringBuilder();
 
         ladderString.append(renderName(people));
@@ -31,7 +31,7 @@ public class LadderRenderer {
         return " ".repeat(leftPadding) + name + " ".repeat(rightPadding);
     }
 
-    public StringBuilder renderOneLine(String[] people, ArrayList<ArrayList<Boolean>> connections, int layer){
+    public StringBuilder renderOneLine(String[] people, ArrayList<Line> connections, int layer){
         StringBuilder ladderStringOneLine = new StringBuilder("  ");
 
         int numOfPeople = people.length;
