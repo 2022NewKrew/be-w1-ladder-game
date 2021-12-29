@@ -20,14 +20,6 @@ public class Line {
         }
     }
 
-    private String convPointToString(int i) {
-        if (i % 2 == 0) return LADDER_VERT;
-
-        if (points.get((i - 1) / 2)) return LADDER_HORI;
-
-        return LADDER_EMP;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(LADDER_EMP);
@@ -39,5 +31,13 @@ public class Line {
         sb.append("\n");
 
         return sb.toString();
+    }
+
+    private String convPointToString(int i) {
+        if (i % 2 == 0) return LADDER_VERT;
+
+        if (points.get((i - 1) / 2)) return LADDER_HORI;
+
+        return LADDER_EMP;
     }
 }
