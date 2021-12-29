@@ -194,4 +194,6 @@ gradle-app.setting
 .iws
 */out
 
+gradlew
+gradlew.bat
 # End of https://www.toptal.com/developers/gitignore/api/gradle,java,macos,intellij

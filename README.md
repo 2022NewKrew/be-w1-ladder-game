@@ -16,7 +16,7 @@
   
 ### 구현 내용
 다음과 같은 두 개의 클래스로 기능 구현
-- LadderGenerator Class
+- Ladder Class
   - generateLadder()
     - 사다리 생성 / Main.startGame 에서 호출
   - printLadder()
@@ -48,7 +48,7 @@
   
 ### 구현 내용
 step1 에서 구현한 코드 리팩토링 수행
-- LadderGenerator -> LadderGenerator 와 Line 클래스로 분리
+- Ladder -> Ladder 와 Line 클래스로 분리
 - GameController 클래스 생성, Main 클래스의 대부분의 메서드 GameController 로 이전
 - 2차원 배열 -> 2차원 ArrayList 로 변경
 
@@ -56,15 +56,37 @@ Line Class
 - 사다리 게임에서 하나의 층을 담당
 - 실질적으로 랜덤 사다리 요소를 만들고 출력하는 기능 수행
   
-LadderGenerator Class
+Ladder Class
 - Line Class 로 이루어진 ArrayList 를 관리하고 Line 의 메서드를 호출하는 역할 수행
   
 GameController Class
 - 게임 시작부터 종료까지 일련의 과정을 컨트롤하는 역할 수행
-- LadderGenerator 인스턴스를 생성하여 사다리 생성, 출력 메서드 호출
+- Ladder 인스턴스를 생성하여 사다리 생성, 출력 메서드 호출
 - 입력 및 유효성 검사 수행
 - 추후 게임 결과를 확인하는 메서드 추가할 예정
   
 Main Class
 - GameController 인스턴스를 생성하여 게임 시작
   
+## step3
+### 기능 요구사항
+- 사다리 게임에 참여하는 사람에 이름을 최대5글자까지 부여할 수 있다. 사다리를 출력할 때 사람 이름도 같이 출력한다.
+- 사람 이름은 쉼표(,)를 기준으로 구분한다.
+- 사람 이름을 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다.
+- 사다리 타기가 정상적으로 동작하려면 라인이 겹치지 않도록 해야 한다.
+  - |-----|-----| 모양과 같이 가로 라인이 겹치는 경우 어느 방향으로 이동할지 결정할 수 없다.
+  
+### 프로그래밍 요구사항
+- 메소드의 크기가 최대 10라인을 넘지 않도록 구현한다.
+- method가 한 가지 일만 하도록 최대한 작게 만들어라.
+- indent(들여쓰기) depth를 2단계에서 1단계로 줄여라.
+- depth의 경우 if문을 사용하는 경우 1단계의 depth가 증가한다. if문 안에 while문을 사용한다면 depth가 2단계가 된다.
+- else를 사용하지 마라.
+- 배열 대신 ArrayList와 Generic을 활용해 구현한다.
+  
+### 구현 내용
+- Line 클래스를 Ladder 클래스의 내부 클래스로 변경
+- GameController 클래스에서 입출력부분을 IOController 로 이전
+- 사다리에 중복된 다리가 생기는 것을 방지하는 로직 추가
+- 유저 이름 입력 및 출력 기능 추가
+- 유저 이름을 정렬하는 로직 추가
