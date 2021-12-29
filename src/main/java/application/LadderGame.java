@@ -3,67 +3,20 @@ package application;
 import domain.Ladder;
 import view.LadderPrinter;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
-import java.util.StringTokenizer;
-import java.util.stream.Collectors;
 
 public class LadderGame {
-    private static final Scanner in = new Scanner(System.in);
     public static final int MAXIMUM_NAME_LENGTH = 5;
 
     public static void main(String[] args) {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        List<String> nameList = inputNameList();
+        List<String> nameList = GameInputScanner.inputNameList();
 
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int heightLadder = inputNumber();
+        int heightLadder = GameInputScanner.inputNumber();
 
         Ladder ladder = new Ladder(LadderFactory.getLadderRows(nameList.size() - 1, heightLadder));
         LadderPrinter.drawLadder(nameList, ladder);
     }
 
-    private static List<String> inputNameList() {
-        try {
-            List<String> nameList = convertStringToNameList(in.nextLine());
-            verifyInputNameList(nameList);
-            return nameList;
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-            return inputNameList();
-        }
-    }
-
-    private static List<String> convertStringToNameList(String input) {
-        return Collections.list(new StringTokenizer(input, ","))
-                .stream()
-                .map(token -> ((String) token).trim())
-                .collect(Collectors.toList());
-    }
-
-    private static void verifyInputNameList(List<String> nameList) throws RuntimeException {
-        boolean existWrongName = nameList.stream()
-                .anyMatch(e -> (e.length() == 0) || (e.length() > MAXIMUM_NAME_LENGTH));
-        if (existWrongName) {
-            throw new RuntimeException("참여할 사람 이름을 정확하게 입력해주세요.");
-        }
-    }
-
-    private static int inputNumber() {
-        try {
-            return getPositiveInteger();
-        } catch (NumberFormatException e) {
-            System.out.println("양의 정수를 입력해주세요.");
-            return inputNumber();
-        }
-    }
-
-    private static Integer getPositiveInteger() {
-        Integer value = Integer.valueOf(in.nextLine());
-        if (value <= 0) {
-            throw new NumberFormatException();
-        }
-        return value;
-    }
 }
