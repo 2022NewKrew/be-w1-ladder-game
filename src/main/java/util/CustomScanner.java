@@ -15,14 +15,15 @@ public final class CustomScanner {
         System.out.println(message);
 
         do {
-            value = verifyIntInput(infimum, supremum);
+            value = readInput(infimum, supremum);
         } while (value == null);
 
         return value;
     }
 
-    private Integer verifyIntInput(int infimum, int supremum){
+    private Integer readInput(int infimum, int supremum){
         int value;
+
         try{
             value = scanner.nextInt();
         } catch (InputMismatchException e){
@@ -31,6 +32,10 @@ public final class CustomScanner {
             return null;
         }
 
+        return verifyIntInput(infimum, supremum, value);
+    }
+
+    private Integer verifyIntInput(int infimum, int supremum, int value){
         if(infimum > value || value > supremum) {
             System.out.println(infimum + " 이상 " + supremum + " 이하의 값을 입력해 주세요.");
             return null;
