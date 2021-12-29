@@ -1,11 +1,12 @@
 package org.cs.finn.laddergame.view;
 
 import org.cs.finn.laddergame.domain.Ladder;
+import org.cs.finn.laddergame.domain.Member;
 
 public class LadderView {
 
     public void print(final Ladder ladder) {
-        for (String bridge : ladder.getLadderRows()) {
+        for (String bridge : ladder.getLadderRows().get()) {
             printOneHeight(bridge);
         }
     }

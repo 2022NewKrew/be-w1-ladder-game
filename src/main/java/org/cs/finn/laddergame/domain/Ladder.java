@@ -1,11 +1,14 @@
 package org.cs.finn.laddergame.domain;
 
+import org.cs.finn.laddergame.domain.ladder.LadderHeight;
+import org.cs.finn.laddergame.domain.ladder.LadderRows;
+
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final List<String> ladderRows = new ArrayList<>();
+    private final LadderRows ladderRows = new LadderRows();
+    private final LadderHeight ladderHeight = new LadderHeight();
 
     private final SecureRandom sRand;
 
@@ -16,16 +19,12 @@ public class Ladder {
         this.sRand = sRand;
     }
 
-    public void build(final Input input) {
-        if (input == null) {
-            throw new RuntimeException("Input for build Ladder is null!");
-        }
+    public void build(final Member member) {
+        final int memberVal = member.getMember();
+        final int bound = 1 << (memberVal - 1);
+        final int ladderHeightVal = ladderHeight.getLadderHeight();
 
-        final int member = input.getMember();
-        final int bound = 1 << (member - 1);
-        final int height = input.getLadderHeight();
-
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < ladderHeightVal; i++) {
             // bound를 추가로 더해서
             // 사다리를 놓을 수 있는 최대 개수 + 1 위치에 1을 항상 추가하여
             // Zero-fill 처리하고 가장 위쪽 1을 잘라낸 뒤 저장한다
@@ -34,7 +33,11 @@ public class Ladder {
         }
     }
 
-    public List<String> getLadderRows() {
+    public LadderRows getLadderRows() {
         return this.ladderRows;
+    }
+
+    public LadderHeight getLadderHeight() {
+        return this.ladderHeight;
     }
 }
