@@ -7,7 +7,7 @@ import java.util.Random;
 public class Ladder {
     private static final String DOWN = "| ";
     private static final String RIGHT = "|-";
-    private static final Random rand = new Random();
+    private static final Random random = new Random();
 
     public static void main(String[] args) {
         ResultView.printLadder(generateLadder(InputView.enterPlayers(), InputView.enterHeight()));
@@ -31,6 +31,6 @@ public class Ladder {
     }
 
     private static String generatePoint() {
-        return rand.nextBoolean() ? RIGHT : DOWN;
+        return random.nextBoolean() ? RIGHT : DOWN;
     }
 }
