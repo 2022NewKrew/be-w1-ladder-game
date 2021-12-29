@@ -1,9 +1,9 @@
+package com.chanminkim.w1;
+
 import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class Main {
-    private static final byte[] SEED = {26, -69, 76, -110, -94, 80, 126, -68, 100, 1, 68, -32, 5, 95, -11, -58, 123, -86, 126, 47};
-
     public static void main(String[] args) {
         LadderGame ladderGame = initLadderGameByInput();
         System.out.println(ladderGame.buildLadder());
@@ -18,6 +18,6 @@ public class Main {
         int heightOfLadder = scanner.nextInt();
         System.out.println();
 
-        return new LadderGame(numberOfPlayers, heightOfLadder, new SecureRandom(SEED));
+        return new LadderGame(numberOfPlayers, heightOfLadder, new SecureRandom());
     }
 }
