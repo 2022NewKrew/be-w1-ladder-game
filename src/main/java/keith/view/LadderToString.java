@@ -35,7 +35,7 @@ public class LadderToString {
     }
 
     private void addRowString(List<Boolean> connectionRow, StringBuilder result) {
-        result.append("    ");
+        result.append(" ".repeat(2 + InputManager.MAX_NAME_LEN / 2));
         for (Boolean isConnected : connectionRow) {
             result.append(COLUMN);
             result.append(isConnected ? CONNECTED : NOT_CONNECTED);

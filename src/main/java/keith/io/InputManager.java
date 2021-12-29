@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.List;
 
 public class InputManager {
-    public static final int MAX_NAME_LEN = 5;
+    public static final int MAX_NAME_LEN = 9;
 
     public int height;
     public String participants;
