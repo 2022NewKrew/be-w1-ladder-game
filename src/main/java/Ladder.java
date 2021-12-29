@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Ladder {
 
@@ -19,9 +18,11 @@ public class Ladder {
         }
     }
 
-    public void printLadder() {
-        for (int i = 0; i < LADDER_HEIGHT; i++) {
-            LINE_LIST.get(i).printLine();
-        }
+    public List<String> getPLAYER_LIST() {
+        return PLAYER_LIST;
+    }
+
+    public List<Line> getLINE_LIST() {
+        return LINE_LIST;
     }
 }
