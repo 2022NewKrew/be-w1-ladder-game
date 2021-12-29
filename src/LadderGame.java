@@ -16,8 +16,7 @@ public class LadderGame {
     public void displayLadder() {
         StringBuilder sb = new StringBuilder();
         participants.forEach(participant -> {
-            sb.append(participant);
-            IntStream.range(0, 6-participant.length()).forEach(e -> sb.append(' '));
+            sb.append(String.format("%-6s", participant));
         });
         System.out.println(sb);
         renderer.display(ladder);
