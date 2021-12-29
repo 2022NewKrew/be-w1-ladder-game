@@ -25,9 +25,7 @@ public class Line {
     }
 
     private boolean isConnected(int index) {
-        if (index % 2 == 0||RANDOM.nextBoolean()) {
-            return true;
-        } return false;
+        return index % 2 == 0 || RANDOM.nextBoolean();
     }
 
     private String pointToString(int index) {
