@@ -1,4 +1,6 @@
-package ladder.dto;
+package ladder.domain;
+
+import dto.LadderInputInfo;
 
 import java.util.List;
 
@@ -8,10 +10,10 @@ public class Ladder {
     private List<String> participants;
     private List<LadderFloor> ladder;
 
-    public Ladder(List<String> participants, int height, List<LadderFloor> ladder) {
-        this.width = participants.size();
-        this.participants = participants;
-        this.height = height;
+    public Ladder(LadderInputInfo ladderInputInfo, List<LadderFloor> ladder) {
+        this.width = ladderInputInfo.getWidth();
+        this.participants = ladderInputInfo.getParticipants();
+        this.height = ladderInputInfo.getHeight();
         this.ladder = ladder;
     }
 
