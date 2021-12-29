@@ -11,7 +11,8 @@ public class LineGenerator {
     private void generateIntermediatePoint(List<Point> points, int numberOfPlayers){
         Point prePoint = points.get(points.size()-1);
         for(int i = 1; i < numberOfPlayers-1; i++){
-            points.add(Point.next(prePoint));
+            prePoint = Point.next(prePoint);
+            points.add(prePoint);
         }
     }
 
@@ -25,6 +26,8 @@ public class LineGenerator {
         generateFirstPoint(points);
         generateIntermediatePoint(points, numberOfPlayers);
         generateLastPoint(points);
+        points.forEach(point -> System.out.print(point.move()));
+        System.out.println();
         return new Line(points);
     }
 }

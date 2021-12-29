@@ -36,8 +36,9 @@ public class ResultView {
 
     private static void printPoint(Point point) {
         if(point == Point.LEFT) {
-            System.out.print(LEFT);
+            print6s(LEFT);
+            return;
         }
-        System.out.print(DOWN);
+        print6s(DOWN);
     }
 }
