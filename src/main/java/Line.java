@@ -20,17 +20,25 @@ public class Line {
 
     private void setPoint() {
         for (int i = 0; i < LINE_SIZE; i++) {
-            POINT_LIST.add(isConnected(i));
+            POINT_LIST.add(setConnection(i));
         }
     }
 
+    private boolean setConnection(int index) {
+        return isVertical(index) || RANDOM.nextBoolean();
+    }
+
     private boolean isConnected(int index) {
-        return index % 2 == 0 || RANDOM.nextBoolean();
+        return POINT_LIST.get(index);
+    }
+
+    private boolean isVertical(int index) {
+        return index % 2 == 0;
     }
 
     private String pointToString(int index) {
-        if (index % 2 == 0) return VERTICAL_BAR;
-        if (POINT_LIST.get(index)) {
+        if (isVertical(index)) return VERTICAL_BAR;
+        if (isConnected((index))) {
             return HORIZONTAL_BAR;
         } return EMPTY;
     }
