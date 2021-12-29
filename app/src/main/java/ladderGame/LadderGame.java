@@ -3,25 +3,42 @@
  */
 package ladderGame;
 
-import java.util.Scanner;
+import java.util.List;
 
 public class LadderGame {
-    public static void main(String[] args) {
-        Ladder ladder = new Ladder(getInput());
-        ladder.print();
+    private final List<Line> ladder;
+    private final LadderGameInfo ladderGameInfo;
+
+    LadderGame() {
+        ladderGameInfo = LadderGameInfo.getLadderGameInfo();
+
+        /* 기존 - getter 사용
+        ladder = new ArrayList(ladderGameInfo.getHeight());
+        for(int i = 0; i < ladderGameInfo.getHeight(); i++) {
+            ladder.add(new Line(ladderGameInfo.getNumberOfPlayers()));
+        } */
+        ladder = ladderGameInfo.generateLadder(); // 관련 action 주체를 LadderGameInfo 로 옮기기
     }
 
-    static int[] getInput() {
-        int[] args = new int[2];
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("참여할 사람은 몇 명인가요?");
-        args[0] = scanner.nextInt();
-
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        args[1] = scanner.nextInt();
-
-        scanner.close();
-        return args;
+    public final void print() {
+        ladderGameInfo.printPlayers();
+        printLine();
     }
+
+    private final void printLine() {
+        for(Line currentLine : ladder) {
+            currentLine.print();
+            System.out.println("|");
+        }
+    }
+
+    /* 마찬가지로 getter 사용하지 않고 LadderGameInfo 에서 처리하도록 옮기기
+    private final void printPlayers() {
+        String[] players = ladderGameInfo.getPlayers();
+
+        for(String player : players) {
+            System.out.printf("%6s", player);
+        }
+        System.out.println();
+    } */
 }
