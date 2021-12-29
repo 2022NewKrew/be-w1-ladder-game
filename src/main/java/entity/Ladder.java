@@ -1,3 +1,5 @@
+package entity;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -6,11 +8,17 @@ public class Ladder {
     private final int numParticipant;
     private final int height;
     private List<ArrayList<Boolean>> ladder;
+    private ArrayList<Player> players;
 
-    public Ladder(int numParticipant, int height) {
+    public Ladder(int numParticipant, int height, ArrayList<Player> players) {
         this.numParticipant = numParticipant;
         this.height = height;
+        this.players = players;
         createLadder();
+    }
+
+    public int getNumParticipant() {
+        return numParticipant;
     }
 
     private void createLadder(){
@@ -37,9 +45,13 @@ public class Ladder {
     }
 
     public void draw(){
-        ladder.stream().forEach(row -> {
-            System.out.print("|");
-            row.forEach(item -> System.out.print(item ? "─|" : " |"));
+        players.forEach(player -> {
+            System.out.printf("%5s ", player.getName());
+        });
+        System.out.println();
+        ladder.forEach(row -> {
+            System.out.print("  │");
+            row.forEach(item -> System.out.print(item ? "-----│" : "     │"));
             System.out.println();
         });
     }
