@@ -17,12 +17,12 @@ public class Floor {
         return getBarValue(part).equals(hBar);
     }
 
-    private String getBarValue(int part){
-        return floorList.get(part*2 - 1 );
+    private String getBarValue(int part) {
+        return floorList.get(part * 2 - 1);
     }
 
-    public boolean hasLeftBar(int part){
-        if (part > 0 ){
+    public boolean hasLeftBar(int part) {
+        if (part > 0) {
             return hasVBar(part);
         }
         return false;
@@ -48,14 +48,13 @@ public class Floor {
      */
     void addLadderString(int part, int partNum) {
         floorList.add(vBar);
-        if ( hasLeftBar(part) ) {
+        if (hasLeftBar(part)) {
             floorList.add(space);
             return;
         }
         if (part != partNum - 1)
             floorList.add(getRandomLadder());
     }
-
 
 
 }

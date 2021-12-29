@@ -64,8 +64,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int[] inputs = input();
-        List<Floor> ladderList = makeLadderList(inputs);
+        List<Floor> ladderList = makeLadderList(input());
         printLadder(ladderList);
     }
 
