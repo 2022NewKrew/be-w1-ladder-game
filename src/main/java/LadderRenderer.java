@@ -5,8 +5,9 @@ public class LadderRenderer {
         StringBuilder ladderString = new StringBuilder();
         int heightOfLadder = ladder.getInfo().getHeightOfLadder();
 
-        for(int layer = 0; layer < heightOfLadder; layer++)
+        for(int layer = 0; layer < heightOfLadder; layer++) {
             ladderString.append(renderOneLine(ladder.getInfo().getNumOfPeople(), ladder.getConnections(), layer));
+        }
         System.out.println(ladderString);
     }
 
