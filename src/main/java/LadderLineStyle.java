@@ -1,5 +1,3 @@
-package step3;
-
 public enum LadderLineStyle {
 	HORIZONTAL_LINE("-----"),
 	HORIZONTAL_EMPTY("     "),

@@ -1,5 +1,3 @@
-package step3;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -7,6 +5,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class LadderGame {
+	private static final BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
+
 	private Player player;
 	private Ladder ladder;
 
@@ -14,14 +14,12 @@ public class LadderGame {
 	}
 
 	public void start() throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
 		System.out.println(Message.PLAYER_INPUT_MESSAGE);
-		StringTokenizer st = new StringTokenizer(br.readLine(), ",");
+		StringTokenizer st = new StringTokenizer(BR.readLine(), ",");
 		player = new Player(stToList(st));
 
 		System.out.println(Message.LADDER_HEIGHT_INPUT_MESSAGE);
-		int ladderHeight = Integer.parseInt(br.readLine());
+		int ladderHeight = Integer.parseInt(BR.readLine());
 		ladder = new Ladder(player.getNumberOfPlayer(), ladderHeight);
 
 		ladder.makeLadder();
@@ -38,7 +36,7 @@ public class LadderGame {
 	}
 
 	public void printLadder() {
-		System.out.println(Message.LADDER_RESULT_MESSAGE);
+		System.out.println("\n" + Message.LADDER_RESULT_MESSAGE);
 		player.printPlayer();
 		ladder.printLadder();
 	}

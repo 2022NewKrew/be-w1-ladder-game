@@ -1,12 +1,10 @@
-package step3;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
 	private int numberOfPlayer;
 	private int ladderHeight;
-	private List<Line> ladder;
+	private List<Row> rowList;
 
 	public Ladder(int numberOfPlayer, int ladderHeight) {
 		this.numberOfPlayer = numberOfPlayer;
@@ -14,16 +12,16 @@ public class Ladder {
 	}
 
 	public void makeLadder() {
-		ladder = new ArrayList<>();
+		rowList = new ArrayList<>();
 
 		for (int height = 0; height < ladderHeight; height++) {
-			ladder.add(new Line(numberOfPlayer));
+			rowList.add(new Row(numberOfPlayer));
 		}
 	}
 
 	public void printLadder() {
-		for (Line line : ladder) {
-			line.printLine();
+		for (Row row : rowList) {
+			row.printRow();
 		}
 	}
 }
