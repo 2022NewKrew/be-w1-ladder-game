@@ -12,6 +12,7 @@ public class GameView {
         currentGame = game;
     }
 
+    // 현재는 콘솔 출력이지만, 향후 출력 형태의 확장성을 위해 출력 함수를 따로 정의
     public void print(String message) {
         System.out.println(message);
     }
@@ -63,7 +64,7 @@ public class GameView {
         ladderRow.append(LUMBER);
         // lineLength 만큼 순회하면서 points가 true면 BRIDGE, false면 SPACE를 maxNameLength 길이만큼 늘려서 추가
         // 추가 후에는 또 LUMBER 추가
-        for (int i = 0; i < line.getLineLength(); i++) {
+        for (int i = 0; i < line.getLength(); i++) {
             ladderRow.append(ladderElement(line.getPoints().get(i)));
             ladderRow.append(LUMBER);
         }

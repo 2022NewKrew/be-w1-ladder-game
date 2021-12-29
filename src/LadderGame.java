@@ -11,7 +11,7 @@ public class LadderGame {
     private List<String> participants;
     private List<Line> ladder = new ArrayList<>();
 
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     LadderGame() {
         inputParticipants();

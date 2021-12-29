@@ -6,7 +6,7 @@ public class Line {
     private int lineLength;
     private List<Boolean> points = new ArrayList<>();
 
-    Random random = new Random();
+    private Random random = new Random();
 
     public Line(int numOfParticipants) {
         lineLength = numOfParticipants - 1;
@@ -19,7 +19,7 @@ public class Line {
         return points;
     }
 
-    public int getLineLength() {
+    public int getLength() {
         return lineLength;
     }
 
