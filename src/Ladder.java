@@ -11,7 +11,7 @@ public class Ladder {
     Ladder(int width, int height) {
         this.width = width;
         this.height = height;
-        this.lineFlags = setLineFlags();
+        this.lineFlags = makeLineFlags();
     }
 
     public int getWidth() {
@@ -26,7 +26,7 @@ public class Ladder {
         return lineFlags.get(row).get(col);
     }
 
-    private ArrayList<ArrayList<Boolean>> setLineFlags() {
+    private ArrayList<ArrayList<Boolean>> makeLineFlags() {
         ArrayList<ArrayList<Boolean>> lineFlags = new ArrayList<ArrayList<Boolean>>();
         for (int i = 0; i < height; i++)
             lineFlags.add(makeLineFlagsByRow());
