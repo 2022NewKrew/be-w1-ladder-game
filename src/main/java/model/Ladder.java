@@ -18,10 +18,6 @@ public class Ladder {
         createLadder();
     }
 
-    public int getNumParticipant() {
-        return numParticipant;
-    }
-
     public List<ArrayList<Boolean>> getConnections() {
         return connections;
     }
