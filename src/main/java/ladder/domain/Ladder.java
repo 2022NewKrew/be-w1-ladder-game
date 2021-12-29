@@ -1,3 +1,5 @@
+package ladder.domain;
+
 import java.util.ArrayList;
 
 public class Ladder {
@@ -7,7 +9,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    ArrayList<Line> getLadder() {
+    public ArrayList<Line> getLadder() {
         return lines;
     }
 }

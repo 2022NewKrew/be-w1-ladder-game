@@ -1,3 +1,5 @@
+package ladder.domain;
+
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
@@ -5,7 +7,7 @@ public class LadderBuilder {
     private final int height;
     private final LineBuilder lineBuilder;
 
-    LadderBuilder(int numberOfPlayer, int height) {
+    public LadderBuilder(int numberOfPlayer, int height) {
         this.height = height;
         lineBuilder = new LineBuilder(numberOfPlayer);
     }
@@ -13,9 +15,9 @@ public class LadderBuilder {
     /**
      * 사다리를 만드는 메서드
      *
-     * @return Ladder 객체를 반환한다
+     * @return ladder.domain.Ladder 객체를 반환한다
      */
-    Ladder makeLadder() {
+    public Ladder makeLadder() {
         ArrayList<Line> lines = new ArrayList<>();
 
         Stream.generate(lineBuilder::makeLine)

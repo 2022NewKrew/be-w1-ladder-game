@@ -1,3 +1,5 @@
+package ladder.view;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -25,7 +27,7 @@ public class Input {
      *
      * @throws InputMismatchException 양의 정수가 아닌 다른 정수가 들어오면 예외를 던진다
      */
-    static int inputHeight() throws InputMismatchException {
+    public static int inputHeight() throws InputMismatchException {
         System.out.println(LADDER_HEIGHT_INPUT_MESSAGE);
 
         int height = in.nextInt();
@@ -38,7 +40,7 @@ public class Input {
             throw new InputMismatchException();
     }
 
-    static ArrayList<String> inputName() throws InputMismatchException {
+    public static ArrayList<String> inputName() throws InputMismatchException {
         System.out.println(NAME_INPUT_MESSAGE);
 
         String input = in.nextLine();

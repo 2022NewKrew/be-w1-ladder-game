@@ -1,3 +1,7 @@
+package ladder.view;
+
+import ladder.domain.Line;
+
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -12,7 +16,7 @@ public class Output {
      *
      * @param line 출력할 한 줄
      */
-    static public void printLine(ArrayList<Boolean> line) {
+    private static void printLine(ArrayList<Boolean> line) {
         System.out.printf("%s%s", SPACE, SIDE_RAIL);
 
         for (Boolean aBoolean : line) {
@@ -26,7 +30,7 @@ public class Output {
      *
      * @param lines 출력할 줄 리스트
      */
-    static void printLadder(ArrayList<Line> lines) {
+    public static void printLadder(ArrayList<Line> lines) {
         for (Line line : lines) {
             printLine(line.getLine());
             System.out.println();
@@ -39,7 +43,7 @@ public class Output {
      * @param beforeName 공백 이전 이름
      * @param afterName  공백 이후 이름
      */
-    static void printSpaceBetweenNames(String beforeName, String afterName) {
+    private static void printSpaceBetweenNames(String beforeName, String afterName) {
         int beforeNameLength = beforeName.length() == 0 ? 0 : (beforeName.length() + 1) / 2 - 1;
         int afterNameLength = afterName.length() / 2;
         int spaceCount = SPACE.length() - beforeNameLength - afterNameLength;
@@ -54,7 +58,7 @@ public class Output {
      *
      * @param names 출력할 이름 리스트
      */
-    static void printName(ArrayList<String> names) {
+    public static void printName(ArrayList<String> names) {
         printSpaceBetweenNames("", names.get(0));
         System.out.printf("%s", names.get(0));
         IntStream.range(1, names.size())
