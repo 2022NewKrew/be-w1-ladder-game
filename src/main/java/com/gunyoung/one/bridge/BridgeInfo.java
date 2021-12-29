@@ -22,7 +22,7 @@ public class BridgeInfo {
 
     public List<Boolean> getIsExistOfRow(int row) {
         List<Boolean> isExistOfRow = new ArrayList<>(bridges[row].length);
-        for(Bridge bridge: bridges[row]) {
+        for (Bridge bridge : bridges[row]) {
             isExistOfRow.add(bridge.isExist());
         }
         return isExistOfRow;

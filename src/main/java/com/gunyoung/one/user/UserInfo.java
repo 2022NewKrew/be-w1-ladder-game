@@ -13,7 +13,7 @@ public class UserInfo {
     public static UserInfo of(String strOfNames) {
         List<User> listOfUser = new ArrayList<>();
         String[] names = strOfNames.split(",");
-        for(String name: names) {
+        for (String name : names) {
             listOfUser.add(new User(name));
         }
         return new UserInfo(listOfUser);
@@ -25,7 +25,7 @@ public class UserInfo {
 
     public List<String> getUserNames() {
         List<String> userNames = new ArrayList<>();
-        for(User user: users) {
+        for (User user : users) {
             userNames.add(user.getName());
         }
         return userNames;
