@@ -1,26 +1,37 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Line {
     private ArrayList<Boolean> points = new ArrayList<>();
+    private HashMap<Boolean,String> convertBoolToString = new HashMap<Boolean,String>(){{
+        put(true,"-----|");
+        put(false,"     |");
+    }};
 
-    Line(int countOfPerson){
+    public Line(int countOfPerson){
         for(int i=0; i<countOfPerson-1; i++){
-            if(Math.random() > 0.5){
-                points.add(true);
-                continue;
-            }
-            points.add(false);
+            addPoint(Util.generateTrueOrFalseByRandom());
         }
     }
 
-    public String printLine(){
-        StringBuilder result = new StringBuilder("|");
+    public void addPoint(Boolean newPoint){
+        points.add(checkDoubleStair(newPoint));
+    }
+
+    private Boolean checkDoubleStair(Boolean newPoint){
+        if(points.size() == 0){
+            return newPoint;
+        }
+        if (points.get(points.size()-1) == true && newPoint == true){
+            return false;
+        };
+        return newPoint;
+    }
+
+    public String toString(){
+        StringBuilder result = new StringBuilder("  |");
         for(int i = 0; i<points.size(); i++){
-            if(points.get(i) == true){
-                result.append("-|");
-                continue;
-            }
-            result.append(" |");
+            result.append(convertBoolToString.get(points.get(i)));
         }
         return result.toString();
     }
