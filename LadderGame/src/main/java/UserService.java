@@ -21,7 +21,7 @@ public class UserService {
     public void getParticipants(Scanner sc){
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String str = sc.nextLine();
-        participants = str.split(",");
+        this.participants = str.split(",");
         System.out.println();
     }
 
@@ -41,6 +41,7 @@ public class UserService {
     public void showParticipants(){
         char[] participantsName = new char[(participants.length + 1) * 6];
         Arrays.fill(participantsName,' ');
+
         for(int i = 0; i < participants.length; i++){
             writeParticipantToCharArr(participantsName, i);
         }
@@ -50,7 +51,9 @@ public class UserService {
     public void writeParticipantToCharArr(char[] charArr, int index){
         String participant = participants[index];
         for(int i = 0 ; i < participant.length(); i++){
-            charArr[6 * index + 2 - (int)(participant.length() / 2) + i] = participant.charAt(i);
+            charArr[6 * index + 2
+                    - (int)(participant.length() / 2)
+                    + i] = participant.charAt(i);
         }
     }
 
