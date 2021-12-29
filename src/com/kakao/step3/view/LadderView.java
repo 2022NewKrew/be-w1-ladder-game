@@ -5,6 +5,7 @@ import com.kakao.step3.domain.Validator;
 import com.kakao.step3.model.Ladder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LadderView {
     private final int countOfPeople, countOfLines;
@@ -18,7 +19,7 @@ public class LadderView {
         this.ladder = new Ladder(countOfPeople, countOfLines);
     }
 
-    private void printOneLine(ArrayList<Boolean> points) {
+    private void printOneLine(List<Boolean> points) {
         for (int i = -1; i < 2 * countOfPeople - 1; i++) {
             System.out.print(Validator.checkEachPoints(points, i));
         }
@@ -30,7 +31,7 @@ public class LadderView {
         System.out.println("   " + ManipulateInfos.makeNameLine(names));
 
         for (int i = 0; i < countOfLines; i++) {
-            ArrayList<Boolean> points = ladder.getLines().get(i).getPoints();
+            List<Boolean> points = ladder.getLines().get(i).getPoints();
             printOneLine(points);
         }
     }

@@ -1,9 +1,10 @@
 package com.kakao.step3.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
-    private final ArrayList<Line> lines;
+    private final List<Line> lines;
 
     public Ladder(int countOfPeople, int countOfLines) {
         lines = new ArrayList<>();
@@ -13,7 +14,7 @@ public class Ladder {
         }
     }
 
-    public ArrayList<Line> getLines() {
+    public List<Line> getLines() {
         return lines;
     }
 }

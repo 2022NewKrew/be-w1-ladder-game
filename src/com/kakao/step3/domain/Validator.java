@@ -1,6 +1,7 @@
 package com.kakao.step3.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.kakao.step3.config.Constants.*;
 
@@ -13,12 +14,12 @@ public class Validator {
         return true;
     }
 
-    public static boolean checkLine(ArrayList<Boolean> points, int i) {
+    public static boolean checkLine(List<Boolean> points, int i) {
         return (Math.random() > RANDOM_RATE) && i == 0 ||
                 (Math.random() > RANDOM_RATE) && (i > 0 && !points.get(i - 1));
     }
 
-    public static String checkEachPoints(ArrayList<Boolean> points, int col) {
+    public static String checkEachPoints(List<Boolean> points, int col) {
         if (col % 2 == 0) return LADDER_VERT;
 
         if (col > 0 && points.get((col - 1) / 2)) return LADDER_HORI;
