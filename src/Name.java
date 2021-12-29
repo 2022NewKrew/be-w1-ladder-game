@@ -40,6 +40,7 @@ public class Name {
             int padding = ((MAX_NAME_SIZE - name.length()) / 2) + SPACE;
             namesOutput.append(" ".repeat(padding)).append(name).append(" ".repeat(padding));
         }
+        namesOutput.append("\n");
         return namesOutput.toString();
     }
 

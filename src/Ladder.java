@@ -27,11 +27,12 @@ public class Ladder {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
-        ladder.forEach(line -> {
-            line.forEach(result::append);
-            result.append("\n");
-        });
-        return result.toString();
+        return names + getLaddersOutput();
+    }
+
+    private String getLaddersOutput() {
+        StringBuilder laddersOutput = new StringBuilder();
+        ladder.forEach(laddersOutput::append);
+        return laddersOutput.toString();
     }
 }
