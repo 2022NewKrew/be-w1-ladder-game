@@ -1,4 +1,7 @@
-package laddergame;
+package laddergame.view;
+
+import laddergame.domain.Ladder;
+import laddergame.domain.Line;
 
 import java.util.List;
 

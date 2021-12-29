@@ -1,5 +1,9 @@
 package laddergame;
 
+import laddergame.domain.Ladder;
+import laddergame.view.InputView;
+import laddergame.view.OutputView;
+
 public class LadderGame {
     private final int numberOfGamer;
     private final int ladderHeight;
