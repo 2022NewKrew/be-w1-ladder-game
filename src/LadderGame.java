@@ -14,12 +14,11 @@ public class LadderGame {
     }
 
     public void displayLadder() {
-        //TODO:바꾸기
         StringBuilder sb = new StringBuilder();
-        for(String participant : participants) {
+        participants.forEach(participant -> {
             sb.append(participant);
             IntStream.range(0, 6-participant.length()).forEach(e -> sb.append(' '));
-        }
+        });
         System.out.println(sb);
         renderer.display(ladder);
     }
