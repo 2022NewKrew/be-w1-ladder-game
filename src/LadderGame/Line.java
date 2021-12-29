@@ -17,33 +17,44 @@ public class Line {
     public Line(int ladderWidth, Random randomInstance) {
         this.ladderWidth = ladderWidth;
         this.random = randomInstance;
-        makeLadder();
+        makeLineInfo();
     }
 
-    private void makeLadder(){
+    private void makeLineInfo(){
         chkLadder = new ArrayList<>();
         ladderComponents = new ArrayList<>();
 
         for (int col = 0; col < ladderWidth; col++){
-            boolean hasLadder = chkLadderCol(col);
+            boolean hasLadder = makeLadder(col);
             chkLadder.add(hasLadder);
             makeLadderComponents(hasLadder);
         }
     }
 
-    private Boolean chkLadderCol(int col){
-        if(col == ladderWidth-1 || (col != 0 && chkLadder.get(col-1))){
+    private Boolean makeLadder(int col){
+        if(isLastIndex(col) || isBeforeIndexHasLadder(col)){
             return false;
         }
         return random.nextBoolean();
     }
 
+    private Boolean isLastIndex(int col){
+        return col == ladderWidth - 1;
+    }
+
+    private Boolean isBeforeIndexHasLadder(int col){
+        return col != 0 && chkLadder.get(col - 1);
+    }
+
     private void makeLadderComponents(boolean hasLadder){
         ladderComponents.add(VERTICAL_LINE);
+        ladderComponents.add(getLadderShape(hasLadder));
+    }
+
+    private String getLadderShape(boolean hasLadder){
         if(hasLadder){
-            ladderComponents.add(HORIZONTAL_LINE);
-        }else{
-            ladderComponents.add(BLANK);
+            return HORIZONTAL_LINE;
         }
+        return BLANK;
     }
 }
