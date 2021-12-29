@@ -10,11 +10,9 @@ public class Ladder {
     Ladder(int numberOfPeople, int height) {
         this.numberOfLegs = numberOfPeople;
 
-        ladder = Collections.unmodifiableList(
-                IntStream.range(0, height)
+        ladder = IntStream.range(0, height)
                 .mapToObj(e -> new Line(numberOfLegs))
-                .collect(Collectors.toList())
-        );
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
