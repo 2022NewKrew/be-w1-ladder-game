@@ -2,43 +2,32 @@ import java.util.*;
 
 public class Ladder {
 
-    static Random random = new Random();
     private final int participant;
     private final int height;
-    private final ArrayList<String[]> ladder = new ArrayList<>();
+    private final List<String> names;
+    private final ArrayList<Line> ladder = new ArrayList<>();
 
-    public Ladder(int gameParticipant, int ladderHeight) {
-        participant = gameParticipant;
+    public Ladder(List<String> participantNames, int ladderHeight) {
+        participant = participantNames.size();
         height = ladderHeight;
+        names = participantNames;
         makeLadder();
     }
 
-    public String makeBridge() {
-        if (random.nextBoolean()) {
-            return "-";
-        }
-        return " ";
-    }
-
-    public void makeLine(int p) {
-        String[] line = new String[2*p - 1];
-        Arrays.fill(line, "|");
-        for (int i = 1; i < 2*p - 1; i += 2) {
-            line[i] = makeBridge();
-        }
+    public void makeLine() {
+        Line line = new Line(participant);
         ladder.add(line);
     }
 
     public void makeLadder() {
-        for (int i = 0; i < height; i++) {
-            makeLine(participant);
+        for (int lineIndex = 0; lineIndex < height; lineIndex++) {
+            makeLine();
         }
     }
 
     public void printLadder() {
-        for (String[] line : ladder) {
-            String stringLine = String.join("", line);
-            System.out.println(stringLine);
+        for (Line line : ladder) {
+            line.printLine(participant);
         }
     }
 }
