@@ -1,6 +1,8 @@
 package laddergame;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 import java.util.Scanner;
 import laddergame.Ladder;
 
@@ -9,14 +11,14 @@ public class LadderIO {
 
     static Scanner sc = new Scanner(System.in);
     static int numOfPeople;
-    static String[] peopleArray;
     static int ladderHeight;
     static final String peopleNameSeperator = ",";
+    static List<String> peopleNameList;
 
     public static void getNumOfPeopleIO() {
         System.out.println("참여 할 사람이름을 입력하세요.");
-        peopleArray = sc.next().split(peopleNameSeperator);
-        numOfPeople = peopleArray.length;
+        peopleNameList = Arrays.asList(sc.next().split(peopleNameSeperator));
+        numOfPeople = peopleNameList.size();
     }
 
     public static void getLadderHeightIO() {
@@ -27,7 +29,7 @@ public class LadderIO {
 
     // 할당된 변수들에 맞추어 Ladder Class를 생성.
     public static Ladder constructLadder() {
-        Ladder ladder = new Ladder(ladderHeight, numOfPeople, peopleArray);
+        Ladder ladder = new Ladder(ladderHeight, numOfPeople, peopleNameList);
         return ladder;
     }
 }

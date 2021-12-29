@@ -2,7 +2,7 @@
 
 자바 웹 백엔드 1주차 사다리 게임
 
-# step3
+# step2
 - ## 요구사항  
   - ### Step 1 PR 피드백
     - Main 에 있는 IO 관련 프로세스를 함수화
@@ -13,7 +13,7 @@
   - ### 개선 필요해보이는 부분
     - height -> ladderHeight 로 변수명 변경
     - 각 위치별로 print 하기보다는 String으로 만들어 한 번에 print
-  - ### 2일차 요구사항
+  - ### 2단계 요구사항
   - ![img.png](img.png)
     https://lucas.codesquad.kr/2022-kakao/course/%EC%9B%B9%EB%B0%B1%EC%97%94%EB%93%9C/%EC%82%AC%EB%8B%A4%EB%A6%AC-%EA%B2%8C%EC%9E%84/ladder-game-step-2_
 
@@ -36,7 +36,9 @@
     - 사다리의 폭 넓게 생성.
     - ArrayList와 Generic을 활용해 구현.
     - 사다리 라인이 겹치지 않도록 생성.
-  - ![img_1.png](img_1.png)
-
+    -![img_1.png](img_1.png) 
+    - https://lucas.codesquad.kr/2022-kakao/course/%EC%9B%B9%EB%B0%B1%EC%97%94%EB%93%9C/%EC%82%AC%EB%8B%A4%EB%A6%AC-%EA%B2%8C%EC%9E%84/%EC%82%AC%EB%8B%A4%EB%A6%AC-%EA%B2%8C%EC%9E%84-3%EB%8B%A8%EA%B3%84-%EA%B5%AC%ED%98%84
 - ## 구현 내용
-  - 
+  - 사다리의 폭을 넓히기 위해 string.repeat() 함수를 이용.
+  - 사람이름을 가장 윗 줄에 추가하기 위한 함수 printHighestLine() 함수 생성.
+  - 사람 이름이 사다리의 중앙에 오도록 길이에 맞게 사이 공백의 길이 조절.
