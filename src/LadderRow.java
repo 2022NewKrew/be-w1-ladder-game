@@ -6,8 +6,8 @@ import java.util.Random;
  */
 public class LadderRow {
     private enum StepType {
-        EMPTY("    "),
-        STEP("----");
+        EMPTY("     "),
+        STEP("-----");
 
         private final String displayStr;
         private static final Random random = new Random();
