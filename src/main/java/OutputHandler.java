@@ -13,14 +13,15 @@ public class OutputHandler {
         System.out.print(VERTICAL_LINE);
         for (Boolean horizontalLine : layer.getHorizontalLines()) {
             System.out.print(horizontalLineToString(horizontalLine));
+            System.out.print(VERTICAL_LINE);
         }
         System.out.println();
     }
 
     private static String horizontalLineToString(Boolean horizontalLine) {
         if (horizontalLine) {
-            return HORIZONTAL_LINE_FILLED + VERTICAL_LINE;
+            return HORIZONTAL_LINE_FILLED;
         }
-        return HORIZONTAL_LINE_EMPTY + VERTICAL_LINE;
+        return HORIZONTAL_LINE_EMPTY;
     }
 }
