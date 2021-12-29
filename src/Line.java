@@ -4,14 +4,14 @@ import java.util.Random;
 
 public class Line {
     private int lineLength;
-    private ArrayList<Boolean> points = new ArrayList<>();
+    private List<Boolean> points = new ArrayList<>();
 
     Random random = new Random();
 
     public Line(int numOfParticipants) {
         lineLength = numOfParticipants - 1;
         for (int i = 0; i < lineLength; i++) {
-            points.add(bridgeConstructor());
+            points.add(isConnected());
         }
     }
 
@@ -19,11 +19,15 @@ public class Line {
         return points;
     }
 
-    private boolean bridgeConstructor() {
+    public int getLineLength() {
+        return lineLength;
+    }
+
+    private boolean isConnected() {
         if (points.size() == 0) {
             return random.nextBoolean();
         }
-        return !points.get(points.size() - 1) & random.nextBoolean();
+        return !points.get(points.size() - 1) && random.nextBoolean();
     }
 
 }
