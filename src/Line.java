@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Line {
@@ -12,7 +13,10 @@ public class Line {
         for (int i = 0; i < lineLength; i++) {
             points.add(bridgeConstructor());
         }
-        // System.out.println(points);
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
     }
 
     private boolean bridgeConstructor() {
