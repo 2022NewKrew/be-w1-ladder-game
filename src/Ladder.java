@@ -8,7 +8,7 @@ public class Ladder {
     private static final String STEP = "-".repeat(STEP_WIDTH);
     private static final String NO_STEP = " ".repeat(STEP_WIDTH);
     private static final String BEAM = "|";
-    private static final String FIRST_BEAM = " ".repeat(STEP_WIDTH - 1) + BEAM;
+    private static final String LEADING_SPACE = " ".repeat(STEP_WIDTH - 1);
 
     private static final Random random = new Random();
 
@@ -26,7 +26,7 @@ public class Ladder {
     }
 
     private String makeRandomLine() {
-        StringBuilder line = new StringBuilder(FIRST_BEAM);
+        StringBuilder line = new StringBuilder(LEADING_SPACE + BEAM);
         boolean isLastBeamAvailable = true;
 
         for (int beamNo = 0; beamNo < width - 1; beamNo++) {
