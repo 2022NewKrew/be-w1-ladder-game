@@ -30,8 +30,17 @@ public class LadderSimpleGame extends LadderGame {
     }
 
     private String getParticipantsString() {
-        // TODO: 참가자 5자 기준으로 String 값 리턴
-        return "";
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("  ");
+
+        for (String participant : participants) {
+            stringBuilder.append(String.format("%-5s  ", participant));
+        }
+
+        stringBuilder.append("\n");
+
+        return stringBuilder.toString();
     }
 
     private List<Boolean> createNoneContinueTrueList(int col) {
@@ -67,6 +76,7 @@ public class LadderSimpleGame extends LadderGame {
     private String getFloorString(List<Boolean> floor) {
 
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(EMPTY_LINE);
 
         for (int col = 0; col < this.getNumberOfParticipants() * 2 - 1; col++) {
             stringBuilder.append(getBridgeChar(col, floor));
