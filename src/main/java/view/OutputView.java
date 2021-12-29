@@ -3,7 +3,7 @@ package view;
 import domain.LadderGenerator;
 import domain.LineGenerator;
 
-public class Output {
+public class OutputView {
     public static void printLadder(LadderGenerator ladderGenerator) {
         for (int i = 0; i < ladderGenerator.getLadder().size(); i++) {
             printLine(ladderGenerator.getLineGenerator(i));
