@@ -25,15 +25,29 @@ public class LadderGame {
     }
 
     private static List<String> inputNameList() {
-        return convertStringToNameList(in.nextLine());
+        try {
+            List<String> nameList = convertStringToNameList(in.nextLine());
+            verifyInputNameList(nameList);
+            return nameList;
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return inputNameList();
+        }
     }
 
     private static List<String> convertStringToNameList(String input) {
         return Collections.list(new StringTokenizer(input, ","))
                 .stream()
                 .map(token -> ((String) token).trim())
-                .filter(e -> (e.length() > 0) && (e.length() <= MAXIMUM_NAME_LENGTH))
                 .collect(Collectors.toList());
+    }
+
+    private static void verifyInputNameList(List<String> nameList) throws RuntimeException {
+        boolean existWrongName = nameList.stream()
+                .anyMatch(e -> (e.length() == 0) || (e.length() > MAXIMUM_NAME_LENGTH));
+        if (existWrongName) {
+            throw new RuntimeException("참여할 사람 이름을 정확하게 입력해주세요.");
+        }
     }
 
     private static int inputNumber() {
