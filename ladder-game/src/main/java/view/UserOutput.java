@@ -14,23 +14,25 @@ public class UserOutput {
     private static final String LEFT_PILLAR = "   |";
     private static final String PILLAR = "|";
     private static final String RIGHT_PILLAR = "|  ";
+    private static final int ALLOWED_SPACE = 7;
+    public static final String EMPTY_SPACE = " ";
 
     public static void printLadderToConsole(Ladder ladder, List<String> userList) {
         printUserList(userList);
-        for (LadderFrameLine ladderFrameLine : ladder.getLadderFrameLineList()) {
-            System.out.println(LadderLineToShapeLine(ladderFrameLine));
+        for (LadderFrameLine ladderFrameLine : ladder.getLines()) {
+            System.out.println(ladderLineToShapeLine(ladderFrameLine));
         }
     }
 
-    private static String LadderLineToShapeLine(LadderFrameLine ladderFrameLine) {
+    private static String ladderLineToShapeLine(LadderFrameLine ladderFrameLine) {
         StringJoiner stringJoiner = new StringJoiner(PILLAR, LEFT_PILLAR, RIGHT_PILLAR);
-        for (LadderFrame ladderFrame : ladderFrameLine.getLadderFrameList()) {
-            stringJoiner.add(LadderFrameToShape(ladderFrame));
+        for (LadderFrame ladderFrame : ladderFrameLine.getFrames()) {
+            stringJoiner.add(ladderFrameToShape(ladderFrame));
         }
         return stringJoiner.toString();
     }
 
-    private static String LadderFrameToShape(LadderFrame ladderFrame) {
+    private static String ladderFrameToShape(LadderFrame ladderFrame) {
         if (ladderFrame.equals(LadderFrame.BRIDGE)) {
             return BRIDGE_SHAPE;
         }
@@ -43,14 +45,12 @@ public class UserOutput {
         }
         System.out.println();
     }
+
     private static void formattedPrintForUser(String userName) {
-        int leftSpace;
-        int rightSpace;
-        double temp;
-        temp = (7 - userName.length());
-        leftSpace = (int) Math.ceil(temp / 2);
-        rightSpace = ((int) temp - leftSpace) - 1;
-        System.out.print(" ".repeat(leftSpace) + userName + " ".repeat(rightSpace));
+        double temp = (ALLOWED_SPACE - userName.length());
+        int leftSpace = (int) Math.ceil(temp / 2);
+        int rightSpace = (int) (temp - leftSpace) - 1;
+        System.out.print(EMPTY_SPACE.repeat(leftSpace) + userName + EMPTY_SPACE.repeat(rightSpace));
     }
 
 }
