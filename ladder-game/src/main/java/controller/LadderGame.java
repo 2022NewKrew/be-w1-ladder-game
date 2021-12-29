@@ -1,3 +1,8 @@
+package controller;
+
+import domain.ladder.Ladder;
+import view.UserOutput;
+
 public class LadderGame {
 
     public static LadderGame INSTANCE;
@@ -16,7 +21,7 @@ public class LadderGame {
     }
 
     public void printLadder() {
-        System.out.println(ladder);
+        UserOutput.printLadderToConsole(ladder);
     }
 
 }
