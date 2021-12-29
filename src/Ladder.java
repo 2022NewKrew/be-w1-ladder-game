@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -9,9 +10,11 @@ public class Ladder {
     Ladder(int numberOfPeople, int height) {
         this.numberOfLegs = numberOfPeople;
 
-        ladder = IntStream.range(0, height)
+        ladder = Collections.unmodifiableList(
+                IntStream.range(0, height)
                 .mapToObj(e -> new Line(numberOfLegs))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())
+        );
     }
 
     @Override

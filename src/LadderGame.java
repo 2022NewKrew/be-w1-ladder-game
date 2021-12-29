@@ -1,3 +1,5 @@
+import java.awt.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -8,7 +10,7 @@ public class LadderGame {
     private final DisplayLadder renderer;
 
     LadderGame(List<String> participants, Ladder ladder, DisplayLadder renderer) {
-        this.participants = participants;
+        this.participants = Collections.unmodifiableList(participants);
         this.ladder = ladder;
         this.renderer = renderer;
     }
