@@ -4,15 +4,19 @@ import java.util.ArrayList;
 
 public class Ladder {
 
-    private final ArrayList<LadderRow> rows = new ArrayList<>();
+    private final PlayerRow playerRow;
+    private final ArrayList<LadderRow> ladderRowList = new ArrayList<>();
+    public final static int typeSize = 5;
 
-    public Ladder(int numOfPerson, int height) {
+    public Ladder(ArrayList<String> playerList, int height) {
+        playerRow = new PlayerRow(playerList);
         for(int i = 0; i<height;i++ ) {
-            rows.add(new LadderRow(numOfPerson));
+            ladderRowList.add(new LadderRow(playerList.size()));
         }
     }
     public void printLadder() {
-        for(LadderRow ladderRow : rows)
+        System.out.println(playerRow.toString());
+        for(LadderRow ladderRow : ladderRowList)
         {
             System.out.println(ladderRow.toString());
         }
