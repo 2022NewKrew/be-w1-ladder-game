@@ -51,17 +51,15 @@ public class View {
         List<String> splitUser = Arrays.asList(scanner.nextLine().split(","));
 
         for (String userName : splitUser) {
-            isValidUserNameLength(userName);
+            validateUserNameLength(userName);
         }
 
         return splitUser;
     }
 
-    private Boolean isValidUserNameLength(String userName) throws IllegalArgumentException {
+    private void validateUserNameLength(String userName) throws IllegalArgumentException {
         if (userName.length() > 5) {
             throw new IllegalArgumentException("사람의 이름은 최대 5자 입니다.");
         }
-
-        return true;
     }
 }
