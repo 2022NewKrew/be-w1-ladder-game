@@ -1,62 +1,45 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Random;
 
-public final class Ladder {
-    private final int n_people;
-    private final int max_height;
-    private char[][] arr; // 크기를 나중에 할당해서 그런지 final을 설정할 수가 없네요ㅠㅠ 다른 방법이 있을까요..?
-    Random random = new Random();
 
+public class Ladder {
+    private final int nPeople;
+    private final int maxHeight;
+    private final String[] peopleNames;
+    private final ArrayList<Line> arr;
+
+
+    private static final int maxNameLength = 5;
 
     //constructor
-    public Ladder(int n, int m) {
-        this.n_people = n;
-        this.max_height = m;
+    public Ladder(LadderConfig ladderConfig) {
+        this.nPeople = ladderConfig.getNumPeople();
+        this.maxHeight = ladderConfig.getMaxHeight();
+        this.peopleNames = ladderConfig.getPeopleNames();
+        this.arr = new ArrayList<Line>();
 
-        buildColumns();
-        buildSteps();
-    }
-
-    // build base columns '|'
-    public void buildColumns() {
-        int n_col = 2 * this.n_people -1;
-
-        this.arr = new char[n_col][max_height];
-        for (int i=0; i<this.arr.length; i++) {
-            for (int j=0; j<this.arr[0].length; j+=2) {
-                this.arr[i][j]='|';
-            }
-        }
+        buildLines();
     }
 
 
-    // build steps '-'
-    public void buildSteps() {
-        for (int i=0; i<this.arr.length; i++) {
-            for (int j=1; j<this.arr[0].length; j+=2) {
-
-                float random_float = random.nextFloat();
-
-                if (random_float <0.5) { // make each step by 50% probability
-                    this.arr[i][j]='-';
-                }else{
-                    this.arr[i][j]=' ';
-                }
-            }
-        }
+    public String[] getPeopleNames() {
+        return this.peopleNames;
     }
 
-    // print ladder as string
-    public void printLadder() {
+    public int getMaxNameLength() {
+        return maxNameLength;
+    }
 
-        for (char[] each_row : this.arr) {
-            StringBuilder sb = new StringBuilder();
-            for (char ch : each_row) {
-                sb.append(ch);
-            }
-            String row = sb.toString();
-            System.out.println(row);
+    public ArrayList<Line> getLadderList() {
+        return this.arr;
+    }
 
+    //line 생성
+    public void buildLines() {
+        for (int i = 0; i < this.maxHeight; i++) {
+            Line line = new Line(this.nPeople);
+            this.arr.add(line);
         }
     }
 }
+
