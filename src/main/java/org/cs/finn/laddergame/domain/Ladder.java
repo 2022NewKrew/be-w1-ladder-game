@@ -6,14 +6,18 @@ import java.util.List;
 
 public class Ladder {
     private final List<String> ladderRows = new ArrayList<>();
-    private final SecureRandom sRand = new SecureRandom();
 
-    public void build(final Input iPara) {
+    private static final SecureRandom sRand = new SecureRandom();
+
+    public void build(final Input input) {
+        if (input == null) {
+            throw new RuntimeException("Input for build Ladder is null!");
+        }
         ladderRows.clear();
 
-        final int member = iPara.getMember();
+        final int member = input.getMember();
         final int bound = 1 << (member - 1);
-        final int height = iPara.getLadderHeight();
+        final int height = input.getLadderHeight();
 
         for (int i = 0; i < height; i++) {
             // bound를 추가로 더해서

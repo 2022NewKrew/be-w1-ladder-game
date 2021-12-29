@@ -12,6 +12,7 @@ public class LadderView {
 
     private void printOneHeight(final String bridge) {
         for (char ch : bridge.toCharArray()) {
+            // '1' -> const 화
             System.out.print("|" + (ch == '1' ? "-" : " "));
         }
         System.out.println("|");
