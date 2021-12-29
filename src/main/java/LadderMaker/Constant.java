@@ -1,4 +1,4 @@
-package LadderMaker.Day3;
+package LadderMaker;
 
 public class Constant {
     public static int MAX_NAME_LENGTH = 5;

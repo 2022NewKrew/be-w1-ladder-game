@@ -1,4 +1,4 @@
-package LadderMaker.Day3;
+package LadderMaker;
 
 public class LadderRenderer {
     public LadderRenderer() { }
