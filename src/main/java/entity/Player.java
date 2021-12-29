@@ -1,3 +1,5 @@
+package entity;
+
 public class Player {
     private String name;
 
@@ -11,6 +13,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return "{Player: " + name + '}';
+        return "{entity.Player: " + name + '}';
     }
 }
