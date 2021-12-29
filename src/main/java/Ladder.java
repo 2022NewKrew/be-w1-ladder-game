@@ -1,32 +1,26 @@
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
-    private final int numOfPeople;
+    private final int countOfPerson;
     private final int height;
-    private final String[][] ladder;
-    private Random random = new Random();
+    private final List<Line> lines;
 
-    Ladder(int numOfPeople, int height) {
-        this.numOfPeople = numOfPeople;
+    Ladder(int countOfPerson, int height) {
+        this.countOfPerson = countOfPerson;
         this.height = height;
-        this.ladder = new String[height][numOfPeople-1];
+        this.lines = new ArrayList<>(height);
         setLadder();
     }
 
     private void setLadder() {
-        for(int i = 0; i < height; i++) {
-            setLadderLine(i);
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(countOfPerson));
         }
     }
 
-    private void setLadderLine(int row) {
-        for(int j = 0; j < numOfPeople-1; j++) {
-            ladder[row][j] = random.nextBoolean() ? "-" : " ";
-        }
-    }
-
-    public String[][] getLadder() {
-        return ladder;
+    public List<Line> getLines() {
+        return lines;
     }
 
 }

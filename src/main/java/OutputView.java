@@ -1,22 +1,38 @@
+import java.util.List;
+
 public class OutputView {
 
-    public static void printLadder(String[][] ladder) {
-        for(String[] row : ladder) {
+    public static void printLadder(List<Line> ladder, List<String> users) {
+        printNames(users);
+        for (Line row : ladder) {
             printLadderLine(row);
         }
     }
 
-    private static void printLadderLine(String[] row) {
-        for (int i=0 ; i<row.length*2+1; i++) {
-            System.out.print(getElement(row, i));
+    private static void printNames(List<String> users) {
+        for (String user : users) {
+            printNameWithSpace(user, 6);
         }
         System.out.println();
     }
 
-    private static String getElement(String[] row , int i) {
-        if (i%2==1) {
-            return row[i/2];
+    private static void printNameWithSpace(String user, int space) {
+        int frontSpace = (space - user.length()) / 2;
+        for (int i = 0; i < frontSpace; i++) {
+            System.out.print(" ");
         }
-        return "|";
+        System.out.print(user);
+        for (int i = 0; i < space - frontSpace - user.length(); i++) {
+            System.out.print(" ");
+        }
+    }
+
+    private static void printLadderLine(Line row) {
+        System.out.print("  |");
+        for (Boolean isTrue : row.getpoints()) {
+            System.out.print(isTrue ? "-----|" : "     |");
+        }
+        System.out.println();
     }
 }
+

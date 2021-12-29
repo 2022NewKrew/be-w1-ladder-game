@@ -1,9 +1,18 @@
+import java.util.List;
+
 public class LadderGame {
 
-    public static void main(String[] args) {
+    private List<String> users;
+    private Ladder ladder;
 
-        Ladder ladder = new Ladder(InputView.askNumOfPeople(), InputView.askHeight());
-        OutputView.printLadder(ladder.getLadder());
+    LadderGame() {}
+
+    public void start() {
+
+        users = InputView.askNames();
+        ladder = new Ladder(users.size(), InputView.askHeight());
+        OutputView.printLadder(ladder.getLines(), users);
 
     }
+
 }
