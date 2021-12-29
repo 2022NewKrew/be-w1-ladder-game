@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class LineBuilder {
     private final int MAX_RANDOM = 10;
@@ -29,8 +30,9 @@ public class LineBuilder {
     Line makeLine() {
         ArrayList<Boolean> line = new ArrayList<>();
 
-        for (int i = 0; i < numberOfPlayer - 1; i++)
-            line.add(getLineElement());
+        Stream.generate(this::getLineElement)
+                .limit(numberOfPlayer - 1)
+                .forEachOrdered(line::add);
         return new Line(line);
     }
 }

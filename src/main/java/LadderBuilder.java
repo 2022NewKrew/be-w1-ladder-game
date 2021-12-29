@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class LadderBuilder {
     private final int height;
@@ -17,8 +18,9 @@ public class LadderBuilder {
     Ladder makeLadder() {
         ArrayList<Line> lines = new ArrayList<>();
 
-        for (int i = 0; i < height; i++)
-            lines.add(lineBuilder.makeLine());
+        Stream.generate(lineBuilder::makeLine)
+                .limit(height)
+                .forEachOrdered(lines::add);
         return new Ladder(lines);
     }
 }
