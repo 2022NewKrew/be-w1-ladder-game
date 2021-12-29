@@ -1,4 +1,4 @@
-package line;
+package main.domain.line;
 
 import java.util.ArrayList;
 import java.util.List;

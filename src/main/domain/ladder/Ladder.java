@@ -1,7 +1,7 @@
-package ladder;
+package main.domain.ladder;
 
-import connector.Connector;
-import line.Line;
+import main.domain.connector.Connector;
+import main.domain.line.Line;
 
 import java.util.ArrayList;
 import java.util.List;

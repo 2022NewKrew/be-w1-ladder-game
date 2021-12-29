@@ -1,6 +1,6 @@
-package ladder;
+package main.domain.ladder;
 
-import connector.RandomConnector;
+import main.domain.connector.RandomConnector;
 
 public class LadderGame {
 

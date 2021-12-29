@@ -1,4 +1,4 @@
-package line;
+package main.domain.line;
 
 public class Connection {
 

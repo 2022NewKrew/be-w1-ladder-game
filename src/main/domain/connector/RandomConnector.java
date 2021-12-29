@@ -1,6 +1,6 @@
-package connector;
+package main.domain.connector;
 
-import line.Line;
+import main.domain.line.Line;
 
 import java.util.Random;
 
