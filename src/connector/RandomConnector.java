@@ -10,9 +10,8 @@ public class RandomConnector implements Connector {
 
     @Override
     public boolean isConnected(Line prevLine, Line nextLine, int position) {
-        Line connectedPrevLine = prevLine.getConnectedLine(position);
-        Line connectedNextLine = nextLine.getConnectedLine(position);
-        return isNotNull(connectedPrevLine, connectedNextLine) && connectedPrevLine.equals(nextLine) && connectedNextLine.equals(prevLine);
+        // connect시 양방향 매핑이 수행되므로 한쪽만 확인해도 연결 여부를 알 수 있다.
+        return prevLine.isConnectedTo(nextLine, position);
     }
 
     @Override
@@ -22,18 +21,9 @@ public class RandomConnector implements Connector {
         }
     }
 
-    private boolean isNotNull(Line prevLine, Line nextLine) {
-        return prevLine != null && nextLine != null;
-    }
-
     private void connect(Line prevLine, Line nextLine, int position) {
-        if (isConnectable(prevLine, nextLine, position) && random.nextBoolean()) {
+        if (random.nextBoolean()) {
             prevLine.connect(nextLine, position);
-            nextLine.connect(prevLine, position);
         }
-    }
-
-    private boolean isConnectable(Line prevLine, Line nextLine, int position) {
-        return prevLine.isConnectable(position) && nextLine.isConnectable(position);
     }
 }
