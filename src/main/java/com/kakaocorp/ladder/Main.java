@@ -1,7 +1,7 @@
 package com.kakaocorp.ladder;
 
 import com.kakaocorp.ladder.model.Ladder;
-import com.kakaocorp.ladder.policy.GamePolicy;
+import com.kakaocorp.ladder.model.Rule;
 import com.kakaocorp.ladder.service.LadderService;
 
 import java.util.Scanner;
@@ -17,8 +17,8 @@ public class Main {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int height = sc.nextInt();
 
-        GamePolicy policy = new GamePolicy(MAX_PARTICIPANT);
-        LadderService service = new LadderService(policy);
+        Rule rule = new Rule(MAX_PARTICIPANT);
+        LadderService service = new LadderService(rule);
         Ladder ladder = service.initialize(height, participants);
         String s = service.buildString(ladder);
 

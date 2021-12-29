@@ -1,10 +1,10 @@
-package com.kakaocorp.ladder.policy;
+package com.kakaocorp.ladder.model;
 
-public class GamePolicy {
+public class Rule {
 
     private final int maxNameLength;
 
-    public GamePolicy(int maxNameLength) {
+    public Rule(int maxNameLength) {
         this.maxNameLength = maxNameLength;
     }
 

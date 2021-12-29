@@ -3,7 +3,7 @@ package com.kakaocorp.ladder.service;
 import com.kakaocorp.ladder.model.Direction;
 import com.kakaocorp.ladder.model.Ladder;
 import com.kakaocorp.ladder.model.Node;
-import com.kakaocorp.ladder.policy.GamePolicy;
+import com.kakaocorp.ladder.model.Rule;
 import com.kakaocorp.ladder.test.TestUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,13 +28,13 @@ class LadderServiceTest {
             "Golf",
     };
 
-    private GamePolicy policy;
+    private Rule rule;
     private LadderService subject;
 
     @BeforeEach
     void setUp() {
-        policy = Mockito.mock(GamePolicy.class);
-        subject = new LadderService(policy);
+        rule = Mockito.mock(Rule.class);
+        subject = new LadderService(rule);
     }
 
     @Test
@@ -59,7 +59,7 @@ class LadderServiceTest {
     void buildString() {
         Ladder ladder = new Ladder(HEIGHT, participants);
         buildSteps(ladder);
-        Mockito.when(policy.getMaxNameLength()).thenReturn(7);
+        Mockito.when(rule.getMaxNameLength()).thenReturn(7);
 
         String result = subject.buildString(ladder);
 

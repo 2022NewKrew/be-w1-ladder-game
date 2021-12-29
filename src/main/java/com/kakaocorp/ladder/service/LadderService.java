@@ -7,17 +7,17 @@ import com.kakaocorp.ladder.model.Direction;
 import com.kakaocorp.ladder.model.Ladder;
 import com.kakaocorp.ladder.model.Node;
 import com.kakaocorp.ladder.model.Rail;
-import com.kakaocorp.ladder.policy.GamePolicy;
+import com.kakaocorp.ladder.model.Rule;
 import com.kakaocorp.ladder.common.Strings;
 
 public class LadderService {
 
     private static final float NEIGHBOR_RATE = 0.5f;
 
-    private final GamePolicy policy;
+    private final Rule rule;
 
-    public LadderService(GamePolicy policy) {
-        this.policy = policy;
+    public LadderService(Rule rule) {
+        this.rule = rule;
     }
 
     public Ladder initialize(int height, String[] participants) {
@@ -31,7 +31,7 @@ public class LadderService {
     public String buildString(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
         appendLabels(ladder, sb);
-        MultipleNodesWalker.Callback cb = new LadderPrinter(sb, policy);
+        MultipleNodesWalker.Callback cb = new LadderPrinter(sb, rule);
         MultipleNodesWalker walker = new RowFirstWalker(cb);
         walker.walk(ladder);
         return sb.toString();
@@ -52,7 +52,7 @@ public class LadderService {
         for (int i = 0; i < ladder.getWidth(); i++) {
             Rail rail = ladder.getRailAt(i);
             String label = rail.getLabel();
-            String padded = Strings.pad(label, policy.getMaxNameLength() + 1);
+            String padded = Strings.pad(label, rule.getMaxNameLength() + 1);
             sb.append(padded);
         }
         sb.append('\n');
@@ -61,16 +61,16 @@ public class LadderService {
     private static class LadderPrinter implements MultipleNodesWalker.Callback {
 
         private final StringBuilder sb;
-        private final GamePolicy policy;
+        private final Rule rule;
 
-        public LadderPrinter(StringBuilder sb, GamePolicy policy) {
+        public LadderPrinter(StringBuilder sb, Rule rule) {
             this.sb = sb;
-            this.policy = policy;
+            this.rule = rule;
         }
 
         @Override
         public void process(Node node1, Node node2) {
-            int maxNameLength = policy.getMaxNameLength();
+            int maxNameLength = rule.getMaxNameLength();
             if (node2 == null) {
                 sb.append('\n');
                 return;
