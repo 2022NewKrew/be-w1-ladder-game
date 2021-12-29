@@ -19,18 +19,28 @@ public class LadderRow {
     }
 
     public void makeRow() {
-        Random rand = new Random();
         for (int i = 0; i < cellCount; i++)
-            row.add(LadderCell.getInstance(rand.nextBoolean()));
+            row.add(LadderCell.getInstance(decideHorizon(row, i)));
+    }
+
+    public boolean decideHorizon(ArrayList<LadderCell> row, int idx) {
+        Random rand = new Random();
+        if (idx != 0 && row.get(idx - 1).getIsHorizontal()) return false;
+        return rand.nextBoolean();
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("|");
+        sb.append("     |");
         for (LadderCell cell : row) {
             sb.append(cell.toString());
             sb.append("|");
         }
+        sb.append("     ");
         return sb.toString();
+    }
+
+    public ArrayList<LadderCell> getRow(){
+        return row;
     }
 }
