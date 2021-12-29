@@ -1,7 +1,7 @@
-package main.ladder.view;
+package ladder.view;
 
-import main.ladder.domain.Ladder;
-import main.ladder.domain.Participant;
+import ladder.domain.Ladder;
+import ladder.domain.Participant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,7 +79,7 @@ public class LadderGame {
      * 양수 입력 받기
      */
     private int inputPositiveNumber() throws Exception {
-        int number = 0;
+        int number;
         try {
             number = SCANNER.nextInt();
         } catch (Exception e) {

@@ -1,6 +1,6 @@
-package main.ladder;
+package ladder;
 
-import main.ladder.view.LadderGame;
+import ladder.view.LadderGame;
 
 public class Main {
 
