@@ -8,13 +8,13 @@ public class BridgeBuilder {
     private final List<Bridge> bridges;
     private final int numOfParticipants;
     private final int height;
-    private final RandomBridgeManger randomBridgeManger;
+    private final RandomBridgeProvider randomBridgeProvider;
 
-    public BridgeBuilder(String[] participants, int height, RandomBridgeManger randomBridgeManger) {
+    public BridgeBuilder(String[] participants, int height, RandomBridgeProvider randomBridgeProvider) {
         this.numOfParticipants = participants.length;
         this.bridges = new ArrayList<>();
         this.height = height;
-        this.randomBridgeManger = randomBridgeManger;
+        this.randomBridgeProvider = randomBridgeProvider;
     }
 
     public List<Bridge> build() {
@@ -41,9 +41,9 @@ public class BridgeBuilder {
 
     private boolean isConnectableBridge(Bridge bridge, int currentPoint) {
         if (currentPoint == 0) {
-            return randomBridgeManger.isConnectableBridgeByRandom();
+            return randomBridgeProvider.isConnectableBridgeByRandom();
         }
-        return !bridge.isConnected(currentPoint - 1) && randomBridgeManger.isConnectableBridgeByRandom();
+        return !bridge.isConnected(currentPoint - 1) && randomBridgeProvider.isConnectableBridgeByRandom();
     }
 
 }

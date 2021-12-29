@@ -13,7 +13,7 @@ public class LadderGame {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int height = sc.nextInt();
 
-        BridgeBuilder bridgeBuilder = new BridgeBuilder(participants, height, new RandomBridgeManger(System.currentTimeMillis()));
+        BridgeBuilder bridgeBuilder = new BridgeBuilder(participants, height, new RandomBridgeProvider(System.currentTimeMillis()));
         Ladder ladder = new Ladder(participants, height, bridgeBuilder.build());
         LadderRenderer.render(ladder);
     }
