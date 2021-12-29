@@ -3,9 +3,13 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class InputHandler {
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
 
-    public static int getPeopleSize() {
+    public InputHandler() {
+        scanner = new Scanner(System.in);
+    }
+
+    public int getPeopleSize() {
         int peopleSize = 0;
 
         System.out.println("참여할 사람은 몇 명 인가요?");
@@ -20,7 +24,7 @@ public class InputHandler {
         return peopleSize;
     }
 
-    public static int getHeight() {
+    public int getHeight() {
         int height = 0;
 
         System.out.println("최대 사다리 높이는 몇 개 인가요?");
@@ -35,7 +39,7 @@ public class InputHandler {
         return height;
     }
 
-    private static void validatePositiveInteger(int value) throws InputMismatchException {
+    private void validatePositiveInteger(int value) throws InputMismatchException {
         if (value <= 0) {
             throw new InputMismatchException();
         }

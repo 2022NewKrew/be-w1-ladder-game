@@ -2,11 +2,14 @@ public class LadderGame {
     public static void main(String[] args) {
         int peopleSize, height;
 
-        peopleSize = InputHandler.getPeopleSize();
-        height = InputHandler.getHeight();
+        InputHandler inputHandler = new InputHandler();
+        OutputHandler outputHandler = new OutputHandler();
+
+        peopleSize = inputHandler.getPeopleSize();
+        height = inputHandler.getHeight();
 
         Ladder ladder = LadderFactory.buildLadder(peopleSize, height);
 
-        OutputHandler.printLadder(ladder);
+        outputHandler.printLadder(ladder);
     }
 }
