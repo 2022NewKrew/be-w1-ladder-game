@@ -190,8 +190,9 @@ gradle-app.setting
 .idea/vcs.xml
 .idea/*
 
+build.gradle
 gradlew
 gradlew.bat
-build.gradle
+settings.gradle
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,java,macos,intellij
