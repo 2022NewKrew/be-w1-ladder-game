@@ -1,4 +1,4 @@
-package com.laddergame;
+package com.laddergame.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +22,7 @@ public class Participants {
 
     public List<String> getParticipantsNames() {
         return this.participants.stream()
-                .map(participant -> participant.getName())
+                .map(Participant::getName)
                 .collect(Collectors.toList());
     }
 

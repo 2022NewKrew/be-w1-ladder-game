@@ -1,4 +1,7 @@
-package com.laddergame;
+package com.laddergame.dto;
+
+import com.laddergame.domain.Line;
+import com.laddergame.domain.Lines;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +17,7 @@ public class ResultDto {
         return gameResult;
     }
 
-    public static ResultDto from (Lines result) {
+    public static ResultDto from(Lines result) {
         List<List<Boolean>> lines = result
                 .getLines()
                 .stream()

@@ -1,4 +1,4 @@
-package com.laddergame;
+package com.laddergame.domain;
 
 public class Participant {
     private final String name;

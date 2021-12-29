@@ -1,8 +1,12 @@
 package com.laddergame;
 
+import com.laddergame.domain.LadderGame;
+import com.laddergame.domain.Lines;
+import com.laddergame.dto.ResultDto;
+
 import java.util.List;
 
-import static com.laddergame.View.*;
+import static com.laddergame.view.View.*;
 
 public class LadderGameApplication {
     public static void main(String[] args) {

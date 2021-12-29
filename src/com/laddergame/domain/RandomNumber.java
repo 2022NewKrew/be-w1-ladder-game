@@ -1,4 +1,4 @@
-package com.laddergame;
+package com.laddergame.domain;
 
 import java.util.Random;
 

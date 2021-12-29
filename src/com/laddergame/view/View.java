@@ -1,4 +1,4 @@
-package com.laddergame;
+package com.laddergame.view;
 
 import java.util.List;
 import java.util.Scanner;
