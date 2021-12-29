@@ -14,4 +14,12 @@ public class Bridge {
     public boolean isExist() {
         return isExist;
     }
+
+    public void addBridge() {
+        isExist = true;
+    }
+
+    public void removeBridge() {
+        isExist = false;
+    }
 }

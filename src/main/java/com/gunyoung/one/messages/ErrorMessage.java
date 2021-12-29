@@ -1,6 +1,6 @@
 package com.gunyoung.one.messages;
 
-public class ErrorMessage {
+public final class ErrorMessage {
 
     private ErrorMessage() {
     }

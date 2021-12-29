@@ -1,6 +1,6 @@
 package com.gunyoung.one.precondition;
 
-public class Precondition {
+public final class Precondition {
 
     private Precondition() {
     }
