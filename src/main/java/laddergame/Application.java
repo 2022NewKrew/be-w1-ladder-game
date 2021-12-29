@@ -11,10 +11,10 @@ public class Application {
         final InputView inputView = new ConsoleInputView();
         final OutputView outputView = new ConsoleOutputView();
 
-        final int numberOfPlayer = LadderGame.inputNumberOfPlayer(inputView);
+        final String[] playerNames = LadderGame.inputPlayerNames(inputView);
         final int ladderHeight = LadderGame.inputLadderHeight(inputView);
 
-        LadderGame ladderGame = LadderGame.of(numberOfPlayer, ladderHeight);
+        LadderGame ladderGame = LadderGame.of(playerNames, ladderHeight);
         ladderGame.printLadder(outputView);
     }
 }
