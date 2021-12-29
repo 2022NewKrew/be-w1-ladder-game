@@ -17,12 +17,15 @@ class LadderServiceTest {
 
     private static final int HEIGHT = 4;
     private static final String TEST_LADDER_PRINTED =
-            "|   |   |   |   |   |   |   \n" +
-            "|---|   |   |   |   |   |   \n" +
-            "|   |   |   |   |   |   |   \n" +
-            "|   |---|   |   |   |---|   \n";
+            " Alpha   Bravo  Charlie  Delta    Echo  Foxtrot   Golf  \n" +
+            "   |       |       |       |       |       |       |       \n" +
+            "   |-------|       |       |       |       |       |       \n" +
+            "   |       |       |       |       |       |       |       \n" +
+            "   |       |-------|       |       |       |-------|       \n";
     private static final String[] participants = {
-            "A", "B", "C", "D", "E", "F", "G",
+            "Alpha", "Bravo", "Charlie",
+            "Delta", "Echo", "Foxtrot",
+            "Golf",
     };
 
     private GamePolicy policy;
@@ -56,7 +59,7 @@ class LadderServiceTest {
     void buildString() {
         Ladder ladder = new Ladder(HEIGHT, participants);
         buildSteps(ladder);
-        Mockito.when(policy.getMaxNameLength()).thenReturn(3);
+        Mockito.when(policy.getMaxNameLength()).thenReturn(7);
 
         String result = subject.buildString(ladder);
 

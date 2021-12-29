@@ -1,12 +1,14 @@
 package com.kakaocorp.ladder.service;
 
-import com.kakaocorp.ladder.iteration.RowFirstWalker;
 import com.kakaocorp.ladder.iteration.MultipleNodesWalker;
 import com.kakaocorp.ladder.iteration.PossibleNeighborsWalker;
+import com.kakaocorp.ladder.iteration.RowFirstWalker;
 import com.kakaocorp.ladder.model.Direction;
 import com.kakaocorp.ladder.model.Ladder;
 import com.kakaocorp.ladder.model.Node;
+import com.kakaocorp.ladder.model.Rail;
 import com.kakaocorp.ladder.policy.GamePolicy;
+import com.kakaocorp.ladder.common.Strings;
 
 public class LadderService {
 
@@ -28,6 +30,7 @@ public class LadderService {
 
     public String buildString(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
+        appendLabels(ladder, sb);
         MultipleNodesWalker.Callback cb = new LadderPrinter(sb, policy);
         MultipleNodesWalker walker = new RowFirstWalker(cb);
         walker.walk(ladder);
@@ -45,6 +48,16 @@ public class LadderService {
         node2.setNeighbor(Direction.LEFT, node1);
     }
 
+    private void appendLabels(Ladder ladder, StringBuilder sb) {
+        for (int i = 0; i < ladder.getWidth(); i++) {
+            Rail rail = ladder.getRailAt(i);
+            String label = rail.getLabel();
+            String padded = Strings.pad(label, policy.getMaxNameLength() + 1);
+            sb.append(padded);
+        }
+        sb.append('\n');
+    }
+
     private static class LadderPrinter implements MultipleNodesWalker.Callback {
 
         private final StringBuilder sb;
@@ -57,16 +70,20 @@ public class LadderService {
 
         @Override
         public void process(Node node1, Node node2) {
+            int maxNameLength = policy.getMaxNameLength();
             if (node2 == null) {
                 sb.append('\n');
                 return;
             }
+            if (node1 == null) {
+                sb.append(" ".repeat(maxNameLength / 2));
+            }
             sb.append('|');
             if (node2.hasNeighbor() && node2.getNeighborDirection() == Direction.RIGHT) {
-                sb.append("-".repeat(policy.getMaxNameLength()));
+                sb.append("-".repeat(maxNameLength));
                 return;
             }
-            sb.append(" ".repeat(policy.getMaxNameLength()));
+            sb.append(" ".repeat(maxNameLength));
         }
     }
 }
