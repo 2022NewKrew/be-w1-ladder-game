@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * LadderConfig 를 세팅하는 다양한 입력인터페이스
- * Ladder 클래스는 해당 인터페이스를 통해 LadderConfig 를 세팅받고 처리
+ * LadderConfig 를 세팅하는 다양한 입력인터페이스 Ladder 클래스는 해당 인터페이스를 통해 LadderConfig 를 세팅받고 처리
  *
  * @author leo.jung
  * @since 1.0
@@ -22,18 +21,18 @@ public interface ReadManager {
   int MAX_WORD_SIZE = 5;
 
   Participants getParticipants() throws IOException;
+
   int getLadderHeight() throws IOException;
 
   /**
-   * 입력값을 DELIMITER 로 분리 후 기본적인 값 검증 후 List 형태로 반환하는 함수.
-   * 값 검증 실패시 예외 발생.
+   * 입력값을 DELIMITER 로 분리 후 기본적인 값 검증 후 List 형태로 반환하는 함수. 값 검증 실패시 예외 발생.
    *
    * @param input 입력값
    * @return 입력값 스트림
    */
   default List<String> splitByDelimiter(String input) {
     List<String> splitWords = Arrays.stream(input
-        .split(DELIMITER))
+            .split(DELIMITER))
         .map(String::strip)
         .collect(Collectors.toList());
 
