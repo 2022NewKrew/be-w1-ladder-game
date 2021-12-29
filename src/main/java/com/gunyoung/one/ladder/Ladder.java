@@ -50,24 +50,6 @@ public final class Ladder {
         return bridge;
     }
 
-    public String getShapeOfLadder() {
-        StringBuilder sb = new StringBuilder();
-        for (int row = 0; row < ladderHeight; row++) {
-            getShapeOfLadderForEachRow(sb, row);
-        }
-        return sb.toString();
-    }
-
-    private void getShapeOfLadderForEachRow(StringBuilder sb, int row) {
-        sb.append("|");
-        char[] signaturesOfBridges = bridge.getSignaturesOf(row);
-        for (char signature : signaturesOfBridges) {
-            sb.append(signature)
-                    .append("|");
-        }
-        sb.append("\n");
-    }
-
     public static class Bridge {
         private final boolean[][] bridges;
         private final BridgeMakeStrategy makeStrategy;

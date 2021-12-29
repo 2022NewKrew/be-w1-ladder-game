@@ -27,7 +27,7 @@ public class GameStarter {
      */
     public void start() {
         inputDataForGame();
-        drawLadder();
+        drawGameResult();
     }
 
     private void inputDataForGame() {
@@ -48,8 +48,8 @@ public class GameStarter {
         return view.inputIntWithMessage("최대 사다리 높이는 몇 개인가요?");
     }
 
-    private void drawLadder() {
-        String ladderFeature = Ladder.getInstance().getShapeOfLadder();
-        view.output(ladderFeature);
+    private void drawGameResult() {
+        String gameResult = shapeMaker.getShapeOfGameResult();
+        view.output(gameResult);
     }
 }
