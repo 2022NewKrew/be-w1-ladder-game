@@ -18,7 +18,6 @@ public class LadderInfoScanner {
     public Ladder getLadder(){
         ArrayList<String> names = getNames();
         correctNames(names);
-        System.out.println(names);
         int heightOfLadder = getHeightOfLadder();
 
         return new Ladder(heightOfLadder, names);
