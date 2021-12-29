@@ -5,8 +5,7 @@ public class LadderGame {
     private List<String> users;
     private Ladder ladder;
 
-    LadderGame() {
-    }
+    LadderGame() {}
 
     public void start() {
 
