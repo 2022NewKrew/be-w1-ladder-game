@@ -2,9 +2,6 @@ import java.util.*;
 
 public class LadderGame {
 
-
-
-
     // 메서드들을 호출
     public static void main(String[] args) {
 
