@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+package laddergame.util;
 
 public class Util {
     static public Boolean generateTrueOrFalseByRandom(){

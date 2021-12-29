@@ -1,3 +1,5 @@
+package laddergame.domain;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +17,12 @@ public class Ladder {
         }
     }
 
-    public void print(){
+    public String toString(){
+        StringBuilder result = new StringBuilder();
         for(Line line : lines) {
-            System.out.println(line.toString());
+            result.append(line.toString());
+            result.append("\n");
         }
+        return result.toString();
     }
 }
