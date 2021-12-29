@@ -1,17 +1,18 @@
 package ladder;
 
-public enum LadderComponent {
-    VERTICAL('|'),
-    HORIZONTAL('-'),
-    EMPTY(' ');
+enum LadderComponent {
+    VERTICAL("|"),
+    HORIZONTAL("-----"),
+    EMPTY("     "),
+    PADDING("   ");
 
-    private final Character value;
+    private final String value;
 
-    LadderComponent(Character value) {
+    LadderComponent(String value) {
         this.value = value;
     }
 
-    public Character getValue() {
+    public String getValue() {
         return value;
     }
 }

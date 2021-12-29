@@ -1,11 +1,10 @@
-import ladder.Ladder;
-
-import java.io.IOException;
+import ladder.LadderGame;
+import view.ApplicationInput;
 
 public class Application {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ApplicationInput input = new ApplicationInput();
-        Ladder ladder = new Ladder(input.getPeople(), input.getHeight());
-        System.out.println(ladder);
+        LadderGame ladderGame = new LadderGame(input.getPlayers(), input.getHeight());
+        System.out.println(ladderGame.printLadder());
     }
 }
