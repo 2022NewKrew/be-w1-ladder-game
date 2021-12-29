@@ -1,7 +1,5 @@
 package ladder;
 
-import java.util.Arrays;
-
 public class LadderRenderer {
 
     private static final String HORIZONTAL_LINE = "-----";
