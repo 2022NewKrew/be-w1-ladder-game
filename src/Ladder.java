@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 
 public class Ladder {
-    private ArrayList<Line> ladder = new ArrayList<>();
-    private int height;
+    private final ArrayList<Line> ladder = new ArrayList<>();
+    private final int height;
 
-    public Ladder(int people, int height) {
+    public Ladder(int numOfPeople, int height) {
         this.height = height;
 
         for(int i=0; i<height; i++){
-            ladder.add(new Line(people));
+            ladder.add(new Line(numOfPeople));
         }
     }
 
