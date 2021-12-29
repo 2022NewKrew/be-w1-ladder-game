@@ -1,42 +1,90 @@
 package service;
 
-import configuration.LadderHeight;
-import configuration.PeopleCount;
+import common.value.LadderHeight;
+import common.value.PlayerCount;
+import service.value.Line;
+import service.value.Point;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class LadderRandomGenerator implements LadderGenerator {
 
     private static Random random = new Random();
 
-    public boolean[][] generate(LadderHeight ladderHeight, PeopleCount peopleCount) {
-        int height = ladderHeight.getValue();
-        int width = peopleCount.getValue() - 1;
+    private static final int LEFT = 0;
+    private static final int DOWN = 1;
+    private static final int RIGHT = 2;
 
-        if (height < 0 || width < 0) {
-            return new boolean[0][0];
-        }
+    private List<Line> ladders;
 
-        return generateLadderRows(height, width);
+    public List<Line> generate(LadderHeight ladderHeight, PlayerCount playerCount) {
+        validate(ladderHeight, playerCount);
+        initLadders(ladderHeight, playerCount);
+        generateLadderRows();
+        return ladders;
     }
 
-    private boolean[][] generateLadderRows(int rowSize, int colSize) {
-        boolean[][] ladderStatus = new boolean[rowSize][];
-
-        for (int row = 0; row < ladderStatus.length; row++) {
-            ladderStatus[row] = generateLadderRow(colSize);
+    private void validate(LadderHeight ladderHeight, PlayerCount playerCount) {
+        if(ladderHeight.getValue() < 0 || (playerCount.getValue() - 1) < 0) {
+            throw new IllegalArgumentException("사다리 생성 파라미터 오류 입니다~");
         }
-
-        return ladderStatus;
     }
 
-    private boolean[] generateLadderRow(int colSize) {
-        boolean[] ladderRow = new boolean[colSize];
+    private void initLadders(LadderHeight ladderHeight, PlayerCount playerCount) {
+        ladders = new ArrayList<>();
+        for(int i = 0; i < playerCount.getValue(); i++)
+        {
+            ladders.add(new Line(ladderHeight.getValue()));
+        }
+    }
 
-        for (int col = 0; col < colSize; col++) {
-            ladderRow[col] = random.nextBoolean();
+    private List<Line> generateLadderRows() {
+        int rowSize = ladders.get(0).getHeight();
+        for(int row = 0; row < rowSize; row++) {
+            generateLadderRow(row);
+        }
+        return ladders;
+    }
+
+    private void generateLadderRow(int rowIndex) {
+        int colSize = ladders.size();
+        for(int colIndex = 0; colIndex < colSize - 1; colIndex++) {
+            boolean existLadder = getExistLadder(rowIndex, colIndex);
+            if(existLadder == true) {
+                connectLadder(rowIndex, colIndex);
+            }
+        }
+    }
+
+    private boolean getExistLadder(int rowIndex, int colIndex) {
+        boolean existLadder = random.nextBoolean();
+        while(!validateExistLadder(rowIndex, colIndex, existLadder)) {
+            existLadder = random.nextBoolean();
+        }
+        return existLadder;
+    }
+
+    private boolean validateExistLadder(int rowIndex, int colIndex, boolean existLadder) {
+
+        if(existLadder == false || colIndex == 0) { return true; }
+
+        Point point = ladders.get(colIndex).getPoint(rowIndex);
+        if(point.getDirection() == LEFT) {
+            return false;
         }
 
-        return ladderRow;
+        return true;
+    }
+
+    private void connectLadder(int rowIndex, int colIndex) {
+        Line leftLine = ladders.get(colIndex);
+        Point leftPoint = leftLine.getPoint(rowIndex);
+        leftPoint.setDirection(RIGHT);
+
+        Line rightLine = ladders.get(colIndex + 1);
+        Point rightPoint = rightLine.getPoint(rowIndex);
+        rightPoint.setDirection(LEFT);
     }
 }

@@ -1,5 +1,9 @@
 package configuration;
 
+import common.value.LadderHeight;
+import common.value.Player;
+import common.value.PlayerCount;
+
 import java.util.List;
 
 public class LadderGameConfiguration {
@@ -18,11 +22,12 @@ public class LadderGameConfiguration {
         return playerList;
     }
 
-    public PeopleCount getPlayerCount() {
-        return new PeopleCount(playerList.size());
+    public PlayerCount getPlayerCount() {
+        return new PlayerCount(playerList.size());
     }
 
     public LadderHeight getMaxLadderHeight() {
         return maxLadderHeight;
     }
+
 }

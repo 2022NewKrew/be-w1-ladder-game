@@ -1,8 +1,11 @@
 package service;
 
-import configuration.LadderHeight;
-import configuration.PeopleCount;
+import common.value.LadderHeight;
+import common.value.PlayerCount;
+import service.value.Line;
+
+import java.util.List;
 
 public interface LadderGenerator {
-    boolean[][] generate(LadderHeight ladderHeight, PeopleCount peopleCount);
+    List<Line> generate(LadderHeight ladderHeight, PlayerCount playerCount);
 }

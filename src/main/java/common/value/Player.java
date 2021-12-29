@@ -1,4 +1,4 @@
-package configuration;
+package common.value;
 
 public class Player {
 
@@ -19,7 +19,7 @@ public class Player {
 
     private void validateName(String name) {
         if(name.length() > 5) {
-            throw new IllegalArgumentException("Player 이름은 최대 5자입니다~");
+            throw new IllegalArgumentException(name + " : Player 이름은 최대 5자입니다~");
         }
     }
 }
