@@ -3,6 +3,7 @@ import configuration.LadderHeight;
 import configuration.PeopleCount;
 import service.LadderGameService;
 import service.LadderGenerator;
+import service.LadderRandomGenerator;
 
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        try{
+        try {
             // 1. 사용자로부터 게임 설정 입력 받기
             int numberOfMan = getUserInputInt("참여할 사람은 몇 명인가요?");
             PeopleCount peopleCount = new PeopleCount(numberOfMan);
@@ -33,7 +34,7 @@ public class Main {
 
     private static LadderGameService makeLadderGameService(PeopleCount peopleCount, LadderHeight maxLadderHeight) {
         LadderGameConfiguration ladderGameConfiguration = new LadderGameConfiguration(peopleCount, maxLadderHeight);
-        LadderGenerator ladderGenerator = new LadderGenerator();
+        LadderGenerator ladderGenerator = new LadderRandomGenerator();
         return new LadderGameService(ladderGameConfiguration, ladderGenerator);
     }
 

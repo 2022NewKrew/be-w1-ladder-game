@@ -25,8 +25,8 @@ public class LadderGameService {
         PeopleCount peopleCount = ladderGameConfiguration.getPeopleCount();
 
         ladderStatus = ladderGenerator.generate(
-                maxLadderHeight.getValue(),
-                peopleCount.getValue() - 1
+                maxLadderHeight,
+                peopleCount
         );
 
         // 2. 사다리 출력
