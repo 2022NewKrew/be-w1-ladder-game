@@ -3,6 +3,9 @@ import java.util.Random;
 public class LadderSimpleGame extends LadderGame {
     private boolean[][] bridge;
     private final Random randomInstance = new Random();
+    private static final String PARTICIPANT_LINE = "|";
+    private static final String MOVE_LINE = "-----";
+    private static final String EMPTY_LINE = " ";
 
     public void createBridge() {
         int row = this.getLadderHeight();
@@ -59,12 +62,12 @@ public class LadderSimpleGame extends LadderGame {
 
     private String getBridgeChar(int col, boolean[] floor) {
         if (col % 2 == 0) {
-            return "|";
+            return PARTICIPANT_LINE;
         } else if (floor[col / 2]) {
-            return "-";
+            return MOVE_LINE;
         }
 
-        return " ";
+        return EMPTY_LINE;
 
     }
 }
