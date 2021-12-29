@@ -25,6 +25,13 @@ public class Ladder {
         }
     }
 
+    public void printNames() {
+        for(int participantIndex = 0; participantIndex < participant; participantIndex ++) {
+            System.out.printf("%"+"-5"+"s ", names.get(participantIndex));
+        }
+        System.out.println();
+    }
+
     public void printLadder() {
         for (Line line : ladder) {
             line.printLine(participant);

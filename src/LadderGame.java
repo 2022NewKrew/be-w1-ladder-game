@@ -18,6 +18,7 @@ public class LadderGame {
         height = sc.nextInt();
 
         Ladder ladder = new Ladder(names, height);
+        ladder.printNames();
         ladder.printLadder();
  }
 }
