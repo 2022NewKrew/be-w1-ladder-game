@@ -18,11 +18,14 @@ class LadderRow {
             ladderBlocks[i] = LadderBlock.VERTICAL_LINE;
         }
         for (int i=1; i<length; i=i+2) {
-            ladderBlocks[i] = createRandomConnection();
+            ladderBlocks[i] = createRandomConnection(i);
         }
     }
 
-    private char createRandomConnection() {
+    private char createRandomConnection(int index) {
+        if (index > 1 && ladderBlocks[index - 2] == LadderBlock.HORIZONTAL_LINE) {
+            return LadderBlock.BLANK;
+        }
         if (rd.nextBoolean()) {
             return LadderBlock.HORIZONTAL_LINE;
         }

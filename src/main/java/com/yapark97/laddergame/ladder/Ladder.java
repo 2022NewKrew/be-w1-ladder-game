@@ -10,9 +10,9 @@ public class Ladder {
     public Ladder(List<String> participants, int maxHeight) {
         this.maxHeight = maxHeight;
 
-        ladderRows = new ArrayList<>(5);
+        ladderRows = new ArrayList<>(maxHeight);
         for (int i=0; i<maxHeight; i++) {
-            ladderRows.set(i, new LadderRow(participants.size()));
+            ladderRows.add(new LadderRow(participants.size()));
         }
     }
 
