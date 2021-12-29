@@ -2,7 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Floor {
-    private List<String> floorList = new ArrayList<>();
+    public static final String vBar = "-";
+    public static final String space = " ";
+    public static final String hBar = "|";
+    private final List<String> floorList = new ArrayList<>();
 
     public void printFloor() {
         for (String ladder : floorList) {
@@ -22,9 +25,9 @@ public class Floor {
         double dValue = Math.random();
         int randomValue = (int) (dValue * 2);
         if (randomValue == 0) {
-            return " ";
+            return space;
         }
-        return "-";
+        return vBar;
     }
 
     /**
@@ -34,7 +37,7 @@ public class Floor {
      * @param partNum 총 참여자 수
      */
     void addLadderString(int part, int partNum) {
-        floorList.add("|");
+        floorList.add(hBar);
         if (part != partNum - 1)
             floorList.add(getRandomLadder());
     }
