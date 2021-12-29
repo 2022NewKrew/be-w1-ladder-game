@@ -1,6 +1,6 @@
 package main;
 
-import main.domain.ladder.LadderGame;
+import main.view.LadderGame;
 
 import java.util.Scanner;
 
