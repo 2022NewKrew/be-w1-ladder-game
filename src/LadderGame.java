@@ -4,26 +4,30 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class LadderGame {
-    int width;
-    int height;
-    int people;
-    List<StringBuilder> ladder = new ArrayList<>();
     private final char LUMBER = '|';
     private final char BRIDGE = '-';
     private final char SPACE = ' ';
+    private final int MAX_NAME_LENGTH = 5;
+
+    int width;
+    int height;
+    int numOfParticipants;
+    String[] participants;
+    List<Line> ladder = new ArrayList<>();
+
+    Scanner scanner = new Scanner(System.in);
 
     LadderGame() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("참여할 사람은 몇 명인가요?");
-        people = sc.nextInt();
-        width = 2 * people - 1;
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        height = sc.nextInt();
+        participants = inputParticipants();
+        height = inputHeight();
+        numOfParticipants = participants.length;
+        width = 2 * numOfParticipants - 1;
     }
 
     public void makeLadder() {
         for (int r = 0; r < height; r++) {
-            ladder.add(singleRow());
+            Line line = new Line(numOfParticipants);
+            ladder.add(line);
         }
     }
 
@@ -54,4 +58,16 @@ public class LadderGame {
         }
         return row;
     }
+
+    private String[] inputParticipants() {
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        String inputLine = scanner.nextLine();
+        return inputLine.split(",");
+    }
+
+    private int inputHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return scanner.nextInt();
+    }
+
 }
