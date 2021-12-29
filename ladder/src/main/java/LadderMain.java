@@ -10,6 +10,6 @@ public class LadderMain {
         int numOfLadderHeight = sc.nextInt();
 
         Ladder ladder = new Ladder(numOfParticipants, numOfLadderHeight);
-        ladder.printShape();
+        LadderPrinter.print(ladder);
     }
 }

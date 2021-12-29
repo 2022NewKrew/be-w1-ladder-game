@@ -18,6 +18,10 @@ public class Ladder{
         build();
     }
 
+    public Boolean[][] getLadderShape(){
+        return ladderShape;
+    }
+
     private void build(){
         for (int row = 0; row < numOfLadderHeight; row++)
             createRow(row);
@@ -32,20 +36,5 @@ public class Ladder{
         if (bar == 0)
             return true;
         return !ladderShape[row][bar - 1];
-    }
-
-    public void printShape(){
-        Arrays.stream(ladderShape).forEach(this::printRow);
-    }
-
-    private void printRow(Boolean[] row){
-        Arrays.stream(row)
-                .map(this::mapBar)
-                .forEach(System.out::print);
-        System.out.println("|");
-    }
-
-    private String mapBar(Boolean barExists){
-        return barExists? "|-": "| ";
     }
 }
