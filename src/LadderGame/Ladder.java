@@ -1,56 +1,36 @@
 package LadderGame;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
-    private final static String VERTICAL_LINE = "|";
-    private final static String HORIZONTAL_LINE = "-";
-    private final static String BLANK = " ";
-
     private final int ladderWidth, ladderHeight;
-    private final Random randomInstance;
+    private final Random random = new Random();
 
-    private final ArrayList<ArrayList<Boolean>> hasRightLadder;
+    private final List<Line> ladder;
 
     public Ladder(int ladderWidth, int ladderHeight) {
         this.ladderWidth = ladderWidth;
         this.ladderHeight = ladderHeight;
-        this.randomInstance = new Random();
-        this.hasRightLadder = makeHasRightLadder();
+        this.ladder = makeLadder();
     }
 
-    private ArrayList<ArrayList<Boolean>> makeHasRightLadder() {
-        ArrayList<ArrayList<Boolean>> hasRightLadder = new ArrayList<>();
-
-        for (int ladderRow = 0; ladderRow < ladderHeight; ladderRow++) {
-            hasRightLadder.add(makeHasRightLadderRow());
+    private List<Line> makeLadder() {
+        List<Line> ladder = new ArrayList<>();
+        for (int row = 0; row < ladderHeight; row++) {
+            Line ladderRow = new Line(ladderWidth, random);
+            ladder.add(ladderRow);
         }
-        return hasRightLadder;
-    }
-
-    private ArrayList<Boolean> makeHasRightLadderRow(){
-        ArrayList<Boolean> ladderRow = new ArrayList<>();
-        for (int ladderCol = 0; ladderCol < ladderWidth-1; ladderCol++){
-            ladderRow.add(randomInstance.nextBoolean());
-        }
-        return ladderRow;
+        return ladder;
     }
 
     public void printLadder() {
-        hasRightLadder.forEach((this::printLadderRow));
+        ladder.forEach((this::printLadderRow));
     }
 
-    private void printLadderRow(ArrayList<Boolean> ladderRow){
-        ladderRow.forEach(ladderCol -> {
-            System.out.print(VERTICAL_LINE);
-            System.out.print(printLocatedLadder(ladderCol));
-        });
-        System.out.println(VERTICAL_LINE);
-    }
-
-    private String printLocatedLadder(Boolean chkLadder){
-        if(chkLadder) return HORIZONTAL_LINE;
-        return BLANK;
+    private void printLadderRow(Line ladderRow){
+        ladderRow.ladderComponents.forEach(System.out::print);
+        System.out.println();
     }
 }
