@@ -1,4 +1,4 @@
-package laddergame.ladder;
+package com.yapark97.laddergame.ladder;
 
 public class Ladder {
     private final int maxHeight;
@@ -8,12 +8,14 @@ public class Ladder {
         this.maxHeight = maxHeight;
 
         ladderRows = new LadderRow[maxHeight];
-        for (int i=0; i<maxHeight; i++)
+        for (int i=0; i<maxHeight; i++) {
             ladderRows[i] = new LadderRow(participantsNum);
+        }
     }
 
     public void printLadder() {
-        for (int i=0; i<maxHeight; i++)
+        for (int i=0; i<maxHeight; i++) {
             ladderRows[i].printRow();
+        }
     }
 }
