@@ -1,12 +1,13 @@
 package com.gradle.geatrigger;
 
-public class Ladder {
-    final static int INTERVAL = 5;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-    int[][] ladder;
+public class Ladder {
+    ArrayList<Line> ladder;
     // width, height의 경우 이미 Ladder 인스턴스에 속해있어 ladder 생략
     int peopleCount, width, height;
-    String[] names;
+    ArrayList<String> names;
 
     StringBuilder sb;
 
@@ -14,16 +15,15 @@ public class Ladder {
         this.peopleCount = peopleCount;
         this.width = peopleCount - 1;
         this.height = height;
-        this.ladder = new int[this.height][this.width];
-        this.names = namesString.split(",");
+        this.ladder = new ArrayList<Line>();
+        this.names = new ArrayList<String>(Arrays.asList(namesString.split(",")));
         sb = new StringBuilder();
     }
 
     public void makeLadder() {
         for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                ladder[i][j] = (int) Math.round(Math.random());
-            }
+            Line line = new Line(width);
+            ladder.add(line);
         }
     }
 
@@ -36,32 +36,17 @@ public class Ladder {
 
     private void writeLadder() {
         for (int i = 0; i < height; i++) {
-            sb.append(" ".repeat(INTERVAL / 2));
-            for (int j = 0; j < width; j++) {
-                sb.append(makeVerticals());
-                sb.append(makeHorizons(ladder[i][j] * INTERVAL));
-            }
-            sb.append(makeVerticals());
-            sb.append("\n");
+            String lineString = ladder.get(i).writeLine();
+            sb.append(lineString);
         }
     }
 
     private void writeNames() {
         for (String name : names) {
-            sb.append(" ".repeat(INTERVAL / 2 - name.length() / 2));
+            sb.append(" ".repeat(LadderConstant.INTERVAL / 2 - name.length() / 2));
             sb.append(name);
-            sb.append(" ".repeat((INTERVAL - INTERVAL / 2) - (name.length() - name.length() / 2) + 1));
+            sb.append(" ".repeat((LadderConstant.INTERVAL - LadderConstant.INTERVAL / 2) - (name.length() - name.length() / 2) + 1));
         }
         sb.append("\n");
-    }
-
-    private String makeHorizons(int cnt) {
-        if (cnt == 0)
-            return " ";
-        return "-".repeat(cnt);
-    }
-
-    private String makeVerticals() {
-        return "|";
     }
 }
