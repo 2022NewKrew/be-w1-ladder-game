@@ -1,12 +1,14 @@
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
 
     private static final Scanner sc = new Scanner(System.in);
 
-    public static int askNumOfPeople() {
-        System.out.println("참여할 사람은 몇 명인가요?");
-        return sc.nextInt();
+    public static List<String> askNames() {
+        System.out.println("참여할 사람이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        return Arrays.asList(sc.next().split(","));
     }
 
     public static int askHeight() {

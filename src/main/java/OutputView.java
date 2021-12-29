@@ -1,22 +1,27 @@
+import java.util.List;
+
 public class OutputView {
 
-    public static void printLadder(String[][] ladder) {
-        for(String[] row : ladder) {
+    public static void printLadder(List<Line> ladder, List<String> users) {
+        printNames(users);
+        for (Line row : ladder) {
             printLadderLine(row);
         }
     }
 
-    private static void printLadderLine(String[] row) {
-        for (int i=0 ; i<row.length*2+1; i++) {
-            System.out.print(getElement(row, i));
+    private static void printNames(List<String> users) {
+        for (String user : users) {
+            System.out.printf("%-6s", user);
         }
         System.out.println();
     }
 
-    private static String getElement(String[] row , int i) {
-        if (i%2==1) {
-            return row[i/2];
+    private static void printLadderLine(Line row) {
+        System.out.print("  |");
+        for (Boolean isTrue : row.getpoints()) {
+            System.out.print(isTrue ? "-----|" : "     |");
         }
-        return "|";
+        System.out.println();
     }
 }
+
