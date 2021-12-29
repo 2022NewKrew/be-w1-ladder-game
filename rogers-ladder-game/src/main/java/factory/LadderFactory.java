@@ -1,9 +1,17 @@
 package factory;
 
-import ladder.Ladder;
+import domain.Ladder;
+
+import java.util.List;
 
 public class LadderFactory {
-    public Ladder getInstance(int numberOfPeople, int ladderHeight){
-        return new Ladder(numberOfPeople, ladderHeight);
+    private static Ladder instance = null;
+
+    public static Ladder getInstance(List<String> peopleNames , int ladderHeight){
+        if(instance == null){
+            instance = new Ladder(peopleNames, ladderHeight);
+        }
+
+        return instance;
     }
 }
