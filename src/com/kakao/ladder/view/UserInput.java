@@ -1,5 +1,7 @@
 package com.kakao.ladder.view;
 
+import com.kakao.ladder.controller.LadderGameController;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -54,7 +56,7 @@ public class UserInput {
     public static String showResult(List<String> names) {
         String whosResult = "";
 
-        while (!(whosResult.equals("춘식이") || whosResult.equals("all") || names.contains(whosResult))) {
+        while (!(whosResult.equals(LadderGameController.END_CONDITION) || whosResult.equals("all") || names.contains(whosResult))) {
             System.out.println("결과를 보고 싶은 사람은?");
 
             whosResult = sc.nextLine();
@@ -62,7 +64,7 @@ public class UserInput {
 
         System.out.println();
 
-        if (whosResult.equals("춘식이")) {
+        if (whosResult.equals(LadderGameController.END_CONDITION)) {
             sc.close();
         }
 
