@@ -1,16 +1,16 @@
 package Ladder.DTO;
 
 public class InputDTO {
-    private final int numPeople;
+    private final String[] nameArray;
     private final int height;
 
-    public InputDTO(int paramNumPeople, int paramHeight) {
-        numPeople = paramNumPeople;
+    public InputDTO(String[] names, int paramHeight) {
+        nameArray = names;
         height = paramHeight;
     }
 
-    public int getNumPeople() {
-        return numPeople;
+    public String[] getNameArray() {
+        return nameArray;
     }
 
     public int getHeight() {
