@@ -26,12 +26,12 @@ public class LadderGame {
             return;
         }
 
-        List<List<Integer>> gameBoard = makeGameBoard(numberOfPerson - 1, heightOfLadder);
+        List<List<Boolean>> gameBoard = makeGameBoard(numberOfPerson - 1, heightOfLadder);
         printGameBoard(participantsNames, gameBoard);
     }
 
-    private List<List<Integer>> makeGameBoard(int width, int height) {
-        List<List<Integer>> gameBoard = new ArrayList<>();
+    private List<List<Boolean>> makeGameBoard(int width, int height) {
+        List<List<Boolean>> gameBoard = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             gameBoard.add(makeLine(width));
         }
@@ -39,22 +39,29 @@ public class LadderGame {
         return gameBoard;
     }
 
-    private List<Integer> makeLine(int width) {
-        List<Integer> line = new ArrayList<>();
+    private List<Boolean> makeLine(int width) {
+        List<Boolean> line = new ArrayList<>();
         for (int i = 0; i < width; i++) {
-            line.add(random.nextInt(2));
+            line.add(decideNextConnection(line, i));
         }
 
         return line;
     }
 
-    private void printGameBoard(List<String> participantsNames, List<List<Integer>> gameBoard) {
+    private boolean decideNextConnection(List<Boolean> currentLine, int idx) {
+        if (idx > 0 && currentLine.get(idx - 1) == true) {
+            return false;
+        }
+        return random.nextBoolean();
+    }
+
+    private void printGameBoard(List<String> participantsNames, List<List<Boolean>> gameBoard) {
         List<String> printBoard = new ArrayList<>();
 
         printBoard.add(" " + participantsNames.stream().map(this::formatName)
             .collect(Collectors.joining(" ")));
 
-        for (List<Integer> line : gameBoard) {
+        for (List<Boolean> line : gameBoard) {
             printBoard.add(shapeLine(line));
         }
 
@@ -65,17 +72,13 @@ public class LadderGame {
         return String.format("%5s", name.length() <= 5 ? name : name.substring(0, 5));
     }
 
-    private String shapeLine(List<Integer> line) {
+    private String shapeLine(List<Boolean> line) {
         StringBuilder stringBuilder = new StringBuilder("    ");
-        for (int space : line) {
+        for (boolean connected : line) {
             stringBuilder.append(BAR)
-                .append(isConnected(space) ? CONNECT : BLANK);
+                .append(connected ? CONNECT : BLANK);
         }
         return stringBuilder.append(BAR)
             .toString();
-    }
-
-    private boolean isConnected(int value) {
-        return value > 0;
     }
 }
