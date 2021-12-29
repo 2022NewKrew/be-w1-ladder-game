@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class LadderGame {
     static List<Player> createPlayersByPrompt(Scanner scanner) {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+
         List<Player> players = new ArrayList<>();
         for (String name : scanner.nextLine().split(",")) {
             try {
@@ -32,6 +33,7 @@ public class LadderGame {
         Scanner scanner = new Scanner(System.in);
 
         Ladder ladder = createLadderByPrompt(scanner);
+
         System.out.println(System.lineSeparator() + "실행결과" + System.lineSeparator());
         System.out.println(ladder.toPrettyString());
     }

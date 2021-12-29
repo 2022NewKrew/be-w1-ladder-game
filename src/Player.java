@@ -1,6 +1,6 @@
 public class Player {
-    final String name;
     static final int MAX_NAME_LENGTH = 5;
+    final String name;
 
     Player(String name) throws Exception {
         if (name.length() > MAX_NAME_LENGTH) {
