@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class LadderGame {
 
@@ -18,16 +16,13 @@ public class LadderGame {
         System.out.println(ladder);
     }
 
-    private static int[] getConsoleTwoParameter() throws IOException {
-        int[] twoParameters = new int[2];
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private static String getConsoleNameList() {
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        return scanner.nextLine();
+    }
 
-        System.out.println("참여할 사람은 몇 명인가요 ?");
-        twoParameters[0] = Integer.parseInt(bufferedReader.readLine());
+    private static int getConsoleLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요 ?");
-        twoParameters[1] = Integer.parseInt(bufferedReader.readLine());
-        bufferedReader.close();
-
-        return twoParameters;
+        return scanner.nextInt();
     }
 }
