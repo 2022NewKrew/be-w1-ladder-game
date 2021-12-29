@@ -4,6 +4,7 @@ public class Ladder {
     private int height;
     private int width;
     private char[][] ladderMap;
+    private static Random random = new Random();
 
     public Ladder(int height, int numOfPeople) {
         this.height = height;
@@ -25,7 +26,6 @@ public class Ladder {
     }
 
     private char getRandomLine() {
-        Random random = new Random();
         return random.nextBoolean() ? '-' : ' ';
     }
 
