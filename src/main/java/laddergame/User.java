@@ -1,0 +1,18 @@
+package laddergame;
+
+public class User {
+
+    private final String name;
+
+    public User(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Boolean isValidUserNameLength() {
+        return name.length() <= 5;
+    }
+}

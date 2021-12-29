@@ -36,4 +36,8 @@ public class Ladder {
     public List<List<LadderComponent>> getLadder() {
         return ladder;
     }
+
+    public Integer getLadderCount() {
+        return ladder.size();
+    }
 }
