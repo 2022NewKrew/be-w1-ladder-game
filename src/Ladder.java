@@ -10,9 +10,11 @@ public class Ladder {
     private List<String> stateAsListOfString;
     private final int width, height;
     private List<Player> players;
-    private final String STEP = "-";
-    private final String NO_STEP = " ";
-    private final String BEAM = "|";
+
+    private static final int STEP_WIDTH = 5;
+    private static final String STEP = "-".repeat(STEP_WIDTH);
+    private static final String NO_STEP = " ".repeat(STEP_WIDTH);
+    private static final String BEAM = "|";
 
     public Ladder(List<Player> players, int height) {
         this.players = players;
@@ -28,8 +30,21 @@ public class Ladder {
         }
     }
 
+    private static String getPaddedPlayerName(Player player){
+        if (player.name.length() > STEP_WIDTH) {
+            // Should not happen
+            // Throws Exception?
+        }
+        int totalSpaceCount = STEP_WIDTH - player.name.length();
+        int leftSpaceCount = totalSpaceCount / 2;
+        int rightSpaceCount = totalSpaceCount - leftSpaceCount;
+        return " ".repeat(leftSpaceCount) + player.name + " ".repeat(rightSpaceCount);
+    }
+
     public String toPrettyString() {
-        return String.join(System.lineSeparator(), stateAsListOfString);
+        String playersName = String.join(" ", players.stream().map(player -> getPaddedPlayerName(player)).toList());
+        String ladderShape = String.join(System.lineSeparator(), stateAsListOfString);
+        return playersName + System.lineSeparator() + ladderShape;
     }
 
     @Override
