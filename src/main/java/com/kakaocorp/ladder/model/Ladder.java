@@ -6,18 +6,18 @@ import java.util.List;
 public class Ladder {
 
     private final int height;
-    private final List<Stick> sticks;
+    private final List<Rail> rails;
 
     public Ladder(int height, int width) {
         this.height = height;
-        sticks = new ArrayList<>(width);
+        rails = new ArrayList<>(width);
         for (int i = 0; i < width; i++) {
-            sticks.add(new Stick(height));
+            rails.add(new Rail(height));
         }
     }
 
-    public List<Stick> getSticks() {
-        return sticks;
+    public List<Rail> getSticks() {
+        return rails;
     }
 
     public int getHeight() {
