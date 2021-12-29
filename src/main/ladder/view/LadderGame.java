@@ -1,3 +1,8 @@
+package main.ladder.view;
+
+import main.ladder.domain.Ladder;
+import main.ladder.domain.Participant;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

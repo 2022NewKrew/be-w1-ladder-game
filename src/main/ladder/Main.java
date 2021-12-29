@@ -1,3 +1,7 @@
+package main.ladder;
+
+import main.ladder.view.LadderGame;
+
 public class Main {
 
     public static void main(String[] args) {

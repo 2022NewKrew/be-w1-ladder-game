@@ -1,3 +1,5 @@
+package main.ladder.domain;
+
 public class Participant {
     public static final int MAX_LENGTH_OF_PARTICIPANT_NAME = 5;
 
