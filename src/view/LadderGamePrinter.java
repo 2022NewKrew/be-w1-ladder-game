@@ -12,20 +12,19 @@ public class LadderGamePrinter {
     }
 
     public static void printGame(Ladder ladder, LadderInfo info) {
-        printParticipants(info);
+        printParticipants(info.getParticipants());
         printLadder(ladder);
     }
 
-    private static void printParticipants(LadderInfo info) {
-        info.getParticipants()
-                .forEach(participant -> System.out.printf("%5s ", participant));
+    private static void printParticipants(List<String> participants) {
+        participants.forEach(participant -> System.out.printf("%5s ", participant));
     }
 
     private static void printLadder(Ladder ladder) {
         List<LadderRow> ladderRows = ladder.getLadderRows();
         for (LadderRow row : ladderRows) {
             System.out.print("\n   |");
-            row.getRow().forEach(it -> System.out.print(it ? "-----|" : "     |"));
+            row.getRow().forEach(isLine -> System.out.print(isLine ? "-----|" : "     |"));
         }
     }
 }
