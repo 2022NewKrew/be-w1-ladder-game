@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class LadderGame {
     private static final Scanner in = new Scanner(System.in);
+    public static final int MAXIMUM_NAME_LENGTH = 5;
 
     public static void main(String[] args) {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -31,7 +32,7 @@ public class LadderGame {
         return Collections.list(new StringTokenizer(input, ","))
                 .stream()
                 .map(token -> ((String) token).trim())
-                .filter(e -> (e.length() > 0) && (e.length() <= LadderPrinter.maximumNameLength))
+                .filter(e -> (e.length() > 0) && (e.length() <= MAXIMUM_NAME_LENGTH))
                 .collect(Collectors.toList());
     }
 
