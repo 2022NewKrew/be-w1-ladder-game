@@ -31,8 +31,8 @@ public class Ladder {
     }
 
     private String makeLadderLine(int idx) {
-        Boolean isOdd = idx % 2 == 0;
-        if (isOdd)
+        Boolean isEven = idx % 2 == 0;
+        if (isEven)
             return DEFAULT_LADDER_LINE;
 
         return getRandomLadderLine();
