@@ -7,6 +7,6 @@ public class LadderGame {
     gameInfo.setValues();
 
     Ladder ladder = new Ladder(gameInfo.getWidth(), gameInfo.getHeight());
-    ladder.printLadder();
+    ladder.printLadder(gameInfo.getUsers());
   }
 }
