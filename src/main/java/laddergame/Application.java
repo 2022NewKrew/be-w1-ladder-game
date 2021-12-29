@@ -15,6 +15,6 @@ public class Application {
         final int ladderHeight = LadderGame.inputLadderHeight(inputView);
 
         LadderGame ladderGame = LadderGame.of(playerNames, ladderHeight);
-        ladderGame.printLadder(outputView);
+        ladderGame.printLadderResult(outputView);
     }
 }

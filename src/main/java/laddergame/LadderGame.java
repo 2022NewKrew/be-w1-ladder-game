@@ -36,7 +36,7 @@ public class LadderGame {
         return inputView.inputLadderHeight();
     }
 
-    public void printLadder(OutputView outputView) {
-        outputView.printLadder(ladder);
+    public void printLadderResult(OutputView outputView) {
+        outputView.printLadderResult(playerList, ladder);
     }
 }
