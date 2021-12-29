@@ -24,3 +24,32 @@
 - 사다리를 재사용 가능한 객체로 만드는 것이 좋을듯
 - IntelliJ와 Github 연동 시 Token 사용
 - 참고: [객체 지향 생활 체조 원칙](https://hyunjungchoi.tistory.com/105)
+
+## 사다리 게임 2단계 구현
+
+### 코드 리뷰 피드백
+
+- 상수 표기법은 대문자 + underscore(_)
+  - 참고: [오라클 명명법](https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html)
+    ```java
+      private static final String column = "|";
+      private static final String connected = "-";
+      private static final String notConnected = " ";
+    ``` 
+- 파일 끝에는 new line을 넣을 것
+  - 참고 : https://minz.dev/19
+- 한 번의 스트림 체인으로 변경
+  ```java
+        List<List<String>> stringLadder = new ArrayList<>();
+
+        for (List<Boolean> booleanRow : this.ladder) {
+            stringLadder.add(createRowString(booleanRow));
+        }
+  ```
+
+### 피어세션 및 자체 피드백
+
+- 2차원 배열을 ArrayList, Generic 만으로 구현하면 복잡
+  ```java
+    private final List<List<Boolean>> ladder;
+  ```
