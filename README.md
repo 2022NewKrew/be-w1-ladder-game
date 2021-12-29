@@ -3,11 +3,11 @@
 자바 웹 백엔드 1주차 사다리 게임
 
 
-- jun.dev / 21.12.28
-- 2주차 사다리 만들기 게임입니다.
+- jun.dev / 21.12.29
+- 3일차 사다리 만들기 게임입니다.
 
 [수정사항]
-- Ladder Class 내부 변수에 접근지정자 설정
-- shuffle 메소드에서 2단계 depth를 insertLine메소드로 나눠진 1단계 depth로 수정
-- display 메소드에서 2단계 depth를 printLine메소드로 나눠진 1단계 depth로 수정
-- display 메소드에서 print 를 StringBuilder 로 수정
+- 연속적인 line의 생성을 확인하고 제거하는 validUpdateLine메소드 추가
+- 참여자 수를 입력받는 로직에서 참여자 이름을 콤마를 기준으로 입력받는 로직으로 수정
+- 생성된 사다리출력시 이름과 출력 간격을 수정
+
