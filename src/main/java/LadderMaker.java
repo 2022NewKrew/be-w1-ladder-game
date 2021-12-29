@@ -7,7 +7,6 @@ public class LadderMaker {
 
     public LadderMaker(LadderInfo info) {
         this.info = info;
-        this.random.setSeed(System.currentTimeMillis());
     }
 
     public ArrayList<ArrayList<Boolean>> makeConnections() {
