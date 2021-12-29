@@ -40,10 +40,9 @@ public class LadderSimpleGame extends LadderGame {
         boolean previousColumnValue = false;
 
         for (int j = 0; j < col; j++) {
-            // 연속된 다리가 나올 수 없음.
             boolean isBridge = (!previousColumnValue) && trueAndFalseGenerator();
             map.add(isBridge);
-
+            previousColumnValue = isBridge;
         }
 
         return map;
