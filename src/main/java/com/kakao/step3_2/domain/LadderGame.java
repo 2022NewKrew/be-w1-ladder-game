@@ -12,8 +12,8 @@ public class LadderGame {
 
     public LadderGame() {
         try {
-            getPeopleNames();
-            getCountOfLines();
+            askPeopleNames();
+            askCountOfLines();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -21,12 +21,12 @@ public class LadderGame {
         new LadderView(new Ladder(names, countOfLines));
     }
 
-    private void getPeopleNames() throws Exception {
+    private void askPeopleNames() throws Exception {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요. 각 이름은 다섯 글자까지만 사용됩니다.)");
         this.names = new Names(SCAN.nextLine());
     }
 
-    private void getCountOfLines() throws Exception {
+    private void askCountOfLines() throws Exception {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         countOfLines = SCAN.nextInt();
 
