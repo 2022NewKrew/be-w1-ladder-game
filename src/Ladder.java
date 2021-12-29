@@ -35,7 +35,6 @@ public class Ladder {
     }
 
     public void printLadder() {
-//        System.out.print(this.ladder);
         for (String[] line : ladder) {
             String stringLine = String.join("", line);
             System.out.println(stringLine);
