@@ -1,37 +1,35 @@
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
+import java.util.Scanner;
 
 public class Ladder {
 
-    int number;
-    int height;
-    ArrayList<String> ladderResult = new ArrayList<>();
+    private int PLAYER_NUMBER;
+    private int LADDER_HEIGHT;
+    private final List<Line> LINE_LIST = new ArrayList<>();
 
-    public Ladder(int number, int height) {
-        this.number = number;
-        this.height = height;
+    public Ladder() {
+        getLadderInfo();
+        setLineList();
     }
 
-    public void setLadder() {
-        Random random = new Random();
-        for(int i=0; i<height; i++) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("|");
-            for(int j=0; j<number-1; j++) {
-                if (random.nextInt(2) == 1) {
-                    sb.append("-");
-                } else {
-                    sb.append(" ");
-                }
-                sb.append("|");
-            }
-            ladderResult.add(sb.toString());
+    private void getLadderInfo() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("참여할 사람은 몇 명인가요?");
+        PLAYER_NUMBER = sc.nextInt();
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        LADDER_HEIGHT = sc.nextInt();
+    }
+
+    private void setLineList() {
+        for (int i = 0; i < LADDER_HEIGHT; i++) {
+            LINE_LIST.add(new Line(PLAYER_NUMBER));
         }
     }
 
     public void printLadder() {
-        for(int i=0; i<height; i++) {
-            System.out.println(ladderResult.get(i));
+        for (int i = 0; i < LADDER_HEIGHT; i++) {
+            LINE_LIST.get(i).printLine();
         }
     }
 }
