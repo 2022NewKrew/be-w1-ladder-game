@@ -4,7 +4,7 @@ public class LadderMain {
     }
 
     public static void startGame(){
-        Ladder ladder = new Ladder(LadderUI.getNumOfUser(),LadderUI.getHeight());
+        Ladder ladder = new Ladder(LadderUI.getNumOfPeople(),LadderUI.getHeight());
         LadderUI.printLadder(ladder);
     }
 }

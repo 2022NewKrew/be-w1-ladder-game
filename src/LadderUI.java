@@ -4,7 +4,7 @@ public class LadderUI {
 
     private static Scanner scanner= new Scanner(System.in);
 
-    public static int getNumOfUser(){
+    public static int getNumOfPeople(){
         System.out.println("참여할 사람은 몇 명인가요?");
         return scanner.nextInt();
     }
