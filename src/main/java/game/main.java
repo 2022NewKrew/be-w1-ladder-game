@@ -18,9 +18,30 @@ public class main {
     private static ArrayList<String> getPlayerInput(String str) {
 
         System.out.println(str);
-        String inputStr = sc.next();
-        return new ArrayList<>(Arrays.asList(inputStr.split(",")));
+        ArrayList<String> arrayList = null;
+        long count = 1;
+        do {
+            String inputStr = sc.next();
+            arrayList = new ArrayList<>(Arrays.asList(inputStr.split(",")));
+        }
+        while (!isCorrectPlayerName(arrayList));
+        // 적절하지 않은 플레이어 네임이면 다시 입력 해야 함.
+        return arrayList;
+    }
 
+    private static boolean isCorrectPlayerName(ArrayList<String> arrayList) {
+        long count;
+        if((count = arrayList.stream().filter(player -> player.length() > 5).count())>0)
+        {
+            System.out.println("플레이어의 이름은 최대 5자까지 가능합니다.\n 다시 입력해주세요.");
+            return false;
+        }
+        if(arrayList.size() < 1)
+        {
+            System.out.println("플레이어를 한 명 이상 입력해주세요.");
+            return false;
+        }
+        return true;
     }
 
     private static int getIntegerInput(String str) {
