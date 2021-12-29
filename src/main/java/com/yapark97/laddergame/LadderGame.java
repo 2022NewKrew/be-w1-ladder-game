@@ -16,6 +16,7 @@ public class LadderGame {
         if (ladder == null) {
             throw new NullPointerException("사다리가 생성되지 않았습니다.");
         }
+        System.out.println("\n실행결과");
         ladder.printLadder();
     }
 
@@ -40,7 +41,7 @@ public class LadderGame {
     private int takeMaxHeightInput() {
         int maxHeight;
 
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println("\n최대 사다리 높이는 몇 개인가요?");
         try {
             maxHeight = sc.nextInt();
         } catch (InputMismatchException e) {
