@@ -19,12 +19,12 @@ public class InputView {
         return Integer.parseInt(number);
     }
 
-    public static int enterPlayers(){
+    public static int enterPlayers() {
         System.out.println(MESSAGE_PLAYERS_NUM);
         return checkNaturalNumber(scanner.nextLine());
     }
 
-    public static int enterHeight(){
+    public static int enterHeight() {
         System.out.println(MESSAGE_HEIGHT);
         return checkNaturalNumber(scanner.nextLine());
     }
