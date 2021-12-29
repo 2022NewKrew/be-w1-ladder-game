@@ -31,7 +31,7 @@ public class LadderRow {
     private final String poleStr = "|";
 
     LadderRow(int numOfPeople) {
-        for (int i=0; i<numOfPeople; ++i) {
+        for (int i=0; i<numOfPeople-1; ++i) {
             steps.add(getNextStep());
         }
     }
