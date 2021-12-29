@@ -2,6 +2,7 @@ package manager;
 
 import entity.Ladder;
 import entity.Player;
+import view.LadderPrinter;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -43,6 +44,6 @@ public class GameManager {
 
     public void run(){
         getLadderInput();
-        ladder.draw();
+        LadderPrinter.getInstance().displayLadder(ladder);
     }
 }

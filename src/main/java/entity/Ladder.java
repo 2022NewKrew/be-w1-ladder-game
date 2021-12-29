@@ -7,7 +7,7 @@ import java.util.Random;
 public class Ladder {
     private final int numParticipant;
     private final int height;
-    private List<ArrayList<Boolean>> ladder;
+    private List<ArrayList<Boolean>> connections;
     private ArrayList<Player> players;
 
     public Ladder(int numParticipant, int height, ArrayList<Player> players) {
@@ -21,11 +21,19 @@ public class Ladder {
         return numParticipant;
     }
 
+    public List<ArrayList<Boolean>> getConnections() {
+        return connections;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
     private void createLadder(){
-        ladder = new ArrayList<>();
+        connections = new ArrayList<>();
         Random random = new Random();
         for(int i = 0; i < height; i++){
-            ladder.add(createRow(random));
+            connections.add(createRow(random));
         }
     }
 
@@ -42,17 +50,5 @@ public class Ladder {
             return random.nextBoolean();
         }
         return Boolean.FALSE;
-    }
-
-    public void draw(){
-        players.forEach(player -> {
-            System.out.printf("%5s ", player.getName());
-        });
-        System.out.println();
-        ladder.forEach(row -> {
-            System.out.print("  │");
-            row.forEach(item -> System.out.print(item ? "-----│" : "     │"));
-            System.out.println();
-        });
     }
 }
