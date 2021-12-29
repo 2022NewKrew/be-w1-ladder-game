@@ -9,8 +9,9 @@ import ladder.dto.ResultDto;
 public class OutputView {
 
     private static final String WALL = "|";
-    private static final String BLINK = "     ";
+    private static final String BLANK = "     ";
     private static final int MAX_NAME_SIZE = 5;
+    private static final String HYPHEN = "-----";
 
     private OutputView() {
     }
@@ -36,13 +37,13 @@ public class OutputView {
 
     public static void printLadder(LadderDto ladderDto) {
         for (LineDto lineDto : ladderDto.getLineDtos()) {
-            System.out.print(BLINK);
             printLine(lineDto);
         }
     }
 
     private static void printLine(LineDto lineDto) {
         final StringBuilder stringBuilder = new StringBuilder(WALL);
+        System.out.print(BLANK);
         for (boolean point : lineDto.getPoints()) {
             stringBuilder.append(getSignature(point))
                 .append(WALL);
@@ -52,8 +53,8 @@ public class OutputView {
 
     private static String getSignature(boolean point) {
         if (point) {
-            return "-----";
+            return HYPHEN;
         }
-        return BLINK;
+        return BLANK;
     }
 }
