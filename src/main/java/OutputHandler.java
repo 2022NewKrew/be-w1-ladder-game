@@ -1,10 +1,26 @@
+import java.util.List;
+
 public class OutputHandler {
     private static final String VERTICAL_LINE = "|";
     private static final String HORIZONTAL_LINE_FILLED = "-----";
     private static final String HORIZONTAL_LINE_EMPTY = "     ";
+    private static final String LEFT_PADDING = "  ";
+    private static final String RIGHT_PADDING = "  ";
+    private static final String NAME_DELIMITER = " ";
+
+    private static final int NAME_OUTPUT_LENGTH = 5;
 
     public OutputHandler() {
 
+    }
+
+    public void printPeople(List<String> people) {
+        StringBuilder peopleString = new StringBuilder();
+        for (String person : people) {
+            peopleString.append(padName(person));
+            peopleString.append(NAME_DELIMITER);
+        }
+        System.out.println(peopleString);
     }
 
     public void printLadder(Ladder ladder) {
@@ -14,12 +30,13 @@ public class OutputHandler {
     }
 
     private void printLayer(Layer layer) {
+        System.out.print(LEFT_PADDING);
         System.out.print(VERTICAL_LINE);
         for (Boolean horizontalLine : layer.getHorizontalLines()) {
             System.out.print(horizontalLineToString(horizontalLine));
             System.out.print(VERTICAL_LINE);
         }
-        System.out.println();
+        System.out.println(RIGHT_PADDING);
     }
 
     private String horizontalLineToString(Boolean horizontalLine) {
@@ -27,5 +44,11 @@ public class OutputHandler {
             return HORIZONTAL_LINE_FILLED;
         }
         return HORIZONTAL_LINE_EMPTY;
+    }
+
+    private String padName(String name) {
+        int leftPaddingSize = (NAME_OUTPUT_LENGTH + 1 - name.length()) / 2;
+        int rightPaddingSize = (NAME_OUTPUT_LENGTH - name.length()) / 2;
+        return " ".repeat(leftPaddingSize) + name + " ".repeat(rightPaddingSize);
     }
 }
