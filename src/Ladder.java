@@ -3,8 +3,9 @@ import java.util.*;
 public class Ladder {
 
     static Random random = new Random();
-    private int participant, height;
-    private ArrayList<String[]> ladder = new ArrayList<>();
+    private final int participant;
+    private final int height;
+    private final ArrayList<String[]> ladder = new ArrayList<>();
 
     public Ladder(int gameParticipant, int ladderHeight) {
         participant = gameParticipant;
