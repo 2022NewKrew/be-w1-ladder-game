@@ -18,9 +18,6 @@ public class LadderRow{
         }
     }
 
-    public LadderRow(ArrayList<String> playerList) {
-    }
-
     LadderType decideElement() {
         //|-----|-----|     방지
         if ((elementList.isEmpty() || elementList.get(elementList.size() - 1) != BRIDGE)
