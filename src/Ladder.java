@@ -5,15 +5,15 @@ public class Ladder {
     private static final char VERTICAL_LINE = '|';
     private static final char HORIZONTAL_LINE = '-';
     private static final char EMPTY_LINE = ' ';
-    private static Random random = new Random();
-    private int height;
-    private int width;
+    private static final Random random = new Random();
+    private final int width;
+    private final int height;
     private char[][] ladderMap;
 
 
-    public Ladder(int height, int numOfPeople) {
-        this.height = height;
+    public Ladder(int numOfPeople, int height) {
         this.width = 2*numOfPeople -1;
+        this.height = height;
         createLadder();
     }
 
@@ -34,7 +34,7 @@ public class Ladder {
         return random.nextBoolean() ? HORIZONTAL_LINE : EMPTY_LINE;
     }
 
-    public char[][] getLadder() {
+    public char[][] getLadderMap() {
         return ladderMap;
     }
 }
