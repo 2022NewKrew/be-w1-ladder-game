@@ -1,5 +1,7 @@
 package com.chanminkim.w1;
 
+import com.chanminkim.w1.controller.LadderGame;
+
 import java.security.SecureRandom;
 import java.util.Scanner;
 
