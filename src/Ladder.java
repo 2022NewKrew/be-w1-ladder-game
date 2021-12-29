@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Ladder {
 
+    static Random random = new Random();
     private int participant, height;
     private ArrayList<String[]> ladder = new ArrayList<>();
 
@@ -12,7 +13,6 @@ public class Ladder {
     }
 
     public String makeBridge() {
-        Random random = new Random();
         if (random.nextBoolean()) {
             return "-";
         }
