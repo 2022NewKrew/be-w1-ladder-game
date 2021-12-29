@@ -3,10 +3,10 @@ import java.util.*;
 public class Ladder {
     private final int numOfPeople;
     private final int depth;
-    private final ArrayList<Line> ladder = new ArrayList<>();
+    private final List<Line> ladder = new ArrayList<>();
     private final int maxLength;
-    private final ArrayList<String> names;
-    private final ArrayList<String> results;
+    private final List<String> names;
+    private final List<String> results;
 
 
     public Ladder(LadderInput li){
