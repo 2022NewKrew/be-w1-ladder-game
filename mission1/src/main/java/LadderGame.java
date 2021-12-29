@@ -4,6 +4,6 @@ public class LadderGame {
 
         LadderInputManager ladderInputManager = new LadderInputManager();
         LadderMaker ladderMaker = new LadderMaker(ladderInputManager);
-        LadderRenderer.render(ladderMaker.getLadder());
+        LadderRenderer.render(ladderInputManager, ladderMaker);
     }
 }

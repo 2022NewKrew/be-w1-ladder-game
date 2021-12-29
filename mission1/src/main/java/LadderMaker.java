@@ -1,45 +1,44 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class LadderMaker {
-    private int row;
-    private int column;
-    private char[][] ladder;
-    private Random random;
+    private final int row;
+    private final int nameLen;
+    private final int numOfPlayer;
+    private final int offset;
+    private final ArrayList<Line> ladder;
+    private final Random random;
 
     public LadderMaker(LadderInputManager ladderInputManager) {
-        this.row = ladderInputManager.getMaxHeight();
-        this.column = ladderInputManager.getNumOfPlayer() * 2 - 1;
-        this.ladder = new char[row][column];
-        this.random = new Random();
+        row = ladderInputManager.getMaxHeight();
+        nameLen = ladderInputManager.getNameLen();
+        offset = nameLen / 2;
+        numOfPlayer = ladderInputManager.getNumOfPlayer();
+        ladder = new ArrayList<>();
+        random = new Random();
         makeLadder(ladder);
     }
 
-    public char[][] getLadder() {
+    public ArrayList<Line> getLadder() {
         return ladder;
     }
 
-    private void makeLadder(char[][] ladder){
-        for (char[] row : ladder) {
-            // 한 줄씩 채우기
-            fillRow(row);
+    public int getOffset() {
+        return offset;
+    }
+
+    public int getNameLen() {
+        return nameLen;
+    }
+
+    private void makeLadder(ArrayList ladder){
+        for (int i=0; i<row; i++) {
+            ladder.add(makeLine());
         }
     }
 
-    private void fillRow(char[] row){
-        // 세로 줄
-        for(int i=0; i<row.length; i+=2)
-            row[i] = '|';
-
-        // 가로 줄
-        for(int i= 1; i< row.length; i+=2){
-            row[i] = getRandom();
-        }
-    }
-
-    private char getRandom() {
-        if(random.nextBoolean())
-            return '-';
-
-        return ' ';
+    private Line makeLine() {
+        return new Line(numOfPlayer, random);
     }
 }
