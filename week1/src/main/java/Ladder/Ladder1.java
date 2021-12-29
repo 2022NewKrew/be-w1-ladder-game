@@ -1,13 +1,13 @@
-import java.io.IOException;
-import java.util.InputMismatchException;
+package Ladder;
+
 import java.util.Random;
 import java.util.Scanner;
 
-class Ladder {
+public class Ladder1 {
 
   int col, row;
 
-  Ladder() {
+  Ladder1() {
     inputLadderSize();
   }
 
@@ -50,12 +50,9 @@ class Ladder {
 
     return stringBuilder.toString();
   }
-}
-
-public class Ladder1 {
 
   public static void main(String[] args) {
-    Ladder ladder = new Ladder();
-    System.out.println(ladder);
+    Ladder1 ladder1 = new Ladder1();
+    System.out.println(ladder1);
   }
 }
