@@ -1,18 +1,23 @@
 package laddergame;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Ladder {
     private int personNum;
     private int ladderHeight;
-    private ArrayList<ArrayList<Character>> ladder;
+    private String participants;
+    private ArrayList<String> participantList;
+//    private ArrayList<ArrayList<Character>> ladder;
+    private ArrayList<Line> ladder;
+
 
     public int getPersonNum() {
         return personNum;
     }
 
-    public void setPersonNum(int personNum) {
-        this.personNum = personNum;
+    public void setPersonNum() {
+        this.personNum = participantList.size();
     }
 
     public int getLadderHeight() {
@@ -23,56 +28,57 @@ public class Ladder {
         this.ladderHeight = ladderHeight;
     }
 
+    public String getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(String participants) {
+        this.participants = participants;
+    }
+
+    public void setParticipantList(){
+        String [] people = participants.split(",");
+        participantList = new ArrayList<String>(Arrays.asList(people));
+    }
+
+    public ArrayList<String> getParticipantList(){
+        return participantList;
+    }
+
     public void makeBasicLadder(){
         ladder = new ArrayList<>();
         for(int i=0;i<ladderHeight;i++){
-            ladder.add(new ArrayList<Character>(personNum*2-1));
+            ladder.add(new Line(personNum));
         }
     }
 
     public void makeCompleteLadder(){
         for(int i=0;i<ladderHeight;i++){
+            System.out.print("    ");
             drawIteration(i);
+            System.out.println();
         }
     }
 
     public void drawIteration(int rowNum){
-        int randomNum = (int)(Math.random()*(personNum-1)) * 2 + 1;
         for(int i=0;i<personNum*2-1;i++){
-            drawLine(rowNum, i, randomNum);
+            drawLine(rowNum, i);
         }
     }
 
-    public void drawLine(int rowNum, int columnNum, int randomNum){
-        if(columnNum%2==0) ladder.get(rowNum).add(drawColumn());
-        else ladder.get(rowNum).add(drawRow(columnNum, randomNum));
+    public void drawLine(int rowNum, int columnNum){
+        if(columnNum%2==0) System.out.print(drawColumn());
+        else System.out.print(drawRow(rowNum, columnNum));
     }
 
     public char drawColumn(){
         return '|';
     }
 
-    public char drawRow(int columnNum, int randomNum){
-        if (columnNum==randomNum) return '-';
-        return ' ';
-    }
-
-    public void printLadder(){
-        for(int i=0;i<ladder.size();i++){
-            printLadderOneByOne(i);
+    public String drawRow(int rowNum, int columnNum){
+        if (ladder.get(rowNum).getLine().get((int)(columnNum/2))){
+            return "-----";
         }
-    }
-
-    public void printLadderOneByOne(int rowNum){
-        for(int i=0;i<ladder.get(rowNum).size();i++){
-            System.out.print(ladder.get(rowNum).get(i));
-        }
-        System.out.println();
-    }
-    @Override
-    public String toString() {
-        return "Ladder{" +
-                "ladder=" + ladder +
-                '}';
+        return "     ";
     }
 }
