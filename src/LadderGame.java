@@ -1,19 +1,22 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
-public class Step2 {
+public class LadderGame {
     public static void main(String[] args) throws IOException {
         //1. Input
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println("참여할 사람은 몇 명인가요?");
-        int people = Integer.parseInt(br.readLine());
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        String stringEntry = br.readLine();
         System.out.println("사다리 높이는 몇 개인가요?");
         int height = Integer.parseInt(br.readLine());
 
         //2. Make Ladders
-        Ladder ladders = new Ladder(people, height);
+        Ladder ladders = new Ladder(stringEntry, height);
 
         //3. Print Result
         System.out.println(ladders);
