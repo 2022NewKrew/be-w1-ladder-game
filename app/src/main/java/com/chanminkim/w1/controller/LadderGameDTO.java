@@ -1,16 +1,12 @@
 package com.chanminkim.w1.controller;
 
-import java.util.Random;
-
 public class LadderGameDTO {
     private Integer numberOfPlayers;
     private Integer heightOfLadder;
-    private Random random;
 
-    public LadderGameDTO(Integer numberOfPlayers, Integer heightOfLadder, Random random) {
+    public LadderGameDTO(Integer numberOfPlayers, Integer heightOfLadder) {
         this.numberOfPlayers = numberOfPlayers;
         this.heightOfLadder = heightOfLadder;
-        this.random = random;
     }
 
     public Integer getNumberOfPlayers() {
@@ -29,11 +25,4 @@ public class LadderGameDTO {
         this.heightOfLadder = heightOfLadder;
     }
 
-    public Random getRandom() {
-        return random;
-    }
-
-    public void setRandom(Random random) {
-        this.random = random;
-    }
 }

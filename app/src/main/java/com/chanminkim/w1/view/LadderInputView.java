@@ -2,7 +2,6 @@ package com.chanminkim.w1.view;
 
 import com.chanminkim.w1.controller.LadderGameDTO;
 
-import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class LadderInputView {
@@ -15,7 +14,7 @@ public class LadderInputView {
         int heightOfLadder = scanner.nextInt();
         System.out.println();
 
-        return new LadderGameDTO(numberOfPlayers, heightOfLadder, new SecureRandom());
+        return new LadderGameDTO(numberOfPlayers, heightOfLadder);
     }
 
 }
