@@ -1,10 +1,8 @@
-import factory.LadderFactory;
 import domain.Ladder;
+import factory.LadderFactory;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.PatternSyntaxException;
 
 public class LadderGameDriver {
     private static List<String> names;
