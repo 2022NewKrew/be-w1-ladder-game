@@ -9,17 +9,17 @@ public class LadderCharacter {
     public static final String SUFFIX = " ";
     public static final String PREFIX = " ";
 
-    private static String calculateConnectionLine(){
+    private static String calculateConnectionLine() {
         StringBuilder connectedLine = new StringBuilder();
-        for (int i = 0; i < LadderSizeConfig.LADDER_WIDTH; i++){
+        for (int i = 0; i < LadderSizeConfig.LADDER_WIDTH; i++) {
             connectedLine.append("-");
         }
         return connectedLine.toString();
     }
 
-    private static String calculateNotConnectionLine(){
+    private static String calculateNotConnectionLine() {
         StringBuilder connectedLine = new StringBuilder();
-        for (int i = 0; i < LadderSizeConfig.LADDER_WIDTH; i++){
+        for (int i = 0; i < LadderSizeConfig.LADDER_WIDTH; i++) {
             connectedLine.append(" ");
         }
         return connectedLine.toString();

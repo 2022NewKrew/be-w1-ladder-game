@@ -20,24 +20,24 @@ public class CommandLineOutputController implements OutputController {
     }
 
     /**
-     *  (5-n)/2 + (5-n)%2suffix를 계산하는 식입니다. 5는 사다리의 width입니다.
+     * (5-n)/2 + (5-n)%2suffix를 계산하는 식입니다. 5는 사다리의 width입니다.
      */
     private String calculateSuffix(int nameLength) {
         int numberOfSpace = (LadderSizeConfig.LADDER_WIDTH - nameLength) / 2;
         StringBuilder suffix = new StringBuilder();
-        for (int i = 0; i < numberOfSpace; i++){
+        for (int i = 0; i < numberOfSpace; i++) {
             suffix.append(LadderCharacter.SUFFIX);
         }
         return suffix.toString();
     }
 
     /**
-     *  (5-n)/2 prefix를 계산하는 식입니다. 5는 사다리의 width입니다.
+     * (5-n)/2 prefix를 계산하는 식입니다. 5는 사다리의 width입니다.
      */
     private String calculatePrefix(int nameLength) {
         int numberOfSpace = (LadderSizeConfig.LADDER_WIDTH - nameLength) / 2 + (LadderSizeConfig.LADDER_WIDTH - nameLength) % 2;
         StringBuilder prefix = new StringBuilder();
-        for (int i = 0; i < numberOfSpace; i++){
+        for (int i = 0; i < numberOfSpace; i++) {
             prefix.append(LadderCharacter.PREFIX);
         }
         return prefix.toString();
