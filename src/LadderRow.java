@@ -15,13 +15,13 @@ public class LadderRow {
         final Random RANDOM = new Random();
 
         for (int w = 0; w < width; w++) {
-            boolean bridge = (w == FIRST_INDEX || !row.get(preIndex(w))) && RANDOM.nextBoolean();
+            boolean bridge = isPossiblePutBridge(w) && RANDOM.nextBoolean();
             row.add(bridge);
         }
     }
 
-    private int preIndex(int idx) {
-        return --idx;
+    private boolean isPossiblePutBridge(int idx) {
+        return idx == FIRST_INDEX || !row.get(idx - 1);
     }
 
     @Override
