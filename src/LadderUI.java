@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class LadderUI {
 
@@ -15,7 +16,12 @@ public class LadderUI {
     }
 
     public static void printLadder(Ladder ladder) {
-        for (char[] line : ladder.getLadderMap())
-            System.out.println(line);
+        for (Line line : ladder.getLines()) {
+            String lineToStr = line.getPoints().stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining());
+
+            System.out.println(lineToStr);
+        }
     }
 }
