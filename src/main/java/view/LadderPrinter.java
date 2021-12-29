@@ -1,8 +1,7 @@
 package view;
 
-import entity.Ladder;
-import entity.Player;
-import manager.GameManager;
+import model.Ladder;
+import model.Player;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package manager;
 
-import entity.Ladder;
-import entity.Player;
+import model.Ladder;
+import model.Player;
 import util.CustomScanner;
 import view.LadderPrinter;
 
