@@ -1,6 +1,5 @@
 package com.kakao.leo;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -26,23 +25,19 @@ public class ConsoleReadManager implements ReadManager {
 
 
   @Override
-  public LadderConfig getOptions() {
-    List<Person> people = getNumberOfPeopleFromScanner();
-    int height = getHeightFromScanner();
-    return LadderConfig.of(people, height);
-  }
-
-
-  private List<Person> getNumberOfPeopleFromScanner() {
+  public Participants getParticipants() {
     System.out.println(INPUT_PEOPLE_MENT);
-    return splitByDelimiter(scanner.nextLine())
+    String input = scanner.nextLine();
+    List<Person> people = splitByDelimiter(input)
         .stream()
         .map(Person::new)
         .collect(Collectors.toList());
+    return Participants.of(people);
   }
 
 
-  private int getHeightFromScanner() {
+  @Override
+  public int getLadderHeight() {
     System.out.println(INPUT_HEIGHT_MENT);
     return scanner.nextInt();
   }

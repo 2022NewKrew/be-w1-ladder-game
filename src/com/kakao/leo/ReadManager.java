@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * LadderConfig 를 세팅하는 다양한 입력인터페이스
@@ -22,7 +21,8 @@ public interface ReadManager {
   String WRONG_INPUT_HEIGHT_MENT = "유효한 입력값이 아닙니다. 숫자를 입력하세요.";
   int MAX_WORD_SIZE = 5;
 
-  LadderConfig getOptions() throws IOException;
+  Participants getParticipants() throws IOException;
+  int getLadderHeight() throws IOException;
 
   /**
    * 입력값을 DELIMITER 로 분리 후 기본적인 값 검증 후 List 형태로 반환하는 함수.

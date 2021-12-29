@@ -14,8 +14,10 @@ public class ConsoleWriteManager implements WriteManager {
     return new ConsoleWriteManager();
   }
 
+
   @Override
   public void draw(String str) {
     System.out.println(str);
   }
+
 }
