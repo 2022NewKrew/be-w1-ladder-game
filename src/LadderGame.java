@@ -1,17 +1,40 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
 public class LadderGame {
+    static List<Player> createPlayersByPrompt(Scanner scanner) {
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+
+        List<Player> players = new ArrayList<>();
+        for (String name : scanner.nextLine().split(",")) {
+            try {
+                players.add(new Player(name.strip()));
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+        return players;
+    }
+
+    static int createLadderHeightByPrompt(Scanner scanner) {
+        System.out.println(System.lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
+        return scanner.nextInt();
+    }
+
+    static Ladder createLadderByPrompt(Scanner scanner) {
+        List<Player> players = createPlayersByPrompt(scanner);
+        int ladderHeight = createLadderHeightByPrompt(scanner);
+        return new Ladder(players, ladderHeight);
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("참여할 사람은 몇 명인가요?");
-        int numOfPlayers = scanner.nextInt();
+        Ladder ladder = createLadderByPrompt(scanner);
 
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int heightOfLadder = scanner.nextInt();
-
-        Ladder ladder = new Ladder(numOfPlayers, heightOfLadder);
-        System.out.println(System.lineSeparator() + ladder.toPrettyString());
+        System.out.println(System.lineSeparator() + "실행결과" + System.lineSeparator());
+        System.out.println(ladder.toPrettyString());
     }
 }
