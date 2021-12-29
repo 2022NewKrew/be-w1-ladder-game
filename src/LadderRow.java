@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -30,7 +31,7 @@ public class LadderRow {
         }
     }
 
-    private final ArrayList<StepType> steps = new ArrayList<>();
+    private final List<StepType> steps = new ArrayList<>();
     private final String poleStr = "|";
 
     LadderRow(int numOfPeople) {
