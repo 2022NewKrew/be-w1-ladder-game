@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderFactory {
-    public static List<Row> getLadderRows(int numOfPeople, int heightLadder) {
+    public static List<Row> getLadderRows(int numOfBridges, int heightLadder) {
         return IntStream.range(0, heightLadder)
-                .mapToObj(e -> new Row(LadderFactory.getBridges(numOfPeople - 1)))
+                .mapToObj(e -> new Row(LadderFactory.getBridges(numOfBridges)))
                 .collect(Collectors.toList());
     }
 
