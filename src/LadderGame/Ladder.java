@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class Ladder {
     private final static String VERTICAL_LINE = "|";
-    private final static String HORIZONTAL_LINE = "-";
-    private final static String BLANK = " ";
+    private final static String HORIZONTAL_LINE = "-----";
+    private final static String BLANK = "     ";
 
     private final int ladderWidth, ladderHeight;
     private final Random randomInstance;
