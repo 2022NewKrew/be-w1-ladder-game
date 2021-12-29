@@ -1,7 +1,7 @@
 package Controller;
 
-import domain.CreateLadder;
 import domain.Ladder;
+import domain.LadderGenerator;
 import view.InputView;
 
 public class LadderGame {
@@ -10,7 +10,10 @@ public class LadderGame {
         int playersNum = InputView.inputPlayersNum();
         int maximumLadderHeight = InputView.inputMaximumLadderHeight();
 
+        LadderGenerator ladderGenerator = new LadderGenerator();
+        Ladder ladder = ladderGenerator.createLadder(playersNum, maximumLadderHeight);
 
-//        Ladder ladder = new CreateLadder(playersNum, maximumLadderHeight);
+
+
     }
 }
