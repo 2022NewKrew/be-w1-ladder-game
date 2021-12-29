@@ -1,11 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class LadderSimpleGame extends LadderGame {
-    private boolean[][] bridge;
-    private final Random randomInstance = new Random();
     private static final String PARTICIPANT_LINE = "|";
     private static final String MOVE_LINE = "-----";
     private static final String EMPTY_LINE = "     ";
+
+    private List<List<Boolean>> bridge;
+    private final Random randomInstance = new Random();
+    private String[] participants;
 
     public void createBridge() {
         int row = this.getLadderHeight();
@@ -16,29 +20,42 @@ public class LadderSimpleGame extends LadderGame {
     public String getLadderString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (boolean[] floor : this.bridge) {
+        stringBuilder.append(getParticipantsString());
+
+        for (List<Boolean> floor : this.bridge) {
             stringBuilder.append(getFloorString(floor));
         }
 
         return stringBuilder.toString();
     }
 
-    private boolean[] createFloorMap(int col) {
-        boolean[] map = new boolean[col];
+    private String getParticipantsString() {
+        // TODO: 참가자 5자 기준으로 String 값 리턴
+        return "";
+    }
+
+    private List<Boolean> createFloorMap(int col) {
+
+        List<Boolean> map = new ArrayList<>();
+        boolean previousColumnValue = false;
+
         for (int j = 0; j < col; j++) {
-            // 연속된 다리가 나올수 없음.
-            map[j] = (j <= 0 || !map[j - 1]) && trueAndFalseGenerator();
+            // 연속된 다리가 나올 수 없음.
+            boolean isBridge = (!previousColumnValue) && trueAndFalseGenerator();
+            map.add(isBridge);
+
         }
 
         return map;
     }
 
-    private boolean[][] createLadderMap(int row, int col) {
+    private List<List<Boolean>> createLadderMap(int row, int col) {
 
-        boolean[][] ladderMap = new boolean[row][col];
+        List<List<Boolean>> ladderMap = new ArrayList<>();
 
         for (int i = 0; i < row; i++) {
-            ladderMap[i] = createFloorMap(col);
+            List<Boolean> list = createFloorMap(col);
+            ladderMap.add(list);
         }
 
         return ladderMap;
@@ -48,7 +65,7 @@ public class LadderSimpleGame extends LadderGame {
         return randomInstance.nextBoolean();
     }
 
-    private String getFloorString(boolean[] floor) {
+    private String getFloorString(List<Boolean> floor) {
 
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -60,14 +77,18 @@ public class LadderSimpleGame extends LadderGame {
         return stringBuilder.toString();
     }
 
-    private String getBridgeChar(int col, boolean[] floor) {
+    private String getBridgeChar(int col, List<Boolean> floor) {
         if (col % 2 == 0) {
             return PARTICIPANT_LINE;
-        } else if (floor[col / 2]) {
+        } else if (floor.get(col / 2)) {
             return MOVE_LINE;
         }
 
         return EMPTY_LINE;
 
+    }
+
+    public void setParticipants(String[] participants) {
+        this.participants = participants;
     }
 }
