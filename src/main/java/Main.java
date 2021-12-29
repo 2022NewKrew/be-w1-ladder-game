@@ -6,6 +6,8 @@ public class Main {
         // 사다리 랜덤 생성
         Ladder ladder = new Ladder(startInfo.getNumPeople(), startInfo.getMaxHeight());
 
+        // 참가자 프린트
+        PrintManager.printPeople(startInfo.getNamePeople());
         // 사다리 프린트
         PrintManager.printLadder(ladder.getLadder());
         }
