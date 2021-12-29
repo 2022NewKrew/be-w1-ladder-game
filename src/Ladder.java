@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Ladder {
     private static final int WIDTH_CORRECTION = 1;
+    private static final String SPACE = "  ";
 
     private final ArrayList<LadderRow> bridges = new ArrayList<>();
 
@@ -15,7 +16,7 @@ public class Ladder {
     public String toString() {
         StringBuilder ladder = new StringBuilder();
         for (LadderRow line : bridges) {
-            ladder.append(line).append("\n");
+            ladder.append(SPACE).append(line).append("\n");
         }
         return ladder.toString();
     }
