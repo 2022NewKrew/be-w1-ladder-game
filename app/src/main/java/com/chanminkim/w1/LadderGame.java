@@ -1,5 +1,6 @@
 package com.chanminkim.w1;
 
+import com.chanminkim.w1.model.Ladder;
 import com.chanminkim.w1.view.LadderConverter;
 
 import java.util.Random;

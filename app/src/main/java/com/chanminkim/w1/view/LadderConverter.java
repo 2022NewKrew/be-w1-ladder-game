@@ -1,7 +1,7 @@
 package com.chanminkim.w1.view;
 
-import com.chanminkim.w1.Ladder;
-import com.chanminkim.w1.LadderState;
+import com.chanminkim.w1.model.Ladder;
+import com.chanminkim.w1.model.LadderState;
 
 import java.util.Arrays;
 import java.util.Map;

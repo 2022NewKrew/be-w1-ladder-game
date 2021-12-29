@@ -1,4 +1,4 @@
-package com.chanminkim.w1;
+package com.chanminkim.w1.model;
 
 import java.util.Arrays;
 import java.util.Random;
