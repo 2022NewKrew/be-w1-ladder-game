@@ -15,7 +15,7 @@ public class Ladder {
     private static final String STEP = "-".repeat(STEP_WIDTH);
     private static final String NO_STEP = " ".repeat(STEP_WIDTH);
     private static final String BEAM = "|";
-    private static final String FIRST_BEAM = " ".repeat(STEP_WIDTH/2) + BEAM;
+    private static final String FIRST_BEAM = " ".repeat(STEP_WIDTH - 1) + BEAM;
 
     public Ladder(List<Player> players, int height) {
         this.players = players;
@@ -55,7 +55,7 @@ public class Ladder {
     }
 
     public String toPrettyString() {
-        String playersName = String.join(" ", players.stream().map(player -> getPaddedPlayerName(player)).toList());
+        String playersName = " ".repeat(STEP_WIDTH/2) + String.join(" ", players.stream().map(player -> getPaddedPlayerName(player)).toList());
         String ladderShape = String.join(System.lineSeparator(), stateAsListOfString);
         return playersName + System.lineSeparator() + ladderShape;
     }

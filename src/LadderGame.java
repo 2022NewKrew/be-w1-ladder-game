@@ -18,7 +18,7 @@ public class LadderGame {
     }
 
     static int createLadderHeightByPrompt(Scanner scanner) {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println(System.lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
         return scanner.nextInt();
     }
 
@@ -32,6 +32,7 @@ public class LadderGame {
         Scanner scanner = new Scanner(System.in);
 
         Ladder ladder = createLadderByPrompt(scanner);
-        System.out.println(System.lineSeparator() + ladder.toPrettyString());
+        System.out.println(System.lineSeparator() + "실행결과" + System.lineSeparator());
+        System.out.println(ladder.toPrettyString());
     }
 }
