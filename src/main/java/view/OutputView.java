@@ -1,16 +1,20 @@
 package view;
 
 import domain.Ladder;
-
-import java.util.Arrays;
+import domain.LadderLine;
+import domain.LadderLinePiece;
 
 public class OutputView {
     public static void printLadder(Ladder ladder) {
-//        System.out.println(ladder);
-        System.out.println(ladder.getLadder());
-        System.out.println(ladder.getLadder().size());
-        System.out.println(ladder.getLadder().get(0));
-//        ladder.getLadder().get()
-
+        for (LadderLine ladderLine : ladder.getLadder()) {
+            printLadderLine(ladderLine);
+            System.out.println();
         }
+    }
+
+    public static void printLadderLine(LadderLine ladderLine) {
+        for (LadderLinePiece piece : ladderLine.getLadderLinePieces()) {
+            System.out.print(piece.getValue());
+        }
+    }
 }
