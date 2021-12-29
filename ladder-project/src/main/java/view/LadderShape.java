@@ -1,5 +1,7 @@
 package view;
 
+import java.util.List;
+
 public final class LadderShape {
 
     private final String ladderShape;
@@ -8,7 +10,7 @@ public final class LadderShape {
         this.ladderShape = ladderShape;
     }
 
-    public static LadderShape create(int[][] ladder) {
+    public static LadderShape create(List<List<Boolean>> ladder) {
         return new LadderShape(generateLadderShape(ladder));
     }
 
@@ -20,18 +22,18 @@ public final class LadderShape {
         System.out.println(getShape());
     }
 
-    private static String generateLadderShape(int[][] ladder) {
+    private static String generateLadderShape(List<List<Boolean>> ladder) {
         StringBuilder sb = new StringBuilder();
-        for (int[] ladderLine : ladder) {
+        for (List<Boolean> ladderLine : ladder) {
             sb.append(generateLadderLine(ladderLine));
             sb.append("\n");
         }
         return sb.toString();
     }
 
-    private static StringBuilder generateLadderLine(int[] line) {
+    private static StringBuilder generateLadderLine(List<Boolean> line) {
         StringBuilder sb = new StringBuilder();
-        for (int block : line) {
+        for (boolean block : line) {
             sb.append(LadderComponent.LADDER_ROW_LINE.getValue());
             checkBlock(block, sb);
         }
@@ -39,11 +41,11 @@ public final class LadderShape {
         return sb;
     }
 
-    private static void checkBlock(int block, StringBuilder sb) {
-        if (block == 0) {
+    private static void checkBlock(boolean block, StringBuilder sb) {
+        if (!block) {
             sb.append(LadderComponent.LADDER_EMPTY_COLUMN.getValue());
         }
-        if (block == 1) {
+        if (block) {
             sb.append(LadderComponent.LADDER_COLUMN_LINE.getValue());
         }
     }
