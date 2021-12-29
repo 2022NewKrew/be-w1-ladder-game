@@ -1,23 +1,25 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
     private final Random random;
 
     private final String BAR = "|";
-    private final String CONNECT = "-";
-    private final String BLANK = " ";
+    private final String CONNECT = "-----";
+    private final String BLANK = "     ";
 
     public LadderGame() {
         random = new Random();
     }
 
-    public void run(int numberOfPerson, int heightOfLadder) {
-        System.out.println("게임 설정" + System.lineSeparator()
-            + "사용자 : " + numberOfPerson + "명" + System.lineSeparator()
-            + "사다리 높이 : " + heightOfLadder);
+    public void run(String nameInputs, int heightOfLadder) {
+        List<String> participantsNames = Arrays.stream(nameInputs.split(","))
+            .collect(Collectors.toList());
+        int numberOfPerson = participantsNames.size();
 
         if (numberOfPerson < 2) {
             System.err.println("사다리 게임은 혼자서 플레이할 수 없어요!!!");
@@ -25,7 +27,7 @@ public class LadderGame {
         }
 
         List<List<Integer>> gameBoard = makeGameBoard(numberOfPerson - 1, heightOfLadder);
-        printGameBoard(gameBoard);
+        printGameBoard(participantsNames, gameBoard);
     }
 
     private List<List<Integer>> makeGameBoard(int width, int height) {
@@ -46,8 +48,12 @@ public class LadderGame {
         return line;
     }
 
-    private void printGameBoard(List<List<Integer>> gameBoard) {
+    private void printGameBoard(List<String> participantsNames, List<List<Integer>> gameBoard) {
         List<String> printBoard = new ArrayList<>();
+
+        printBoard.add(" " + participantsNames.stream().map(this::formatName)
+            .collect(Collectors.joining(" ")));
+
         for (List<Integer> line : gameBoard) {
             printBoard.add(shapeLine(line));
         }
@@ -55,8 +61,12 @@ public class LadderGame {
         System.out.println(String.join(System.lineSeparator(), printBoard));
     }
 
+    private String formatName(String name) {
+        return String.format("%5s", name.length() <= 5 ? name : name.substring(0, 5));
+    }
+
     private String shapeLine(List<Integer> line) {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder("    ");
         for (int space : line) {
             stringBuilder.append(BAR)
                 .append(isConnected(space) ? CONNECT : BLANK);
