@@ -69,3 +69,4 @@ public class Ladder {
         System.out.println(ladderView.get(y));
     }
 }
+
