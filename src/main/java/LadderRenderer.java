@@ -7,11 +7,11 @@ public class LadderRenderer {
         this.maxNameLength = maxNameLength;
     }
 
-    public void render(String[] people, int heightOfLadder, ArrayList<Line> connections){
+    public void render(String[] people, ArrayList<Line> connections){
         StringBuilder ladderString = new StringBuilder();
-
         ladderString.append(renderName(people));
 
+        int heightOfLadder = connections.size();
         for(int layer = 0; layer < heightOfLadder; layer++) {
             ladderString.append(renderOneLine(people, connections, layer));
         }
@@ -26,7 +26,7 @@ public class LadderRenderer {
     }
 
     public String padding(String name){
-        int leftPadding = (maxNameLength-name.length())/2;
+        int leftPadding = (maxNameLength - name.length())/2;
         int rightPadding = maxNameLength - name.length() - leftPadding + 1;
         return " ".repeat(leftPadding) + name + " ".repeat(rightPadding);
     }

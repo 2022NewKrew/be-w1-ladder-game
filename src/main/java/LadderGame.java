@@ -9,6 +9,6 @@ public class LadderGame {
         Ladder ladder = new Ladder(people, heightOfLadder);
 
         LadderRenderer renderer = new LadderRenderer(MAX_NAME_LENGTH);
-        renderer.render(ladder.getPeople(), ladder.getHeightOfLadder(), ladder.getConnections());
+        renderer.render(ladder.getPeople(), ladder.getConnections());
     }
 }
