@@ -2,6 +2,7 @@ package laddergame;
 
 import laddergame.domain.Ladder;
 import laddergame.view.InputView;
+import laddergame.view.OutputView;
 
 public class LadderGame {
     private final int numberOfGamer;
@@ -27,7 +28,7 @@ public class LadderGame {
         return inputView.inputLadderHeight();
     }
 
-    public void printLadder() {
-        OutputView.printLadder(ladder);
+    public void printLadder(OutputView outputView) {
+        outputView.printLadder(ladder);
     }
 }
