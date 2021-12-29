@@ -52,6 +52,7 @@ public class LadderGame {
         }
     }
 
+    // 매 for문 마다 random 객체가 생성된다.
     private void createLine(int lineNumber) {
         Random random = new Random();
 
@@ -60,6 +61,7 @@ public class LadderGame {
         }
     }
 
+    // StringBuilder를 파라마터로 넘기는 것
     private void printResult() {
         StringBuilder result = new StringBuilder();
 
@@ -84,3 +86,4 @@ public class LadderGame {
         return result;
     }
 }
+
