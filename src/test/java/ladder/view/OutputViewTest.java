@@ -39,6 +39,7 @@ class OutputViewTest {
     }
 
     private static class Item {
+
         private final String name;
         private final String expected;
 
