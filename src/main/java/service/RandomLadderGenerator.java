@@ -1,39 +1,57 @@
 package service;
 
 import dto.Ladder;
-import dto.LadderCharacter;
+import dto.LadderInputInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-
 public class RandomLadderGenerator implements LadderGenerator {
+    private final static int numberOfNameLine = 1;
 
     @Override
-    public Ladder buildLadder(int heights, int numberOfParticipants) {
+    public Ladder buildLadder(LadderInputInfo ladderInputInfo) {
         List<StringBuilder> ladder = new ArrayList<>();
-        initLadder(heights, ladder);
-        return new Ladder(assembleLadder(numberOfParticipants, ladder));
+        int totalLines = ladderInputInfo.getHeights() + numberOfNameLine;
+        initLadder(totalLines, ladder);
+        return new Ladder(assembleLadder(ladderInputInfo, ladder));
     }
 
-    private void initLadder(int heights, List<StringBuilder> ladder) {
-        for (int i = 0; i < heights; i++) {
+    private void initLadder(int totalLines, List<StringBuilder> ladder) {
+        for (int i = 0; i < totalLines; i++) {
             ladder.add(new StringBuilder());
         }
     }
 
-    private List<StringBuilder> assembleLadder(int numberOfParticipants, List<StringBuilder> ladder) {
-        return ladder.stream()
-                .map(ladderLine -> writeOneLadderLine(numberOfParticipants, ladderLine))
-                .collect(toList());
+    private List<StringBuilder> assembleLadder(LadderInputInfo ladderInputInfo, List<StringBuilder> ladder) {
+        writeName(ladderInputInfo.getParticipantsNames(), ladder.get(numberOfNameLine - 1));
+        int numberOfParticipants = ladderInputInfo.getNumberOfParticipants();
+        for (int i = numberOfNameLine; i < ladder.size(); i++) {
+            writeOneLadderLine(numberOfParticipants, ladder.get(i));
+        }
+        return ladder;
     }
 
-    private StringBuilder writeOneLadderLine(int numberOfParticipants, StringBuilder ladderLine) {
-        ladderLine.append(LadderCharacter.COLUMN);
-        for (int j = 0; j < numberOfParticipants - 1; j++) {
-            ladderLine.append(RandomConnection.randomConnection()).append(LadderCharacter.COLUMN);
+    private void writeName(List<String> participantsNames, StringBuilder nameLine) {
+        for (String participantsName : participantsNames) {
+            nameLine.append(participantsName).append(LadderCharacter.SPACE);
         }
-        return ladderLine;
+    }
+
+    private void writeOneLadderLine(int numberOfParticipants, StringBuilder ladderLine) {
+        ladderLine.append(LadderCharacter.FIRST_COLUMN);
+        String pastConnection = LadderCharacter.NOT_CONNECTED;
+        for (int j = 0; j < numberOfParticipants - 1; j++) {
+            String currentConnection = connectOrNot(pastConnection);
+            ladderLine.append(currentConnection).append(LadderCharacter.COLUMN);
+            pastConnection = currentConnection;
+        }
+    }
+
+    private String connectOrNot(String pastConnection) {
+        if (pastConnection.equals(LadderCharacter.CONNECTED)) {
+            return LadderCharacter.NOT_CONNECTED;
+        }
+        return RandomConnection.randomConnection();
     }
 }
