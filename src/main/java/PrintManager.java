@@ -1,26 +1,40 @@
+import java.util.ArrayList;
+
 public class PrintManager {
-    private final boolean[][] ladder;
 
-    public PrintManager(boolean[][] ladder) {
-        this.ladder = ladder;
+    private static final String VLINE = "|";
+    private static final String HLINE = "-----";
+    private static final String SPACE = "     ";
+    private static final String DELIMITER = " ";
+
+    public PrintManager() {
     }
-    public void printLadder(){
-        StringBuilder stringLadder = new StringBuilder();
-        String vLine = "|";
+    public static void printPeople(String[] namePeople){
+        StringBuilder stringNamePeople = new StringBuilder();
 
-        for(int i=0; i<ladder.length; i++){
-            for(int j = 0; j< ladder[0].length; j++){
-                stringLadder.append(vLine).append(isLadder(i, j));
-            }
-            stringLadder.append(vLine).append("\n");
+        for(String name : namePeople){
+            stringNamePeople.append(String.format("%-6s",name));
+        }
+        System.out.println(stringNamePeople);
+    }
+
+    public static void printLadder(ArrayList<Line> ladder){
+        StringBuilder stringLadder = new StringBuilder();
+
+        for (Line line : ladder) {
+            stringLadder.append("  ");
+            printHorizontalLine(line, stringLadder);
+            stringLadder.append(VLINE).append("\n");
         }
         System.out.println(stringLadder);
     }
+    private static void printHorizontalLine(Line line, StringBuilder stringLadder){
+        for(int j = 0; j< line.getPoints().size(); j++){
+            stringLadder.append(VLINE).append(isLadder(line,j));
+        }
+    }
 
-    private String isLadder(int i, int j){
-        String hLine = "-";
-        String space = " ";
-
-        return ladder[i][j]? hLine : space;
+    private static String isLadder(Line line, int j){
+        return line.getPoints().get(j)? HLINE : SPACE;
     }
 }
