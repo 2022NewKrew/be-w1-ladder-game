@@ -12,6 +12,6 @@ public class LadderGame {
     }
 
     public void printLadder() {
-        OutputView.printLadder(ladder.getLineList());
+        OutputView.printLadder(ladder);
     }
 }

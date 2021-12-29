@@ -7,7 +7,8 @@ public class OutputView {
     private static final String BRIDGE = "-----";
     private static final String BLANK = "     ";
 
-    public static void printLadder(List<Line> lineList) {
+    public static void printLadder(Ladder ladder) {
+        List<Line> lineList = ladder.getLineList();
         for (Line line : lineList) {
             printLine(line);
         }
