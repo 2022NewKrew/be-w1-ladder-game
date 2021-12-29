@@ -15,5 +15,8 @@ public class LadderConfig {
     public int getMaxHeight(){
         return this.maxHeight;
     }
+    public String[] getPeopleNames(){
+        return this.peopleNames;
+    }
 
 }

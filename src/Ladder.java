@@ -5,6 +5,7 @@ import java.util.Random;
 public class Ladder {
     private final int nPeople;
     private final int maxHeight;
+    private final String[] peopleNames;
     private final ArrayList<Line> arr;
 
 
@@ -14,6 +15,7 @@ public class Ladder {
     public Ladder(LadderConfig ladderConfig) {
         this.nPeople = ladderConfig.getNumPeople();
         this.maxHeight = ladderConfig.getMaxHeight();
+        this.peopleNames =ladderConfig.getPeopleNames();
         this.arr = new ArrayList<Line>();
 
         buildLines();
@@ -26,6 +28,10 @@ public class Ladder {
 
     public int getNumPeople() {
         return this.nPeople;
+    }
+
+    public String[] getPeopleNames() {
+        return this.peopleNames;
     }
 
     public int getMaxNameLength() {
