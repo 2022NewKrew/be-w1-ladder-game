@@ -10,14 +10,19 @@ public class Application {
         List<Participant> participants = initializeParticipants();
         Ladder ladder = initializeLadder(participants.size());
 
-        ladder.makeRandomLadder();
-        ladder.printLadder();
+        printParticipants(participants);
+        printLadder(ladder);
     }
 
     public static List<Participant> initializeParticipants() {
         String[] nameOfParticipants = inputParticipants();
 
-        return Arrays.stream(nameOfParticipants).map(name -> new Participant(name)).collect(Collectors.toList());
+        return Arrays.stream(nameOfParticipants).map(Participant::new).collect(Collectors.toList());
+    }
+
+    public static void printParticipants(List<Participant> participants) {
+        List<String> names = participants.stream().map(Participant::getName).collect(Collectors.toList());
+        System.out.println(String.join("", names));
     }
 
     public static Ladder initializeLadder(int numOfPeople) {
@@ -25,6 +30,10 @@ public class Application {
         Ladder ladder = new Ladder(heightOfLadder, numOfPeople);
 
         return ladder;
+    }
+
+    public static void printLadder(Ladder ladder) {
+        System.out.println(ladder.toString());
     }
 
     public static int inputHeight() {
@@ -37,7 +46,7 @@ public class Application {
         System.out.println("참여할 사람 이름을 입력하세요.");
         String inputOfParticipants = SCANNER.nextLine();
 
-        return inputOfParticipants.split(" ");
+        return inputOfParticipants.split(",");
     }
 
     public static void main(String[] args) {

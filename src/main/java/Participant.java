@@ -6,6 +6,6 @@ public class Participant {
     }
 
     public String getName() {
-        return name;
+        return String.format("%-6s", name);
     }
 }
