@@ -16,14 +16,16 @@ public class LadderFrameLine {
 
     private List<LadderFrame> generateLadderLine(int frameLineLength) {
         List<LadderFrame> ladderFrameList = new ArrayList<>();
+        LadderFrame previousLadderFrame = LadderFrame.SPACE;
         for (int i = 0; i < frameLineLength; i++) {
-            ladderFrameList.add(generateBridge());
+            previousLadderFrame = generateBridge(previousLadderFrame);
+            ladderFrameList.add(previousLadderFrame);
         }
         return Collections.unmodifiableList(ladderFrameList);
     }
 
-    private LadderFrame generateBridge() {
-        if (randomGenerator.nextBoolean()) {
+    private LadderFrame generateBridge(LadderFrame previousLadderFrame) {
+        if (randomGenerator.nextBoolean() && previousLadderFrame.equals(LadderFrame.SPACE)) {
             return LadderFrame.BRIDGE;
         }
         return LadderFrame.SPACE;
