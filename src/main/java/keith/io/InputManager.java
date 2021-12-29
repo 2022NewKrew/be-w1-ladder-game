@@ -5,6 +5,8 @@ import java.util.Scanner;
 import java.util.List;
 
 public class InputManager {
+    public static final int MAX_NAME_LEN = 5;
+
     public int height;
     public String participants;
     public List<String> participantsList;
@@ -39,7 +41,7 @@ public class InputManager {
             String name = participantsList.get(i);
             checkValidName(name);
             // 이름이 5글자 이상이면 5글자까지 자르기
-            participantsList.set(i, name.substring(0, Math.min(5, name.length())));
+            participantsList.set(i, name.substring(0, Math.min(MAX_NAME_LEN, name.length())));
         }
     }
 

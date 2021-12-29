@@ -2,13 +2,14 @@ package keith.view;
 
 import keith.domain.Ladder;
 import keith.domain.Line;
+import keith.io.InputManager;
 
 import java.util.List;
 
 public class LadderToString {
     private static final char COLUMN = '|';
-    private static final String CONNECTED = "-----";
-    private static final String NOT_CONNECTED = "     ";
+    private static final String CONNECTED = "-".repeat(InputManager.MAX_NAME_LEN);
+    private static final String NOT_CONNECTED = " ".repeat(InputManager.MAX_NAME_LEN);
 
     private final StringBuilder ladderString;
 
@@ -24,7 +25,7 @@ public class LadderToString {
         result.append("  ");
         for (String name : ladder.getParticipants()) {
             // 왼쪽에 몫, 오른쪽에 몫+나머지만큼 공백
-            int numberOfSpace = 5 - name.length();
+            int numberOfSpace = InputManager.MAX_NAME_LEN - name.length();
             result.append(" ".repeat(numberOfSpace / 2));
             result.append(name);
             result.append(" ".repeat(numberOfSpace / 2 + numberOfSpace % 2));
