@@ -1,6 +1,7 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -27,14 +28,12 @@ public class Engine {
         for (int i = 0; i < userNum; i++) {
             ladders.add(new Ladder());
         }
-
-        Ladder lastLadder = ladders.get(ladders.size() - 1);
-        lastLadder.setLastLadder(true);
     }
 
-    public void connectRandomBridges(int bridgeNum){
+    public void connectRandomBridges(){
         int count = 0;
         Random random = new Random();
+        int bridgeNum = random.nextInt((userNum - 1) * ladderHeight);
 
         while(count < bridgeNum){
             int ladderIdx = random.nextInt(userNum-1);
@@ -50,14 +49,18 @@ public class Engine {
 
     public void printLadder() {
         for (int i = 0; i < ladderHeight; i++) {
-            StringBuilder builder = new StringBuilder();
-            for (Ladder ladder : ladders) {
-                builder.append(Ladder.ladderLine.charAt(i));
-                if (!ladder.isLastLadder()) {
-                    builder.append(ladder.getBridgeLine().charAt(i));
-                }
-            }
-            System.out.println(builder);
+            System.out.println(printLadderLineAt(i));
         }
+    }
+
+    public String printLadderLineAt(int index) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < userNum; i++){
+            builder.append(Ladder.ladderLine.charAt(index));
+
+            if(i == userNum-1) continue;
+            builder.append(ladders.get(i).getBridgeLine().charAt(index));
+        }
+        return builder.toString();
     }
 }
