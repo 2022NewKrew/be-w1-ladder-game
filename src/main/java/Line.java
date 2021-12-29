@@ -11,21 +11,28 @@ public class Line {
     public Line(int playerNumber) {
         LINE_SIZE = playerNumber * 2 - 1;
         POINT_LIST = new ArrayList<>(LINE_SIZE);
-        setPoint();
+        for (int i = 0; i < LINE_SIZE; i++) {
+            POINT_LIST.add(setConnection(i));
+        }
     }
 
     public int getLINE_SIZE() {
         return LINE_SIZE;
     }
 
-    private void setPoint() {
-        for (int i = 0; i < LINE_SIZE; i++) {
-            POINT_LIST.add(setConnection(i));
+    public boolean setConnection(int index) {
+        if (isVertical(index)) {
+            return true;
         }
+        return setFirstConnection(index) || setAfterFirstConnection(index);
     }
 
-    public boolean setConnection(int index) {
-        return isVertical(index) || RANDOM.nextBoolean();
+    private boolean setFirstConnection(int index) {
+        return index == 1 && RANDOM.nextInt(3) == 0;
+    }
+
+    private boolean setAfterFirstConnection(int index) {
+        return index != 1 && !POINT_LIST.get(index - 2) && RANDOM.nextBoolean();
     }
 
     public boolean isConnected(int index) {
