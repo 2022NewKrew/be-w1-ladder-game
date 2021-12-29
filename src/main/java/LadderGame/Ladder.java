@@ -1,15 +1,28 @@
 package LadderGame;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Ladder {
     private int height;
     private int width;
     private char[][] ladder;
 
-    public Ladder(int height, int width) {
-        this.height = height;
-        this.width = width;
+    public Ladder() {
+    }
+
+    void inputLadderInfo() {
+        int inputPlayers;
+        int inputHeight;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("참여할 사람은 몇 명인가요?");
+        inputPlayers = scanner.nextInt();
+        System.out.println("최대 사다리 높이는 몇 개 인가요?");
+        inputHeight = scanner.nextInt();
+
+        this.height = inputHeight;
+        this.width = inputPlayers*2 - 1;
         this.ladder = new char[height][width];
     }
 
