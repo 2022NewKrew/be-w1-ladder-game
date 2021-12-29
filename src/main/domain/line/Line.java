@@ -18,7 +18,7 @@ public class Line {
     }
 
     public void connect(Line targetLine, int position) {
-        if (this.isConnectable(position) && targetLine.isConnectable(position)) {
+        if (isConnectable(targetLine, position)) {
             this.setConnection(targetLine, position);
             targetLine.setConnection(this, position);
         }
@@ -28,8 +28,12 @@ public class Line {
         connections.get(position).connect(targetLine);
     }
 
-    public boolean isConnectable(int position) {
-        return !connections.get(position).isConnected();
+    public boolean isConnectable(Line targetLine, int position) {
+        return !isConnected(position) && !targetLine.isConnected(position);
+    }
+
+    public boolean isConnected(int position) {
+        return connections.get(position).isConnected();
     }
 
     public boolean isConnectedTo(Line targetLine, int position) {
