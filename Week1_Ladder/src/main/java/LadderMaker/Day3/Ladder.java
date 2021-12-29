@@ -19,7 +19,7 @@ public class Ladder {
     }
 
     public <T> void makeSubArrayList(ArrayList<ArrayList<T>> arrayList){
-        for(int i = 0; i < heightOfLadder; i++){ arrayList.add(new ArrayList<T>(numOfPeople)); }
+        for(int i = 0; i < heightOfLadder; i++){ arrayList.add(new ArrayList<>(numOfPeople)); }
     }
 
     public void addConnectedInfo(int row, Boolean data) { connectedInfo.get(row).add(data); }

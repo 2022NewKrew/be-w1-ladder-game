@@ -1,7 +1,7 @@
 package LadderMaker.Day3;
 
 public class LadderMaker {
-    private RandomManager randomManager;
+    private final RandomManager randomManager;
     public LadderMaker(){
         randomManager = new RandomManager();
     }

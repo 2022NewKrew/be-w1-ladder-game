@@ -15,13 +15,13 @@ public class LadderRenderer {
     }
 
     private void printNames(Ladder ladder){
+        StringBuilder sb = new StringBuilder();
         ladder.getNameStream()
                 .forEach(name -> {
-                    StringBuilder sb = new StringBuilder(name);
+                    sb.append(name);
                     sb.append(" ");
-                    System.out.print(sb);
                 });
-        System.out.println("");
+        System.out.println(sb);
     }
 
     private void printRow(Ladder ladder, int row){

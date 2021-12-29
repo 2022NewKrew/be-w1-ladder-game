@@ -9,7 +9,7 @@ public class LadderInfoScanner {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MIN_HEIGHT_LENGTH = 1;
-    private Scanner sc;
+    private final Scanner sc;
 
     public LadderInfoScanner() {
         sc = new Scanner(System.in);
@@ -33,7 +33,7 @@ public class LadderInfoScanner {
             return getNames();
         }
 
-        ArrayList<String> arrayListNames = new ArrayList<String>(Arrays.asList(names.split(",")));
+        ArrayList<String> arrayListNames = new ArrayList<>(Arrays.asList(names.split(",")));
         if(checkNames(arrayListNames)) {
             System.out.println("이름은 한 글자 이상, 다섯글자 이하로 입력해주세요.");
             return getNames();
@@ -55,7 +55,7 @@ public class LadderInfoScanner {
         }
         return true;
         */
-        ArrayList<Boolean> nameValidCheck = new ArrayList<Boolean>(names.size());
+        ArrayList<Boolean> nameValidCheck = new ArrayList<>(names.size());
         names.forEach(name ->
                 nameValidCheck.add((name.length() <= MAX_NAME_LENGTH && name.length() >= MIN_NAME_LENGTH))
         );
@@ -71,9 +71,9 @@ public class LadderInfoScanner {
     private String getFiveName(String name){
         StringBuilder sb = new StringBuilder();
         int size = MAX_NAME_LENGTH - name.length();
-        for(int i = 0; i < size / 2 + size % 2; i++) sb.append(" ");
+        sb.append(" ".repeat(size / 2 + size % 2));
         sb.append(name);
-        for(int i = 0; i < size / 2; i++) sb.append(" ");
+        sb.append(" ".repeat(size / 2));
         return sb.toString();
     }
 
