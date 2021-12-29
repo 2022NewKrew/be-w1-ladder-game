@@ -1,16 +1,27 @@
 package domain.participant;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Participant {
 
-    private final int participantNumber;
+    private final List<Name> nameList;
 
-    public Participant(int participantNumber) {
-        checkParticipantNumber(participantNumber);
-        this.participantNumber = participantNumber;
+    public Participant(List<String> nameList) {
+        checkParticipantNumber(nameList.size());
+        this.nameList = nameList.stream()
+                .map(Name::new)
+                .collect(Collectors.toList());
     }
 
     public int howManyParticipant() {
-        return participantNumber;
+        return nameList.size();
+    }
+
+    public List<String> getParticipantNameList() {
+        return this.nameList.stream()
+                .map(Name::getName)
+                .collect(Collectors.toList());
     }
 
     private void checkParticipantNumber(int number) {
