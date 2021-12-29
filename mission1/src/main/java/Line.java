@@ -6,6 +6,7 @@ public class Line {
 
     public Line(int numOfPlayer, Random random) {
         boolean existLeft = false;
+
         for(int i=0; i<numOfPlayer-1; i++) {
             boolean point = !existLeft && random.nextBoolean();
             points.add(point);

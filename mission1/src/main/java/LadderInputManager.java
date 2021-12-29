@@ -1,22 +1,16 @@
 import java.util.*;
 
 public class LadderInputManager {
-    private final int numOfPlayer;
     private final int maxHeight;
     private final int nameLen;
     private final ArrayList<String> playerList;
     private final Scanner scanner;
 
-    public LadderInputManager() {
-        nameLen = 5;
-
+    public LadderInputManager(int nameLen) {
+        this.nameLen = nameLen;
         scanner = new Scanner(System.in);
 
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         playerList = getPlayers();
-        numOfPlayer = getPlayerList().size();
-
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
         maxHeight = getInputNumber();
     }
 
@@ -24,29 +18,36 @@ public class LadderInputManager {
         return playerList;
     }
 
-    public int getNumOfPlayer() {
-        return numOfPlayer;
-    }
-
     public int getMaxHeight() {
         return maxHeight;
     }
 
-    public int getNameLen() {
-        return nameLen;
-    }
-
     private ArrayList<String> getPlayers() {
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+
         String players = scanner.nextLine();
         String[] playersArray = players.split(",");
 
         ArrayList<String> playersList = new ArrayList<>();
         Collections.addAll(playersList, playersArray);
 
+        if (!checkNameLength(playersList)){
+            System.out.printf("이름은 %d자 이내로 입력해주세요.", nameLen);
+            System.out.println();
+        }
         return playersList;
     }
 
+    private boolean checkNameLength(ArrayList<String> playerList) {
+        boolean result = true;
+        for (String name : playerList) {
+            result = result && name.length() > 0 && name.length() <= nameLen;
+        }
+        return result;
+    }
+
     private int getInputNumber() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
         try {
             int result = scanner.nextInt();
             return checkInput(result) ? result : getInputNumber();

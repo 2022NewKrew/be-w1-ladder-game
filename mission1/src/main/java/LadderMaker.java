@@ -4,17 +4,15 @@ import java.util.Random;
 
 public class LadderMaker {
     private final int row;
-    private final int nameLen;
     private final int numOfPlayer;
     private final int offset;
     private final ArrayList<Line> ladder;
     private final Random random;
 
-    public LadderMaker(LadderInputManager ladderInputManager) {
+    public LadderMaker(LadderInputManager ladderInputManager, int nameLen) {
         row = ladderInputManager.getMaxHeight();
-        nameLen = ladderInputManager.getNameLen();
         offset = nameLen / 2;
-        numOfPlayer = ladderInputManager.getNumOfPlayer();
+        numOfPlayer = ladderInputManager.getPlayerList().size();
         ladder = new ArrayList<>();
         random = new Random();
         makeLadder(ladder);
@@ -28,11 +26,7 @@ public class LadderMaker {
         return offset;
     }
 
-    public int getNameLen() {
-        return nameLen;
-    }
-
-    private void makeLadder(ArrayList ladder){
+    private void makeLadder(ArrayList<Line> ladder){
         for (int i=0; i<row; i++) {
             ladder.add(makeLine());
         }
