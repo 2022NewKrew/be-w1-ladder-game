@@ -8,7 +8,7 @@ public class LadderGame {
     public LadderGame() {
         this.numberOfGamer = InputView.inputNumberOfGamer();
         this.ladderHeight = InputView.inputLadderHeight();
-        this.ladder = new Ladder(numberOfGamer, ladderHeight);
+        this.ladder = Ladder.of(numberOfGamer, ladderHeight);
     }
 
     public void printLadder() {
