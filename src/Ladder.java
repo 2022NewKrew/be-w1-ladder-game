@@ -4,6 +4,7 @@ import java.util.List;
 public class Ladder {
     private static final int WIDTH_CORRECTION = 1;
     private static final String SPACE = "  ";
+    private static final String NEW_LINE = "\n";
 
     private final List<LadderRow> bridges = new ArrayList<>();
 
@@ -17,7 +18,7 @@ public class Ladder {
     public String toString() {
         StringBuilder ladder = new StringBuilder();
         for (LadderRow line : bridges) {
-            ladder.append(SPACE).append(line).append("\n");
+            ladder.append(SPACE).append(line).append(NEW_LINE);
         }
         return ladder.toString();
     }

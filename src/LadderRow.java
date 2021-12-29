@@ -12,10 +12,10 @@ public class LadderRow {
     private final List<Boolean> row = new ArrayList<>();
 
     public LadderRow(int width) {
-        final Random RANDOM = new Random();
+        final Random random = new Random();
 
         for (int w = 0; w < width; w++) {
-            boolean bridge = isPossiblePutBridge(w) && RANDOM.nextBoolean();
+            boolean bridge = isPossiblePutBridge(w) && random.nextBoolean();
             row.add(bridge);
         }
     }
