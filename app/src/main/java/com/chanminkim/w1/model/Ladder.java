@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final List<LadderLine> map = new ArrayList<>();
+    private final List<LadderLine> lines = new ArrayList<>();
 
     public void appendLine(LadderLine line) {
-        map.add(line);
+        lines.add(line);
     }
 
-    public List<LadderLine> getMap() {
-        return map;
+    public List<LadderLine> getLines() {
+        return lines;
     }
 }

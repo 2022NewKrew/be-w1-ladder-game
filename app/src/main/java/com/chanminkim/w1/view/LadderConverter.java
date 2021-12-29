@@ -14,7 +14,7 @@ public class LadderConverter {
     );
 
     public static String convertToString(Ladder ladder) {
-        return ladder.getMap().stream()
+        return ladder.getLines().stream()
                 .map(line -> line.getStates().stream()
                         .map(STATE_STRING_MAP::get)
                         .collect(Collectors.joining()))
