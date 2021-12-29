@@ -49,3 +49,95 @@
 ## 힌트
 
 - 2차원 배열을 학습한 후 2차원 배열을 추가해 문제를 해결하거나 ArrayList를 학습하고 이를 이용해 구현한다.
+
+
+
+------
+
+# 사다리 게임 2단계 구현
+
+
+
+## 기능 요구사항
+
+- 1단계와 같다.
+
+
+
+## 프로그래밍 요구사항
+
+- 메서드의 크기가 최대 10라인을 넘지 않도록 구현한다.
+  - 메서드가 한 가지 일만 하도록 최대한 작게 만들어라.
+- **들여쓰기(indent) depth를 2단계에서 1단계로 줄여라.**
+  - depth의 경우 if 문을 사용하는 경우 1단계의 depth가 증가한다. if 문 안에 while 문을 사용한다면 depth가 2단계가 된다.
+- **else를 사용하지 마라.**
+- **구현 순서를 고려하면서 프로그래밍한다.**
+- **naming convention을 지키면서 프로그래밍한다.**
+
+
+
+## 클래스 구현 순서
+
+- 클래스를 구현할 때 다음 순서를 지켜 구현한다.
+
+```java
+package 패키지명
+
+import ...
+
+class Ladder {
+    //상수 및 클래스 변수
+
+    //인스턴스 변수
+
+    //생성자
+
+    //메서드
+}
+코드복사
+```
+
+
+
+## Naming Convention
+
+- 자바는 낙타 표기법(Camel Case)를 따른다.
+- 클래스명은 대문자로 시작, 변수 메소드는 소문자로 시작
+- 클래스 이름 예 : Rectangle, LaundryList, StudentDirectory
+- 변수 이름 예 : firstName, description, mediaController
+- 메소드 이름 예 : getFirstName(), cancelOrder(), isDeleted()
+
+
+
+## 힌트
+
+- 들여쓰기(indent)를 줄이는 가장 좋은 방법은 메소드를 분리하는 것이다.
+  - 들여쓰기가 2이상인 메소드의 경우 메소드를 분리하는 방법을 찾는다.
+  - 메소드 라인이 10라인을 넘어가는 경우 메소드를 분리한다.
+- else를 사용하지 않는 방법은 if절에서 값을 바로 return하면 메소드 실행이 종료되기 때문에 가능하다.
+
+```java
+    public int add(String text) {
+        int result;
+        if (text == null || text.isEmpty()) {
+            result = 0;
+        } else {
+            result = Integer.parseInt(text);
+        }
+        
+        return result;
+    }
+코드복사
+```
+
+- 위 코드는 다음과 같이 else를 사용하지 않고 구현 가능하다.
+
+```java
+    public int add(String text) {
+        if (text == null || text.isEmpty()) {
+            return 0;
+        }
+        
+        return Integer.parseInt(text);
+    }
+```
