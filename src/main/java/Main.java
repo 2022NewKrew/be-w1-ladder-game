@@ -1,10 +1,13 @@
 import configuration.LadderGameConfiguration;
 import configuration.LadderHeight;
 import configuration.PeopleCount;
+import configuration.Player;
 import service.LadderGameService;
 import service.LadderGenerator;
 import service.LadderRandomGenerator;
+import ui.LadderGameUI;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -14,14 +17,12 @@ public class Main {
     public static void main(String[] args) {
         try {
             // 1. 사용자로부터 게임 설정 입력 받기
-            int numberOfMan = getUserInputInt("참여할 사람은 몇 명인가요?");
-            PeopleCount peopleCount = new PeopleCount(numberOfMan);
-
-            int maxHeightOfLadder = getUserInputInt("최대 사다리 높이는 몇 개인가요?");
-            LadderHeight maxLadderHeight = new LadderHeight(maxHeightOfLadder);
+            LadderGameUI ladderGameUI = new LadderGameUI();
+            List<Player> peopleList = ladderGameUI.getPeopleList();
+            LadderHeight maxLadderHeight = ladderGameUI.getMaxLadderHeight();
 
             // 2. 입력 받은 설정을 기반으로 사다리게임 서비스 만들기
-            LadderGameService ladderGameService = makeLadderGameService(peopleCount, maxLadderHeight);
+            LadderGameService ladderGameService = makeLadderGameService(peopleList, maxLadderHeight);
 
             // 3. 사다리 게임 시작
             ladderGameService.start();
@@ -32,14 +33,10 @@ public class Main {
         }
     }
 
-    private static LadderGameService makeLadderGameService(PeopleCount peopleCount, LadderHeight maxLadderHeight) {
-        LadderGameConfiguration ladderGameConfiguration = new LadderGameConfiguration(peopleCount, maxLadderHeight);
+    private static LadderGameService makeLadderGameService(List<Player> playerList, LadderHeight maxLadderHeight) {
+        LadderGameConfiguration ladderGameConfiguration = new LadderGameConfiguration(playerList, maxLadderHeight);
         LadderGenerator ladderGenerator = new LadderRandomGenerator();
         return new LadderGameService(ladderGameConfiguration, ladderGenerator);
     }
 
-    private static int getUserInputInt(String message) {
-        System.out.println(message);
-        return scanner.nextInt();
-    }
 }

@@ -22,7 +22,7 @@ public class LadderGameService {
         // 추가로 게임의 로직이 정해지면 아래에 추가할 것.
         // 1. 사다리 생성
         LadderHeight maxLadderHeight = ladderGameConfiguration.getMaxLadderHeight();
-        PeopleCount peopleCount = ladderGameConfiguration.getPeopleCount();
+        PeopleCount peopleCount = ladderGameConfiguration.getPlayerCount();
 
         ladderStatus = ladderGenerator.generate(
                 maxLadderHeight,
