@@ -12,52 +12,62 @@ public class GameView {
         currentGame = game;
     }
 
+    public void print(String message) {
+        System.out.println(message);
+    }
+
     public void showParticipants() {
-        System.out.println(getNameList());
+        print(getNameList());
     }
 
     public void showLadder() {
-        // 사다리의 높이만큼 순회하면서 LadderRow를 출력
+        List<Line> ladder = currentGame.getLadder();
         // 출력할 Row는 getLadderRow로부터 출력 양식에 맞추어 받아옴
-        for (int i = 0; i < currentGame.getHeight(); i++) {
-            Line currentLine = currentGame.getLadder().get(i);
-            System.out.println(getLadderRow(currentLine));
+        for (Line currentLine : ladder) {
+            print(getLadderRow(currentLine));
         }
     }
 
-    private StringBuilder getNameList() {
+    private String getNameList() {
         // 참가자들을 출력하기 위한 StringBuilder 생성
         StringBuilder nameList = new StringBuilder();
         // 루프를 돌면서 참가자들을 추가
         for (int i = 0; i < currentGame.getNumOfParticipants(); i++) {
-            // 현재 참가자 이름의 길이
-            int nameLength = currentGame.getParticipants().get(i).length();
-            // 이름 길이에 따라 왼쪽 indent 계산
-            int leftIndent = (int) (currentGame.getMaxNameLength() - nameLength) / 2;
-            // 오른쪽 indent 계산한 뒤, +1을 해주어 참가자들 이름 사이에 1칸씩 빈칸을 둠
-            int rightIndent = currentGame.getMaxNameLength() - nameLength - leftIndent + 1;
-            // 왼쪽 indent, 이름, 오른쪽 indent 순으로 append
-            nameList.append(SPACE.repeat(leftIndent));
-            nameList.append(currentGame.getParticipants().get(i));
-            nameList.append(SPACE.repeat(rightIndent));
+            String participantName = currentGame.getParticipants().get(i);
+            nameList.append(getStandardizedName(participantName));
         }
-        return nameList;
+        return nameList.toString();
     }
 
-    private StringBuilder getLadderRow(Line line) {
+    private String getStandardizedName(String name) {
+        int maxNameLength = currentGame.getMaxNameLength();
+        // 현재 참가자 이름의 길이
+        int nameLength = name.length();
+        // 이름 길이에 따라 왼쪽 indent 계산
+        int leftIndent = (int) (maxNameLength - nameLength) / 2;
+        // 오른쪽 indent 계산한 뒤, +1을 해주어 참가자들 이름 사이에 1칸씩 빈칸을 둠
+        int rightIndent = maxNameLength - nameLength - leftIndent + 1;
+        // 왼쪽 indent로 초기화 후, 이름, 오른쪽 indent 순으로 append
+        StringBuilder standardizedName = new StringBuilder(SPACE.repeat(leftIndent));
+        standardizedName.append(name);
+        standardizedName.append(SPACE.repeat(rightIndent));
+        return standardizedName.toString();
+    }
+
+    private String getLadderRow(Line line) {
         // 처음, 끝단에 있는 사다리 막대(LUMBER) 양쪽에 들여쓸 빈칸 크기 indent 계산
         int indent = (int) currentGame.getMaxNameLength() / 2;
         // lineString에 들여쓰기만큼의 빈칸을 넣어주면서 초기화
         StringBuilder ladderRow = new StringBuilder(SPACE.repeat(indent));
         // 제일 첫 LUMBER 추가
         ladderRow.append(LUMBER);
-        // lineSize 만큼 순회하면서 points가 true면 BRIDGE, false면 SPACE를 maxNameLength 길이만큼 늘려서 추가
+        // lineLength 만큼 순회하면서 points가 true면 BRIDGE, false면 SPACE를 maxNameLength 길이만큼 늘려서 추가
         // 추가 후에는 또 LUMBER 추가
-        for (int i = 0; i < currentGame.getLadder().get(0).getLineLength(); i++) {
+        for (int i = 0; i < line.getLineLength(); i++) {
             ladderRow.append(ladderElement(line.getPoints().get(i)));
             ladderRow.append(LUMBER);
         }
-        return ladderRow;
+        return ladderRow.toString();
     }
 
     private String ladderElement(boolean isBridge) {
