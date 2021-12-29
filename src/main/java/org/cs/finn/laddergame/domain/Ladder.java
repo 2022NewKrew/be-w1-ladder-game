@@ -1,30 +1,59 @@
 package org.cs.finn.laddergame.domain;
 
+import org.cs.finn.laddergame.domain.ladder.BridgeType;
+import org.cs.finn.laddergame.domain.ladder.LadderHeight;
+import org.cs.finn.laddergame.domain.ladder.LadderRow;
+import org.cs.finn.laddergame.domain.ladder.LadderRows;
+
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final List<String> ladderRows = new ArrayList<>();
-    private final SecureRandom sRand = new SecureRandom();
+    public static final String BARRIER = "|";
+    public static final int BLANK_LEFT = Member.WIDTH / 2 + 1;
 
-    public void build(final Input iPara) {
-        ladderRows.clear();
+    private final LadderRows ladderRows;
 
-        final int member = iPara.getMember();
-        final int bound = 1 << (member - 1);
-        final int height = iPara.getLadderHeight();
-
-        for (int i = 0; i < height; i++) {
-            // bound를 추가로 더해서
-            // 사다리를 놓을 수 있는 최대 개수 + 1 위치에 1을 항상 추가하여
-            // Zero-fill 처리하고 가장 위쪽 1을 잘라낸 뒤 저장한다
-            final String ladderRow = Integer.toBinaryString(bound + sRand.nextInt(bound));
-            ladderRows.add(ladderRow.substring(1));
+    public Ladder(final SecureRandom sRand, final LadderHeight ladderHeight, final Member member) {
+        if (sRand == null) {
+            throw new RuntimeException("SecureRandom is null!");
         }
+        if (ladderHeight == null) {
+            throw new RuntimeException("LadderHeight is null!");
+        }
+        if (member == null) {
+            throw new RuntimeException("Member is null!");
+        }
+
+        ladderRows = build(sRand, ladderHeight, member);
     }
 
-    public List<String> getLadderRows() {
+    private LadderRows build(final SecureRandom sRand, final LadderHeight ladderHeight, final Member member) {
+        final int memberVal = member.getMember().size();
+        final int ladderHeightVal = ladderHeight.getLadderHeight();
+        final List<LadderRow> list = new ArrayList<>();
+
+        for (int i = 0; i < ladderHeightVal; i++) {
+            list.add(generateLadderRow(sRand, memberVal - 1));
+        }
+
+        return new LadderRows(list);
+    }
+
+    private LadderRow generateLadderRow(final SecureRandom sRand, final int size) {
+        final List<BridgeType> list = new ArrayList<>();
+
+        BridgeType bridgeType = BridgeType.EMPTY;
+        for (int i = 0; i < size; i++) {
+            bridgeType = (bridgeType == BridgeType.LINE ? BridgeType.EMPTY : BridgeType.getRandomBridge(sRand));
+            list.add(bridgeType);
+        }
+
+        return new LadderRow(list);
+    }
+
+    public LadderRows getLadderRows() {
         return this.ladderRows;
     }
 }
