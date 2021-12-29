@@ -15,15 +15,19 @@ public class InputManager {
     private int inputNumber(){
         try{
             int value = Integer.parseInt(sc.nextLine());
-            if(value <=0){
-                throw new NumberFormatException();
-            }
+            checkIntValue(value);
             return value;
         }
         catch(NumberFormatException e){
             System.out.println("양의 정수를 입력해주세요.");
             return inputNumber();
         }
+    }
+    private int checkIntValue(int value){
+        if(value <=0){
+            throw new NumberFormatException();
+        }
+        return value;
     }
 }
 
