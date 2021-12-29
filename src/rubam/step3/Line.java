@@ -17,12 +17,12 @@ public class Line {
     private void makeLine(int people) {
         steps.add(random.nextBoolean());
         for (int i = 1; i < people - 1; i++) {
-            steps.add(checkNeighborStep(steps.get(i-1)));
+            steps.add(checkNeighborStep(steps.get(i - 1)));
         }
     }
 
     private Boolean checkNeighborStep(Boolean step) {
-        if(step)
+        if (step)
             return false;
         return random.nextBoolean();
     }

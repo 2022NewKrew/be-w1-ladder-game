@@ -8,6 +8,7 @@ public class LadderPrinter {
     private static final String HORIZONTAL_STEP = "-----";
     private static final String VERTICAL_STEP = "|";
     private static final String BLANK_STEP = "     ";
+    private static final String BLANK = " ";
     private static final int MAX_LENGTH = 5;
 
     private LadderPrinter() {
@@ -23,7 +24,7 @@ public class LadderPrinter {
     }
 
     private static void printNames(List<String> names) {
-        for(String name : names) {
+        for (String name : names) {
             printSingleName(name);
         }
         System.out.println();
@@ -33,16 +34,16 @@ public class LadderPrinter {
         int blankCount = (MAX_LENGTH - name.length()) / 2;
 
         printBlank(blankCount);
-        if((MAX_LENGTH - name.length()) % 2 == 1)
+        if ((MAX_LENGTH - name.length()) % 2 == 1)
             printBlank(1);
         System.out.print(name);
         printBlank(blankCount);
-        System.out.print(" ");
+        System.out.print(BLANK);
     }
 
     private static void printBlank(int num) {
-        for(int i=0; i<num; i++)
-            System.out.print(" ");
+        for (int i = 0; i < num; i++)
+            System.out.print(BLANK);
     }
 
     private static void printLine(Line line) {

@@ -1,6 +1,6 @@
 package rubam.step3;
 
-public class LadderInputException extends RuntimeException{
+public class LadderInputException extends RuntimeException {
 
     public LadderInputException() {
         super();
