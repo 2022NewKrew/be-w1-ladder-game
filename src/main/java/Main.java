@@ -17,7 +17,6 @@ public class Main {
         ladderList.add(floor);
     }
 
-
     /**
      * 사다리 정보 배열 출력을 위한 Ladder Array List 생성
      *
