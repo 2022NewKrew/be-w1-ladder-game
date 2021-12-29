@@ -1,3 +1,7 @@
+package view;
+
+import data.LadderInfo;
+
 import java.util.Scanner;
 
 public class LadderInfoScanner {
@@ -8,10 +12,11 @@ public class LadderInfoScanner {
     }
 
     public static LadderInfo getLadderInfo() {
-        System.out.println("참여할 사람은 몇 명인가요?");
-        int width = scanner.nextInt();
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        String inputString = scanner.nextLine();
+        String[] participants = inputString.split(",");
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int height = scanner.nextInt();
-        return new LadderInfo(width, height);
+        return new LadderInfo(participants, height);
     }
 }

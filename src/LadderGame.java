@@ -1,3 +1,8 @@
+import data.Ladder;
+import data.LadderInfo;
+import view.LadderGamePrinter;
+import view.LadderInfoScanner;
+
 public class LadderGame {
 
     private LadderGame() {
@@ -7,6 +12,6 @@ public class LadderGame {
     public static void startLadderGame() {
         LadderInfo info = LadderInfoScanner.getLadderInfo();
         Ladder ladder = new Ladder(info);
-        LadderPrinter.printLadder(ladder);
+        LadderGamePrinter.printGame(ladder, info);
     }
 }
