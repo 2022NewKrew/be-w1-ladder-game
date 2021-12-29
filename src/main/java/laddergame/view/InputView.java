@@ -1,6 +1,6 @@
 package laddergame.view;
 
 public interface InputView {
-    int inputNumberOfPlayer();
+    String[] inputPlayerNames();
     int inputLadderHeight();
 }
