@@ -3,6 +3,7 @@ package laddergame;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Scanner;
+
 import laddergame.Ladder;
 
 // Ladder의 초기 값의 IO 관련 부분을 담당
