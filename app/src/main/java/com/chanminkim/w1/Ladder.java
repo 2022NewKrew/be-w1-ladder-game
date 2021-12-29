@@ -3,11 +3,11 @@ package com.chanminkim.w1;
 import java.util.Arrays;
 import java.util.Random;
 
-public class LadderMap {
+public class Ladder {
     private final Random random;
     private final LadderState[][] map;
 
-    public LadderMap(Integer numberOfPlayers, Integer heightOfLadder, Random random) {
+    public Ladder(Integer numberOfPlayers, Integer heightOfLadder, Random random) {
         this.random = random;
         int widthOfLadder = numberOfPlayers * 2 - 1;
         this.map = buildMap(new LadderState[heightOfLadder][widthOfLadder]);

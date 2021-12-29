@@ -3,13 +3,13 @@ package com.chanminkim.w1;
 import java.util.Random;
 
 public class LadderGame {
-    private final LadderMap ladderMap;
+    private final Ladder ladder;
 
     public LadderGame(Integer numberOfPlayers, Integer heightOfLadder, Random random) {
-        this.ladderMap = new LadderMap(numberOfPlayers, heightOfLadder, random);
+        this.ladder = new Ladder(numberOfPlayers, heightOfLadder, random);
     }
 
     public String buildLadder() {
-        return LadderConverter.convertToString(ladderMap);
+        return LadderConverter.convertToString(ladder);
     }
 }
