@@ -1,12 +1,24 @@
+import domain.Ladder;
+import domain.LadderFactory;
+import view.InputView;
+import view.OutputView;
+
+import java.util.List;
+
 public class LadderGame {
     public static void main(String[] args) {
-        int peopleSize, height;
+        List<String> people;
+        int height;
 
-        peopleSize = InputHandler.getPeopleSize();
-        height = InputHandler.getHeight();
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
 
-        Ladder ladder = LadderFactory.buildLadder(peopleSize, height);
+        people = inputView.getPeople();
+        height = inputView.getHeight();
 
-        OutputHandler.printLadder(ladder);
+        Ladder ladder = LadderFactory.buildLadder(people.size(), height);
+
+        outputView.printPeople(people);
+        outputView.printLadder(ladder);
     }
 }
