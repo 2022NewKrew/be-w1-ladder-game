@@ -1,4 +1,4 @@
-package laddergame;
+package laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,16 +7,22 @@ import java.util.Random;
 
 public class Line {
     private static final Random random = new Random();
-    private final List<Boolean> connectionList = new ArrayList<>();
+    private final List<Boolean> connectionList;
 
-    public Line(int numberOfGamer) {
-        for (int i = 0; i < numberOfGamer - 1; i++) {
-            connectionList.add(random.nextBoolean());
-            removeDuplicatedConnection();
-        }
+    public Line(List<Boolean> connectionList) {
+        this.connectionList = new ArrayList<>(connectionList);
     }
 
-    private void removeDuplicatedConnection() {
+    public static Line from(int numberOfPlayer) {
+        List<Boolean> connectionList = new ArrayList<>();
+        for (int i = 0; i < numberOfPlayer - 1; i++) {
+            connectionList.add(random.nextBoolean());
+            removeDuplicatedConnection(connectionList);
+        }
+        return new Line(connectionList);
+    }
+
+    private static void removeDuplicatedConnection(List<Boolean> connectionList) {
         if (connectionList.size() < 2) {
             return;
         }
