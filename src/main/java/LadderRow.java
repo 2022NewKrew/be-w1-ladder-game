@@ -3,22 +3,22 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class LadderRow implements Iterable<Boolean> {
-    private final int numParticipants;
+    private final int cols;
     private final ArrayList<Boolean> ladderRowData = new ArrayList<>();
     private final Random random = new Random();
 
-    public LadderRow(int numParticipants) {
-        this.numParticipants = numParticipants;
+    public LadderRow(int cols) {
+        this.cols = cols;
         generateRandomLadderRow();
     }
 
     private void generateRandomLadderRow() {
-        if (numParticipants == 1) {
+        if (cols == 0) {
             return;
         }
 
         boolean leftExist = setFirstLadder();
-        for (int i = 1; i < numParticipants - 1; ++i) {
+        for (int i = 1; i < cols; ++i) {
             boolean ladderExist = !leftExist && random.nextBoolean();
             ladderRowData.add(ladderExist);
             leftExist = ladderExist;
