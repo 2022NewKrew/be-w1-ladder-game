@@ -2,9 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Floor {
-    public static final String hBar = "-";
-    public static final String space = " ";
-    public static final String vBar = "|";
+    public static final String H_BAR = "-";
+    public static final String SPACE = " ";
+    public static final String V_BAR = "|";
+    public static final int REPEAT_COUNT = 5;
     private final List<String> floorList = new ArrayList<>();
 
     public void printFloor() {
@@ -14,7 +15,7 @@ public class Floor {
     }
 
     private boolean hasVBar(int part) {
-        return getBarValue(part).equals(hBar);
+        return getBarValue(part).equals(H_BAR);
     }
 
     private String getBarValue(int part) {
@@ -35,9 +36,9 @@ public class Floor {
         double dValue = Math.random();
         int randomValue = (int) (dValue * 2);
         if (randomValue == 0) {
-            return space;
+            return SPACE;
         }
-        return hBar;
+        return H_BAR;
     }
 
     /**
@@ -47,13 +48,13 @@ public class Floor {
      * @param partNum 총 참여자 수
      */
     void addLadderString(int part, int partNum) {
-        floorList.add(vBar);
+        floorList.add(V_BAR);
         if (hasLeftBar(part)) {
-            floorList.add(space);
+            floorList.add(SPACE.repeat(REPEAT_COUNT));
             return;
         }
         if (part != partNum - 1)
-            floorList.add(getRandomLadder());
+            floorList.add(getRandomLadder().repeat(REPEAT_COUNT));
     }
 
 

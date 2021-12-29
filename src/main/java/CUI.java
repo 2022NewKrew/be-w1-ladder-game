@@ -3,9 +3,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CUI {
+    public static final String NAME_FORMAT_NUM = "%-6s";
     private final Scanner sc = new Scanner(System.in);
     private final List<String> parts = new ArrayList<>();
-    int height;
 
     /**
      * scanner 를 사용하여 input 처리
@@ -26,6 +26,11 @@ public class CUI {
         parts.addAll(List.of(input.split(",")));
         return parts.size();
     }
-
+    public void printNames(){
+        for (String part:parts) {
+            System.out.printf(NAME_FORMAT_NUM,part);
+        }
+        System.out.println();
+    }
 
 }

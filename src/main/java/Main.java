@@ -41,6 +41,7 @@ public class Main {
      */
     static void printLadder(List<Floor> ladderList) {
         for (Floor floor : ladderList) {
+            System.out.print(" "); // for UI
             floor.printFloor();
             System.out.println();
         }
@@ -49,6 +50,7 @@ public class Main {
     public static void main(String[] args) {
         CUI cui = new CUI();
         List<Floor> ladderList = makeLadderList(cui.input());
+        cui.printNames();
         printLadder(ladderList);
     }
 
