@@ -20,6 +20,7 @@ public class GameStarter {
     }
 
     private final View view = new View();
+    private final ShapeMaker shapeMaker = new ShapeMaker();
 
     /**
      * 게임을 시작한다

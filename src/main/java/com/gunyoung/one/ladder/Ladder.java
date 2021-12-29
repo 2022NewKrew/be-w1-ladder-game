@@ -34,12 +34,20 @@ public final class Ladder {
         this.bridge.makeBridges();
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
     public int getNumOfUser() {
         return users.size();
     }
 
     public int getLadderHeight() {
         return ladderHeight;
+    }
+
+    public Bridge getBridge() {
+        return bridge;
     }
 
     public String getShapeOfLadder() {
@@ -60,7 +68,7 @@ public final class Ladder {
         sb.append("\n");
     }
 
-    private static class Bridge {
+    public static class Bridge {
         private final boolean[][] bridges;
         private final BridgeMakeStrategy makeStrategy;
 
@@ -79,7 +87,7 @@ public final class Ladder {
             makeStrategy.makeBridges(bridges);
         }
 
-        private char[] getSignaturesOf(int row) {
+        public char[] getSignaturesOf(int row) {
             char[] signatures = new char[bridges[row].length];
             for (int i = 0; i < signatures.length; i++) {
                 signatures[i] = getSignatureOf(row, i);
