@@ -1,3 +1,7 @@
+package upperleaf.laddergame.game;
+
+import upperleaf.laddergame.util.StringUtils;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,6 +23,6 @@ public class GameInputManager {
         int maxLadderHeight = scanner.nextInt();
 
         List<String> playerNames = StringUtils.split(names, SEPARATOR);
-        return new GameStartInfo(playerNames, playerNames.size(), maxLadderHeight);
+        return new GameStartInfo(playerNames, maxLadderHeight);
     }
 }

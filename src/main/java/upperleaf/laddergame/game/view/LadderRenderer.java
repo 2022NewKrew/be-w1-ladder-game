@@ -1,28 +1,32 @@
+package upperleaf.laddergame.game.view;
+
+import upperleaf.laddergame.domain.Ladder;
+import upperleaf.laddergame.util.StringUtils;
+
 import java.util.List;
 
 public class LadderRenderer {
 
-    private static final String LINE = "|";
-    private static final String EMPTY = " ";
-    private static final String CONNECT = "-";
-    private static final int LENGTH = 5;
+    public static final int LENGTH = 5;
+    public static final String LINE = "|";
+    public static final String EMPTY = " ";
+    public static final String CONNECT = "-";
+    public static final String NEW_LINE = "\n";
 
     /**
      * 사다리를 출력합니다.
      * 첫번째 줄에는 참가자들의 이름을 출력합니다.
      * 그 이후로는 사다리를 순서대로 출력합니다.
      */
-    public void render(Ladder ladder) {
+    public LadderView render(Ladder ladder) {
+        LadderView ladderView = new LadderView();
         List<String> playerNames = ladder.getPlayerNames();
-        printNames(playerNames);
-        for(int currentHeight = 0; currentHeight < ladder.getMaxLadderHeight(); currentHeight++) {
-            printHeight(ladder, currentHeight);
-        }
-    }
+        ladderView.appendResult(makeNamesAsString(playerNames, LENGTH + 1));
 
-    private void printNames(List<String> playerNames) {
-        String names = makeNamesAsString(playerNames, LENGTH + 1);
-        System.out.println(names);
+        for(int currentHeight = 0; currentHeight < ladder.getMaxLadderHeight(); currentHeight++) {
+            ladderView.appendResult(makeHeight(ladder, currentHeight));
+        }
+        return ladderView;
     }
 
     /**
@@ -36,8 +40,9 @@ public class LadderRenderer {
         for(int i = 0; i < playerNumbers; i++) {
             String name = playerNames.get(i);
             int start = i * nameSize + Math.max(0, (nameSize - name.length())) / 2;
-            sb.insert(start, name);
+            sb.replace(start, start + name.length(), name);
         }
+        sb.append(NEW_LINE);
         return sb.toString();
     }
 
@@ -45,12 +50,13 @@ public class LadderRenderer {
      * 사다리에서 한 줄을 출력합니다.
      * 사람의 이름에 사다리를 맞추기 위해서 여백을 출력한뒤, 사람 이름을 출력합니다.
      */
-    private void printHeight(Ladder ladder, int height) {
-        System.out.print(StringUtils.times(EMPTY, LENGTH / 2));
+    private String makeHeight(Ladder ladder, int height) {
+        StringBuilder builder = new StringBuilder(StringUtils.times(EMPTY, LENGTH / 2));
         for(int currentLine = 0; currentLine < ladder.getPlayerNum(); currentLine++) {
-            printLine(ladder, currentLine, height);
+            builder.append(makeLine(ladder, currentLine, height));
         }
-        System.out.println();
+        builder.append(NEW_LINE);
+        return builder.toString();
     }
 
     /**
@@ -59,20 +65,23 @@ public class LadderRenderer {
      * 연결되어있지 않다면 "|     "
      * 마지막 선일 경우 "|" 만 출력합니다.
      */
-    private void printLine(Ladder ladder, int line, int height) {
-        System.out.print(LINE);
+    private String makeLine(Ladder ladder, int line, int height) {
+        StringBuilder sb = new StringBuilder(LINE);
         if(line == ladder.getPlayerNum() - 1){
-            return;
+            return sb.toString();
         }
         boolean isRightConnected = ladder.isRightConnected(line, height);
-        printLineCounterPart(isRightConnected);
+        sb.append(makeLineCounterPart(isRightConnected));
+        return sb.toString();
     }
 
-    private void printLineCounterPart(boolean isRightConnected) {
+    private String makeLineCounterPart(boolean isRightConnected) {
+        StringBuilder sb = new StringBuilder();
         if (isRightConnected) {
-            System.out.print(StringUtils.times(CONNECT, LENGTH));
-            return;
+            sb.append(StringUtils.times(CONNECT, LENGTH));
+            return sb.toString();
         }
-        System.out.print(StringUtils.times(EMPTY, LENGTH));
+        sb.append(StringUtils.times(EMPTY, LENGTH));
+        return sb.toString();
     }
 }

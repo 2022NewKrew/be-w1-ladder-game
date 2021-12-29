@@ -1,3 +1,7 @@
+package upperleaf.laddergame.domain;
+
+import upperleaf.laddergame.game.GameStartInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +22,9 @@ public class Ladder {
     ** 오른쪽 선에서 선택된 선으로도 연결합니다.
      */
     public void connectToRight(int line, int height) {
+        if (!isConnectableToRight(line, height)) {
+            throw new IllegalStateException("사다리를 연결할 수 없습니다.");
+        }
         this.lines.get(line).connectToRight(height);
         this.lines.get(line + 1).connectToLeft(height);
     }
@@ -34,6 +41,9 @@ public class Ladder {
      ** 현재 선과 오른쪽 선 모두 연결되어있는 선이 없어야 합니다.
      */
     public boolean isConnectableToRight(int line, int height) {
+        if(line == lines.size() - 1) {
+            return false;
+        }
         return !lines.get(line).isConnected(height) && !lines.get(line + 1).isConnected(height);
     }
 
