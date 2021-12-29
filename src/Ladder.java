@@ -21,7 +21,6 @@ public class Ladder {
     }
 
     public void setStructure() {
-
         this.structure = new ArrayList<Line>();
         for (int i = 0; i < ladderHeight; i++) {
             Line newline = new Line(numOfPeople,maxLengthOfPeopleName,peopleNameList.get(0).length()/2);
