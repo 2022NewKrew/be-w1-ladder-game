@@ -1,71 +1,78 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
     private final Random random;
 
-    private final String BAR = "|";
-    private final String CONNECT = "-";
-    private final String BLANK = " ";
+    private List<LadderLine> gameBoard;
+    private List<String> participantsNames;
+
+    private int width;
+    private int height;
 
     public LadderGame() {
         random = new Random();
+        gameBoard = new ArrayList<>();
     }
 
-    public void run(int numberOfPerson, int heightOfLadder) {
-        System.out.println("게임 설정" + System.lineSeparator()
-            + "사용자 : " + numberOfPerson + "명" + System.lineSeparator()
-            + "사다리 높이 : " + heightOfLadder);
+    public void run(String nameInputs, int heightOfLadder) {
+        try {
+            initGame(nameInputs, heightOfLadder);
+            showGameBoard();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-        if (numberOfPerson < 2) {
-            System.err.println("사다리 게임은 혼자서 플레이할 수 없어요!!!");
-            return;
+    private void initGame(String nameInputs, int heightOfLadder) {
+        participantsNames = Arrays.stream(nameInputs.split(","))
+            .collect(Collectors.toList());
+        width = participantsNames.size() - 1;
+        height = heightOfLadder;
+
+        if (width < 1) {
+            throw new InputMismatchException("사다리 게임을 플레이하기 위해서는 사용자가 2명 이상 필요해요.");
         }
 
-        List<List<Integer>> gameBoard = makeGameBoard(numberOfPerson - 1, heightOfLadder);
-        printGameBoard(gameBoard);
+        makeGameBoard();
     }
 
-    private List<List<Integer>> makeGameBoard(int width, int height) {
-        List<List<Integer>> gameBoard = new ArrayList<>();
+    private void showGameBoard() {
+        if (gameBoard == null || gameBoard.isEmpty()) {
+            throw new NullPointerException("사다리가 생성되지 않았어요.");
+        }
+        printGameBoard();
+    }
+
+    private void makeGameBoard() {
+        gameBoard = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            gameBoard.add(makeLine(width));
+            gameBoard.add(makeLine());
         }
-
-        return gameBoard;
     }
 
-    private List<Integer> makeLine(int width) {
-        List<Integer> line = new ArrayList<>();
-        for (int i = 0; i < width; i++) {
-            line.add(random.nextInt(2));
-        }
-
+    private LadderLine makeLine() {
+        LadderLine line = new LadderLine(random);
+        line.makeLine(width);
         return line;
     }
 
-    private void printGameBoard(List<List<Integer>> gameBoard) {
+    private void printGameBoard() {
         List<String> printBoard = new ArrayList<>();
-        for (List<Integer> line : gameBoard) {
-            printBoard.add(shapeLine(line));
-        }
+
+        printBoard.add(" " + participantsNames.stream().map(this::formatName)
+            .collect(Collectors.joining(" ")));
+        gameBoard.forEach(line -> printBoard.add(line.shapeLine()));
 
         System.out.println(String.join(System.lineSeparator(), printBoard));
     }
 
-    private String shapeLine(List<Integer> line) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int space : line) {
-            stringBuilder.append(BAR)
-                .append(isConnected(space) ? CONNECT : BLANK);
-        }
-        return stringBuilder.append(BAR)
-            .toString();
-    }
-
-    private boolean isConnected(int value) {
-        return value > 0;
+    private String formatName(String name) {
+        return String.format("%5s", name.length() <= 5 ? name : name.substring(0, 5));
     }
 }
