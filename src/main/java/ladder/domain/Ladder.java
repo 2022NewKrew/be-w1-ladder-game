@@ -1,11 +1,13 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Ladder {
     private final ArrayList<Line> lines;
 
-    public Ladder(int rowCount, int columnCount){
+    public Ladder(int rowCount, int columnCount) {
         this.lines = new ArrayList<>();
         makeLadder(rowCount, columnCount);
     }
@@ -16,7 +18,7 @@ public class Ladder {
         }
     }
 
-    public ArrayList<Line> getLines(){
-        return this.lines;
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(this.lines);
     }
 }

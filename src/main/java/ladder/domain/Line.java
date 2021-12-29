@@ -1,11 +1,13 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class Line {
 
-    private final ArrayList<String> bridges;
+    private final ArrayList<Boolean> bridges;
     private final Random random = new Random();
 
     public Line(int columnCount) {
@@ -13,17 +15,24 @@ public class Line {
         makeLine(columnCount);
     }
 
-    private void makeLine(int columnCount){
+    private void makeLine(int columnCount) {
         for (int j = 0; j < columnCount; j++) {
-            bridges.add((j % 2 == 0) ? "|" : makeBridge());
+            bridges.add(makeBridge(j));
         }
     }
 
-    private String makeBridge() {
-        return random.nextBoolean() ? "-" : " ";
+    private boolean makeBridge(int index) {
+        return random.nextBoolean() && !hasLeftBridge(index);
     }
 
-    public ArrayList<String> getBridges(){
-        return this.bridges;
+    private boolean hasLeftBridge(int index) {
+        if (index == 0) {
+            return false;
+        }
+        return bridges.get(index - 1);
+    }
+
+    public List<Boolean> getBridges() {
+        return Collections.unmodifiableList(this.bridges);
     }
 }
