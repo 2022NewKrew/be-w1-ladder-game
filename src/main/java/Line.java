@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class Line {
 
-    public static final String LINE_VERTICAL = "|";
-    public static final String LINE_HORIZONTAL_TRUE = "-";
-    public static final String LINE_HORIZONTAL_FALSE = " ";
+    private static final String VERTICAL_BAR = "|";
+    private static final String HORIZONTAL_BAR = "-";
+    private static final String EMPTY = " ";
 
     private final int LINE_SIZE;
     private final List<Boolean> POINT_LIST;
@@ -31,10 +31,10 @@ public class Line {
     }
 
     private String pointToString(int index) {
-        if (index % 2 == 0) return LINE_VERTICAL;
+        if (index % 2 == 0) return VERTICAL_BAR;
         if (POINT_LIST.get(index)) {
-            return LINE_HORIZONTAL_TRUE;
-        } return LINE_HORIZONTAL_FALSE;
+            return HORIZONTAL_BAR;
+        } return EMPTY;
     }
 
     public void printLine() {
