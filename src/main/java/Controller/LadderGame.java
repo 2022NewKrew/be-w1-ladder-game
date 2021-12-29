@@ -10,6 +10,7 @@ public class LadderGame {
         int playersNum = InputView.inputPlayersNum();
         int maximumLadderHeight = InputView.inputMaximumLadderHeight();
 
-        Ladder ladder = new CreateLadder(playersNum, maximumLadderHeight);
+
+//        Ladder ladder = new CreateLadder(playersNum, maximumLadderHeight);
     }
 }
