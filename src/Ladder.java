@@ -15,6 +15,7 @@ public class Ladder {
     private static final String STEP = "-".repeat(STEP_WIDTH);
     private static final String NO_STEP = " ".repeat(STEP_WIDTH);
     private static final String BEAM = "|";
+    private static final String FIRST_BEAM = " ".repeat(STEP_WIDTH/2) + BEAM;
 
     public Ladder(List<Player> players, int height) {
         this.players = players;
@@ -26,7 +27,7 @@ public class Ladder {
     public void generateSimpleRandom() {
         stateAsListOfString = new ArrayList<>();
         for (int lineNo = 0; lineNo < height; lineNo++) {
-            stateAsListOfString.add(Stream.generate(() -> random.nextBoolean() ? STEP : NO_STEP).limit(width - 1).collect(Collectors.joining(BEAM, BEAM, BEAM)));
+            stateAsListOfString.add(Stream.generate(() -> random.nextBoolean() ? STEP : NO_STEP).limit(width - 1).collect(Collectors.joining(BEAM, FIRST_BEAM, BEAM)));
         }
     }
 
