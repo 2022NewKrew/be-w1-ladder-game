@@ -20,9 +20,9 @@ public class Line {
 
     // build base steps for each cell using positions
     public boolean buildStepsPerCell(ArrayList<Boolean> cells){
-        float randomFloat = random.nextFloat();
+        float randomBool = random.nextBoolean();
 
-        if (randomFloat <0.5) { // make each step by 50% probability
+        if (randomBool) { // make each step by 50% probability
             cells.add(stepExist);
             return true;
         }

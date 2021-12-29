@@ -19,16 +19,8 @@ public class Ladder {
         this.arr = new ArrayList<Line>();
 
         buildLines();
-
     }
 
-    public int getMaxHeight() {
-        return this.maxHeight;
-    }
-
-    public int getNumPeople() {
-        return this.nPeople;
-    }
 
     public String[] getPeopleNames() {
         return this.peopleNames;
