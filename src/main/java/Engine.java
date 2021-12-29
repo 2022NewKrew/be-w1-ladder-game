@@ -1,6 +1,5 @@
 package main.java;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -36,11 +35,11 @@ public class Engine {
     public String printLadderLineAt(int index) {
         StringBuilder builder = new StringBuilder();
 
-        for(Ladder ladder : ladders) {
+        for (Ladder ladder : ladders) {
             builder.append(ladder.getLadderBrickAt(index).toString());
         }
 
-        builder.deleteCharAt(builder.length()-1);
+        builder.deleteCharAt(builder.length() - 1);
         return builder.toString();
     }
 }

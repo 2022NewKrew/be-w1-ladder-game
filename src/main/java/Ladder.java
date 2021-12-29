@@ -14,7 +14,7 @@ public class Ladder {
         this.ladderBricks = IntStream.range(0, height).mapToObj(e -> new LadderBrick()).collect(Collectors.toList());
     }
 
-    public LadderBrick getLadderBrickAt(int heightIdx){
+    public LadderBrick getLadderBrickAt(int heightIdx) {
         return ladderBricks.get(heightIdx);
     }
 }

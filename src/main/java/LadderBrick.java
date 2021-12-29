@@ -7,7 +7,7 @@ public class LadderBrick {
     private final char lineLadder = '|';
     private final LineBridge lineBridge;
 
-    LadderBrick(){
+    LadderBrick() {
         Random random = new Random();
         lineBridge = random.nextBoolean() ? LineBridge.CONNECTED : LineBridge.DISCONNECTED;
     }
