@@ -10,6 +10,6 @@ public class LadderGame {
     }
 
     public List<List<Boolean>> startGame() {
-        return lines.startGame();
+        return lines.addLadders();
     }
 }

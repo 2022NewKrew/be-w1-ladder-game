@@ -12,14 +12,19 @@ public class Line {
         this.participantNumber = participantNumber;
     }
 
-    public List<Boolean> startEachRound() {
+    public List<Boolean> addLadder() {
         for (int i = 0; i < participantNumber - 1; i++) {
-            hasLadders.add(hasLadderOrNot());
+            hasLadders.add(isLadderAddable());
         }
         return hasLadders;
     }
 
-    private boolean hasLadderOrNot() {
-        return RandomNumber.exceedsThreshold();
+    private boolean isLadderAddable() {
+        return !hasPreviousLadder() && RandomNumber.exceedsThreshold();
+    }
+
+    private boolean hasPreviousLadder() {
+        if (hasLadders.size() == 0) return false;
+        return hasLadders.get(hasLadders.size() - 1);
     }
 }

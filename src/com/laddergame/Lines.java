@@ -13,7 +13,7 @@ public class Lines {
         }
     }
 
-    public List<List<Boolean>> startGame() {
-        return lines.stream().map(Line::startEachRound).collect(Collectors.toList());
+    public List<List<Boolean>> addLadders() {
+        return lines.stream().map(Line::addLadder).collect(Collectors.toList());
     }
 }
