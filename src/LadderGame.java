@@ -4,7 +4,6 @@ public class LadderGame {
 
     // 변수들을 먼저 정해놓고 시작
     static int row, col;
-    static Random rand = new Random();
 
     // 사용자의 입력을 받고 그에 따라 사다리의 가로 세로를 결정
     static void getColAndRol() {
