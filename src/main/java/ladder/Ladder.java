@@ -7,16 +7,27 @@ public final class Ladder {
     private final int height;
     private final ArrayList<String> result;
     private final Random random;
+    private boolean isPrev;
 
-    private Ladder(int people, int ladderHeight) {
-        this.width = people * 2 - 1;
+    private Ladder(String[] people, int ladderHeight) {
+        this.width = people.length * 2 - 1;
         this.height = ladderHeight;
         this.result = new ArrayList<>();
         this.random = new Random();
+        initPeople(people);
         initLadder();
     }
-    public static Ladder of(int people, int ladderHeight){
+
+    public static Ladder of(String[] people, int ladderHeight){
         return new Ladder(people, ladderHeight);
+    }
+
+    private void initPeople(String[] people) {
+        StringBuilder peopleStringBuilder = new StringBuilder();
+        for (String person : people) {
+            peopleStringBuilder.append(String.format("%-6s", person));
+        }
+        result.add(peopleStringBuilder.toString());
     }
 
     private void initLadder() {
@@ -27,20 +38,23 @@ public final class Ladder {
 
     private String getLadderString() {
         StringBuilder ladderStringBuilder = new StringBuilder();
+        isPrev = false;
         for(int i = 0; i < width; i++) {
-            ladderStringBuilder.append(getLadderChar(i));
+            ladderStringBuilder.append(getLadderShape(i));
         }
         return ladderStringBuilder.toString();
     }
 
-    private char getLadderChar(int number) {
+    private String getLadderShape(int number) {
         if(checkEvenNumber(number)) {
-            return '|';
+            return Shape.COL.getShape();
         }
-        if(checkRandomNumber()){
-            return ' ';
+        if(checkRandomNumber() || isPrev){
+            isPrev = false;
+            return Shape.BLANK_ROW.getShape();
         }
-        return '-';
+        isPrev = true;
+        return Shape.ROW.getShape();
     }
 
     private boolean checkEvenNumber(int number) {
