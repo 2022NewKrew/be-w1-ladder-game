@@ -1,15 +1,18 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
-    private final ArrayList<Boolean> line = new ArrayList<>();
+    private final List<Boolean> line;
 
     public Line(int numOfPerson){
+        line = new ArrayList<>();
+
         for(int i=0; i<numOfPerson-1; i++) {
             line.add(randomValue(i));
         }
     }
 
-    public ArrayList<Boolean> getLine() {
+    public List<Boolean> getLine() {
         return line;
     }
 
