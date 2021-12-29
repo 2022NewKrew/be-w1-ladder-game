@@ -8,16 +8,16 @@ import java.util.List;
 
 public class LadderGame {
 
-    public static LadderGame INSTANCE;
+    private static LadderGame INSTANCE;
 
-    private final List<String> userList;
+    private final List<String> users;
     private final Ladder ladder;
 
     private LadderGame() {
-        List<String> userList = UserInput.getUserList();
-        checkUserList(userList);
-        this.userList = userList;
-        this.ladder = new Ladder(userList.size(), UserInput.getLadderHeight());
+        List<String> users = UserInput.getUserList();
+        checkUsers(users);
+        this.users = users;
+        this.ladder = new Ladder(this.users.size(), UserInput.getLadderHeight());
     }
 
     public static synchronized LadderGame getInstance() {
@@ -28,12 +28,23 @@ public class LadderGame {
     }
 
     public void printLadder() {
-        UserOutput.printLadderToConsole(ladder, userList);
+        UserOutput.printLadderToConsole(ladder, users);
     }
 
-    private void checkUserList(List<String> userList) {
-        if(userList.stream().filter(user->user.length() <=5).toList().size() != userList.size()){
+    private void checkUsers(List<String> userList) {
+        isNotEmptyList(userList);
+        isLegalUsers(userList);
+    }
+
+    private void isLegalUsers(List<String> userList){
+        if (userList.stream().anyMatch(userName-> userName.length() > 5)){
             throw new IllegalArgumentException("사람의 이름은 5글자 이내여야 합니다.");
+        }
+    }
+
+    private void isNotEmptyList(List<String> userList) {
+        if (userList.isEmpty()){
+            throw new IllegalArgumentException("한명 이상의 사람을 입력해주세요.");
         }
     }
 
