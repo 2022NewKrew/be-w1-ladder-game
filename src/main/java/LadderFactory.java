@@ -1,41 +1,28 @@
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class LadderFactory {
 
-    private int peopleSize;
-    private int height;
+    private static final Random random = new Random();
 
-    public LadderFactory() {
-        Scanner scanner = new Scanner(System.in);
+    public static Ladder buildLadder(int peopleSize, int height) {
+        List<Layer> layers = new ArrayList<>();
 
-        this.setupPeopleNum(scanner);
-        this.setupHeight(scanner);
-    }
-
-    public Ladder buildLadder() {
-        return new Ladder(this.peopleSize, this.height);
-    }
-
-    private void setupPeopleNum(Scanner scanner) {
-        System.out.println("참여할 사람은 몇 명 인가요?");
-
-        try{
-            this.peopleSize = scanner.nextInt();
-        } catch (NoSuchElementException | IllegalStateException exception) {
-            System.err.println("입력을 처리할 수 없습니다.");
-            System.exit(1);
+        for (int heightCounter = 0 ; heightCounter < height ; heightCounter++) {
+            layers.add(buildLayer(peopleSize));
         }
+
+        return new Ladder(layers);
     }
 
-    private void setupHeight(Scanner scanner) {
-        System.out.println("최대 사다리 높이는 몇 개 인가요?");
+    private static Layer buildLayer(int peopleSize) {
+        List<Boolean> horizontalLines = new ArrayList<>();
 
-        try{
-            height = scanner.nextInt();
-        } catch (NoSuchElementException | IllegalStateException exception) {
-            System.err.println("입력을 처리할 수 없습니다.");
-            System.exit(1);
+        for (int peopleCounter = 0; peopleCounter < peopleSize - 1 ; peopleCounter++) {
+            horizontalLines.add(random.nextBoolean());
         }
+
+        return new Layer(horizontalLines);
     }
 }
