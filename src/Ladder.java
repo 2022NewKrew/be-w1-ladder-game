@@ -46,11 +46,8 @@ public class Ladder {
     }
 
     private boolean getRandomFlag() {
-        double randomValue = (int) (Math.random() * 100);
-        if (randomValue <= RANDOM_FLAG_THRESHOLD)
-            return true;
-
-        return false;
+        int randomValue = (int) (Math.random() * 100);
+        return randomValue <= RANDOM_FLAG_THRESHOLD;
     }
 
     void printLadder() {
