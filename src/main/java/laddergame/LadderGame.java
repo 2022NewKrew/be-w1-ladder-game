@@ -15,7 +15,7 @@ public class LadderGame {
         this.view = view;
     }
 
-    public void run() throws Exception {
+    public void run() {
         List<String> userNameList = view.readUserName();
         makeUsers(userNameList);
 
