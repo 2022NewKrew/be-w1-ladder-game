@@ -8,6 +8,8 @@ public class LadderBuilder {
     private final LineBuilder lineBuilder;
 
     public LadderBuilder(int numberOfPlayer, int height) {
+        if (height <= 0 || numberOfPlayer <= 0)
+            throw new IllegalArgumentException();
         this.height = height;
         lineBuilder = new LineBuilder(numberOfPlayer);
     }
