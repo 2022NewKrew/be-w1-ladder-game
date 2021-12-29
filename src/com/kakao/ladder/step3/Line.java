@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Line {
 
-    private ArrayList<Boolean> points = new ArrayList<Boolean>();;
+    private ArrayList<Boolean> points = new ArrayList<Boolean>();
 
     public Line() {
 
