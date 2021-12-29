@@ -19,14 +19,17 @@ public class LadderGame {
     public void start(){
         initialize();
 
-        ladder = new Ladder(attendants.size(), ladderHeight);
-        ladder.makeLadder();
+        printName();
         ladder.printLadder();
     }
+
 
     private void initialize(){
         getAttendantsNames();
         getLadderHeight();
+
+        ladder = new Ladder(attendants.size(), ladderHeight);
+        ladder.makeLadder();
     }
 
     private void getLadderHeight() {
@@ -41,5 +44,12 @@ public class LadderGame {
         for (String name : names.split(",")) {
             attendants.add(name);
         }
+    }
+
+    private void printName() {
+        for (String name : attendants) {
+            System.out.printf(name + " ");
+        }
+        System.out.println();
     }
 }
