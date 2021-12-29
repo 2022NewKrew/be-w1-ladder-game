@@ -3,7 +3,7 @@ public class LadderMain {
         startGame();
     }
 
-    public static void startGame(){
+    public static void startGame() {
         int numOfPeople = LadderUI.getNumOfPeople();
         int height = LadderUI.getHeight();
 

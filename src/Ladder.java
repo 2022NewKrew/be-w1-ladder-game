@@ -11,8 +11,8 @@ public class Ladder {
         createLines(height, width);
     }
 
-    private void createLines(int height, int width){
-        for(int i=0; i<height; i++) {
+    private void createLines(int height, int width) {
+        for (int i = 0; i < height; i++) {
             Line line = new Line(width);
             lines.add(line);
         }
