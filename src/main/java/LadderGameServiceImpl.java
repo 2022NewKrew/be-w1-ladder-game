@@ -1,31 +1,42 @@
-import java.util.Random;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class LadderGameServiceImpl implements LadderGameService {
 
-    private final Random randomInstance = new Random();
+    private LadderSimpleGame ladderSimpleGame;
+    private int numberOfParticipants;
+    private int ladderHeight;
 
     @Override
-    public boolean[][] createLadderMap(int row, int col) {
-
-        boolean[][] ladderMap = new boolean[row][col];
-
-        for (int i = 0; i < row; i++) {
-            ladderMap[i] = createFloorMap(col);
-        }
-
-        return ladderMap;
+    public void run() {
+        inputLadder();
+        createLadder();
+        printLadder();
     }
 
-    private boolean[] createFloorMap(int col) {
-        boolean[] map = new boolean[col];
-        for (int j = 0; j < col; j++) {
-            map[j] = trueAndFalseGenerator();
-        }
-
-        return map;
+    private void createLadder() {
+        ladderSimpleGame = new LadderSimpleGame();
+        ladderSimpleGame.setNumberOfParticipants(numberOfParticipants);
+        ladderSimpleGame.setLadderHeight(ladderHeight);
+        ladderSimpleGame.createBridge();
     }
 
-    private boolean trueAndFalseGenerator() {
-        return randomInstance.nextBoolean();
+    private void printLadder() {
+        System.out.println(ladderSimpleGame.getLadderString());
+    }
+
+    private void inputLadder() {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            System.out.println("참여할 사람은 몇명인가요?");
+            numberOfParticipants = Integer.parseInt(bufferedReader.readLine());
+
+            System.out.println("최대 사다리 높이는 몇 개인가요?");
+            ladderHeight = Integer.parseInt(bufferedReader.readLine());
+
+        } catch (IOException exception) {
+            System.err.println("error message : " + exception.getMessage());
+        }
     }
 }

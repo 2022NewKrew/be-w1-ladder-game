@@ -1,20 +1,16 @@
-import java.util.Arrays;
+import java.util.Random;
 
 public class LadderSimpleGame extends LadderGame {
     private boolean[][] bridge;
-    private final LadderGameService ladderGameService;
-
-    public LadderSimpleGame(LadderGameService ladderGameService) {
-        this.ladderGameService = ladderGameService;
-    }
+    private final Random randomInstance = new Random();
 
     public void createBridge() {
         int row = this.getLadderHeight();
         int col = this.getNumberOfParticipants() - 1;
-        this.bridge = ladderGameService.createLadderMap(row, col);
+        this.bridge = createLadderMap(row, col);
     }
 
-    public String getLadderString() throws Exception {
+    public String getLadderString() {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (boolean[] floor : this.bridge) {
@@ -24,9 +20,32 @@ public class LadderSimpleGame extends LadderGame {
         return stringBuilder.toString();
     }
 
+    private boolean[] createFloorMap(int col) {
+        boolean[] map = new boolean[col];
+        for (int j = 0; j < col; j++) {
+            map[j] = trueAndFalseGenerator();
+        }
+
+        return map;
+    }
+
+    private boolean[][] createLadderMap(int row, int col) {
+
+        boolean[][] ladderMap = new boolean[row][col];
+
+        for (int i = 0; i < row; i++) {
+            ladderMap[i] = createFloorMap(col);
+        }
+
+        return ladderMap;
+    }
+
+    private boolean trueAndFalseGenerator() {
+        return randomInstance.nextBoolean();
+    }
+
     private String getFloorString(boolean[] floor) {
 
-        System.out.println(Arrays.toString(floor));
         StringBuilder stringBuilder = new StringBuilder();
 
         for (int col = 0; col < this.getNumberOfParticipants() * 2 - 1; col++) {
