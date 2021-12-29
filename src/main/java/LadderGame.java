@@ -14,7 +14,7 @@ public class LadderGame {
 
     public void start() {
         LadderInputInfo ladderInputInfo = inputController.inputLadderInfo();
-        Ladder ladder = ladderGenerator.buildLadder(ladderInputInfo.getHeights(), ladderInputInfo.getNumberOfParticipants());
+        Ladder ladder = ladderGenerator.buildLadder(ladderInputInfo);
         commandLineOutputController.outputLadder(ladder);
     }
 }
