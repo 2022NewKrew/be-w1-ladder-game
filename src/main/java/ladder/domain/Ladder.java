@@ -6,6 +6,8 @@ public class Ladder {
     private final ArrayList<Line> lines;
 
     Ladder(ArrayList<Line> lines) {
+        if (lines == null)
+            throw new IllegalArgumentException();
         this.lines = lines;
     }
 
