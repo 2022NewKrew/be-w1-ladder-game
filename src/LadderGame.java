@@ -1,7 +1,5 @@
-import java.awt.*;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class LadderGame {
 
