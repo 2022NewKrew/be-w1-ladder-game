@@ -1,6 +1,7 @@
 package controller;
 
 import domain.ladder.Ladder;
+import view.UserInput;
 import view.UserOutput;
 
 public class LadderGame {
@@ -13,9 +14,9 @@ public class LadderGame {
         ladder = new Ladder(numberOfPeople, ladderHeight);
     }
 
-    public static synchronized LadderGame getInstance(int numberOfPeople, int ladderHeight) {
+    public static synchronized LadderGame getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new LadderGame(numberOfPeople, ladderHeight);
+            INSTANCE = new LadderGame(UserInput.getNumberOfPeople(), UserInput.getLadderHeight());
         }
         return INSTANCE;
     }
