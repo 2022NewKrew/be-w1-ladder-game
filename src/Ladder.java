@@ -1,60 +1,47 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Ladder {
-    private final String DEFAULT_LADDER_LINE = "|";
-    private final String RANDOM_LADDER_LINE = "-";
-    private final String NO_LADDER_LINE = " ";
-
     private final int RANDOM_FLAG_THRESHOLD = 40;
 
     private int width;
     private int height;
-    private ArrayList<StringBuilder> ladderMap;
+    private ArrayList<ArrayList<Boolean>> lineFlags;
 
     Ladder(int width, int height) {
         this.width = width;
         this.height = height;
-        this.ladderMap = new ArrayList<StringBuilder>();
+        this.lineFlags = makeLineFlags();
     }
 
-    void makeLadderMap() {
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public Boolean getLineFlag(int row, int col) {
+        return lineFlags.get(row).get(col);
+    }
+
+    private ArrayList<ArrayList<Boolean>> makeLineFlags() {
+        ArrayList<ArrayList<Boolean>> lineFlags = new ArrayList<ArrayList<Boolean>>();
         for (int i = 0; i < height; i++)
-            this.ladderMap.add(makeLadderRow());
+            lineFlags.add(makeLineFlagsByRow());
+        return lineFlags;
     }
 
-    private StringBuilder makeLadderRow() {
-        StringBuilder ladderRow = new StringBuilder();
+    private ArrayList<Boolean> makeLineFlagsByRow() {
+        ArrayList<Boolean> row = new ArrayList<Boolean>();
         for (int i = 0; i < width; i++)
-            ladderRow.append(makeLadderLine(i));
-
-        return ladderRow;
+            row.add(getRandomFlag(i));
+        return row;
     }
 
-    private String makeLadderLine(int idx) {
-        Boolean isOdd = idx % 2 == 0;
-        if (isOdd)
-            return DEFAULT_LADDER_LINE;
-
-        return getRandomLadderLine();
-    }
-
-    private String getRandomLadderLine() {
-        if (getRandomFlag())
-            return RANDOM_LADDER_LINE;
-
-        return NO_LADDER_LINE;
-    }
-
-    private boolean getRandomFlag() {
-        double randomValue = (int) (Math.random() * 100);
-        if (randomValue <= RANDOM_FLAG_THRESHOLD)
-            return true;
-
-        return false;
-    }
-
-    void printLadder() {
-        for (int i = 0; i < height; i++)
-            System.out.println(ladderMap.get(i));
+    private boolean getRandomFlag(int index) {
+        int randomValue = new Random().nextInt(100);
+        return randomValue <= RANDOM_FLAG_THRESHOLD;
     }
 }
