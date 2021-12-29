@@ -3,20 +3,36 @@ package application;
 import domain.Ladder;
 import view.LadderPrinter;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 public class LadderGame {
     private static final Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("참여할 사람은 몇 명인가요?");
-        int numOfPeople = inputNumber();
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        List<String> nameList = inputNameList();
 
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int heightLadder = inputNumber();
 
-        Ladder ladder = new Ladder(LadderFactory.getLadderRows(numOfPeople, heightLadder));
+        Ladder ladder = new Ladder(LadderFactory.getLadderRows(nameList.size(), heightLadder));
         LadderPrinter.drawLadder(ladder);
+    }
+
+    private static List<String> inputNameList() {
+        return convertStringToNameList(in.nextLine());
+    }
+
+    private static List<String> convertStringToNameList(String input) {
+        return Collections.list(new StringTokenizer(input, ","))
+                .stream()
+                .map(token -> ((String) token).trim())
+                .filter(e -> (e.length() > 0) && (e.length() <= 5))
+                .collect(Collectors.toList());
     }
 
     private static int inputNumber() {
