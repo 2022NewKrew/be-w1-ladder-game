@@ -1,9 +1,9 @@
 package com.gunyoung.one.ladder;
 
+import com.gunyoung.one.bridge.BridgeInfo;
 import com.gunyoung.one.precondition.Precondition;
 import com.gunyoung.one.user.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 // todo: 추후 User 클래스 추가 시 Drawer 클래스 추가하여 그리기 위임, (User, Ladder, Bridge) 정보 --> (Drawer) = 그림 구조
@@ -14,7 +14,7 @@ public final class Ladder {
 
     private final List<User> users;
     private final int ladderHeight;
-    private final Bridge bridge;
+    private final BridgeInfo bridgeInfo;
 
     public static Ladder getInstance() {
         Precondition.notNull(INSTANCE, "Ladder is not initialized");
@@ -23,6 +23,7 @@ public final class Ladder {
 
     public static void init(String userNames, int ladderHeight) {
         INSTANCE = new Ladder(userNames, ladderHeight);
+        INSTANCE.bridgeInfo.makeBridges();
     }
 
     private Ladder(String userNames, int ladderHeight) {
@@ -30,8 +31,7 @@ public final class Ladder {
 
         this.users = User.getListOfUserFromNames(userNames);
         this.ladderHeight = ladderHeight;
-        this.bridge = new Bridge(this);
-        this.bridge.makeBridges();
+        this.bridgeInfo = new BridgeInfo(this);
     }
 
     public List<User> getUsers() {
@@ -46,42 +46,7 @@ public final class Ladder {
         return ladderHeight;
     }
 
-    public Bridge getBridge() {
-        return bridge;
-    }
-
-    public static class Bridge {
-        private final boolean[][] bridges;
-        private final BridgeMakeStrategy makeStrategy;
-
-        private Bridge(Ladder ladder) {
-            this(ladder, new RandomBridgeStrategy());
-        }
-
-        private Bridge(Ladder ladder, BridgeMakeStrategy makeStrategy) {
-            int ladderHeight = ladder.getLadderHeight();
-            int maxNumOfBridgesForEachRow = ladder.getNumOfUser() - 1;
-            this.bridges = new boolean[ladderHeight][maxNumOfBridgesForEachRow];
-            this.makeStrategy = makeStrategy;
-        }
-
-        private void makeBridges() {
-            makeStrategy.makeBridges(bridges);
-        }
-
-        public char[] getSignaturesOf(int row) {
-            char[] signatures = new char[bridges[row].length];
-            for (int i = 0; i < signatures.length; i++) {
-                signatures[i] = getSignatureOf(row, i);
-            }
-            return signatures;
-        }
-
-        private char getSignatureOf(int row, int col) {
-            if (bridges[row][col])
-                return '-';
-            return ' ';
-        }
-
+    public BridgeInfo getBridgeInfo() {
+        return bridgeInfo;
     }
 }

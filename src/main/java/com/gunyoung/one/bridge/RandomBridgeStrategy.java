@@ -1,4 +1,6 @@
-package com.gunyoung.one.ladder;
+package com.gunyoung.one.bridge;
+
+import com.gunyoung.one.bridge.BridgeMakeStrategy;
 
 import java.util.Random;
 
@@ -7,15 +9,17 @@ public class RandomBridgeStrategy implements BridgeMakeStrategy {
     private Random random = new Random();
 
     @Override
-    public void makeBridges(boolean[][] bridges) {
+    public void makeBridges(Bridge[][] bridges) {
         for (int row = 0; row < bridges.length; row++) {
             makeBridgesForEachRowRandomly(bridges, row);
         }
     }
 
-    private void makeBridgesForEachRowRandomly(boolean[][] bridges, int row) {
+    private void makeBridgesForEachRowRandomly(Bridge[][] bridges, int row) {
         for (int col = 0; col < bridges[row].length; col++) {
-            bridges[row][col] = random.nextBoolean();
+            boolean isExist = random.nextBoolean();
+            bridges[row][col] = Bridge.of(isExist);
         }
     }
+
 }
