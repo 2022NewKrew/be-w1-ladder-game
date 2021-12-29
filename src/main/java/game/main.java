@@ -19,8 +19,8 @@ public class main {
 
         System.out.println(str);
         String inputStr = sc.next();
-        ArrayList<String> playerList= new ArrayList<>(Arrays.asList(inputStr.split(",")));
-        return playerList;
+        return new ArrayList<>(Arrays.asList(inputStr.split(",")));
+
     }
 
     private static int getIntegerInput(String str) {
