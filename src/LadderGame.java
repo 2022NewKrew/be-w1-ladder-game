@@ -9,7 +9,7 @@ public class LadderGame {
         List<Player> players = new ArrayList<>();
         for (String name : scanner.nextLine().split(",")) {
             try {
-                players.add(new Player(name));
+                players.add(new Player(name.strip()));
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
             }
