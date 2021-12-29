@@ -13,7 +13,7 @@ public class LadderCell {
         return ladderCell;
     }
 
-    public boolean getIsHorizontal(){
+    public boolean getIsHorizontal() {
         return isHorizontal;
     }
 
