@@ -11,7 +11,7 @@ public class LadderConverter {
             Map.entry(LadderState.HORIZONTAL, "-")
     );
 
-    static String convertToString(Ladder ladder) {
+    public static String convertToString(Ladder ladder) {
         return Arrays.stream(ladder.getMap())
                 .map(line -> Arrays.stream(line)
                         .map(STATE_STRING_MAP::get)
