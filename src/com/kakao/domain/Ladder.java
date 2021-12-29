@@ -4,44 +4,27 @@ import java.util.*;
 
 public class Ladder {
 
-    private int participants;
-    private int height;
-    private int arraySize;
-    private Random random = new Random();
-    private ArrayList<String[]> ladder = new ArrayList<>();
+    private final ArrayList<String> participants;
+    private final int height;
+    private final List<Line> ladder = new ArrayList<>();
 
-    public Ladder(int participants, int height) {
+    public Ladder(ArrayList<String> participants, int height) {
         this.participants = participants;
         this.height = height;
-        this.arraySize = 2*participants - 1;
-        this.makeLadder();
+        setLadder();
     }
 
-    private String selectLadder(int index) {
-        if (index % 2 == 0) {
-            return "|";
-        }
-        return random.nextBoolean() ? "-" : " ";
-    }
-
-    private void makeLine() {
-        String[] line = new String[this.arraySize];
-        for (int i = 0; i < this.arraySize; i++) {
-            line[i] = this.selectLadder(i);
-        }
-        this.ladder.add(line);
-    }
-
-    private void makeLadder() {
-        for (int i = 0; i < this.height; i++) {
-            this.makeLine();
+    private void setLadder() {
+        for (int i = 0; i < height; i++) {
+            Line line = new Line(participants);
+            ladder.add(line);
         }
     }
 
     public void printLadder() {
-        for (String[] line : this.ladder) {
-            String stringLine = String.join("", line);
-            System.out.println(stringLine);
+        System.out.println(String.join(" ", participants));
+        for (Line line : ladder) {
+            System.out.println(line.getLine());
         }
     }
 }
