@@ -12,8 +12,6 @@ public class LadderGame {
         int heightOfLadder = scanner.nextInt();
 
         Ladder ladder = new Ladder(numOfPlayers, heightOfLadder);
-        ladder.generateSimpleRandom();
-
         System.out.println(System.lineSeparator() + ladder.toPrettyString());
     }
 }
