@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class UserInput {
     static private final Scanner scanner = new Scanner(System.in);
 
-    static public int getNumberOfPeople() throws IllegalArgumentException {
+    static public int getNumberOfPeople() {
         try {
             System.out.println("참여할 사람은 몇 명 인가요?");
             return scanner.nextInt();
@@ -15,7 +15,7 @@ public class UserInput {
 
     }
 
-    static public int getLadderHeight() throws IllegalArgumentException {
+    static public int getLadderHeight() {
         try {
             System.out.println("최대 사다리 높이는 몇 개인가요?");
             return scanner.nextInt();
