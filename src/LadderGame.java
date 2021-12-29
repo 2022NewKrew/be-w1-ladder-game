@@ -7,10 +7,10 @@ public class LadderGame {
     private final Ladder ladder;
     private final DisplayLadder renderer;
 
-    LadderGame(List<String> participants, int height) {
-        this.participants = List.copyOf(participants);
-        ladder = new Ladder(participants.size(), height);
-        renderer = new StandardOutDisplayLadder();
+    LadderGame(List<String> participants, Ladder ladder, DisplayLadder renderer) {
+        this.participants = participants;
+        this.ladder = ladder;
+        this.renderer = renderer;
     }
 
     public void displayLadder() {

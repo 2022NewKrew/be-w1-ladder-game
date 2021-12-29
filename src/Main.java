@@ -14,7 +14,7 @@ public class Main {
         System.out.println("최대 사다리 높이는 몇 개 인가요?");
         int ladderHeight = scan.nextInt();
 
-        LadderGame game = new LadderGame(new ArrayList<>(Arrays.asList(participants)), ladderHeight);
+        LadderGame game = new LadderGame(new ArrayList<>(Arrays.asList(participants)), new Ladder(participants.length, ladderHeight), new StandardOutDisplayLadder());
         game.displayLadder();
     }
 }
