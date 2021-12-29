@@ -23,7 +23,7 @@ public class Ladder {
         }
     }
 
-    void makeRow(int i) {
+    private void makeRow(int i) {
         Random rand = new Random();
         int bridge = rand.nextInt(width/2);
 
@@ -34,7 +34,7 @@ public class Ladder {
         }
     }
 
-    char makeBridge(int bridge, int j) {
+    private char makeBridge(int bridge, int j) {
         if (bridge == j/2) {
             return '-';
         }
@@ -51,7 +51,7 @@ public class Ladder {
         System.out.println(output);
     }
 
-    void setLadderRow(StringBuilder output, int i) {
+    private void setLadderRow(StringBuilder output, int i) {
         for (int j=0; j<width; j++) {
             output.append(ladder[i][j]);
         }
