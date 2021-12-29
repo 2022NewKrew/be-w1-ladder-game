@@ -19,10 +19,18 @@ public class LadderFactory {
     private static Layer buildLayer(int peopleSize) {
         List<Boolean> horizontalLines = new ArrayList<>();
 
+        boolean previousHorizontalLine = false;
+
         for (int peopleCounter = 0; peopleCounter < peopleSize - 1 ; peopleCounter++) {
-            horizontalLines.add(random.nextBoolean());
+            boolean currentHorizontalLine = random.nextBoolean();
+            horizontalLines.add(resolveDivergence(previousHorizontalLine, currentHorizontalLine));
+            previousHorizontalLine = currentHorizontalLine;
         }
 
         return new Layer(horizontalLines);
+    }
+
+    private static boolean resolveDivergence(boolean previous, boolean current) {
+        return !previous && current;
     }
 }
