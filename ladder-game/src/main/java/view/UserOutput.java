@@ -8,8 +8,8 @@ import java.util.StringJoiner;
 
 public class UserOutput {
 
-    private static final String BRIDGE_SHAPE = "-";
-    private static final String SPACE_SHAPE = " ";
+    private static final String BRIDGE_SHAPE = "-----";
+    private static final String SPACE_SHAPE = "     ";
     private static final String PILLAR = "|";
 
     public static void printLadderToConsole(Ladder ladder) {
