@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Floor {
-    public static final String vBar = "-";
+    public static final String hBar = "-";
     public static final String space = " ";
-    public static final String hBar = "|";
+    public static final String vBar = "|";
     private final List<String> floorList = new ArrayList<>();
 
     public void printFloor() {
@@ -13,9 +13,19 @@ public class Floor {
         }
     }
 
-    public boolean checkSide(int countOfPerson) {
-        // TODO: 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
-        return true;
+    private boolean hasVBar(int part) {
+        return getBarValue(part).equals(hBar);
+    }
+
+    private String getBarValue(int part){
+        return floorList.get(part*2 - 1 );
+    }
+
+    public boolean hasLeftBar(int part){
+        if (part > 0 ){
+            return hasVBar(part);
+        }
+        return false;
     }
 
     /**
@@ -27,7 +37,7 @@ public class Floor {
         if (randomValue == 0) {
             return space;
         }
-        return vBar;
+        return hBar;
     }
 
     /**
@@ -37,9 +47,15 @@ public class Floor {
      * @param partNum 총 참여자 수
      */
     void addLadderString(int part, int partNum) {
-        floorList.add(hBar);
+        floorList.add(vBar);
+        if ( hasLeftBar(part) ) {
+            floorList.add(space);
+            return;
+        }
         if (part != partNum - 1)
             floorList.add(getRandomLadder());
     }
+
+
 
 }
