@@ -30,7 +30,7 @@ public class CrossLine {
         return sb.toString();
     }
 
-    private boolean isAvailableLocation(int x) {
+    public boolean isAvailableLocation(int x) {
         if (x - 1 >= 0 && bars.get(x - 1)) {
             return false;
         }
@@ -40,5 +40,9 @@ public class CrossLine {
         }
 
         return true;
+    }
+
+    public List<Boolean> getBars() {
+        return bars;
     }
 }

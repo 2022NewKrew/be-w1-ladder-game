@@ -28,4 +28,16 @@ public class Ladder {
 
         return sb.toString();
     }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public List<CrossLine> getCrossLines() {
+        return crossLines;
+    }
 }
