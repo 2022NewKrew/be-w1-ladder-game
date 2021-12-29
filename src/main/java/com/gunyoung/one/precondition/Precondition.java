@@ -10,6 +10,12 @@ public class Precondition {
         return object;
     }
 
+    public static String notEmpty(String object, String message) throws PreconditionViolationException {
+        notNull(object, message);
+        condition(!object.isEmpty(), message);
+        return object;
+    }
+
     public static int notLessThanInt(int object, int another, String message) throws PreconditionViolationException {
         condition(Integer.compare(object, another) >= 0, message);
         return object;

@@ -23,6 +23,7 @@ public final class Ladder {
     }
 
     private Ladder(String userNames, int ladderHeight) {
+        Precondition.notEmpty(userNames, "참여할 사람의 이름을 입력해야합니다.");
         Precondition.notLessThanInt(ladderHeight, 1, "사다리의 높이는 1 이상이여야 합니다.");
 
         this.ladderHeight = ladderHeight;
