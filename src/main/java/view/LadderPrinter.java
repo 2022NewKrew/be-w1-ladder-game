@@ -10,7 +10,7 @@ public class LadderPrinter {
     private static final String PILLAR = "|";
     private static final String BRIDGE = "-";
     private static final String EMPTY = " ";
-    public static final int maximumNameLength = 15;
+    public static final int maximumNameLength = 5;
 
     public static void drawLadder(List<String> names, Ladder ladder) {
         System.out.println(names.stream()
