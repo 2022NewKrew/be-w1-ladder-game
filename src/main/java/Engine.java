@@ -32,14 +32,17 @@ public class Engine {
         }
     }
 
-    public String printLadderLineAt(int index) {
+    public String printLadderLineAt(int heightIndex) {
         StringBuilder builder = new StringBuilder();
 
-        for (Ladder ladder : ladders) {
-            builder.append(ladder.getLadderBrickAt(index).toString());
+        for (int i = 0; i < ladders.size(); i++) {
+            LadderBrick ladderBrick = ladders.get(i).getLadderBrickAt(heightIndex);
+            builder.append(Line.LADDER.line);
+
+            if (i == ladders.size() - 1) continue;
+            builder.append(ladderBrick.getLineBridge().line);
         }
 
-        builder.deleteCharAt(builder.length() - 1);
         return builder.toString();
     }
 }

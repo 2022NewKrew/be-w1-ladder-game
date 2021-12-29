@@ -4,17 +4,15 @@ package main.java;
 import java.util.Random;
 
 public class LadderBrick {
-    private final char lineLadder = '|';
-    private final LineBridge lineBridge;
+    private static final Random random = new Random();
+    private final Line lineBridge;
 
     LadderBrick() {
-        Random random = new Random();
-        lineBridge = random.nextBoolean() ? LineBridge.CONNECTED : LineBridge.DISCONNECTED;
+        lineBridge = random.nextBoolean() ? Line.BRIDGE_CONNECTED : Line.BRIDGE_DISCONNECTED;
     }
 
-    @Override
-    public String toString() {
-        return "" + lineLadder + lineBridge.line;
+    public Line getLineBridge() {
+        return lineBridge;
     }
 }
 
