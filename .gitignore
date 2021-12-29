@@ -190,7 +190,14 @@ gradle-app.setting
 .idea/vcs.xml
 .idea/*
 
+<<<<<<< HEAD
 gradlew
 gradlew.bat
+=======
+build.gradle
+gradlew
+gradlew.bat
+settings.gradle
+>>>>>>> 431e26c (Modify Git Ignore)
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,java,macos,intellij
