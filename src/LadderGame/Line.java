@@ -5,10 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    private final static String VERTICAL_LINE = "|";
-    private final static String HORIZONTAL_LINE = "-----";
-    private final static String BLANK = "     ";
-
     private final int ladderWidth;
     private final Random random;
     public List<Boolean> chkLadder;
@@ -47,14 +43,14 @@ public class Line {
     }
 
     private void makeLadderComponents(boolean hasLadder){
-        ladderComponents.add(VERTICAL_LINE);
-        ladderComponents.add(getLadderShape(hasLadder));
+        ladderComponents.add(LadderShape.VERTICAL_LINE.getShape());
+        ladderComponents.add(getLadderShape(hasLadder).getShape());
     }
 
-    private String getLadderShape(boolean hasLadder){
+    private LadderShape getLadderShape(boolean hasLadder){
         if(hasLadder){
-            return HORIZONTAL_LINE;
+            return LadderShape.HORIZONTAL_LINE;
         }
-        return BLANK;
+        return LadderShape.BLANK;
     }
 }
