@@ -1,18 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
-
-    // 클래스 변수 및 상수
-    private static final Character LADEER = 'ㅣ';
-    private static final Character EMPTY = ' ';
-    private static final Character BRIDGE = '-';
-
-    private static final Random random = new Random();
-
     // 인스턴스 변수
     private final int column;
     private final int row;
@@ -34,22 +23,6 @@ public class Ladder {
             createdLadder.add(line);
         }
         return createdLadder;
-    }
-
-    private Character getLadderElement(int columnNumber) {
-        if (columnNumber % 2 == 0) {
-            return LADEER;
-        }
-
-        boolean isLadderBridge = getRandomBridgeByPercent(50);
-        if (isLadderBridge) {
-            return BRIDGE;
-        }
-        return EMPTY;
-    }
-
-    private boolean getRandomBridgeByPercent(int percent) {
-        return random.nextInt(100) >= percent;
     }
 
     @Override
