@@ -7,8 +7,8 @@ public class HorizBarLine {
     private final List<String> line;
 
     //클래스 내 상수들
-    private static final String HOR_BAR = "-";
-    private static final String BLANK = " ";
+    private static final String HOR_BAR = "-----";
+    private static final String BLANK = "     ";
     private static final double UPPERBOUND = 0.3;
 
     public HorizBarLine(int width) {
