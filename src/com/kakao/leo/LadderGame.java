@@ -13,6 +13,7 @@ public class LadderGame {
 
   public LadderGame() {
     this.readManager = BufferedReadManager.create();
+//    this.readManager = ConsoleReadManager.create();
     this.writeManager = BufferedWriteManager.create();
   }
 

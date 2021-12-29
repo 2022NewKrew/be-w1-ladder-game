@@ -1,5 +1,7 @@
 package com.kakao.leo;
 
+import java.util.List;
+
 /**
  * Ladder 의 여러 속성정보 객체
  * 다양한 Ladder 의 속성값들을 하나의 객체로서 관리한다.
@@ -9,24 +11,28 @@ package com.kakao.leo;
  */
 public class LadderConfig {
 
-  private int numberOfPeople;
+  private List<Person> people;
   private int height;
 
-  private LadderConfig(int numberOfPeople, int height) {
-    this.numberOfPeople = numberOfPeople;
+  private LadderConfig(List<Person> people, int height) {
+    this.people = people;
     this.height = height;
   }
 
-  public static LadderConfig of (int numberOfPeople, int height) {
-    return new LadderConfig(numberOfPeople, height);
+  public static LadderConfig of(Person[] people, int height) {
+    return of(List.of(people), height);
   }
 
-  public int getNumberOfPeople() {
-    return numberOfPeople;
+  public static LadderConfig of (List<Person> people, int height) {
+    return new LadderConfig(people, height);
   }
 
-  public void setNumberOfPeople(int numberOfPeople) {
-    this.numberOfPeople = numberOfPeople;
+  public List<Person> getPeople() {
+    return people;
+  }
+
+  public void setPeople(List<Person> people) {
+    this.people = people;
   }
 
   public int getHeight() {

@@ -56,16 +56,17 @@ public class Ladder {
 
 
   private void setFloors(LadderConfig config) {
-    int numberOfPeople = config.getNumberOfPeople();
+    List<Person> people = config.getPeople();
     int height = config.getHeight();
     for(int i = 0; i < height; i++) {
-      floors.add(createFloor(numberOfPeople));
+      floors.add(createFloor(people));
     }
   }
 
 
-  private List<LadderCell> createFloor(int numberOfPeople) {
+  private List<LadderCell> createFloor(List<Person> people) {
     List<LadderCell> floor = new ArrayList<>();
+    int numberOfPeople = people.size();
     for(int i = 0; i < numberOfPeople; i++) {
       addCell(floor, i, numberOfPeople - 1);
     }

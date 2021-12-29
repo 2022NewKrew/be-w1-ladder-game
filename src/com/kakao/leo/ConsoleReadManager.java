@@ -1,6 +1,9 @@
 package com.kakao.leo;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * Scanner 로 입력을 받아 LadderConfig 를 세팅하는 InputManager 구현체
@@ -24,20 +27,23 @@ public class ConsoleReadManager implements ReadManager {
 
   @Override
   public LadderConfig getOptions() {
-    int numberOfPeople = getNumberOfPeopleFromScanner();
+    List<Person> people = getNumberOfPeopleFromScanner();
     int height = getHeightFromScanner();
-    return LadderConfig.of(numberOfPeople, height);
+    return LadderConfig.of(people, height);
   }
 
 
-  private int getNumberOfPeopleFromScanner() {
-    System.out.println("참여할 사람은 몇 명인가요?");
-    return scanner.nextInt();
+  private List<Person> getNumberOfPeopleFromScanner() {
+    System.out.println(INPUT_PEOPLE_MENT);
+    return splitByDelimiter(scanner.nextLine())
+        .stream()
+        .map(Person::new)
+        .collect(Collectors.toList());
   }
 
 
   private int getHeightFromScanner() {
-    System.out.println("최대 사다리 높이는 몇 개인가요?");
+    System.out.println(INPUT_HEIGHT_MENT);
     return scanner.nextInt();
   }
 
