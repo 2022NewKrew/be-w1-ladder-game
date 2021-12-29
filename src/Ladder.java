@@ -1,45 +1,24 @@
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.List;
 
 public class Ladder {
 
-    private ArrayList<ArrayList<Boolean>> ladders;
+    private final List<LadderRow> ladderRows;
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("참여할 사람은 몇 명인가요?");
-        int n = sc.nextInt();
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int m = sc.nextInt();
-        Ladder ladder = new Ladder();
-        ladder.makeLadders(n, m);
-        ladder.printLadders();
+    public Ladder(LadderInfo info) {
+        ladderRows = makeLadders(info);
     }
 
-    void makeLadders(int n, int m) {
-        Random random = new Random();
-        ladders = new ArrayList<>();
-        for (int i = 0; i < m; i++) {
-            ArrayList<Boolean> line = new ArrayList<>();
-            for (int j = 0; j < n - 1; j++) {
-                line.add(random.nextBoolean());
-            }
-            ladders.add(line);
+    private List<LadderRow> makeLadders(LadderInfo info) {
+        List<LadderRow> ladderRows = new ArrayList<>();
+        for (int i = 0; i < info.height; i++) {
+            LadderRow lineData = new LadderRow(info.width);
+            ladderRows.add(lineData);
         }
+        return ladderRows;
     }
 
-    void printLadders() {
-        for (ArrayList<Boolean> lines : ladders) {
-            System.out.print("|");
-            for (boolean isLine : lines) {
-                if (isLine)
-                    System.out.print("-");
-                else
-                    System.out.print(" ");
-                System.out.print("|");
-            }
-            System.out.println();
-        }
+    public List<LadderRow> getLadderRows() {
+        return ladderRows;
     }
 }
