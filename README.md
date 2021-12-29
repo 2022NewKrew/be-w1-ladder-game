@@ -6,7 +6,7 @@
 
 - Application
   - 객체 생성 및 입출력담당
-- Paticipant
+- Participant
   - 참여자의 정보를 받음
 - Ladder
   - 사다리의 정보(높이, 너비)
