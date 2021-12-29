@@ -1,10 +1,11 @@
-public class LadderGameStep1 implements LadderGame {
+import java.util.Random;
+
+public class LadderGameServiceImpl implements LadderGameService {
+
+    private static final Random randomInstance = new Random();
 
     @Override
-    public boolean[][] createMap(Ladder ladder) {
-
-        int row = ladder.getLadderHeight();
-        int col = ladder.getNumberOfParticipants() - 1;
+    public boolean[][] createLadderMap(int row, int col) {
 
         boolean[][] ladderMap = new boolean[row][col];
 
@@ -18,6 +19,6 @@ public class LadderGameStep1 implements LadderGame {
     }
 
     private boolean trueAndFalseGenerator() {
-        return ((int) (Math.random() * 2)) % 2 == 0;
+        return randomInstance.nextBoolean();
     }
 }

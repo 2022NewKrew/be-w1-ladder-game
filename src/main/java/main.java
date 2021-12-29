@@ -6,13 +6,12 @@ public class main {
 
     public static void main(String[] args) {
         try {
+            LadderSimpleGame ladderSimpleGame = new LadderSimpleGame(new LadderGameServiceImpl());
+            input(ladderSimpleGame);
 
-            Ladder ladder = input();
-            LadderGame ladderGame = new LadderGameStep1();
+            ladderSimpleGame.createBridge();
 
-            ladder.setBridge(ladderGame.createMap(ladder));
-
-            String output = ladder.getLadderString();
+            String output = ladderSimpleGame.getLadderString();
             System.out.println(output);
 
         } catch (Exception e) {
@@ -20,16 +19,13 @@ public class main {
         }
     }
 
-    private static Ladder input() throws IOException {
-        Ladder ladder = new Ladder();
+    private static void input(LadderSimpleGame ladderSimpleGame) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("참여할 사람은 몇명인가요?");
-        ladder.setNumberOfParticipants(Integer.parseInt(bufferedReader.readLine()));
+        ladderSimpleGame.setNumberOfParticipants(Integer.parseInt(bufferedReader.readLine()));
 
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        ladder.setLadderHeight(Integer.parseInt(bufferedReader.readLine()));
-
-        return ladder;
+        ladderSimpleGame.setLadderHeight(Integer.parseInt(bufferedReader.readLine()));
     }
 }
