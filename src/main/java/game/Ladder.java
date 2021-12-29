@@ -18,7 +18,7 @@ public class Ladder {
         System.out.println(playerRow.toString());
         for(LadderRow ladderRow : ladderRowList)
         {
-            System.out.println(ladderRow.toString());
+            System.out.println(LadderRowView.DrawElement(ladderRow.getElementList()));
         }
     }
 }

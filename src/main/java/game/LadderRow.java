@@ -17,7 +17,9 @@ public class LadderRow{
             elementList.add(decideElement());
         }
     }
-
+    public ArrayList<LadderType> getElementList() {
+        return elementList;
+    }
     LadderType decideElement() {
         //|-----|-----|     방지
         if ((elementList.isEmpty() || elementList.get(elementList.size() - 1) != BRIDGE)
@@ -25,19 +27,6 @@ public class LadderRow{
             return BRIDGE;
         }
         return BLANK;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(BLANK);
-        stringBuilder.append(BAR);
-        for(var element : elementList)
-        {
-            stringBuilder.append(element);
-            stringBuilder.append(BAR);
-        }
-        return stringBuilder.toString();
     }
 
 }
