@@ -1,12 +1,12 @@
 package com.chanminkim.w1.service;
 
 import com.chanminkim.w1.controller.LadderGameDTO;
-import com.chanminkim.w1.model.Ladder;
-import com.chanminkim.w1.model.LadderLine;
-import com.chanminkim.w1.model.LadderState;
+import com.chanminkim.w1.model.*;
 
 import java.security.SecureRandom;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class LadderGameService {
     private final Random random;
@@ -19,10 +19,18 @@ public class LadderGameService {
         this.random = random;
     }
 
-    public Ladder buildLadder(LadderGameDTO dto) {
+    public LadderGame buildLadderGame(LadderGameDTO dto) {
+        Ladder ladder = buildLadder(dto.getPlayers().size(), dto.getHeightOfLadder());
+        List<Player> players = dto.getPlayers().stream()
+                .map(Player::new)
+                .collect(Collectors.toUnmodifiableList());
+        return new LadderGame(players, ladder);
+    }
+
+    public Ladder buildLadder(Integer numberOfPlayers, Integer heightOfLadder) {
         Ladder ladder = new Ladder();
-        int widthOfLadder = dto.getNumberOfPlayers() * 2 - 1;
-        for (int i = 0; i < dto.getHeightOfLadder(); i++) {
+        int widthOfLadder = numberOfPlayers * 2 - 1;
+        for (int i = 0; i < heightOfLadder; i++) {
             ladder.appendLine(buildLine(widthOfLadder));
         }
         return ladder;

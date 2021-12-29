@@ -9,6 +9,6 @@ public class Main {
         LadderInputView inputView = new LadderInputView();
         LadderGameDTO dto = inputView.getUserInput();
         LadderOutputView outputView = new LadderOutputView(dto);
-        outputView.printLadder();
+        outputView.printLadderGame();
     }
 }

@@ -1,20 +1,22 @@
 package com.chanminkim.w1.controller;
 
+import java.util.List;
+
 public class LadderGameDTO {
-    private Integer numberOfPlayers;
+    private List<String> players;
     private Integer heightOfLadder;
 
-    public LadderGameDTO(Integer numberOfPlayers, Integer heightOfLadder) {
-        this.numberOfPlayers = numberOfPlayers;
+    public LadderGameDTO(List<String> players, Integer heightOfLadder) {
+        this.players = players;
         this.heightOfLadder = heightOfLadder;
     }
 
-    public Integer getNumberOfPlayers() {
-        return numberOfPlayers;
+    public List<String> getPlayers() {
+        return players;
     }
 
-    public void setNumberOfPlayers(Integer numberOfPlayers) {
-        this.numberOfPlayers = numberOfPlayers;
+    public void setPlayers(List<String> players) {
+        this.players = players;
     }
 
     public Integer getHeightOfLadder() {
