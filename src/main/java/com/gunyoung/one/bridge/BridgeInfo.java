@@ -9,13 +9,11 @@ public class BridgeInfo {
     private final Bridge[][] bridges;
     private final BridgeMakeStrategy makeStrategy;
 
-    public BridgeInfo(Ladder ladder) {
-        this(ladder, new RandomBridgeStrategy());
+    public BridgeInfo(int ladderHeight, int maxNumOfBridgesForEachRow) {
+        this(ladderHeight, maxNumOfBridgesForEachRow, new RandomBridgeStrategy());
     }
 
-    public BridgeInfo(Ladder ladder, BridgeMakeStrategy makeStrategy) {
-        int ladderHeight = ladder.getLadderHeight();
-        int maxNumOfBridgesForEachRow = ladder.getNumOfUser() - 1;
+    public BridgeInfo(int ladderHeight, int maxNumOfBridgesForEachRow, BridgeMakeStrategy makeStrategy) {
         this.bridges = new Bridge[ladderHeight][maxNumOfBridgesForEachRow];
         this.makeStrategy = makeStrategy;
     }

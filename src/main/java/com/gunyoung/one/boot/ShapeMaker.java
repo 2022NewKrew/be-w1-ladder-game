@@ -17,7 +17,11 @@ public class ShapeMaker {
         BRIDGE_SHAPE = "-".repeat(BRIDGE_SIZE);
     }
 
-    private final Ladder ladder = Ladder.getInstance();
+    private final Ladder ladder;
+
+    public ShapeMaker(Ladder ladder) {
+        this.ladder = ladder;
+    }
 
     String getShapeOfGameResult() {
         StringBuilder sb = new StringBuilder();
@@ -33,6 +37,7 @@ public class ShapeMaker {
                     getFormattedUserName(user)
             );
         }
+        sb.append("\n");
     }
 
     private String getFormattedUserName(User user) {
