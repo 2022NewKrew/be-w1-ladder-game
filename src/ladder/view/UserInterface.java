@@ -1,3 +1,7 @@
+package ladder.view;
+
+import ladder.domain.Ladder;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
