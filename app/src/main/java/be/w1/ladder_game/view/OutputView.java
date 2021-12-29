@@ -47,3 +47,4 @@ public class OutputView {
         return result.toString();
     }
 }
+

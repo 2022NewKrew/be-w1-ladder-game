@@ -27,3 +27,4 @@ public class App {
         outputView.printLadder(ladder);
     }
 }
+
