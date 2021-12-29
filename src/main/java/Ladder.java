@@ -1,52 +1,23 @@
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Iterator;
 
-public class Ladder {
+public class Ladder implements Iterable<LadderRow> {
+    private final LadderInfo ladderInfo;
+    private final ArrayList<LadderRow> ladderData = new ArrayList<>();
 
-    private final int numParticipants;
-    private final int maxLadderHeight;
-    private ArrayList<ArrayList<Boolean>> rungArray;
-
-    public Ladder(int numParticipants, int maxLadderHeight) {
-        this.numParticipants = numParticipants;
-        this.maxLadderHeight = maxLadderHeight;
-        createLadder();
+    public Ladder(LadderInfo ladderInfo) {
+        this.ladderInfo = ladderInfo;
+        generateRandomLadder();
     }
 
-    private void createLadder() {
-        rungArray = new ArrayList<>();
-        for (int i = 0; i < maxLadderHeight; ++i) {
-            rungArray.add(createRungColumn());
+    private void generateRandomLadder() {
+        for (int i = 0; i < ladderInfo.getMaxLadderHeight(); ++i) {
+            ladderData.add(new LadderRow(ladderInfo.getNumParticipants()));
         }
     }
 
-    private ArrayList<Boolean> createRungColumn() {
-        ArrayList<Boolean> rungCol = new ArrayList<>();
-        boolean leftRungExist = false;
-        for (int i = 0; i < numParticipants - 1; ++i) {
-            boolean isRungExist = !leftRungExist && isLadderExist();
-            rungCol.add(isRungExist);
-            leftRungExist = isRungExist;
-        }
-        return rungCol;
-    }
-
-    private boolean isLadderExist() {
-        Random rd = new Random();
-        return rd.nextBoolean();
-    }
-
-    public void draw() {
-        for (ArrayList<Boolean> rungCol : rungArray) {
-            for (Boolean isRungExist : rungCol) {
-                System.out.print("|");
-                if (isRungExist) {
-                    System.out.print("-");
-                } else {
-                    System.out.print(" ");
-                }
-            }
-            System.out.println("|");
-        }
+    @Override
+    public Iterator<LadderRow> iterator() {
+        return ladderData.iterator();
     }
 }

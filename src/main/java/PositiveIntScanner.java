@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PositiveIntScanner {
@@ -12,23 +11,26 @@ public class PositiveIntScanner {
         System.out.println(question);
         while (true) {
             try {
-                return nextPositiveInt();
+                return parsePositiveInt(scanner.nextLine());
             } catch (PositiveIntException e) {
-                System.out.println(e.getMessage());
-                scanner.nextLine();
+                System.out.println("오류 발생: " + e.getMessage());
             }
         }
     }
 
-    public int nextPositiveInt() throws PositiveIntException {
+    private int parsePositiveInt(String s) {
+        int value = parseInt(s);
+        if (value < 1) {
+            throw new PositiveIntException("양의 정수를 입력하세요.");
+        }
+        return value;
+    }
+
+    private int parseInt(String s) {
         try {
-            int value = scanner.nextInt();
-            if (value < 1) {
-                throw new PositiveIntException("오류: 입력값은 0보다 커야합니다.");
-            }
-            return value;
-        } catch (InputMismatchException e) {
-            throw new PositiveIntException("오류: 입력값은 정수여야 합니다.");
+            return Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            throw new PositiveIntException("정수형을 입력하세요.");
         }
     }
 }
