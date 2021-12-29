@@ -14,7 +14,7 @@ public class GameView {
         String input = sc.nextLine();
         List<String> inputUsers = new ArrayList<String>();
         for (String name : input.split(",")){
-            inputUsers.add(StringUtils.substring(name, 0, 5));
+            inputUsers.add(name);
         };
         return inputUsers;
     }
@@ -26,7 +26,7 @@ public class GameView {
 
     public static void printLadderWithUsers(Ladder ladder, List<String> users){
         for (String name : users){
-            System.out.print(String.format("%5s",name));
+            System.out.print(String.format("%5s",StringUtils.substring(name,0,5)));
             System.out.print(" ");
         };
         System.out.println();
