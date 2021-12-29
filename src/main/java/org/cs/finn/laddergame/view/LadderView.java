@@ -1,6 +1,8 @@
 package org.cs.finn.laddergame.view;
 
 import org.cs.finn.laddergame.domain.Ladder;
+import org.cs.finn.laddergame.domain.ladder.BridgeType;
+import org.cs.finn.laddergame.domain.ladder.LadderRow;
 
 public class LadderView {
 
@@ -9,20 +11,19 @@ public class LadderView {
             throw new RuntimeException("Ladder is null!");
         }
 
-        for (String bridge : ladder.getLadderRows().get()) {
-            printOneHeight(bridge);
+        for (LadderRow ladderRow : ladder.getLadderRows().get()) {
+            printOneHeight(ladderRow);
         }
     }
 
-    private void printOneHeight(final String bridge) {
-        if (bridge == null || bridge.isBlank()) {
-            throw new RuntimeException("bridge String is null or blank!");
+    private void printOneHeight(final LadderRow ladderRow) {
+        if (ladderRow == null) {
+            throw new RuntimeException("LadderRow is null!");
         }
 
-        for (char ch : bridge.toCharArray()) {
-            // '1' -> const 화
-            System.out.print("|" + (ch == '1' ? "-" : " "));
+        for (BridgeType bridgeType : ladderRow.get()) {
+            System.out.print(Ladder.BARRIER + bridgeType.toString());
         }
-        System.out.println("|");
+        System.out.println(Ladder.BARRIER);
     }
 }

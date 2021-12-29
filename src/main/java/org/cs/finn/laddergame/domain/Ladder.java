@@ -1,11 +1,17 @@
 package org.cs.finn.laddergame.domain;
 
+import org.cs.finn.laddergame.domain.ladder.BridgeType;
 import org.cs.finn.laddergame.domain.ladder.LadderHeight;
+import org.cs.finn.laddergame.domain.ladder.LadderRow;
 import org.cs.finn.laddergame.domain.ladder.LadderRows;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
+    public static final String BARRIER = "|";
+
     private final LadderRows ladderRows = new LadderRows();
     private final LadderHeight ladderHeight = new LadderHeight();
 
@@ -24,16 +30,23 @@ public class Ladder {
         }
 
         final int memberVal = member.getMember();
-        final int bound = 1 << (memberVal - 1);
         final int ladderHeightVal = ladderHeight.getLadderHeight();
 
         for (int i = 0; i < ladderHeightVal; i++) {
-            // bound를 추가로 더해서
-            // 사다리를 놓을 수 있는 최대 개수 + 1 위치에 1을 항상 추가하여
-            // Zero-fill 처리하고 가장 위쪽 1을 잘라낸 뒤 저장한다
-            final String ladderRow = Integer.toBinaryString(bound + sRand.nextInt(bound));
-            ladderRows.add(ladderRow.substring(1));
+            ladderRows.add(generateLadderRow(memberVal - 1));
         }
+    }
+
+    private LadderRow generateLadderRow(final int size) {
+        final List<BridgeType> list = new ArrayList<>();
+
+        BridgeType bridgeType = BridgeType.EMPTY;
+        for (int i = 0; i < size; i++) {
+            bridgeType = (bridgeType == BridgeType.LINE ? BridgeType.EMPTY : BridgeType.getRandomBridge(sRand));
+            list.add(bridgeType);
+        }
+
+        return new LadderRow(list);
     }
 
     public LadderRows getLadderRows() {

@@ -5,16 +5,16 @@ import java.util.Collections;
 import java.util.List;
 
 public final class LadderRows {
-    private final List<String> list = new ArrayList<>();
+    private final List<LadderRow> list = new ArrayList<>();
 
-    public void add(String ladderRow) {
-        if (ladderRow == null || ladderRow.isBlank()) {
-            throw new RuntimeException("ladderRow String is null or blank!");
+    public void add(LadderRow ladderRow) {
+        if (ladderRow == null) {
+            throw new RuntimeException("LadderRow is null!");
         }
         list.add(ladderRow);
     }
 
-    public List<String> get() {
+    public List<LadderRow> get() {
         return Collections.unmodifiableList(list);
     }
 }
