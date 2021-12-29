@@ -53,6 +53,7 @@
 * 배열 대신 ArrayList와 Generic을 활용해 구현한다.
 
 ### TODO
-* 매 커밋마다 길게 커밋메세지 남기기
-* 코드 Refactoring
-* 요구사항은 Refactoring 이후에 계획을 세워야 한다
+* 이름 부여 - NameLine 객체 추가
+* 객체 내부의 배열을 ArrayList로 변경
+* HBL 객체 내의 상수 변경
+* 랜덤 생성 시 조건 추가

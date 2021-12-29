@@ -1,7 +1,7 @@
 package Ladder;
 
 public class HorizBarLine {
-    private final char [] line;
+    private final char[] line;
 
     //클래스 내 상수들
     private static final char HOR_BAR = '-';
@@ -9,9 +9,9 @@ public class HorizBarLine {
     private static final double UPPERBOUND = 0.3;
 
     public HorizBarLine(int width) {
-        line = new char [width];
+        line = new char[width];
 
-        for (int i = 0; i< width; i++) {
+        for (int i = 0; i < width; i++) {
             setCell(i);
         }
     }
