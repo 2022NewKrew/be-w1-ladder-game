@@ -8,4 +8,8 @@ public class Ladder {
     public Ladder(List<LadderLine> ladder) {
         this.ladder = ladder;
     }
+
+    public List<LadderLine> getLadder() {
+        return ladder;
+    }
 }

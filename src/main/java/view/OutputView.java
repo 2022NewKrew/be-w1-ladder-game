@@ -1,16 +1,16 @@
-//package view;
-//
-//public class OutputView {
-//    public static void printLadder(LadderGenerator ladderGenerator) {
-//        for (int i = 0; i < ladderGenerator.getLadder().size(); i++) {
-//            printLine(ladderGenerator.getLineGenerator(i));
-//            System.out.println();
-//        }
-//    }
-//
-//    public static void printLine(LineGenerator lineGenerator) {
-//        for (String i : lineGenerator.getLine()) {
-//            System.out.print(i);
-//        }
-//    }
-//}
+package view;
+
+import domain.Ladder;
+
+import java.util.Arrays;
+
+public class OutputView {
+    public static void printLadder(Ladder ladder) {
+//        System.out.println(ladder);
+        System.out.println(ladder.getLadder());
+        System.out.println(ladder.getLadder().size());
+        System.out.println(ladder.getLadder().get(0));
+//        ladder.getLadder().get()
+
+        }
+}

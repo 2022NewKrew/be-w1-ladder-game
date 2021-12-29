@@ -7,10 +7,8 @@ public class LadderGenerator {
 //    private static final Ladder ladder
 
     public Ladder createLadder(Integer playersNum, Integer maximumLadderHeight) {
-        List<LadderLine> ladder = new ArrayList<>();
+        List<LadderLine> ladder = new ArrayList<LadderLine>();
         ladder.add(new LadderLine(createLadderLine(playersNum)));
-
-        System.out.println(ladder);
         return new Ladder(ladder);
     }
 
