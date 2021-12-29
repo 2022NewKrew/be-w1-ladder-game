@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Ladder {
     private final int RANDOM_FLAG_THRESHOLD = 40;
@@ -40,7 +41,7 @@ public class Ladder {
     }
 
     private boolean getRandomFlag(int index) {
-        int randomValue = (int) (Math.random() * 100);
+        int randomValue = new Random().nextInt(100);
         return randomValue <= RANDOM_FLAG_THRESHOLD;
     }
 }
