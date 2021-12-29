@@ -15,7 +15,7 @@ public class UserInput {
     }
 
     public Member requestMember() {
-        System.out.println("참여할 사람 이름을 " + Member.SEPARATOR + "로 구분해서 입력하세요. [" + Member.MIN + " ~ " + Member.MAX + "명]");
+        System.out.println("참여할 사람 이름을 [" + Member.SEPARATOR + "]로 구분해서 입력하세요. [" + Member.MIN + " ~ " + Member.MAX + "명]");
         System.out.println("영문 대소문자와 숫자만 사용해 한 사람 당 5자 이하로 써주세요.");
         return getMemberFromInput();
     }
