@@ -20,12 +20,12 @@ public class HorizBarLine {
     }
 
     private void setCell() {
-        if (Math.random() < UPPERBOUND) {
-            line.add(HOR_BAR);
+        if ((Math.random() > UPPERBOUND) || line.get(line.size() - 1).equals(HOR_BAR)) {
+            line.add(BLANK);
             return;
         }
 
-        line.add(BLANK);
+        line.add(HOR_BAR);
     }
 
     public List<String> getLine() {
