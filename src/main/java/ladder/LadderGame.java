@@ -2,7 +2,7 @@ package ladder;
 
 import java.util.Scanner;
 
-public class Main {
+public class LadderGame {
 
     public static void main(String[] args) {
 
@@ -13,8 +13,9 @@ public class Main {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int height = sc.nextInt();
 
-        Ladder ladder = new Ladder(participants, height);
-        ladder.print();
+        BridgeBuilder bridgeBuilder = new BridgeBuilder(participants, height, new RandomBridgeManger(System.currentTimeMillis()));
+        Ladder ladder = new Ladder(participants, height, bridgeBuilder.build());
+        LadderRenderer.render(ladder);
     }
 
 }

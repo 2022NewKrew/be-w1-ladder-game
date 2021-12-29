@@ -4,24 +4,23 @@ public class Ladder {
 
     private final int participants;
     private final int height;
+    private final boolean[][] bridges;
 
-    public Ladder(int participants, int height) {
+    public Ladder(int participants, int height, boolean[][] bridges) {
         this.participants = participants;
         this.height = height;
+        this.bridges = bridges;
     }
 
-    public void print() {
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < participants - 1; x++) {
-                System.out.print("|");
-                if (Math.random() > 0.5) {
-                    System.out.print("-");
-                } else {
-                    System.out.print(" ");
-                }
-            }
-            System.out.println("|");
-        }
+    public int getParticipants() {
+        return participants;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
+    public boolean isConnected(int bridgeWidth, int bridgeHeight) {
+        return bridges[bridgeHeight][bridgeWidth];
+    }
 }
