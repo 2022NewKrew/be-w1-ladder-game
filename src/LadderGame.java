@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LadderGame {
-    private static final int MAX_GAME_LENGTH = 5;
+    private static final int MAX_NAME_LENGTH = 5;
 
     private int height;
     private int numOfParticipants;
@@ -14,13 +14,13 @@ public class LadderGame {
     Scanner scanner = new Scanner(System.in);
 
     LadderGame() {
-        participants = inputParticipants();
-        height = inputHeight();
+        inputParticipants();
+        inputHeight();
         numOfParticipants = participants.size();
     }
 
     public int getMaxNameLength() {
-        return MAX_GAME_LENGTH;
+        return MAX_NAME_LENGTH;
     }
 
     public int getHeight() {
@@ -46,16 +46,15 @@ public class LadderGame {
         }
     }
 
-    private List<String> inputParticipants() {
+    private void inputParticipants() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String inputLine = scanner.nextLine();
-        List<String> participants = new ArrayList<>(Arrays.asList(inputLine.split(",")));
-        return participants;
+        participants = Arrays.asList(inputLine.split(","));
     }
 
-    private int inputHeight() {
+    private void inputHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return scanner.nextInt();
+        height = scanner.nextInt();
     }
 
 }
