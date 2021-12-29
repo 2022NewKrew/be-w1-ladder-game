@@ -7,9 +7,7 @@ public class Ladder {
     private final int maxHeight;
     private final ArrayList<Line> arr;
 
-    private static final char strStep = '-';
-    private static final char strEmpty = ' ';
-    private static final char strCol = '|';
+
     private static final int maxNameLength = 5;
 
     //constructor
@@ -20,8 +18,6 @@ public class Ladder {
 
         buildLines();
 
-        //buildColumns();
-        //buildSteps();
     }
 
     public int getMaxHeight() {
@@ -40,8 +36,6 @@ public class Ladder {
         return this.arr;
     }
 
-
-
     //line 생성
     public void buildLines() {
         for(int i=0; i<this.maxHeight; i++){
@@ -49,43 +43,6 @@ public class Ladder {
             this.arr.add(line);
         }
     }
-
-
-
-
-//  not used !!
-
-//    // build base columns '|'
-//    public void buildColumns() {
-//
-//        //this.arr = new char[this.maxHeight][this.nCol];
-//
-//        for (int i=0; i<this.maxHeight; i++) {
-//            buildColumnsPerRow(i);
-//        }
-//    }
-//
-//    // build base columns for each row
-//    public void buildColumnsPerRow(int i) {
-//        for (int j=0; j<this.nCol; j+=2) {
-//            this.arr[i][j] = strCol;
-//        }
-//    }
-//
-//
-//    // build steps '-'
-//    public void buildSteps() {
-//        for (int i=0; i<this.maxHeight; i++) {
-//            buildStepsPerRow(i);
-//        }
-//    }
-//
-//    // build base steps for each row
-//    public void buildStepsPerRow(int i) {
-//        for (int j=1; j<this.nCol; j+=2) {
-//            buildStepsPerCell(i,j);
-//        }
-//    }
 
 
 }

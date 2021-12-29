@@ -6,6 +6,12 @@ public class IO {
     private static final String qNumPeople = "참여할 사람은 몇 명인가요?";
     private static final String qMaxHeight = "최대 사다리 높이는 몇 개인가요?";
 
+    private static final char strStep = '-';
+    private static final char strEmpty = ' ';
+    private static final char strCol = '|';
+    private static String multiStrSteps;
+    private static String multiStrEmpty;
+
     public IO() {
     }
 
@@ -40,35 +46,52 @@ public class IO {
 
     public void printLadder(Ladder ladder) {
         ArrayList<Line> ladderList = ladder.getLadderList(); //unnecessary
+        final int maxNameLength = ladder.getMaxNameLength();
+        this.setMultipliedStr(maxNameLength);
+
         for (Line line : ladderList) {
-            ArrayList<Boolean> cells = line.getCells();
-            System.out.println(Arrays.toString(cells.toArray()));
-        }
-        // 추가로 arralist -> char[][] 로직 필요
-        char[][] ladderArr = this.getCharArr(ladder);
-
-
-        for (char[] row : ladderArr) {
+            ArrayList<Boolean> row = line.getCells();
             String strRow = readRow(row);
             System.out.println(strRow);
-
         }
     }
 
-    public char[][] getCharArr(Ladder ladder) {
-        final int maxHeight = ladder.getMaxHeight();
-        final int nPeople = ladder.getNumPeople();
-        final int maxNameLength = ladder.getMaxNameLength();
-        final int nCol = maxNameLength * (nPeople -1) + nPeople;
-        char[][] charArr = new char[maxHeight][nCol];
-        return charArr;
+    public void setMultipliedStr(int maxNameLength) {
+        this.multiStrEmpty = repeat(strEmpty, maxNameLength);
+        this.multiStrSteps = repeat(strStep, maxNameLength);
     }
 
+
     // read row as string
-    public static String readRow( char[] row) {
+    public static String readRow(ArrayList<Boolean> row) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (boolean isStep : row) {
+            stringBuilder.append(strCol);
+            stringBuilder = addString(isStep, stringBuilder);
+        }
+        stringBuilder.append(strCol);
+
+        String strRow = stringBuilder.toString();
+        return strRow;
+    }
+
+    // add string to stringbuilder according to isStep
+    // if isStep==True, add maxStringLength * strStep
+    // elif isStep==False, add maxStringLength * strEmpty
+    public static StringBuilder addString(boolean isStep, StringBuilder stringBuilder) {
+        if (isStep) {
+            stringBuilder.append(multiStrSteps);
+            return stringBuilder;
+        }
+        stringBuilder.append(multiStrEmpty);
+        return stringBuilder;
+    }
+
+    public static String repeat(char str, int n) {
         StringBuilder sb = new StringBuilder();
-        for (char ch : row) {
-            sb.append(ch);
+        for(int i=0; i <n; i++) {
+            sb.append(str);
         }
         String strRow = sb.toString();
         return strRow;
