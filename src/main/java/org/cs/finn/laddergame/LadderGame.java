@@ -14,25 +14,13 @@ public class LadderGame {
     }
 
     public void run() {
-        requestInput();
-        createLadder();
-        printLadder();
-        closeGame();
-    }
-
-    private void requestInput() {
+        // 사용자로부터 사다리 생성에 필요한 값을 받음
         userInput.requestInput();
-    }
-
-    private void createLadder() {
+        // 사다리 생성
         ladder.build(userInput.getInput());
-    }
-
-    private void printLadder() {
+        // 사다리 출력
         ladderView.print(ladder);
-    }
-
-    private void closeGame() {
+        // 종료 전에 Scanner 닫기
         userInput.closeScanner();
     }
 }
