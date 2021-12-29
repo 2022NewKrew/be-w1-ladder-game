@@ -1,3 +1,7 @@
+package domain;
+
+import view.LadderPrinter;
+
 import java.util.Scanner;
 
 public class LadderGame {
@@ -11,7 +15,7 @@ public class LadderGame {
         int heightLadder = inputNumber();
 
         Ladder ladder = new Ladder(numOfPeople, heightLadder);
-        System.out.println(ladder);
+        LadderPrinter.drawLadder(ladder);
     }
 
     private static int inputNumber() {

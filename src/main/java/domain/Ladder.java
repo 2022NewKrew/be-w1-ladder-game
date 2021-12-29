@@ -1,3 +1,6 @@
+package domain;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,10 +14,7 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public String toString() {
-        return rows.stream()
-                .map(Row::toString)
-                .collect(Collectors.joining(""));
+    public List<Row> getRows() {
+        return Collections.unmodifiableList(rows);
     }
 }
