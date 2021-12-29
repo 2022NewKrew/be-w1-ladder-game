@@ -1,4 +1,6 @@
-public class LadderGame {
+import Ladder.Ladder;
+
+public class main {
 
     public static void main(String[] args) {
 
