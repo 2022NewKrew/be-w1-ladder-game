@@ -18,3 +18,19 @@
 - [X] -ㅣ-  의 경우는 존재 불가 (어디를 타야할 지 모르기 때문)
 #### 실행 결과
 ![](./images/week1_display.png) 
+
+### Step 2(2021.12.28)
+#### 요구사항
+- [X] 메서드의 크기가 최대 10라인을 넘지 않도록 구현한다.
+- [X] 메서드가 한 가지 일만 하도록 최대한 작게 만들어라.
+- [ ] 들여쓰기(indent) depth를 2단계에서 1단계로 줄여라.
+  - depth의 경우 if 문을 사용하는 경우 1단계의 depth가 증가한다.
+- if 문 안에 while 문을 사용한다면 depth가 2단계가 된다.
+- [X] else를 사용하지 마라.
+- 구현 순서를 고려하면서 프로그래밍한다.
+- naming convention을 지키면서 프로그래밍한다.
+  - 자바는 낙타 표기법(Camel Case)를 따른다.
+  - [X] 클래스명은 대문자로 시작, 변수 메소드는 소문자로 시작
+  - 클래스 이름 예 : Rectangle, LaundryList, StudentDirectory
+  - 변수 이름 예 : firstName, description, mediaController
+  - 메소드 이름 예 : getFirstName(), cancelOrder(), isDeleted()
