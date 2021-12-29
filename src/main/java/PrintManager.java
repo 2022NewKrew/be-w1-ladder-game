@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class PrintManager {
 
     private static final String VLINE = "|";
@@ -7,22 +9,22 @@ public class PrintManager {
     public PrintManager() {
     }
 
-    public static void printLadder(boolean[][] ladder){
+    public static void printLadder(ArrayList<Line> ladder){
         StringBuilder stringLadder = new StringBuilder();
 
-        for(int i=0; i<ladder.length; i++){
-            printHorizontalLadder(i,stringLadder,ladder);
+        for (Line line : ladder) {
+            printHorizontalLine(line, stringLadder);
             stringLadder.append(VLINE).append("\n");
         }
         System.out.println(stringLadder);
     }
-    private static void printHorizontalLadder(int height, StringBuilder stringLadder, boolean[][] ladder){
-        for(int j = 0; j< ladder[0].length; j++){
-            stringLadder.append(VLINE).append(isLadder(height, j, ladder));
+    private static void printHorizontalLine(Line line, StringBuilder stringLadder){
+        for(int j = 0; j< line.getPoints().size(); j++){
+            stringLadder.append(VLINE).append(isLadder(line,j));
         }
     }
 
-    private static String isLadder(int i, int j, boolean[][] ladder){
-        return ladder[i][j]? HLINE : SPACE;
+    private static String isLadder(Line line, int j){
+        return line.getPoints().get(j)? HLINE : SPACE;
     }
 }
