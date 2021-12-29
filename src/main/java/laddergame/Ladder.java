@@ -22,10 +22,14 @@ public class Ladder {
 
     private List<LadderComponent> makeLadderRow(int userCount) {
         List<LadderComponent> ladderRow = new ArrayList<>();
+        Boolean hasLeftHorizon = false;
+
         for (int i = 0; i < userCount; i++) {
-            Boolean isEnd = i == userCount - 1;
-            ladderRow.add(new LadderComponent(isEnd));
+            Boolean isEndVertical = i == userCount - 1;
+            ladderRow.add(new LadderComponent(isEndVertical, hasLeftHorizon));
+            hasLeftHorizon = ladderRow.get(ladderRow.size() - 1).hasRightHorizon();
         }
+
         return ladderRow;
     }
 

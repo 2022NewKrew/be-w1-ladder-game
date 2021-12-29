@@ -6,22 +6,36 @@ import java.util.Random;
 
 public class LadderComponent {
 
-    private final Boolean hasVertical;
+    private final Boolean hasRightHorizon;
+    private final Boolean hasLeftHorizon;
 
-    public LadderComponent(Boolean isEnd) {
-        this.hasVertical = !isEnd && makeRandomVertical();
+    public LadderComponent(Boolean isEndVertical, Boolean hasLeftHorizon) {
+        this.hasRightHorizon = makeRightHorizon(isEndVertical, hasLeftHorizon);
+        this.hasLeftHorizon = hasLeftHorizon;
     }
 
-    public Boolean hasVertical() {
-        return hasVertical;
+    public Boolean hasRightHorizon() {
+        return hasRightHorizon;
     }
 
-    private Boolean makeRandomVertical() {
+    private Boolean makeRandomHorizon() {
         try {
             Random rand = SecureRandom.getInstanceStrong();
             return rand.nextBoolean();
         } catch (NoSuchAlgorithmException e) {
             return false;
         }
+    }
+
+    private Boolean makeRightHorizon(Boolean isEndVertical, Boolean hasLeftVertical) {
+        if (isEndVertical) {
+            return false;
+        }
+
+        if (hasLeftVertical) {
+            return false;
+        }
+
+        return makeRandomHorizon();
     }
 }
