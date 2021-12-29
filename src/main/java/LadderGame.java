@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -8,77 +9,70 @@ public class LadderGame {
 
     private final Random random;
 
-    private final String BAR = "|";
-    private final String CONNECT = "-----";
-    private final String BLANK = "     ";
+    private List<LadderLine> gameBoard;
+    private List<String> participantsNames;
+
+    private int width;
+    private int height;
 
     public LadderGame() {
         random = new Random();
+        gameBoard = new ArrayList<>();
     }
 
     public void run(String nameInputs, int heightOfLadder) {
-        List<String> participantsNames = Arrays.stream(nameInputs.split(","))
+        try {
+            initGame(nameInputs, heightOfLadder);
+            showGameBoard();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initGame(String nameInputs, int heightOfLadder) {
+        participantsNames = Arrays.stream(nameInputs.split(","))
             .collect(Collectors.toList());
-        int numberOfPerson = participantsNames.size();
+        width = participantsNames.size() - 1;
+        height = heightOfLadder;
 
-        if (numberOfPerson < 2) {
-            System.err.println("사다리 게임은 혼자서 플레이할 수 없어요!!!");
-            return;
+        if (width < 1) {
+            throw new InputMismatchException("사다리 게임을 플레이하기 위해서는 사용자가 2명 이상 필요해요.");
         }
 
-        List<List<Boolean>> gameBoard = makeGameBoard(numberOfPerson - 1, heightOfLadder);
-        printGameBoard(participantsNames, gameBoard);
+        makeGameBoard();
     }
 
-    private List<List<Boolean>> makeGameBoard(int width, int height) {
-        List<List<Boolean>> gameBoard = new ArrayList<>();
+    private void showGameBoard() {
+        if (gameBoard == null || gameBoard.isEmpty()) {
+            throw new NullPointerException("사다리가 생성되지 않았어요.");
+        }
+        printGameBoard();
+    }
+
+    private void makeGameBoard() {
+        gameBoard = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            gameBoard.add(makeLine(width));
+            gameBoard.add(makeLine());
         }
-
-        return gameBoard;
     }
 
-    private List<Boolean> makeLine(int width) {
-        List<Boolean> line = new ArrayList<>();
-        for (int i = 0; i < width; i++) {
-            line.add(decideNextConnection(line, i));
-        }
-
+    private LadderLine makeLine() {
+        LadderLine line = new LadderLine(random);
+        line.makeLine(width);
         return line;
     }
 
-    private boolean decideNextConnection(List<Boolean> currentLine, int idx) {
-        if (idx > 0 && currentLine.get(idx - 1) == true) {
-            return false;
-        }
-        return random.nextBoolean();
-    }
-
-    private void printGameBoard(List<String> participantsNames, List<List<Boolean>> gameBoard) {
+    private void printGameBoard() {
         List<String> printBoard = new ArrayList<>();
 
         printBoard.add(" " + participantsNames.stream().map(this::formatName)
             .collect(Collectors.joining(" ")));
-
-        for (List<Boolean> line : gameBoard) {
-            printBoard.add(shapeLine(line));
-        }
+        gameBoard.forEach(line -> printBoard.add(line.shapeLine()));
 
         System.out.println(String.join(System.lineSeparator(), printBoard));
     }
 
     private String formatName(String name) {
         return String.format("%5s", name.length() <= 5 ? name : name.substring(0, 5));
-    }
-
-    private String shapeLine(List<Boolean> line) {
-        StringBuilder stringBuilder = new StringBuilder("    ");
-        for (boolean connected : line) {
-            stringBuilder.append(BAR)
-                .append(connected ? CONNECT : BLANK);
-        }
-        return stringBuilder.append(BAR)
-            .toString();
     }
 }
