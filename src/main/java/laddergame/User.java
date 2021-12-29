@@ -11,8 +11,4 @@ public class User {
     public String getName() {
         return name;
     }
-
-    public Boolean isValidUserNameLength() {
-        return name.length() <= 5;
-    }
 }
