@@ -1,4 +1,4 @@
-package step3;
+package com.kakao.ladder.step3;
 
 import java.util.ArrayList;
 import java.util.Arrays;

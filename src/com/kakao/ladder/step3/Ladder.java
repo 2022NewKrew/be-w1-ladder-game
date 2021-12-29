@@ -1,6 +1,5 @@
 package com.kakao.ladder.step3;
 
-import step3.Line;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

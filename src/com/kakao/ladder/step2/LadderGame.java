@@ -1,4 +1,4 @@
-package step2;
+package com.kakao.ladder.step2;
 
 import java.util.Scanner;
 
