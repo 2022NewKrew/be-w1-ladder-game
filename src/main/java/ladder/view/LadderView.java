@@ -1,25 +1,27 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderRow;
+import ladder.domain.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class LadderView {
-    private static final String VERTICAL_LINE = "|";
-    private static final String HORIZONTAL_LINE = "-";
-    private static final String EMPTY_SPACE = " ";
-
     private final Scanner scanner;
 
     public LadderView() {
         scanner = new Scanner(System.in);
     }
 
-    public int inputNumberOfPlayers() {
-        System.out.println("참여할 사람은 몇 명인가요?");
-        return scanner.nextInt();
+    public List<Player> inputPlayers() {
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        String[] inputPlayers = scanner.nextLine().split(",");
+        List<Player> players = new ArrayList<>();
+
+        for (String inputPlayer : inputPlayers) {
+            players.add(new Player(inputPlayer));
+        }
+        return players;
     }
 
     public int inputMaxLadderHeight() {
@@ -27,33 +29,37 @@ public class LadderView {
         return scanner.nextInt();
     }
 
-    public void printLadder(Ladder ladder) {
+    public void printLadder(List<Player> players, Ladder ladder) {
         int ladderWidth = ladder.getLadderRows().size();
+        printPlayers(players);
+
         for (int i = 0; i < ladderWidth; i++) {
             LadderRow ladderRow = ladder.getLadderRows().get(i);
-            List<Boolean> row = ladderRow.getRow();
+            List<LadderCell> row = ladderRow.getRow();
             printLadderRow(row);
         }
     }
 
-    private void printLadderRow(List<Boolean> row) {
-        for (int i = 0; i < row.size(); i++) {
-            System.out.print(isVerticalLine(i, row.get(i)));
+    private void printPlayers(List<Player> players) {
+        for (Player player : players) {
+            System.out.printf("%5s ", player);
         }
         System.out.println();
     }
 
-    private String isVerticalLine(int rowIndex, boolean horizontalLine) {
-        if (rowIndex % 2 == 0) {
-            return VERTICAL_LINE;
+    private void printLadderRow(List<LadderCell> row) {
+        System.out.print("  ");
+        for (LadderCell LadderCell : row) {
+            System.out.print(LineType.VERTICAL_LINE);
+            System.out.print(hasLadderAcrossLine(LadderCell));
         }
-        return horizontalLineOrEmpty(horizontalLine);
+        System.out.println(LineType.VERTICAL_LINE);
     }
 
-    private String horizontalLineOrEmpty(boolean horizontalLine) {
-        if (horizontalLine) {
-            return HORIZONTAL_LINE;
+    private LineType hasLadderAcrossLine(LadderCell ladderCell) {
+        if (ladderCell.getLine()) {
+            return LineType.HORIZONTAL_LINE;
         }
-        return EMPTY_SPACE;
+        return LineType.EMPTY_LINE;
     }
 }

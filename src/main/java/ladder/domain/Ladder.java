@@ -1,33 +1,34 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
 
     private final int numberOfPlayers;
     private final int maxLadderHeight;
 
-    private final ArrayList<LadderRow> ladderRows;
+    private final List<LadderRow> ladderRows;
 
-    public Ladder(int numberOfPlayers, int maxLadderHeight) {
-        this.numberOfPlayers = numberOfPlayers;
+    public Ladder(List<Player> players, int maxLadderHeight) {
+        this.numberOfPlayers = players.size();
         this.maxLadderHeight = maxLadderHeight;
-        ladderRows = new ArrayList<>();
+        this.ladderRows = new ArrayList<>();
+
+        createLadder();
     }
 
-    public ArrayList<LadderRow> getLadderRows() {
-        return ladderRows;
-    }
-
-    public void createLadder() {
+    private void createLadder() {
         for (int i = 0; i < maxLadderHeight; i++) {
             ladderRows.add(createLadderRow());
         }
     }
 
     private LadderRow createLadderRow() {
-        LadderRow ladderRow = new LadderRow(numberOfPlayers);
-        ladderRow.createLadderRow();
-        return ladderRow;
+        return new LadderRow(numberOfPlayers);
+    }
+
+    public List<LadderRow> getLadderRows() {
+        return ladderRows;
     }
 }
