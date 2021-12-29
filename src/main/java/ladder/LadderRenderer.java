@@ -1,12 +1,15 @@
 package ladder;
 
+import java.util.Arrays;
+
 public class LadderRenderer {
 
-    private static final char VERTICAL_LINE = '|';
     private static final String HORIZONTAL_LINE = "-----";
     private static final String EMPTY_LINE = "     ";
-    private static final char NEW_LINE = '\n';
     private static final String EMPTY_SPACE = " ";
+    private static final char VERTICAL_LINE = '|';
+    private static final char NEW_LINE = '\n';
+    private static final int MAX_NAME_LENGTH = 5;
 
     public static void render(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
@@ -23,8 +26,8 @@ public class LadderRenderer {
         String[] participants = ladder.getParticipants();
 
         for (String participant : participants) {
-            int emptyPrefixCount = (5 - participant.length()) / 2;
-            int emptyPostfixCount = emptyPrefixCount + (5 - participant.length()) % 2 + 1;
+            int emptyPrefixCount = (MAX_NAME_LENGTH - participant.length()) / 2;
+            int emptyPostfixCount = emptyPrefixCount + (MAX_NAME_LENGTH - participant.length()) % 2 + 1;
 
             sb.append(EMPTY_SPACE.repeat(emptyPrefixCount));
             sb.append(participant);
