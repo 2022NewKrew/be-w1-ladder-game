@@ -1,4 +1,6 @@
-package main.java;
+package main.java.domain;
+
+import main.java.domain.Player;
 
 import java.util.Arrays;
 import java.util.Collections;

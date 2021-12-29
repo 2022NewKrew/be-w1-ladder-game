@@ -1,4 +1,4 @@
-package main.java;
+package main.java.domain;
 
 public enum Point {
     LEFT(-1),

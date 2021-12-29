@@ -1,4 +1,8 @@
-package main.java;
+package main.java.view;
+
+import main.java.domain.Ladder;
+import main.java.domain.Line;
+import main.java.domain.Point;
 
 import java.util.List;
 

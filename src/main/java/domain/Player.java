@@ -1,4 +1,4 @@
-package main.java;
+package main.java.domain;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
