@@ -1,14 +1,15 @@
 import java.util.Arrays;
+import java.util.List;
 
 public class LadderPrinter {
     public static void print(Ladder ladder){
-            Arrays.stream(ladder.getLadderShape()).forEach(LadderPrinter::printRow);
+        ladder.getLadderShape().forEach(LadderPrinter::printRow);
     }
 
-    private static void printRow(Boolean[] row){
-        Arrays.stream(row)
-                .map(barExists -> barExists? "|-": "| ")
-                .forEach(System.out::print);
+    private static void printRow(List<Boolean> row){
+        row.stream()
+            .map(barExists -> barExists? "|-": "| ")
+            .forEach(System.out::print);
         System.out.println("|");
     }
 }
