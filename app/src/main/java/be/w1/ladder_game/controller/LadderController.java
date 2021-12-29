@@ -3,7 +3,7 @@ package be.w1.ladder_game.controller;
 import java.util.Arrays;
 import java.util.List;
 
-import be.w1.ladder_game.Ladder;
+import be.w1.ladder_game.model.Ladder;
 
 public class LadderController {
     private static final String ILLEGAL_PLAYER_COUNT_MESSAGE = "참여할 사람은 최소 2명 이상이어야 합니다.";

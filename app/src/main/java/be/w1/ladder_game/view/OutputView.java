@@ -2,7 +2,7 @@ package be.w1.ladder_game.view;
 
 import java.util.List;
 
-import be.w1.ladder_game.Ladder;
+import be.w1.ladder_game.model.Ladder;
 
 public class OutputView {
     private static final String LADDER_SEPARATOR = "|";

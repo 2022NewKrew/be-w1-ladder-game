@@ -1,4 +1,4 @@
-package be.w1.ladder_game;
+package be.w1.ladder_game.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;

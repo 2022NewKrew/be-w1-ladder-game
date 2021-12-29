@@ -5,6 +5,7 @@ package be.w1.ladder_game;
 
 import java.util.List;
 
+import be.w1.ladder_game.model.Ladder;
 import be.w1.ladder_game.view.OutputView;
 import be.w1.ladder_game.controller.LadderController;
 import be.w1.ladder_game.view.InputView;
