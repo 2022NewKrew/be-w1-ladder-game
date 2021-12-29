@@ -1,4 +1,4 @@
-package Ladder;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,21 +11,12 @@ public class Ladder {
     public final ArrayList<String> listOfParticipants = new ArrayList<>();
     public final ArrayList<LadderRow> shape = new ArrayList<>();
 
-    public void getInput() {
-        Scanner sc = new Scanner(System.in);
-        String inputParticipants;
+    public void preprocessInput(String inputParticipants, int height) {
 
-
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        inputParticipants = sc.nextLine();
         tokenizeNameInput(inputParticipants);
-        String[] tempListOfParticipants;
-
-        System.out.println("최대 사다리 높이는 얼마인가요?");
-        height = sc.nextInt();
+        this.height = height;
         validateNonZero(height);
 
-        sc.close();
     }
 
     public void makeLadder() {

@@ -1,4 +1,6 @@
-package Ladder;
+package ladder.domain;
+
+import ladder.view.ShapeCharacter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +20,10 @@ public class LadderRow {
     public String toString() {
         StringBuffer ladderRow = new StringBuffer();
 
-        ladderRow.append("  " + LadderShape.VERTICAL_BRANCH);
+        ladderRow.append("  " + ShapeCharacter.VERTICAL_BRANCH);
         for (int col = 0; col < horizonBranch.size(); col++) {
             ladderRow.append(selectCharacter(horizonBranch.get(col)));
-            ladderRow.append(LadderShape.VERTICAL_BRANCH);
+            ladderRow.append(ShapeCharacter.VERTICAL_BRANCH);
         }
         ladderRow.append("\n");
 
@@ -34,8 +36,8 @@ public class LadderRow {
     }
 
     private String selectCharacter(boolean isExistHorizon) {
-        if (isExistHorizon) return LadderShape.HORIZON_BRANCH;
-        return LadderShape.NO_HORIZON_BRANCH;
+        if (isExistHorizon) return ShapeCharacter.HORIZON_BRANCH;
+        return ShapeCharacter.NO_HORIZON_BRANCH;
     }
 
 }
