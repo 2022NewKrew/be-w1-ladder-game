@@ -1,18 +1,20 @@
 package ladder;
 
+import java.util.List;
+
 public class Ladder {
 
-    private final int participants;
+    private final String[] participants;
     private final int height;
-    private final boolean[][] bridges;
+    private final List<Bridge> bridges;
 
-    public Ladder(int participants, int height, boolean[][] bridges) {
+    public Ladder(String[] participants, int height, List<Bridge> bridges) {
         this.participants = participants;
         this.height = height;
         this.bridges = bridges;
     }
 
-    public int getParticipants() {
+    public String[] getParticipants() {
         return participants;
     }
 
@@ -21,6 +23,6 @@ public class Ladder {
     }
 
     public boolean isConnected(int bridgeWidth, int bridgeHeight) {
-        return bridges[bridgeHeight][bridgeWidth];
+        return bridges.get(bridgeHeight).isConnected(bridgeWidth);
     }
 }

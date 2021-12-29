@@ -2,11 +2,11 @@ package ladder;
 
 import java.util.Random;
 
-public class RandomBridgeManger {
+public class RandomBridgeProvider {
 
     private final Random random;
 
-    public RandomBridgeManger(long seed) {
+    public RandomBridgeProvider(long seed) {
         this.random = new Random(seed);
     }
 

@@ -1,50 +1,49 @@
 package ladder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BridgeBuilder {
 
-    private final boolean[][] bridges;
-    private final int participants;
+    private final List<Bridge> bridges;
+    private final int numOfParticipants;
     private final int height;
-    private final RandomBridgeManger randomBridgeManger;
+    private final RandomBridgeProvider randomBridgeProvider;
 
-    public BridgeBuilder(int participants, int height, RandomBridgeManger randomBridgeManger) {
-        this.bridges = new boolean[height][participants - 1];
-        this.participants = participants;
+    public BridgeBuilder(String[] participants, int height, RandomBridgeProvider randomBridgeProvider) {
+        this.numOfParticipants = participants.length;
+        this.bridges = new ArrayList<>();
         this.height = height;
-        this.randomBridgeManger = randomBridgeManger;
+        this.randomBridgeProvider = randomBridgeProvider;
     }
 
-    public boolean[][] build() {
+    public List<Bridge> build() {
         connectBridges();
         return bridges;
     }
 
     private void connectBridges() {
         for (int currentHeight = 0; currentHeight < height; currentHeight++) {
-            connectRowBridges(currentHeight);
+            connectRowBridges();
         }
     }
 
-    private void connectRowBridges(int currentHeight) {
-        for (int currentWidth = 0; currentWidth < participants - 1; currentWidth++) {
-            connectBridge(currentWidth, currentHeight);
+    private void connectRowBridges() {
+
+        Bridge bridge = new Bridge();
+
+        for (int currentPoint = 0; currentPoint < numOfParticipants - 1; currentPoint++) {
+            bridge.addPoint(isConnectableBridge(bridge, currentPoint));
         }
+
+        bridges.add(bridge);
     }
 
-    private void connectBridge(int bridgeWidth, int bridgeHeight) {
-        bridges[bridgeHeight][bridgeWidth] = isConnectableBridge(bridgeWidth, bridgeHeight);
-    }
-
-    private boolean isConnectableBridge(int bridgeWidth, int bridgeHeight) {
-        if (bridgeWidth == 0) {
-            return randomBridgeManger.isConnectableBridgeByRandom();
+    private boolean isConnectableBridge(Bridge bridge, int currentPoint) {
+        if (currentPoint == 0) {
+            return randomBridgeProvider.isConnectableBridgeByRandom();
         }
-        return !isAlreadyConnected(bridgeWidth, bridgeHeight) && randomBridgeManger.isConnectableBridgeByRandom();
+        return !bridge.isConnected(currentPoint - 1) && randomBridgeProvider.isConnectableBridgeByRandom();
     }
-
-    private boolean isAlreadyConnected(int bridgeWidth, int bridgeHeight) {
-        return bridges[bridgeHeight][bridgeWidth - 1];
-    }
-
 
 }
