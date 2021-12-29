@@ -3,10 +3,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class LadderGame {
-    public static void main(String[] args) throws IOException {
-        int[] twoParameters = getConsoleTwoParameter();
 
-        Ladder ladder = new Ladder(twoParameters);
+    // 클래스 변수
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
+        String names = getConsoleNameList();
+        int ladderHeight = getConsoleLadderHeight();
+        scanner.close();
+
+        Ladder ladder = new Ladder(names, ladderHeight);
+
         System.out.println(ladder);
     }
 

@@ -6,11 +6,14 @@ public class Ladder {
     private final int column;
     private final int row;
     private final List<Line> ladder;
+    private final Name names;
 
     // 생성자
-    public Ladder(int row, int column) {
+    public Ladder(String names, int column) {
+
+        this.names = new Name(names);
         this.column = column;
-        this.row = 2 * row - 1;
+        this.row = 2 * this.names.getNamesSize() - 1;
         this.ladder = getLadder();
     }
 
