@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class LadderRow {
 
-    private final List<Boolean> horizonBranch = new ArrayList<>();
+    public List<Boolean> horizonBranch = new ArrayList<>();
     private static final Random random = new Random();
 
     public LadderRow(int numParticipants) {
