@@ -35,15 +35,33 @@ public class Ladder {
 
     }
 
+    public void checkDeletion(int line, int column){
+
+        //if line inserted sequencial order, delete.
+        while(column + 1 < lineStatus[line].value.size() && lineStatus[line].value.get(column) + 1 == lineStatus[line].value.get(column + 1)){
+            lineStatus[line].value.remove(column + 1);
+        }
+
+    }
+
+    public void validUpdateLine(int line){
+
+        for(int i = lineStatus[line].value.size() - 2 ; i >= 0 ; i--){
+            checkDeletion(line, i);
+        }
+
+    }
+
     public void insertLine(int line, int lineSize, Random rd){
 
         for(int i = 0 ; i < lineSize ; i++) {
-            lineStatus[line].value.add((long) rd.nextInt((int) people) - 1);
+            lineStatus[line].value.add((long) rd.nextInt((int) people - 1));
         }
 
         lineStatus[line].value.sort(Long::compareTo);
 
     }
+
 
     public void shuffle() {
 
@@ -52,6 +70,7 @@ public class Ladder {
         for(int i = 0 ; i < height ; i++) {
             int lineSize = rd.nextInt((int) people - 1);
             insertLine(i, lineSize, rd); //lineSize 개수의 라인을 i 번째 높이에 랜덤으로 생성.
+            validUpdateLine(i); //i번째 height에 연속적인 line이 생성된경우 제거로직 추가
         }
 
     }
