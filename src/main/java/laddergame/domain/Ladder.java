@@ -11,10 +11,10 @@ public class Ladder {
         this.lineList = new ArrayList<>(lineList);
     }
 
-    public static Ladder of(int numberOfGamer, int ladderHeight) {
+    public static Ladder of(int numberOfPlayer, int ladderHeight) {
         List<Line> lineList = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            lineList.add(Line.from(numberOfGamer));
+            lineList.add(Line.from(numberOfPlayer));
         }
         return new Ladder(lineList);
     }

@@ -6,11 +6,11 @@ import java.util.Scanner;
 public class ConsoleInputView implements InputView {
     private static final Scanner sc = new Scanner(System.in);
 
-    public int inputNumberOfGamer() {
+    public int inputNumberOfPlayer() {
         System.out.println("참여할 사람은 몇 명인가요?");
-        int numberOfGamer = sc.nextInt();
-        validatePositive(numberOfGamer);
-        return numberOfGamer;
+        int numberOfPlayer = sc.nextInt();
+        validatePositive(numberOfPlayer);
+        return numberOfPlayer;
     }
 
     public int inputLadderHeight() {

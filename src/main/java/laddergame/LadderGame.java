@@ -5,23 +5,23 @@ import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
 public class LadderGame {
-    private final int numberOfGamer;
+    private final int numberOfPlayer;
     private final int ladderHeight;
     private final Ladder ladder;
 
-    public LadderGame(int numberOfGamer, int ladderHeight, Ladder ladder) {
-        this.numberOfGamer = numberOfGamer;
+    public LadderGame(int numberOfPlayer, int ladderHeight, Ladder ladder) {
+        this.numberOfPlayer = numberOfPlayer;
         this.ladderHeight = ladderHeight;
         this.ladder = ladder;
     }
 
-    public static LadderGame of(int numberOfGamer, int ladderHeight) {
-        Ladder ladder = Ladder.of(numberOfGamer, ladderHeight);
-        return new LadderGame(numberOfGamer, ladderHeight, ladder);
+    public static LadderGame of(int numberOfPlayer, int ladderHeight) {
+        Ladder ladder = Ladder.of(numberOfPlayer, ladderHeight);
+        return new LadderGame(numberOfPlayer, ladderHeight, ladder);
     }
 
-    public static int inputNumberOfGamer(InputView inputView) {
-        return inputView.inputNumberOfGamer();
+    public static int inputNumberOfPlayer(InputView inputView) {
+        return inputView.inputNumberOfPlayer();
     }
 
     public static int inputLadderHeight(InputView inputView) {

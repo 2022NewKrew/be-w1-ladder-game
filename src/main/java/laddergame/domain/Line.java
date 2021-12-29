@@ -13,9 +13,9 @@ public class Line {
         this.connectionList = new ArrayList<>(connectionList);
     }
 
-    public static Line from(int numberOfGamer) {
+    public static Line from(int numberOfPlayer) {
         List<Boolean> connectionList = new ArrayList<>();
-        for (int i = 0; i < numberOfGamer - 1; i++) {
+        for (int i = 0; i < numberOfPlayer - 1; i++) {
             connectionList.add(random.nextBoolean());
             removeDuplicatedConnection(connectionList);
         }
