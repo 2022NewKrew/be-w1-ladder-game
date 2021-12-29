@@ -1,38 +1,23 @@
 package LadderGame;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Ladder {
     private int height;
     private int width;
     private char[][] ladder;
+    private int bridgeWidth;
 
-    public Ladder() {
-    }
-
-    void inputLadderInfo() {
-        int inputPlayers;
-        int inputHeight;
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("참여할 사람은 몇 명인가요?");
-        inputPlayers = scanner.nextInt();
-        System.out.println("최대 사다리 높이는 몇 개 인가요?");
-        inputHeight = scanner.nextInt();
-
-        this.height = inputHeight;
-        this.width = inputPlayers*2 - 1;
-        this.ladder = new char[height][width];
+    public Ladder(int height, int width) {
+        this.height = height;
+        this.width = width*2 - 1;
     }
 
     void makeLadder() {
-        Random rand = new Random();
-
+        ladder = new char[height][width];
         for (int i=0; i<height; i++) {
             makeRow(i);
             ladder[i][0] = '|';
-            int bridge = rand.nextInt(width/2);
         }
     }
 
@@ -54,7 +39,8 @@ public class Ladder {
         return ' ';
     }
 
-    void printLadder(){
+    void printLadder(int bridgeWidth){
+        this.bridgeWidth = bridgeWidth;
         StringBuilder output = new StringBuilder();
 
         for (int i=0; i<height; i++) {
@@ -66,8 +52,20 @@ public class Ladder {
 
     private void setLadderRow(StringBuilder output, int i) {
         for (int j=0; j<width; j++) {
-            output.append(ladder[i][j]);
+            output.append(getExtendBridge(ladder[i][j]));
         }
+    }
+
+    private String getExtendBridge(char r) {
+        if (r == ' ') {
+            return " ".repeat(bridgeWidth);
+        }
+
+        if (r == '-') {
+            return "-".repeat(bridgeWidth);
+        }
+
+        return "|";
     }
 
     public int getHeight() {
