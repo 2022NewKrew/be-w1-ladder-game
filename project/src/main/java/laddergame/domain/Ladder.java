@@ -1,9 +1,12 @@
+package laddergame.domain;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
     private int countOfPerson;
     private int height;
-    private ArrayList<Line> lines;
+    private List<Line> lines;
 
     public Ladder(int countOfPerson, int height){
         this.countOfPerson = countOfPerson;
@@ -14,9 +17,12 @@ public class Ladder {
         }
     }
 
-    public void printLadder(){
-        for(int i = 0 ; i < lines.size() ; i++) {
-            System.out.println(lines.get(i).toString());
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        for(Line line : lines) {
+            result.append(line.toString());
+            result.append("\n");
         }
+        return result.toString();
     }
 }
