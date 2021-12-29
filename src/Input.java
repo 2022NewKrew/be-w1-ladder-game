@@ -18,31 +18,31 @@ class DepthInput extends Input {
     }
 }
 
-class multipleInput extends Input{
+class MultipleInput extends Input{
     protected ArrayList<String> cases;
 
-    protected void getInput() {
+    protected void getList() {
         String[] inputs = sc.nextLine().split(",");
         cases = new ArrayList<>(Arrays.asList(inputs));
     }
 
-    public ArrayList<String> getCases(){
+    public ArrayList<String> getInput(){
         return cases;
     }
     public int getSize() {return cases.size();}
 }
 
 
-class NameInput extends multipleInput {
+class NameInput extends MultipleInput {
     public NameInput(){
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        getInput();
+        getList();
     }
 }
 
-class ResultInput extends multipleInput {
+class ResultInput extends MultipleInput {
     public ResultInput(){
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        getInput();
+        getList();
     }
 }
