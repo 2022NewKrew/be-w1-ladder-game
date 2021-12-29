@@ -33,17 +33,17 @@ public class Main {
         ladderGameUI.renderLadderBoard(gameResult);
     }
 
+    private static LadderGameService makeLadderGameService(UserInputInfo userInputInfo) {
+        LadderGameConfiguration ladderGameConfiguration = makeLadderGameConfiguration(userInputInfo);
+        LadderGenerator ladderGenerator = new LadderRandomGenerator();
+        return new LadderGameService(ladderGameConfiguration, ladderGenerator);
+    }
+
     private static LadderGameConfiguration makeLadderGameConfiguration(UserInputInfo userInputInfo) {
         return new LadderGameConfiguration(
                 userInputInfo.getPlayerList(),
                 userInputInfo.getMaxLadderHeight()
         );
-    }
-
-    private static LadderGameService makeLadderGameService(UserInputInfo userInputInfo) {
-        LadderGameConfiguration ladderGameConfiguration = makeLadderGameConfiguration(userInputInfo);
-        LadderGenerator ladderGenerator = new LadderRandomGenerator();
-        return new LadderGameService(ladderGameConfiguration, ladderGenerator);
     }
 
 }

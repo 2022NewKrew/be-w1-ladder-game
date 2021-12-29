@@ -1,5 +1,6 @@
 package service;
 
+import common.value.DirectionType;
 import common.value.LadderHeight;
 import common.value.PlayerCount;
 import service.value.Line;
@@ -12,10 +13,6 @@ import java.util.Random;
 public class LadderRandomGenerator implements LadderGenerator {
 
     private static Random random = new Random();
-
-    private static final int LEFT = 0;
-    private static final int DOWN = 1;
-    private static final int RIGHT = 2;
 
     private List<Line> ladders;
 
@@ -71,7 +68,7 @@ public class LadderRandomGenerator implements LadderGenerator {
         if(existLadder == false || colIndex == 0) { return true; }
 
         Point point = ladders.get(colIndex).getPoint(rowIndex);
-        if(point.getDirection() == LEFT) {
+        if(point.getDirection() == DirectionType.LEFT) {
             return false;
         }
 
@@ -81,10 +78,10 @@ public class LadderRandomGenerator implements LadderGenerator {
     private void connectLadder(int rowIndex, int colIndex) {
         Line leftLine = ladders.get(colIndex);
         Point leftPoint = leftLine.getPoint(rowIndex);
-        leftPoint.setDirection(RIGHT);
+        leftPoint.setDirection(DirectionType.RIGHT);
 
         Line rightLine = ladders.get(colIndex + 1);
         Point rightPoint = rightLine.getPoint(rowIndex);
-        rightPoint.setDirection(LEFT);
+        rightPoint.setDirection(DirectionType.LEFT);
     }
 }

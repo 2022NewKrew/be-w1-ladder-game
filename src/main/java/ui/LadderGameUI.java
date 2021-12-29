@@ -1,6 +1,7 @@
 package ui;
 
 import common.data.GameResult;
+import common.value.DirectionType;
 import common.value.LadderHeight;
 import common.value.Player;
 import service.value.Line;
@@ -24,12 +25,6 @@ public class LadderGameUI {
     private static final char EMPTY_LADDER_CHAR = ' ';
 
     private static final int LADDER_WIDTH = 5;
-
-    private static final int LEFT = 0;
-
-    private static final int DOWN = 1;
-
-    private static final int RIGHT = 2;
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -109,7 +104,7 @@ public class LadderGameUI {
         sb.append(LINE_CHAR);
 
         char ladderChar = EMPTY_LADDER_CHAR;
-        if(point.getDirection() == RIGHT) { ladderChar = LADDER_CHAR; }
+        if(point.getDirection() == DirectionType.RIGHT) { ladderChar = LADDER_CHAR; }
         for(int ladderWidth = 0; ladderWidth < LADDER_WIDTH; ladderWidth++) {
             sb.append(ladderChar);
         }

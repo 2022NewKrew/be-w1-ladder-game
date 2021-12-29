@@ -1,22 +1,20 @@
 package service.value;
 
+import common.value.DirectionType;
+
 public class Point {
 
-    private static final int LEFT = 0;
-    private static final int DOWN = 1;
-    private static final int RIGHT = 2;
-
-    private int direction;
+    private DirectionType direction;
 
     public Point() {
-        this.direction = DOWN;
+        this.direction = DirectionType.DOWN;
     }
 
-    public int getDirection() {
+    public DirectionType getDirection() {
         return direction;
     }
 
-    public void setDirection(int direction) {
+    public void setDirection(DirectionType direction) {
         this.direction = direction;
     }
 
