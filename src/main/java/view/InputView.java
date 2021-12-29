@@ -32,7 +32,7 @@ public class InputView {
     public List<String> getPeople() {
         List<String> peopleList = null;
 
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 5글자까지 입력 가능하며, 쉼표(,)로 구분하세요)");
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 " + MAX_NAME_LENGTH + "글자까지 입력 가능하며, 쉼표(,)로 구분하세요)");
         try {
             String peopleString = scanner.nextLine();
             peopleList = List.of(peopleString.split(","));
