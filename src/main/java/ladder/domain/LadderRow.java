@@ -1,31 +1,32 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 
 public class LadderRow {
 
     private final int ladderWidth;
-    private final ArrayList<Boolean> row;
-
-    public ArrayList<Boolean> getRow() {
-        return row;
-    }
+    private final List<LadderCell> row;
 
     public LadderRow(int ladderWidth) {
         this.ladderWidth = ladderWidth;
         this.row = new ArrayList<>();
+
+        createLadderRow();
     }
 
-    public void createLadderRow() {
+    private void createLadderRow() {
+        boolean previousLadderCell = false;
+
         for (int i = 0; i < ladderWidth - 1; i++) {
-            row.add(true);
-            row.add(hasLadderAcrossLine());
+            LadderCell ladderCell = new LadderCell(previousLadderCell);
+            row.add(ladderCell);
+
+            previousLadderCell = ladderCell.getLine();
         }
-        row.add(true);
     }
 
-    private boolean hasLadderAcrossLine() {
-        return new Random().nextBoolean();
+    public List<LadderCell> getRow() {
+        return row;
     }
 }
