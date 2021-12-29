@@ -1,13 +1,15 @@
 package Ladder;
 
-public class NameLine {
-    private String[] nameArray;
+import java.util.List;
 
-    public NameLine(String[] nameLine) {
+public class NameLine {
+    private List<String> nameArray;
+
+    public NameLine(List<String> nameLine) {
         nameArray = nameLine;
     }
 
-    public String[] getNameArray() {
+    public List<String> getNameArray() {
         return nameArray;
     }
 }

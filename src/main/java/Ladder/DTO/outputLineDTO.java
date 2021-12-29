@@ -1,15 +1,15 @@
 package Ladder.DTO;
 
-import Ladder.HorizBarLine;
+import java.util.List;
 
 public class outputLineDTO {
-    private final HorizBarLine line;
+    private final List<String> line;
 
-    public outputLineDTO(HorizBarLine paramLine) {
+    public outputLineDTO(List<String> paramLine) {
         line = paramLine;
     }
 
-    public HorizBarLine getLine() {
+    public List<String> getLine() {
         return line;
     }
 }

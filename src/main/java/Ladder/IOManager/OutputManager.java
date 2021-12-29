@@ -1,28 +1,27 @@
 package Ladder.IOManager;
 
 import Ladder.DTO.outputLineDTO;
-import Ladder.DTO.outputNameDTO;
-import Ladder.HorizBarLine;
-import Ladder.NameLine;
+
+import java.util.List;
 
 public class OutputManager {
     private static final char VER_BAR = '|';
     private static final char BLANK = ' ';
 
     public static void printLine(outputLineDTO line) {
-        HorizBarLine printLine = line.getLine();
+        List<String> printLine = line.getLine();
 
-        for (char cell : printLine.getLine()) {
+        for (String cell : printLine) {
             System.out.print(VER_BAR);
             System.out.print(cell);
         }
         System.out.println(VER_BAR);
     }
 
-    public static void printLine(outputNameDTO line) {
-        NameLine printLine = line.getLine();
+    public static void printNameLine(outputLineDTO line) {
+        List<String> printLine = line.getLine();
 
-        for (String name : printLine.getNameArray()) {
+        for (String name : printLine) {
             System.out.print(name);
             System.out.print(BLANK);
         }
