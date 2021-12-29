@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class LadderRow {
-    private final int numOfPerson;
     private final Random random = new Random();
     private ArrayList<String> elementList = new ArrayList<>();
 
     public LadderRow(int numOfPerson) {
-        this.numOfPerson = numOfPerson;
         //사람 수 - 1 만큼 element가 있어야 함.
         for(int i = 0; i<numOfPerson-1; i++)
         {
-            if (random.nextBoolean())
+            if (random.nextBoolean()) {
                 elementList.add("-");
-            else
+                continue;
+            }
                 elementList.add(" ");
         }
     }
@@ -25,7 +24,7 @@ public class LadderRow {
         stringBuilder.append("|");
         for(String element : elementList)
         {
-            stringBuilder.append(element.toString());
+            stringBuilder.append(element);
             stringBuilder.append("|");
         }
         return stringBuilder.toString();
