@@ -1,13 +1,17 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
  * {@link Ladder}의 가로 한 줄을 담당하는 클래스
  */
 public class LadderRow {
+    /**
+     * {@link LadderRow}의 가로줄 구성요소
+     */
     private enum StepType {
-        EMPTY("    "),
-        STEP("----");
+        EMPTY("     "),
+        STEP("-----");
 
         private final String displayStr;
         private static final Random random = new Random();
@@ -27,11 +31,11 @@ public class LadderRow {
         }
     }
 
-    private final ArrayList<StepType> steps = new ArrayList<>();
+    private final List<StepType> steps = new ArrayList<>();
     private final String poleStr = "|";
 
     LadderRow(int numOfPeople) {
-        for (int i=0; i<numOfPeople; ++i) {
+        for (int i = 0; i < numOfPeople - 1; ++i) {
             steps.add(getNextStep());
         }
     }
