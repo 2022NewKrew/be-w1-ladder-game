@@ -1,66 +1,63 @@
 package main.java;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Engine {
-    private int userNum;
+    private List<String> users;
     private int ladderHeight;
-    private ArrayList<Ladder> ladders;
+    private List<Ladder> ladders;
 
     public void inputUser() {
+        final int MAX_NAME_LEN = 5;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("참여할 사람은 몇 명인가요?");
-        userNum = scanner.nextInt();
+
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        users = Arrays.stream(scanner.nextLine().split(","))
+                .map((name) -> name.length() > MAX_NAME_LEN ? name.substring(0, MAX_NAME_LEN) : name)
+                .collect(Collectors.toList());
     }
 
     public void inputLadder() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         ladderHeight = scanner.nextInt();
-        Ladder.initLadder(ladderHeight);
     }
 
     public void createLadders() {
-        ladders = new ArrayList<>();
-        for (int i = 0; i < userNum; i++) {
-            ladders.add(new Ladder());
-        }
+        ladders = IntStream.range(0, users.size()).mapToObj(e -> new Ladder(ladderHeight)).collect(Collectors.toList());
     }
 
-    public void connectRandomBridges(){
-        int count = 0;
-        Random random = new Random();
-        int bridgeNum = random.nextInt((userNum - 1) * ladderHeight);
-
-        while(count < bridgeNum){
-            int ladderIdx = random.nextInt(userNum-1);
-            int heightIdx = random.nextInt(ladderHeight);
-
-            Ladder ladder = ladders.get(ladderIdx);
-            if(!ladder.isConnectedAt(heightIdx)){
-                ladder.connectBridge(heightIdx);
-                count += 1;
-            }
-        }
-    }
-
-    public void printLadder() {
+    public void showLadders() {
+        printUsers();
         for (int i = 0; i < ladderHeight; i++) {
             System.out.println(printLadderLineAt(i));
         }
     }
 
-    public String printLadderLineAt(int index) {
+    public void printUsers() {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < userNum; i++){
-            builder.append(Ladder.ladderLine.charAt(index));
+        for (String user : users) {
+            builder.append(" ").append(user).append(" ");
+        }
+        System.out.println(builder);
+    }
 
-            if(i == userNum-1) continue;
-            builder.append(ladders.get(i).getBridgeLine().charAt(index));
+    public String printLadderLineAt(int heightIndex) {
+        final String INDENT = "   ";
+        StringBuilder builder = new StringBuilder(INDENT);
+
+        for (int i = 0; i < ladders.size(); i++) {
+            LadderBrick ladderBrick = ladders.get(i).getLadderBrickAt(heightIndex);
+            builder.append(Line.LADDER.line);
+
+            if (i == ladders.size() - 1) continue;
+            builder.append(ladderBrick.getLineBridge().line);
         }
         return builder.toString();
     }
 }
+
