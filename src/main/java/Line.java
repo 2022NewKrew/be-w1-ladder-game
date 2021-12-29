@@ -6,7 +6,7 @@ public class Line {
     private final ArrayList<Boolean> points = new ArrayList<>();
 
     public Line(int numPeople){
-        for (int i = 0; i < numPeople; i++) {
+        for (int i = 0; i < numPeople-1; i++) {
             addPoints(i);
         }
     }
