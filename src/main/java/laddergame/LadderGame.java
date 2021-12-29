@@ -2,7 +2,6 @@ package laddergame;
 
 import laddergame.domain.Ladder;
 import laddergame.view.InputView;
-import laddergame.view.OutputView;
 
 public class LadderGame {
     private final int numberOfGamer;
@@ -20,12 +19,12 @@ public class LadderGame {
         return new LadderGame(numberOfGamer, ladderHeight, ladder);
     }
 
-    public static int inputNumberOfGamer() {
-        return InputView.inputNumberOfGamer();
+    public static int inputNumberOfGamer(InputView inputView) {
+        return inputView.inputNumberOfGamer();
     }
 
-    public static int inputLadderHeight() {
-        return InputView.inputLadderHeight();
+    public static int inputLadderHeight(InputView inputView) {
+        return inputView.inputLadderHeight();
     }
 
     public void printLadder() {
