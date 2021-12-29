@@ -1,4 +1,7 @@
-package com.chanminkim.w1;
+package com.chanminkim.w1.view;
+
+import com.chanminkim.w1.Ladder;
+import com.chanminkim.w1.LadderState;
 
 import java.util.Arrays;
 import java.util.Map;
