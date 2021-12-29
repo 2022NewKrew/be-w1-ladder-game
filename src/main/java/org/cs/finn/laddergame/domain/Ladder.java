@@ -12,32 +12,35 @@ import java.util.List;
 public class Ladder {
     public static final String BARRIER = "|";
 
-    private final LadderRows ladderRows = new LadderRows();
-    private final LadderHeight ladderHeight = new LadderHeight();
+    private final LadderRows ladderRows;
 
-    private final SecureRandom sRand;
-
-    public Ladder(SecureRandom sRand) {
+    public Ladder(final SecureRandom sRand, final LadderHeight ladderHeight, final Member member) {
         if (sRand == null) {
             throw new RuntimeException("SecureRandom is null!");
         }
-        this.sRand = sRand;
-    }
-
-    public void build(final Member member) {
+        if (ladderHeight == null) {
+            throw new RuntimeException("LadderHeight is null!");
+        }
         if (member == null) {
             throw new RuntimeException("Member is null!");
         }
 
-        final int memberVal = member.getMember();
-        final int ladderHeightVal = ladderHeight.getLadderHeight();
-
-        for (int i = 0; i < ladderHeightVal; i++) {
-            ladderRows.add(generateLadderRow(memberVal - 1));
-        }
+        ladderRows = build(sRand, ladderHeight, member);
     }
 
-    private LadderRow generateLadderRow(final int size) {
+    private LadderRows build(final SecureRandom sRand, final LadderHeight ladderHeight, final Member member) {
+        final int memberVal = member.getMember();
+        final int ladderHeightVal = ladderHeight.getLadderHeight();
+        final List<LadderRow> list = new ArrayList<>();
+
+        for (int i = 0; i < ladderHeightVal; i++) {
+            list.add(generateLadderRow(sRand, memberVal - 1));
+        }
+
+        return new LadderRows(list);
+    }
+
+    private LadderRow generateLadderRow(final SecureRandom sRand, final int size) {
         final List<BridgeType> list = new ArrayList<>();
 
         BridgeType bridgeType = BridgeType.EMPTY;
@@ -51,9 +54,5 @@ public class Ladder {
 
     public LadderRows getLadderRows() {
         return this.ladderRows;
-    }
-
-    public LadderHeight getLadderHeight() {
-        return this.ladderHeight;
     }
 }

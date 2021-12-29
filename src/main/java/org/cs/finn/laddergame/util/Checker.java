@@ -19,7 +19,7 @@ public class Checker {
             final int init,
             final int min,
             final int max
-    ) throws IndexOutOfBoundsException
+    ) throws IllegalStateException
     {
         if (min > max) {
             throw new IllegalStateException("min value(" + min + ") is greater then max value(" + max + ")");

@@ -7,18 +7,22 @@ public final class LadderHeight {
     public static final int MIN = 1;
     public static final int MAX = 30;
 
-    private int ladderHeight;
+    private final int ladderHeight;
 
-    public LadderHeight() {
+    public LadderHeight(final String ladderHeightString)
+            throws IndexOutOfBoundsException, NumberFormatException {
         Checker.checkIntMinMaxInit(INIT, MIN, MAX);
+
+        int temp = Integer.parseInt(ladderHeightString, 10);
+        Checker.checkIntBound(temp, MIN, MAX);
+        ladderHeight = temp;
+    }
+
+    public static LadderHeight getDefault() {
+        return new LadderHeight(String.valueOf(INIT));
     }
 
     public int getLadderHeight() {
         return ladderHeight;
-    }
-
-    public void setLadderHeight(final int ladderHeight) {
-        Checker.checkIntBound(ladderHeight, MIN, MAX);
-        this.ladderHeight = ladderHeight;
     }
 }

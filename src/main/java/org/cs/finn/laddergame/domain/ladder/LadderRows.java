@@ -5,13 +5,13 @@ import java.util.Collections;
 import java.util.List;
 
 public final class LadderRows {
-    private final List<LadderRow> list = new ArrayList<>();
+    private final List<LadderRow> list;
 
-    public void add(LadderRow ladderRow) {
-        if (ladderRow == null) {
-            throw new RuntimeException("LadderRow is null!");
+    public LadderRows(final List<LadderRow> list) {
+        if (list == null || list.isEmpty()) {
+            throw new RuntimeException("List<LadderRow> is null or empty!");
         }
-        list.add(ladderRow);
+        this.list = new ArrayList<>(list);
     }
 
     public List<LadderRow> get() {

@@ -1,9 +1,10 @@
 package org.cs.finn.laddergame.view;
 
+import org.cs.finn.laddergame.domain.Ladder;
 import org.cs.finn.laddergame.domain.Member;
 import org.cs.finn.laddergame.domain.ladder.LadderHeight;
 
-import java.util.NoSuchElementException;
+import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class UserInput {
@@ -13,71 +14,48 @@ public class UserInput {
         sc.close();
     }
 
-    private int requestInt(
-            final String msg,
-            final int min,
-            final int max,
-            final int init
-    )
-    {
-        System.out.println(msg + " [" + min + ", " + max + "]");
+    public Member requestMember() {
+        System.out.println("참여할 사람은 몇 명인가요? [" + Member.MIN + ", " + Member.MAX + "]");
+        return getMemberFromInput();
+    }
 
+    private Member getMemberFromInput() {
         try {
-            final String str = sc.nextLine();
-            return Integer.parseInt(str, 10);
-        } catch (NoSuchElementException | NumberFormatException e) {
-            System.out.println("잘못된 값 입력으로 기본 값 (" + init + ")을 사용합니다");
+            return new Member(sc.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("잘못된 값 입력으로 기본 값 (" + Member.INIT + ")을 사용합니다");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("제한 범위[" + Member.MIN + ", " + Member.MAX + "]를 벗어났으므로 " +
+                    "기본 값 (" + Member.INIT + ")을 사용합니다");
         }
 
-        return init;
+        return Member.getDefault();
     }
 
-    private void printErrOutOfIntBound(
-            final int min,
-            final int max,
-            final int init
-    )
-    {
-        System.out.println("제한 범위[" + min + ", " + max + "]를 벗어났으므로 기본 값 (" + init + ")을 사용합니다");
-    }
-
-    public void requestMember(final Member member) {
+    public Ladder requestLadder(final SecureRandom sRand, final Member member) {
+        if (sRand == null) {
+            throw new RuntimeException("SecureRandom is null!");
+        }
         if (member == null) {
             throw new RuntimeException("Member is null!");
         }
 
-        final int input = requestInt(
-                "참여할 사람은 몇 명인가요?",
-                Member.MIN,
-                Member.MAX,
-                Member.INIT
-        );
+        System.out.println("최대 사다리 높이는 몇 개인가요? [" + LadderHeight.MIN + ", " + LadderHeight.MAX + "]");
+        final LadderHeight ladderHeight = getLadderHeightFromInput();
 
-        try {
-            member.setMember(input);
-        } catch (IndexOutOfBoundsException e) {
-            member.setMember(Member.INIT);
-            printErrOutOfIntBound(Member.MIN, Member.MAX, Member.INIT);
-        }
+        return new Ladder(sRand, ladderHeight, member);
     }
 
-    public void requestLadderHeight(final LadderHeight ladderHeight) {
-        if (ladderHeight == null) {
-            throw new RuntimeException("LadderHeight is null!");
-        }
-
-        final int input = requestInt(
-                "최대 사다리 높이는 몇 개인가요?",
-                LadderHeight.MIN,
-                LadderHeight.MAX,
-                LadderHeight.INIT
-        );
-
+    private LadderHeight getLadderHeightFromInput() {
         try {
-            ladderHeight.setLadderHeight(input);
+            return new LadderHeight(sc.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("잘못된 값 입력으로 기본 값 (" + LadderHeight.INIT + ")을 사용합니다");
         } catch (IndexOutOfBoundsException e) {
-            ladderHeight.setLadderHeight(LadderHeight.INIT);
-            printErrOutOfIntBound(LadderHeight.MIN, LadderHeight.MAX, LadderHeight.INIT);
+            System.out.println("제한 범위[" + LadderHeight.MIN + ", " + LadderHeight.MAX + "]를 벗어났으므로 " +
+                    "기본 값 (" + LadderHeight.INIT + ")을 사용합니다");
         }
+
+        return LadderHeight.getDefault();
     }
 }
