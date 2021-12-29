@@ -13,7 +13,7 @@ public class LadderFactory {
                 .collect(Collectors.toList());
     }
 
-    public static List<Boolean> getBridges(int numOfBridges) {
+    private static List<Boolean> getBridges(int numOfBridges) {
         return IntStream.range(0, numOfBridges)
                 .mapToObj(e -> RandomBooleanGenerator.getRandomBoolean())
                 .collect(Collectors.toList());
