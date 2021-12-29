@@ -29,7 +29,6 @@ public class Ladder {
     }
 
     private void createLadder() {
-        Random rand = new Random();
         ladder = new ArrayList<>();
         for(int i = 0; i < ladderSize; i++) {
             ladder.add(createLadderRow());
