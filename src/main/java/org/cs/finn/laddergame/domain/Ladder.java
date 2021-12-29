@@ -7,7 +7,14 @@ import java.util.List;
 public class Ladder {
     private final List<String> ladderRows = new ArrayList<>();
 
-    private static final SecureRandom sRand = new SecureRandom();
+    private final SecureRandom sRand;
+
+    public Ladder(SecureRandom sRand) {
+        if (sRand == null) {
+            throw new RuntimeException("SecureRandom is null!");
+        }
+        this.sRand = sRand;
+    }
 
     public void build(final Input input) {
         if (input == null) {

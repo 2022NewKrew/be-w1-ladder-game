@@ -4,10 +4,14 @@ import org.cs.finn.laddergame.domain.Ladder;
 import org.cs.finn.laddergame.view.LadderView;
 import org.cs.finn.laddergame.view.UserInput;
 
+import java.security.SecureRandom;
+
 public class LadderGame {
+    private final SecureRandom sRand = new SecureRandom();
+
     private final UserInput userInput = new UserInput();
     private final LadderView ladderView = new LadderView();
-    private final Ladder ladder = new Ladder();
+    private final Ladder ladder = new Ladder(sRand);
 
     public LadderGame() {
         System.out.println("--- 사다리 게임 ---");
