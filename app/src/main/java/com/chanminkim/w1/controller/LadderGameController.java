@@ -3,13 +3,11 @@ package com.chanminkim.w1.controller;
 import com.chanminkim.w1.model.Ladder;
 import com.chanminkim.w1.view.LadderConverter;
 
-import java.util.Random;
-
 public class LadderGameController {
     private final Ladder ladder;
 
-    public LadderGameController(Integer numberOfPlayers, Integer heightOfLadder, Random random) {
-        this.ladder = new Ladder(numberOfPlayers, heightOfLadder, random);
+    public LadderGameController(LadderGameDTO dto) {
+        this.ladder = new Ladder(dto.getNumberOfPlayers(), dto.getHeightOfLadder(), dto.getRandom());
     }
 
     public String buildLadder() {
