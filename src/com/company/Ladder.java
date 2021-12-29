@@ -16,7 +16,9 @@ public class Ladder {
     private static final String[] PATTERN = {"- ", " "};
 
     public Ladder(String[] names, int height) {
-        this.names = Arrays.asList(names);
+        this.names = Arrays.stream(names)
+                            .map(s->s.substring(0, Math.min(s.length(), 5)))
+                            .collect(Collectors.toList());
         this.ladderInfo = new ArrayList<String>();
         this.ladderView = new ArrayList<String>();
         this.NUM_PEOPLE = names.length;
