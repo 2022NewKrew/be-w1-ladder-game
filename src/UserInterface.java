@@ -26,8 +26,8 @@ public class UserInterface {
     }
 
     private void printUsers(ArrayList<String> userList) {
-        for (String user : userList){
-            System.out.printf("%"+MAX_NUM_STRING+"s ", user);
+        for (String user : userList) {
+            System.out.printf("%" + MAX_NUM_STRING + "s ", user);
         }
         System.out.println();
     }

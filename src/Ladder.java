@@ -7,8 +7,8 @@ public class Ladder {
     private final ArrayList<LadderRow> bridges = new ArrayList<>();
 
     public Ladder(int numPeople, int ladderHeight) {
-        for(int h=0; h<ladderHeight; h++){
-            bridges.add(new LadderRow(numPeople-WIDTH_CORRECTION));
+        for (int h = 0; h < ladderHeight; h++) {
+            bridges.add(new LadderRow(numPeople - WIDTH_CORRECTION));
         }
     }
 
