@@ -17,6 +17,6 @@ public class LadderInput{
         depth = di.getInput();
 
         names = ni.getCases();
-        results = ni.getCases();
+        results = ri.getCases();
     }
 }
