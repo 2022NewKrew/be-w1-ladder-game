@@ -7,7 +7,7 @@ import view.UserOutput;
 import java.util.List;
 
 public class LadderGame {
-
+    private static final int MAX_LENGTH = 5;
     private static LadderGame INSTANCE;
 
     private final List<String> users;
@@ -36,14 +36,18 @@ public class LadderGame {
         isLegalUsers(userList);
     }
 
-    private void isLegalUsers(List<String> userList){
-        if (userList.stream().anyMatch(userName-> userName.length() > 5)){
+    private void isLegalUsers(List<String> users) {
+        if (isIllegal(users)) {
             throw new IllegalArgumentException("사람의 이름은 5글자 이내여야 합니다.");
         }
     }
 
+    private boolean isIllegal(List<String> users) {
+        return users.stream().anyMatch(userName -> userName.length() > MAX_LENGTH);
+    }
+
     private void isNotEmptyList(List<String> userList) {
-        if (userList.isEmpty()){
+        if (userList.isEmpty()) {
             throw new IllegalArgumentException("한명 이상의 사람을 입력해주세요.");
         }
     }

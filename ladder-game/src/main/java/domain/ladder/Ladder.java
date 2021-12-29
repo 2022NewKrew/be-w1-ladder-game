@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-
-
     private final List<LadderFrameLine> lines;
 
     public Ladder(int frameLength, int height) {

@@ -15,7 +15,7 @@ public class UserOutput {
     private static final String PILLAR = "|";
     private static final String RIGHT_PILLAR = "|  ";
     private static final int ALLOWED_SPACE = 7;
-    public static final String EMPTY_SPACE = " ";
+    private static final String EMPTY_SPACE = " ";
 
     public static void printLadderToConsole(Ladder ladder, List<String> userList) {
         printUserList(userList);
