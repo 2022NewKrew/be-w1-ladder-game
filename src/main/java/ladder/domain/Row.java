@@ -1,12 +1,15 @@
-package ladder;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Row {
+    private static final String PILLAR = "|";
     private static final String IS_LINKED = "-----";
     private static final String IS_NOT_LINKED = "     ";
-    private int numOfColumns;
+    private static final String NEW_LINE = "\n";
+    private final int numOfColumns;
     private List<Boolean> linked;
 
     public Row(int numOfColumns) {
@@ -21,26 +24,42 @@ public class Row {
      */
     public void makeLine() {
         this.linked = new ArrayList<>();
-        for (int i = 0; i < this.numOfColumns - 1; i++) {
-            createLine(i);
-        }
+
+        IntStream.range(0, numOfColumns - 1)
+                 .forEach(this::createLine);
     }
 
     private void createLine(int i) {
         boolean hasLink = false;
-        if(i == 0 || !this.linked.get(i - 1)) {
+        if(isPossibleToLink(i)) {
             hasLink = Math.random() >= 0.5;
         }
         this.linked.add(hasLink);
     }
 
+    private boolean isPossibleToLink(int i) {
+        if(i == 0) {
+            return true;
+        }
+
+        if(!this.linked.get(i - 1)) {
+            return true;
+        }
+
+        return false;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("|");
-        this.linked.forEach(e -> sb.append(e ? IS_LINKED : IS_NOT_LINKED).append("|"));
-        sb.append("\n");
+        sb.append(PILLAR);
+        this.linked.forEach(e -> sb.append(e ? IS_LINKED : IS_NOT_LINKED).append(PILLAR));
+        sb.append(NEW_LINE);
 
         return sb.toString();
+    }
+
+    public List<Boolean> getLinked() {
+        return this.linked;
     }
 }
