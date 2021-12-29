@@ -5,10 +5,10 @@ import com.chanminkim.w1.view.LadderConverter;
 
 import java.util.Random;
 
-public class LadderGame {
+public class LadderGameController {
     private final Ladder ladder;
 
-    public LadderGame(Integer numberOfPlayers, Integer heightOfLadder, Random random) {
+    public LadderGameController(Integer numberOfPlayers, Integer heightOfLadder, Random random) {
         this.ladder = new Ladder(numberOfPlayers, heightOfLadder, random);
     }
 

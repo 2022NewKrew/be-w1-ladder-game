@@ -1,17 +1,17 @@
 package com.chanminkim.w1;
 
-import com.chanminkim.w1.controller.LadderGame;
+import com.chanminkim.w1.controller.LadderGameController;
 
 import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        LadderGame ladderGame = initLadderGameByInput();
-        System.out.println(ladderGame.buildLadder());
+        LadderGameController ladderGameController = initLadderGameByInput();
+        System.out.println(ladderGameController.buildLadder());
     }
 
-    private static LadderGame initLadderGameByInput() {
+    private static LadderGameController initLadderGameByInput() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("참여할 사람은 몇 명인가요?");
@@ -20,6 +20,6 @@ public class Main {
         int heightOfLadder = scanner.nextInt();
         System.out.println();
 
-        return new LadderGame(numberOfPlayers, heightOfLadder, new SecureRandom());
+        return new LadderGameController(numberOfPlayers, heightOfLadder, new SecureRandom());
     }
 }
