@@ -30,13 +30,17 @@ public class InputView {
     }
 
     public List<String> getPeople() {
-        List<String> peopleList;
+        List<String> peopleList = null;
 
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-
-        String peopleString = scanner.nextLine();
-        peopleList = List.of(peopleString.split(","));
-        peopleList.forEach(this::validateName);
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 5글자까지 입력 가능하며, 쉼표(,)로 구분하세요)");
+        try {
+            String peopleString = scanner.nextLine();
+            peopleList = List.of(peopleString.split(","));
+            peopleList.forEach(this::validateName);
+        } catch (NoSuchElementException | IllegalStateException exception) {
+            System.err.println("입력을 처리할 수 없습니다.");
+            System.exit(1);
+        }
 
         return peopleList;
     }
@@ -47,10 +51,9 @@ public class InputView {
         }
     }
 
-    private void validateName(String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
-            System.err.println("이름은 5글자 까지만 입력 가능합니다.");
-            System.exit(1);
+    private void validateName(String name) throws InputMismatchException{
+        if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
+            throw new InputMismatchException();
         }
     }
 }
