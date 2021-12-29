@@ -1,10 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.StringJoiner;
 
 public class Ladder {
 
-    static private final Random randomGenerator = new Random();
+    private static final String STEP = "-";
+    private static final String EMPTY_SPACE = " ";
+    private static final String PILLAR = "|";
+    private static final Random randomGenerator = new Random();
     private final List<String> shape = new ArrayList<>();
 
     public Ladder(int numberOfPerson, int ladderHeight) throws IllegalArgumentException {
@@ -13,6 +17,15 @@ public class Ladder {
         for (int i = 0; i < ladderHeight; i++) {
             shape.add(generateLadderLine(numberOfPerson));
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder convertResult = new StringBuilder();
+        for (String ladderLine : shape) {
+            convertResult.append(ladderLineToString(ladderLine));
+        }
+        return convertResult.toString();
     }
 
     private void checkNumberOfPerson(int numberOfPerson) throws IllegalArgumentException {
@@ -29,22 +42,25 @@ public class Ladder {
 
     private String generateLadderLine(int numberOfPerson) {
         StringBuilder generatedLine = new StringBuilder();
-        int ladderSize = numberOfPerson * 2 - 1;
-        for (int i = 0; i < ladderSize; i++) {
-            if (i % 2 == 1) {
-                generatedLine.append(generateStep());
-                continue;
-            }
-            generatedLine.append("|");
+        for (int i = 0; i < numberOfPerson - 1; i++) {
+            generatedLine.append(generateStep());
         }
         return generatedLine.toString();
     }
 
-    private char generateStep() {
+    private String generateStep() {
         if (randomGenerator.nextBoolean()) {
-            return '-';
+            return STEP;
         }
-        return ' ';
+        return EMPTY_SPACE;
+    }
+
+    private String ladderLineToString(String ladderLine) {
+        StringJoiner stringJoiner = new StringJoiner(PILLAR, PILLAR, PILLAR + "\n");
+        for (String step : ladderLine.split("")) {
+            stringJoiner.add(step);
+        }
+        return stringJoiner.toString();
     }
 
     public List<String> getShape() {
