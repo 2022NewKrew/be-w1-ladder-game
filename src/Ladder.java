@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
     private static final int WIDTH_CORRECTION = 1;
     private static final String SPACE = "  ";
 
-    private final ArrayList<LadderRow> bridges = new ArrayList<>();
+    private final List<LadderRow> bridges = new ArrayList<>();
 
     public Ladder(int numPeople, int ladderHeight) {
         for (int h = 0; h < ladderHeight; h++) {

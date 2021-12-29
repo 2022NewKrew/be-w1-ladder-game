@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.StringJoiner;
 
@@ -8,7 +9,7 @@ public class LadderRow {
     private static final String EMPTY = "     ";
     private static final String BRIDGE = "-----";
 
-    private final ArrayList<Boolean> row = new ArrayList<>();
+    private final List<Boolean> row = new ArrayList<>();
 
     public LadderRow(int width) {
         final Random RANDOM = new Random();

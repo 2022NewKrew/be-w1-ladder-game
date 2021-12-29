@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -7,12 +8,11 @@ public class UserInterface {
 
     Scanner scanner = new Scanner(System.in);
 
-    public ArrayList<String> inputUserInfo() {
+    public List<String> inputUserInfo() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String[] users = scanner.nextLine().split(",");
-        ArrayList<String> userList = new ArrayList<>(Arrays.asList(users));
 
-        return userList;
+        return new ArrayList<>(Arrays.asList(users));
     }
 
     public int inputLadderHeight() {
@@ -20,12 +20,12 @@ public class UserInterface {
         return scanner.nextInt();
     }
 
-    public void printLadderGame(ArrayList<String> userList, Ladder ladder) {
+    public void printLadderGame(List<String> userList, Ladder ladder) {
         printUsers(userList);
         printLadder(ladder);
     }
 
-    private void printUsers(ArrayList<String> userList) {
+    private void printUsers(List<String> userList) {
         for (String user : userList) {
             System.out.printf("%" + MAX_NUM_STRING + "s ", user);
         }
