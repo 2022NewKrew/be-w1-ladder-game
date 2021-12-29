@@ -22,5 +22,4 @@ class LadderTest {
                 .size())
                 .isEqualTo(TEST_NUMBER_OF_PEOPLE - 1);
     }
-
 }
