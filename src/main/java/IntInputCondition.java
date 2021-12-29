@@ -1,4 +1,4 @@
-public class IntInputCondition implements InputCondition{
+public class IntInputCondition implements InputCondition {
     private String query;
     private int limit;
     private String errorMsg;
@@ -10,9 +10,9 @@ public class IntInputCondition implements InputCondition{
     }
 
     @Override
-    public boolean isValid(Input input) {
-        if ((int)input.getValue() > limit) return true;
-        return false;
+    public boolean isValid(Object input) {
+        int num = (Integer) input;
+        return num > limit;
     }
 
     @Override

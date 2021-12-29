@@ -2,33 +2,35 @@ import java.util.*;
 
 public class UserInterface {
 
-    private Ladder ladder;
     private Scanner scanner;
-    private List<String> players;
 
-    public UserInterface(Scanner scanner) {
-        this.scanner = scanner;
+    public UserInterface() {
+        this.scanner = new Scanner(System.in);
     }
 
-    public void makeLadder() {
-        List<String> players;
-        int height;
-        //manCount = readIntInput(new IntInputCondition("참여할 사람은 몇 명 인가요?", 1, "2명 이상의 사람 수를 입력해주세요!"));
+    public Input<ArrayList<String>> readPlayers() {
+        Input<ArrayList<String>> playerInput = null;
         ArrayList<StrCond> playerConds = new ArrayList<>(Arrays.asList(new LstSizeStrCond(1), new LenLTStrCond(5)));
-        players = readStrInput(new StrInputCondition("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요.", playerConds, "2명 이상의 사람 수를 입력해주세요!"));
-        height = readIntInput(new IntInputCondition("사다리의 최대 높이는 몇 개 인가요?", 0, "1 이상의 사다리 높이를 입력해주세요!"));
-        this.players = players;
-        ladder = Ladder.getInstance(height, players.size());
+        StrInputCondition playerInputCond = new StrInputCondition("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요.", playerConds, "2명 이상의 사람 수를 입력해주세요!");
+        do {
+            playerInput = new Input<>(playerInputCond);
+            System.out.println(playerInputCond.getQuery());
+            playerInput.setValue(new ArrayList<>(Arrays.asList(readStr().split(","))));
+        } while (!isValid(playerInput));
+        return playerInput;
     }
 
-    private List<String> readStrInput(StrInputCondition strInputCondition) {
-        List<String> input = null;
+    public Input<Integer> readHeight() {
+        Input<Integer> heightInput = null;
+        IntInputCondition heightInputCond = new IntInputCondition("사다리의 최대 높이는 몇 개 인가요?", 0, "1 이상의 사다리 높이를 입력해주세요!");
         do {
-            System.out.println(strInputCondition.getQuery());
-            input = new ArrayList<>(Arrays.asList(readStr().split(",")));
-        } while (!isValid(new Input<List<String>>(input), strInputCondition));
-        return input;
+            heightInput = new Input<>(heightInputCond);
+            System.out.println(heightInputCond.getQuery());
+            heightInput.setValue(readInt());
+        } while (!isValid(heightInput));
+        return heightInput;
     }
+
 
     private String readStr() {
         Input<String> target = new Input<>();
@@ -47,15 +49,6 @@ public class UserInterface {
             return false;
         }
         return true;
-    }
-
-    private int readIntInput(IntInputCondition inputCondition) {
-        int input;
-        do {
-            System.out.println(inputCondition.getQuery());
-            input = readInt();
-        } while (!isValid(new Input<Integer>(input), inputCondition));
-        return input;
     }
 
     private int readInt() {
@@ -82,31 +75,19 @@ public class UserInterface {
         scanner.nextLine();
     }
 
-    private boolean isValid(Input input, InputCondition inputCondition) {
-        boolean res = inputCondition.isValid(input);
-        if (res == false) System.out.println(inputCondition.getErrorMsg());
+    private boolean isValid(Input input) {
+        boolean res = input.isValid();
+        if (res == false) System.out.println(input.getInputCondition().getErrorMsg());
         return res;
     }
 
-    public void printPlayers(){
-        StringBuilder sb = new StringBuilder();
-        int len = (players.size()+1)*5 + players.size();
 
-        for(int i=0; i<len; i++)
-            sb.append(" ");
-
-        for(int i=0; i<players.size(); i++){
-            int cursor = 5+6*i;
-            String player = players.get(i);
-            int mid = player.length()/2;
-            sb.replace(cursor-mid, cursor-mid+player.length(), player);
-        }
-        System.out.println(sb.toString());
-    }
-
-    public void printLadder() {
+    public void printLadder(Ladder ladder) {
         System.out.println(ladder.toString());
     }
 
+    public void printPlayers(PlayerList playerList) {
+        System.out.println(playerList.toString());
+    }
 
 }

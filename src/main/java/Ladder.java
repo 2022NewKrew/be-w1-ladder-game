@@ -10,20 +10,20 @@ public class Ladder {
         this.height = height;
         this.manCount = manCount;
         this.ladderMap = new ArrayList<>();
+        makeMap();
     }
 
     public static Ladder getInstance(int height, int manCount) {
         Ladder ladder = new Ladder(height, manCount);
-        ladder.makeMap();
         return ladder;
     }
 
-    public void makeMap() {
+    private void makeMap() {
         for (int i = 0; i < height; i++)
             makeRow(manCount);
     }
 
-    public void makeRow(int manCount) {
+    private void makeRow(int manCount) {
         ladderMap.add(LadderRow.getInstance(manCount));
     }
 
