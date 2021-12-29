@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserInfo {
-    private List<User> users;
+    private final List<User> users;
 
     private UserInfo(List<User> users) {
         this.users = users;
@@ -19,11 +19,15 @@ public class UserInfo {
         return new UserInfo(listOfUser);
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
     public int getNumOfUsers() {
         return users.size();
+    }
+
+    public List<String> getUserNames() {
+        List<String> userNames = new ArrayList<>();
+        for(User user: users) {
+            userNames.add(user.getName());
+        }
+        return userNames;
     }
 }

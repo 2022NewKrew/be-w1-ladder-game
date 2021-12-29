@@ -31,18 +31,17 @@ public class ShapeMaker {
     }
 
     private void getShapeOfUsers(StringBuilder sb) {
-        List<User> users = ladder.getUserInfo().getUsers();
-        for (User user : users) {
+        List<String> userNames = ladder.getUserInfo().getUserNames();
+        for (String name : userNames) {
             sb.append(
-                    getFormattedUserName(user)
+                    getFormattedUserName(name)
             );
         }
         sb.append("\n");
     }
 
-    private String getFormattedUserName(User user) {
+    private String getFormattedUserName(String userName) {
         StringBuilder sb = new StringBuilder();
-        String userName = user.getName();
         getBlanksBeforeName(sb, userName);
         sb.append(userName);
         sb.append(BLANK);

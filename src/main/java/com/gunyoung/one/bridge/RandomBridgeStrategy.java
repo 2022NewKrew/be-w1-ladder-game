@@ -19,5 +19,4 @@ public class RandomBridgeStrategy implements BridgeMakeStrategy {
             bridges[row][col] = Bridge.of(isExist);
         }
     }
-
 }
