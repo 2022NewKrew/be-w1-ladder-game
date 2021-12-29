@@ -4,7 +4,7 @@ public class Ladder {
     private final int numPeople;
     private final int maxHeight;
     private final boolean[][] ladder;
-    private final Random rand = new Random();
+    private static final Random rand = new Random();
 
     public Ladder(int numPeople, int maxHeight){
         this.numPeople = numPeople;
