@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 public class IO {
     private static final String qPeopleNames = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -37,13 +38,30 @@ public class IO {
         return maxHeight;
     }
 
-    public static void printLadder(Ladder ladder) {
-        char[][] ladderArr = ladder.getCharArr();
+    public void printLadder(Ladder ladder) {
+        ArrayList<Line> ladderList = ladder.getLadderList(); //unnecessary
+        for (Line line : ladderList) {
+            ArrayList<Boolean> cells = line.getCells();
+            System.out.println(Arrays.toString(cells.toArray()));
+        }
+        // 추가로 arralist -> char[][] 로직 필요
+        char[][] ladderArr = this.getCharArr(ladder);
+
+
         for (char[] row : ladderArr) {
             String strRow = readRow(row);
             System.out.println(strRow);
 
         }
+    }
+
+    public char[][] getCharArr(Ladder ladder) {
+        final int maxHeight = ladder.getMaxHeight();
+        final int nPeople = ladder.getNumPeople();
+        final int maxNameLength = ladder.getMaxNameLength();
+        final int nCol = maxNameLength * (nPeople -1) + nPeople;
+        char[][] charArr = new char[maxHeight][nCol];
+        return charArr;
     }
 
     // read row as string
