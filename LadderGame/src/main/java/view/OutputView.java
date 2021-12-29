@@ -1,34 +1,15 @@
-import java.util.Arrays;
-import java.util.Scanner;
+package view;
 
-public class UserService {
+import domain.Ladder;
+import java.util.Arrays;
+
+public class OutputView {
     private Ladder ladder;
-    private int height;
     private String[] participants;
 
-    UserService(){
-        getInput();
-        ladder = new Ladder(participants.length, height);
-    }
-
-    public void getInput(){
-        Scanner sc = new Scanner(System.in);
-        getParticipants(sc);
-        getHeight(sc);
-        sc.close();
-    }
-
-    public void getParticipants(Scanner sc){
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String str = sc.nextLine();
-        this.participants = str.split(",");
-        System.out.println();
-    }
-
-    public void getHeight(Scanner sc){
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        this.height = sc.nextInt();
-        System.out.println();
+    public OutputView(Ladder ladder, String[] participants){
+        this.participants = participants;
+        this.ladder = ladder;
     }
 
     public void showMap(){
@@ -41,7 +22,6 @@ public class UserService {
     public void showParticipants(){
         char[] participantsName = new char[(participants.length + 1) * 6];
         Arrays.fill(participantsName,' ');
-
         for(int i = 0; i < participants.length; i++){
             writeParticipantToCharArr(participantsName, i);
         }

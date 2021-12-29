@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,8 +19,17 @@ public class Line {
     }
 
     public Boolean getRandomAndNotDuplicate(){
-        if(!points.isEmpty() && points.get(points.size() - 1)) return false; //null에러 방지를 위해 선 조건 기입
+        if(pointsIsNotEmpty() && pointsLastTrue()) return false;
         return random.nextBoolean();
+    }
+
+    public Boolean pointsIsNotEmpty(){
+        return !points.isEmpty();
+    }
+
+    public Boolean pointsLastTrue(){
+        int lastindex = points.size() - 1;
+        return points.get(lastindex);
     }
 
     public String isLine(Boolean point){
