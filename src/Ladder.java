@@ -38,7 +38,7 @@ public class Ladder {
 
     public void printHighestLine(){
         String peopleNameString = "";
-        ArrayList<Integer> emptySpaceSizeList = getEmptySpaceSizeList();
+        List<Integer> emptySpaceSizeList = getEmptySpaceSizeList();
         for (int i = 0; i < peopleNameList.size(); i++) {
             peopleNameString += peopleNameList.get(i);
             peopleNameString += horizontalEmptyString.repeat(emptySpaceSizeList.get(i));
@@ -46,8 +46,8 @@ public class Ladder {
         System.out.println(peopleNameString);
     }
 
-    public ArrayList<Integer> getEmptySpaceSizeList(){
-        ArrayList<Integer> emptySpaceSizeList = new ArrayList<Integer>();
+    public List<Integer> getEmptySpaceSizeList(){
+        List<Integer> emptySpaceSizeList = new ArrayList<Integer>();
         for (int i = 0; i < peopleNameList.size()-1; i++) {
             emptySpaceSizeList.add( getEmptySpaceSize(i) );
         }
