@@ -13,7 +13,7 @@ public class UserInterface {
             System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
             String[] users = scanner.nextLine().split(SEPARATOR);
 
-            checkUserList(users);
+            checkUserNames(users);
 
             return Arrays.asList(users);
         } catch (IllegalArgumentException iae) {
@@ -22,14 +22,9 @@ public class UserInterface {
         }
     }
 
-    private void checkUserList(String[] users) throws IllegalArgumentException {
-        for (String user : users) {
-            checkUserName(user);
-        }
-    }
-
-    private void checkUserName(String user) {
-        if (user.length() > MAX_NUM_STRING) throw new IllegalArgumentException();
+    private void checkUserNames(String[] users) {
+        if (Arrays.stream(users).allMatch(user -> user.length() <= MAX_NUM_STRING))
+            throw new IllegalArgumentException();
     }
 
     public int inputLadderHeight() {

@@ -1,25 +1,25 @@
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
     private static final int WIDTH_CORRECTION = 1;
-    private static final String SPACE = "  ";
+    private static final String NULL_SPACE = "";
+    private static final String EMPTY_SPACE = "  ";
     private static final String NEW_LINE = "\n";
 
-    private final List<LadderRow> bridges = new ArrayList<>();
+    private final List<LadderRow> bridges;
 
     public Ladder(int numPeople, int ladderHeight) {
-        for (int h = 0; h < ladderHeight; h++) {
-            bridges.add(new LadderRow(numPeople - WIDTH_CORRECTION));
-        }
+        bridges = Stream.generate(() -> new LadderRow(numPeople - WIDTH_CORRECTION))
+                .limit(ladderHeight)
+                .collect(Collectors.toList());
     }
 
     @Override
     public String toString() {
-        StringBuilder ladder = new StringBuilder();
-        for (LadderRow line : bridges) {
-            ladder.append(SPACE).append(line).append(NEW_LINE);
-        }
-        return ladder.toString();
+        return bridges.stream()
+                .map(LadderRow::toString)
+                .collect(Collectors.joining(NEW_LINE + EMPTY_SPACE, EMPTY_SPACE, NULL_SPACE));
     }
 }
