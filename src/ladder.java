@@ -1,60 +1,59 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public class ladder {
-    public static void main(String[] args) throws IOException{
-        int[] twoParameters = getConsoleTwoParameter();
-        ArrayList<ArrayList<Character>> ladder = getLadder(twoParameters);
-        showLadder(ladder);
+public class Ladder {
+
+    // 인스턴스 변수
+    private final int column;
+    private final int row;
+    private final List<List<Character>> ladder;
+
+    // 생성자
+    public Ladder(int[] inputNumber) {
+        this.column = inputNumber[1];
+        this.row = 2 * inputNumber[0]-1;
+        this.ladder = getLadder();
     }
 
-    private static void showLadder(ArrayList<ArrayList<Character>> ladder) {
-        for(ArrayList<Character> line : ladder){
-            for(Character element : line){
-                System.out.print(element);
-            }
-            System.out.println();
-        }
-    }
-
-    private static ArrayList<ArrayList<Character>> getLadder(int[] twoParameters) {
-        ArrayList<ArrayList<Character>> ladder = new ArrayList<>();
-        int column = twoParameters[1];
-        int row = 2*twoParameters[0]-1;
+    // 메소드
+    private List<List<Character>> getLadder() {
+        List<List<Character>> createdLadder = new ArrayList<>();
 
         for(int i=0; i<column; i++ ){
-            ArrayList<Character> line = new ArrayList<>();
-            for(int j=0; j<row; j++){
-                line.add(getLadderElement(j));
-            }
-            ladder.add(line);
+            List<Character> line = IntStream.range(0, row)
+                    .mapToObj(this::getLadderElement)
+                    .collect(Collectors.toList());
+            createdLadder.add(line);
         }
-        return ladder;
+        return createdLadder;
     }
 
-    private static Character getLadderElement(int columnNumber) {
+    private Character getLadderElement(int columnNumber) {
         if(columnNumber%2==0){
             return 'ㅣ';
         }
-        boolean isLadderBridge = new Random().nextInt(100) >= 50;
+
+        boolean isLadderBridge = getRandomBridgeByPercent(50);
         if(isLadderBridge){
             return '-';
         }
         return ' ';
     }
 
-    private static int[] getConsoleTwoParameter() throws IOException {
-        int [] twoParameters = new int[2];
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private boolean getRandomBridgeByPercent(int percent){
+        return new Random().nextInt(100) >= percent;
+    }
 
-        System.out.println("참여할 사람은 몇 명인가요 ?");
-        twoParameters[0] = Integer.parseInt(bufferedReader.readLine());
-
-        System.out.println("최대 사다리 높이는 몇 개인가요 ?");
-        twoParameters[1] = Integer.parseInt(bufferedReader.readLine());
-        return twoParameters;
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        ladder.forEach( line-> {
+            line.forEach(result::append);
+            result.append("\n");
+        } );
+        return result.toString();
     }
 }
