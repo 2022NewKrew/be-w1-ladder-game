@@ -9,12 +9,14 @@ public class Ladder {
     private static final Random random = new Random();
     private List<String> stateAsListOfString;
     private final int width, height;
+    private List<Player> players;
     private final String STEP = "-";
     private final String NO_STEP = " ";
     private final String BEAM = "|";
 
-    public Ladder(int width, int height) {
-        this.width = width;
+    public Ladder(List<Player> players, int height) {
+        this.players = players;
+        this.width = players.size();
         this.height = height;
         this.generateSimpleRandom();
     }
