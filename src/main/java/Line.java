@@ -5,8 +5,9 @@ public class Line {
     private final ArrayList<Boolean> connections = new ArrayList<>();
 
     public Line (int numOfPeople, Random random) {
-        for(int person = 0; person < numOfPeople - 1; person++) {
-            connections.add(random.nextBoolean());
+        connections.add(random.nextBoolean());
+        for(int person = 1; person < numOfPeople - 1; person++) {
+            connections.add(!connections.get(person-1) && random.nextBoolean());
         }
     }
 
