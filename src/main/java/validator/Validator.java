@@ -9,12 +9,12 @@ public class Validator {
         }
     }
 
-    public static void checkNameLength(List<String> participantsNames){
+    public static void checkNameLength(List<String> participantsNames) {
         participantsNames.forEach(Validator::checkNameLengthUnder5);
     }
 
-    private static void checkNameLengthUnder5(String name){
-        if (name.length() > 5){
+    private static void checkNameLengthUnder5(String name) {
+        if (name.length() > 5) {
             throw new IllegalArgumentException();
         }
     }
