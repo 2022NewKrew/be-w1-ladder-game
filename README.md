@@ -16,7 +16,7 @@
   
 ### 구현 내용
 다음과 같은 두 개의 클래스로 기능 구현
-- LadderGenerator Class
+- Ladder Class
   - generateLadder()
     - 사다리 생성 / Main.startGame 에서 호출
   - printLadder()
@@ -48,7 +48,7 @@
   
 ### 구현 내용
 step1 에서 구현한 코드 리팩토링 수행
-- LadderGenerator -> LadderGenerator 와 Line 클래스로 분리
+- Ladder -> Ladder 와 Line 클래스로 분리
 - GameController 클래스 생성, Main 클래스의 대부분의 메서드 GameController 로 이전
 - 2차원 배열 -> 2차원 ArrayList 로 변경
 
@@ -56,12 +56,12 @@ Line Class
 - 사다리 게임에서 하나의 층을 담당
 - 실질적으로 랜덤 사다리 요소를 만들고 출력하는 기능 수행
   
-LadderGenerator Class
+Ladder Class
 - Line Class 로 이루어진 ArrayList 를 관리하고 Line 의 메서드를 호출하는 역할 수행
   
 GameController Class
 - 게임 시작부터 종료까지 일련의 과정을 컨트롤하는 역할 수행
-- LadderGenerator 인스턴스를 생성하여 사다리 생성, 출력 메서드 호출
+- Ladder 인스턴스를 생성하여 사다리 생성, 출력 메서드 호출
 - 입력 및 유효성 검사 수행
 - 추후 게임 결과를 확인하는 메서드 추가할 예정
   

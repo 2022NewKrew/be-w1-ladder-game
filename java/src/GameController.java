@@ -1,13 +1,11 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
-//게임 진행 역할을 수행하는 클래스
 public class GameController {
 
-    private final Scanner sc = new Scanner(System.in);
-    private final LadderGenerator ladderGenerator = new LadderGenerator();
-
-    private int players, height;
+    private static final IOController io = new IOController();
+    private final Ladder ladder = new Ladder();
+    private int numOfPlayers, numOfLine;
+    private String[] username;
 
     //게임 시작 메서드
     public void startGame() {
@@ -19,12 +17,12 @@ public class GameController {
 
     //사다리 생성 메서드 호출
     private void generateLadder() {
-        ladderGenerator.generateLadder(players, height);
+        ladder.setLadder(numOfPlayers, numOfLine);
     }
 
     //사다리 라인 출력 메서드 호출
     private void printLadder() {
-        ArrayList<Line> currentLadder = ladderGenerator.getLadder();
+        List<Line> currentLadder = ladder.getLadder();
         if (currentLadder == null) return;
 
         for (Line line : currentLadder) {
@@ -33,19 +31,15 @@ public class GameController {
     }
 
     private boolean inputParam() {
-        players = inputInt("참여할 사람은 몇 명인가요?");
-        height = inputInt("최대 사다리 높이는 몇 개인가요?");
+        numOfPlayers = io.inputInt("참여할 사람은 몇 명인가요?");
+        numOfLine = io.inputInt("최대 사다리 높이는 몇 개인가요?");
+        username = io.inputString("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요").split(",");
 
         return isValidate();
     }
 
-    private int inputInt(String msg) {
-        System.out.println(msg);
-        return sc.nextInt();
-    }
-
     //플레이어 수와 사다리 높이 유효성 검사
     private boolean isValidate() {
-        return !(players <= 1 || height <= 0);
+        return !(numOfPlayers <= 1 || numOfLine <= 0);
     }
 }
