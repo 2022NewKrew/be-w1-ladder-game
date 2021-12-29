@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
@@ -10,7 +12,7 @@ public class Ladder {
     private List<String> people = new ArrayList<String>();
     private ArrayList<Line> ladder = new ArrayList<Line>();
 
-    Ladder() {
+    public Ladder() {
         inputLadder();
         for(int i = 0 ; i < heightOfLadder ; i++) {
             Line line = new Line(countOfPerson);
