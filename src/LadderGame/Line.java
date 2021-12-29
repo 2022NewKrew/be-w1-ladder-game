@@ -11,14 +11,20 @@ public class Line {
     public Line(int ladderWidth, Random randomInstance) {
         this.ladderWidth = ladderWidth;
         this.random = randomInstance;
-        this.points = makeHasRightLadderLine();
+        makeHasRightLadderLine();
     }
 
-    private ArrayList<Boolean> makeHasRightLadderLine(){
-        ArrayList<Boolean> points = new ArrayList<>();
+    private void makeHasRightLadderLine(){
+        points = new ArrayList<>();
         for (int ladderCol = 0; ladderCol < ladderWidth-1; ladderCol++){
-            points.add(random.nextBoolean());
+            points.add(makeValue(ladderCol));
         }
-        return points;
+    }
+
+    private Boolean makeValue(int col){
+        if(col != 0 && points.get(col-1)){
+            return false;
+        }
+        return random.nextBoolean();
     }
 }
