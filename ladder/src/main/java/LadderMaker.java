@@ -1,13 +1,14 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class LadderMaker {
     private static final Random random = new Random();
 
-    public static ArrayList<ArrayList<Boolean>> build(int columnMax, int rowMax){
+    public static ArrayList<ArrayList<Boolean>> build(List<Participant> participants, int rowMax){
         ArrayList<ArrayList<Boolean>> ladderShape = new ArrayList<>();
         for (int row = 0; row < rowMax; row++)
-            ladderShape.add(createRow(row, columnMax));
+            ladderShape.add(createRow(row, participants.size() - 1));
         return ladderShape;
     }
 
