@@ -4,6 +4,7 @@ import laddergame.Ladder;
 import laddergame.LadderComponent;
 import laddergame.User;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -46,9 +47,9 @@ public class View {
         return scanner.nextInt();
     }
 
-    public String[] readUserName() throws IllegalArgumentException {
+    public List<String> readUserName() throws IllegalArgumentException {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String[] splitUser = scanner.nextLine().split(",");
+        List<String> splitUser = Arrays.asList(scanner.nextLine().split(","));
 
         for (String userName : splitUser) {
             isValidUserNameLength(userName);
@@ -57,7 +58,7 @@ public class View {
         return splitUser;
     }
 
-    private Boolean isValidUserNameLength(String userName) throws IllegalArgumentException{
+    private Boolean isValidUserNameLength(String userName) throws IllegalArgumentException {
         if (userName.length() > 5) {
             throw new IllegalArgumentException("사람의 이름은 최대 5자 입니다.");
         }

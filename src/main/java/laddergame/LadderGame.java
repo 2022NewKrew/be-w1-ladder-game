@@ -2,7 +2,6 @@ package laddergame;
 
 import laddergame.view.View;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +16,7 @@ public class LadderGame {
     }
 
     public void run() throws Exception {
-        String[] userNameList = view.readUserName();
+        List<String> userNameList = view.readUserName();
         makeUsers(userNameList);
 
         Integer ladderCount = view.readLadderCount();
@@ -30,9 +29,9 @@ public class LadderGame {
         this.ladder = new Ladder(userCount, ladderCount);
     }
 
-    private void makeUsers(String[] splitUser) {
+    private void makeUsers(List<String> splitUser) {
 
-        this.users = Arrays.stream(splitUser)
+        this.users = splitUser.stream()
                 .map(User::new)
                 .collect(Collectors.toList());
     }
