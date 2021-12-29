@@ -27,7 +27,8 @@ public class ShapeMaker {
     }
 
     private void getShapeOfUsers(StringBuilder sb) {
-        for (User user : ladder.getUsers()) {
+        List<User> users = ladder.getUserInfo().getUsers();
+        for (User user : users) {
             sb.append(
                     getFormattedUserName(user)
             );

@@ -2,9 +2,7 @@ package com.gunyoung.one.ladder;
 
 import com.gunyoung.one.bridge.BridgeInfo;
 import com.gunyoung.one.precondition.Precondition;
-import com.gunyoung.one.user.User;
-
-import java.util.List;
+import com.gunyoung.one.user.UserInfo;
 
 // todo: 추후 User 클래스 추가 시 Drawer 클래스 추가하여 그리기 위임, (User, Ladder, Bridge) 정보 --> (Drawer) = 그림 구조
 //
@@ -12,7 +10,7 @@ public final class Ladder {
 
     private static Ladder INSTANCE;
 
-    private final List<User> users;
+    private final UserInfo userInfo;
     private final int ladderHeight;
     private final BridgeInfo bridgeInfo;
 
@@ -29,17 +27,17 @@ public final class Ladder {
     private Ladder(String userNames, int ladderHeight) {
         Precondition.notLessThanInt(ladderHeight, 1, "사다리의 높이는 1 이상이여야 합니다.");
 
-        this.users = User.getListOfUserFromNames(userNames);
+        this.userInfo = UserInfo.of(userNames);
         this.ladderHeight = ladderHeight;
         this.bridgeInfo = new BridgeInfo(this);
     }
 
-    public List<User> getUsers() {
-        return users;
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
     public int getNumOfUser() {
-        return users.size();
+        return userInfo.getNumOfUsers();
     }
 
     public int getLadderHeight() {
