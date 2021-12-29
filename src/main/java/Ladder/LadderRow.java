@@ -10,10 +10,8 @@ public class LadderRow {
 
     public LadderRow(int numParticipants) {
         for (int i = 0; i < numParticipants-1; i++) {
-            if (i > 0 && horizonBranch.get(i-1)) horizonBranch.add(false);
-            else horizonBranch.add(random.nextBoolean());
+            horizonBranch.add(getRandomHorizonBranch(i));
         }
-
     }
 
     public String toString() {
@@ -27,6 +25,11 @@ public class LadderRow {
         ladderRow.append("\n");
 
         return ladderRow.toString();
+    }
+
+    private Boolean getRandomHorizonBranch(int idx) {
+        if (idx > 0 && horizonBranch.get(idx - 1)) return false;
+        return random.nextBoolean();
     }
 
     private String selectCharacter(boolean isExistHorizon) {
