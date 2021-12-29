@@ -13,14 +13,14 @@ public class Line {
 
     private final List<Boolean> connected; // point 간 연결 여부
 
-    public Line(List<Boolean> connected) {
+    private Line(List<Boolean> connected) {
         this.connected = connected;
     }
 
     /**
      * 랜덤으로 Line 객체를 생성한다.
      */
-    public static Line createRandomLine(int size) {
+    static Line createRandomLine(int size) {
         List<Boolean> connected = new ArrayList<>();
         connected.add(RANDOM.nextBoolean());
         for (int i = 1; i < size; i++) {
