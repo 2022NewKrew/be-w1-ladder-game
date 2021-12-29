@@ -1,7 +1,5 @@
 package com.gunyoung.one.bridge;
 
-import com.gunyoung.one.bridge.BridgeMakeStrategy;
-
 import java.util.Random;
 
 public class RandomBridgeStrategy implements BridgeMakeStrategy {

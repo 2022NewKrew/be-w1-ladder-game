@@ -1,7 +1,5 @@
 package com.gunyoung.one.bridge;
 
-import com.gunyoung.one.ladder.Ladder;
-
 import java.util.ArrayList;
 import java.util.List;
 
