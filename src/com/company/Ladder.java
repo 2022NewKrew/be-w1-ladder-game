@@ -1,19 +1,22 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Ladder {
     private final int numPeople;
     private final int height;
-    private String[] names;
-    private String[] ladder;
+    private ArrayList<String> names;
+    private ArrayList<String> ladder;
     private final Random random;
     private static final String[] pattern = {"- ", " "};
 
     public Ladder(String[] names, int height) {
-        this.names = names;
+        this.names = new ArrayList<String>(Arrays.asList(names));
+        this.ladder = new ArrayList<String>();
         this.numPeople = names.length;
         this.height = height;
         random = new Random();
@@ -21,9 +24,8 @@ public class Ladder {
     }
 
     private void makeNewLadder() {
-        ladder = new String[height];
         for(int y = 0; y < height; y++) {
-            ladder[y] = makeNewLine(numPeople - 1);
+            ladder.add(makeNewLine(numPeople - 1));
         }
     }
 
@@ -44,16 +46,16 @@ public class Ladder {
 
     private void printNames() {
         for(int i = 0; i < numPeople; i++) {
-            int frontSpace = (5 - names[i].length()) / 2;
-            int backSpace = 5 - frontSpace - names[i].length() + 1;
-            System.out.print(new StringBuilder(" ".repeat(frontSpace)) + names[i] + " ".repeat(backSpace));
+            int frontSpace = (5 - names.get(i).length()) / 2;
+            int backSpace = 5 - frontSpace - names.get(i).length() + 1;
+            System.out.print(new StringBuilder(" ".repeat(frontSpace)) + names.get(i) + " ".repeat(backSpace));
         }
         System.out.println();
     }
 
     private void printLine(int y) {
         System.out.println(new StringBuilder("  |")
-                                + Arrays.stream(ladder[y].split(""))
+                                + Arrays.stream(ladder.get(y).split(""))
                                         .map(s->s.repeat(5))
                                         .collect(Collectors.joining("|"))
                                 + "|");
