@@ -3,62 +3,36 @@ package com.cold.ladderGame;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Ladder {
+  private final Character EXISTS_BRIDGE = '-';
+  private final Character NON_EXISTS_BRIDGE = ' ';
+  private final Character VERTICAL_LINE = 'ㅣ';
 
-  private int width;
-  private int height;
   private List<List<Boolean>> resultLadder;
+  private Random random = new Random();
 
-  Scanner scanner = new Scanner(System.in);
-  Random random = new Random();
-
-  public void init() {
-    setValues();
-    createLadder();
+  public Ladder(int width, int height){
+    createLadder(width, height);
   }
 
-  void setValues() {
-    inputWidth();
-    inputHeight();
-  }
-
-  void inputWidth() {
-    boolean check = false;
-    while (!check) {
-      System.out.println("참여할 사람은 몇 명인가요?");
-      width = scanner.nextInt();
-      check = validateInput(width);
-    }
-  }
-
-  void inputHeight() {
-    boolean check = false;
-    while (!check) {
-      System.out.println("최대 사다리 높이는 몇 개인가요?");
-      height = scanner.nextInt();
-      check = validateInput(height);
-    }
-  }
-
-  boolean validateInput(int input) {
-    return input > 0;
-  }
-
-  void createLadder() {
+  private void createLadder(int width, int height) {
     resultLadder = new ArrayList<>(height);
     for (int row = 0; row < height; row++) {
-      ArrayList<Boolean> randomRow = new ArrayList<>(width - 1);
-      for (int col = 0; col < width - 1; col++) {
-        randomRow.add(insertBridge(randomRow, col));
-      }
-      resultLadder.add(row, randomRow);
+      resultLadder.add(insertRow(width));
     }
   }
 
-  boolean insertBridge(ArrayList<Boolean> tempRow, int col) {
-    if (col > 0 && tempRow.get(col - 1)) {
+  private List insertRow(int width){
+    List randomRow = new ArrayList<Boolean>(width);
+    for(int col = 0;col<width;col++){
+      randomRow.add(insertBridge(randomRow,col));
+    }
+    return randomRow;
+  }
+
+  private boolean insertBridge(List<Boolean> randomRow, int col) {
+    if (col > 0 && randomRow.get(col - 1)) {
       return false;
     }
     return random.nextBoolean();
@@ -66,20 +40,22 @@ public class Ladder {
 
   public void printLadder() {
     StringBuffer outputString = new StringBuffer();
-    for (int row = 0; row < height; row++) {
-      for (int col = 0; col < width - 1; col++) {
-        outputString.append("ㅣ");
-        outputString.append(getBridge(resultLadder.get(row).get(col)));
-      }
-      outputString.append("ㅣ\n");
+    for(List row : resultLadder) {
+      outputString = fillBufferRow(outputString, row);
+      outputString.append(VERTICAL_LINE + "\n");
     }
     System.out.println(outputString);
   }
 
-  Character getBridge(Boolean status) {
-      if (status) {
-          return '-';
-      }
-    return ' ';
+  private StringBuffer fillBufferRow(StringBuffer outputString, List<Boolean> row){
+    for(Boolean bridge : row){
+      outputString.append(VERTICAL_LINE);
+      outputString.append(getBridge(bridge));
+    }
+    return outputString;
+  }
+
+  private Character getBridge(Boolean status) {
+      return status ? EXISTS_BRIDGE : NON_EXISTS_BRIDGE;
   }
 }
