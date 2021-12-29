@@ -23,8 +23,9 @@ public class UserInput {
         System.out.println(msg + " [" + min + ", " + max + "]");
 
         try {
-            return sc.nextInt(10);
-        } catch (NoSuchElementException e) {
+            final String str = sc.nextLine();
+            return Integer.parseInt(str, 10);
+        } catch (NoSuchElementException | NumberFormatException e) {
             System.out.println("잘못된 값 입력으로 기본 값 (" + init + ")을 사용합니다");
         }
 
@@ -55,6 +56,7 @@ public class UserInput {
         try {
             member.setMember(input);
         } catch (IndexOutOfBoundsException e) {
+            member.setMember(Member.INIT);
             printErrOutOfIntBound(Member.MIN, Member.MAX, Member.INIT);
         }
     }
@@ -74,6 +76,7 @@ public class UserInput {
         try {
             ladderHeight.setLadderHeight(input);
         } catch (IndexOutOfBoundsException e) {
+            ladderHeight.setLadderHeight(LadderHeight.INIT);
             printErrOutOfIntBound(LadderHeight.MIN, LadderHeight.MAX, LadderHeight.INIT);
         }
     }

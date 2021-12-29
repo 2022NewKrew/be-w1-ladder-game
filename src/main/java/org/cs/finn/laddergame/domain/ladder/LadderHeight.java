@@ -1,6 +1,6 @@
 package org.cs.finn.laddergame.domain.ladder;
 
-import org.cs.finn.laddergame.util.CheckBound;
+import org.cs.finn.laddergame.util.Checker;
 
 public final class LadderHeight {
     public static final int INIT = 5;
@@ -9,18 +9,16 @@ public final class LadderHeight {
 
     private int ladderHeight;
 
+    public LadderHeight() {
+        Checker.checkIntMinMaxInit(INIT, MIN, MAX);
+    }
+
     public int getLadderHeight() {
         return ladderHeight;
     }
 
     public void setLadderHeight(final int ladderHeight) {
-        try {
-            CheckBound.checkIntBound(ladderHeight, MIN, MAX);
-        } catch (IndexOutOfBoundsException e) {
-            this.ladderHeight = INIT;
-            throw e;
-        }
-
+        Checker.checkIntBound(ladderHeight, MIN, MAX);
         this.ladderHeight = ladderHeight;
     }
 }

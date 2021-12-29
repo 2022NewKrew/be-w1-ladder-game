@@ -1,6 +1,6 @@
 package org.cs.finn.laddergame.domain;
 
-import org.cs.finn.laddergame.util.CheckBound;
+import org.cs.finn.laddergame.util.Checker;
 
 public class Member {
     public static final int INIT = 3;
@@ -9,18 +9,16 @@ public class Member {
 
     private int member;
 
+    public Member() {
+        Checker.checkIntMinMaxInit(INIT, MIN, MAX);
+    }
+
     public int getMember() {
         return member;
     }
 
     public void setMember(final int member) {
-        try {
-            CheckBound.checkIntBound(member, MIN, MAX);
-        } catch (IndexOutOfBoundsException e) {
-            this.member = INIT;
-            throw e;
-        }
-
+        Checker.checkIntBound(member, MIN, MAX);
         this.member = member;
     }
 }
