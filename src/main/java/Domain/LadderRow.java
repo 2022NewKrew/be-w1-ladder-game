@@ -23,7 +23,7 @@ public class LadderRow {
             row.add(LadderCell.getInstance(decideHorizon(row, i)));
     }
 
-    private boolean decideHorizon(ArrayList<LadderCell> row, int idx) {
+    public boolean decideHorizon(ArrayList<LadderCell> row, int idx) {
         Random rand = new Random();
         if (idx != 0 && row.get(idx - 1).getIsHorizontal()) return false;
         return rand.nextBoolean();
@@ -38,5 +38,9 @@ public class LadderRow {
         }
         sb.append("     ");
         return sb.toString();
+    }
+
+    public ArrayList<LadderCell> getRow(){
+        return row;
     }
 }
