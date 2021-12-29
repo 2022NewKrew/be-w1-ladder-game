@@ -4,7 +4,6 @@ import org.cs.finn.laddergame.domain.ladder.LadderHeight;
 import org.cs.finn.laddergame.domain.ladder.LadderRows;
 
 import java.security.SecureRandom;
-import java.util.List;
 
 public class Ladder {
     private final LadderRows ladderRows = new LadderRows();
@@ -20,6 +19,10 @@ public class Ladder {
     }
 
     public void build(final Member member) {
+        if (member == null) {
+            throw new RuntimeException("Member is null!");
+        }
+
         final int memberVal = member.getMember();
         final int bound = 1 << (memberVal - 1);
         final int ladderHeightVal = ladderHeight.getLadderHeight();

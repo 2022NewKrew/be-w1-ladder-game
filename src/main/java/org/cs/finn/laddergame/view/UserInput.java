@@ -41,6 +41,10 @@ public class UserInput {
     }
 
     public void requestMember(final Member member) {
+        if (member == null) {
+            throw new RuntimeException("Member is null!");
+        }
+
         final int input = requestInt(
                 "참여할 사람은 몇 명인가요?",
                 Member.MIN,
@@ -56,6 +60,10 @@ public class UserInput {
     }
 
     public void requestLadderHeight(final LadderHeight ladderHeight) {
+        if (ladderHeight == null) {
+            throw new RuntimeException("LadderHeight is null!");
+        }
+
         final int input = requestInt(
                 "최대 사다리 높이는 몇 개인가요?",
                 LadderHeight.MIN,
