@@ -20,7 +20,7 @@ public class LadderGame {
         int heightLadder = inputNumber();
 
         Ladder ladder = new Ladder(LadderFactory.getLadderRows(nameList.size(), heightLadder));
-        LadderPrinter.drawLadder(ladder);
+        LadderPrinter.drawLadder(nameList, ladder);
     }
 
     private static List<String> inputNameList() {
@@ -31,7 +31,7 @@ public class LadderGame {
         return Collections.list(new StringTokenizer(input, ","))
                 .stream()
                 .map(token -> ((String) token).trim())
-                .filter(e -> (e.length() > 0) && (e.length() <= 5))
+                .filter(e -> (e.length() > 0) && (e.length() <= LadderPrinter.maximumNameLength))
                 .collect(Collectors.toList());
     }
 
