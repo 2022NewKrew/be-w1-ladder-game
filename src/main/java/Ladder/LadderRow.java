@@ -19,11 +19,13 @@ public class LadderRow {
 
     public LadderRow(int numParticipants) {
         for (int i = 0; i < numParticipants-1; i++) {
-            if (i > 0 && horizonBranch.get(i-1)) horizonBranch.add(false);
-            else horizonBranch.add(random.nextBoolean());
+            horizonBranch.add(getRandomHorizonBranch(i));
         }
+<<<<<<< HEAD
 
 >>>>>>> 6ea4f61 ([feat] step3 구현)
+=======
+>>>>>>> 8702c13 ([refactor] step-3 리팩토링)
     }
 
     public String toString() {
@@ -40,13 +42,19 @@ public class LadderRow {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8702c13 ([refactor] step-3 리팩토링)
     private Boolean getRandomHorizonBranch(int idx) {
         if (idx > 0 && horizonBranch.get(idx - 1)) return false;
         return random.nextBoolean();
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 6ea4f61 ([feat] step3 구현)
+=======
+>>>>>>> 8702c13 ([refactor] step-3 리팩토링)
     private String selectCharacter(boolean isExistHorizon) {
         if (isExistHorizon) return LadderShape.HORIZON_BRANCH;
         return LadderShape.NO_HORIZON_BRANCH;

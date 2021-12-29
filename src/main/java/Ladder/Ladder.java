@@ -19,6 +19,7 @@ public class Ladder {
         Scanner sc = new Scanner(System.in);
         String inputParticipants;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         inputParticipants = sc.nextLine();
@@ -34,6 +35,12 @@ public class Ladder {
             listOfParticipants.add(alignStringCenter(tempListOfParticipants[i]));
         }
 >>>>>>> 6ea4f61 ([feat] step3 구현)
+=======
+
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        inputParticipants = sc.nextLine();
+        tokenizeNameInput(inputParticipants);
+>>>>>>> 8702c13 ([refactor] step-3 리팩토링)
 
         System.out.println("최대 사다리 높이는 얼마인가요?");
         height = sc.nextInt();
@@ -56,9 +63,12 @@ public class Ladder {
 
         StringBuffer ladderEntire = new StringBuffer();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 6ea4f61 ([feat] step3 구현)
+=======
+>>>>>>> 8702c13 ([refactor] step-3 리팩토링)
         for(int row = 0; row < this.height; row++) {
             ladderEntire.append(shape.get(row).toString());
         }
@@ -71,6 +81,9 @@ public class Ladder {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8702c13 ([refactor] step-3 리팩토링)
     private void tokenizeNameInput (String inputParticipants) {
         String[] tempListOfParticipants;
 
@@ -81,8 +94,11 @@ public class Ladder {
         }
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 6ea4f61 ([feat] step3 구현)
+=======
+>>>>>>> 8702c13 ([refactor] step-3 리팩토링)
     private String alignStringCenter(String inputStr) {
         String str = inputStr.trim();
         if (str.length() > 5) throw new IllegalArgumentException("이름은 5글자 이하로 입력해주세요");
