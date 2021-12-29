@@ -9,7 +9,7 @@ public class LadderGame {
 
     private final Ladder ladder;
 
-    private LadderGame(int numberOfPeople, int ladderHeight) throws IllegalArgumentException {
+    private LadderGame(int numberOfPeople, int ladderHeight) {
         ladder = new Ladder(numberOfPeople, ladderHeight);
     }
 
