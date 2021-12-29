@@ -37,12 +37,12 @@ public class LadderRenderer {
     private void renderRow(LadderRow ladderRow) {
         for (Boolean ladderExist : ladderRow) {
             builder.append("|");
-            builder.append(ladderBooleanToString(ladderExist));
+            builder.append(getLadderString(ladderExist));
         }
         builder.append("|");
     }
 
-    private String ladderBooleanToString(Boolean ladderExist) {
+    private String getLadderString(Boolean ladderExist) {
         if (ladderExist) {
             return "-".repeat(maxLength);
         }

@@ -13,7 +13,7 @@ public interface BaseScanner<T> {
                 validate(value);
                 return value;
             } catch (TypeScannerException e) {
-                System.out.println("오류 발생: " + e.getMessage());
+                System.out.println("사용자 입력 오류: " + e.getMessage());
             }
         }
     }

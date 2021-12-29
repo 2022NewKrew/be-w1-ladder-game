@@ -33,15 +33,7 @@ public class StringArrayScanner implements BaseScanner<String[]> {
         this.delimiter = delimiter;
     }
 
-    public String getDelimiter() {
-        return delimiter;
-    }
-
     public void setMaxLength(int maxLength) {
         this.maxLength = maxLength;
-    }
-
-    public int getMaxLength() {
-        return maxLength;
     }
 }
