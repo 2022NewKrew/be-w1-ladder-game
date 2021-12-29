@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class Output {
+public class ResultView {
     static final String SIDE_RAIL = "|";
     static final String RUNG = "-----";
     static final String SPACE = "     ";
