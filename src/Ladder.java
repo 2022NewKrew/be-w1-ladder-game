@@ -5,13 +5,13 @@ public class Ladder {
     private int participant, height;
     private ArrayList<String[]> ladder = new ArrayList<>();
 
-    public Ladder(int p, int h) {
-        participant = p;
-        height = h;
+    public Ladder(int gameParticipant, int ladderHeight) {
+        participant = gameParticipant;
+        height = ladderHeight;
         makeLadder();
     }
 
-    public String isPossibleMove() {
+    public String makeBridge() {
         Random random = new Random();
         if (random.nextBoolean()) {
             return "-";
@@ -23,7 +23,7 @@ public class Ladder {
         String[] line = new String[2*p - 1];
         Arrays.fill(line, "|");
         for (int i = 1; i < 2*p - 1; i += 2) {
-            line[i] = isPossibleMove();
+            line[i] = makeBridge();
         }
         ladder.add(line);
     }
