@@ -11,7 +11,7 @@ public class LadderRandomGenerator implements LadderGenerator {
 
     public boolean[][] generate(LadderHeight ladderHeight, PeopleCount peopleCount) {
         int height = ladderHeight.getValue();
-        int width = peopleCount.getValue();
+        int width = peopleCount.getValue() - 1;
 
         if (height < 0 || width < 0) {
             return new boolean[0][0];
