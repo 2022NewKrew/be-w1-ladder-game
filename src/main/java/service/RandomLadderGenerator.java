@@ -7,14 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomLadderGenerator implements LadderGenerator {
-    private final static int numberOfNameLine = 1;
 
     @Override
     public Ladder buildLadder(LadderInputInfo ladderInputInfo) {
         List<StringBuilder> ladder = new ArrayList<>();
-        int totalLines = ladderInputInfo.getHeights() + numberOfNameLine;
+        int totalLines = ladderInputInfo.getHeights() + LadderSizeConfig.NUMBER_OF_NAME_LINE;
         initLadder(totalLines, ladder);
-        return new Ladder(assembleLadder(ladderInputInfo, ladder));
+        return new Ladder(assembleLadder(ladderInputInfo, ladder), ladderInputInfo.getParticipantsNames());
     }
 
     private void initLadder(int totalLines, List<StringBuilder> ladder) {
@@ -24,19 +23,13 @@ public class RandomLadderGenerator implements LadderGenerator {
     }
 
     private List<StringBuilder> assembleLadder(LadderInputInfo ladderInputInfo, List<StringBuilder> ladder) {
-        writeName(ladderInputInfo.getParticipantsNames(), ladder.get(numberOfNameLine - 1));
         int numberOfParticipants = ladderInputInfo.getNumberOfParticipants();
-        for (int i = numberOfNameLine; i < ladder.size(); i++) {
+        for (int i = LadderSizeConfig.NUMBER_OF_NAME_LINE; i < ladder.size(); i++) {
             writeOneLadderLine(numberOfParticipants, ladder.get(i));
         }
         return ladder;
     }
 
-    private void writeName(List<String> participantsNames, StringBuilder nameLine) {
-        for (String participantsName : participantsNames) {
-            nameLine.append(participantsName).append(LadderCharacter.SPACE);
-        }
-    }
 
     private void writeOneLadderLine(int numberOfParticipants, StringBuilder ladderLine) {
         ladderLine.append(LadderCharacter.FIRST_COLUMN);
