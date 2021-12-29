@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class Line {
     // 상수
@@ -15,11 +14,11 @@ public class Line {
     private final Random random;
 
     public Line (int peopleCount) {
-        this.points = new ArrayList<>();
-        this.random = new Random();
-        // 줄 검사 로직?
+        points = new ArrayList<>();
+        random = new Random();
+
         for (int i=0; i < peopleCount - 1; i++) {
-            this.points.add(createPoint(i));
+            points.add(createPoint(i));
         }
     }
 
@@ -28,13 +27,13 @@ public class Line {
             return random.nextBoolean();
         }
 
-        return this.points.get(x-1) ? Boolean.FALSE : random.nextBoolean();
+        return points.get(x-1) ? Boolean.FALSE : random.nextBoolean();
     }
 
     private List<String> createRowString() {
         List<String> result = new ArrayList<>();
         result.add(PADDING);
-        for (Boolean isConnected : this.points) {
+        for (Boolean isConnected : points) {
             result.add(COLUMN);
             result.add(isConnected ? CONNECTED : NOT_CONNECTED);
         }

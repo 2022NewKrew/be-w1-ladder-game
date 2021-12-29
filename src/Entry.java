@@ -12,17 +12,17 @@ public class Entry {
     private final List<String> participant;
 
     // 생성자
-    public Entry (String entry) {
-        StringTokenizer stringTokenizer = new StringTokenizer(entry, DELIMITER);
+    public Entry (String participant) {
+        StringTokenizer stringTokenizer = new StringTokenizer(participant, DELIMITER);
         this.participant = new ArrayList<>();
         while (stringTokenizer.hasMoreTokens()) {
-            participant.add(stringTokenizer.nextToken());
+            this.participant.add(stringTokenizer.nextToken());
         }
     }
 
     // 메소드
     public int getEntryCount() {
-        return this.participant.size();
+        return participant.size();
     }
     
     public String centerString(String s, int size) {
