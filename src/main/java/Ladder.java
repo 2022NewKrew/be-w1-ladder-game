@@ -28,7 +28,7 @@ public class Ladder {
 
         return sb.toString();
     }
-    
+
     public int getHeight() {
         return height;
     }
