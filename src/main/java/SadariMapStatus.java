@@ -1,12 +1,12 @@
-public enum LineStatus {
-    SADARI_LINE(()-> System.out.print("-")),
-    EMPTY(()-> System.out.print(" ")),
-    BORDER(() -> System.out.print("|")),
+public enum SadariMapStatus {
+    SADARI_BORDER(() -> System.out.print("|")),
+    SADARI_LINE(()-> System.out.print("-----")),
+    EMPTY(()-> System.out.print("     ")),
     END(System.out::println);
 
     private final Runnable printStrategy;
 
-    LineStatus(Runnable printStrategy) {
+    SadariMapStatus(Runnable printStrategy) {
         this.printStrategy = printStrategy;
     }
 
