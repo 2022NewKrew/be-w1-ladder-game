@@ -22,18 +22,19 @@ public class Ladder {
     }
 
     private void makeRow(int i) {
-        Random rand = new Random();
-        int bridge = rand.nextInt(width/2);
-
         ladder[i][0] = '|';
         for (int j=1; j<width; j++) {
-            ladder[i][j] = makeBridge(bridge, j++);
+            ladder[i][j] = makeBridge(i, j++);
             ladder[i][j] = '|';
         }
     }
 
-    private char makeBridge(int bridge, int j) {
-        if (bridge == j/2) {
+    private char makeBridge(int i, int j) {
+        Random rand = new Random();
+        if (j > 1 && ladder[i][j-2] == '-') {
+            return ' ';
+        }
+        if (rand.nextBoolean()) {
             return '-';
         }
         return ' ';
