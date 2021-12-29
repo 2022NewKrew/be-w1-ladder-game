@@ -7,8 +7,9 @@ public class LadderPrinter {
     }
 
     private static void printRow(List<Boolean> row){
+        System.out.print("   ");
         row.stream()
-            .map(barExists -> barExists? "|-": "| ")
+            .map(barExists -> barExists? "|-----": "|     ")
             .forEach(System.out::print);
         System.out.println("|");
     }
