@@ -1,32 +1,34 @@
 package com.kakao;
 
-import com.kakao.ladder.Ladder;
-import java.util.Scanner;
+import com.kakao.domain.Ladder;
+import com.kakao.domain.Player;
+import com.kakao.factory.LadderFactory;
+import com.kakao.view.InputView;
+import com.kakao.view.OutputView;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
 
-    private static final Scanner sc = new Scanner(System.in);
-    private static int numberOfKrew;
-    private static int heightOfLadder;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final LadderFactory ladderFactory = new LadderFactory();
 
     public static void main(String[] args) {
-        try {
-            input();
-            Ladder ladder = Ladder.create(numberOfKrew, heightOfLadder);
-            ladder.drawLines();
-            System.out.println(ladder);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        Application application = new Application();
+        application.start();
     }
 
-    private static void input() {
-        System.out.println("참여할 사람은 몇 명인가요?");
-        numberOfKrew = sc.nextInt();
+    public void start() {
+        String[] names = inputView.inputNameOfPlayers();
+        int heightOfLadder = inputView.inputHeightOfLadder();
 
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        heightOfLadder = sc.nextInt();
+        List<Player> players = Arrays.stream(names)
+            .map(Player::create)
+            .collect(Collectors.toList());
+        Ladder ladder = ladderFactory.create(players.size(), heightOfLadder);
 
-        sc.close();
+        outputView.print(players, ladder);
     }
 }

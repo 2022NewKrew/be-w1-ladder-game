@@ -1,7 +1,7 @@
-package com.kakao.ladder;
+package com.kakao.domain;
 
 public enum Mark {
-    COL("|"), ROW("-"), BLK(" ");
+    COL("|"), ROW("-----"), BLK("     ");
 
     private final String shape;
 
