@@ -6,7 +6,11 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    // 클래스 변수
+    // 클래스 변수 및 상수
+    private static final Character LADEER = 'ㅣ';
+    private static final Character EMPTY = ' ';
+    private static final Character BRIDGE = '-';
+
     private static final Random random = new Random();
 
     // 인스턴스 변수
@@ -34,14 +38,14 @@ public class Ladder {
 
     private Character getLadderElement(int columnNumber) {
         if (columnNumber % 2 == 0) {
-            return 'ㅣ';
+            return LADEER;
         }
 
         boolean isLadderBridge = getRandomBridgeByPercent(50);
         if (isLadderBridge) {
-            return '-';
+            return BRIDGE;
         }
-        return ' ';
+        return EMPTY;
     }
 
     private boolean getRandomBridgeByPercent(int percent) {
