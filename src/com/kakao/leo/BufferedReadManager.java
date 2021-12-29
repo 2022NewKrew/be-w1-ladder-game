@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,24 +31,18 @@ public class BufferedReadManager implements ReadManager {
 
 
   @Override
-  public LadderConfig getOptions() throws IOException {
-    List<Person> people = getPeopleFromReader();
-    int height = getHeightFromReader();
-    return LadderConfig.of(people, height);
-  }
-
-
-  private List<Person> getPeopleFromReader() throws IOException {
+  public Participants getParticipants() throws IOException {
     System.out.println(INPUT_PEOPLE_MENT);
     List<Person> people = null;
     while (people == null) {
       people = parsePeopleFromReader();
     }
-    return people;
+    return Participants.of(people);
   }
 
 
-  private int getHeightFromReader() throws IOException {
+  @Override
+  public int getLadderHeight() throws IOException {
     println(INPUT_HEIGHT_MENT);
     int height = -1;
     while (height < 0) {
