@@ -28,23 +28,19 @@ public class Ladder {
     private List<ComponentType> createRow(int rowSize){
         List<ComponentType> components = new ArrayList<>();
 
-        components.add(createComponent(ComponentType.NONE, 0));
-        ComponentType prevType = ComponentType.NONE;
-
         for(int col=1; col < rowSize; col++){
-            components.add(createComponent(prevType, col));
-            prevType = components.get(components.size()-2);
+            components.add(createComponent(components, col));
         }
 
         return components;
     }
 
-    private ComponentType createComponent(ComponentType prevType, int col){
+    private ComponentType createComponent(List<ComponentType> prevTypes, int col){
         if(isLine(col)){
             return ComponentType.LINE;
         }
 
-        if(isEmpty(prevType)) {
+        if(isEmpty(prevTypes)) {
             return ComponentType.EMPTY;
         }
 
@@ -55,8 +51,13 @@ public class Ladder {
         return col % 2 == 0;
     }
 
-    private boolean isEmpty(ComponentType prevType){
-        return prevType == ComponentType.LADDER || !random.nextBoolean();
+    private boolean isEmpty(List<ComponentType> prevTypes){
+        if(prevTypes.size() < 2 || !random.nextBoolean()){
+            return true;
+        }
+
+        ComponentType prevType = prevTypes.get(prevTypes.size()-2);
+        return prevType == ComponentType.LADDER;
     }
 
     @Override

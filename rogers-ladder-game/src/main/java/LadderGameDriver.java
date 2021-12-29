@@ -4,14 +4,12 @@ import ladder.Ladder;
 import java.util.Scanner;
 
 public class LadderGameDriver {
-    private static final LadderFactory ladderFactory = new LadderFactory();
-
     private static int numberOfPeople;
     private static int ladderHeight;
 
     public static void main(String[] args) {
         input();
-        Ladder ladder = ladderFactory.getInstance(numberOfPeople, ladderHeight);
+        Ladder ladder = LadderFactory.getInstance(numberOfPeople, ladderHeight);
         System.out.println(ladder);
     }
 
