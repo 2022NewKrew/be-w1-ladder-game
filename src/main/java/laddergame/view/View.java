@@ -25,9 +25,8 @@ public class View {
     }
 
     private void printLadder(Ladder ladder) {
-        Integer ladderCount = ladder.getLadderCount();
-        for (int i = 0; i < ladderCount; i++) {
-            ladder.getLadder().get(i).forEach(this::printEachLadderComponent);
+        for (List<LadderComponent> ladderComponents : ladder.getLadder()) {
+            ladderComponents.forEach(this::printEachLadderComponent);
             System.out.println();
         }
     }
