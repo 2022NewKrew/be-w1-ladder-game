@@ -1,6 +1,7 @@
 package com.gunyoung.one.boot;
 
 import com.gunyoung.one.ladder.Ladder;
+import com.gunyoung.one.messages.GameMessage;
 import com.gunyoung.one.view.View;
 
 public class GameStarter {
@@ -31,11 +32,11 @@ public class GameStarter {
     }
 
     private String inputUserNames() {
-        return view.inputStringWithMessage("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        return view.inputStringWithMessage(GameMessage.INPUT_USER_NAME_MESSAGE);
     }
 
     private int inputLadderHeight() {
-        return view.inputIntWithMessage("최대 사다리 높이는 몇 개인가요?");
+        return view.inputIntWithMessage(GameMessage.INPUT_LADDER_HEIGHT_MESSAGE);
     }
 
     private void drawGameResult() {

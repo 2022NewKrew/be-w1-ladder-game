@@ -1,6 +1,7 @@
 package com.gunyoung.one.ladder;
 
 import com.gunyoung.one.bridge.BridgeInfo;
+import com.gunyoung.one.messages.ErrorMessage;
 import com.gunyoung.one.precondition.Precondition;
 import com.gunyoung.one.user.UserInfo;
 
@@ -13,7 +14,7 @@ public final class Ladder {
     private final BridgeInfo bridgeInfo;
 
     public static Ladder getInstance() {
-        Precondition.notNull(INSTANCE, "Ladder is not initialized");
+        Precondition.notNull(INSTANCE, ErrorMessage.LADDER_NOT_INITIALIZED);
         return INSTANCE;
     }
 
@@ -23,8 +24,8 @@ public final class Ladder {
     }
 
     private Ladder(String userNames, int ladderHeight) {
-        Precondition.notEmpty(userNames, "참여할 사람의 이름을 입력해야합니다.");
-        Precondition.notLessThanInt(ladderHeight, 1, "사다리의 높이는 1 이상이여야 합니다.");
+        Precondition.notEmpty(userNames, ErrorMessage.EMPTY_USER_NAME);
+        Precondition.notLessThanInt(ladderHeight, 1, ErrorMessage.WRONG_LADDER_HEIGHT);
 
         this.ladderHeight = ladderHeight;
         this.userInfo = UserInfo.of(userNames);
