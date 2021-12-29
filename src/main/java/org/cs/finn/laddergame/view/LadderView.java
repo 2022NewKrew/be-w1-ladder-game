@@ -21,6 +21,9 @@ public class LadderView {
             throw new RuntimeException("LadderRow is null!");
         }
 
+        for (int i = 0; i < Ladder.BLANK_LEFT; i++) {
+            System.out.print(' ');
+        }
         for (BridgeType bridgeType : ladderRow.get()) {
             System.out.print(Ladder.BARRIER + bridgeType.toString());
         }

@@ -15,18 +15,17 @@ public class UserInput {
     }
 
     public Member requestMember() {
-        System.out.println("참여할 사람은 몇 명인가요? [" + Member.MIN + ", " + Member.MAX + "]");
+        System.out.println("참여할 사람 이름을 " + Member.SEPARATOR + "로 구분해서 입력하세요. [" + Member.MIN + " ~ " + Member.MAX + "명]");
+        System.out.println("영문 대소문자와 숫자만 사용해 한 사람 당 5자 이하로 써주세요.");
         return getMemberFromInput();
     }
 
     private Member getMemberFromInput() {
         try {
             return new Member(sc.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("잘못된 값 입력으로 기본 값 (" + Member.INIT + ")을 사용합니다");
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("제한 범위[" + Member.MIN + ", " + Member.MAX + "]를 벗어났으므로 " +
-                    "기본 값 (" + Member.INIT + ")을 사용합니다");
+        } catch (IllegalArgumentException e) {
+            System.out.println("유효한 입력 값의 개수가 제한 범위[" + Member.MIN + ", " + Member.MAX + "]를 벗어났으므로 " +
+                    "기본 값 " + Member.DEFAULT_MEMBER + "을 사용합니다");
         }
 
         return Member.getDefault();

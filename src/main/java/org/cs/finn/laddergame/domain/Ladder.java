@@ -11,6 +11,7 @@ import java.util.List;
 
 public class Ladder {
     public static final String BARRIER = "|";
+    public static final int BLANK_LEFT = Member.WIDTH / 2 + 1;
 
     private final LadderRows ladderRows;
 
@@ -29,7 +30,7 @@ public class Ladder {
     }
 
     private LadderRows build(final SecureRandom sRand, final LadderHeight ladderHeight, final Member member) {
-        final int memberVal = member.getMember();
+        final int memberVal = member.getMember().size();
         final int ladderHeightVal = ladderHeight.getLadderHeight();
         final List<LadderRow> list = new ArrayList<>();
 

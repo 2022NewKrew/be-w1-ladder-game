@@ -24,7 +24,7 @@ public class LadderGame {
         final Member member = userInput.requestMember();
         final Ladder ladder = userInput.requestLadder(sRand, member);
         // 사다리 출력
-        //memberView.print(member);
+        memberView.print(member);
         ladderView.print(ladder);
         // 종료 전에 Scanner 닫기
         userInput.closeScanner();
