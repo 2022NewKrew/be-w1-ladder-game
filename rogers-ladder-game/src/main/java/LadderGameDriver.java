@@ -1,25 +1,28 @@
 import factory.LadderFactory;
-import ladder.Ladder;
+import domain.Ladder;
 
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.regex.PatternSyntaxException;
 
 public class LadderGameDriver {
-    private static int numberOfPeople;
+    private static List<String> names;
     private static int ladderHeight;
 
     public static void main(String[] args) {
         input();
-        Ladder ladder = LadderFactory.getInstance(numberOfPeople, ladderHeight);
+        Ladder ladder = LadderFactory.getInstance(names, ladderHeight);
         System.out.println(ladder);
     }
 
     private static void input(){
-        try(Scanner sc = new Scanner(System.in)){
-            System.out.println("참여할 사람은 몇 명인가요?");
-            numberOfPeople = sc.nextInt();
+        try(Scanner scanner = new Scanner(System.in)){
+            System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+            names = List.of(scanner.nextLine().split(","));
 
             System.out.println("최대 사다리 높이는 몇인가요?");
-            ladderHeight = sc.nextInt();
+            ladderHeight = scanner.nextInt();
         }
     }
 }

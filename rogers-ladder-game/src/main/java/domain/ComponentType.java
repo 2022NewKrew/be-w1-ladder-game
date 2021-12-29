@@ -1,7 +1,7 @@
-package ladder;
+package domain;
 
 public enum ComponentType {
-    EMPTY(" "), LINE("|"), LADDER("-"), NONE("");
+    EMPTY("      "), LINE("|"), LADDER("------"), NONE("");
 
     private final String shape;
 
