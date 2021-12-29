@@ -10,7 +10,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-
         InputDTO inputComponent = InputView.inputComponentOfLadder();
         LadderGame game = new LadderGame(inputComponent);
 
