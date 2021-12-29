@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LadderGameTest {
     @Test
-    void test1() throws Exception {
+    void normal_test() throws Exception {
         final String inputString = "3\n5";
 
         try (InputStream inputStream = new ByteArrayInputStream(inputString.getBytes())) {
@@ -24,7 +24,7 @@ class LadderGameTest {
     }
 
     @Test
-    void test2() throws Exception {
+    void abnormal_test() throws Exception {
         final String inputString = "300\n-1";
 
         try (InputStream inputStream = new ByteArrayInputStream(inputString.getBytes())) {

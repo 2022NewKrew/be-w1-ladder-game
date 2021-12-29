@@ -6,23 +6,23 @@ import java.util.stream.IntStream;
 public class LadderBuilder {
     private final Random random = new Random();
 
-    private final StringBuilder ladder;
+    private final StringBuilder buildedLadderShape;
 
     public LadderBuilder() {
-        ladder = new StringBuilder();
+        buildedLadderShape = new StringBuilder();
     }
 
-    public Ladder buildLadder(int ladderWidth, int ladderHeight) {
-        IntStream.range(0, ladderHeight)
-                .forEach(row -> buildLineOfLadder(ladderWidth));
-        return new Ladder(ladder);
+    public void buildLadder(Ladder ladder) {
+        IntStream.range(0, ladder.getHeight())
+                .forEach(row -> buildLineOfLadder(ladder.getWidth()));
+        ladder.setShape(buildedLadderShape);
     }
 
     private void buildLineOfLadder(int ladderWidth) {
-        ladder.append(LadderCharacter.COLOMN);
-        IntStream.range(0, ladderWidth)
-                .forEach(col -> ladder.append(getLadderConnection()));
-        ladder.append(LadderCharacter.CHANGE_LINE);
+        buildedLadderShape.append(LadderCharacter.COLOMN);
+        IntStream.range(0, ladderWidth - 1)
+                .forEach(col -> buildedLadderShape.append(getLadderConnection()));
+        buildedLadderShape.append(LadderCharacter.CHANGE_LINE);
     }
 
     private String getLadderConnection() {
