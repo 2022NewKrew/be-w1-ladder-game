@@ -14,7 +14,9 @@ import static org.mockito.Mockito.verify;
 class RowFirstWalkerTest {
 
     private static final int HEIGHT = 2;
-    private static final int WIDTH = 3;
+    private static final String[] participants = {
+            "Alice", "Bob", "Carol",
+    };
 
     private MultipleNodesWalker.Callback callback;
     private RowFirstWalker subject;
@@ -24,7 +26,7 @@ class RowFirstWalkerTest {
     void setUp() {
         callback = Mockito.mock(MultipleNodesWalker.Callback.class);
         subject = new RowFirstWalker(callback);
-        ladder = new Ladder(HEIGHT, WIDTH);
+        ladder = new Ladder(HEIGHT, participants);
     }
 
     @Test
@@ -32,19 +34,20 @@ class RowFirstWalkerTest {
         subject.walk(ladder);
 
         List<Node> nodes = TestUtils.getAllNodesRowFirst(ladder);
+        int width = participants.length;
         for (int row = 0; row < HEIGHT; row++) {
-            Node firstNode = nodes.get(WIDTH * row);
-            Node lastNode = nodes.get(WIDTH * (row + 1) - 1);
+            Node firstNode = nodes.get(width * row);
+            Node lastNode = nodes.get(width * (row + 1) - 1);
             verify(callback).process(null, firstNode);
-            verifyAllPairsInRow(nodes, row);
+            verifyAllPairsInRow(nodes, width, row);
             verify(callback).process(lastNode, null);
         }
     }
 
-    private void verifyAllPairsInRow(List<Node> nodes, int row) {
-        for (int column = 1; column < WIDTH; column++) {
-            Node leftNode = nodes.get(WIDTH * row + column - 1);
-            Node rightNode = nodes.get(WIDTH * row + column);
+    private void verifyAllPairsInRow(List<Node> nodes, int width, int row) {
+        for (int column = 1; column < width; column++) {
+            Node leftNode = nodes.get(width * row + column - 1);
+            Node rightNode = nodes.get(width * row + column);
             verify(callback).process(leftNode, rightNode);
         }
     }

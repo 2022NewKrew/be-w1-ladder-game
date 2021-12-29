@@ -11,13 +11,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class LadderTest {
 
     private static final int HEIGHT = 3;
-    private static final int WIDTH = 5;
+    private static final String[] participants = {
+            "Alice", "Bob", "Charlie", "David", "Eve",
+    };
 
     private Ladder subject;
 
     @BeforeEach
     void setUp() {
-        subject = new Ladder(HEIGHT, WIDTH);
+        subject = new Ladder(HEIGHT, participants);
     }
 
     @ParameterizedTest
@@ -37,7 +39,7 @@ class LadderTest {
 
     @Test
     void getRailAt_overMaximum() {
-        Executable command = () -> subject.getRailAt(WIDTH);
+        Executable command = () -> subject.getRailAt(participants.length);
 
         assertThrows(IndexOutOfBoundsException.class, command);
     }
@@ -46,7 +48,7 @@ class LadderTest {
     void getWidth() {
         int result = subject.getWidth();
 
-        assertEquals(result, WIDTH);
+        assertEquals(result, participants.length);
     }
 
     @Test

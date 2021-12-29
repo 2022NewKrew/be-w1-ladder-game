@@ -6,18 +6,18 @@ import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class RailTest {
 
+    private static final String LABEL = "hello-world";
     private static final int HEIGHT = 5;
 
     private Rail subject;
 
     @BeforeEach
     void setUp() {
-        subject = new Rail(HEIGHT);
+        subject = new Rail(LABEL, HEIGHT);
     }
 
     @ParameterizedTest
@@ -41,5 +41,12 @@ class RailTest {
         Executable command = () -> subject.getNodeAt(HEIGHT);
 
         assertThrows(IndexOutOfBoundsException.class, command);
+    }
+
+    @Test
+    void getLabel() {
+        String result = subject.getLabel();
+
+        assertEquals(LABEL, result);
     }
 }

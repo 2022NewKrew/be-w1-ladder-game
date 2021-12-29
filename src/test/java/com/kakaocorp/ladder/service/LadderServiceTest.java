@@ -3,8 +3,11 @@ package com.kakaocorp.ladder.service;
 import com.kakaocorp.ladder.model.Direction;
 import com.kakaocorp.ladder.model.Ladder;
 import com.kakaocorp.ladder.model.Node;
+import com.kakaocorp.ladder.policy.GamePolicy;
 import com.kakaocorp.ladder.test.TestUtils;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.List;
 
@@ -13,24 +16,35 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class LadderServiceTest {
 
     private static final int HEIGHT = 4;
-    private static final int WIDTH = 7;
     private static final String TEST_LADDER_PRINTED =
-            "| | | | | | | \n" +
-            "|-| | | | | | \n" +
-            "| | | | | | | \n" +
-            "| |-| | | |-| \n";
+            "|   |   |   |   |   |   |   \n" +
+            "|---|   |   |   |   |   |   \n" +
+            "|   |   |   |   |   |   |   \n" +
+            "|   |---|   |   |   |---|   \n";
+    private static final String[] participants = {
+            "A", "B", "C", "D", "E", "F", "G",
+    };
+
+    private GamePolicy policy;
+    private LadderService subject;
+
+    @BeforeEach
+    void setUp() {
+        policy = Mockito.mock(GamePolicy.class);
+        subject = new LadderService(policy);
+    }
 
     @Test
     void initialize_requestedDimension() {
-        Ladder result = LadderService.initialize(HEIGHT, WIDTH);
+        Ladder result = subject.initialize(HEIGHT, participants);
 
         assertEquals(result.getHeight(), HEIGHT);
-        assertEquals(result.getWidth(), WIDTH);
+        assertEquals(result.getWidth(), participants.length);
     }
 
     @Test
     void initialize_mutualNeighbor() {
-        Ladder result = LadderService.initialize(HEIGHT, WIDTH);
+        Ladder result = subject.initialize(HEIGHT, participants);
 
         for (int row = 0; row < HEIGHT; row++) {
             List<Node> nodes = TestUtils.getAllNodesFromRow(result, row);
@@ -40,10 +54,11 @@ class LadderServiceTest {
 
     @Test
     void buildString() {
-        Ladder ladder = new Ladder(HEIGHT, WIDTH);
+        Ladder ladder = new Ladder(HEIGHT, participants);
         buildSteps(ladder);
+        Mockito.when(policy.getMaxNameLength()).thenReturn(3);
 
-        String result = LadderService.buildString(ladder);
+        String result = subject.buildString(ladder);
 
         assertEquals(TEST_LADDER_PRINTED, result);
     }

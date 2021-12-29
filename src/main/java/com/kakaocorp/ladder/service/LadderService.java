@@ -6,28 +6,35 @@ import com.kakaocorp.ladder.iteration.PossibleNeighborsWalker;
 import com.kakaocorp.ladder.model.Direction;
 import com.kakaocorp.ladder.model.Ladder;
 import com.kakaocorp.ladder.model.Node;
+import com.kakaocorp.ladder.policy.GamePolicy;
 
 public class LadderService {
 
     private static final float NEIGHBOR_RATE = 0.5f;
 
-    public static Ladder initialize(int height, int width) {
-        Ladder ladder = new Ladder(height, width);
-        MultipleNodesWalker.Callback cb = LadderService::connectNeighbors;
+    private final GamePolicy policy;
+
+    public LadderService(GamePolicy policy) {
+        this.policy = policy;
+    }
+
+    public Ladder initialize(int height, String[] participants) {
+        Ladder ladder = new Ladder(height, participants);
+        MultipleNodesWalker.Callback cb = this::connectNeighbors;
         MultipleNodesWalker walker = new PossibleNeighborsWalker(cb);
         walker.walk(ladder);
         return ladder;
     }
 
-    public static String buildString(Ladder ladder) {
+    public String buildString(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
-        MultipleNodesWalker.Callback cb = new LadderPrinter(sb);
+        MultipleNodesWalker.Callback cb = new LadderPrinter(sb, policy);
         MultipleNodesWalker walker = new RowFirstWalker(cb);
         walker.walk(ladder);
         return sb.toString();
     }
 
-    private static void connectNeighbors(Node node1, Node node2) {
+    private void connectNeighbors(Node node1, Node node2) {
         if (node1.hasNeighbor() || node2.hasNeighbor()) {
             return;
         }
@@ -41,9 +48,11 @@ public class LadderService {
     private static class LadderPrinter implements MultipleNodesWalker.Callback {
 
         private final StringBuilder sb;
+        private final GamePolicy policy;
 
-        public LadderPrinter(StringBuilder sb) {
+        public LadderPrinter(StringBuilder sb, GamePolicy policy) {
             this.sb = sb;
+            this.policy = policy;
         }
 
         @Override
@@ -54,10 +63,10 @@ public class LadderService {
             }
             sb.append('|');
             if (node2.hasNeighbor() && node2.getNeighborDirection() == Direction.RIGHT) {
-                sb.append('-');
+                sb.append("-".repeat(policy.getMaxNameLength()));
                 return;
             }
-            sb.append(' ');
+            sb.append(" ".repeat(policy.getMaxNameLength()));
         }
     }
 }
