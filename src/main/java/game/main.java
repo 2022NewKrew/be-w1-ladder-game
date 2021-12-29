@@ -19,7 +19,6 @@ public class main {
 
         System.out.println(str);
         ArrayList<String> arrayList = null;
-        long count = 1;
         do {
             String inputStr = sc.next();
             arrayList = new ArrayList<>(Arrays.asList(inputStr.split(",")));
@@ -30,8 +29,7 @@ public class main {
     }
 
     private static boolean isCorrectPlayerName(ArrayList<String> arrayList) {
-        long count;
-        if((count = arrayList.stream().filter(player -> player.length() > 5).count())>0)
+        if(arrayList.stream().filter(player -> player.length() > 5).count() >0)
         {
             System.out.println("플레이어의 이름은 최대 5자까지 가능합니다.\n 다시 입력해주세요.");
             return false;
