@@ -7,16 +7,33 @@ public class Ladder {
 
     public int numParticipants;
     public int height;
+<<<<<<< HEAD
     public final ArrayList<String> listOfParticipants = new ArrayList<>();
     public final ArrayList<LadderRow> shape = new ArrayList<>();
+=======
+    public ArrayList<String> listOfParticipants = new ArrayList<>();
+    public ArrayList<LadderRow> shape = new ArrayList<>();
+>>>>>>> 6ea4f61 ([feat] step3 구현)
 
     public void getInput() {
         Scanner sc = new Scanner(System.in);
         String inputParticipants;
+<<<<<<< HEAD
 
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         inputParticipants = sc.nextLine();
         tokenizeNameInput(inputParticipants);
+=======
+        String[] tempListOfParticipants;
+
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        inputParticipants = sc.nextLine();
+        tempListOfParticipants = inputParticipants.split(",");
+        numParticipants = tempListOfParticipants.length;
+        for(int i = 0; i < tempListOfParticipants.length; i++) {
+            listOfParticipants.add(alignStringCenter(tempListOfParticipants[i]));
+        }
+>>>>>>> 6ea4f61 ([feat] step3 구현)
 
         System.out.println("최대 사다리 높이는 얼마인가요?");
         height = sc.nextInt();
@@ -38,6 +55,10 @@ public class Ladder {
         System.out.println();
 
         StringBuffer ladderEntire = new StringBuffer();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6ea4f61 ([feat] step3 구현)
         for(int row = 0; row < this.height; row++) {
             ladderEntire.append(shape.get(row).toString());
         }
@@ -49,6 +70,7 @@ public class Ladder {
         if (input < 1) throw new IllegalArgumentException("양의 정수를 입력해주세요");
     }
 
+<<<<<<< HEAD
     private void tokenizeNameInput (String inputParticipants) {
         String[] tempListOfParticipants;
 
@@ -59,6 +81,8 @@ public class Ladder {
         }
     }
 
+=======
+>>>>>>> 6ea4f61 ([feat] step3 구현)
     private String alignStringCenter(String inputStr) {
         String str = inputStr.trim();
         if (str.length() > 5) throw new IllegalArgumentException("이름은 5글자 이하로 입력해주세요");
