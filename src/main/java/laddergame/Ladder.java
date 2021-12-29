@@ -14,7 +14,7 @@ public class Ladder {
     public List<List<LadderComponent>> makeLadder(int userCount, int ladderCount) {
         List<List<LadderComponent>> ladder = new ArrayList<>();
 
-        for(int i = 0; i < ladderCount; i++) {
+        for (int i = 0; i < ladderCount; i++) {
             ladder.add(makeLadderRow(userCount));
         }
         return ladder;

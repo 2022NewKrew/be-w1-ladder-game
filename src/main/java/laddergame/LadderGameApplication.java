@@ -1,15 +1,16 @@
 package laddergame;
 
+import laddergame.view.View;
+
 public class LadderGameApplication {
 
     public static void main(String[] args) {
-
-        LadderGame ladderGame = new LadderGame();
-        Integer userCount = ladderGame.readUserCount();
-        Integer ladderCount = ladderGame.readLadderCount();
-        ladderGame.makeLadder(userCount, ladderCount);
-
-        ladderGame.printLadder(ladderCount);
+        try {
+            LadderGame ladderGame = new LadderGame(new View());
+            ladderGame.run();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }

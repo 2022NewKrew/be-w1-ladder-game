@@ -1,40 +1,42 @@
 package laddergame;
 
-import java.util.Scanner;
+import laddergame.view.View;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
-    private Scanner scanner = new Scanner(System.in);
-
+    private final View view;
     private Ladder ladder;
+    private List<User> users;
 
-    public void makeLadder(int userCount, int ladderCount) {
+    public LadderGame(View view) {
+        this.view = view;
+    }
+
+    public void run() {
+        List<String> userNameList = view.readUserName();
+        makeUsers(userNameList);
+
+        Integer ladderCount = view.readLadderCount();
+        makeLadder(getUserCount(), ladderCount);
+
+        view.printLadderBoard(ladder, users);
+    }
+
+    private void makeLadder(int userCount, int ladderCount) {
         this.ladder = new Ladder(userCount, ladderCount);
     }
 
-    public void printLadder(int ladderCount) {
-        for (int i = 0; i < ladderCount; i++) {
-            ladder.getLadder().get(i).forEach(this::printEachLadderComponent);
-            System.out.println();
-        }
+    private void makeUsers(List<String> splitUser) {
+
+        this.users = splitUser.stream()
+                .map(User::new)
+                .collect(Collectors.toList());
     }
 
-    private void printEachLadderComponent(LadderComponent ladderComponent) {
-        if (ladderComponent.hasRightHorizon()) {
-            System.out.print("|-");
-            return;
-        }
-
-        System.out.print("| ");
-    }
-
-    public Integer readUserCount() {
-        System.out.println("참여할 사람은 몇 명인가요?");
-        return scanner.nextInt();
-    }
-
-    public Integer readLadderCount() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return scanner.nextInt();
+    private Integer getUserCount() {
+        return users.size();
     }
 }
