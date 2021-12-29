@@ -1,40 +1,45 @@
 package com.kakao.leo;
 
+import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Ladder, 사다리 좌표를 보관 및 생성한다.
+ *
+ * @author leo.jung
+ * @since 1.0
+ */
 public class Ladder {
 
-  private final List<List<Character>> floors;
+  private final List<List<LadderCell>> floors;
+  private final Random random;
 
-  private Ladder() {
+  private Ladder() throws Exception {
     this.floors = new ArrayList<>();
+    this.random = SecureRandom.getInstanceStrong();
   }
 
 
-  private Ladder(LadderConfig config) {
+  private Ladder(LadderConfig config) throws Exception {
     this();
     setFloors(config);
   }
 
 
-  public static Ladder ofInput(InputManager inputManager) {
+  public static Ladder ofInput(ReadManager inputManager) throws Exception {
     return Ladder.of(inputManager.getOptions());
   }
 
 
-  public static Ladder of(LadderConfig config) {
+  public static Ladder of(LadderConfig config) throws Exception {
     return new Ladder(config);
   }
 
 
-  public void draw() {
-    draw(ConsoleWriteManager.create());
-  }
-
-
-  public void draw(WriteManager writeManager) {
+  public void drawWith(WriteManager writeManager) throws IOException {
     writeManager.draw(toString());
   }
 
@@ -51,34 +56,33 @@ public class Ladder {
 
 
   private void setFloors(LadderConfig config) {
+    int numberOfPeople = config.getNumberOfPeople();
     int height = config.getHeight();
-    int count = config.getCount();
     for(int i = 0; i < height; i++) {
-      floors.add(createFloor(count));
+      floors.add(createFloor(numberOfPeople));
     }
   }
 
 
-  private List<Character> createFloor(int count) {
-    List<Character> floor = new ArrayList<>();
-    for(int i = 0; i < count; i++) {
-      addCell(floor, i, count - 1);
+  private List<LadderCell> createFloor(int numberOfPeople) {
+    List<LadderCell> floor = new ArrayList<>();
+    for(int i = 0; i < numberOfPeople; i++) {
+      addCell(floor, i, numberOfPeople - 1);
     }
     return floor;
   }
 
 
-  private void addCell(List<Character> floor, int current, int lastIndex) {
-    floor.add('|');
+  private void addCell(List<LadderCell> floor, int current, int lastIndex) {
+    floor.add(LadderCell.LINE);
     if(current < lastIndex) {
       floor.add(getSeparator());
     }
   }
 
 
-  private Character getSeparator() {
-    Random random = new Random();
-    return random.nextBoolean() ? ' ' : '-';
+  private LadderCell getSeparator() {
+    return random.nextBoolean() ? LadderCell.SEPARATOR : LadderCell.EMPTY_SEPARATOR;
   }
 
 }
