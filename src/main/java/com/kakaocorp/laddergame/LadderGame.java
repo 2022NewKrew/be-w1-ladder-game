@@ -1,23 +1,22 @@
 package com.kakaocorp.laddergame;
 
-import com.kakaocorp.laddergame.ladder.Ladder;
-import com.kakaocorp.laddergame.ladder.NameLadder;
-import com.kakaocorp.laddergame.ladder.SimpleLadder;
+import com.kakaocorp.laddergame.ladder.domain.Ladder;
+import com.kakaocorp.laddergame.ladder.domain.NameLadder;
+import com.kakaocorp.laddergame.ladder.view.LadderView;
 
 public class LadderGame {
 
     public static void main(String[] args) {
-        // SimpleLadder 게임(1~2단계 구현)
-//        Ladder ladder = new SimpleLadder();
-
-        // NameLadder 게임(3단계 구현)
-        Ladder ladder = new NameLadder();
+        NameLadder ladder = new NameLadder();
 
         if (!ladder.start()) {
+            System.out.println("게임이 제대로 진행되지 않았습니다.");
             return;
         }
         ladder.makeLadder();
-        ladder.printLadder();
+
+        LadderView ladderView = new LadderView(ladder);
+        ladderView.print();
     }
 
 }

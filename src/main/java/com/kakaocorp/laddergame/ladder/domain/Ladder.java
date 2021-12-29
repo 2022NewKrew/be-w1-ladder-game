@@ -1,15 +1,12 @@
-package com.kakaocorp.laddergame.ladder;
+package com.kakaocorp.laddergame.ladder.domain;
 
 import java.util.List;
-import java.util.Random;
 
 public abstract class Ladder {
 
-    final Random rand = new Random();
-
     int number;
     int height;
-    List<String> ladder;
+    List<Line> lines;
 
     int getNumber() {
         return number;
@@ -27,8 +24,11 @@ public abstract class Ladder {
         this.height = height;
     }
 
+    public List<Line> getLines() {
+        return lines;
+    }
+
     public abstract boolean start();
     public abstract void makeLadder();
-    public abstract void printLadder();
 
 }
