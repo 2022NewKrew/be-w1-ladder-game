@@ -4,7 +4,7 @@ import java.util.Random;
 public class Line {
     private ArrayList<Boolean> cells = new ArrayList<>();
     private static final Random random = new Random();
-    private static boolean stepExist = true;
+    private static boolean stepExist = true; // -> 아래에서 자주 사용돼서 쓰고 보기 쉽게 쓰고 싶은데 class 바깥으로 빼도 되는지..?
     private static boolean stepNotExist = false;
 
     // step이 있을 수 있는 크기인 (numPeople - 1) 수 만큼 Line 길이 지정
@@ -20,7 +20,7 @@ public class Line {
 
     // build base steps for each cell using positions
     public boolean buildStepsPerCell(ArrayList<Boolean> cells){
-        float randomBool = random.nextBoolean();
+        boolean randomBool = random.nextBoolean();
 
         if (randomBool) { // make each step by 50% probability
             cells.add(stepExist);
