@@ -18,7 +18,7 @@ public class Line {
     }
 
     public void connect(Line targetLine, int position) {
-        if (isConnectable(position) && targetLine.isConnectable(position)) {
+        if (this.isConnectable(position) && targetLine.isConnectable(position)) {
             this.setConnection(targetLine, position);
             targetLine.setConnection(this, position);
         }
