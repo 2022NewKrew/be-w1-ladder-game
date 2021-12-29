@@ -5,7 +5,7 @@ public class LadderSimpleGame extends LadderGame {
     private final Random randomInstance = new Random();
     private static final String PARTICIPANT_LINE = "|";
     private static final String MOVE_LINE = "-----";
-    private static final String EMPTY_LINE = " ";
+    private static final String EMPTY_LINE = "     ";
 
     public void createBridge() {
         int row = this.getLadderHeight();
