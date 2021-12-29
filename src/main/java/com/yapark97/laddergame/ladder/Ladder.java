@@ -1,21 +1,24 @@
 package com.yapark97.laddergame.ladder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ladder {
     private final int maxHeight;
-    private final LadderRow[] ladderRows;
+    private final List<LadderRow> ladderRows;
 
-    public Ladder(int participantsNum, int maxHeight) {
+    public Ladder(List<String> participants, int maxHeight) {
         this.maxHeight = maxHeight;
 
-        ladderRows = new LadderRow[maxHeight];
+        ladderRows = new ArrayList<>(5);
         for (int i=0; i<maxHeight; i++) {
-            ladderRows[i] = new LadderRow(participantsNum);
+            ladderRows.set(i, new LadderRow(participants.size()));
         }
     }
 
     public void printLadder() {
         for (int i=0; i<maxHeight; i++) {
-            ladderRows[i].printRow();
+            ladderRows.get(i).printRow();
         }
     }
 }
