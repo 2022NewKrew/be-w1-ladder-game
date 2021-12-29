@@ -1,3 +1,5 @@
+package ladder.util;
+
 import java.util.Random;
 
 public enum RandomUtil {
