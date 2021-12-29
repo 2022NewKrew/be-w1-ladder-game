@@ -1,16 +1,18 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
 
     private final int people;
     private final int height;
-    private List<List<String>> ladderShape;
+    private List<Line> ladderShape;
 
     public Ladder(int people, int height) {
         this.people = people;
         this.height = height;
+        this.ladderShape = new ArrayList<Line>();
     }
 
     public int getPeople() {
@@ -21,11 +23,11 @@ public class Ladder {
         return height;
     }
 
-    public List<List<String>> getLadderShape() {
+    public List<Line> getLadderShape() {
         return ladderShape;
     }
 
-    public void setLadderShape(List<List<String>> ladderShape) {
+    public void setLadderShape(List<Line> ladderShape) {
         this.ladderShape = ladderShape;
     }
 }

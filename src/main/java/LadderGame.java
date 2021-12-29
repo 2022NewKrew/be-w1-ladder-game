@@ -1,16 +1,17 @@
-import domain.LadderBuilder;
-import input.ConfigReader;
-import input.ConfigReaderHeightAndWidthImpl;
-import input.LadderConfig;
 import domain.Ladder;
-import output.LadderPrinter;
-import output.LadderPrinterImpl;
+import domain.LadderBuilder;
+import domain.LadderWithNameBuilder;
+import view.input.ConfigReader;
+import view.input.ConfigReaderNameAndHeight;
+import view.input.LadderConfig;
+import view.output.LadderPrinter;
+import view.output.LadderPrinterWithNameImpl;
 
 public class LadderGame {
 
-    private static ConfigReader configReader = new ConfigReaderHeightAndWidthImpl();
-    private static LadderBuilder ladderBuilder = new LadderBuilder();
-    private static LadderPrinter ladderPrinter = new LadderPrinterImpl();
+    private static ConfigReader configReader = new ConfigReaderNameAndHeight();
+    private static LadderBuilder ladderBuilder = new LadderWithNameBuilder();
+    private static LadderPrinter ladderPrinter = new LadderPrinterWithNameImpl();
 
     public static void main(String[] args) {
 
@@ -18,10 +19,10 @@ public class LadderGame {
         LadderConfig ladderConfig = configReader.readLadderConfig();
 
         // 사다리 만들기
-        Ladder ladder = ladderBuilder.createLadder(ladderConfig.getWidth(), ladderConfig.getHeight());
+        Ladder ladder = ladderBuilder.createLadder(ladderConfig);
 
         // 출력
-        ladderPrinter.printLadderShape(ladder.getLadderShape());
+        ladderPrinter.printLadderShape(ladder);
     }
 
 }
