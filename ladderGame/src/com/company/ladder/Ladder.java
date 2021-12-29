@@ -26,6 +26,12 @@ public class Ladder {
         }
     }
 
+    public void printLadder(){
+        for(int ladderIndex = 0; ladderIndex < ladderHeight; ladderIndex++){
+            printOneLineLadder(ladderIndex);
+        }
+    }
+
     private void makeOneLineLadder(int attendentIndex) {
         for(int ladderIndex = 0; ladderIndex < ladderHeight; ladderIndex++){
             ladderArray[attendentIndex][ladderIndex] = makeOneLadder(attendentIndex, ladderIndex);
@@ -40,15 +46,10 @@ public class Ladder {
         return false;
     }
 
-    public void printLadder(){
-        for(int ladderIndex = 0; ladderIndex < ladderHeight; ladderIndex++){
-            printOneLineLadder(ladderIndex);
-        }
-    }
 
     private void printOneLineLadder(int ladderIndex) {
-        for(int attendentIndex = 0; attendentIndex < attendantNum; attendentIndex++){
-            System.out.printf(getLadderExist(attendentIndex, ladderIndex));
+        for(int attendantIndex = 0; attendantIndex < attendantNum; attendantIndex++){
+            System.out.printf(getLadderExist(attendantIndex, ladderIndex));
         }
         System.out.printf("|\n");
     }
