@@ -1,4 +1,4 @@
-package keith.view;
+package keith.io;
 
 public class OutputManager {
     public void println(String s) {

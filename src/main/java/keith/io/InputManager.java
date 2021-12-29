@@ -1,4 +1,4 @@
-package keith.view;
+package keith.io;
 
 import java.util.Arrays;
 import java.util.Scanner;
