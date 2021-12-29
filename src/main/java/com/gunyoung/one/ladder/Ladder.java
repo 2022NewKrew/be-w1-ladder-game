@@ -1,94 +1,46 @@
 package com.gunyoung.one.ladder;
 
+import com.gunyoung.one.bridge.BridgeInfo;
+import com.gunyoung.one.messages.ErrorMessage;
 import com.gunyoung.one.precondition.Precondition;
+import com.gunyoung.one.user.UserInfo;
 
-// todo: 추후 User 클래스 추가 시 Drawer 클래스 추가하여 그리기 위임, (User, Ladder, Bridge) 정보 --> (Drawer) = 그림 구조
-//
 public final class Ladder {
 
     private static Ladder INSTANCE;
 
-    private final int numOfUser;
     private final int ladderHeight;
-    private final Bridge bridge;
+    private final UserInfo userInfo;
+    private final BridgeInfo bridgeInfo;
 
     public static Ladder getInstance() {
-        Precondition.notNull(INSTANCE, "Ladder is not initialized");
+        Precondition.notNull(INSTANCE, ErrorMessage.LADDER_NOT_INITIALIZED);
         return INSTANCE;
     }
 
-    public static void init(int numOfUser, int ladderHeight) {
-        INSTANCE = new Ladder(numOfUser, ladderHeight);
+    public static void init(String userNames, int ladderHeight) {
+        INSTANCE = new Ladder(userNames, ladderHeight);
+        INSTANCE.bridgeInfo.makeBridges();
     }
 
-    private Ladder(int numOfUser, int ladderHeight) {
-        Precondition.notLessThanInt(numOfUser, 1, "유저의 수는 한명 이상이여야 합니다.");
-        Precondition.notLessThanInt(ladderHeight, 1, "사다리의 높이는 1 이상이여야 합니다.");
+    private Ladder(String userNames, int ladderHeight) {
+        Precondition.notEmpty(userNames, ErrorMessage.EMPTY_USER_NAME);
+        Precondition.notLessThanInt(ladderHeight, 1, ErrorMessage.WRONG_LADDER_HEIGHT);
 
-        this.numOfUser = numOfUser;
         this.ladderHeight = ladderHeight;
-        this.bridge = new Bridge(this);
-        this.bridge.makeBridges();
-    }
-
-    public int getNumOfUser() {
-        return numOfUser;
+        this.userInfo = UserInfo.of(userNames);
+        this.bridgeInfo = new BridgeInfo(ladderHeight, userInfo.getNumOfUsers() - 1);
     }
 
     public int getLadderHeight() {
         return ladderHeight;
     }
 
-    public String getShapeOfLadder() {
-        StringBuilder sb = new StringBuilder();
-        for (int row = 0; row < ladderHeight; row++) {
-            getShapeOfLadderForEachRow(sb, row);
-        }
-        return sb.toString();
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
-    private void getShapeOfLadderForEachRow(StringBuilder sb, int row) {
-        sb.append("|");
-        char[] signaturesOfBridges = bridge.getSignaturesOf(row);
-        for (char signature : signaturesOfBridges) {
-            sb.append(signature)
-                    .append("|");
-        }
-        sb.append("\n");
-    }
-
-    private static class Bridge {
-        private final boolean[][] bridges;
-        private final BridgeMakeStrategy makeStrategy;
-
-        private Bridge(Ladder ladder) {
-            this(ladder, new RandomBridgeStrategy());
-        }
-
-        private Bridge(Ladder ladder, BridgeMakeStrategy makeStrategy) {
-            int ladderHeight = ladder.getLadderHeight();
-            int maxNumOfBridgesForEachRow = ladder.getNumOfUser() - 1;
-            this.bridges = new boolean[ladderHeight][maxNumOfBridgesForEachRow];
-            this.makeStrategy = makeStrategy;
-        }
-
-        private void makeBridges() {
-            makeStrategy.makeBridges(bridges);
-        }
-
-        private char[] getSignaturesOf(int row) {
-            char[] signatures = new char[bridges[row].length];
-            for (int i = 0; i < signatures.length; i++) {
-                signatures[i] = getSignatureOf(row, i);
-            }
-            return signatures;
-        }
-
-        private char getSignatureOf(int row, int col) {
-            if (bridges[row][col])
-                return '-';
-            return ' ';
-        }
-
+    public BridgeInfo getBridgeInfo() {
+        return bridgeInfo;
     }
 }

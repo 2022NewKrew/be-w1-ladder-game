@@ -14,6 +14,11 @@ public class View {
         return scanner.nextInt();
     }
 
+    public String inputStringWithMessage(String message) {
+        output(message);
+        return scanner.next();
+    }
+
     public void output(String str) {
         System.out.println(str);
     }
