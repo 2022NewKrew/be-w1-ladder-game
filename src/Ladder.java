@@ -13,6 +13,7 @@ public class Ladder {
     public Ladder(int width, int height) {
         this.width = width;
         this.height = height;
+        this.generateSimpleRandom();
     }
 
     public void generateSimpleRandom() {
