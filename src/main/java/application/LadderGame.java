@@ -1,5 +1,6 @@
-package domain;
+package application;
 
+import domain.Ladder;
 import view.LadderPrinter;
 
 import java.util.Scanner;
