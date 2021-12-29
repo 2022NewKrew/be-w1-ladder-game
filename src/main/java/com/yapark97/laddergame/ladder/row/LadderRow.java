@@ -10,16 +10,11 @@ public class LadderRow implements Row {
     private final Random rd = new Random();
     private final List<Boolean> connections;
     private final int participantsNum;
-    //private final char[] ladderBlocks;
 
     public LadderRow(int participantsNum) {
-        //int length = participantsNum * 2 - 1;
-
-        //ladderBlocks = new char[length];
         this.participantsNum = participantsNum;
         connections = new ArrayList<>();
         initLadderBlockRow(participantsNum);
-        //createLadderBlocks(length);
     }
 
     @Override
@@ -49,15 +44,6 @@ public class LadderRow implements Row {
             System.out.print(right);
         }
     }
-
-    /*private void createLadderBlocks(int length) {
-        for (int i=0; i<length; i=i+2) {
-            ladderBlocks[i] = LadderBlock.VERTICAL_LINE;
-        }
-        for (int i=1; i<length; i=i+2) {
-            ladderBlocks[i] = createRandomConnection(i);
-        }
-    }*/
 
     private boolean createRandomConnection(int index) {
         if (index > 0 && connections.get(index - 1)) {

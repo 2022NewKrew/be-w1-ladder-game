@@ -26,7 +26,7 @@ public class ParticipantsRow implements Row {
         for (int i=0; i<leftPadding; i++) {
             System.out.print(LadderConst.BLANK);
         }
-        String format = "%." + LadderConst.WIDTH + "s";
+        String format = "%." + (LadderConst.WIDTH-1) + "s";
         System.out.printf(format, participant);
         for (int i=0; i<rightPadding; i++) {
             System.out.print(LadderConst.BLANK);
