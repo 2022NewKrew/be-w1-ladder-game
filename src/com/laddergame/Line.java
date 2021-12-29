@@ -14,7 +14,7 @@ public class Line {
         return new Line(addLadder(participantNumber));
     }
 
-    public List<Boolean> getLine() {
+    public List<Boolean> getHasLadders() {
         return hasLadders;
     }
 

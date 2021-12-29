@@ -10,10 +10,11 @@ public class LadderGameApplication {
         int ladderHeight = inputLadderHeight();
 
         LadderGame ladderGame = LadderGame.valueOf(ladderHeight, ParticipantNames);
-        List<List<Boolean>> result = ladderGame.getResult();
+        Lines lines = ladderGame.getLines();
         List<String> participantNames = ladderGame.getParticipantsNames();
+        ResultDto resultDto = ResultDto.from(lines);
 
         outputParticipantNames(participantNames);
-        outputLadderGameResult(result);
+        outputLadderGameResult(resultDto.getGameResult());
     }
 }

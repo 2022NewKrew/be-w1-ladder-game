@@ -2,7 +2,6 @@ package com.laddergame;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lines {
     private final List<Line> lines;
@@ -19,7 +18,7 @@ public class Lines {
         return new Lines(lines);
     }
 
-    public List<List<Boolean>> getLines() {
-        return lines.stream().map(Line::getLine).collect(Collectors.toList());
+    public List<Line> getLines() {
+        return lines;
     }
 }

@@ -19,7 +19,7 @@ public class LadderGame {
         return participants.getParticipantsNames();
     }
 
-    public List<List<Boolean>> getResult() {
-        return lines.getLines();
+    public Lines getLines() {
+        return lines;
     }
 }
