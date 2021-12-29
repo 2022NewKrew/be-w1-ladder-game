@@ -1,6 +1,11 @@
+package view;
+
+import domain.Ladder;
+import domain.Layer;
+
 import java.util.List;
 
-public class OutputHandler {
+public class OutputView {
     private static final String VERTICAL_LINE = "|";
     private static final String HORIZONTAL_LINE_FILLED = "-----";
     private static final String HORIZONTAL_LINE_EMPTY = "     ";
@@ -10,7 +15,7 @@ public class OutputHandler {
 
     private static final int NAME_OUTPUT_LENGTH = 5;
 
-    public OutputHandler() {
+    public OutputView() {
 
     }
 

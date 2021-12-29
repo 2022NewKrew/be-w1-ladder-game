@@ -1,14 +1,16 @@
+package view;
+
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class InputHandler {
+public class InputView {
     private static final int MAX_NAME_LENGTH = 5;
 
     private final Scanner scanner;
 
-    public InputHandler() {
+    public InputView() {
         scanner = new Scanner(System.in);
     }
 
