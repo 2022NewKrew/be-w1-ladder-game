@@ -1,38 +1,38 @@
 package com.kakao.ui;
 
+import com.kakao.exception.GameInputException;
+
 import java.util.*;
 
 public class GameInput {
 
+    private static final GameInputException exception = new GameInputException();
+
     private Scanner sc = new Scanner(System.in);
 
-    public int setParticipants() {
+    public ArrayList<String> inputParticipants() {
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요.)");
         try {
-            int participants = sc.nextInt();
-            checkException(participants);
-            return participants;
-        } catch (InputMismatchException e) {
-            System.out.println("참여할 사람은 몇 명인가요? (자연수를 입력해 주세요)");
+            String participantsInput = sc.nextLine();
+            exception.checkParticipantsException(participantsInput);
+            String[] participants = participantsInput.split(",");
+            return new ArrayList<>(Arrays.asList(participants));
+        } catch (RuntimeException e) {
             sc = new Scanner(System.in);
-            return this.setParticipants();
+            return inputParticipants();
         }
     }
 
-    public int setHeight() {
+    public int inputHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
         try {
             int height = sc.nextInt();
-            checkException(height);
+            exception.checkHeightException(height);
             return height;
         } catch (InputMismatchException e) {
-            System.out.println("최대 사다리 높이는 몇 개인가요? (자연수를 입력해 주세요)");
             sc = new Scanner(System.in);
-            return this.setHeight();
+            return inputHeight();
         }
     }
 
-    private void checkException(int n) {
-        if (n < 1) {
-            throw new InputMismatchException();
-        }
-    }
 }
