@@ -1,20 +1,13 @@
 import java.util.Scanner;
 
 public class Main {
-    public static Ladder makeLadder(int n, int m) {
-        if(n == 1) {
-            return new SingleLadder(m);
-        }
-        return new MultiLadder(n, m);
-    }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("참여할 사람은 몇 명인가요?");
-        int n = sc.nextInt();
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        String[] names = sc.nextLine().split(",");
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int m = sc.nextInt();
-        Ladder ld = makeLadder(n, m);
-        ld.printLadder();
+        int heightOfLadder = sc.nextInt();
+        LadderGame ladderGame = new LadderGame(names, heightOfLadder);
+        ladderGame.printLadder();
     }
 }
