@@ -2,8 +2,8 @@ package laddergame;
 
 public class Line {
     private final char verticalChar = '|';
-    private final char horizontalChar= '-';
-    private final char horizontalEmptyChar= ' ';
+    private final String horizontalChar= "-";
+    private final String horizontalEmptyChar= " ";
     private double[] ladderFloor;
     public Line(int numOfPeople) {
         ladderFloor = new double[numOfPeople];
@@ -16,14 +16,14 @@ public class Line {
         lineString+=verticalChar;
 
         for (double room:ladderFloor) {
-            lineString+=doubleToChar(room);
+            lineString+= doubleToChar(room).repeat(5);
             lineString+=verticalChar;
         }
 
         System.out.println(lineString);
     }
 
-    public char doubleToChar(double value){
+    public String doubleToChar(double value){
         final double baseValue = 0.5;
         if(value>= baseValue)
             return horizontalChar;

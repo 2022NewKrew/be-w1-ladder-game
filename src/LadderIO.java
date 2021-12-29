@@ -9,31 +9,25 @@ public class LadderIO {
 
     static Scanner sc = new Scanner(System.in);
     static int numOfPeople;
+    static String[] peopleArray;
     static int ladderHeight;
+    static final String peopleNameSeperator = ",";
 
     public static void getNumOfPeopleIO() {
-        System.out.println("참여 할 사람은 몇 명인가요?");
-        setLadderVariable("numOfPeople");
+        System.out.println("참여 할 사람이름을 입력하세요.");
+        peopleArray = sc.next().split(peopleNameSeperator);
+        numOfPeople = peopleArray.length;
     }
 
     public static void getLadderHeightIO() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        setLadderVariable("ladderHeight");
-    }
-
-    public static void setLadderVariable(String variable) {
         int input = sc.nextInt();
-        if (variable.equals("numOfPeople")) {
-            numOfPeople = input;
-        }
-        if (variable.equals("ladderHeight")) {
-            ladderHeight = input;
-        }
+        ladderHeight = input;
     }
 
     // 할당된 변수들에 맞추어 Ladder Class를 생성.
     public static Ladder constructLadder() {
-        Ladder ladder = new Ladder(ladderHeight, numOfPeople);
+        Ladder ladder = new Ladder(ladderHeight, numOfPeople, peopleArray);
         return ladder;
     }
 }
