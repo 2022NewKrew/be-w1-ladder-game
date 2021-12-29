@@ -34,7 +34,7 @@ public class LadderSimpleGame extends LadderGame {
         return "";
     }
 
-    private List<Boolean> createFloorMap(int col) {
+    private List<Boolean> createNoneContinueTrueList(int col) {
 
         List<Boolean> map = new ArrayList<>();
         boolean previousColumnValue = false;
@@ -54,7 +54,7 @@ public class LadderSimpleGame extends LadderGame {
         List<List<Boolean>> ladderMap = new ArrayList<>();
 
         for (int i = 0; i < row; i++) {
-            List<Boolean> list = createFloorMap(col);
+            List<Boolean> list = createNoneContinueTrueList(col);
             ladderMap.add(list);
         }
 
