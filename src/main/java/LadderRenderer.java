@@ -1,12 +1,10 @@
 import java.util.ArrayList;
 
 public class LadderRenderer {
-    public static void render(Ladder ladder){
+    public static void render(int numOfPeople, int heightOfLadder, ArrayList<ArrayList<Boolean>> connections){
         StringBuilder ladderString = new StringBuilder();
-        int heightOfLadder = ladder.getInfo().getHeightOfLadder();
-
         for(int layer = 0; layer < heightOfLadder; layer++) {
-            ladderString.append(renderOneLine(ladder.getInfo().getNumOfPeople(), ladder.getConnections(), layer));
+            ladderString.append(renderOneLine(numOfPeople, connections, layer));
         }
         System.out.println(ladderString);
     }

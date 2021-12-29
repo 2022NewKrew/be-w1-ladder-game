@@ -1,9 +1,11 @@
 public class LadderGame {
     public static void main(String[] args) {
-        LadderInfo info = new LadderInfo();
+        LadderGameStarter starter = new LadderGameStarter();
+        int numOfPeople = starter.getNumOfPeople();
+        int heightOfLadder = starter.getHeightOfLadder();
 
-        Ladder ladder = new Ladder(info);
+        Ladder ladder = new Ladder(numOfPeople, heightOfLadder);
 
-        LadderRenderer.render(ladder);
+        LadderRenderer.render(ladder.getNumOfPeople(), ladder.getHeightOfLadder(), ladder.getConnections());
     }
 }
