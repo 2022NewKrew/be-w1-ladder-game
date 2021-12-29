@@ -1,14 +1,17 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
     /**
      * scanner 를 사용하여 input 처리
-     * @return
+     *
+     * @return [참여자수, 사다리 높이]
      */
-    static int[] input(){
+    static int[] input() {
         int[] inputs = new int[2];
-        Scanner sc= new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.println("참여할 사람은 몇 명인가요?");
         inputs[0] = sc.nextInt();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
@@ -17,42 +20,44 @@ public class Main {
     }
 
     /**
-     * ladderList 에 각 층별로 floorlist 추가
-     * @param partNum 총 참여자 수
-     * @param ladderList
+     * ladderList 에 각 층별로 floorList 추가
+     *
+     * @param partNum    총 참여자 수
+     * @param ladderList 사다리 List
      */
-    static void addFloorList(int partNum,ArrayList ladderList){
+    static void addFloorList(int partNum, List<Floor> ladderList) {
         Floor floor = new Floor();
         for (int part = 0; part < partNum; part++) {
-            floor.addLadderString(part,partNum);
+            floor.addLadderString(part, partNum);
         }
         ladderList.add(floor);
     }
 
 
-
     /**
      * 사다리 정보 배열 출력을 위한 Ladder Array List 생성
+     *
      * @param inputs 참여자수, 사다리 높이 정보
-     * @return  ladderList
+     * @return ladderList
      */
-    static ArrayList makeLadderList(int[] inputs){
+    static List<Floor> makeLadderList(int[] inputs) {
         int partNum = inputs[0]; // 참여자 수
         int floorNum = inputs[1]; // 층수
-        ArrayList<Floor> ladderList = new ArrayList<>();
+        List<Floor> ladderList = new ArrayList<>();
         for (int i = 0; i < floorNum; i++) {
-            addFloorList(partNum,ladderList);
+            addFloorList(partNum, ladderList);
         }
         return ladderList;
     }
 
 
     /**
-     * ladderlist 를 모양에 맞게 출력
-     * @param ladderList
+     * ladderList 를 모양에 맞게 출력
+     *
+     * @param ladderList 사다리 List
      */
-    static void printLadder(ArrayList<Floor> ladderList){
-        for (Floor floor: ladderList) {
+    static void printLadder(List<Floor> ladderList) {
+        for (Floor floor : ladderList) {
             floor.printFloor();
             System.out.println();
         }
@@ -60,7 +65,7 @@ public class Main {
 
     public static void main(String[] args) {
         int[] inputs = input();
-        ArrayList ladderList = makeLadderList(inputs);
+        List<Floor> ladderList = makeLadderList(inputs);
         printLadder(ladderList);
     }
 
