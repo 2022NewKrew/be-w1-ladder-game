@@ -15,6 +15,7 @@ public class Ladder {
 
     public Ladder(String[] players, String[] results, int height) {
         this.height = height;
+
         for (int i = 0; i < players.length; i++) {
             lines.add(new Line(players[i], results[i], height));
             nameIndexMap.put(players[i], i);

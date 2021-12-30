@@ -7,13 +7,11 @@ public class Line {
 
     private final String name;
     private final String result;
-    private final int height;
     private final List<Connection> connections = new ArrayList<>();
 
     public Line(String name, String result, int height) {
         this.name = name;
         this.result = result;
-        this.height = height;
         for (int i = 0; i < height; i++) {
             connections.add(new Connection());
         }
@@ -45,10 +43,6 @@ public class Line {
 
     public Line getConnectedLine(int depth) {
         return connections.get(depth).getTargetLine();
-    }
-
-    public int getHeight() {
-        return height;
     }
 
     public String getName() {
