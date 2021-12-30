@@ -32,10 +32,10 @@ class UserInterfaceTest {
         final UserInterface ui = new UserInterface();
         List<String> users = new ArrayList<>() {
             {
-                add("aaaaa");
-                add("bbbbb");
-                add("cccccc");
-                add("ddddd");
+                add("TalkServer");
+                add("Messaging");
+                add("OpenTalk");
+                add("Kakao");
             }
         };
 
