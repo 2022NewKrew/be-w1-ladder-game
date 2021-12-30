@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class LadderGame {
     private final List<Player> playerNames = new ArrayList<>();
     private int ladderHeight, playerNum;
+    private Ladder ladder;
 
     private void inputData() {
         try(Scanner inputScanner = new Scanner(System.in)){
@@ -31,13 +32,16 @@ public class LadderGame {
     private void inputLadderHeight(Scanner inputScanner){
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         ladderHeight = inputScanner.nextInt();
+        ladder = new Ladder(playerNum, ladderHeight);
     }
 
     public void startGame(){
         inputData();
-        printPlayerNames();
+        printLadderInfo();
+    }
 
-        Ladder ladder = new Ladder(playerNum, ladderHeight);
+    private void printLadderInfo(){
+        printPlayerNames();
         ladder.printLadder();
     }
 
