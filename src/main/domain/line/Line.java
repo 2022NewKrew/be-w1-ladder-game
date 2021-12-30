@@ -19,32 +19,32 @@ public class Line {
         }
     }
 
-    public void connect(Line targetLine, int position) {
-        if (isConnectable(targetLine, position)) {
-            this.setConnection(targetLine, position);
-            targetLine.setConnection(this, position);
+    public void connect(Line targetLine, int depth) {
+        if (isConnectable(targetLine, depth)) {
+            this.setConnection(targetLine, depth);
+            targetLine.setConnection(this, depth);
         }
     }
 
-    public void setConnection(Line targetLine, int position) {
-        connections.get(position).connect(targetLine);
+    public void setConnection(Line targetLine, int depth) {
+        connections.get(depth).connect(targetLine);
     }
 
-    public boolean isConnectable(Line targetLine, int position) {
-        return !isConnected(position) && !targetLine.isConnected(position);
+    public boolean isConnectable(Line targetLine, int depth) {
+        return !isConnected(depth) && !targetLine.isConnected(depth);
     }
 
-    public boolean isConnected(int position) {
-        return connections.get(position).isConnected();
+    public boolean isConnected(int depth) {
+        return connections.get(depth).isConnected();
     }
 
-    public boolean isConnectedTo(Line targetLine, int position) {
-        Line connectedLine = getConnectedLine(position);
+    public boolean isConnectedTo(Line targetLine, int depth) {
+        Line connectedLine = getConnectedLine(depth);
         return connectedLine != null && connectedLine.equals(targetLine);
     }
 
-    public Line getConnectedLine(int position) {
-        return connections.get(position).getTargetLine();
+    public Line getConnectedLine(int depth) {
+        return connections.get(depth).getTargetLine();
     }
 
     public int getHeight() {

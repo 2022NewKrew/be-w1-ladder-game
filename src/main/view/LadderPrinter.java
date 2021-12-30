@@ -14,7 +14,7 @@ public class LadderPrinter {
         this.ladder = ladder;
     }
 
-    public void print() {
+    public void printLadder() {
         StringBuilder sb = new StringBuilder();
         appendPlayerNames(sb);
         for (int i = 0; i < ladder.getHeight(); i++) {
@@ -47,5 +47,10 @@ public class LadderPrinter {
             sb.append(String.format("%-6s", ladder.getLine(i).getResult()));
         }
         sb.append("\n");
+    }
+
+    public void printResult() {
+        String result = ladder.getResult(0);
+        System.out.println("result = " + result);
     }
 }

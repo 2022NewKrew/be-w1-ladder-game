@@ -16,6 +16,7 @@ public class LadderGame {
     }
 
     public void start() {
-        ladderPrinter.print();
+        ladderPrinter.printLadder();
+        ladderPrinter.printResult();
     }
 }

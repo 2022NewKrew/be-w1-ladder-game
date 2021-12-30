@@ -15,12 +15,27 @@ public class Ladder {
     public Ladder(String[] players, String[] results, int height) {
         this.height = height;
         for (int i = 0; i < players.length; i++) {
+            // TODO: result도 cut off 해야한다.
             lines.add(new Line(cutOffTheName(players[i]), results[i], height));
         }
     }
 
     private String cutOffTheName(String s) {
         return s.substring(0, Math.min(s.length(), MAX_NAME_LENGTH));
+    }
+
+    public String getResult(int position) {
+
+        Line line = lines.get(position);
+        int depth = 0;
+        while (depth < height) {
+            if (line.isConnected(depth)) {
+                line = line.getConnectedLine(depth);
+            }
+            depth += 1;
+        }
+
+        return line.getResult();
     }
 
     public int getHeight() {

@@ -9,6 +9,7 @@ public class Main {
     private static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        // TODO: validate players, results length equality
         String[] players = inputPlayers();
         String[] results = inputResults();
         int ladderHeight = inputLadderHeight();
