@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class Line {
         return line;
     }
 
-    private boolean randomValue(int index){
+    public boolean randomValue(int index){
         if(collisionCheck(index))
             return false;
 
