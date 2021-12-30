@@ -8,12 +8,13 @@ import java.util.stream.Collectors;
 
 public class LadderGame {
 
-    private static final String NAME_INPUT_DELIMITER = ",";
+    private static final String INPUT_DELIMITER = ",";
 
     private final RandomConnectStrategy randomConnectStrategy;
 
     private List<LadderLine> gameBoard;
     private List<String> participantsNames;
+    private List<String> gameResults;
 
     private int width;
     private int height;
@@ -21,14 +22,6 @@ public class LadderGame {
     public LadderGame() {
         randomConnectStrategy = new RandomConnectStrategy();
         gameBoard = new ArrayList<>();
-    }
-
-    public void run(String namesInput, int heightOfLadder) {
-        try {
-            initGame(namesInput, heightOfLadder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public List<LadderLine> getGameBoard() {
@@ -39,9 +32,21 @@ public class LadderGame {
         return participantsNames;
     }
 
-    private void initGame(String namesInput, int heightOfLadder) {
-        participantsNames = Arrays.stream(namesInput.split(NAME_INPUT_DELIMITER))
-            .collect(Collectors.toList());
+    public List<String> getGameResults() {
+        return gameResults;
+    }
+
+    public boolean isAvailable() {
+        return gameBoard != null && !gameBoard.isEmpty();
+    }
+
+    public void initGame(String namesInput, String resultsInput, int heightOfLadder) {
+        formatInputs(namesInput, resultsInput);
+
+        if (participantsNames.size() != gameResults.size()) {
+            throw new InputMismatchException("사다리 게임에 참여한 사용자와 결과는 수가 일치해야 해요.");
+        }
+
         width = participantsNames.size() - 1;
         height = heightOfLadder;
 
@@ -50,6 +55,13 @@ public class LadderGame {
         }
 
         makeGameBoard();
+    }
+
+    private void formatInputs(String namesInput, String resultsInput) {
+        participantsNames = Arrays.stream(namesInput.split(INPUT_DELIMITER))
+            .collect(Collectors.toList());
+        gameResults = Arrays.stream(resultsInput.split(INPUT_DELIMITER))
+            .collect(Collectors.toList());
     }
 
     private void makeGameBoard() {
