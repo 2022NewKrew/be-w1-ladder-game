@@ -9,6 +9,7 @@ public class Row {
     private static final String IS_LINKED = "-----";
     private static final String IS_NOT_LINKED = "     ";
     private static final String NEW_LINE = "\n";
+    private static final double THRESHOLD_RANDOM_LINE = 0.5;
     private final int numOfColumns;
     private List<Boolean> linked;
 
@@ -25,14 +26,14 @@ public class Row {
     public void makeLine() {
         this.linked = new ArrayList<>();
 
-        IntStream.range(0, numOfColumns - 1)
+        IntStream.range(0, this.numOfColumns - 1)
                  .forEach(this::createLine);
     }
 
     private void createLine(int i) {
         boolean hasLink = false;
         if(isPossibleToLink(i)) {
-            hasLink = Math.random() >= 0.5;
+            hasLink = Math.random() >= THRESHOLD_RANDOM_LINE;
         }
         this.linked.add(hasLink);
     }
@@ -42,11 +43,7 @@ public class Row {
             return true;
         }
 
-        if(!this.linked.get(i - 1)) {
-            return true;
-        }
-
-        return false;
+        return !this.linked.get(i - 1);
     }
 
     @Override

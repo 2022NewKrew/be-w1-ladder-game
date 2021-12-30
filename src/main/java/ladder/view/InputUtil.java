@@ -3,19 +3,9 @@ package ladder.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import static ladder.view.OutputUtil.*;
 
 public class InputUtil {
-
-    private static final String SEPARATER = "-".repeat(25) + "\n";
-    private static final String LADDER_HEIGHT_INPUT_STRING_FIRST = SEPARATER + "최대 사다리 높이는 몇 개인가요?";
-    private static final String LADDER_HEIGHT_INPUT_STRING_AGAIN = SEPARATER + "최대 사다리 높이를 다시 입력해주세요.";
-    private static final String PERSON_INPUT_STRING_FIRST = SEPARATER + "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String PERSON_INPUT_STRING_AGAIN =
-                    SEPARATER +
-                    "아래의 사항들을 만족하도록 참여할 사람의 이름을 다시 입력해주세요.\n" +
-                    "1. 이름은 쉼표(,)로 구분하세요.\n" +
-                    "2. 최소 두 명 이상의 이름을 입력해주세요.\n" +
-                    "3. 이름은 알파벳 기준 최소 1글자에서 최대 5글자까지만 입력 가능합니다.";
 
     private static final int MIN_LADDER_HEIGHT = 1;
     private static final int MIN_NUM_OF_PERSONS = 2;
@@ -23,11 +13,11 @@ public class InputUtil {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    // 사다리 높이를 입력받는 메서드, 양의 정수만을 입력받도록 처리하는 것이 필요할 것 같다.
     public static int inputLadderHeight(boolean again) {
-        System.out.println(again ? LADDER_HEIGHT_INPUT_STRING_AGAIN : LADDER_HEIGHT_INPUT_STRING_FIRST);
+        printInputLadderHeightMsg(again);
         int input = SCANNER.nextInt();
-        System.out.println(SEPARATER);
+        SCANNER.nextLine(); // nextInt()로 인해 남은 입력 버퍼 비우기
+        printSeparater();
 
         if(input < MIN_LADDER_HEIGHT) {
             return inputLadderHeight(true);
@@ -35,11 +25,10 @@ public class InputUtil {
         return input;
     }
 
-    // 참여하는 사람들의 이름을 입력받는 메서드, 인원이 최소 2명이며 각 이름을 5자 이내로 입력받도록 처리하는 것이 필요할 것 같다.
     public static List<String> inputPersons(boolean again) {
-        System.out.println(again ? PERSON_INPUT_STRING_AGAIN : PERSON_INPUT_STRING_FIRST);
+        printInputPersonMsg(again);
         String inputText = SCANNER.nextLine();
-        System.out.println(SEPARATER);
+        printSeparater();
 
         String[] persons = inputText.split(",");
 
@@ -50,14 +39,43 @@ public class InputUtil {
         return inputPersons(true);
     }
 
+    public static List<String> inputResults(boolean again, int numOfPersons) {
+        printInputResultMsg(again);
+        String inputText = SCANNER.nextLine();
+        printSeparater();
+        
+        String[] results = inputText.split(",");
+        
+        if(satisfiedResults(results, numOfPersons)) {
+            return Arrays.asList(results);
+        }
+
+        return inputResults(true, numOfPersons);
+    }
+
+    private static boolean satisfiedResults(String[] results, int numOfPersons) {
+        if(results.length != numOfPersons) {
+            return false;
+        }
+        long notInRangeCnt = Arrays.stream(results)
+                                                    .filter(e -> e.length() < 1 || e.length() > MAX_NAME_LENGTH)
+                                                    .count();
+
+        return notInRangeCnt == 0L;
+    }
+
     private static boolean satisfiedPersons(String[] persons) {
         if(persons.length < MIN_NUM_OF_PERSONS) {
             return false;
         }
-        long exceedCnt = Arrays.stream(persons)
+        long notInRangeCnt = Arrays.stream(persons)
                                                 .filter(e -> e.length() < 1 || e.length() > MAX_NAME_LENGTH)
                                                 .count();
 
-        return exceedCnt <= 0L;
+        return notInRangeCnt == 0L;
+    }
+
+    public static String inputName() {
+        return SCANNER.nextLine();
     }
 }
