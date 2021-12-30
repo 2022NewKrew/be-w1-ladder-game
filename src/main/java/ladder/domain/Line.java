@@ -7,31 +7,33 @@ import ladder.util.RandomUtil;
 
 public class Line {
 
-    public static final String NOT_EXIST_BRIDGE = " ";
-    private static final String EXIST_BRIDGE = "-";
-    public static final String LADDER_STICK = "|";
+    private final List<Boolean> bridges;
 
-    private final List<String> bridges;
-
-    private Line(ArrayList<String> bridges) {
+    private Line(ArrayList<Boolean> bridges) {
         this.bridges = new ArrayList<>(bridges);
     }
 
     public static Line makeLine(int countOfPerson) {
-        ArrayList<String> bridges = new ArrayList<>();
-        int LineWidth = countOfPerson * 2 - 1;
+        ArrayList<Boolean> bridges = new ArrayList<>();
+        int LineWidth = countOfPerson - 1;
         for (int i = 0; i < LineWidth; i++) {
-            bridges.add(i % 2 == 0 ? LADDER_STICK : makeBridge());
+            bridges.add(makeBridge(i, bridges));
         }
         return new Line(bridges);
     }
 
-    private static String makeBridge() {
-        return RandomUtil.generateBoolean() ? EXIST_BRIDGE : NOT_EXIST_BRIDGE;
-
+    private static boolean makeBridge(int index, ArrayList<Boolean> bridges) {
+        return RandomUtil.generateBoolean() && !hasLeftBridge(index, bridges);
     }
 
-    public List<String> getBridges() {
+    private static boolean hasLeftBridge(int index, ArrayList<Boolean> bridges) {
+        if (index == 0) {
+            return false;
+        }
+        return bridges.get(index - 1);
+    }
+
+    public List<Boolean> getBridges() {
         return Collections.unmodifiableList(this.bridges);
     }
 }
