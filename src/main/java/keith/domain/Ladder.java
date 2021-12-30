@@ -11,10 +11,9 @@ public class Ladder {
     public Ladder(List<String> participants, int height) {
         this.connections = new ArrayList<>();
         this.participants = participants;
-        Random random = new Random();
 
         for (int i = 0; i < height; i++) {
-            this.connections.add(new Line(this.participants.size(), random));
+            this.connections.add(new Line(this.participants.size()));
         }
     }
 
