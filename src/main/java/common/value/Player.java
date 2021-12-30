@@ -5,7 +5,10 @@ public class Player {
     private final String name;
 
     public Player(String name) {
-        validateName(name);
+        if(!validateName(name)) {
+            this.name = name.substring(0, 5);
+            return;
+        }
         this.name = name;
     }
 
@@ -17,9 +20,10 @@ public class Player {
         return name.length();
     }
 
-    private void validateName(String name) {
+    private boolean validateName(String name) {
         if(name.length() > 5) {
-            throw new IllegalArgumentException(name + " : Player 이름은 최대 5자입니다~");
+            return false;
         }
+        return true;
     }
 }

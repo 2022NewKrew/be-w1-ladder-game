@@ -1,12 +1,14 @@
 import configuration.*;
-import common.data.GameResult;
-import service.LadderGameService;
-import service.LadderGenerator;
-import service.LadderRandomGenerator;
-import ui.LadderGameUI;
-import ui.data.UserInputInfo;
+import domain.data.GameResult;
+import domain.LadderGameService;
+import domain.LadderGenerator;
+import domain.LadderRandomGenerator;
+import view.LadderGameUI;
+import view.data.UserInputInfo;
 
 public class Main {
+
+    private static final LadderGameUI ladderGameUI = new LadderGameUI();
 
     public static void main(String[] args) {
         try {
@@ -17,19 +19,18 @@ public class Main {
         }
     }
 
+    /**
+     * 1. 사용자로부터 게임 설정 입력 받기
+     * 2. 사용자 입력을 기반으로 사다리게임 서비스 만들기
+     * 3. 사다리 게임 시작
+     * 4. 사다리 결과 출력
+     */
     private static void start() {
-
-        // 1. 사용자로부터 게임 설정 입력 받기
-        LadderGameUI ladderGameUI = new LadderGameUI();
         UserInputInfo userInputInfo = ladderGameUI.renderUserInputScreen();
 
-        // 2. 사용자 입력을 기반으로 사다리게임 서비스 만들기
         LadderGameService ladderGameService = makeLadderGameService(userInputInfo);
-
-        // 3. 사다리 게임 시작
         GameResult gameResult = ladderGameService.start();
 
-        // 4. 사다리 결과 출력
         ladderGameUI.renderLadderBoard(gameResult);
     }
 
@@ -41,7 +42,7 @@ public class Main {
 
     private static LadderGameConfiguration makeLadderGameConfiguration(UserInputInfo userInputInfo) {
         return new LadderGameConfiguration(
-                userInputInfo.getPlayerList(),
+                userInputInfo.getPlayers(),
                 userInputInfo.getMaxLadderHeight()
         );
     }

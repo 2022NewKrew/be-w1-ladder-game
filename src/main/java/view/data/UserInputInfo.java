@@ -1,23 +1,24 @@
-package ui.data;
+package view.data;
 
 import common.value.LadderHeight;
 import common.value.Player;
+import common.value.Players;
 
 import java.util.List;
 
 public class UserInputInfo {
 
-    private final List<Player> playerList;
+    private final Players players;
 
     private final LadderHeight maxLadderHeight;
 
-    public UserInputInfo(List<Player> playerList, LadderHeight maxLadderHeight) {
-        this.playerList = playerList;
+    public UserInputInfo(Players players, LadderHeight maxLadderHeight) {
+        this.players = players;
         this.maxLadderHeight = maxLadderHeight;
     }
 
-    public List<Player> getPlayerList() {
-        return playerList;
+    public Players getPlayers() {
+        return players;
     }
 
     public LadderHeight getMaxLadderHeight() {
