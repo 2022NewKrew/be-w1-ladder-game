@@ -22,6 +22,17 @@ public class GameInputScanner {
         }
     }
 
+    public static List<String> inputResultList(int numberOfPeople) {
+        try {
+            List<String> resultList = inputStringSeparator(in.nextLine());
+            verifyInputResultList(numberOfPeople, resultList);
+            return resultList;
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return inputResultList(numberOfPeople);
+        }
+    }
+
     private static List<String> inputStringSeparator(String input) {
         return Collections.list(new StringTokenizer(input, ","))
                 .stream()
@@ -35,6 +46,11 @@ public class GameInputScanner {
         if (existWrongName) {
             throw new RuntimeException("참여할 사람 이름을 정확하게 입력해주세요.");
         }
+    }
+
+    private static void verifyInputResultList(int numberOfPeople, List<String> resultList) {
+        if (resultList.isEmpty() || resultList.size() != numberOfPeople)
+            throw new RuntimeException("실행 결과를 정확하게 입력해주세요.");
     }
 
     public static int inputNumber() {

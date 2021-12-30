@@ -13,15 +13,20 @@ public class LadderPrinter {
     private static final String BRIDGE = "-";
     private static final String EMPTY = " ";
 
-    public static void drawLadder(List<String> names, Ladder ladder) {
-        System.out.println(names.stream()
-                .map(e -> String.format("%" + (MAXIMUM_NAME_LENGTH + 1) + "s", e))
-                .collect(Collectors.joining("")));
-        System.out.println(ladder.getRows()
+    public static void drawLadder(List<String> names, Ladder ladder, List<String> results) {
+        drawStringList(names);
+        System.out.print(ladder.getRows()
                 .stream()
                 .map(LadderPrinter::makeRow)
                 .collect(Collectors.joining(""))
         );
+        drawStringList(results);
+    }
+
+    private static void drawStringList(List<String> list) {
+        System.out.println(list.stream()
+                .map(e -> String.format("%" + (MAXIMUM_NAME_LENGTH + 1) + "s", e))
+                .collect(Collectors.joining("")));
     }
 
     public static String makeRow(Row row) {
