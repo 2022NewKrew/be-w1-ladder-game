@@ -2,9 +2,7 @@ package laddergame.domain;
 
 import laddergame.util.Util;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Line {
     private List<Point> points = new ArrayList<>();
@@ -28,6 +26,16 @@ public class Line {
             return newPoint;
         };
         return newPoint;
+    }
+
+    public int findAvailableDirection(int currentPosition){
+        if(currentPosition != 0 && points.get(currentPosition-1).getIsStair()){
+            return -1;
+        }
+        if(currentPosition != points.size() && points.get(currentPosition).getIsStair()){
+            return 1;
+        }
+        return 0;
     }
 
     public String toString(){

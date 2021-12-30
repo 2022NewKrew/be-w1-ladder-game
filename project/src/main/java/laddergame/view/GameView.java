@@ -1,35 +1,65 @@
 package laddergame.view;
 
 import laddergame.domain.Ladder;
-import org.apache.commons.lang3.StringUtils;
+import laddergame.util.Util;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class GameView {
     private static Scanner sc = new Scanner(System.in);
 
-    public static List<String> inputUsers(){
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+    public static List<String> inputArrayList(String message, String gubun){
+        System.out.println(message);
         String input = sc.nextLine();
-        List<String> inputUsers = new ArrayList<String>();
-        for (String name : input.split(",")){
-            inputUsers.add(name);
+        List<String> inputArrayList = new ArrayList<String>();
+        for (String string : input.split(gubun)){
+            inputArrayList.add(string);
         };
-        return inputUsers;
+        return inputArrayList;
     }
 
-    public static int inputLadderHeight(){
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return sc.nextInt();
+    public static int inputInteger(String message){
+        System.out.println(message);
+        int inputInteger = sc.nextInt();
+        sc.nextLine();
+        return inputInteger;
     }
 
-    public static void printLadderWithUsers(Ladder ladder, List<String> users){
-        for (String name : users){
-            System.out.print(String.format("%5s",StringUtils.substring(name,0,5)));
+    public static String inputString(String message){
+        System.out.println(message);
+        return sc.nextLine();
+    }
+
+    public static void printLadderWithLabels(Ladder ladder, List<String> users, List<String> targets){
+        printLabelLine(users, 5);
+        System.out.println();
+        System.out.print(ladder.toString());
+        printLabelLine(targets, 5);
+        System.out.println();
+    }
+
+    private static void printLabelLine(List<String> labels, int stringSize){
+        for (String label : labels){
+            System.out.print(Util.formatStringSize(label, stringSize));
             System.out.print(" ");
         };
+    }
+
+    public static void printResult(Map<String,String> result, String user){
+        if(user.equals("all")) {
+            printResult(result);
+            System.out.println();
+            return;
+        }
+        System.out.println(result.get(user));
         System.out.println();
-        System.out.println(ladder.toString());
+    }
+
+    private static void printResult(Map<String,String> result){
+        for(String name : result.keySet()){
+            System.out.println(name + " : " + result.get(name));
+        }
     }
 }

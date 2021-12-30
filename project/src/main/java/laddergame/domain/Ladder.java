@@ -17,6 +17,13 @@ public class Ladder {
         }
     }
 
+    public int findResultPosition(int currentPosition){
+        for(Line line : lines){
+            currentPosition += line.findAvailableDirection(currentPosition);
+        }
+        return currentPosition;
+    }
+
     public String toString(){
         StringBuilder result = new StringBuilder();
         for(Line line : lines) {
