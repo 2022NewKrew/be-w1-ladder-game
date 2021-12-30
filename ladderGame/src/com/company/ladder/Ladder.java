@@ -1,62 +1,41 @@
 package com.company.ladder;
 
+
+import java.util.ArrayList;
+
 import java.util.Random;
 
 public class Ladder {
     Random random = new Random();
     int attendantNum;
     int ladderHeight;
-    boolean[][] ladderArray = null;
+    ArrayList<Line> ladderArray;
+
 
     public Ladder(){
         attendantNum = 0;
         ladderHeight = 0;
-        ladderArray = new boolean[0][0];
+        ladderArray = new ArrayList<>();
+
     }
 
     public Ladder(int attendantNum, int ladderHeight){
         this.attendantNum = attendantNum - 1;
         this.ladderHeight = ladderHeight;
-        ladderArray = new boolean[attendantNum - 1][ladderHeight];
+        ladderArray = new ArrayList<>();
+
     }
 
     public void makeLadder(){
-        for(int attendentIndex = 0; attendentIndex < attendantNum; attendentIndex++){
-            makeOneLineLadder(attendentIndex);
-        }
-    }
-
-    private void makeOneLineLadder(int attendentIndex) {
         for(int ladderIndex = 0; ladderIndex < ladderHeight; ladderIndex++){
-            ladderArray[attendentIndex][ladderIndex] = makeOneLadder(attendentIndex, ladderIndex);
+            ladderArray.add(new Line(attendantNum));
         }
-    }
-
-    private boolean makeOneLadder(int attendentIndex, int ladderIndex) {
-        boolean isPrevLadder = attendentIndex == 0 || (attendentIndex > 0 && !ladderArray[attendentIndex-1][ladderIndex]);
-        if(isPrevLadder){
-            return random.nextBoolean();
-        }
-        return false;
     }
 
     public void printLadder(){
         for(int ladderIndex = 0; ladderIndex < ladderHeight; ladderIndex++){
-            printOneLineLadder(ladderIndex);
+            ladderArray.get(ladderIndex).printLine();
         }
-    }
 
-    private void printOneLineLadder(int ladderIndex) {
-        for(int attendentIndex = 0; attendentIndex < attendantNum; attendentIndex++){
-            System.out.printf(getLadderExist(attendentIndex, ladderIndex));
-        }
-        System.out.printf("|\n");
-    }
-
-    private String getLadderExist(int attendentIndex, int ladderIndex) {
-        if(ladderArray[attendentIndex][ladderIndex]){
-            return "|-";
-        }
-        return "| ";
     }
 }
