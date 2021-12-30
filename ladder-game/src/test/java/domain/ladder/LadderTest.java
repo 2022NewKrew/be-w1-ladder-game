@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import domain.ladder.Ladder;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
