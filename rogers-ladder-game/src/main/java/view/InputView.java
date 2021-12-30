@@ -4,6 +4,7 @@ import dto.InputDto;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -12,14 +13,16 @@ public class InputView {
 
     private static final Pattern namesPattern = Pattern.compile("^[a-zA-Z]{1,5}(,[a-zA-Z]{1,5})*$");
 
-    public static InputDto input(InputStream inputStream){
+    public static Optional<InputDto> input(InputStream inputStream){
         InputDto inputDto = null;
 
         try(Scanner scanner = new Scanner(inputStream)){
             inputDto = new InputDto(inputNames(scanner), inputHeight(scanner));
+        }catch (IllegalArgumentException illegalArgumentException){
+            System.err.println(illegalArgumentException.getMessage());
         }
 
-        return inputDto;
+        return Optional.ofNullable(inputDto);
     }
 
     private static List<String> inputNames(Scanner scanner){

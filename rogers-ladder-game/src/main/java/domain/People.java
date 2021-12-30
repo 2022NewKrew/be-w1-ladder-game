@@ -10,11 +10,7 @@ public class People {
 
     private final List<Person> people;
 
-    public static People valueOf(List<String> peopleNames){
-        return new People(peopleNames);
-    }
-
-    private People(List<String> peopleNames) {
+    public People(List<String> peopleNames) {
         validate(peopleNames);
         this.people = createPeople(peopleNames);
     }
@@ -27,7 +23,7 @@ public class People {
 
     private static List<Person> createPeople(List<String> peopleNames){
         return peopleNames.stream()
-                .map(Person::valueOf)
+                .map(Person::new)
                 .collect(toList());
     }
 

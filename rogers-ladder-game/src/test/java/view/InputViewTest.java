@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
     private static final List<String> names = List.of("pobi", "honux", "crong", "jk");
@@ -20,11 +20,10 @@ class InputViewTest {
         InputStream inputStream = makeInput(names, height, " ");
 
         //when
-        IllegalArgumentException exception
-                = assertThrows(IllegalArgumentException.class , ()->InputView.input(inputStream));
+        Optional<InputDto> inputDtoOptional = InputView.input(inputStream);
 
         //then
-        assertEquals(InputView.NAMES_FORMAT_MESSACE, exception.getMessage());
+        assertTrue(inputDtoOptional.isEmpty());
     }
 
     @Test
@@ -33,7 +32,7 @@ class InputViewTest {
         InputStream inputStream = makeInput(names, height, ",");
 
         //when
-        InputDto inputDto = InputView.input(inputStream);
+        InputDto inputDto = InputView.input(inputStream).orElseThrow();
 
         //then
         assertEquals(names.size(), inputDto.getNames().size());

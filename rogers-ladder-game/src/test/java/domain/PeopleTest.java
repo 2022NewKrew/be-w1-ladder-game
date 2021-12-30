@@ -16,7 +16,7 @@ class PeopleTest {
 
         //when
         IllegalArgumentException illegalArgumentException
-                = assertThrows(IllegalArgumentException.class, ()->People.valueOf(peopleNames));
+                = assertThrows(IllegalArgumentException.class, ()->new People(peopleNames));
 
         //then
         assertEquals(People.NO_USER_EXCEPTION_MESSAGE, illegalArgumentException.getMessage());
@@ -29,8 +29,8 @@ class PeopleTest {
         List<String> peopleNames2 = List.of("pobi", "honux", "crong", "jk");
 
         //when
-        People people1 = People.valueOf(peopleNames1);
-        People people2 = People.valueOf(peopleNames2);
+        People people1 = new People(peopleNames1);
+        People people2 = new People(peopleNames2);
 
 
         //then

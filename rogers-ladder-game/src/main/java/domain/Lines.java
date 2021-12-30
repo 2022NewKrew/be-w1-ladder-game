@@ -13,11 +13,7 @@ public class Lines {
 
     private final List<Line> lines;
 
-    public static Lines valueOf(int width, int height){
-        return new Lines(width, height);
-    }
-
-    private Lines(int width, int height){
+    public Lines(int width, int height){
         validate(width, height);
         this.lines = createLines(width, height);
     }
@@ -34,7 +30,7 @@ public class Lines {
 
     private static List<Line> createLines(int width, int height){
         return Stream
-                .generate(() -> Line.valueOf(width))
+                .generate(()->new Line(width))
                 .limit(height)
                 .collect(toList());
     }

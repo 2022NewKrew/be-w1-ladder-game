@@ -8,11 +8,7 @@ import java.util.List;
 public class Line {
     private final List<ComponentType> components;
 
-    public static Line valueOf(int size){
-        return new Line(size);
-    }
-
-    private Line(int size){
+    public Line(int size){
         validate(size);
         this.components = createComponents(size);
     }
