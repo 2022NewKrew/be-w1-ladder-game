@@ -21,6 +21,10 @@ public class LadderInfo {
         return participants;
     }
 
+    public String[] getResults() {
+        return results;
+    }
+
     public int getHeight() {
         return height;
     }

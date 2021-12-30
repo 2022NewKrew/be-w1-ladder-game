@@ -15,22 +15,22 @@ public class LadderRenderer {
         StringBuilder sb = new StringBuilder();
         int height = ladder.getHeight();
 
-        renderParticipants(sb, ladder);
+        renderLadderInfo(sb, ladder.getParticipants());
         for (int currentHeight = 0; currentHeight < height; currentHeight++) {
             renderRow(sb, ladder, currentHeight);
         }
+        renderLadderInfo(sb, ladder.getResults());
         return sb.toString();
     }
 
-    private static void renderParticipants(StringBuilder sb, Ladder ladder) {
-        String[] participants = ladder.getParticipants();
+    private static void renderLadderInfo(StringBuilder sb, String[] strings) {
 
-        for (String participant : participants) {
-            int emptyPrefixCount = (MAX_NAME_LENGTH - participant.length()) / 2;
-            int emptyPostfixCount = emptyPrefixCount + (MAX_NAME_LENGTH - participant.length()) % 2 + 1;
+        for (String data : strings) {
+            int emptyPrefixCount = (MAX_NAME_LENGTH - data.length()) / 2;
+            int emptyPostfixCount = emptyPrefixCount + (MAX_NAME_LENGTH - data.length()) % 2 + 1;
 
             sb.append(EMPTY_SPACE.repeat(emptyPrefixCount));
-            sb.append(participant);
+            sb.append(data);
             sb.append(EMPTY_SPACE.repeat(emptyPostfixCount));
         }
         sb.append(NEW_LINE);

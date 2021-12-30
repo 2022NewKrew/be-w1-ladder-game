@@ -16,7 +16,7 @@ class LadderRendererTest {
     private static final long SEED = System.currentTimeMillis();
 
     @Test
-    void 입력받은_참여자의_이름을_정확히_출력한다() throws Exception {
+    void 입력받은_참여자의_이름과_결과들을_정확히_출력한다() throws Exception {
         //given
         LadderInfo ladderInfo = new LadderInfo(PARTICIPANTS, RESULTS, HEIGHT);
         BridgeBuilder bridgeBuilder = new BridgeBuilder(ladderInfo, new RandomBridgeProviderImpl(SEED));
@@ -27,6 +27,7 @@ class LadderRendererTest {
 
         //then
         assertTrue(result.startsWith("  a    bb    ccc  dddd  eeeee"));
+        assertTrue(result.endsWith("1     2     3     4     5   \n"));
     }
 
 }
