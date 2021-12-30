@@ -1,12 +1,18 @@
 package com.gunyoung.one.precondition;
 
-public class Precondition {
+public final class Precondition {
 
     private Precondition() {
     }
 
     public static <T> T notNull(T object, String message) throws PreconditionViolationException {
         condition(object != null, message);
+        return object;
+    }
+
+    public static String notEmpty(String object, String message) throws PreconditionViolationException {
+        notNull(object, message);
+        condition(!object.isEmpty(), message);
         return object;
     }
 

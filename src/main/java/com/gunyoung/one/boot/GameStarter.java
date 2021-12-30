@@ -1,13 +1,12 @@
 package com.gunyoung.one.boot;
 
 import com.gunyoung.one.ladder.Ladder;
+import com.gunyoung.one.messages.GameMessage;
 import com.gunyoung.one.view.View;
 
 public class GameStarter {
 
-    /**
-     * for Singleton
-     */
+
     private static GameStarter INSTANCE;
 
     private GameStarter() {
@@ -21,31 +20,28 @@ public class GameStarter {
 
     private final View view = new View();
 
-    /**
-     * 게임을 시작한다
-     */
     public void start() {
         inputDataForLadder();
-        drawLadder();
+        drawGameResult();
     }
 
-    // todo : User class 추가 시 변경
     private void inputDataForLadder() {
-        int numOfUser = inputNumberOfUser();
+        String userNames = inputUserNames();
         int ladderHeight = inputLadderHeight();
-        Ladder.init(numOfUser, ladderHeight);
+        Ladder.init(userNames, ladderHeight);
     }
 
-    private int inputNumberOfUser() {
-        return view.inputIntWithMessage("참여할 사람은 몇 명인가요?");
+    private String inputUserNames() {
+        return view.inputStringWithMessage(GameMessage.INPUT_USER_NAME_MESSAGE);
     }
 
     private int inputLadderHeight() {
-        return view.inputIntWithMessage("최대 사다리 높이는 몇 개인가요?");
+        return view.inputIntWithMessage(GameMessage.INPUT_LADDER_HEIGHT_MESSAGE);
     }
 
-    private void drawLadder() {
-        String ladderFeature = Ladder.getInstance().getShapeOfLadder();
-        view.output(ladderFeature);
+    private void drawGameResult() {
+        ShapeMaker shapeMaker = new ShapeMaker(Ladder.getInstance());
+        String gameResult = shapeMaker.getShapeOfGameResult();
+        view.output(gameResult);
     }
 }
