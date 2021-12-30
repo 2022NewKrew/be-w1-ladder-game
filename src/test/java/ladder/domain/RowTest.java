@@ -1,25 +1,23 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.RepeatedTest;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RowTest {
 
     /*
-    만들어진 Row에서 양갈래 라인이 생성되는지 테스트
+    만들어진 Row 에서 양갈래 라인이 생성되는지 테스트
     라인은 랜덤으로 생성되므로, 여러 번 반복을 통해 테스트합니다.
      */
-    @Test
-    public void test1() {
-        Row row = new Row(100);
-        IntStream.range(0, 10000).forEach(i -> {
-            row.makeLine();
-            assertTrue(isCompleted(row));
-        });
+    @RepeatedTest(100000)
+    public void isNotCrossroadRepeatTest() {
+        int numOfColumns = 100;
+
+        Row row = new Row(numOfColumns);
+        row.makeLine();
+        assertTrue(isCompleted(row));
     }
 
     private boolean isCompleted(Row row) {

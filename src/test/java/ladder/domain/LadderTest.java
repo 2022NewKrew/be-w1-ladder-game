@@ -12,11 +12,14 @@ class LadderTest {
     사다리가 잘 완성됐는지 확인하는 테스트
      */
     @Test
-    public void test1() {
-        Ladder ladder = new Ladder(List.of("zeki", "todd", "jay", "chris", "jobis", "karon"), 8);
+    public void ladderCompleteTest() {
+        int numOfPersons = 6;
+        int ladderHeight = 8;
+        Ladder ladder = new Ladder(List.of("zeki", "todd", "jay", "chris", "jobis", "karon"), ladderHeight, List.of("1000", "2000", "3000", "4000", "5000", "6000"));
+        ladder.rideLadder();
         List<Row> rows = ladder.getRows();
 
-        assertEquals(rows.size(), 8);
-        assertEquals(rows.get(0).getLinked().size(), 5);
+        assertEquals(ladderHeight, rows.size());
+        assertEquals(numOfPersons - 1, rows.get(0).getLinked().size());
     }
 }
