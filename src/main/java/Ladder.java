@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 
 public class Ladder {
@@ -26,6 +27,15 @@ public class Ladder {
         this.makeRandomLadder();
     }
 
+
+    private void makeRandomLadder() {
+        stateAsListOfString = new ArrayList<>();
+
+        for (int lineNo = 0; lineNo < height; lineNo++) {
+            stateAsListOfString.add(makeRandomLine());
+        }
+    }
+
     private String makeRandomLine() {
         StringBuilder line = new StringBuilder(LADDER_LINE_LEADING_SPACE + BEAM);
         boolean isLastBeamAvailable = true;
@@ -40,33 +50,26 @@ public class Ladder {
         return line.toString();
     }
 
-    private void makeRandomLadder() {
-        stateAsListOfString = new ArrayList<>();
-
-        for (int lineNo = 0; lineNo < height; lineNo++) {
-            stateAsListOfString.add(makeRandomLine());
-        }
+    public String toPrettyString() {
+        String playersName = PLAYER_NAME_LINE_LEADING_SPACE + String.join(" ", players.stream().map(player -> getPaddedPlayerName(player)).collect(Collectors.toList()));
+        String ladderShape = String.join(System.lineSeparator(), stateAsListOfString);
+        return playersName + System.lineSeparator() + ladderShape;
     }
 
     private static String getPaddedPlayerName(Player player) {
-        if (player.name.length() > STEP_WIDTH) {
-            // This should not happen.
-            // What to do here? Throws Exception?
-        }
         int totalSpaceCount = STEP_WIDTH - player.name.length();
         int leftSpaceCount = totalSpaceCount / 2;
         int rightSpaceCount = totalSpaceCount - leftSpaceCount;
         return " ".repeat(leftSpaceCount) + player.name + " ".repeat(rightSpaceCount);
     }
 
-    public String toPrettyString() {
-        String playersName = PLAYER_NAME_LINE_LEADING_SPACE + String.join(" ", players.stream().map(player -> getPaddedPlayerName(player)).toList());
-        String ladderShape = String.join(System.lineSeparator(), stateAsListOfString);
-        return playersName + System.lineSeparator() + ladderShape;
-    }
-
     @Override
     public String toString() {
-        return getClass().getName() + "(width=" + width + ", " + "height=" + height + ", " + "players=" + players + ")";
+        return "Ladder{" +
+                "width=" + width +
+                ", height=" + height +
+                ", stateAsListOfString=" + stateAsListOfString +
+                ", players=" + players +
+                '}';
     }
 }
