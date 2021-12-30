@@ -19,6 +19,11 @@ public class LadderController {
         ladder = ladderGenerator.generateLadder(players.numberOfPlayer(), InputView.enterHeight());
     }
 
+    public void run() {
+        printPlayers();
+        printLadder();
+    }
+
     private void printPlayers() {
         List<String> playersList = players.players()
                 .stream()
@@ -29,10 +34,5 @@ public class LadderController {
 
     private void printLadder() {
         ResultView.printLadder(ladder);
-    }
-
-    public void run() {
-        printPlayers();
-        printLadder();
     }
 }
