@@ -1,7 +1,7 @@
 package com.kakao.LadderGame;
 
 import com.kakao.model.Ladder;
-import com.kakao.model.RandomStrategy;
+import com.kakao.random.RandomStrategy;
 
 public class LadderGame {
 

@@ -1,4 +1,4 @@
-package com.kakao.model;
+package com.kakao.random;
 
 import java.util.Random;
 

@@ -1,12 +1,14 @@
 package com.kakao.LadderGame;
 
+import com.kakao.model.GamePlayers;
+import com.kakao.model.GameRewards;
 import com.kakao.model.Ladder;
 import com.kakao.data.LadderChar;
 import com.kakao.data.LadderOption;
 import com.kakao.exception.IntegerFormatException;
 import com.kakao.exception.PlayerFormatException;
 import com.kakao.exception.RewardFormatException;
-import com.kakao.model.RandomStrategy;
+import com.kakao.random.RandomStrategy;
 
 import java.io.*;
 import java.util.List;
@@ -16,15 +18,15 @@ public class LadderIO {
     private static final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     public static Ladder inputLadderData (RandomStrategy<Boolean> randomStrategy) {
-        String[] gamePlayers = null;
-        String[] gameRewards = null;
+        GamePlayers gamePlayers = null;
+        GameRewards gameRewards = null;
         Integer ladderHeight = null;
 
         while(gamePlayers == null) { // 정상 입력을 할 때까지 반복
             gamePlayers = inputGamePlayers();
         }
         while(gameRewards == null) {
-            gameRewards = inputGameRewards(gamePlayers.length);
+            gameRewards = inputGameRewards(gamePlayers.getNumberOfPlayers());
         }
         while(ladderHeight == null) {
             ladderHeight = inputLadderHeight();
@@ -34,25 +36,25 @@ public class LadderIO {
     }
 
     // 입력함수
-    private static String[] inputGamePlayers() {
+    private static GamePlayers inputGamePlayers() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         try {
             String[] gamePlayers = br.readLine().split(",");
             checkFormatOfPlayers(gamePlayers);
-            return gamePlayers;
+            return new GamePlayers(gamePlayers);
         } catch (IOException | PlayerFormatException e) { // 에러 출력
             e.printStackTrace();
             return null;
         }
     }
-    private static String[] inputGameRewards(int numberOfPlayers) {
+    private static GameRewards inputGameRewards(int numberOfPlayers) {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
 
         try {
             String[] gameRewards = br.readLine().split(",");
             checkFormatOfRewards(gameRewards, numberOfPlayers);
-            return gameRewards;
+            return new GameRewards(gameRewards);
         } catch (IOException | RewardFormatException e){
             e.printStackTrace();
             return null;

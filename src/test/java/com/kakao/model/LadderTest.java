@@ -1,13 +1,15 @@
 package com.kakao.model;
 
+import com.kakao.random.RandomStrategy;
+import com.kakao.random.RandomStrategyOfBoolean;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {
-    String[] testPlayers = { "this", "is", "test" };
-    String[] testRewards = { "1000", "꽝", "3000" };
+    GamePlayers testPlayers = new GamePlayers(new String[]{ "this", "is", "test" });
+    GameRewards testRewards = new GameRewards(new String[]{ "1000", "꽝", "3000" });
     int ladderTestHeight = 5;
     RandomStrategy<Boolean> randomStrategy = new RandomStrategyOfBoolean();
 
@@ -28,7 +30,7 @@ class LadderTest {
         for(List<Boolean> row : result) {
             assertThat(row)
                     .isNotEmpty()
-                    .hasSize(testPlayers.length - 1)
+                    .hasSize(testPlayers.getNumberOfPlayers() - 1)
                     .hasOnlyElementsOfType(Boolean.class);
         }
     }

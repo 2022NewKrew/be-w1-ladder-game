@@ -1,8 +1,8 @@
 package com.kakao;
 
 import com.kakao.LadderGame.LadderGame;
-import com.kakao.model.RandomStrategy;
-import com.kakao.model.RandomStrategyOfBoolean;
+import com.kakao.random.RandomStrategy;
+import com.kakao.random.RandomStrategyOfBoolean;
 
 public class Main {
     public static void main(String[] args) {
