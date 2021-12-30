@@ -1,18 +1,28 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import util.LadderLineStyle;
+
 public class Row {
 	private static final Random RANDOM = new Random();
 
-	private List<LadderLineStyle> ladderLineStyleList;
+	private final List<LadderLineStyle> ladderLineStyleList;
 	private boolean isPrevConnected;
 
-	public Row(int numberOfPlayer) {
+	public Row() {
 		ladderLineStyleList = new ArrayList<>();
 		isPrevConnected = false;
+	}
 
-		makeLine(numberOfPlayer);
+	public List<LadderLineStyle> getLadderLineStyleList() {
+		return ladderLineStyleList;
+	}
+
+	public void prevConnected() {
+		isPrevConnected = true;
 	}
 
 	public void makeLine(int numberOfPlayer) {
@@ -36,9 +46,9 @@ public class Row {
 	}
 
 	private LadderLineStyle getRandomHorizontalLine() {
-		boolean connect = RANDOM.nextBoolean();
+		boolean isConnectable = RANDOM.nextBoolean();
 
-		if (connect) {
+		if (isConnectable) {
 			isPrevConnected = true;
 			return LadderLineStyle.HORIZONTAL_LINE;
 		}
@@ -46,11 +56,13 @@ public class Row {
 		return LadderLineStyle.HORIZONTAL_EMPTY;
 	}
 
-	public void printRow() {
+	public String printRow() {
+		StringBuilder sb = new StringBuilder();
+
 		for (LadderLineStyle ladderLineStyle : ladderLineStyleList) {
-			System.out.print(ladderLineStyle.getShape());
+			sb.append(ladderLineStyle.getShape());
 		}
 
-		System.out.println();
+		return sb.toString();
 	}
 }
