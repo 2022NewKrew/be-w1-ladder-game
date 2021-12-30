@@ -16,12 +16,12 @@ public class LadderInfoScanner {
     public Ladder getLadder(){
         List<String> names = getNames();
         List<String> results = getResults(names.size());
-        PlayerList players = new PlayerList(getMaxResultLength(results));
+        PlayerList players = new PlayerList();
         int heightOfLadder = getHeightOfLadder();
 
         players.initiatePlayers(names, results);
 
-        return new Ladder(heightOfLadder, players);
+        return new Ladder(heightOfLadder, players, getMaxResultLength(results), results);
     }
 
     private int getMaxResultLength(List<String> results){

@@ -4,28 +4,50 @@ import repository.Constant;
 import repository.Ladder;
 
 public class LadderRenderer {
+    private int MAX_LENGTH;
     public LadderRenderer() { }
 
     public void renderLadder(Ladder ladder){
+        MAX_LENGTH = Math.max(ladder.getMaxResultLength(), Constant.MAX_NAME_LENGTH);
         printNames(ladder);
         for(int row = 0; row < ladder.getHeightOfLadder(); row++){
             printRow(ladder, row);
         }
+        printResults(ladder);
+        System.out.println("");
+        checkResultMapping(ladder);
+    }
+
+    private void checkResultMapping(Ladder ladder){
+        ladder.getPlayerStream()
+                .forEach(player -> {
+                    System.out.println(player.getName() + ": " + player.getResult());
+                });
+    }
+
+    private void printResults(Ladder ladder){
+        StringBuilder sb = new StringBuilder();
+        ladder.getResultStream()
+                .forEach(name -> {
+                    sb.append(paddingStrings(name));
+                    sb.append(" ");
+                });
+        System.out.println(sb);
     }
 
     private void printNames(Ladder ladder){
         StringBuilder sb = new StringBuilder();
         ladder.getPlayerStream()
                 .forEach(name -> {
-                    sb.append(paddingName(name.getName()));
+                    sb.append(paddingStrings(name.getName()));
                     sb.append(" ");
                 });
         System.out.println(sb);
     }
 
-    private String paddingName(String name){
+    private String paddingStrings(String name){
         StringBuilder sb = new StringBuilder();
-        int length = Constant.MAX_NAME_LENGTH - name.length();
+        int length = MAX_LENGTH - name.length();
         sb.append(" ".repeat(length / 2 + length % 2));
         sb.append(name);
         sb.append(" ".repeat(length / 2));
@@ -33,7 +55,7 @@ public class LadderRenderer {
     }
 
     private void printRow(Ladder ladder, int row){
-        StringBuilder rowString = new StringBuilder("  ");
+        StringBuilder rowString = new StringBuilder(" ".repeat(MAX_LENGTH / 2));
         rowString.append(Constant.VERTICAL);
         ladder.getConnectedStream(row)
                 .forEach(column -> {
@@ -44,7 +66,7 @@ public class LadderRenderer {
     }
 
     private String getConnectedString(boolean column){
-        if(column) return Constant.HORIZON;
-        return Constant.SPACE;
+        if(column) return Constant.HORIZON.repeat(MAX_LENGTH);
+        return Constant.SPACE.repeat(MAX_LENGTH);
     }
 }

@@ -6,11 +6,9 @@ import java.util.stream.Stream;
 
 public class PlayerList {
     private final List<Player> players;
-    public final int MAX_RESULT_LENGTH;
 
-    public PlayerList(int maxResultLength){
+    public PlayerList(){
         players = new ArrayList<>();
-        this.MAX_RESULT_LENGTH = maxResultLength;
     }
 
     public void initiatePlayers(List<String> names, List<String> results){
