@@ -1,5 +1,7 @@
 package com.company.ladder;
 
+import com.company.view.PrintInterface;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,14 +17,12 @@ public class Line {
         }
     }
 
-    public void printLine(){
-        System.out.printf("  |");
-
+    public void printLine(PrintInterface printInterface){
         for(boolean stepExistence : steps){
-            System.out.printf(getOneStep(stepExistence));
+            printInterface.printStick(false);
+            printInterface.printStep(stepExistence);
         }
-
-        System.out.println();
+        printInterface.printStick(true);
     }
 
     private boolean getNewStep(int lineIndex) {
