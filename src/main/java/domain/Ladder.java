@@ -1,13 +1,11 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Ladder {
     private final String[] people;
     private final int heightOfLadder;
     private final ArrayList<Line> connections;
-    private final Random random = new Random();
 
     public Ladder(String[] people, int heightOfLadder) {
         this.people = people;
@@ -18,7 +16,7 @@ public class Ladder {
     public ArrayList<Line> makeConnections() {
         ArrayList<Line> connections = new ArrayList<>();
         for(int line = 0; line < heightOfLadder; line++) {
-            connections.add(new Line(people.length, random));
+            connections.add(new Line(people.length));
         }
         return connections;
     }
