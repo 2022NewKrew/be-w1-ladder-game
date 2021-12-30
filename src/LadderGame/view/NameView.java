@@ -2,7 +2,6 @@ package LadderGame.view;
 
 import LadderGame.domain.Name;
 
-
 public class NameView {
     private static final int MAX_NAME_SIZE = 5;
     private static final int SPACE = 1;

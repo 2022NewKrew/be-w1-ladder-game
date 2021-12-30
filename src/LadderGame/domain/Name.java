@@ -12,7 +12,7 @@ public class Name {
     // 인스턴스 변수
     private final List<String> nameList;
 
-    Name(String inputName) throws Exception {
+    public Name(String inputName) throws Exception {
         checkEmptyInput(inputName);
         this.nameList = splitInputNames(inputName);
         firstNameLength = this.nameList.get(0).length();
