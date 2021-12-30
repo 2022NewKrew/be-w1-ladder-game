@@ -21,8 +21,9 @@ public class Ladder {
     }
 
     private void initLadder() {
-        for (int i = 0; i < height; i++)
+        for (int i = 0; i < height; i++) {
             ladderLines.add(new Line(people.length, bridgeSize));
+        }
     }
 
     @Override
