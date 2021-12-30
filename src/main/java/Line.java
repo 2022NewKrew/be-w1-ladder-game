@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Line {
     private static final Random rand = new Random();
-    private final ArrayList<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points = new ArrayList<>();
 
     public Line(int numPeople){
         for (int i = 0; i < numPeople-1; i++) {
@@ -11,7 +12,7 @@ public class Line {
         }
     }
 
-    public ArrayList<Boolean> getPoints() {
+    public List<Boolean> getPoints() {
         return points;
     }
     private void addPoints(int i){

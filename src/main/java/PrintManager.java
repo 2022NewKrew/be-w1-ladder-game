@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.List;
 
 public class PrintManager {
 
@@ -13,12 +13,12 @@ public class PrintManager {
         StringBuilder stringNamePeople = new StringBuilder();
 
         for(String name : namePeople){
-            stringNamePeople.append(String.format("%-6s",name));
+            stringNamePeople.append(String.format("%-5s",name)).append(DELIMITER);
         }
         System.out.println(stringNamePeople);
     }
 
-    public static void printLadder(ArrayList<Line> ladder){
+    public static void printLadder(List<Line> ladder){
         StringBuilder stringLadder = new StringBuilder();
 
         for (Line line : ladder) {
