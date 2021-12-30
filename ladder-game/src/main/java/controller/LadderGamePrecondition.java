@@ -1,23 +1,11 @@
-package preconditions;
+package controller;
 
 import java.util.List;
 
-public class Precondition {
+public class LadderGamePrecondition {
     public static void checkUsers(List<String> userList, int MAX_LENGTH) {
         isNotEmptyList(userList);
         isLegalUsers(userList, MAX_LENGTH);
-    }
-
-    public static void checkFrameLength(int frameLength, int MIN_LENGTH) {
-        if (frameLength < MIN_LENGTH) {
-            throw new IllegalArgumentException("참여하는 사람의 수는 양의 정수여야 합니다.");
-        }
-    }
-
-    public static void checkLadderHeight(int height, int MIN_LENGTH) {
-        if (height < MIN_LENGTH) {
-            throw new IllegalArgumentException("사다리의 높이는 양의 정수여야 합니다.");
-        }
     }
 
     private static void isLegalUsers(List<String> users, int MAX_LENGTH) {

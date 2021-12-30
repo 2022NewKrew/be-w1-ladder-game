@@ -1,7 +1,5 @@
 package domain.ladder;
 
-import preconditions.Precondition;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,8 +9,8 @@ public class Ladder {
     private final List<LadderFrameLine> lines;
 
     public Ladder(int frameLength, int height) {
-        Precondition.checkFrameLength(frameLength, MIN_LENGTH);
-        Precondition.checkLadderHeight(height, MIN_LENGTH);
+        LadderPrecondition.checkFrameLength(frameLength, MIN_LENGTH);
+        LadderPrecondition.checkLadderHeight(height, MIN_LENGTH);
         this.lines = generateLines(frameLength - 1, height);
     }
 
