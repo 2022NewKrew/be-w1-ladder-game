@@ -16,7 +16,7 @@ public class ResultService {
         return resultList;
     }
 
-    public ResultList getResultList(List<Integer> idxList) {
+    public ResultList getResultList(List<Integer> idxList){
         return resultList.getResultListByIdx(idxList);
     }
 

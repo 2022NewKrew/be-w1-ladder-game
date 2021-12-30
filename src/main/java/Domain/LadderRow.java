@@ -1,3 +1,6 @@
+package Domain;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -42,5 +45,14 @@ public class LadderRow {
 
     public ArrayList<LadderCell> getRow(){
         return row;
+    }
+
+    public LadderCell get(int idx){
+        if(idx < 0 || this.row.size() <= idx) return null;
+        return row.get(idx);
+    }
+
+    public int size(){
+        return row.size();
     }
 }

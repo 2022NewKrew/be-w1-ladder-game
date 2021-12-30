@@ -1,3 +1,5 @@
+package View;
+
 public class Input<T> {
     T value;
     InputCondition inputCondition;
@@ -18,10 +20,6 @@ public class Input<T> {
         this.inputCondition = inputCondition;
     }
 
-    private boolean isValid(T value, InputCondition inputCondition) {
-        return inputCondition.isValid(value);
-    }
-
     public boolean isValid() {
         return inputCondition.isValid(value);
     }
@@ -36,10 +34,6 @@ public class Input<T> {
 
     public void setValue(T value) {
         this.value = value;
-    }
-
-    public void setInputCondition(InputCondition inputCondition) {
-        this.inputCondition = inputCondition;
     }
 
 }

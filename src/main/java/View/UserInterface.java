@@ -51,14 +51,14 @@ public class UserInterface {
         return resultInput;
     }
 
-    public Input<ArrayList<String>> readQuery() {
+    public Input<ArrayList<String>> readQuery(){
         Input<ArrayList<String>> queryInput = null;
         NoneInputCondition queryInputCond = new NoneInputCondition("결과를 보고 싶은 사람은?");
-        do {
+        do{
             queryInput = new Input<>(queryInputCond);
             System.out.println(queryInputCond.getQuery());
             queryInput.setValue(new ArrayList<>(Arrays.asList(readStr().split(","))));
-        } while (!isValid(queryInput));
+        }while(!isValid(queryInput));
         return queryInput;
     }
 
@@ -117,7 +117,7 @@ public class UserInterface {
     }
 
     // 테스트용 임시함수
-    public void printDst(Ladder ladder) {
+    public void printDst(Ladder ladder){
         ladder.printDst();
     }
 
@@ -129,29 +129,28 @@ public class UserInterface {
         System.out.println(resultList.toString());
     }
 
-    public void printResultForQuery(ResultList resultList) {
+    public void printResultForQuery(ResultList resultList){
         ArrayList<Result> results = resultList.getResults();
-        for (Result result : results)
+        for(Result result : results)
             System.out.println(result);
     }
 
-    public boolean isAll(String str) {
+    public boolean isAll(String str){
         return ALL_STRING.equals(str);
     }
 
-    public boolean isEnd(String str) {
+    public boolean isEnd(String str){
         return END_STRING.equals(str);
     }
-
-    public void printBye() {
+    public void printBye(){
         System.out.println(BYE_STRING);
     }
 
-    public void printAllPlayerAndResult(PlayerList queryPlayers, ResultList resultList) {
+    public void printAllPlayerAndResult(PlayerList queryPlayers, ResultList resultList){
         List<Result> resultStr = resultList.getResults();
         List<Player> players = queryPlayers.getPlayers();
 
-        for (int i = 0; i < players.size() && i < resultStr.size(); i++)
+        for(int i=0; i<players.size() && i < resultStr.size(); i++)
             System.out.printf("%s : %s\n", players.get(i).toString(), resultStr.get(i));
     }
 

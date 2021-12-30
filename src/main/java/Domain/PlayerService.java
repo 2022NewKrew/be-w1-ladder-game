@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PlayerService {
 
-    private PlayerList playerList;
+    PlayerList playerList;
 
     public void makePlayerList(Input<ArrayList<String>> playerInput) {
         playerList = new PlayerList(playerInput);
@@ -21,7 +21,7 @@ public class PlayerService {
         return playerList.getPlayerIdxLst(playerInput);
     }
 
-    public List<Integer> getAllPlayerIdxLst() {
+    public List<Integer> getAllPlayerIdxLst(){
         return playerList.getAllPlayerIdxLst();
     }
 

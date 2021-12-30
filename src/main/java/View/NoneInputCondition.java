@@ -1,9 +1,9 @@
 package View;
 
-public class NoneInputCondition implements InputCondition {
-    private String query;
+public class NoneInputCondition implements InputCondition{
+    String query;
 
-    public NoneInputCondition(String query) {
+    public NoneInputCondition(String query){
         this.query = query;
     }
 

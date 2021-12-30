@@ -14,7 +14,7 @@ public class LadderService {
         return ladder;
     }
 
-    public List<Integer> getPlayerDstIdx(List<Integer> playerIdxLst) {
+    public List<Integer> getPlayerDstIdx(List<Integer> playerIdxLst){
         return ladder.getPlayerDstIdx(playerIdxLst);
     }
 

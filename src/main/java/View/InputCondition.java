@@ -1,3 +1,5 @@
+package View;
+
 public interface InputCondition {
 
     public boolean isValid(Object input);
