@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class Line {
 
+    private final static int FIRST_INDEX = 1;
+
     private final int lineSize;
     private final List<Boolean> pointList;
     private final static Random random = new Random();
@@ -20,7 +22,7 @@ public class Line {
         return lineSize;
     }
 
-    public boolean setConnection(int index) {
+    private boolean setConnection(int index) {
         if (isVertical(index)) {
             return true;
         }
@@ -28,11 +30,23 @@ public class Line {
     }
 
     private boolean setFirstConnection(int index) {
-        return index == 1 && random.nextInt(3) == 0;
+        return index == FIRST_INDEX && possibilityOneThird();
     }
 
     private boolean setAfterFirstConnection(int index) {
-        return index != 1 && !pointList.get(index - 2) && random.nextBoolean();
+        return index != FIRST_INDEX && !isLeftConnected(index) && possibilityOneHalf();
+    }
+
+    private boolean isLeftConnected(int index) {
+        return pointList.get(index - 2);
+    }
+
+    private boolean possibilityOneThird() {
+        return random.nextInt(3) == 0;
+    }
+
+    private boolean possibilityOneHalf() {
+        return random.nextBoolean();
     }
 
     public boolean isConnected(int index) {
