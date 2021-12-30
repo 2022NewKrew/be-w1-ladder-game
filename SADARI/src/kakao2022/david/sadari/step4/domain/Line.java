@@ -1,11 +1,12 @@
 package kakao2022.david.sadari.step4.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Line {
     private static final Random random = new Random();
-    private final ArrayList<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points = new ArrayList<>();
     protected boolean isPrevLine = false;
 
     public Line() {
@@ -18,10 +19,25 @@ public class Line {
     }
 
     protected boolean addPoint(boolean draw) {
-        return isPrevLine = (!isPrevLine && draw);
+        if (!isPrevLine && draw){
+            isPrevLine = true;
+            return true;
+        }
+        isPrevLine = false;
+        return false;
     }
 
-    public ArrayList<Boolean> getPoints() {
-        return points;
+    public StringBuilder getLineInfo() {
+        StringBuilder lineInfo = new StringBuilder("  |");
+        for (boolean point : points) {
+            lineInfo.append(getLadderLine(point));
+            lineInfo.append("|");
+        }
+        return lineInfo;
+    }
+
+
+    private String getLadderLine(boolean point) {
+        return point ? "-----" : "     ";
     }
 }
