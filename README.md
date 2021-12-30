@@ -30,7 +30,7 @@
 ### 구현
 
 - ArrayList 활용
-- 사다리를 생성하는 객체 `Ladder`를 분리
+- 사다리를 생성하는 객체 `ladder.domain.Ladder`를 분리
 
 <br>
 
@@ -86,9 +86,30 @@
 - 사다리 타기가 정상적으로 동작하기 위해, 양 쪽에 사다리가 생기지 않도록 조정
 - ArrayList, Generic 활용
 - 다양한 input이 들어옴에 따라, 새로운 클래스 `input`을 작성하여 간소화
-  - `LadderInput`이라는 신규 클래스를 작성하여 모든 인풋을 하나로 작성되게 축약
+  - `ladder.domain.LadderInput`이라는 신규 클래스를 작성하여 모든 인풋을 하나로 작성되게 축약
 
 
 <br>
 
 -------
+
+## Step4.
+
+<br>
+
+### 변경사항
+
+- 프로젝트 Gradle로 변환
+- 패키지 분리
+  - **ladder**
+    - **domain**
+      - Input
+      - Ladder
+      - LadderInput
+      - Line
+    - **view**
+      - ViewLadder
+    - LadderGame
+- 단위테스트 추가(단계를 진행하며 더 추가 예정)
+  - LineTest: 왼쪽에 연결다리가 있을 때, 오른쪽에 연결다리가 생기지 않았는지 테스트
+  - ViewLadderTest: input으로 받은 내용들이 출력될 때 5글자로 나타나는지 테스트
