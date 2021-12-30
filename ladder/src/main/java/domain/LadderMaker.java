@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -5,11 +7,11 @@ import java.util.Random;
 public class LadderMaker {
     private static final Random random = new Random();
 
-    public static List<Line> build(List<Participant> participants, int maxHeight){
+    public static List<Line> build(List<Participant> participants, List<Result> results, int maxHeight){
         List<Line> lines = new ArrayList<>();
         // Line 생성 (no connections)
         for (int lineNum = 0; lineNum < participants.size(); lineNum++)
-            lines.add(new Line(lineNum, maxHeight, participants.get(lineNum)));
+            lines.add(new Line(lineNum, maxHeight, participants.get(lineNum), results.get(lineNum)));
 
         // 생성한 Line 에 connection 생성
         buildConnections(lines, maxHeight);

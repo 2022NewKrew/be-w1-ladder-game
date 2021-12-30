@@ -1,3 +1,5 @@
+package view.scanner;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import exception.IllegalInputException;
