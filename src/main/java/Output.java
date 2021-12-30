@@ -33,7 +33,7 @@ public class Output {
     private static String lineToString(Line line) {
         StringBuilder sb = new StringBuilder();
         sb.append(BLANK);
-        for (int i = 0; i < line.getLINE_SIZE(); i++) {
+        for (int i = 0; i < line.getLineSize(); i++) {
             sb.append(pointToString(line, i));
         }
         return sb.toString();
