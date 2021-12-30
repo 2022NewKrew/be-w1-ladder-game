@@ -1,4 +1,4 @@
-package ladder.domain.exception;
+package ladder.exception;
 
 public class LadderException extends Exception {
 

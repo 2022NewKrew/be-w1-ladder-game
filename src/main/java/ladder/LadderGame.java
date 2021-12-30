@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.bridge.BridgeBuilder;
-import ladder.domain.exception.LadderException;
+import ladder.exception.LadderException;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.bridge.RandomBridgeProviderImpl;
 import ladder.domain.ladder.LadderInfo;

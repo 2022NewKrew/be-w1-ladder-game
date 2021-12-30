@@ -1,10 +1,10 @@
 package ladder.domain.ladder;
 
-import ladder.domain.exception.LadderException;
-import ladder.domain.exception.LadderException.ErrorCode;
+import ladder.exception.LadderException;
+import ladder.exception.LadderException.ErrorCode;
 import org.junit.jupiter.api.Test;
 
-import static ladder.domain.exception.LadderException.ErrorCode.*;
+import static ladder.exception.LadderException.ErrorCode.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderInfoTest {

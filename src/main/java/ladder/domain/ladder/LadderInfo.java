@@ -1,8 +1,8 @@
 package ladder.domain.ladder;
 
-import ladder.domain.exception.LadderException;
+import ladder.exception.LadderException;
 
-import static ladder.domain.exception.LadderException.ErrorCode.*;
+import static ladder.exception.LadderException.ErrorCode.*;
 
 public class LadderInfo {
 
