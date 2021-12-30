@@ -1,4 +1,6 @@
-import ladder.LadderGame;
+package main;
+
+import main.view.LadderGame;
 
 import java.util.Scanner;
 
