@@ -12,6 +12,7 @@ public class Ladder {
 
     private static final int maxNameLength = 5;
 
+
     //constructor
     public Ladder(LadderConfig ladderConfig) {
         this.nPeople = ladderConfig.getNumPeople();

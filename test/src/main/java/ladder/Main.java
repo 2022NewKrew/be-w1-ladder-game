@@ -4,7 +4,6 @@ import ladder.domain.Ladder;
 import ladder.domain.LadderConfig;
 import ladder.view.IO;
 
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,3 +15,4 @@ public class Main {
 
     }
 }
+
