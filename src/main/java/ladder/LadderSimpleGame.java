@@ -6,14 +6,14 @@ import java.util.Random;
 
 public class LadderSimpleGame extends LadderGame {
 
-    private List<List<Boolean>> bridge;
+
     private final Random randomInstance = new Random();
-    private String[] participants;
+
 
     public void createBridge() {
         int row = this.getLadderHeight();
         int col = this.getNumberOfParticipants() - 1;
-        this.bridge = createLadderMap(row, col);
+        this.setBridge(createLadderMap(row, col));
     }
 
     private List<Boolean> createNoneContinueTrueList(int col) {
@@ -44,17 +44,5 @@ public class LadderSimpleGame extends LadderGame {
 
     private boolean trueAndFalseGenerator() {
         return randomInstance.nextBoolean();
-    }
-
-    public void setParticipants(String[] participants) {
-        this.participants = participants;
-    }
-
-    public List<List<Boolean>> getBridge() {
-        return bridge;
-    }
-
-    public String[] getParticipants() {
-        return participants;
     }
 }

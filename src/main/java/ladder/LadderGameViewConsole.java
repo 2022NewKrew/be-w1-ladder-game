@@ -10,7 +10,8 @@ public class LadderGameViewConsole implements LadderGameView {
 
     private LadderSimpleGame ladderSimpleGame;
 
-    private LadderGameViewConsole() {}
+    private LadderGameViewConsole() {
+    }
 
     public LadderGameViewConsole(LadderSimpleGame ladderSimpleGame) {
         this.ladderSimpleGame = ladderSimpleGame;
@@ -18,7 +19,6 @@ public class LadderGameViewConsole implements LadderGameView {
 
     @Override
     public void printView() {
-        System.out.println("실행결과\n");
         System.out.println(getLadderString());
 
     }
@@ -38,7 +38,7 @@ public class LadderGameViewConsole implements LadderGameView {
     private String getParticipantsString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("  ");
+        stringBuilder.append("실행결과\n  ");
 
         for (String participant : ladderSimpleGame.getParticipants()) {
             stringBuilder.append(String.format("%-5s  ", participant));
