@@ -13,6 +13,7 @@ public class UserInteractController {
             printResult(resultMapping, input);
             input = getInput();
         }
+        System.out.println("게임을 종료합니다.");
     }
 
     public String getInput(){
