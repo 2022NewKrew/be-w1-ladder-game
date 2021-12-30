@@ -1,6 +1,8 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import ladder.dto.LadderDto;
 import ladder.dto.LineDto;
@@ -10,6 +12,7 @@ import ladder.dto.InfoDto;
 
 public class OutputView {
 
+    private static final String NEW_LINE = System.lineSeparator();
     private static final String WALL = "|";
     private static final String BLANK = "     ";
     private static final int MAX_NAME_SIZE = 5;
@@ -53,8 +56,9 @@ public class OutputView {
     private static void printLine(LineDto lineDto) {
         final StringBuilder stringBuilder = new StringBuilder(WALL);
         System.out.print(BLANK);
-        for (boolean point : lineDto.getPoints()) {
-            stringBuilder.append(getSignature(point))
+        List<Boolean> points = lineDto.getPoints();
+        for (int i = 0; i < points.size() - 1; i++) {
+            stringBuilder.append(getSignature(points.get(i)))
                 .append(WALL);
         }
         System.out.println(stringBuilder);
@@ -67,4 +71,22 @@ public class OutputView {
         return BLANK;
     }
 
+    public static void printResult(String reward) {
+        System.out.println("실행 결과");
+        System.out.println(reward);
+        System.out.println();
+    }
+
+    public static void printBadInput() {
+        System.out.println("존재하지 않는 유저입니다.");
+        System.out.println();
+    }
+
+    public static void printResultAll(Map<String, String> results) {
+        System.out.println("실행 결과");
+        for (Entry<String, String> result : results.entrySet()) {
+            System.out.printf("%s : %s%s", result.getKey(), result.getValue(), NEW_LINE);
+        }
+        System.out.println();
+    }
 }

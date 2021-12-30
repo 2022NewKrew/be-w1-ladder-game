@@ -9,6 +9,7 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(List<Boolean> points) {
+        validate(points);
         this.points = new ArrayList<>(points);
     }
 
@@ -20,6 +21,7 @@ public class Line {
             prev = nextRandomBoolean(prev);
             points.add(prev);
         }
+        points.add(false);
         return new Line(points);
     }
 
@@ -32,7 +34,22 @@ public class Line {
 
     private static void validate(int countOfPerson) {
         if (countOfPerson <= 0) {
-            throw new IllegalArgumentException("인원은 0명 이하일 수 없습니다.");
+            throw new IllegalArgumentException(Players.COUNT_OF_PEOPLE_NOT_ZERO);
+        }
+    }
+
+    private void validate(List<Boolean> points) {
+        validate(points.size());
+        validatePoints(points);
+    }
+
+    private void validatePoints(List<Boolean> points) {
+        boolean prevPoint = false;
+        for (boolean point : points) {
+            if (prevPoint && point) {
+                throw new IllegalArgumentException("사다리 라인은 겹칠수 없음!!");
+            }
+            prevPoint = point;
         }
     }
 

@@ -5,9 +5,12 @@ import java.util.List;
 
 public class Players {
 
+    public static final String COUNT_OF_PEOPLE_NOT_ZERO = "사다리는 비어있을 수 없습니다.";
+
     private final List<Player> players;
 
     public Players(List<Player> players) {
+        validate(players);
         this.players = players;
     }
 
@@ -19,7 +22,21 @@ public class Players {
         return new Players(players);
     }
 
+    private void validate(List<Player> players) {
+        if (players.isEmpty()) {
+            throw new IllegalArgumentException(COUNT_OF_PEOPLE_NOT_ZERO);
+        }
+    }
+
     public List<Player> getPlayers() {
         return new ArrayList<>(players);
+    }
+
+    public int size() {
+        return players.size();
+    }
+
+    public Player get(int index) {
+        return players.get(index);
     }
 }

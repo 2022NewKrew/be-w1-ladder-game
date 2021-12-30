@@ -19,4 +19,8 @@ public class Rewards {
     public List<String> getRewards() {
         return rewards;
     }
+
+    public String getReward(int index) {
+        return rewards.get(index);
+    }
 }

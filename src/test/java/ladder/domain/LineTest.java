@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -21,15 +22,27 @@ class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4})
     @DisplayName("Line 을 생성한다.")
-    void valueOf(int person) {
+    void valueOf(int countOfPerson) {
         // given
-        Line line = Line.valueOf(person);
+        Line line = Line.valueOf(countOfPerson);
 
         // when
         List<Boolean> points = line.getPoints();
 
         // then
-        assertThat(points).hasSize(person - 1);
+        assertThat(points).hasSize(countOfPerson);
+    }
+
+    @Test
+    @DisplayName("(생성자) 리스트가 비어있다면 에러가 발생한다.")
+    void valueOfWithEmptyArray() {
+        // given
+
+        // when
+        ThrowingCallable callable = () -> new Line(new ArrayList<>());
+
+        // then
+        assertThatThrownBy(callable).isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
@@ -39,7 +52,7 @@ class LineTest {
         // given
 
         // when
-        ThrowingCallable callable = () -> valueOf(countOfPerson);
+        ThrowingCallable callable = () -> Line.valueOf(countOfPerson);
 
         // then
         assertThatThrownBy(callable).isExactlyInstanceOf(IllegalArgumentException.class);

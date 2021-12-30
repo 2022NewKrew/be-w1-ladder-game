@@ -1,6 +1,9 @@
 package ladder;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import ladder.domain.Ladder;
+import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.domain.Rewards;
 import ladder.dto.InfoDto;
@@ -26,5 +29,15 @@ public class LadderController {
 
     public InfoDto info() {
         return InfoDto.valueOf(ladder, players, rewards);
+    }
+
+    public Map<String, String> foundResult() {
+        Map<String, String> results = new LinkedHashMap<>();
+        for (int i = 0; i < players.size(); i++) {
+            int resultIndex = ladder.foundResult(i);
+            Player player = players.get(i);
+            results.put(player.getName(), rewards.getReward(resultIndex));
+        }
+        return results;
     }
 }
