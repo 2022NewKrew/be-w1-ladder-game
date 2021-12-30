@@ -1,9 +1,13 @@
 package be.w1.ladder_game.controller;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import be.w1.ladder_game.model.Ladder;
+import be.w1.ladder_game.model.Player;
 
 public class LadderController {
     private static final String ILLEGAL_PLAYER_COUNT_MESSAGE = "참여할 사람은 최소 2명 이상이어야 합니다.";
@@ -20,7 +24,7 @@ public class LadderController {
     private static final String INPUT_SEPARATOR = ",";
 
     private final Ladder ladder;
-    private final List<String> players;
+    private final List<Player> players;
 
     public LadderController(String playersName, int ladderHeight) {
         List<String> playersList = playersNameToList(playersName);
@@ -28,13 +32,14 @@ public class LadderController {
         validatePlayers(playersList);
         validateLadderHeight(ladderHeight);
 
-        this.players = playersList;
+        this.players = playersList.stream().map(Player::new).collect(Collectors.<Player>toList());
         this.ladder = new Ladder(players.size() - 1, ladderHeight);
     }
 
+    //  Collections.unmodifiableList(this.lines);
     public Ladder getLadder() {return this.ladder;}
 
-    public List<String> getPlayers() {return this.players;}
+    public List<Player> getPlayers() {return this.players;}
 
     private void validatePlayers(List<String> playersList) {
         for (String name : playersList) {
