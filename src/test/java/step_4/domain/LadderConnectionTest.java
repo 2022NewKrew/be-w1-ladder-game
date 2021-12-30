@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LadderConnectionTest {
     @Test
     @DisplayName("한 라인에서 왼쪽에 연결선이 있을 때 정상적으로 탐지하는지에 대한 테스트")
-    void isLeftConnected_1() {
+    void isLeftConnected() {
         // given
         final String[] names = {"mino", "andy", "jeff", "raon", "keith"};
         final int width = names.length - 1;
