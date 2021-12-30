@@ -36,4 +36,8 @@ public class Ladder {
     public List<List<LadderComponent>> getLadder() {
         return ladder;
     }
+
+    public LadderComponent getLadderComponent(Integer row, Integer vertical) {
+        return ladder.get(row).get(vertical);
+    }
 }
