@@ -1,6 +1,6 @@
 package input;
 
-import dto.LadderInputInfo;
+import dto.LadderInputRawData;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,15 +18,15 @@ class CommandLineInputControllerTest {
     @DisplayName("이름이 콤마로 잘 분리되는지 테스트해봅니다.")
     public void separatingTest() {
         // given
-        String input = "jeff,andy,keith,binar,champ,clo,hoodi\n6";
+        String input = "jeff,andy,keith,binar,champ,clo,hoodi\no,x,o,x,x,o,o\n6";
         InputStream in = new ByteArrayInputStream(input.getBytes());
-        List<String> ans = new ArrayList<>(Arrays.asList("jeff ", "andy ", "keith", "binar", "champ", " clo ", "hoodi"));
+        List<String> ans = new ArrayList<>(Arrays.asList("jeff", "andy", "keith", "binar", "champ", "clo", "hoodi"));
         System.setIn(in);
 
         // when
-        LadderInputInfo ladderInputInfo = inputController.inputLadderInfo();
-        List<String> participantsNames = ladderInputInfo.getParticipantsNames();
-        int numberOfParticipants = ladderInputInfo.getNumberOfParticipants();
+        LadderInputRawData ladderInputRawData = inputController.inputLadderRawData();
+        List<String> participantsNames = ladderInputRawData.getParticipantsNames();
+        int numberOfParticipants = ladderInputRawData.getNumberOfParticipants();
 
         // then
         Assertions.assertThat(participantsNames.size()).isEqualTo(numberOfParticipants);
