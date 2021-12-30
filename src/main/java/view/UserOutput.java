@@ -3,12 +3,17 @@ package view;
 import domain.ladder.Ladder;
 import domain.ladder.LadderFrame;
 import domain.ladder.LadderFrameLine;
+<<<<<<< HEAD
 import dto.gameResultDto.AllResultDTO;
 import dto.gameResultDto.TargetResultDTO;
 import dto.ladderDto.LadderDTO;
 
 import java.util.List;
 import java.util.Map;
+=======
+
+import java.util.List;
+>>>>>>> 05c0cd8 (리뷰받은 내용 중 gradle관련 수정)
 import java.util.StringJoiner;
 
 public class UserOutput {
@@ -31,9 +36,15 @@ public class UserOutput {
 
     private static String ladderLineToShapeLine(LadderFrameLine ladderFrameLine) {
         StringJoiner stringJoiner = new StringJoiner(PILLAR, LEFT_PILLAR, RIGHT_PILLAR);
+<<<<<<< HEAD
         for (LadderFrame frame : ladderFrameLine.getFrames()) {
             stringJoiner.add(ladderFrameToShape(frame));
         }
+=======
+        ladderFrameLine
+                .getFrames()
+                .forEach(frame -> stringJoiner.add(ladderFrameToShape(frame)));
+>>>>>>> 05c0cd8 (리뷰받은 내용 중 gradle관련 수정)
         return stringJoiner.toString();
     }
 
@@ -57,4 +68,8 @@ public class UserOutput {
         int rightSpace = (int) (temp - leftSpace) - 1;
         System.out.print(EMPTY_SPACE.repeat(leftSpace) + userName + EMPTY_SPACE.repeat(rightSpace));
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 05c0cd8 (리뷰받은 내용 중 gradle관련 수정)
 }

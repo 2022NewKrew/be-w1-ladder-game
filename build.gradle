@@ -12,7 +12,10 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+<<<<<<< HEAD
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.2'
+=======
+>>>>>>> 05c0cd8 (리뷰받은 내용 중 gradle관련 수정)
     testImplementation 'org.assertj:assertj-core:3.21.0'
 }
 
