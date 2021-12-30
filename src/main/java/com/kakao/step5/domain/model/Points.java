@@ -26,6 +26,18 @@ public class Points {
         }
     }
 
+    public int checkNextIndex(int personIndex) {
+        int leftPointIndex = personIndex - 1, rightPointIndex = personIndex;
+
+        if (leftPointIndex >= 0 && points.get(leftPointIndex)) {
+            return personIndex - 1;
+        } else if (rightPointIndex < points.size() && points.get(rightPointIndex)) {
+            return personIndex + 1;
+        }
+
+        return personIndex;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(POINT_EMP);

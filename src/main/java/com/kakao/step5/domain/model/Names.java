@@ -42,6 +42,10 @@ public class Names {
             throw new DuplicatedInputException("입력하신 이름 중 중복된 이름이 존재합니다.");
     }
 
+    public String nameOf(int i) {
+        return namesList.get(i);
+    }
+
     public int getSize() {
         return namesList.size();
     }

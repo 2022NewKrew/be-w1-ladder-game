@@ -10,6 +10,10 @@ public class Line {
         points.makeRandomLines(countOfPeople);
     }
 
+    public int checkNextIndex(int personIndex) {
+        return points.checkNextIndex(personIndex);
+    }
+
     @Override
     public String toString() {
         return points.toString() + "\n";
