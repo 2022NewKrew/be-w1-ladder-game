@@ -15,10 +15,10 @@ public class LadderPrinterWithResult implements LadderPrinter{
 
         StringBuilder sb = new StringBuilder();
 
-        // 이름 출력 (다운캐스팅)
+        // 이름 출력 (다운캐스팅 - LadderWith"Name")
         printContainer(((LadderWithName) ladder).getNames());
 
-        // ladderShape List 를 String 으로 변환
+        // ladderShape Line - List<Integer> 를 String 으로 변환
         for(Line line : ladder.getLadderShape()){
             sb.append("  ");
             line.getPoints().stream().forEach(num -> sb.append(StuffType.of(num).getStuff()));
@@ -26,11 +26,11 @@ public class LadderPrinterWithResult implements LadderPrinter{
         }
         System.out.print(sb);
 
-        // 결과 출력 (다운캐스팅)
+        // 결과 출력 (다운캐스팅 - LadderWith"Result")
         printContainer(((LadderWithResult) ladder).getResults());
     }
 
-    // 이름과 결과 출력 함수
+    // 이름과 결과 (List) 출력 함수
     private void printContainer(List<String> container){
         StringBuilder sb = new StringBuilder();
         for(String name : container) {
@@ -38,7 +38,6 @@ public class LadderPrinterWithResult implements LadderPrinter{
             int backSpace = (5 - name.length())/2 + (5 - name.length())%2 + 1;
             sb.append(String.format(" ".repeat(frontSpace) + "%s" + " ".repeat(backSpace), name));
         }
-
         System.out.println(sb);
     }
 }

@@ -16,7 +16,7 @@ public class LadderWithResultGenerator extends LadderWithNameGenerator{
         final int peopleCount = ladderConfigWithResult.getPeopleCount();
         final int height = ladderConfigWithResult.getHeight();
 
-        // 한 줄(List<String>) 을 createRow 함수로 생성하여 add
+        // 한 줄(List<String>) 을 createRow 함수로 생성하여 add | 부모 클래스에 정의되어 있음
         List<Line> ladderShape = new ArrayList<>();
         IntStream.range(0, height).forEach(j -> ladderShape.add(new Line(createRow(peopleCount))));
 

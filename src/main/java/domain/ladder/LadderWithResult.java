@@ -4,6 +4,7 @@ import java.util.List;
 
 public class LadderWithResult extends LadderWithName{
 
+    // 각 실행 결과 목록
     private final List<String> results;
 
     private LadderWithResult(Builder builder){

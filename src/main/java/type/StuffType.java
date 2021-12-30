@@ -24,6 +24,7 @@ public enum StuffType {
     }
     public int getNum() { return num; }
 
+    // Line에 있는 번호로 연결된 문자(Enum-StuffType)를 찾을 수 있음
     private static final Map<Integer, String> NUM_MAP = Collections.unmodifiableMap(
             Stream.of(values()).collect(Collectors.toMap(StuffType::getNum, StuffType::name))
     );

@@ -21,7 +21,7 @@ public class Ladder {
         private int height;
         private List<Line> ladderShape;
 
-        // 필드별 Setter
+        // 필드별 Setter - 각 필드에 대한 검증을 수행
         public Builder peopleCount(int peopleCount){
             // validate
             this.peopleCount = peopleCount;
