@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +13,7 @@ import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LineTest {
@@ -75,5 +77,19 @@ class LineTest {
 
         // then
         assertThat(booleans).hasSize(2);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:1", "1:0", "2:3", "3:2", "4:4"}, delimiter = ':')
+    @DisplayName("라인을 이동시킨다.")
+    void movePoint(int startPoint, int expected) {
+        // given
+        Line line = new Line(Arrays.asList(true, false, true, false, false));
+
+        // when
+        int movedPoint = line.movedPoint(startPoint);
+
+        // then
+        assertThat(movedPoint).isEqualTo(expected);
     }
 }

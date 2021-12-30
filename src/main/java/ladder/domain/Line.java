@@ -39,4 +39,14 @@ public class Line {
     public List<Boolean> getPoints() {
         return points;
     }
+
+    public int movedPoint(int startPoint) {
+        if (Boolean.TRUE.equals(points.get(startPoint))) {
+            return startPoint + 1;
+        }
+        if (startPoint - 1 >= 0 && Boolean.TRUE.equals(points.get(startPoint - 1))) {
+            return startPoint - 1;
+        }
+        return startPoint;
+    }
 }
