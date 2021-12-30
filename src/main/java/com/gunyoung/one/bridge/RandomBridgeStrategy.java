@@ -1,10 +1,10 @@
 package com.gunyoung.one.bridge;
 
-import java.util.Random;
+import com.gunyoung.one.utils.RandomMaker;
 
 public class RandomBridgeStrategy implements BridgeMakeStrategy {
 
-    private Random random = new Random();
+    private RandomMaker randomMaker = new RandomMaker();
 
     @Override
     public void makeBridges(Bridge[][] bridges) {
@@ -23,7 +23,7 @@ public class RandomBridgeStrategy implements BridgeMakeStrategy {
     private boolean[] getIsExistByRandom(int maxNumOfBridgesInOneRow) {
         boolean[] isExist = new boolean[maxNumOfBridgesInOneRow];
         for (int i = 0; i < isExist.length; i++) {
-            isExist[i] = random.nextBoolean();
+            isExist[i] = randomMaker.getRandomBoolean();
         }
         return isExist;
     }
@@ -46,7 +46,7 @@ public class RandomBridgeStrategy implements BridgeMakeStrategy {
     }
 
     private int getCurrentOrNextIndexRandomly(boolean[] arr, int index) {
-        if (random.nextBoolean())
+        if (randomMaker.getRandomBoolean())
             return index;
         return index + 1;
     }
