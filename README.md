@@ -8,6 +8,8 @@
   - 게임 객체 생성 및 입출력담당
 - LadderGame
   - 사다리게임에 필요한 객체 생성 및 관리
+- View
+  - 사다리게임에 관련한 출력 담당
 - Participant
   - 참여자의 정보를 받음
 - Ladder
@@ -21,6 +23,8 @@
 App  -> LadderGame  -> Participant
                    |
                     -> Ladder -> CrossLine
+                   |
+                    -> View
 ```
 
 ### STEP4
