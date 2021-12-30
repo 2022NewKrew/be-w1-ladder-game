@@ -1,8 +1,8 @@
 package ladderGame;
 
 import ladderGame.controller.LadderGameController;
-import ladderGame.model.Ladder;
-import ladderGame.model.Player;
+import ladderGame.domain.Ladder;
+import ladderGame.domain.Player;
 import ladderGame.view.InputView;
 import ladderGame.view.OutputView;
 
@@ -19,7 +19,6 @@ public class Application {
         final Ladder ladder = ladderGameController.getLadder();
         final Player player = ladderGameController.getPlayer();
 
-        OutputView.drawPlayerName(player);
-        OutputView.drawLadder(ladder);
+        OutputView.drawLadderGame(player, ladder);
     }
 }

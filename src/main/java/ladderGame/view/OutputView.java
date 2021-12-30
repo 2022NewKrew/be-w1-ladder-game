@@ -1,8 +1,8 @@
 package ladderGame.view;
 
-import ladderGame.model.Ladder;
-import ladderGame.model.LadderLine;
-import ladderGame.model.Player;
+import ladderGame.domain.Ladder;
+import ladderGame.domain.LadderLine;
+import ladderGame.domain.Player;
 
 import java.util.List;
 
@@ -11,8 +11,10 @@ public class OutputView {
     private static final String CONNECT_BRANCH = "-----";
     private static final String DISCONNECT_BRANCH = "     ";
 
-    public static void drawLadder(Ladder ladder) {
+    public static void drawLadderGame(Player player, Ladder ladder) {
         StringBuilder sb = new StringBuilder();
+
+        sb.append(drawPlayerName(player)).append("\n");
 
         final List<LadderLine> ladderLines = ladder.getLadderLines();
         for (LadderLine ladderLine : ladderLines) {
@@ -42,7 +44,7 @@ public class OutputView {
         return DISCONNECT_BRANCH;
     }
 
-    public static void drawPlayerName(Player player) {
+    private static String drawPlayerName(Player player) {
         StringBuilder sb = new StringBuilder();
 
         final List<String> playerNameList = player.getPlayerNameList();
@@ -50,6 +52,6 @@ public class OutputView {
             sb.append(String.format("%5s", playerName)).append(" ");
         }
 
-        System.out.println(sb);
+        return sb.toString();
     }
 }

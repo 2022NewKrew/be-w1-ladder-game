@@ -1,4 +1,4 @@
-package ladderGame.model;
+package ladderGame.domain;
 
 import ladderGame.util.RandomUtil;
 
