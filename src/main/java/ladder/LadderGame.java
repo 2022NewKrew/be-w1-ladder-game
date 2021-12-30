@@ -1,4 +1,4 @@
-package com.gradle.geatrigger;
+package ladder;
 
 import java.util.Scanner;
 
