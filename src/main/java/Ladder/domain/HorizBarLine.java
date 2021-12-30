@@ -1,4 +1,4 @@
-package Ladder;
+package Ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,11 @@ public class HorizBarLine {
     }
 
     private void setCell() {
-        if ((Math.random() > UPPERBOUND) || line.get(line.size() - 1).equals(HOR_BAR)) {
+        if (line.size() > 0 && line.get(line.size() - 1).equals(HOR_BAR)) {
+            line.add(BLANK);
+            return;
+        }
+        if (Math.random() > UPPERBOUND) {
             line.add(BLANK);
             return;
         }

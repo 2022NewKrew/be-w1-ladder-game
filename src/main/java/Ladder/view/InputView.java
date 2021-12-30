@@ -1,4 +1,4 @@
-package Ladder.IOManager;
+package Ladder.view;
 
 import Ladder.DTO.InputDTO;
 
@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class InputManager {
+public class InputView {
     static Scanner sc = new Scanner(System.in);
 
     private static List<String> inputNumPeople() {

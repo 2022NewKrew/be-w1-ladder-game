@@ -1,10 +1,10 @@
-package Ladder.IOManager;
+package Ladder.view;
 
 import Ladder.DTO.outputLineDTO;
 
 import java.util.List;
 
-public class OutputManager {
+public class OutputView {
     private static final String VER_BAR = "|";
     private static final String BLANK = " ";
     private static final String PADDING = "  ";

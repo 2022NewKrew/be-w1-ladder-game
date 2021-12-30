@@ -1,8 +1,9 @@
-package Ladder;
+package Ladder.domain;
 
 import Ladder.DTO.InputDTO;
 import Ladder.DTO.outputLineDTO;
-import Ladder.IOManager.OutputManager;
+import Ladder.domain.HorizBarLine;
+import Ladder.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +26,10 @@ public class Ladder {
     }
 
     public void printLadder() {
-        OutputManager.printNameLine(new outputLineDTO(nameLine.getNameArray()));
+        OutputView.printNameLine(new outputLineDTO(nameLine.getNameArray()));
 
         for (HorizBarLine r : horizBarArr) {
-            OutputManager.printLine(new outputLineDTO(r.getLine()));
+            OutputView.printLine(new outputLineDTO(r.getLine()));
         }
     }
 }
