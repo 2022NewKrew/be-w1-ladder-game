@@ -1,5 +1,5 @@
 package com.company.ladder;
-
+import com.company.view.PrintInterface;
 
 import java.util.ArrayList;
 
@@ -23,18 +23,20 @@ public class Ladder {
         this.attendantNum = attendantNum - 1;
         this.ladderHeight = ladderHeight;
         ladderArray = new ArrayList<>();
-
     }
 
     public void makeLadder(){
         for(int ladderIndex = 0; ladderIndex < ladderHeight; ladderIndex++){
-            ladderArray.add(new Line(attendantNum));
+            Line line = new Line();
+            line.setLine(attendantNum);
+
+            ladderArray.add(line);
         }
     }
 
-    public void printLadder(){
+    public void printLadder(PrintInterface printInterface){
         for(int ladderIndex = 0; ladderIndex < ladderHeight; ladderIndex++){
-            ladderArray.get(ladderIndex).printLine();
+            ladderArray.get(ladderIndex).printLine(printInterface);
         }
 
     }

@@ -1,26 +1,29 @@
 package com.company.game;
 
 import com.company.ladder.Ladder;
+import com.company.view.ConsoleView;
+import com.company.view.PrintInterface;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LadderGame {
-    Scanner scanner = new Scanner(System.in);
+    static final Scanner scanner = new Scanner(System.in);
+    PrintInterface printInterface;
     ArrayList<String> attendants;
     int ladderHeight;
     Ladder ladder;
 
     public LadderGame(){
         attendants = new ArrayList<String>();
+        printInterface = new ConsoleView();
         ladderHeight = 0;
     }
 
     public void start(){
         initialize();
-
         printName();
-        ladder.printLadder();
+        ladder.printLadder(printInterface);
     }
 
 
