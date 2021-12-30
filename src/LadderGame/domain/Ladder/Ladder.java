@@ -2,12 +2,9 @@ package LadderGame.domain.Ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Ladder {
     private final int ladderWidth, ladderHeight;
-    private final Random random = new Random();
-
     private final List<Line> ladder;
 
     public Ladder(int ladderWidth, int ladderHeight) {
@@ -19,7 +16,7 @@ public class Ladder {
     private List<Line> makeLadder() {
         List<Line> ladder = new ArrayList<>();
         for (int row = 0; row < ladderHeight; row++) {
-            Line ladderRow = new Line(ladderWidth, random);
+            Line ladderRow = new Line(ladderWidth);
             ladder.add(ladderRow);
         }
         return ladder;

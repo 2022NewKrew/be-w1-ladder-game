@@ -6,20 +6,16 @@ import java.util.Random;
 
 public class Line {
     private final int ladderWidth;
-    private final Random random;
-    public List<Boolean> chkLadder;
-    public List<String> ladderComponents;
+    private final Random random = new Random();
+    public List<Boolean> chkLadder = new ArrayList<>();
+    public List<String> ladderComponents = new ArrayList<>();
 
-    public Line(int ladderWidth, Random randomInstance) {
+    public Line(int ladderWidth) {
         this.ladderWidth = ladderWidth;
-        this.random = randomInstance;
         makeLineInfo();
     }
 
     private void makeLineInfo(){
-        chkLadder = new ArrayList<>();
-        ladderComponents = new ArrayList<>();
-
         for (int col = 0; col < ladderWidth; col++){
             boolean hasLadder = makeLadder(col);
             chkLadder.add(hasLadder);
