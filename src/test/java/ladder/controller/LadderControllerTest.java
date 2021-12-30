@@ -1,13 +1,12 @@
-package ladder;
+package ladder.controller;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ApplicationTest {
-
+class LadderControllerTest {
 
     @Test
-    void main() {
+    void getLadder() {
     }
 }
