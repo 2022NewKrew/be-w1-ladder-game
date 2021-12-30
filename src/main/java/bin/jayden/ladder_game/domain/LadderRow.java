@@ -1,4 +1,4 @@
-package data;
+package bin.jayden.ladder_game.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,5 +18,12 @@ public class LadderRow {
 
     public List<Boolean> getRow() {
         return row;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        row.forEach(isLine -> stringBuilder.append(isLine ? 1 : 0));
+        return stringBuilder.toString();
     }
 }
