@@ -92,3 +92,23 @@
 <br>
 
 -------
+
+## Step4.
+
+<br>
+
+### 변경사항
+
+- 패키지 분리
+  - **ladder**
+    - **domain**
+      - Input
+      - Ladder
+      - LadderInput
+      - Line
+    - **view**
+      - ViewLadder
+    - LadderGame
+- 단위테스트 추가(단계를 진행하며 더 추가 예정)
+  - LineTest: 왼쪽에 연결다리가 있을 때, 오른쪽에 연결다리가 생기지 않았는지 테스트
+  - ViewLadderTest: input으로 받은 내용들이 출력될 때 5글자로 나타나는지 테스트
