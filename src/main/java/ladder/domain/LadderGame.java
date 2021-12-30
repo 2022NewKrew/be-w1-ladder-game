@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,20 +7,25 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class LadderGame {
-    public static final int MAX_PLAYER_NAME_LENGTH = 5;
-
     private List<String> players;
+    private final Ladder ladder;
+    public final int PLAYER_NAME_LENGTH_LIMIT = 5;
 
-    /**
-     * 사다리 생성 및 출력
-     */
-    public void run() {
+    public List<String> getPlayers() {
+        return players;
+    }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
+
+    public int getPlayerNameLengthLimit() {
+        return PLAYER_NAME_LENGTH_LIMIT;
+    }
+
+    public LadderGame() {
         Scanner scanner = new Scanner(System.in);
-        Ladder ladder = generateLadder(scanner);
-
-        System.out.println("** 실행 결과 **");
-        printPlayers();
-        System.out.println(ladder);
+        ladder = generateLadder(scanner);
     }
 
     /**
@@ -52,8 +57,8 @@ public class LadderGame {
                     .map(String::trim)
                     .collect(Collectors.toList());
         }
-        if (result.stream().anyMatch(x -> x.length() > MAX_PLAYER_NAME_LENGTH)) {
-            throw new IllegalArgumentException("** 플레이어 이름은 최대 " + MAX_PLAYER_NAME_LENGTH + "글자까지 입력 가능합니다 **");
+        if (result.stream().anyMatch(x -> x.length() > PLAYER_NAME_LENGTH_LIMIT)) {
+            throw new IllegalArgumentException("** 플레이어 이름은 최대 " + PLAYER_NAME_LENGTH_LIMIT + "글자까지 입력 가능합니다 **");
         }
         return result;
     }
@@ -69,12 +74,5 @@ public class LadderGame {
             scanner.next();
         }
         return input;
-    }
-
-    private void printPlayers() {
-        for (String player: players) {
-            System.out.printf("%-6s", player);
-        }
-        System.out.println();
     }
 }
