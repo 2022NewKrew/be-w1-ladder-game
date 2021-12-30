@@ -8,18 +8,16 @@ public class Ladder {
 
     private Player people;
     private LadderHeight height;
+    private LadderResult result;
     private List<Line> ladder;
 
     public Ladder(){
         InputView input = InputView.getInstance();
         this.people = input.inputPeople();
+        this.result = input.inputResult();
         this.height = input.inputHeight();
         makeLadder();
-    }
-    public Ladder(Player people, LadderHeight height) {
-        this.people = people;
-        this.height = height;
-        makeLadder();
+        play();
     }
 
     //make ladder
@@ -28,6 +26,17 @@ public class Ladder {
         for (int i = 0; i < height.getHeightOfLadder(); i++) {
             Line line = new Line(people.getCountOfPeople());
             ladder.add(line);
+        }
+    }
+
+    private void playLine(List<Boolean> points) {
+        for (int i=0;i<points.size();i++){
+            this.result.swap(i, points.get(i));
+        }
+    }
+    public void play() {
+        for (Line line : ladder) {
+            playLine(line.getPoints());
         }
     }
 
@@ -42,5 +51,7 @@ public class Ladder {
     public LadderHeight getHeight(){
         return this.height;
     }
+
+    public LadderResult getResult() { return this.result; }
 
 }
