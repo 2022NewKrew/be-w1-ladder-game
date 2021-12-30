@@ -1,4 +1,4 @@
-package LadderGame;
+package LadderGame.domain.Ladder;
 
 public enum LadderShape {
     VERTICAL_LINE("|"),
