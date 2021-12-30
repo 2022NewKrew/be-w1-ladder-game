@@ -3,10 +3,10 @@ package application;
 import java.util.Random;
 
 public class RandomBooleanGenerator {
-    private static boolean previousTrueFlag = false;
     private static final Random RANDOM = new Random();
+    private boolean previousTrueFlag = false;
 
-    public synchronized static boolean getRandomBoolean() {
+    public boolean getRandomBoolean() {
         if (previousTrueFlag) {
             previousTrueFlag = false;
             return false;
