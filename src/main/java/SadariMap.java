@@ -5,7 +5,7 @@ public class SadariMap {
 
     private final int numberOfColumn;
     private final int numberOfRow;
-    private final List<List<SadariMapStatus>> sadariMap = new ArrayList<>();
+    private final List<SadariRow> sadariMap = new ArrayList<>();
 
     public SadariMap(int numberOfPeople, int numberOfLadder) {
         initialSadariMap(numberOfLadder);
@@ -15,7 +15,7 @@ public class SadariMap {
 
     private void initialSadariMap(int numberOfLadder) {
         for (int i = 0; i < numberOfLadder; i++) {
-            sadariMap.add(new ArrayList<>());
+            sadariMap.add(new SadariRow());
         }
     }
 
@@ -27,19 +27,23 @@ public class SadariMap {
         return numberOfRow;
     }
 
-    public void storeLine(int rowNumber, SadariMapStatus sadariMapStatus) {
-        sadariMap.get(rowNumber).add(sadariMapStatus);
+    public void storeSadariMapStatus(int rowNumber, SadariMapStatus sadariMapStatus) {
+        sadariMap.get(rowNumber).addSadariMapStatus(sadariMapStatus);
     }
 
-    public boolean isFirstSadariLineOfRow(int columnNumberOfRow) {
+    public boolean isNotExistSadariLineCloseBy(int rowNumber, int columnNumberOfRow) {
+        if (isFirstSadariLineOfRow(columnNumberOfRow)) {
+            return true;
+        }
+
+        return sadariMap.get(rowNumber).getSadariMapStatus(columnNumberOfRow - 2) == SadariMapStatus.EMPTY;
+    }
+
+    private boolean isFirstSadariLineOfRow(int columnNumberOfRow) {
         return columnNumberOfRow == 1;
     }
 
-    public boolean isExistSadariLineCloseBy(int rowNumber, int columnNumberOfRow) {
-        return sadariMap.get(rowNumber).get(columnNumberOfRow - 2) == SadariMapStatus.EMPTY;
-    }
-
-    public List<List<SadariMapStatus>> getSadariMap() {
-        return sadariMap;
+    public void printSadari() {
+        sadariMap.forEach(SadariRow::printSadariRow);
     }
 }

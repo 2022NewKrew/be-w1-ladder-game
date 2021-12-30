@@ -1,6 +1,6 @@
 public class User {
 
-    private static final int maxLengthOfName = 5;
+    private static final int MAX_LENGTH_OF_NAME = 5;
 
     private final String name;
 
@@ -9,21 +9,13 @@ public class User {
         validateName();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getLengthOfName() {
-        return name.length();
-    }
-
-    public static int getMaxLengthOfName() {
-        return maxLengthOfName;
-    }
-
     private void validateName() {
-        if (name.length() > maxLengthOfName) {
+        if (name.length() > MAX_LENGTH_OF_NAME) {
             throw new IllegalStateException("이름은 최대 5글자까지 가능합니다.");
         }
+    }
+
+    public void printUser() {
+        System.out.printf("%-" + MAX_LENGTH_OF_NAME + "s ", name);
     }
 }
