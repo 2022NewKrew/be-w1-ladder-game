@@ -22,11 +22,19 @@ public class UserOutput {
     private static final String RIGHT_PILLAR = PILLAR;
     private static final int ALLOWED_SPACE = 7;
 
-    public static void printLadderToConsole(Ladder ladder, List<String> userList) {
+    public static void printLadderToConsole(Ladder ladder, List<String> userList, List<String> results) {
         printUserList(userList);
         for (LadderFrameLine ladderFrameLine : ladder.getLines()) {
             System.out.println(ladderLineToShapeLine(ladderFrameLine));
         }
+    }
+
+    public static void printTargetResult(String result) {
+        System.out.println(result);
+    }
+
+    public static void printAllResult(){
+
     }
 
     private static String ladderLineToShapeLine(LadderFrameLine ladderFrameLine) {
@@ -46,12 +54,12 @@ public class UserOutput {
 
     private static void printUserList(List<String> userList) {
         for (String userName : userList) {
-            formattedPrintForUser(userName);
+            formattedPrint(userName);
         }
         System.out.println();
     }
 
-    private static void formattedPrintForUser(String userName) {
+    private static void formattedPrint(String userName) {
         double temp = (ALLOWED_SPACE - userName.length());
         int leftSpace = (int) Math.ceil(temp / 2);
         int rightSpace = (int) (temp - leftSpace) - 1;
