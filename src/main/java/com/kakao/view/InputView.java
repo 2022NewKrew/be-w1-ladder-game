@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private static final String SEPARATOR = ",";
+    private static final String DELIMITER = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
     public InputView() {}
@@ -13,7 +13,7 @@ public class InputView {
         System.out.println("참여할 플레이어 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String line = scanner.nextLine();
         System.out.println();
-        return line.split(SEPARATOR);
+        return line.split(DELIMITER);
     }
 
     public int inputHeightOfLadder() {
