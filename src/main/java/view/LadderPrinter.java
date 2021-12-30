@@ -33,10 +33,10 @@ public class LadderPrinter {
         sb.append("\n");
     }
 
-    private void printLadder(StringBuilder sb, List<List<Boolean>> connections){
-        connections.forEach(row -> {
+    private void printLadder(StringBuilder sb, List<Ladder.Line> connections){
+        connections.forEach(line -> {
             sb.append("  │");
-            row.forEach(item -> sb.append(item ? "-----│" : "     │"));
+            line.getLine().forEach(item -> sb.append(item ? "-----│" : "     │"));
             sb.append("\n");
         });
     }
