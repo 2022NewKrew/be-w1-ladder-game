@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
 public class LadderGameServiceImpl implements LadderGameService {
 
     private LadderGameView ladderGameView;
-    private LadderSimpleGame ladderSimpleGame;
     private int numberOfParticipants;
     private int ladderHeight;
     private String[] participants;
@@ -24,7 +23,7 @@ public class LadderGameServiceImpl implements LadderGameService {
     }
 
     private void createLadder() {
-        ladderSimpleGame = new LadderSimpleGame();
+        LadderSimpleGame ladderSimpleGame = new LadderSimpleGame();
         ladderSimpleGame.setNumberOfParticipants(numberOfParticipants);
         ladderSimpleGame.setLadderHeight(ladderHeight);
         ladderSimpleGame.setParticipants(participants);
