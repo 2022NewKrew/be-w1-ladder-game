@@ -20,10 +20,6 @@ public class LadderGame {
     private int width;
     private int height;
 
-    public LadderGame() {
-        gameBoard = new ArrayList<>();
-    }
-
     public List<LadderLine> getGameBoard() {
         return gameBoard;
     }
