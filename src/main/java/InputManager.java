@@ -1,6 +1,5 @@
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class InputManager {
     private static final Scanner sc = new Scanner(System.in);

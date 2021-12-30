@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class PrintManager {
     private static final String DELIMITER = " ";
 
