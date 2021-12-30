@@ -14,7 +14,20 @@ public class LadderRow implements Row {
     public LadderRow(int participantsNum) {
         this.participantsNum = participantsNum;
         connections = new ArrayList<>();
-        initLadderBlockRow(participantsNum);
+        initLadderRow(participantsNum);
+    }
+
+    private void initLadderRow(int participantsNum) {
+        for (int i=0; i<participantsNum-1; i++) {
+            connections.add(createRandomConnection(i));
+        }
+    }
+
+    private boolean createRandomConnection(int index) {
+        if (index > 0 && connections.get(index - 1)) {
+            return false;
+        }
+        return rd.nextBoolean();
     }
 
     @Override
@@ -23,12 +36,6 @@ public class LadderRow implements Row {
             printColumn(i);
         }
         System.out.print("\n");
-    }
-
-    private void initLadderBlockRow(int participantsNum) {
-        for (int i=0; i<participantsNum-1; i++) {
-            connections.add(createRandomConnection(i));
-        }
     }
 
     private void printColumn(int index) {
@@ -43,12 +50,5 @@ public class LadderRow implements Row {
         for (int i=0; i<LadderConst.WIDTH/2; i++) {
             System.out.print(right);
         }
-    }
-
-    private boolean createRandomConnection(int index) {
-        if (index > 0 && connections.get(index - 1)) {
-            return false;
-        }
-        return rd.nextBoolean();
     }
 }

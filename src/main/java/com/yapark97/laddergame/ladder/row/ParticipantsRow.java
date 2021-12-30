@@ -20,8 +20,8 @@ public class ParticipantsRow implements Row {
     }
 
     private void printColumn(String participant) {
-        int leftPadding = Math.max(0, (LadderConst.WIDTH - participant.length())/2);
-        int rightPadding = Math.max(0, (LadderConst.WIDTH - participant.length() - 1)/2 + 1);
+        int leftPadding = Math.max(0, (LadderConst.WIDTH - Math.min(LadderConst.WIDTH-1, participant.length()))/2);
+        int rightPadding = Math.max(0, (LadderConst.WIDTH - Math.min(LadderConst.WIDTH-1, participant.length()) - 1)/2 + 1);
 
         for (int i=0; i<leftPadding; i++) {
             System.out.print(LadderConst.BLANK);
