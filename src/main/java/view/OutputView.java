@@ -28,6 +28,15 @@ public class OutputView {
         System.out.println(peopleString);
     }
 
+    public void printResults(List<String> results) {
+        StringBuilder resultString = new StringBuilder();
+        for (String result : results) {
+            resultString.append(padName(result));
+            resultString.append(NAME_DELIMITER);
+        }
+        System.out.println(resultString);
+    }
+
     public void printLadder(Ladder ladder) {
         for (Layer layer : ladder.getLayers()) {
             printLayer(layer);
