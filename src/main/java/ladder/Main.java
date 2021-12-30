@@ -3,6 +3,7 @@ package ladder;
 import ladder.domain.Ladder;
 import ladder.view.LadderView;
 
+
 public class Main {
 
 

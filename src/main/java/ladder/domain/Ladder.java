@@ -9,9 +9,7 @@ public class Ladder {
     private Line[] lineStatus;
 
     public Ladder() {
-
-        setValue();
-
+        setValue(inputName(), inputHeight());
     }
 
     //getter
@@ -31,18 +29,22 @@ public class Ladder {
         return lineStatus;
     }
 
-
-
-    private void setValue() {
-
-
+    private String inputName(){
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        names = Arrays.asList(sc.nextLine().split(","));
-        this.peopleCount = names.size();
+        return sc.nextLine();
+    }
+
+    private Long inputHeight(){
 
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        this.height = sc.nextLong();
+        return sc.nextLong();
+    }
 
+    public void setValue(String fullName, Long height) {
+
+        names = Arrays.asList(fullName.split(","));
+        this.peopleCount = names.size();
+        this.height = height;
     }
 
     public void initLine() {
