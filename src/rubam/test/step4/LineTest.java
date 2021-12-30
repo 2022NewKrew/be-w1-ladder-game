@@ -18,4 +18,21 @@ public class LineTest {
         // then
         assertThat(line.getStepsData().size()).isEqualTo(people - 1);
     }
+
+    @Test
+    void serializedStepCheckTest() {
+        // given
+        int people = 7;
+
+        // when
+        Line line = new Line(people);
+
+        // then
+        boolean before = false;
+        for (Boolean b : line.getStepsData()) {
+            if(before)
+                assertThat(b).isEqualTo(false);
+            before = b;
+        }
+    }
 }
