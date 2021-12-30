@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class UserInputPlayersNames implements UserInput<String, ArrayList<String>> {
+public class UserInputStrings implements UserInput<String, ArrayList<String>> {
 
     @Override
     public ArrayList<String> askToUser(String message) {
@@ -24,7 +24,7 @@ public class UserInputPlayersNames implements UserInput<String, ArrayList<String
 
         if (result.stream().anyMatch(s -> s.length() > 5)) {
             result.clear();
-            System.out.println("플레이어의 이름은 5자리 이하여야 합니다.\n");
+            System.out.println("5자리 이하의 입력값을 넣어주세요.");
         }
         return result;
     }
