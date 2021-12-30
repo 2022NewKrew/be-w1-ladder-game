@@ -1,9 +1,12 @@
-package ladderGame.model;
+package ladderGame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+    private static final int MIN_LADDER_HEIGHT = 1;
+    private static final String ERROR_INVALID_LADDER_HEIGHT = "사다리의 높이는 0보다 큰 숫자를 입력해야합니다.";
+
     private final int ladderHeight;
     private final int ladderWidth;
     private final List<LadderLine> ladderLines;
@@ -15,6 +18,8 @@ public class Ladder {
     }
 
     public static Ladder makeLadder(int ladderHeight, int ladderWidth) {
+        validateLadder(ladderHeight);
+
         List<LadderLine> ladderLines = new ArrayList<>();
 
         for (int i = 0; i < ladderHeight; ++i) {
@@ -22,6 +27,12 @@ public class Ladder {
         }
 
         return new Ladder(ladderHeight, ladderWidth, ladderLines);
+    }
+
+    private static void validateLadder(int ladderHeight) {
+        if (ladderHeight <= MIN_LADDER_HEIGHT) {
+            throw new IllegalArgumentException(ERROR_INVALID_LADDER_HEIGHT);
+        }
     }
 
     public List<LadderLine> getLadderLines() {
