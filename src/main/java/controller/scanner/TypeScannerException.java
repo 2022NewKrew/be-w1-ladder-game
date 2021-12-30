@@ -1,4 +1,4 @@
-package TypeScanner;
+package controller.scanner;
 
 public class TypeScannerException extends RuntimeException {
 
