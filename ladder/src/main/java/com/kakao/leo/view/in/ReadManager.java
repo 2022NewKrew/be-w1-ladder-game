@@ -1,5 +1,6 @@
-package com.kakao.leo;
+package com.kakao.leo.view.in;
 
+import com.kakao.leo.domain.user.Participants;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -50,5 +51,5 @@ public interface ReadManager {
         });
   }
 
-
 }
+

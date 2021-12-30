@@ -1,4 +1,4 @@
-package com.kakao.leo;
+package com.kakao.leo.domain.user;
 
 /**
  * 참여자의 단일 객체, 이름 값만 보관한다.

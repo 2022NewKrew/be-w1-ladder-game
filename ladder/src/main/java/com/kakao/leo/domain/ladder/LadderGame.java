@@ -1,4 +1,10 @@
-package com.kakao.leo;
+package com.kakao.leo.domain.ladder;
+
+import com.kakao.leo.domain.user.Participants;
+import com.kakao.leo.view.in.BufferedReadManager;
+import com.kakao.leo.view.in.ReadManager;
+import com.kakao.leo.view.out.BufferedWriteManager;
+import com.kakao.leo.view.out.WriteManager;
 
 /**
  * LadderGame 객체로, Ladder 의 생성과 게임 진행 및 입출력 인터페이스를 관리.

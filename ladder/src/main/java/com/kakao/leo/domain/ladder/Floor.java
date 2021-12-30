@@ -1,4 +1,4 @@
-package com.kakao.leo;
+package com.kakao.leo.domain.ladder;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -94,3 +94,4 @@ public class Floor implements Iterable<LadderCell> {
   }
 
 }
+

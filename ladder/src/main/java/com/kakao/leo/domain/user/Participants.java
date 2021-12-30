@@ -1,5 +1,7 @@
-package com.kakao.leo;
+package com.kakao.leo.domain.user;
 
+import com.kakao.leo.view.in.Drawable;
+import com.kakao.leo.view.out.WriteManager;
 import java.io.IOException;
 import java.util.List;
 

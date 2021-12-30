@@ -1,5 +1,6 @@
-package com.kakao.leo;
+package com.kakao.leo.view.in;
 
+import com.kakao.leo.view.out.WriteManager;
 import java.io.IOException;
 
 /**

@@ -1,5 +1,8 @@
-package com.kakao.leo;
+package com.kakao.leo.domain.ladder;
 
+import com.kakao.leo.domain.user.Participants;
+import com.kakao.leo.view.in.Drawable;
+import com.kakao.leo.view.out.WriteManager;
 import java.io.IOException;
 
 /**

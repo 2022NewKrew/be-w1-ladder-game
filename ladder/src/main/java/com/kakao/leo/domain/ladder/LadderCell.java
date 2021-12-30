@@ -1,4 +1,4 @@
-package com.kakao.leo;
+package com.kakao.leo.domain.ladder;
 
 /**
  * Ladder 좌표의 한 칸을 Cell 로 정의. LINE, SEPARATOR, EMPTY_SEPARATOR 로 나눈다.

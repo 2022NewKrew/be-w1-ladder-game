@@ -1,5 +1,7 @@
-package com.kakao.leo;
+package com.kakao.leo.view.in;
 
+import com.kakao.leo.domain.user.Participants;
+import com.kakao.leo.domain.user.Person;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;

@@ -1,5 +1,7 @@
-package com.kakao.leo;
+package com.kakao.leo.domain.ladder;
 
+import com.kakao.leo.view.in.Drawable;
+import com.kakao.leo.view.out.WriteManager;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,3 +47,4 @@ public class Ladder implements Drawable {
   }
 
 }
+
