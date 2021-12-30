@@ -1,7 +1,6 @@
 package controller;
 
 import domain.ladder.Ladder;
-import preconditions.Precondition;
 import view.UserInput;
 import view.UserOutput;
 
@@ -16,7 +15,7 @@ public class LadderGame {
 
     private LadderGame() {
         List<String> users = UserInput.getUserList();
-        Precondition.checkUsers(users, MAX_LENGTH);
+        LadderGamePrecondition.checkUsers(users, MAX_LENGTH);
         this.users = users;
         this.ladder = new Ladder(this.users.size(), UserInput.getLadderHeight());
     }
