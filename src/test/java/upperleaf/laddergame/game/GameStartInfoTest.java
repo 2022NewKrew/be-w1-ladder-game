@@ -12,7 +12,7 @@ class GameStartInfoTest {
     @DisplayName("게임 설정을 생성할때 플레이어가 없거나, 값이 음수인 경우 예외가 발생한다.")
     @Test
     void infoCreateTest() {
-        assertThrows(Exception.class, () -> new GameStartInfo(List.of(), 5));
-        assertThrows(Exception.class, () -> new GameStartInfo(List.of("p1", "p2", "p3"), -1));
+        assertThrows(Exception.class, () -> new GameStartInfo(List.of(), List.of("r1", "r2", "r3"), 5));
+        assertThrows(Exception.class, () -> new GameStartInfo(List.of("p1", "p2", "p3"), List.of("r1", "r2", "r3"), -1));
     }
 }

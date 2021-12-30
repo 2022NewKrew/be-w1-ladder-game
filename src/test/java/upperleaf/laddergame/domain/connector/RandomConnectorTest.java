@@ -5,16 +5,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import upperleaf.laddergame.domain.Ladder;
 import upperleaf.laddergame.game.GameStartInfo;
+import upperleaf.laddergame.game.GameStartInfoFactory;
 
-import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RandomConnectorTest {
 
-    final List<String> players = List.of("p1","p2","p3","p4");
-    final int MAX_LADDER_HEIGHT = 5;
     final int RANDOM_VALUE = 1;
 
     RandomConnector connector;
@@ -22,7 +20,9 @@ class RandomConnectorTest {
 
     @BeforeEach
     void fixture() {
-        ladder = new Ladder(new GameStartInfo(players, MAX_LADDER_HEIGHT));
+        GameStartInfoFactory infoFactory = new GameStartInfoFactory();
+        GameStartInfo info = infoFactory.create();
+        ladder = new Ladder(info);
         connector = new RandomConnector(createRandom(RANDOM_VALUE));
     }
 

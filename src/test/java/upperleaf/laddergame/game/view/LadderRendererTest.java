@@ -5,23 +5,22 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import upperleaf.laddergame.domain.Ladder;
 import upperleaf.laddergame.game.GameStartInfo;
+import upperleaf.laddergame.game.GameStartInfoFactory;
 import upperleaf.laddergame.util.StringUtils;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderRendererTest {
 
     final LadderRenderer ladderRenderer = new LadderRenderer();
-    final List<String> players = List.of("p1", "p2", "p3", "p4");
-    final int MAX_LADDER_HEIGHT = 5;
 
     Ladder ladder;
 
     @BeforeEach
     void fixture() {
-        ladder = new Ladder(new GameStartInfo(players, MAX_LADDER_HEIGHT));
+        GameStartInfoFactory factory = new GameStartInfoFactory();
+        GameStartInfo info = factory.create();
+        ladder = new Ladder(info);
         ladder.connectToRight(0, 0);
     }
 
@@ -29,7 +28,7 @@ class LadderRendererTest {
     @Test
     void ladderViewContainsPlayerName() {
         LadderView ladderView = ladderRenderer.render(ladder);
-        for (String player : players) {
+        for (String player : ladder.getPlayerNames()) {
             assertTrue(ladderView.getResult().contains(player));
         }
     }

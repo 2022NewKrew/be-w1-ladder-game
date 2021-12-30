@@ -1,10 +1,12 @@
 package upperleaf.laddergame;
 
 import upperleaf.laddergame.domain.Ladder;
+import upperleaf.laddergame.domain.LadderFlow;
 import upperleaf.laddergame.domain.connector.LadderConnectionNumberPolicy;
 import upperleaf.laddergame.domain.connector.RandomConnector;
 import upperleaf.laddergame.game.GameInputManager;
 import upperleaf.laddergame.game.GameStartInfo;
+import upperleaf.laddergame.game.LadderFlowExecutor;
 import upperleaf.laddergame.game.LadderGenerator;
 import upperleaf.laddergame.game.view.LadderRenderer;
 import upperleaf.laddergame.game.view.LadderView;
@@ -21,7 +23,7 @@ public class LadderGame {
      */
     public static void main(String[] args) {
         GameInputManager manager = new GameInputManager();
-        GameStartInfo info = manager.getInputGameStartInfo();
+        GameStartInfo info = manager.inputGameStartInfo();
 
         RandomConnector connector = new RandomConnector(new Random(System.currentTimeMillis()));
         LadderGenerator generator = new LadderGenerator(connector, new LadderConnectionNumberPolicy());
@@ -30,6 +32,9 @@ public class LadderGame {
         LadderRenderer renderer = new LadderRenderer();
         LadderView ladderView = renderer.render(ladder);
         ladderView.printResult();
+
+        LadderFlowExecutor executor = new LadderFlowExecutor(new LadderFlow(ladder));
+        executor.execute();
     }
 
 }
