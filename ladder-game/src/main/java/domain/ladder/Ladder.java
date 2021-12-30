@@ -15,7 +15,7 @@ public class Ladder {
     }
 
     private List<LadderFrameLine> generateLines(int frameLength, int height) {
-        return Stream.generate(()-> new LadderFrameLine(frameLength))
+        return Stream.generate(() -> new LadderFrameLine(frameLength))
                 .limit(height)
                 .collect(Collectors.toUnmodifiableList());
     }
