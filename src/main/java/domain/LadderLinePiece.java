@@ -3,8 +3,7 @@ package domain;
 public enum LadderLinePiece {
     EMPTY(" "),
     VERTICAL("|"),
-    HORIZONTAL("-")
-    ;
+    HORIZONTAL("-");
 
     private final String value;
 
