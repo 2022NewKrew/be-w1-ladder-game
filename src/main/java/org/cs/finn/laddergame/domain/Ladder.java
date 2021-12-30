@@ -30,7 +30,7 @@ public class Ladder {
     }
 
     private LadderRows build(final SecureRandom sRand, final LadderHeight ladderHeight, final Member member) {
-        final int memberVal = member.getMember().size();
+        final int memberVal = member.getList().size();
         final int ladderHeightVal = ladderHeight.getLadderHeight();
         final List<LadderRow> list = new ArrayList<>();
 

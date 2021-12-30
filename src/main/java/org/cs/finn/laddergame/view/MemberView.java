@@ -9,7 +9,7 @@ public class MemberView {
             throw new RuntimeException("Ladder is null!");
         }
 
-        for (String m : member.getMember()) {
+        for (String m : member.getList()) {
             printMember(m);
         }
         System.out.println();

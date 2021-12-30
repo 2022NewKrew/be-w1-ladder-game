@@ -11,7 +11,7 @@ public class LadderView {
             throw new RuntimeException("Ladder is null!");
         }
 
-        for (LadderRow ladderRow : ladder.getLadderRows().get()) {
+        for (LadderRow ladderRow : ladder.getLadderRows().getList()) {
             printOneHeight(ladderRow);
         }
     }
@@ -24,7 +24,7 @@ public class LadderView {
         for (int i = 0; i < Ladder.BLANK_LEFT; i++) {
             System.out.print(' ');
         }
-        for (BridgeType bridgeType : ladderRow.get()) {
+        for (BridgeType bridgeType : ladderRow.getList()) {
             System.out.print(Ladder.BARRIER + bridgeType.toString());
         }
         System.out.println(Ladder.BARRIER);
