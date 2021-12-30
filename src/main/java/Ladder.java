@@ -5,15 +5,20 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<LadderBrick> ladderBricks;
+    public static final String LADDER_LINE = "|";
+    private final List<LadderRow> rows;
 
-
-    Ladder(int height) {
-        this.ladderBricks = IntStream.range(0, height).mapToObj(e -> new LadderBrick()).collect(Collectors.toList());
+    Ladder(int userNum, int height) {
+        this.rows = IntStream.range(0, height).mapToObj(e -> new LadderRow(userNum)).collect(Collectors.toList());
     }
 
-
-    public LadderBrick getLadderBrickAt(int heightIdx) {
-        return ladderBricks.get(heightIdx);
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (LadderRow row : rows) {
+            builder.append(row).append("\n");
+        }
+        return builder.toString();
     }
+
 }

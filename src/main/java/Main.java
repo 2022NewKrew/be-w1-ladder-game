@@ -7,6 +7,7 @@ public class Main {
         engine.inputUser();
         engine.inputLadder();
         engine.createLadders();
+        engine.printUsers();
         engine.showLadders();
     }
 }
