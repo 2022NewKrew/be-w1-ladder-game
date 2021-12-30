@@ -1,5 +1,6 @@
-package com.cold.ladderGame;
+package com.cold.ladderGame.domain;
 
+import com.cold.ladderGame.utils.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -24,18 +25,5 @@ public class Line {
       return false;
     }
     return random.nextBoolean();
-  }
-
-  public StringBuffer printLine(StringBuffer outputString){
-    for(Boolean bridge : row){
-      outputString.append(Pattern.VERTICAL_LINE);
-      outputString.append(getBridge(bridge));
-    }
-    outputString.append(Pattern.VERTICAL_LINE);
-    return outputString;
-  }
-
-  private String getBridge(Boolean status) {
-    return status ? Pattern.EXISTS_BRIDGE : Pattern.NON_EXISTS_BRIDGE;
   }
 }
