@@ -1,6 +1,8 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class Line {
     int width;
@@ -39,9 +41,14 @@ public class Line {
             point.add(checkPreviousPoint(i));
     }
 
-    private Boolean checkPreviousPoint(int index) {
+    public Boolean checkPreviousPoint(int index) {
         if (index < 0 || index >= width)
             return false;
         return (!(index != 0) || !point.get(index - 1)) && Math.random() > 0.5;
+    }
+
+    public void setPoint(Boolean[] pointArray) {
+        point.clear();
+        Collections.addAll(point, pointArray);
     }
 }
