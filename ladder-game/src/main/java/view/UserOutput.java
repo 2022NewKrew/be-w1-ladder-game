@@ -27,9 +27,9 @@ public class UserOutput {
 
     private static String ladderLineToShapeLine(LadderFrameLine ladderFrameLine) {
         StringJoiner stringJoiner = new StringJoiner(PILLAR, LEFT_PILLAR, RIGHT_PILLAR);
-        for (LadderFrame ladderFrame : ladderFrameLine.getFrames()) {
-            stringJoiner.add(ladderFrameToShape(ladderFrame));
-        }
+        ladderFrameLine
+                .getFrames()
+                .forEach(frame -> stringJoiner.add(ladderFrameToShape(frame)));
         return stringJoiner.toString();
     }
 
