@@ -5,8 +5,6 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 class LineBuilder {
-    private static final int MAX_RANDOM = 10;
-    private static final int RANDOM_RANGE = 3;
     private final Random random = new Random();
     private final int numberOfPlayer;
 
@@ -20,7 +18,7 @@ class LineBuilder {
      * @return 포함시키면 true를 포함시키지 않으면 false를 반환한다
      */
     private Boolean getLineElement() {
-        return random.nextInt(MAX_RANDOM) < RANDOM_RANGE;
+        return random.nextBoolean();
     }
 
     /**
