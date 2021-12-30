@@ -41,16 +41,10 @@ public class LadderGame {
 
         for (int col = 0; col < peopleCnt - 1; col++) {
             isLink = RandomUtil.INSTANCE.generateBoolean();
-            curHorizonLine.setAbleLink(checkAbleLink(previousLink, isLink));
+            curHorizonLine.setAbleLink(
+                    curHorizonLine.checkAbleLink(previousLink, isLink));
             previousLink = isLink;
         }
     }
 
-
-    private boolean checkAbleLink(boolean previousLink, boolean isLink) {
-        if (!previousLink && isLink)
-            return true;
-
-        return false;
-    }
 }

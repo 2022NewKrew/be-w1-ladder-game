@@ -17,4 +17,11 @@ public class Line {
     public List<Boolean> getIsLinkLists() {
         return this.isLinkLists;
     }
+
+    public boolean checkAbleLink(boolean previousLink, boolean isLink) {
+        if (!previousLink && isLink)
+            return true;
+
+        return false;
+    }
 }
