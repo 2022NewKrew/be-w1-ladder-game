@@ -1,0 +1,80 @@
+package view;
+
+import domain.Ladder;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class StandardInputLadderGameInputManager implements LadderGameInputManager {
+    private final String NEWLINE = String.format("%n");
+    private final int MAX_NAME_LENGTH = 5;
+    private static final String ESCAPE_WORD = "춘식이";
+
+    private final Scanner scan = new Scanner(System.in);
+
+    @Override
+    public String getString() {
+        return scan.nextLine();
+    }
+
+    @Override
+    public List<String> getParticipants() {
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요");
+        List<String> participants = Arrays.asList(getString().split(","));
+
+        if (!participants.isEmpty() && participants.stream().allMatch(s -> s.length() <= MAX_NAME_LENGTH)) {
+            return Collections.unmodifiableList(participants);
+        }
+
+        System.out.println("잘못 입력하셨습니다!");
+        System.out.println("이름은 " + MAX_NAME_LENGTH + "자 이하여야 합니다." + NEWLINE);
+        return getParticipants();
+    }
+
+    @Override
+    public Ladder getLadder(List<String> participants) {
+        return new Ladder(participants.size(), getHeight());
+    }
+
+    private int getHeight() {
+        System.out.println("최대 사다리 높이는 몇 개 인가요?");
+        String height = getString();
+
+        if(height.chars().allMatch(Character::isDigit) && Integer.parseInt(height) > 0) {
+            return Integer.parseInt(height);
+        }
+
+        System.out.println("잘못 입력하셨습니다!");
+        System.out.println("양의 정수만 입력해주세요" + NEWLINE);
+        return getHeight();
+    }
+
+    @Override
+    public List<String> getResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요");
+        List<String> results = Arrays.asList(getString().split(","));
+
+        if (!results.isEmpty() && results.stream().allMatch(s -> s.length() <= MAX_NAME_LENGTH)) {
+            return Collections.unmodifiableList(results);
+        }
+
+        System.out.println("잘못 입력하셨습니다!");
+        System.out.println("결과는 " + MAX_NAME_LENGTH + "자 이하여야 합니다." + NEWLINE);
+        return getResults();
+    }
+
+    @Override
+    public String getRequest() {
+        System.out.println(NEWLINE + "결과를 보고 싶은 사람은?");
+        String answer = getString();
+
+        if(answer.equals(ESCAPE_WORD)) {
+            System.out.println("게임을 종료합니다.");
+            return null;
+        }
+
+        return answer;
+    }
+}
