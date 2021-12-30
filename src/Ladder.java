@@ -10,12 +10,12 @@ public class Ladder {
         this.height = height;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
     public int getWidth() {
         return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public Line getLineByIndex(int index) {
