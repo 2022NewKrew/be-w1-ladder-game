@@ -1,4 +1,6 @@
-package LadderGame;
+package ladder.view;
+
+import ladder.domain.Ladder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,7 @@ public class LadderGame {
     public void start() {
         inputLadder();
         if (ladder != null) {
-            ladder.printLadder();
+            System.out.println(ladder);
         }
     }
 }

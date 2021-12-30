@@ -1,9 +1,8 @@
-package LadderGame;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Ladder {
     private static final String PILLAR = "|";
@@ -12,11 +11,11 @@ public class Ladder {
 
     private int numOfPerson;
     private int height;
-    private ArrayList<LadderRow> ladder;
+    private List<LadderRow> ladder;
     private List<String> personNames;
 
-    public Ladder(List<String> personNames, int height) {
-        if (personNames.isEmpty() || height <= 0)
+    public Ladder(List<String> personNames, int height) throws IllegalArgumentException {
+        if (personNames == null || personNames.isEmpty() || height <= 0)
             throw new IllegalArgumentException();
 
         this.personNames = personNames;
@@ -31,18 +30,16 @@ public class Ladder {
 
 
     //
-    // Row를 한 줄씩 가져와 화면에 출력합니다.
+    // Row를 한 줄씩 가져와 문자열로 반환합니다.
     //
-    public void printLadder() {
+    public String toString() {
         StringBuilder builder = new StringBuilder();
+
         for (String personName : personNames){
-            try {
-                builder.append(centerAligned(personName, 5));
-                builder.append(" ");
-            }catch(Exception e){
-                e.printStackTrace();
-            }
+            builder.append(centerAligned(personName, 5));
+            builder.append(" ");
         }
+
         builder.append("\n");
         for (LadderRow row : ladder) {
             builder.append("  "); //왼쪽 패딩 2칸 공백
@@ -50,7 +47,7 @@ public class Ladder {
             builder.append("\n");
         }
 
-        System.out.println(builder.toString());
+        return builder.toString();
     }
 
     //
@@ -61,15 +58,16 @@ public class Ladder {
     // 4글자,size=5 -> aaaa_
     private String centerAligned(String str, int size){
 
-        if(str.isEmpty() || str.isBlank()) {
+        if(str.isEmpty() || str.isBlank())
             return null;
-        }
+
+        if(str.length() > 5)
+            str = str.substring(0,5);
 
         int leftPad = (int)((size - str.length()) / 2);
 
-        if (leftPad == 0){
+        if (leftPad == 0)
             return String.format("%"+(-size)+"s", str);
-        }
 
         return String.format(
                 "%" + (-size) + "s",
@@ -81,19 +79,41 @@ public class Ladder {
     //
     // 사다리의 한 행을 나타내는 이너클래스입니다.
     //
-    class LadderRow {
+    private class LadderRow {
 
-        private ArrayList<Boolean> points;
+        private List<Boolean> points;
 
         public LadderRow(int numOfPerson) {
             Random random = new Random();
-            points = new ArrayList<Boolean>(numOfPerson - 1);
+            points = new ArrayList<>(numOfPerson - 1);
 
             Boolean lastPoint = false;
             for (int i = 0; i < numOfPerson - 1; i++) {
                 lastPoint = random.nextBoolean() && (!lastPoint);
                 points.add(lastPoint);
             }
+
+            if (!isValidRow())
+                throw new RuntimeException();
+
+        }
+
+        //
+        // 인접한 다리가 있는지 한 번 더 검사하는 코드입니다.
+        //
+        public Boolean isValidRow(){
+            Boolean prevPoint = false;
+            for(Boolean currentPoint : points){
+                if (currentPoint && prevPoint){
+                    return false;
+                }
+                prevPoint = currentPoint;
+            }
+            return true;
+        }
+
+        public List<Boolean> getPoints(){
+            return this.points;
         }
 
         //
