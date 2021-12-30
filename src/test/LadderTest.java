@@ -60,11 +60,11 @@ public class LadderTest {
         // given
 
         /*
-        hong  chan  pyo
-         |     |     |
-         |-----|     |
-         |     |-----|
-         x     y     z
+            hong  chan  pyo
+             |     |     |
+             |-----|     |
+             |     |-----|
+             x     y     z
          */
         Ladder ladder = makeTestLadder();
 
@@ -79,6 +79,23 @@ public class LadderTest {
         Assertions.assertEquals("y", resultPyo);
     }
 
+    @Test
+    @DisplayName("없는 사용자 결과 조회")
+    public void getResultNotExist() {
+        // given
+        Ladder ladder = makeTestLadder(); // hong, chan, pyo
+
+        // then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> ladder.getResult("joker"));
+    }
+
+    /**
+     *   hong  chan  pyo
+     *   |     |     |
+     *   |-----|     |
+     *   |     |-----|
+     *   x     y     z
+     */
     private Ladder makeTestLadder() {
         Ladder ladder = new Ladder(new String[]{"hong", "chan", "pyo"}, new String[]{"x", "y", "z"}, 3);
         Line lineHong = ladder.getLine(0);

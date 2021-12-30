@@ -31,8 +31,12 @@ public class Ladder {
     }
 
     public String getResult(String name) {
-        Integer lineIndex = nameIndexMap.get(name);
-        return getResult(lineIndex);
+        if (nameIndexMap.containsKey(name)) {
+            Integer lineIndex = nameIndexMap.get(name);
+            return getResult(lineIndex);
+        }
+
+        throw new IllegalArgumentException("해당 이름을 찾을 수 없습니다.");
     }
 
     private Line getConnectedLineIfConnected(Line line, int depth) {

@@ -1,6 +1,7 @@
 package main.view;
 
 import main.domain.ladder.Ladder;
+import main.domain.line.Line;
 
 public class LadderPrinter {
 
@@ -49,8 +50,28 @@ public class LadderPrinter {
         sb.append("\n");
     }
 
-    public void printResult() {
-        String result = ladder.getResult(0);
-        System.out.println("result = " + result);
+    public void printAllResults() {
+        StringBuilder sb = new StringBuilder("실행결과\n");
+        for (int i = 0; i < ladder.getWidth(); i++) {
+            String name = ladder.getLine(i).getName();
+            String result = ladder.getResult(i);
+            sb.append(name).append(" : ").append(result).append("\n");
+        }
+
+        System.out.println(sb);
+    }
+
+    public void printResult(String playerName) {
+        String result = ladder.getResult(playerName);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("실행결과\n")
+                .append(result).append("\n");
+
+        System.out.println(sb);
+    }
+
+    public void printGameEnd() {
+        System.out.println("게임을 종료합니다.");
     }
 }
