@@ -37,7 +37,7 @@ public class LadderRenderer {
     private static void renderRow(StringBuilder sb, Ladder ladder, int currentHeight) {
         int numOfParticipants = ladder.getParticipants().length;
 
-        sb.append(EMPTY_SPACE.repeat(2));
+        sb.append(EMPTY_SPACE.repeat(MAX_NAME_LENGTH / 2));
         for (int currentWidth = 0; currentWidth < numOfParticipants - 1; currentWidth++) {
             sb.append(VERTICAL_LINE);
             sb.append(getStringFromCurrentPosition(ladder, currentWidth, currentHeight));
