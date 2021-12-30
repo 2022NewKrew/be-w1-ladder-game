@@ -1,18 +1,18 @@
 package view;
 
-import domain.Ladder;
-import domain.LadderLine;
-import domain.LadderLinePiece;
-import domain.Player;
-
-import java.util.List;
+import domain.*;
 
 public class OutputView {
-    public static void printPlayers(List<Player> players) {
-        for (Player player : players) {
-            System.out.print(player.getName());
+
+    public static void printPlayers(PlayerRepository playerRepository) {
+        for (Player player : playerRepository.getPlayers()) {
+            printPlayer(player);
         }
         System.out.println();
+    }
+
+    public static void printPlayer(Player player) {
+        System.out.print(player.getName());
     }
 
     public static void printLadder(Ladder ladder) {
