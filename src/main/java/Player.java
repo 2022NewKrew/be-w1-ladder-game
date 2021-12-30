@@ -11,6 +11,8 @@ public class Player {
 
     @Override
     public String toString() {
-        return getClass().getName() + "(name=\"" + name + "\")";
+        return "Player{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

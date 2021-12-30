@@ -69,6 +69,11 @@ public class Ladder {
 
     @Override
     public String toString() {
-        return getClass().getName() + "(width=" + width + ", " + "height=" + height + ", " + "players=" + players + ")";
+        return "Ladder{" +
+                "width=" + width +
+                ", height=" + height +
+                ", stateAsListOfString=" + stateAsListOfString +
+                ", players=" + players +
+                '}';
     }
 }
