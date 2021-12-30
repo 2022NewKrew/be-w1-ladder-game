@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Ladder {
     //상수 및 클래스 변수
