@@ -18,8 +18,6 @@ public class OutputDTO {
         return namesOfPeople;
     }
 
-    private OutputDTO() {
-    }
 
     public OutputDTO(List<Line> ladder, String[] namesOfPeople) {
         this.ladder = ladder;

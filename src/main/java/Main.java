@@ -14,6 +14,6 @@ public class Main {
         LadderGame game = new LadderGame(inputComponent);
 
         OutputView.printLadderResult(new OutputDTO(game.getLadder(),
-                inputComponent.getNamesOfPeople()));
+                game.getNamesOfPeople()));
     }
 }

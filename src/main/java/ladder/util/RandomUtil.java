@@ -7,9 +7,6 @@ public enum RandomUtil {
 
     private static final Random random = new Random();
 
-    private RandomUtil() {
-    }
-
     public boolean generateBoolean() {
         return random.nextBoolean();
     }

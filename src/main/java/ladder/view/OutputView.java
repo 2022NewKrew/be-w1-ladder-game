@@ -11,10 +11,12 @@ import static ladder.domain.LadderComponent.*;
 
 public class OutputView {
 
-    static BufferedWriter wr;
+    static final BufferedWriter wr=new BufferedWriter(new OutputStreamWriter(System.out));
+
+    private OutputView() {
+    }
 
     public static void printLadderResult(OutputDTO outputComponent) throws IOException {
-        wr = new BufferedWriter(new OutputStreamWriter(System.out));
         printNameOfPeople(outputComponent.getNamesOfPeople());
         for (Line curHorizon : outputComponent.getLadder()) {
             wr.append(LADDER_INTENT);

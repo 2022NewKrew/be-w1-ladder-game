@@ -9,11 +9,16 @@ import ladder.util.RandomUtil;
 
 public class LadderGame {
 
-    private List<Line> ladder;
+    private final List<Line> ladder = new ArrayList<>();
+    private final String[] namesOfPeople;
+
+    public String[] getNamesOfPeople() {
+        return namesOfPeople;
+    }
 
     public LadderGame(InputDTO inputComponent) {
-        ladder = new ArrayList<>();
-        makeHorizonLadder(inputComponent.getNamesOfPeople().length,
+        namesOfPeople = inputComponent.getNamesOfPeople();
+        makeHorizonLadder(namesOfPeople.length,
                 inputComponent.getHeightOfLadder());
     }
 
