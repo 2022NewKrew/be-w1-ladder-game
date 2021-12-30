@@ -27,16 +27,21 @@ public class LadderGame {
      * {@link Scanner}로부터 플레이어, 사다리 높이를 입력받아 {@link Ladder}를 만들어서 반환
      */
     private Ladder generateLadder(Scanner scanner) {
-        players = getPlayersFromScanner(scanner, "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) ");
-        int height = getPositiveIntFromScanner(scanner, "사다리 높이는 몇개인가요? ");
-
-        return new Ladder(players.size(), height);
+        while (true) {
+            try {
+                players = getPlayersFromScanner(scanner, "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) ");
+                int height = getPositiveIntFromScanner(scanner, "사다리 높이는 몇개인가요? ");
+                return new Ladder(players.size(), height);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
      * @return {@link Scanner}로부터 입력받은 플레이어 목록
      */
-    private List<String> getPlayersFromScanner(Scanner scanner, String prompt) {
+    private List<String> getPlayersFromScanner(Scanner scanner, String prompt) throws IllegalArgumentException {
         String input;
         List<String> result = new ArrayList<>();
         System.out.println(prompt);
@@ -46,6 +51,9 @@ public class LadderGame {
             result = Arrays.stream(input.split(","))
                     .map(String::trim)
                     .collect(Collectors.toList());
+        }
+        if (result.stream().anyMatch(x -> x.length() > MAX_PLAYER_NAME_LENGTH)) {
+            throw new IllegalArgumentException("** 플레이어 이름은 최대 " + MAX_PLAYER_NAME_LENGTH + "글자까지 입력 가능합니다 **");
         }
         return result;
     }
