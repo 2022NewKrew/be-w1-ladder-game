@@ -10,6 +10,28 @@ public class LadderGame {
     private List<String> players;
 
     /**
+     * 사다리 생성 및 출력
+     */
+    public void run() {
+        Scanner scanner = new Scanner(System.in);
+        Ladder ladder = generateLadder(scanner);
+
+        System.out.println("** 실행 결과 **");
+        printPlayers();
+        System.out.println(ladder);
+    }
+
+    /**
+     * {@link Scanner}로부터 플레이어, 사다리 높이를 입력받아 {@link Ladder}를 만들어서 반환
+     */
+    private Ladder generateLadder(Scanner scanner) {
+        players = getPlayersFromScanner(scanner, "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) ");
+        int height = getPositiveIntFromScanner(scanner, "사다리 높이는 몇개인가요? ");
+
+        return new Ladder(players.size(), height);
+    }
+
+    /**
      * @return {@link Scanner}로부터 입력받은 플레이어 목록
      */
     private List<String> getPlayersFromScanner(Scanner scanner, String prompt) {
@@ -39,32 +61,10 @@ public class LadderGame {
         return input;
     }
 
-    /**
-     * {@link Scanner}로부터 플레이어, 사다리 높이를 입력받아 {@link Ladder}를 만들어서 반환
-     */
-    private Ladder generateLadder(Scanner scanner) {
-        players = getPlayersFromScanner(scanner, "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) ");
-        int height = getPositiveIntFromScanner(scanner, "사다리 높이는 몇개인가요? ");
-
-        return new Ladder(players.size(), height);
-    }
-
     private void printPlayers() {
         for (String player: players) {
             System.out.printf("%-6s", player);
         }
         System.out.println();
-    }
-
-    /**
-     * 사다리 생성 및 출력
-     */
-    public void run() {
-        Scanner scanner = new Scanner(System.in);
-        Ladder ladder = generateLadder(scanner);
-
-        System.out.println("** 실행 결과 **");
-        printPlayers();
-        System.out.println(ladder);
     }
 }
