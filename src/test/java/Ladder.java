@@ -1,3 +1,5 @@
+import ladder.domain.Line;
+
 import java.util.*;
 
 public class Ladder {
