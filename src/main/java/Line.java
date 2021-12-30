@@ -6,7 +6,7 @@ public class Line {
 
     private final int lineSize;
     private final List<Boolean> pointList;
-    private final Random random = new Random();
+    private final static Random random = new Random();
 
     public Line(int playerNumber) {
         lineSize = playerNumber * 2 - 1;
