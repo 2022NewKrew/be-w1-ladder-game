@@ -16,14 +16,14 @@ public class NameView {
     }
 
     public String getNameView() {
-        return String.join(" ", makeFiveWordList());
+        return String.join(" ", makeFiveWords());
     }
 
     public void printNameList() {
         System.out.println(getNameView());
     }
 
-    private List<String> makeFiveWordList() {
+    private List<String> makeFiveWords() {
         return nameList.stream()
                 .map(this::makeFiveWord)
                 .collect(Collectors.toList());
