@@ -11,6 +11,7 @@ public class Main {
     {
         //set ladder
         Ladder ladderObject = new Ladder();
+        ladderObject.setValue(ladderObject.inputName(), ladderObject.inputHeight());
         ladderObject.initLine();
         ladderObject.shuffle();
 
