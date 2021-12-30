@@ -57,10 +57,6 @@ public class Ladder {
     }
 
     private static String getPaddedPlayerName(Player player) {
-        if (player.name.length() > STEP_WIDTH) {
-            // This should not happen.
-            // What to do here? Throws Exception?
-        }
         int totalSpaceCount = STEP_WIDTH - player.name.length();
         int leftSpaceCount = totalSpaceCount / 2;
         int rightSpaceCount = totalSpaceCount - leftSpaceCount;
