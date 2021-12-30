@@ -8,11 +8,12 @@ public class Ladder {
     private final int height;
     private final List<Rail> rails;
 
-    public Ladder(int height, int width) {
+    public Ladder(int height, String[] participants) {
         this.height = height;
+        int width = participants.length;
         rails = new ArrayList<>(width);
-        for (int i = 0; i < width; i++) {
-            rails.add(new Rail(height));
+        for (String participant : participants) {
+            rails.add(new Rail(participant, height));
         }
     }
 
