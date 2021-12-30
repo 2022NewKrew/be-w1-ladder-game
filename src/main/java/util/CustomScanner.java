@@ -1,7 +1,10 @@
 package util;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import model.Player;
+
+import java.util.*;
+import java.util.regex.PatternSyntaxException;
+import java.util.stream.Collectors;
 
 public final class CustomScanner {
     private final Scanner scanner;
@@ -15,13 +18,13 @@ public final class CustomScanner {
         System.out.println(message);
 
         do {
-            value = readInput(infimum, supremum);
+            value = readBoundedInt(infimum, supremum);
         } while (value == null);
 
         return value;
     }
 
-    private Integer readInput(int infimum, int supremum){
+    private Integer readBoundedInt(int infimum, int supremum){
         int value;
 
         try{
@@ -32,10 +35,10 @@ public final class CustomScanner {
             return null;
         }
 
-        return verifyIntInput(infimum, supremum, value);
+        return verifyBoundedInt(infimum, supremum, value);
     }
 
-    private Integer verifyIntInput(int infimum, int supremum, int value){
+    private Integer verifyBoundedInt(int infimum, int supremum, int value){
         if(infimum > value || value > supremum) {
             System.out.println(infimum + " 이상 " + supremum + " 이하의 값을 입력해 주세요.");
             return null;
@@ -44,25 +47,46 @@ public final class CustomScanner {
         return value;
     }
 
-    public String nextCommaSeperatedString(int maxLength, String message){
-        String value;
-        System.out.println(message);
-
+    public List<String> nextCommaSeperatedString(int numParticipant, int maxLength, String message){
+        List<String> value;
+        clearInputBuffer();
         do {
-            value = verifyStringInput(maxLength);
+            value = readCommaSeperatedString(numParticipant, maxLength, message);
         } while (value == null);
 
         return value;
     }
 
-    private String verifyStringInput(int maxLength){
-        String value = scanner.next();
+    private void clearInputBuffer(){
+        if(scanner.hasNextLine()){
+            scanner.nextLine();
+        }
+    }
 
-        if(value.length() > 5) {
-            System.out.println("이름은 최대 5자까지 입력할 수 있습니다.");
+    private List<String> readCommaSeperatedString(int numParticipant, int maxLength, String message){
+        String line;
+        System.out.println(message);
+
+        try{
+            line = scanner.nextLine();
+            return verifyCommaSeperatedString(numParticipant, maxLength, line.split(","));
+        } catch (PatternSyntaxException e){
+            System.out.println("정수 값을 입력해 주세요.");
+            scanner.nextLine();
+            return null;
+        }
+    }
+
+    private List<String> verifyCommaSeperatedString(int numParticipant, int maxLength, String[] strings){
+        if(strings.length != numParticipant) {
+            System.out.println(numParticipant + "명의 이름을 쉼표로 구분하여 입력해주세요.");
+            return null;
+        }
+        if(Arrays.stream(strings).filter(name -> name.trim().length() > maxLength).count() > 0){
+            System.out.println("이름은 최대 " + maxLength + "자 까지 입력할 수 있습니다.");
             return null;
         }
 
-        return value;
+        return Arrays.stream(strings).map(name -> name.trim()).collect(Collectors.toList());
     }
 }

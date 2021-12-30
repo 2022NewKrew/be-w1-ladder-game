@@ -3,7 +3,6 @@ package view;
 import model.Ladder;
 import model.Player;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LadderPrinter {
@@ -24,7 +23,7 @@ public class LadderPrinter {
         System.out.print(sb.toString());
     }
 
-    private void printPlayer(StringBuilder sb, ArrayList<Player> players){
+    private void printPlayer(StringBuilder sb, List<Player> players){
         players.forEach(player -> {
             String name = player.getName();
             int len = name.length();
@@ -34,7 +33,7 @@ public class LadderPrinter {
         sb.append("\n");
     }
 
-    private void printLadder(StringBuilder sb, List<ArrayList<Boolean>> connections){
+    private void printLadder(StringBuilder sb, List<List<Boolean>> connections){
         connections.forEach(row -> {
             sb.append("  │");
             row.forEach(item -> sb.append(item ? "-----│" : "     │"));
