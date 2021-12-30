@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LadderView {
+    private static final String DELIMITER = ",";
+    private static final String PADDING = "  ";
+
     private final Scanner scanner;
 
     public LadderView() {
@@ -15,7 +18,7 @@ public class LadderView {
 
     public List<Player> inputPlayers() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String[] inputPlayers = scanner.nextLine().split(",");
+        String[] inputPlayers = scanner.nextLine().split(DELIMITER);
         List<Player> players = new ArrayList<>();
 
         for (String inputPlayer : inputPlayers) {
@@ -48,18 +51,12 @@ public class LadderView {
     }
 
     private void printLadderRow(List<LadderCell> row) {
-        System.out.print("  ");
-        for (LadderCell LadderCell : row) {
+        System.out.print(PADDING);
+
+        for (LadderCell ladderCell : row) {
             System.out.print(LineType.VERTICAL_LINE);
-            System.out.print(hasLadderAcrossLine(LadderCell));
+            System.out.print(ladderCell.getLine());
         }
         System.out.println(LineType.VERTICAL_LINE);
-    }
-
-    private LineType hasLadderAcrossLine(LadderCell ladderCell) {
-        if (ladderCell.getLine()) {
-            return LineType.HORIZONTAL_LINE;
-        }
-        return LineType.EMPTY_LINE;
     }
 }
