@@ -2,21 +2,25 @@ package ladder.dto;
 
 import ladder.domain.Ladder;
 import ladder.domain.Players;
+import ladder.domain.Rewards;
 
-public class ResultDto {
+public class InfoDto {
 
     private final LadderDto ladderDto;
     private final PlayersDto playersDto;
+    private final RewardsDto rewardsDto;
 
-    public ResultDto(LadderDto ladderDto, PlayersDto playersDto) {
+    public InfoDto(LadderDto ladderDto, PlayersDto playersDto, RewardsDto rewardsDto) {
         this.ladderDto = ladderDto;
         this.playersDto = playersDto;
+        this.rewardsDto = rewardsDto;
     }
 
-    public static ResultDto valueOf(Ladder ladder, Players players) {
+    public static InfoDto valueOf(Ladder ladder, Players players, Rewards rewards) {
         LadderDto ladderDto = LadderDto.ladderToDto(ladder);
         PlayersDto playersDto = PlayersDto.playersToDto(players);
-        return new ResultDto(ladderDto, playersDto);
+        RewardsDto rewardsDto = RewardsDto.rewardsToDto(rewards);
+        return new InfoDto(ladderDto, playersDto, rewardsDto);
     }
 
     public LadderDto getLadderDto() {
@@ -25,5 +29,9 @@ public class ResultDto {
 
     public PlayersDto getPlayersDto() {
         return playersDto;
+    }
+
+    public RewardsDto getRewardsDto() {
+        return rewardsDto;
     }
 }

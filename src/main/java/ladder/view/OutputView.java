@@ -1,10 +1,12 @@
 package ladder.view;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import ladder.dto.LadderDto;
 import ladder.dto.LineDto;
 import ladder.dto.PlayerDto;
 import ladder.dto.PlayersDto;
-import ladder.dto.ResultDto;
+import ladder.dto.InfoDto;
 
 public class OutputView {
 
@@ -16,17 +18,24 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printResult(ResultDto resultDto) {
-        printPlayer(resultDto.getPlayersDto());
-        printLadder(resultDto.getLadderDto());
+    public static void printLadderInfo(InfoDto infoDto) {
+        List<String> playerNames = infoDto.getPlayersDto()
+            .getPlayerDtos()
+            .stream()
+            .map(PlayerDto::getName)
+            .collect(Collectors.toList());
+
+        printInputData(playerNames);
+        printLadder(infoDto.getLadderDto());
+        printInputData(infoDto.getRewardsDto().getRewards());
     }
 
-    private static void printPlayer(PlayersDto playersDto) {
+    private static void printInputData(List<String> dates) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (PlayerDto playerDto : playersDto.getPlayerDtos()) {
+        for (String date : dates) {
             stringBuilder.append(" ")
-                .append(getBuffer(playerDto.getName()))
-                .append(playerDto.getName());
+                .append(getBuffer(date))
+                .append(date);
         }
         System.out.println(stringBuilder);
     }
@@ -57,4 +66,5 @@ public class OutputView {
         }
         return BLANK;
     }
+
 }
