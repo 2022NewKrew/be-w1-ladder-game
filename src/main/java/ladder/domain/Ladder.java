@@ -1,9 +1,9 @@
-package stepone;
+package ladder.domain;
 
 import java.util.List;
 import java.util.ArrayList;
 
-class Ladder {
+public class Ladder {
     final int ladderHeight, numPlayers;
     final int maxNameLength = 5;
     private final List<String> ladderArray = new ArrayList<>();
@@ -29,8 +29,8 @@ class Ladder {
         }
     }
 
-    void printLadder() {
-        players.forEach(s->System.out.print(" ".repeat((maxNameLength+1-s.length())/2) + String.format("%.5s", s) + " ".repeat((maxNameLength+2-s.length())/2)));
+    public void printLadder() {
+        players.forEach(s->System.out.print(" ".repeat((maxNameLength+1-Math.min(5, s.length()))/2) + String.format("%.5s", s) + " ".repeat((maxNameLength+2-Math.min(5, s.length()))/2)));
         System.out.println();
         ladderArray.forEach(s -> System.out.println("  " + s));
     }
