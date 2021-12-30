@@ -189,6 +189,7 @@ gradle-app.setting
 
 # User Area
 .idea/
+.idea/misc.xml
 *.iml
 *.ipr
 .iws
