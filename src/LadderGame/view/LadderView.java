@@ -15,9 +15,8 @@ public class LadderView {
         this.nameView = new NameView(ladder.getNames());
     }
 
-    @Override
-    public String toString() {
-        return this.nameView + getLaddersOutput();
+    public void showLadder() {
+        System.out.println(this.nameView + getLaddersOutput());
     }
 
     private String getLaddersOutput() {

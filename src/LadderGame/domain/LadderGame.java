@@ -13,7 +13,8 @@ public class LadderGame {
         int ladderHeight = getConsoleLadderHeight();
         scanner.close();
 
-        System.out.println(new LadderView(new Ladder(names, ladderHeight)));
+        LadderView ladderView = new LadderView(new Ladder(names, ladderHeight));
+        ladderView.showLadder();
     }
 
     private static String getConsoleNameList() {
