@@ -18,7 +18,8 @@ public class NameView {
         StringBuilder namesOutput = new StringBuilder();
         for (String name : this.names.getNameList()) {
             int padding = ((MAX_NAME_SIZE - name.length()) / 2) + SPACE;
-            namesOutput.append(" ".repeat(padding)).append(name).append(" ".repeat(padding));
+            int oddPadding = name.length()%2;
+            namesOutput.append(" ".repeat(padding)).append(name).append(" ".repeat(padding-oddPadding));
         }
         namesOutput.append("\n");
         return namesOutput.toString();

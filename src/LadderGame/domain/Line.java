@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 public class Line {
 
     // 클래스 변수 및 상수
-    private static final String BAR = "ㅣ";
+    private static final String BAR = "|";
     private static final String EMPTY = "     ";
     private static final String BRIDGE = "-----";
     private static final Random random = new Random();
