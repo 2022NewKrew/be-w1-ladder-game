@@ -1,4 +1,4 @@
-package view;
+package view.printer;
 
 public class StringAlignManager {
     public static void alignCenter(int maxLength, int spaceBetween, String message){

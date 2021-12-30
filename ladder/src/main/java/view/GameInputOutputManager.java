@@ -1,6 +1,8 @@
 package view;
 
 import domain.Ladder;
+import view.printer.GameResultPrinter;
+import view.printer.LadderPrinter;
 import view.scanner.PositiveIntScanner;
 import view.scanner.StringScanner;
 

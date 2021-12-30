@@ -1,4 +1,4 @@
-package view;
+package view.printer;
 
 import domain.Ladder;
 import domain.Line;
@@ -12,24 +12,8 @@ public class LadderPrinter {
         printResults(ladder.getLines());
     }
 
-    private void printLadder(Ladder ladder){
-        for (int currentHeight = 0; currentHeight < ladder.getLadderHeight(); currentHeight++)
-            printRow(ladder, currentHeight);
-    }
-
-    private void printRow(Ladder ladder, int curHeight){
-        System.out.print("   ");
-        ladder.getLines().stream()
-            .map(line -> mapBar(line, curHeight))
-            .forEach(System.out::print);
-        System.out.println();
-    }
-
-    private String mapBar(Line line, int curHeight){
-        if (line.getConnections()[curHeight] != null
-                && line.getLineNum() < line.getConnections()[curHeight].getLineNum())
-            return "|-----";
-        return "|     ";
+    private void printLadder(Ladder ladder) {
+        System.out.println(ladder.getShape());
     }
 
     private void printParticipants(List<Line> lines){

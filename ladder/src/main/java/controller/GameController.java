@@ -16,8 +16,14 @@ public class GameController {
     }
 
     public void startGame(){
-        List<Participant> participants = gameInputOutputManager.getParticipantsInfo().stream().map(Participant::new).collect(Collectors.toList());
-        List<Result> results = gameInputOutputManager.getResultsInfo().stream().map(Result::new).collect(Collectors.toList());
+        List<Participant> participants = gameInputOutputManager.getParticipantsInfo()
+                .stream()
+                .map(Participant::new)
+                .collect(Collectors.toList());
+        List<Result> results = gameInputOutputManager.getResultsInfo()
+                .stream()
+                .map(Result::new)
+                .collect(Collectors.toList());
         int ladderHeight = gameInputOutputManager.getLadderInfo();
 
         Ladder ladder = new Ladder(participants, results, ladderHeight);
