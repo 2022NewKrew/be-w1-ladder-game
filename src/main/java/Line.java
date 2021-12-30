@@ -9,6 +9,7 @@ public class Line {
     private static final String VLINE = "|";
     private static final String HLINE = "-----";
     private static final String SPACE = "     ";
+    private static final String PADDING = "  ";
 
     public Line(int numPeople){
         for (int i = 0; i < numPeople-1; i++) {
@@ -17,7 +18,7 @@ public class Line {
     }
     @Override
     public String toString(){
-        return VLINE
+        return PADDING + VLINE
                 + points.stream()
                 .map(p -> p ? HLINE : SPACE)
                 .collect(Collectors.joining(VLINE))
