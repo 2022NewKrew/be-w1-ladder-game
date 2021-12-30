@@ -17,17 +17,21 @@ public class Line {
 
     private void makeLineInfo(){
         for (int col = 0; col < ladderWidth; col++){
-            boolean hasLadder = makeLadder(col);
+            boolean hasLadder = makeRandomLadder(col);
             chkLadder.add(hasLadder);
             makeLadderComponents(hasLadder);
         }
     }
 
-    private Boolean makeLadder(int col){
-        if(isLastIndex(col) || isBeforeIndexHasLadder(col)){
+    private Boolean makeRandomLadder(int col){
+        if(canMakeRandomLadder(col)){
             return false;
         }
         return random.nextBoolean();
+    }
+
+    private Boolean canMakeRandomLadder(int col){
+        return isLastIndex(col) || isBeforeIndexHasLadder(col);
     }
 
     private Boolean isLastIndex(int col){

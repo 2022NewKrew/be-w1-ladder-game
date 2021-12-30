@@ -15,11 +15,11 @@ class LineTest {
 
     @Test
     @DisplayName("마지막 인덱스의 사다리는 오른쪽 사다리가 존재하지 않는다.")
-    public void test() throws Exception{
+    public void 마지막_인덱스_사다리_테스트() throws Exception{
         //given
         Line line = new Line(LADDER_WIDTH);
         line.chkLadder.add(true);
-        Method method = line.getClass().getDeclaredMethod("makeLadder", int.class);
+        Method method = line.getClass().getDeclaredMethod("makeRandomLadder", int.class);
         method.setAccessible(true);
 
         //when
@@ -31,7 +31,7 @@ class LineTest {
 
     @Test
     @DisplayName("직전에 사다리가 있다면 그 다음 사다리는 존재하지 않는다.")
-    public void test2() throws Exception{
+    public void 직전_사다리_유뮤_테스트() throws Exception{
         //given
         Line line = new Line(LADDER_WIDTH);
         Method method = line.getClass().getDeclaredMethod("makeLineInfo");
