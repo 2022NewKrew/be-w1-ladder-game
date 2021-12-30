@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
 
 public class Ladder {
 
@@ -37,22 +36,18 @@ public class Ladder {
             System.out.print(listOfParticipants.get(i) + " ");
         }
         System.out.println();
-
         StringBuffer ladderEntire = new StringBuffer();
-
         for(int row = 0; row < height; row++) {
             ladderEntire.append(shape.get(row).toString());
         }
-
         System.out.print(ladderEntire.toString());
-
         for(String el : listOfResult) System.out.print(el);
         System.out.println();
     }
 
     public static void processCommand (String command) {
         if (command.trim().equals("all")) System.out.println(resultMap.toString());
-        System.out.println(command + ": " + resultMap.get(command.trim()));
+        else System.out.println(command + ": " + resultMap.get(command.trim()));
     }
 
     private static void calculateResult () {
@@ -60,15 +55,23 @@ public class Ladder {
         for (int i = 0; i < listOfParticipants.size(); i++) nameIdxList.add(i);
 
         for (LadderRow line : shape) {
-            for (int i = 0; i < line.horizonBranch.size(); i++) {
-                if (line.horizonBranch.get(i) == true) {
-                    Collections.swap(nameIdxList, i, i+1);
-                }
-            }
+            calculateResultOneRow(line, nameIdxList);
         }
 
         for (int i = 0; i < listOfParticipants.size(); i++) {
             resultMap.put(listOfParticipants.get(nameIdxList.get(i)).trim(), listOfResult.get(i));
+        }
+    }
+
+    private static void calculateResultOneRow (LadderRow line, ArrayList<Integer> nameIdxList) {
+        for (int i = 0; i < line.horizonBranch.size(); i++) {
+            calculateResultAdjacentParticipants(line, i, nameIdxList);
+        }
+    }
+
+    private static void calculateResultAdjacentParticipants(LadderRow line, int idx, ArrayList<Integer> nameIdxList) {
+        if (line.horizonBranch.get(idx) == true) {
+            Collections.swap(nameIdxList, idx, idx+1);
         }
     }
 
