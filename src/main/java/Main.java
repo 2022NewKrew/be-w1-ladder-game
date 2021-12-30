@@ -9,7 +9,7 @@ public class Main {
         // 참가자 프린트
         PrintManager.printPeople(ladder.getNamePeople());
         // 사다리 프린트
-        PrintManager.printLadder(ladder.makeStringLadder());
+        PrintManager.printLadder(ladder.toString());
         }
     }
 
