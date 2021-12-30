@@ -1,7 +1,5 @@
 package ladder.domain;
-
 import java.util.ArrayList;
-
 
 public class Ladder {
     private final int nPeople;
@@ -37,7 +35,7 @@ public class Ladder {
     }
 
     //line 생성
-    public void buildLines() {
+    private void buildLines() {
         for (int i = 0; i < this.maxHeight; i++) {
             Line line = new Line(this.nPeople);
             this.arr.add(line);

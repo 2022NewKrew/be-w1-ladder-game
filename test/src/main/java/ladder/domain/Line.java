@@ -13,7 +13,7 @@ public class Line {
     public Line (int numPeople) {
         boolean prevStep = false;// if there was a step right before, prevStep = true
         for(int i=0; i<numPeople-1; i++){
-            prevStep = buildStep(prevStep, this.cells, stepNotExist);
+            prevStep = this.buildStep(prevStep, this.cells, stepNotExist);
         }
     }
     public ArrayList<Boolean> getCells(){
@@ -21,7 +21,7 @@ public class Line {
     }
 
     // build base steps for each cell using positions
-    public boolean buildStepsPerCell(ArrayList<Boolean> cells){
+    private boolean buildStepsPerCell(ArrayList<Boolean> cells){
         boolean randomBool = random.nextBoolean();
 
         if (randomBool) { // make each step by 50% probability
@@ -33,7 +33,7 @@ public class Line {
     }
 
 
-    public boolean buildStep(boolean prevStep, ArrayList<Boolean> cells, boolean existOrNot) {
+    private boolean buildStep(boolean prevStep, ArrayList<Boolean> cells, boolean existOrNot) {
         // build empty step if the previous step is exists in the same line.
         if (prevStep){
             cells.add(existOrNot);
