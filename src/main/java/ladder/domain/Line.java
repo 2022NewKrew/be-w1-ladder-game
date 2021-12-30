@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Line {
 
-    private final ArrayList<Boolean> bridges;
+    private final List<Boolean> bridges;
     private final Random random = new Random();
 
     public Line() {
