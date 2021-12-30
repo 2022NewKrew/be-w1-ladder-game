@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CUI {
+public class Player {
     public static final String NAME_FORMAT_NUM = "%-6s";
     private final Scanner sc = new Scanner(System.in);
     private final List<String> parts = new ArrayList<>();
