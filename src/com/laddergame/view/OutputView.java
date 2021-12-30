@@ -2,9 +2,11 @@ package com.laddergame.view;
 
 import java.util.List;
 
+import static com.laddergame.util.ExceptionMessages.UNNECESSARY_INSTANCE_GENERATION_EXCEPTION;
+
 public class OutputView {
     private OutputView() throws RuntimeException {
-        throw new RuntimeException("Unnecessary instance generation");
+        throw new RuntimeException(UNNECESSARY_INSTANCE_GENERATION_EXCEPTION);
     }
 
     public static void outputLadderGameResult(List<List<Boolean>> lines, List<String> names, List<String> results) {
@@ -25,7 +27,7 @@ public class OutputView {
 
     private static void outputGameResult(List<String> results) {
         results.forEach(result -> System.out.printf("%6s", result));
-        System.out.println();
+        System.out.print("\n\n");
     }
 
     private static void outputLine(List<Boolean> line) {

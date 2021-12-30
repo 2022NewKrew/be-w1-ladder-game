@@ -5,12 +5,12 @@ import java.util.List;
 public class LadderGame {
     private final Lines lines;
     private final Participants participants;
-    private final GameResult gameResult;
+    private final GameResults gameResult;
 
     private LadderGame(int ladderHeight, String participantNamesString, String gameResultsString) {
         participants = Participants.valueOf(participantNamesString);
         lines = Lines.valueOf(participants.getParticipantNumber(), ladderHeight);
-        gameResult = GameResult.valueOf(participants, lines, gameResultsString);
+        gameResult = GameResults.valueOf(participants, lines, gameResultsString);
     }
 
     public static LadderGame valueOf(int ladderHeight, String participantNamesString, String gameResultsString) {
@@ -25,5 +25,5 @@ public class LadderGame {
         return lines;
     }
 
-    public GameResult getGameResult() { return gameResult; };
+    public GameResults getGameResult() { return gameResult; };
 }

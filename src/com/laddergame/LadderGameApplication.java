@@ -1,6 +1,6 @@
 package com.laddergame;
 
-import com.laddergame.domain.GameResult;
+import com.laddergame.domain.GameResults;
 import com.laddergame.domain.LadderGame;
 import com.laddergame.domain.Lines;
 import com.laddergame.dto.LinesDto;
@@ -30,7 +30,7 @@ public class LadderGameApplication {
         while(true) {
             String targetParticipantName = inputToShowParticipantResult();
             if(Objects.equals(targetParticipantName, APPLICATION_EXIT)) break;
-            GameResult matchedGameResult = ladderGame.getGameResult();
+            GameResults matchedGameResult = ladderGame.getGameResult();
             GameResultDto participantResultDto = GameResultDto.from(matchedGameResult, targetParticipantName);
             outputParticipantResult(participantResultDto.getParticipantResult());
         }
