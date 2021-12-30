@@ -21,10 +21,11 @@ public class OutputView {
         private final String value;
     }
 
-    public static void outputLadderGameResult(List<List<Boolean>> result, List<String> names) {
+    public static void outputLadderGameResult(List<List<Boolean>> lines, List<String> names, List<String> results) {
         System.out.println("사다리 결과\n");
         outputParticipantNames(names);
-        result.forEach(OutputView::outputLineResult);
+        lines.forEach(OutputView::outputLine);
+        outputGameResult(results);
     }
 
     public static void outputParticipantResult(String result) {
@@ -36,9 +37,14 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void outputLineResult(List<Boolean> lineResult) {
+    private static void outputGameResult(List<String> results) {
+        results.forEach(result -> System.out.printf("%6s", result));
+        System.out.println();
+    }
+
+    private static void outputLine(List<Boolean> line) {
         System.out.print(DELIMITER.LADDER_PADDING.value);
-        lineResult.forEach(hasLadder -> {
+        line.forEach(hasLadder -> {
             System.out.print(DELIMITER.VERTICAL_LINE.value);
             String ladder = hasLadder ? DELIMITER.LADDER.value : DELIMITER.NO_LADDER.value;
             System.out.print(ladder);
