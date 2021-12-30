@@ -7,7 +7,9 @@ public class Main {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
             LadderGame game = new LadderGame(sc);
+            game.initGame();
             game.play();
+            game.result();
         }
     }
 
