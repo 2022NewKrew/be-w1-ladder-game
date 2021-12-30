@@ -2,6 +2,7 @@ package view;
 
 import domain.Ladder;
 import domain.Row;
+import domain.User;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,8 +14,8 @@ public class LadderPrinter {
     private static final String BRIDGE = "-";
     private static final String EMPTY = " ";
 
-    public static void drawLadder(List<String> names, Ladder ladder, List<String> results) {
-        drawStringList(names);
+    public static void drawLadder(List<User> users, Ladder ladder, List<String> results) {
+        drawStringList(users.stream().map(User::getName).collect(Collectors.toList()));
         System.out.print(ladder.getRows()
                 .stream()
                 .map(LadderPrinter::makeRow)

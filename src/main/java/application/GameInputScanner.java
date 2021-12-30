@@ -1,21 +1,26 @@
 package application;
 
+import domain.User;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static application.LadderGame.MAXIMUM_NAME_LENGTH;
 
 public class GameInputScanner {
     private static final Scanner in = new Scanner(System.in);
 
-    public static List<String> inputNameList() {
+    public static List<User> inputNameList() {
         try {
             List<String> nameList = inputStringSeparator(in.nextLine());
             verifyInputNameList(nameList);
-            return nameList;
+            return IntStream.range(0, nameList.size())
+                    .mapToObj(i -> new User(nameList.get(i), i))
+                    .collect(Collectors.toList());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return inputNameList();
