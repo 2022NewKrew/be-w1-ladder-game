@@ -1,11 +1,11 @@
 package util;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
@@ -13,12 +13,22 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CustomScannerTests {
+    static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    static ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     static InputStream sysInBackup = System.in;
+    static PrintStream sysOutBackup = System.out;
+    static PrintStream sysErrBackup = System.err;
 
+    @BeforeAll
+    static void beforeAll(){
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+    }
     @AfterAll
     static void afterAll(){
-        System.out.println("[CustomScanner 테스트 완료]");
         System.setIn(sysInBackup);
+        System.setOut(sysOutBackup);
+        System.setErr(sysErrBackup);
     }
 
     @DisplayName("readBoundedInt 테스트")
