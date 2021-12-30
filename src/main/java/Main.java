@@ -1,7 +1,9 @@
+import Ladder.IOManager.InputManager;
+import Ladder.Ladder;
+
 public class Main {
     public static void main(String[] args) {
-        Ladder l = new Ladder();
-
-        l.printLadder();
+        Ladder ladder = new Ladder(InputManager.getInputDTO());
+        ladder.printLadder();
     }
 }
