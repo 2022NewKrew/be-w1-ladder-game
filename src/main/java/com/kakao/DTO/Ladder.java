@@ -41,9 +41,15 @@ public class Ladder {
     }
     private List<Boolean> makeRow() { // 한 줄의 사다리 생성
         List<Boolean> row = new ArrayList<>();
+        boolean lastBridge = false;
         for(int w = this.START_OF_BRIDGE; w<this.gamePlayers.length; w++) {
-            row.add(random.nextBoolean()); // 연결점 생성
+            lastBridge = getRandomBrigde(lastBridge);
+            row.add(lastBridge); // 연결점 생성
         }
         return row;
+    }
+    private boolean getRandomBrigde(boolean lastBridge) {
+        // 중복 연결을 제거하기 위한 용도의 함수
+        return lastBridge ? false : random.nextBoolean();
     }
 }
