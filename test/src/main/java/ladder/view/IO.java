@@ -95,16 +95,14 @@ public class IO {
     public static String preprocessName(String name, int maxNameLength) {
         final int nPads = maxNameLength - name.length();
         // if length of name >5 : truncate first
-        if (nPads < 0 ) {
+        if (nPads <= 0 ) {
             String shortedName = truncateName(name, maxNameLength);
             return shortedName;
         }
-        if (nPads > 0) {
-            String paddedName = addPad(name, nPads, maxNameLength);
-            return paddedName;
-        }
 
-        return name;
+        String paddedName = addPad(name, nPads, maxNameLength);
+        return paddedName;
+
     }
 
     //add padding(' ') to the name
