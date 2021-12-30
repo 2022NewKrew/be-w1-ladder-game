@@ -8,11 +8,11 @@ import java.util.List;
 public class ResultList {
     ArrayList<Result> results;
 
-    public ResultList(){
+    public ResultList() {
         this.results = new ArrayList<>();
     }
 
-    public ResultList(ArrayList<Result> results){
+    public ResultList(ArrayList<Result> results) {
         this.results = results;
     }
 
@@ -28,14 +28,14 @@ public class ResultList {
     }
 
 
-    public ResultList getResultListByIdx(List<Integer> idxList){
+    public ResultList getResultListByIdx(List<Integer> idxList) {
         ArrayList<Result> resultsCopy = new ArrayList<>();
-        for(int idx: idxList)
+        for (int idx : idxList)
             resultsCopy.add(results.get(idx));
         return new ResultList(resultsCopy);
     }
 
-    public ArrayList<Result> getResults(){
+    public ArrayList<Result> getResults() {
         return results;
     }
 

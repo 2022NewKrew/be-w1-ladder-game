@@ -21,7 +21,7 @@ public class PlayerService {
         return playerList.getPlayerIdxLst(playerInput);
     }
 
-    public List<Integer> getAllPlayerIdxLst(){
+    public List<Integer> getAllPlayerIdxLst() {
         return playerList.getAllPlayerIdxLst();
     }
 
