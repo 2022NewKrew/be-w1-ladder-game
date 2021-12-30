@@ -1,5 +1,10 @@
-import java.util.ArrayList;
+package view;
+
+import domain.LadderGame;
+import domain.Line;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameView {
     private static final String LUMBER = "|";
@@ -8,7 +13,7 @@ public class GameView {
 
     private LadderGame currentGame;
 
-    GameView(LadderGame game) {
+    public GameView(LadderGame game) {
         currentGame = game;
     }
 
@@ -18,7 +23,7 @@ public class GameView {
     }
 
     public void showParticipants() {
-        print(getNameList());
+        print(getNameList(currentGame.getParticipants()));
     }
 
     public void showLadder() {
@@ -29,30 +34,24 @@ public class GameView {
         }
     }
 
-    private String getNameList() {
-        // 참가자들을 출력하기 위한 StringBuilder 생성
-        StringBuilder nameList = new StringBuilder();
-        // 루프를 돌면서 참가자들을 추가
-        for (int i = 0; i < currentGame.getNumOfParticipants(); i++) {
-            String participantName = currentGame.getParticipants().get(i);
-            nameList.append(getStandardizedName(participantName));
-        }
-        return nameList.toString();
+    protected String getNameList(List<String> participants) {
+        return participants
+                .stream()
+                .map(participantName -> getStandardizedName(participantName))
+                .collect(Collectors.joining(SPACE));
     }
 
+    // MAX_NAME_LENGTH 에 맞춰 이름 양쪽에 공백을 더해줘서 사이즈를 규격화
     private String getStandardizedName(String name) {
         int maxNameLength = currentGame.getMaxNameLength();
         // 현재 참가자 이름의 길이
         int nameLength = name.length();
         // 이름 길이에 따라 왼쪽 indent 계산
         int leftIndent = (int) (maxNameLength - nameLength) / 2;
-        // 오른쪽 indent 계산한 뒤, +1을 해주어 참가자들 이름 사이에 1칸씩 빈칸을 둠
-        int rightIndent = maxNameLength - nameLength - leftIndent + 1;
-        // 왼쪽 indent로 초기화 후, 이름, 오른쪽 indent 순으로 append
-        StringBuilder standardizedName = new StringBuilder(SPACE.repeat(leftIndent));
-        standardizedName.append(name);
-        standardizedName.append(SPACE.repeat(rightIndent));
-        return standardizedName.toString();
+        // 오른쪽 indent 계산
+        int rightIndent = maxNameLength - nameLength - leftIndent;
+        // 계산한 indent 대로 왼쪽공백+이름+오른쪽공백 을 리턴
+        return SPACE.repeat(leftIndent) + name + SPACE.repeat(rightIndent);
     }
 
     private String getLadderRow(Line line) {

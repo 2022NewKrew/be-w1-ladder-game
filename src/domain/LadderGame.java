@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,10 +15,13 @@ public class LadderGame {
 
     private Scanner scanner = new Scanner(System.in);
 
-    LadderGame() {
-        inputParticipants();
-        inputHeight();
-        numOfParticipants = participants.size();
+    public LadderGame() { }
+    public LadderGame(Boolean startGame) {
+        if (startGame) {
+            inputParticipants();
+            inputHeight();
+            numOfParticipants = participants.size();
+        }
     }
 
     public int getMaxNameLength() {
