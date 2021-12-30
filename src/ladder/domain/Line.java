@@ -17,6 +17,12 @@ public class Line {
         }
     }
 
+    // Constructor for unit test
+    // 유닛 테스트를 위해 임의의 line 을 생성할 수 있는 생성자를 추가함.
+    public Line (ArrayList<Boolean> points) {
+        this.points.addAll(points);
+    }
+
     private boolean checkDuplicatedLine(boolean previous) {
         if (previous) {
             boolean current = rand.nextBoolean();
