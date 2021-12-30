@@ -13,7 +13,8 @@ public class Ladder {
     private final List<LadderRow> bridges;
 
     public Ladder(int numPeople, int ladderHeight) {
-        bridges = Stream.generate(() -> new LadderRow(numPeople - WIDTH_CORRECTION))
+        RandomBridgeBuilder randomBridgeBuilder = new RandomBridgeBuilder();
+        bridges = Stream.generate(() -> new LadderRow(randomBridgeBuilder.getRandomLadderRow(numPeople - WIDTH_CORRECTION)))
                 .limit(ladderHeight)
                 .collect(Collectors.toList());
     }
