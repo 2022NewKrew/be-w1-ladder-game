@@ -1,25 +1,25 @@
-package com.yapark97.laddergame;
+package com.yapark97.laddergame.ladder.view;
 
-import com.yapark97.laddergame.ladder.Ladder;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 
-import java.util.*;
+public class SimpleLadderInput implements LadderInput{
+    private static SimpleLadderInput simpleLadderInput;
+    private static final Scanner sc = new Scanner(System.in);
 
-public class LadderGame {
-    private final Scanner sc = new Scanner(System.in);
-    private Ladder ladder = null;
+    private SimpleLadderInput() {}
 
-    public void initGame() {
-        ladder = createLadder();
+    public static SimpleLadderInput getInstance() {
+        if (simpleLadderInput == null) {
+            simpleLadderInput = new SimpleLadderInput();
+        }
+        return simpleLadderInput;
     }
 
-    private Ladder createLadder() {
-        List<String> participants = takeParticipantsInput();
-        int maxHeight = takeMaxHeightInput();
-
-        return new Ladder(participants, maxHeight);
-    }
-
-    private List<String> takeParticipantsInput() {
+    @Override
+    public List<String> takeParticipantsInput() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String input = sc.nextLine();
 
@@ -30,7 +30,8 @@ public class LadderGame {
         return participants;
     }
 
-    private int takeMaxHeightInput() {
+    @Override
+    public int takeMaxHeightInput() {
         int maxHeight;
 
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
@@ -43,13 +44,5 @@ public class LadderGame {
             throw new InputMismatchException("최대 사다리 높이는 1 이상이어야 합니다.");
         }
         return maxHeight;
-    }
-
-    public void showStatus() {
-        if (ladder == null) {
-            throw new NullPointerException("사다리가 생성되지 않았습니다.");
-        }
-        System.out.println("\n실행결과");
-        ladder.printLadder();
     }
 }

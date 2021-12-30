@@ -1,13 +1,14 @@
-package com.yapark97.laddergame.ladder;
+package com.yapark97.laddergame.ladder.domain;
 
-import com.yapark97.laddergame.ladder.row.LadderRow;
-import com.yapark97.laddergame.ladder.row.Row;
-import com.yapark97.laddergame.ladder.row.ParticipantsRow;
+import com.yapark97.laddergame.ladder.domain.row.LadderRow;
+import com.yapark97.laddergame.ladder.domain.row.Row;
+import com.yapark97.laddergame.ladder.domain.row.ParticipantsRow;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Ladder {
     private final int maxHeight;
@@ -33,9 +34,9 @@ public class Ladder {
         }
     }
 
-    public void printLadder() {
-        for (Row row : rows) {
-            row.print();
-        }
+    public String getSimpleOutput(final int WIDTH) {
+        return rows.stream()
+                    .map(row -> row.getSimpleOutput(WIDTH))
+                    .collect(Collectors.joining("\n"));
     }
 }
