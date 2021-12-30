@@ -27,7 +27,7 @@ public class BufferedReadManager implements ReadManager {
     this.writer = new BufferedWriter(new OutputStreamWriter(System.out));
   }
 
-  public static ReadManager create() {
+  public static BufferedReadManager create() {
     return new BufferedReadManager();
   }
 

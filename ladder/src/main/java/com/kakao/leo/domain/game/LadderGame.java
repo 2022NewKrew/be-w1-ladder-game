@@ -1,5 +1,7 @@
-package com.kakao.leo.domain.ladder;
+package com.kakao.leo.domain.game;
 
+import com.kakao.leo.domain.ladder.Ladder;
+import com.kakao.leo.domain.ladder.LadderBoard;
 import com.kakao.leo.domain.user.Participants;
 import com.kakao.leo.view.in.BufferedReadManager;
 import com.kakao.leo.view.in.ReadManager;

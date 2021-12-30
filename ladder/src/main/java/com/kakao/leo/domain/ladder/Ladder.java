@@ -27,6 +27,7 @@ public class Ladder implements Drawable {
   }
 
 
+  @Override
   public void drawWith(WriteManager writeManager) throws IOException {
     writeManager.draw(toString());
   }

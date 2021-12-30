@@ -1,6 +1,6 @@
 package com.kakao.leo;
 
-import com.kakao.leo.domain.ladder.LadderGame;
+import com.kakao.leo.domain.game.LadderGame;
 
 public class App {
 
