@@ -55,7 +55,7 @@ public class LadderGameTests {
         final List<String> alphaNumExpected = List.of("a1", "1d2", "1c", "lbvi2", "12jik");
         final Member memberAlphaNum = new Member(String.join(Member.SEPARATOR, alphaNum));
 
-        final List<String> unicode = List.of("1", "2", "사과", "배", "귤1감자", ";-=~", "非正常文字");
+        final List<String> unicode = List.of("1", "2", "사과", "배", "귤1감자", ";-=~", "非正常文字", "바 ij");
         final List<String> unicodeExpected = List.of("1", "2");
         final Member memberUnicode = new Member(String.join(Member.SEPARATOR, unicode));
 
