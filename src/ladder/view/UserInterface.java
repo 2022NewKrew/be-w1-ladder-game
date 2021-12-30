@@ -5,6 +5,7 @@ import ladder.domain.Ladder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class UserInterface {
     private static final int MAX_NUM_STRING = 5;
@@ -50,6 +51,13 @@ public class UserInterface {
     }
 
     public void printLadderGame(List<String> userList, Ladder ladder) {
+        try{
+            checkUserNames(userList.toArray(String[]::new));
+        } catch (IllegalArgumentException iae) {
+            userList = userList.stream()
+                    .map(user -> user.length() > MAX_NUM_STRING? user.substring(0, MAX_NUM_STRING) : user)
+                    .collect(Collectors.toList());
+        }
         userList.forEach(user -> System.out.printf("%" + MAX_NUM_STRING + "s ", user));
         System.out.println();
         System.out.println(ladder);
