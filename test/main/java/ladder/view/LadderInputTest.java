@@ -20,18 +20,30 @@ class LadderInputTest {
 
         //when, then
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, LadderInput::new);
-        assertEquals("사람 이름은 최대 5글자입니다.", exception.getMessage());
+        assertEquals("문자열은 최대 5글자입니다.", exception.getMessage());
     }
 
     @Test
     void 사다리_높이가_1미만_이라면_예외를_던진다() {
         //given
-        String input = "rain\n0";
+        String input = "rain\n5000\n0";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
         //when, then
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, LadderInput::new);
         assertEquals("사다리의 높이는 1이상입니다.", exception.getMessage());
+    }
+
+    @Test
+    void 참여인원과_실행결과_수가_다르면_예외를_던진다() {
+        //given
+        String input = "rain\n5000,1000\n0";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        //when, then
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, LadderInput::new);
+        assertEquals("참여할 사람과 실행 결과의 수는 같아야 합니다.", exception.getMessage());
     }
 }
