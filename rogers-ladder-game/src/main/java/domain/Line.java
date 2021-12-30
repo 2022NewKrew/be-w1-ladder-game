@@ -6,26 +6,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<ComponentType> components = new ArrayList<>();
+    private final List<ComponentType> components;
 
-    // static method
-
-    public static Line createLine(int size){
-        Line line = new Line();
-
-        for(int col=0; col < size; col++){
-            line.addComponent(createComponent(line, col));
-        }
-
-        return line;
+    public static Line valueOf(int size){
+        return new Line(size);
     }
 
-    private static ComponentType createComponent(Line line, int col){
+    private Line(int size){
+        validate(size);
+        this.components = createComponents(size);
+    }
+
+    private static void validate(int size){
+        if(size <= 0){
+            throw new IllegalArgumentException("라인의 길이는 양수여야합니다.");
+        }
+    }
+
+    private static List<ComponentType> createComponents(int size){
+        List<ComponentType> components = new ArrayList<>();
+
+        for(int col=0; col < size; col++){
+            components.add(createComponent(components, col));
+        }
+
+        return components;
+    }
+
+    private static ComponentType createComponent(List<ComponentType> components, int col){
         if(isLine(col)){
             return ComponentType.LINE;
         }
 
-        if(isEmpty(line)) {
+        if(isEmpty(components)) {
             return ComponentType.EMPTY;
         }
 
@@ -36,27 +49,13 @@ public class Line {
         return col % 2 == 0;
     }
 
-    private static boolean isEmpty(Line line){
-        if(line.getSize() < 2 || !RandomUtil.getRandomBoolean()){
+    private static boolean isEmpty(List<ComponentType> components){
+        if(components.size() < 2 || !RandomUtil.getRandomBoolean()){
             return true;
         }
 
-        ComponentType prevType = line.getComponent(line.getSize()-2);
+        ComponentType prevType = components.get(components.size()-2);
         return prevType == ComponentType.LADDER;
-    }
-
-    // instance method
-
-    private void addComponent(ComponentType componentType){
-        this.components.add(componentType);
-    }
-
-    private ComponentType getComponent(int index){
-        return this.components.get(index);
-    }
-
-    private int getSize(){
-        return this.components.size();
     }
 
     @Override

@@ -1,15 +1,14 @@
 package factory;
 
 import domain.Ladder;
-
-import java.util.List;
+import dto.InputDto;
 
 public class LadderFactory {
     private static Ladder instance = null;
 
-    public static Ladder getInstance(List<String> peopleNames , int ladderHeight){
+    public static Ladder getInstance(InputDto inputDto){
         if(instance == null){
-            instance = new Ladder(peopleNames, ladderHeight);
+            instance = new Ladder(inputDto.getNames(), inputDto.getHeight());
         }
 
         return instance;
