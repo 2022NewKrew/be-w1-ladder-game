@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LadderFrameLine {
     private static final Random randomGenerator = new Random();
@@ -15,13 +17,10 @@ public class LadderFrameLine {
     }
 
     private List<LadderFrame> generateFrames(int numberOfFrame) {
-        List<LadderFrame> frames = new ArrayList<>();
-        LadderFrame previousFrame = LadderFrame.SPACE;
-        for (int i = 0; i < numberOfFrame; i++) {
-            previousFrame = generateBridge(previousFrame);
-            frames.add(previousFrame);
-        }
-        return Collections.unmodifiableList(frames);
+        return Stream.iterate(LadderFrame.SPACE, this::generateBridge)
+                .skip(1)
+                .limit(numberOfFrame)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private LadderFrame generateBridge(LadderFrame previousFrame) {

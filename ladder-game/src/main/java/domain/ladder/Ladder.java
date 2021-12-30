@@ -3,6 +3,8 @@ package domain.ladder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
     private static final int MIN_LENGTH = 1;
