@@ -1,9 +1,9 @@
-package game;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import static game.LadderType.*;
+import static ladder.domain.LadderType.*;
 
 
 public class LadderRow{
@@ -17,30 +17,16 @@ public class LadderRow{
             elementList.add(decideElement());
         }
     }
-
-    public LadderRow(ArrayList<String> playerList) {
+    public ArrayList<LadderType> getElementList() {
+        return elementList;
     }
-
-    LadderType decideElement() {
+    private LadderType decideElement() {
         //|-----|-----|     방지
         if ((elementList.isEmpty() || elementList.get(elementList.size() - 1) != BRIDGE)
                 && random.nextBoolean()) {
             return BRIDGE;
         }
         return BLANK;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(BLANK);
-        stringBuilder.append(BAR);
-        for(var element : elementList)
-        {
-            stringBuilder.append(element);
-            stringBuilder.append(BAR);
-        }
-        return stringBuilder.toString();
     }
 
 }

@@ -1,6 +1,6 @@
-package game;
+package ladder.domain;
 
-import static game.Ladder.typeSize;
+import static ladder.domain.Ladder.typeSize;
 
 public enum LadderType {
     BLANK(" ".repeat(typeSize)),
