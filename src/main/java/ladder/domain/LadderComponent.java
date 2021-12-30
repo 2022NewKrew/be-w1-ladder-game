@@ -1,4 +1,4 @@
-package ladder;
+package main.java.ladder.domain;
 
 enum LadderComponent {
     VERTICAL("|"),

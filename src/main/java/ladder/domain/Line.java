@@ -1,4 +1,4 @@
-package ladder;
+package main.java.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,7 @@ class Line {
         for (int i = 0; i < widthOfLadder; i++) {
             points.add(fillLine(i));
         }
+        points.add(LadderComponent.PADDING);
     }
 
     private LadderComponent fillLine(int colIdx) {

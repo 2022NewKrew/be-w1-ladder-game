@@ -1,16 +1,16 @@
-package view;
+package main.java.ladder.view;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class ApplicationInput {
+public class LadderInput {
     private static final String DELIMITER = ",";
     static final Scanner sc = new Scanner(System.in);
 
     private final List<String> players;
     private final int height;
 
-    public ApplicationInput() {
+    public LadderInput() {
         players = userInputPlayers();
         height = userInputHeight();
         sc.close();
