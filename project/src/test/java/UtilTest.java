@@ -1,11 +1,13 @@
+import laddergame.util.Util;
 import org.junit.jupiter.api.*;
-import java.util.ArrayList;
-import java.util.List;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class Util {
+public class UtilTest {
+    //formatStringSize가 정확히 5개 크기의 String을 반환하는지 테스트
     @Test
-    void formatStringSizeTest(){
-        Util.formatStringSize("kennypark", 5);
+    void formatStringSize(){
+        assertThat(Util.formatStringSize("kennypark", 5)).isEqualTo("kenny");
+        assertThat(Util.formatStringSize("ab", 5)).isEqualTo("   ab");
+        assertThat(Util.formatStringSize("", 5)).isEqualTo("     ");
     }
 }
