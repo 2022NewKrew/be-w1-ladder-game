@@ -1,3 +1,5 @@
+package View;
+
 public class IntInputCondition implements InputCondition {
     private String query;
     private int limit;

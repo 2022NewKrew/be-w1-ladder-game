@@ -1,8 +1,10 @@
+import Domain.LadderCell;
+import Domain.LadderRow;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 public class LineTest {
     static LadderRow ladderRow;
@@ -24,5 +26,7 @@ public class LineTest {
         System.out.println(ladderRow.getRow().get(0).getIsHorizontal());
         assertThat(ladderRow.decideHorizon(ladderRow.getRow(), 1)).isEqualTo(false);
     }
+
+
 
 }
