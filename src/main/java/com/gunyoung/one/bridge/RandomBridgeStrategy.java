@@ -1,20 +1,30 @@
 package com.gunyoung.one.bridge;
 
-import java.util.Random;
+import com.gunyoung.one.utils.RandomMaker;
+
+import java.util.List;
 
 public class RandomBridgeStrategy implements BridgeMakeStrategy {
 
-    private Random random = new Random();
+    private RandomMaker randomMaker;
+
+    public RandomBridgeStrategy() {
+        this(new RandomMaker());
+    }
+
+    public RandomBridgeStrategy(RandomMaker randomMaker) {
+        this.randomMaker = randomMaker;
+    }
 
     @Override
-    public void makeBridges(Bridge[][] bridges) {
-        for (int row = 0; row < bridges.length; row++) {
+    public void makeBridges(List<BridgesInRow> bridges) {
+        for (int row = 0; row < bridges.size(); row++) {
             makeBridgesForEachRowRandomly(bridges, row);
         }
     }
 
-    private void makeBridgesForEachRowRandomly(Bridge[][] bridges, int row) {
-        int maxNumOfBridgesInOneRow = bridges[row].length;
+    private void makeBridgesForEachRowRandomly(List<BridgesInRow> bridges, int row) {
+        int maxNumOfBridgesInOneRow = bridges.get(row).getMaxNumOfBridges();
         boolean[] isExist = getIsExistByRandom(maxNumOfBridgesInOneRow);
         removeConsecutiveTrueRandomly(isExist);
         makeBridgesOfRowByIsExist(bridges, row, isExist);
@@ -23,7 +33,7 @@ public class RandomBridgeStrategy implements BridgeMakeStrategy {
     private boolean[] getIsExistByRandom(int maxNumOfBridgesInOneRow) {
         boolean[] isExist = new boolean[maxNumOfBridgesInOneRow];
         for (int i = 0; i < isExist.length; i++) {
-            isExist[i] = random.nextBoolean();
+            isExist[i] = randomMaker.getRandomBoolean();
         }
         return isExist;
     }
@@ -46,14 +56,15 @@ public class RandomBridgeStrategy implements BridgeMakeStrategy {
     }
 
     private int getCurrentOrNextIndexRandomly(boolean[] arr, int index) {
-        if (random.nextBoolean())
+        if (randomMaker.getRandomBoolean())
             return index;
         return index + 1;
     }
 
-    private void makeBridgesOfRowByIsExist(Bridge[][] bridges, int row, boolean[] isExist) {
+    private void makeBridgesOfRowByIsExist(List<BridgesInRow> bridges, int row, boolean[] isExist) {
         for (int i = 0; i < isExist.length; i++) {
-            bridges[row][i] = Bridge.of(isExist[i]);
+            if(isExist[i])
+                bridges.get(row).addBridge(i);
         }
     }
 }
