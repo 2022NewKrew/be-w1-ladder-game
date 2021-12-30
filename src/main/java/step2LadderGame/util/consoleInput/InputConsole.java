@@ -1,7 +1,6 @@
 package step2LadderGame.util.consoleInput;
 
 import step2LadderGame.exception.CustomFormatException;
-import step2LadderGame.exception.NotEqualSizeException;
 import step2LadderGame.exception.ladderException.ConsoleInputCountExceededException;
 import step2LadderGame.util.ResourceManager;
 
@@ -25,7 +24,7 @@ public abstract class InputConsole<T> {
 
             final String inputStr = sc.nextLine();
             return convert(inputStr);
-        } catch (CustomFormatException | NotEqualSizeException e) {
+        } catch (CustomFormatException e) {
             System.out.println(e.getMessage());
             return read(msg, count + 1);
         }

@@ -3,12 +3,10 @@ package step3LadderGame.domain.ladder;
 import step2LadderGame.domain.ladder.Ladder;
 import step2LadderGame.domain.ladder.LadderGenerator;
 import step2LadderGame.domain.ladderConfig.LadderConfig;
-import step3LadderGame.domain.ladder.LadderIncludeParticipants;
+import step2LadderGame.exception.ladderException.TypeMissMatchException;
 import step3LadderGame.domain.ladderConfig.LadderIncludeParticipantsConfig;
-import step2LadderGame.exception.NotEqualSizeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step3LadderGame.domain.ladder.RandomLadderIncludeParticipantsGenerator;
 
 import java.util.List;
 
@@ -48,6 +46,6 @@ RandomLadderIncludeParticipantsGeneratorTest {
         final LadderGenerator ladderGenerator = new RandomLadderIncludeParticipantsGenerator();
 
         // when then'
-        assertThrows(NotEqualSizeException.class, () -> ladderGenerator.generate(ladderConfig));
+        assertThrows(TypeMissMatchException.class, () -> ladderGenerator.generate(ladderConfig));
     }
 }

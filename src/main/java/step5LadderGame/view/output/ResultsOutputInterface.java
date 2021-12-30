@@ -1,7 +1,7 @@
 package step5LadderGame.view.output;
 
 import step2LadderGame.domain.ladder.Ladder;
-import step2LadderGame.exception.NotEqualSizeException;
+import step2LadderGame.exception.ladderException.TypeMissMatchException;
 import step2LadderGame.view.output.OutputInterface;
 import step5LadderGame.domain.ladder.LadderIncludeParticipantsAndResults;
 
@@ -19,7 +19,7 @@ public class ResultsOutputInterface implements OutputInterface {
 
     private LadderIncludeParticipantsAndResults checkLadderType(Ladder ladder) {
         if (!(ladder instanceof LadderIncludeParticipantsAndResults ladderIncludeParticipantsAndResults))
-            throw new NotEqualSizeException();
+            throw new TypeMissMatchException();
         return ladderIncludeParticipantsAndResults;
     }
 

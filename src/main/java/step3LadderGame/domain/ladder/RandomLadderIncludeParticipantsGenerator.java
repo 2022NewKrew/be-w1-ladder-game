@@ -4,7 +4,7 @@ import step2LadderGame.domain.ladder.Branch;
 import step2LadderGame.domain.ladder.Ladder;
 import step2LadderGame.domain.ladder.RandomLadderGenerator;
 import step2LadderGame.domain.ladderConfig.LadderConfig;
-import step2LadderGame.exception.NotEqualSizeException;
+import step2LadderGame.exception.ladderException.TypeMissMatchException;
 import step3LadderGame.domain.ladderConfig.LadderIncludeParticipantsConfig;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class RandomLadderIncludeParticipantsGenerator extends RandomLadderGenera
 
     private LadderIncludeParticipantsConfig checkLadderConfigType(LadderConfig ladderConfig) {
         if (!(ladderConfig instanceof LadderIncludeParticipantsConfig ladderIncludeParticipantsConfig)) {
-            throw new NotEqualSizeException();
+            throw new TypeMissMatchException();
         }
         return ladderIncludeParticipantsConfig;
     }

@@ -1,7 +1,6 @@
 package step2LadderGame.util;
 
 import step2LadderGame.exception.CustomFormatException;
-import step2LadderGame.exception.NotEqualSizeException;
 
 import java.util.Arrays;
 import java.util.List;
