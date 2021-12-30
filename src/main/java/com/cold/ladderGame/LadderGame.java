@@ -1,6 +1,7 @@
 package com.cold.ladderGame;
 
 import com.cold.ladderGame.domain.Ladder;
+import com.cold.ladderGame.domain.Result;
 import com.cold.ladderGame.view.InputView;
 import com.cold.ladderGame.view.OutputView;
 
@@ -13,6 +14,8 @@ public class LadderGame {
     Ladder ladder = new Ladder(inputView.getWidth(), inputView.getHeight());
 
     OutputView outputView = new OutputView();
-    outputView.printLadder(ladder, inputView.getUsers());
+    outputView.printLadder(inputView.getUsers(), inputView.getResults(), ladder);
+
+    Result.checkResult(inputView, outputView, ladder);
   }
 }
