@@ -6,9 +6,6 @@ import com.company.view.LadderView;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class LadderTest {
 
     @Test
@@ -18,16 +15,8 @@ public class LadderTest {
         LadderDTO ladderDTO = ladder.getLadderDTO();
         LadderView ladderView = ladder.getLadderView();
 
-        List<Boolean> nameChecks = ladderDTO.getNames().stream().map(s -> (s.length() <= 5)).collect(Collectors.toList());
-        List<Boolean> nameViewChecks = ladderView.getNameView().stream().map(s -> (s.length() <= 5)).collect(Collectors.toList());
-
-        for (Boolean nameCheck : nameChecks) {
-            Assert.assertTrue(nameCheck);
-        }
-
-        for (Boolean nameViewCheck : nameViewChecks) {
-            Assert.assertTrue(nameViewCheck);
-        }
+        ladderDTO.getNames().forEach(s -> Assert.assertTrue("ladderDTO의 name이 5글자를 초과합니다.", s.length() <= 5));
+        ladderView.getNameView().forEach(s -> Assert.assertTrue("ladderView의 공백을 포함한 nameView가 5글자를 초과합니다.", s.length() <= 5));
     }
 
     @Test
@@ -42,15 +31,14 @@ public class LadderTest {
             LadderDTO ladderDTO = ladder.getLadderDTO();
 
             for (String line : ladderDTO.getLadderInfo()) {
-                Assert.assertTrue(checkLine(line));
+                checkLine(line);
             }
         }
     }
 
-    public boolean checkLine(String line) {
+    public void checkLine(String line) {
         for (int i = 1; i < line.length(); i++) {
-            if (line.charAt(i - 1) == '-' && line.charAt(i) == '-') return false;
+            Assert.assertFalse(line.charAt(i - 1) == '-' && line.charAt(i) == '-');
         }
-        return true;
     }
 }
