@@ -18,7 +18,7 @@ public class InputView {
      * 2. 받고나서 5글자 넘으면 자르기 ✔
      * 3. 5글자 넘으면 Exception
      **/
-    public static LadderInputInfo inputLadderInfo() {
+    public static LadderInputInfo getLadderInfo() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         List<String> participants = inputParticipantsName();
         System.out.println();
@@ -29,14 +29,14 @@ public class InputView {
         return new LadderInputInfo(participants.size(), maxHeightOfLadder, participants);
     }
 
-    public static List<String> inputParticipantsName() {
+    private static List<String> inputParticipantsName() {
         String beforeParsing = scanner.nextLine();
         return Arrays.asList(beforeParsing.split(","))
                 .stream().map(name -> name.length() > maxNameLen ? name.substring(0, maxNameLen) : name)
                 .collect(Collectors.toList());
     }
 
-    public static int inputHeight() {
+    private static int inputHeight() {
         int height = scanner.nextInt();
         if (height < 1) throw new IllegalArgumentException("높이는 1 이상입니다.");
         return height;

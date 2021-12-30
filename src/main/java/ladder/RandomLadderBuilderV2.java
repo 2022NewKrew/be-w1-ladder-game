@@ -1,19 +1,54 @@
 package ladder;
 
+import dto.LadderInputInfo;
 import ladder.domain.LadderFloor;
 import ladder.domain.LadderFloorProxy;
-import dto.LadderInputInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomLadderBuilder implements LadderBuilder {
+public class RandomLadderBuilderV2 implements LadderBuilder {
     private static Random random = new Random();
     private LadderInputInfo ladderInfo;
 
-    public RandomLadderBuilder() {
+    public RandomLadderBuilderV2() {
     }
+
+    public class LadderImpl implements Ladder {
+        private int width;
+        private int height;
+        private List<String> participants;
+        private List<LadderFloor> ladder;
+
+        //inner class로 builder
+        private LadderImpl(LadderInputInfo ladderInputInfo, List<LadderFloor> ladder) {
+            this.width = ladderInputInfo.getWidth();
+            this.participants = ladderInputInfo.getParticipants();
+            this.height = ladderInputInfo.getHeight();
+            this.ladder = ladder;
+        }
+
+        public void print() {
+            participants.forEach(name -> System.out.printf("%6s", name));
+            System.out.println();
+            ladder.stream().forEach(floor -> System.out.println("\t" + floor));
+        }
+
+        public int getWidth() {
+            return width;
+        }
+
+        public int getHeight() {
+            return height;
+        }
+
+        public List<String> getParticipants() {
+            return participants;
+        }
+    }
+
+
 
     public Ladder createLadder(LadderInputInfo ladderInfo) throws IllegalArgumentException {
         this.ladderInfo = ladderInfo;
