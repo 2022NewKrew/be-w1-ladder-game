@@ -2,15 +2,16 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
+import domain.ParticipantList;
 
 import java.util.Arrays;
 
 public class OutputView {
     private Ladder ladder;
-    private String[] participants;
+    private ParticipantList participantList;
 
-    public OutputView(Ladder ladder, String[] participants){
-        this.participants = participants;
+    public OutputView(Ladder ladder, ParticipantList participantList){
+        this.participantList = participantList;
         this.ladder = ladder;
     }
 
@@ -22,16 +23,16 @@ public class OutputView {
     }
 
     public String showParticipants(){
-        char[] participantsName = new char[(participants.length + 1) * 6];
+        char[] participantsName = new char[(participantList.getListSize() + 1) * 6];
         Arrays.fill(participantsName,' ');
-        for(int i = 0; i < participants.length; i++){
+        for(int i = 0; i < participantList.getListSize(); i++){
             writeParticipantToCharArr(participantsName, i);
         }
         return new String(participantsName);
     }
 
     public void writeParticipantToCharArr(char[] charArr, int index){
-        String participant = participants[index];
+        String participant = participantList.getParticipantName(index);
         for(int i = 0 ; i < participant.length(); i++){
             charArr[6 * index + 2
                     - (int)(participant.length() / 2)
