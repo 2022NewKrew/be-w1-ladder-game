@@ -1,10 +1,12 @@
 package laddergame.view;
 
 import laddergame.domain.Ladder;
-import org.apache.commons.lang3.StringUtils;
+import laddergame.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import static laddergame.util.Util.formatStringSize;
 
 public class GameView {
     private static Scanner sc = new Scanner(System.in);
@@ -19,17 +21,32 @@ public class GameView {
         return inputUsers;
     }
 
+    public static List<String> inputTargets(){
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String input = sc.nextLine();
+        List<String> inputTargets = new ArrayList<String>();
+        for (String target : input.split(",")){
+            inputTargets.add(target);
+        };
+        return inputTargets;
+    }
+
     public static int inputLadderHeight(){
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return sc.nextInt();
     }
 
-    public static void printLadderWithUsers(Ladder ladder, List<String> users){
-        for (String name : users){
-            System.out.print(String.format("%5s",StringUtils.substring(name,0,5)));
+    public static void printLadderWithLabels(Ladder ladder, List<String> users, List<String> targets){
+        printLabelLine(users, 5);
+        System.out.println();
+        System.out.print(ladder.toString());
+        printLabelLine(targets, 5);
+    }
+
+    private static void printLabelLine(List<String> labels, int stringSize){
+        for (String label : labels){
+            System.out.print(Util.formatStringSize(label, stringSize));
             System.out.print(" ");
         };
-        System.out.println();
-        System.out.println(ladder.toString());
     }
 }
