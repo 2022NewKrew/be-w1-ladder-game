@@ -28,8 +28,9 @@ class LadderGameTest {
     @Test
     @DisplayName("연속으로 True를 반환하지 않는가")
     void 연속으로_True_반환안함() {
-        boolean fistBoolean = RandomBooleanGenerator.getRandomBoolean();
-        boolean secondBoolean = RandomBooleanGenerator.getRandomBoolean();
+        RandomBooleanGenerator generator = new RandomBooleanGenerator();
+        boolean fistBoolean = generator.getRandomBoolean();
+        boolean secondBoolean = generator.getRandomBoolean();
 
         assertThat(fistBoolean & secondBoolean)
                 .isFalse();
