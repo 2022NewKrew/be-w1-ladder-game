@@ -6,15 +6,12 @@ import org.junit.jupiter.api.Test;
 import upperleaf.laddergame.domain.Ladder;
 import upperleaf.laddergame.domain.connector.RandomConnector;
 
-import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderGeneratorTest {
 
-    final List<String> players = List.of("p1", "p2", "p3", "p4");
-    final int MAX_LADDER_HEIGHT = 5;
     final int CONNECTION_NUMBER = 2;
 
     LadderGenerator generator;
@@ -28,7 +25,8 @@ class LadderGeneratorTest {
     @DisplayName("Generator를 통해 Ladder를 생성하면 초기화 및 연결 개수만큼 연결한다.")
     @Test
     void generatorTest() {
-        GameStartInfo info = new GameStartInfo(players, MAX_LADDER_HEIGHT);
+        GameStartInfoFactory factory = new GameStartInfoFactory();
+        GameStartInfo info = factory.create();
         Ladder ladder = generator.generate(info);
 
         assertEquals(info.getGamePlayerNum(), ladder.getPlayerNum());

@@ -20,12 +20,11 @@ public class LadderRenderer {
      */
     public LadderView render(Ladder ladder) {
         LadderView ladderView = new LadderView();
-        List<String> playerNames = ladder.getPlayerNames();
-        ladderView.appendResult(makeNamesAsString(playerNames, LENGTH + 1));
-
+        ladderView.appendResult(makeStringWithInterval(ladder.getPlayerNames(), LENGTH + 1));
         for(int currentHeight = 0; currentHeight < ladder.getMaxLadderHeight(); currentHeight++) {
             ladderView.appendResult(makeHeight(ladder, currentHeight));
         }
+        ladderView.appendResult(makeStringWithInterval(ladder.getResults(), LENGTH + 1));
         return ladderView;
     }
 
@@ -33,13 +32,13 @@ public class LadderRenderer {
      * 이름들을 한개의 String 객체로 만들어서 반환합니다.
      * 이름들을 사다리 선에 일치시키기 위해서 공간을 조절하는 코드가 포함되어있습니다.
      */
-    private String makeNamesAsString(List<String> playerNames, int nameSize) {
-        int playerNumbers = playerNames.size();
-        StringBuilder sb = new StringBuilder(StringUtils.times(EMPTY, playerNumbers * nameSize));
+    private String makeStringWithInterval(List<String> lists, int interval) {
+        int listSize = lists.size();
+        StringBuilder sb = new StringBuilder(StringUtils.times(EMPTY, listSize * interval));
 
-        for(int i = 0; i < playerNumbers; i++) {
-            String name = playerNames.get(i);
-            int start = i * nameSize + Math.max(0, (nameSize - name.length())) / 2;
+        for(int i = 0; i < listSize; i++) {
+            String name = lists.get(i);
+            int start = i * interval + Math.max(0, (interval - name.length())) / 2;
             sb.replace(start, start + name.length(), name);
         }
         sb.append(NEW_LINE);

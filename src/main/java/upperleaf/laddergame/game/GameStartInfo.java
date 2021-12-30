@@ -8,24 +8,34 @@ import java.util.List;
  */
 public class GameStartInfo {
     private final List<String> playerNames;
+    private final List<String> results;
     private final int gamePlayerNum;
     private final int maxLadderHeight;
 
-    public GameStartInfo(List<String> playerNames, int maxLadderHeight) {
-        valid(playerNames, maxLadderHeight);
+    public GameStartInfo(List<String> playerNames, List<String> results, int maxLadderHeight) {
+        valid(playerNames, results, maxLadderHeight);
         this.gamePlayerNum = playerNames.size();
         this.maxLadderHeight = maxLadderHeight;
         this.playerNames = playerNames;
+        this.results = results;
     }
 
-    private void valid(List<String> playerNames, int maxLadderHeight) {
-        if(playerNames.size() <= 0 || maxLadderHeight < 1) {
+    private void valid(List<String> playerNames, List<String> results, int maxLadderHeight) {
+        if (playerNames.size() <= 0 || results.size() <= 0 || maxLadderHeight < 1) {
             throw new IllegalArgumentException("게임 정보를 생성할 수 없습니다.");
+        }
+
+        if (playerNames.size() != results.size()) {
+            throw new IllegalArgumentException("플레이어의 숫자와 결과 숫자가 일치하지 않습니다.");
         }
     }
 
     public List<String> getPlayerNames() {
         return playerNames;
+    }
+
+    public List<String> getResults() {
+        return results;
     }
 
     public int getGamePlayerNum() {

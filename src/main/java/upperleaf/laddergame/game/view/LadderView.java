@@ -18,6 +18,6 @@ public class LadderView {
     }
 
     public void printResult() {
-        System.out.print(resultBuilder);
+        System.out.print(resultBuilder + "\n");
     }
 }

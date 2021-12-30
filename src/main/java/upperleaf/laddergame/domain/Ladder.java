@@ -37,6 +37,13 @@ public class Ladder {
     }
 
     /**
+     ** 현재 선에서 왼쪽이 연결되어있는지 확인합니다.
+     */
+    public boolean isLeftConnected(int line, int height) {
+        return lines.get(line).isLeftConnected(height);
+    }
+
+    /**
      ** 현재 선에서 오른쪽으로 연결할 수 있는지 확인합니다.
      ** 현재 선과 오른쪽 선 모두 연결되어있는 선이 없어야 합니다.
      */
@@ -49,6 +56,10 @@ public class Ladder {
 
     public List<String> getPlayerNames() {
         return gameStartInfo.getPlayerNames();
+    }
+
+    public List<String> getResults() {
+        return gameStartInfo.getResults();
     }
 
     public int getMaxLadderHeight() {
