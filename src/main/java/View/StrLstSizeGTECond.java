@@ -1,9 +1,11 @@
+package View;
+
 import java.util.ArrayList;
 
-public class LstSizeStrCond implements StrCond {
-    int limit;
+public class StrLstSizeGTECond implements StrCond {
+    private int limit;
 
-    public LstSizeStrCond(int limit) {
+    public StrLstSizeGTECond(int limit) {
         this.limit = limit;
     }
 
