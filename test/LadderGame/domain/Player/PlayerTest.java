@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("플레이어 테스트")
+@DisplayName("Player 테스트")
 class PlayerTest {
 
     @Test

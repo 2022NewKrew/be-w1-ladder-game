@@ -9,6 +9,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Line 테스트")
 class LineTest {
 
     private final int LADDER_WIDTH = 100;

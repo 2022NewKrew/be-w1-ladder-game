@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("사다리 테스트")
+@DisplayName("Ladder 테스트")
 class LadderTest {
     @Test
     @DisplayName("입력받은 높이의 사다리를 만든다.")
