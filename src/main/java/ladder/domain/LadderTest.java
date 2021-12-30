@@ -2,6 +2,9 @@ package ladder.domain;
 
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+
+import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,6 +38,39 @@ public class LadderTest {
                 assertTrue(lineStatus[i].value.get(j) + 1 != lineStatus[i].value.get(j+1));
             }
         }
+    }
 
+    @Test
+    void 잘못된_입력_테스트_names() throws Exception{
+        Ladder ladderObject = new Ladder();
+        String nameAry = "a,ab,abc,    abcd"; //공백발생 예외
+        Long height = Long.valueOf(10);
+
+        boolean isException = false;
+
+        try{
+            ladderObject.setValue(nameAry, height);
+        } catch(Exception e){
+            isException = true;
+        }
+
+        assertTrue(isException);
+    }
+
+    @Test
+    void 잘못된_입력_테스트_height() throws Exception{
+        Ladder ladderObject = new Ladder();
+        String nameAry = "a,ab,abc,abcd";
+        Long height = Long.valueOf(0); //높이가 0인 예외사항
+
+        boolean isException = false;
+
+        try{
+            ladderObject.setValue(nameAry, height);
+        } catch(Exception e){
+            isException = true;
+        }
+
+        assertTrue(isException);
     }
 }
