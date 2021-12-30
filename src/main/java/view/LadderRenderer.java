@@ -1,4 +1,7 @@
-package LadderMaker;
+package view;
+
+import repository.Constant;
+import repository.Ladder;
 
 public class LadderRenderer {
     public LadderRenderer() { }
@@ -12,9 +15,9 @@ public class LadderRenderer {
 
     private void printNames(Ladder ladder){
         StringBuilder sb = new StringBuilder();
-        ladder.getNameStream()
+        ladder.getPlayerStream()
                 .forEach(name -> {
-                    sb.append(paddingName(name));
+                    sb.append(paddingName(name.getName()));
                     sb.append(" ");
                 });
         System.out.println(sb);
@@ -34,7 +37,7 @@ public class LadderRenderer {
         rowString.append(Constant.VERTICAL);
         ladder.getConnectedStream(row)
                 .forEach(column -> {
-                    rowString.append(getConnectedString(column));
+                    rowString.append(getConnectedString(column.getValid()));
                     rowString.append(Constant.VERTICAL);
                 });
         System.out.println(rowString);

@@ -1,9 +1,17 @@
-package LadderMaker;
+package controller;
 
-public class LadderManager {
-    public LadderManager(){ }
+import domain.CalculateResult;
+import repository.Ladder;
+import domain.LadderInfoScanner;
+import domain.LadderMaker;
+import view.LadderRenderer;
+
+public class LadderController {
+    public LadderController(){ }
     public void ladderFlow(){
         Ladder ladder = makeLadder();
+        CalculateResult calculateResult = new CalculateResult(ladder);
+        calculateResult.calculateResult();;
         renderLadder(ladder);
     }
 

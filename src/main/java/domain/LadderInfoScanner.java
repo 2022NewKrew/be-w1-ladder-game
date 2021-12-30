@@ -1,4 +1,8 @@
-package LadderMaker;
+package domain;
+
+import repository.Constant;
+import repository.Ladder;
+import repository.PlayerList;
 
 import java.util.*;
 
@@ -11,9 +15,20 @@ public class LadderInfoScanner {
 
     public Ladder getLadder(){
         List<String> names = getNames();
+        List<String> results = getResults(names.size());
+        PlayerList players = new PlayerList(getMaxResultLength(results));
         int heightOfLadder = getHeightOfLadder();
 
-        return new Ladder(heightOfLadder, names);
+        players.initiatePlayers(names, results);
+
+        return new Ladder(heightOfLadder, players);
+    }
+
+    private int getMaxResultLength(List<String> results){
+        return results.stream()
+                .mapToInt(String::length)
+                .max()
+                .orElse(0);
     }
 
     private List<String> getNames(){
@@ -24,7 +39,7 @@ public class LadderInfoScanner {
             System.out.println("참여할 사람 이름을 입력하세요. (이름은 다섯글자 이하로 쉼표(,)로 구분하세요)");
             String names = sc.nextLine()
                             .replaceAll(" ", "");
-            valid = checkNumOfPeople(names);
+            valid = checkNumOfElement(names);
             splitNames = new ArrayList<>(Arrays.asList(names.split(",")));
             valid = valid && checkNameLength(splitNames);
         }while(!valid);
@@ -32,9 +47,9 @@ public class LadderInfoScanner {
         return splitNames;
     }
 
-    private boolean checkNumOfPeople(String names) {
-        if (!names.contains(",")) {
-            System.out.println("두 명 이상 입력해주세요.");
+    private boolean checkNumOfElement(String input) {
+        if (!input.contains(",")) {
+            System.out.println("둘 이상 입력해주세요.");
             return false;
         }
         return true;
@@ -49,6 +64,28 @@ public class LadderInfoScanner {
             return false;
         }
         return true;
+    }
+
+    private List<String> getResults(int numOfPeople){
+        boolean valid;
+        List<String> splitResults;
+
+        do{
+            System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+            String results = sc.nextLine()
+                    .replaceAll(" ", "");
+            valid = checkNumOfElement(results);
+            splitResults = new ArrayList<>(Arrays.asList(results.split(",")));
+            valid = valid && checkNumOfPeople(numOfPeople, splitResults.size());
+        }while(!valid);
+
+        return splitResults;
+    }
+
+    private boolean checkNumOfPeople(int nameSize, int resultSize){
+        if(nameSize == resultSize) { return true; }
+        System.out.println(("사람 수와 결과의 수가 다릅니다. 결과를 " + nameSize + "개 입력해주세요."));
+        return false;
     }
 
     private int getHeightOfLadder(){
