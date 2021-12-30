@@ -13,7 +13,7 @@ public class Line {
         point = new ArrayList<Boolean>();
     }
 
-    public String writeLine() {
+    public String toString() {
         sb.setLength(0);
         sb.append(" ".repeat(LadderConstant.INTERVAL / 2));
         for (int j = 0; j < width; j++) {

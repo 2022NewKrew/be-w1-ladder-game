@@ -37,7 +37,7 @@ public class Ladder {
 
     private void writeLadder() {
         for (int i = 0; i < height; i++) {
-            String lineString = ladder.get(i).writeLine();
+            String lineString = ladder.get(i).toString();
             sb.append(lineString);
         }
     }
