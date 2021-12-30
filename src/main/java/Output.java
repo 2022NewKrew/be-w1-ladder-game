@@ -9,6 +9,8 @@ public class Output {
     private static final String NEWLINE = "\n";
     private static final String BLANK = "    ";
 
+    private Output() {};
+
     public static void printPlayerList(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
         List<String> playerList = ladder.getPLAYER_LIST();

@@ -5,6 +5,8 @@ public class Input {
     private static final Scanner sc = new Scanner(System.in);
     private static final String SPLIT_REGEX = ",";
 
+    private Input() {}
+
     public static String[] getPlayerNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         return sc.nextLine().split(SPLIT_REGEX);
