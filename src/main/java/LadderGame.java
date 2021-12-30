@@ -1,9 +1,14 @@
 public class LadderGame {
+    private static final int MAX_NAME_LENGTH = 5;
+
     public static void main(String[] args) {
-        LadderInfo info = new LadderInfo();
+        LadderGameStarter starter = new LadderGameStarter(MAX_NAME_LENGTH);
+        String[] people = starter.getPeople();
+        int heightOfLadder = starter.getHeightOfLadder();
 
-        Ladder ladder = new Ladder(info);
+        Ladder ladder = new Ladder(people, heightOfLadder);
 
-        LadderRenderer.render(ladder);
+        LadderRenderer renderer = new LadderRenderer(MAX_NAME_LENGTH);
+        renderer.render(ladder.getPeople(), ladder.getConnections());
     }
 }

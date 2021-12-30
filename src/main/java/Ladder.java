@@ -1,19 +1,35 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Ladder {
-    private final LadderInfo info;
-    private final ArrayList<ArrayList<Boolean>> connections;
+    private final String[] people;
+    private final int heightOfLadder;
+    private final ArrayList<Line> connections;
+    private final Random random = new Random();
 
-    public Ladder(LadderInfo info) {
-        this.info = info;
-        LadderMaker maker = new LadderMaker(info);
-        connections = maker.makeConnections();
+    public Ladder(String[] people, int heightOfLadder) {
+        this.people = people;
+        this.heightOfLadder = heightOfLadder;
+        connections = makeConnections();
     }
 
-    public LadderInfo getInfo() {
-        return info;
+    public ArrayList<Line> makeConnections() {
+        ArrayList<Line> connections = new ArrayList<>();
+        for(int line = 0; line < heightOfLadder; line++) {
+            connections.add(new Line(people.length, random));
+        }
+        return connections;
     }
-    public ArrayList<ArrayList<Boolean>> getConnections() {
+
+    public String[] getPeople() {
+        return people;
+    }
+
+    public int getHeightOfLadder() {
+        return heightOfLadder;
+    }
+
+    public ArrayList<Line> getConnections() {
         return connections;
     }
 }
