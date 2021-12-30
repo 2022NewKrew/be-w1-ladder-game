@@ -1,29 +1,25 @@
 package ladder.view;
 
 import ladder.service.LadderService;
+import ladder.view.dto.CommandDto;
 import ladder.view.dto.LadderDto;
-
-import java.util.Scanner;
 
 public class LadderController {
 
     public static void startGame() {
-        LadderDto ladderDto = getInput();
+        LadderDto ladderDto = InputController.getConfigs();
         LadderService.runLadderGame(ladderDto);
     }
 
-    private static LadderDto getInput() {
-        Scanner sc = new Scanner(System.in);
-        String inputParticipants;
+    public static void getCommand() {
+        CommandDto commandDto = InputController.getCommand();
 
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        inputParticipants = sc.nextLine();
-        System.out.println("최대 사다리 높이는 얼마인가요?");
-        int height = sc.nextInt();
+        if (commandDto.getCommand().equals("춘식이")) {
+            System.out.println("게임을 종료합니다.");
+            System.exit(0);
+        }
+        LadderService.runCommand(commandDto);
 
-        sc.close();
-
-        return new LadderDto(inputParticipants, height);
     }
 
 }

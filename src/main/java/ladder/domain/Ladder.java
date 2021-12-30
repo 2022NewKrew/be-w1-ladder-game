@@ -1,7 +1,9 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Ladder {
 
@@ -10,12 +12,15 @@ public class Ladder {
 
     public static final ArrayList<String> listOfParticipants = new ArrayList<>();
     public static final ArrayList<LadderRow> shape = new ArrayList<>();
+    public static final ArrayList<String> listOfResult = new ArrayList<>();
+    public static final HashMap<String, String> resultMap = new HashMap<>();
 
-    public static void preprocessInput(String participantsInput, int heightInput) {
+    public static void preprocessInput(String participantsInput, int heightInput, String resultInput) {
 
         tokenizeNameInput(participantsInput);
         height = heightInput;
         validateNonZero(height);
+        tokenizeResultInput(resultInput);
 
     }
 
@@ -23,6 +28,8 @@ public class Ladder {
         for(int row = 0; row < height; row++) {
             shape.add(new LadderRow(numParticipants));
         }
+
+        calculateResult();
     }
 
     public static void printLadder() {
@@ -37,7 +44,32 @@ public class Ladder {
             ladderEntire.append(shape.get(row).toString());
         }
 
-        System.out.println(ladderEntire.toString());
+        System.out.print(ladderEntire.toString());
+
+        for(String el : listOfResult) System.out.print(el);
+        System.out.println();
+    }
+
+    public static void processCommand (String command) {
+        if (command.trim().equals("all")) System.out.println(resultMap.toString());
+        System.out.println(command + ": " + resultMap.get(command.trim()));
+    }
+
+    private static void calculateResult () {
+        ArrayList<Integer> nameIdxList = new ArrayList<>();
+        for (int i = 0; i < listOfParticipants.size(); i++) nameIdxList.add(i);
+
+        for (LadderRow line : shape) {
+            for (int i = 0; i < line.horizonBranch.size(); i++) {
+                if (line.horizonBranch.get(i) == true) {
+                    Collections.swap(nameIdxList, i, i+1);
+                }
+            }
+        }
+
+        for (int i = 0; i < listOfParticipants.size(); i++) {
+            resultMap.put(listOfParticipants.get(nameIdxList.get(i)).trim(), listOfResult.get(i));
+        }
     }
 
     private static void validateNonZero (int input) {
@@ -45,13 +77,21 @@ public class Ladder {
     }
 
     private static void tokenizeNameInput (String inputParticipants) {
-        String[] tempListOfParticipants;
-
-        tempListOfParticipants = inputParticipants.split(",");
-        numParticipants = tempListOfParticipants.length;
-        for(int i = 0; i < tempListOfParticipants.length; i++) {
-            listOfParticipants.add(alignStringCenter(tempListOfParticipants[i]));
+        String[] tokenizedParticipants = tokenizeString(inputParticipants);
+        numParticipants = tokenizedParticipants.length;
+        for(int i = 0; i < tokenizedParticipants.length; i++) {
+            listOfParticipants.add(alignStringCenter(tokenizedParticipants[i]));
         }
+    }
+
+    private static void tokenizeResultInput (String inputResults) {
+        for(String el : inputResults.split(",")) {
+            listOfResult.add(alignStringCenter(el.trim()));
+        }
+    }
+
+    private static String[] tokenizeString (String inputs) {
+        return inputs.split(",");
     }
 
     private static String alignStringCenter(String inputStr) {

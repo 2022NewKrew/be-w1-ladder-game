@@ -13,9 +13,10 @@ class LadderDtoTest {
         //given
         String nameList = "sumin, mino, andy";
         int height = 100;
+        String resultList = "꽝, 당첨, 꽝";
 
         //when
-        LadderDto ladderDto = new LadderDto(nameList, height);
+        LadderDto ladderDto = new LadderDto(nameList, height, resultList);
 
         //then
         assertEquals(ladderDto.getHeight(), height);

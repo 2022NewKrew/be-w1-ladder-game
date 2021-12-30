@@ -2,6 +2,11 @@ import ladder.view.LadderController;
 
 public class main {
 
-    public static void main(String[] args) { LadderController.startGame(); }
+    public static void main(String[] args) {
+        LadderController.startGame();
+        while(true) {
+            LadderController.getCommand();
+        }
+    }
 
 }

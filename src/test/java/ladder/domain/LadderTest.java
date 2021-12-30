@@ -14,7 +14,8 @@ public class LadderTest {
         // given
         String nameList = "sumin, andy, justin";
         int height = 10;
-        LadderDto ladderDto = new LadderDto(nameList, height);
+        String resultList = "꽝, 당첨, 꽝";
+        LadderDto ladderDto = new LadderDto(nameList, height, resultList);
 
         assertThrows(IllegalArgumentException.class,
                 () -> LadderService.runLadderGame(ladderDto),
