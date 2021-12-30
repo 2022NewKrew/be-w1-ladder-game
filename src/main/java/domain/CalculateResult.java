@@ -12,6 +12,7 @@ public class CalculateResult {
             ladder.getConnectedStream(row)
                     .forEach(this::checkConnected);
         }
+        ladder.makeResultMapping();
     }
 
     public void checkConnected(Point line){

@@ -14,15 +14,6 @@ public class LadderRenderer {
             printRow(ladder, row);
         }
         printResults(ladder);
-        System.out.println("");
-        checkResultMapping(ladder);
-    }
-
-    private void checkResultMapping(Ladder ladder){
-        ladder.getPlayerStream()
-                .forEach(player -> {
-                    System.out.println(player.getName() + ": " + player.getResult());
-                });
     }
 
     private void printResults(Ladder ladder){

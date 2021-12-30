@@ -5,6 +5,7 @@ import repository.Ladder;
 import domain.LadderInfoScanner;
 import domain.LadderMaker;
 import view.LadderRenderer;
+import view.UserInteractController;
 
 public class LadderController {
     public LadderController(){ }
@@ -13,6 +14,8 @@ public class LadderController {
         CalculateResult calculateResult = new CalculateResult(ladder);
         calculateResult.calculateResult();;
         renderLadder(ladder);
+        UserInteractController userInteractController = new UserInteractController();
+        userInteractController.checkResult(ladder.getResultMapping());
     }
 
     private Ladder makeLadder(){
