@@ -5,7 +5,6 @@ import java.util.List;
 
 public class BridgeInfo {
     private final List<BridgesInRow> bridges;
-    private final BridgeMakeStrategy makeStrategy;
 
     public BridgeInfo(int ladderHeight, int maxNumOfBridgesForEachRow) {
         this(ladderHeight, maxNumOfBridgesForEachRow, new RandomBridgeStrategy());
@@ -16,10 +15,13 @@ public class BridgeInfo {
         for(int i = 0; i < ladderHeight; i++) {
             this.bridges.add(BridgesInRow.ofCapacity(maxNumOfBridgesForEachRow));
         }
-        this.makeStrategy = makeStrategy;
     }
 
     public void makeBridges() {
+        makeBridges(new RandomBridgeStrategy());
+    }
+
+    public void makeBridges(BridgeMakeStrategy makeStrategy) {
         makeStrategy.makeBridges(bridges);
     }
 

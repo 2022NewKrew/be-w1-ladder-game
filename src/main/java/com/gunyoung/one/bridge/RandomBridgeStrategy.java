@@ -6,7 +6,15 @@ import java.util.List;
 
 public class RandomBridgeStrategy implements BridgeMakeStrategy {
 
-    private RandomMaker randomMaker = new RandomMaker();
+    private RandomMaker randomMaker;
+
+    public RandomBridgeStrategy() {
+        this(new RandomMaker());
+    }
+
+    public RandomBridgeStrategy(RandomMaker randomMaker) {
+        this.randomMaker = randomMaker;
+    }
 
     @Override
     public void makeBridges(List<BridgesInRow> bridges) {
@@ -16,7 +24,7 @@ public class RandomBridgeStrategy implements BridgeMakeStrategy {
     }
 
     private void makeBridgesForEachRowRandomly(List<BridgesInRow> bridges, int row) {
-        int maxNumOfBridgesInOneRow = bridges.get(row).getCapacity();
+        int maxNumOfBridgesInOneRow = bridges.get(row).getMaxNumOfBridges();
         boolean[] isExist = getIsExistByRandom(maxNumOfBridgesInOneRow);
         removeConsecutiveTrueRandomly(isExist);
         makeBridgesOfRowByIsExist(bridges, row, isExist);

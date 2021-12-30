@@ -11,11 +11,11 @@ public class BridgesInRow {
     }
 
     public static BridgesInRow ofCapacity(int maxNumOfBridgesForEachRow) {
-        List<Bridge> newBridges = getBridgesByFalse(maxNumOfBridgesForEachRow);
+        List<Bridge> newBridges = getEmptyBridges(maxNumOfBridgesForEachRow);
         return new BridgesInRow(newBridges);
     }
 
-    private static List<Bridge> getBridgesByFalse(int maxNumOfBridgesForEachRow) {
+    private static List<Bridge> getEmptyBridges(int maxNumOfBridgesForEachRow) {
         List<Bridge> bridges = new ArrayList<>(maxNumOfBridgesForEachRow);
         for(int i = 0; i < maxNumOfBridgesForEachRow; i++) {
             bridges.add(Bridge.of(false));
@@ -23,12 +23,12 @@ public class BridgesInRow {
         return bridges;
     }
 
-    public int getCapacity() {
+    public int getMaxNumOfBridges() {
         return bridges.size();
     }
 
     public List<Boolean> getIsExistOfRow() {
-        List<Boolean> isExistOfRow = new ArrayList<>(getCapacity());
+        List<Boolean> isExistOfRow = new ArrayList<>(getMaxNumOfBridges());
         for (Bridge bridge : bridges) {
             isExistOfRow.add(bridge.isExist());
         }
