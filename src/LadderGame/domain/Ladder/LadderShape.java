@@ -1,4 +1,4 @@
-package LadderGame;
+package LadderGame.domain.Ladder;
 
 public enum LadderShape {
     VERTICAL_LINE("|"),
@@ -7,8 +7,8 @@ public enum LadderShape {
 
     private final String shape;
 
-    LadderShape(String components) {
-        this.shape = components;
+    LadderShape(String shape) {
+        this.shape = shape;
     }
 
     public String getShape(){
