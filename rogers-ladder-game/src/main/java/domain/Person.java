@@ -14,6 +14,10 @@ public class Person {
         this.name = name;
     }
 
+    public Person(Person person){
+        this.name = person.name;
+    }
+
     private static void validate(String name){
         if(!namePattern.matcher(name).find()){
             throw new IllegalArgumentException(NAME_LENGTH_EXCEPTION_MESSAGE);

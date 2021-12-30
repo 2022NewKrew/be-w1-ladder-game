@@ -21,7 +21,7 @@ public class LadderFactory {
         Ladder newInstance = null;
 
         try{
-            newInstance = new Ladder(inputDto.getNames(), inputDto.getHeight());
+            newInstance = new Ladder(inputDto.getNames(), inputDto.getRewardStrings(), inputDto.getHeight());
         }catch (IllegalArgumentException illegalArgumentException){
             System.err.println(illegalArgumentException.getMessage());
         }

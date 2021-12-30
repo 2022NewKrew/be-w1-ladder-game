@@ -38,6 +38,10 @@ public class People {
         return Collections.unmodifiableList(people);
     }
 
+    public Person getPerson(int index){
+        return new Person(this.people.get(index));
+    }
+
     public int numberOfPeople(){
         return this.people.size();
     }
