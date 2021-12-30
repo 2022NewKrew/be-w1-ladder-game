@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("LadderFrameLine 테스트")
+@DisplayName("LadderFrameLine 테스분")
 class LadderFrameLineTest {
     @Nested
     @DisplayName("LadderFrameLine 클래스 생성자 테스트")
