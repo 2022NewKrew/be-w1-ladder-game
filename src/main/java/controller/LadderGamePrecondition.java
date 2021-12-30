@@ -16,7 +16,9 @@ public class LadderGamePrecondition {
     }
 
     private static boolean isIllegal(List<String> users, int maxLength) {
+
         return users.stream().map(String::length).anyMatch(length -> length > maxLength);
+
     }
 
     private static void isNotEmptyList(List<String> users) {
@@ -24,5 +26,4 @@ public class LadderGamePrecondition {
             throw new IllegalArgumentException("한명 이상의 사람을 입력해주세요.");
         }
     }
-
 }
