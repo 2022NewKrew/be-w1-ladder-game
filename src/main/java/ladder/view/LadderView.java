@@ -1,14 +1,16 @@
-package ladder;
+package main.java.ladder.view;
+
+import main.java.ladder.domain.Ladder;
 
 import java.util.List;
 
-public class LadderGame {
+public class LadderView {
     private static final int FORMAT_LENGTH = 6;
 
     private final List<String> players;
     private final Ladder ladder;
 
-    public LadderGame(List<String> players, int height) {
+    public LadderView(List<String> players, int height) {
         this.players = players;
         ladder = new Ladder(players.size() * 2 - 1, height);
     }

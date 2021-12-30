@@ -1,9 +1,9 @@
-package ladder;
+package main.java.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class Ladder {
+public class Ladder {
     private final List<Line> ladderRows;
 
     public Ladder(int widthOfLadder, int heightOfLadder) {
