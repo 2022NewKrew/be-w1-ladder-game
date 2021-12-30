@@ -1,6 +1,7 @@
 package com.company;
 
-import java.util.ArrayList;
+import com.company.domain.Ladder;
+
 import java.util.Scanner;
 
 public class Main {
