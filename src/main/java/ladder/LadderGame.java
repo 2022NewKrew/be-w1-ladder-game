@@ -1,3 +1,5 @@
+package ladder;
+
 import lombok.Getter;
 import lombok.Setter;
 
