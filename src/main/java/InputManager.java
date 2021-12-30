@@ -1,4 +1,6 @@
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class InputManager {
     private static final Scanner sc = new Scanner(System.in);
@@ -23,13 +25,11 @@ public class InputManager {
         return namePeople;
     }
     private static boolean checkNameLength(String[] namePeople) {
-        for (String name : namePeople) {
-            if (name.length() > 5) {
-                System.out.println("사람이름은 5글자 이하로 정해주세요.");
-                return false;
-            }
+        if(Arrays.stream(namePeople).allMatch(name -> name.length()<=5)){
+            return true;
         }
-        return true;
+        System.out.println("사람이름은 5글자 이하로 정해주세요.");
+        return false;
     }
 
     private static int makeInputNumber() {
