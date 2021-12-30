@@ -17,13 +17,16 @@ public class LadderView {
             entry(true, "-----")
     );
 
+    public LadderView() {
+    }
+
     public LadderView(NameLadder ladder) {
         this.ladder = ladder;
     }
 
     public void print() {
-        ladder.members.forEach(member ->
-                System.out.print(StringUtils.leftPad(member, 5, " ") + " ")
+        ladder.getMembers().forEach(member ->
+                System.out.print(sliceName(member))
         );
         System.out.println();
 
@@ -35,6 +38,14 @@ public class LadderView {
         }
 
         System.out.println(sb.toString());
+    }
+
+    public String sliceName(String member) {
+        if (member.length() >= 5) {
+            return member.substring(0, 5) + " ";
+        }
+
+        return StringUtils.leftPad(member, 5, " ") + " ";
     }
 
     private void makeLineTypesString(List<Boolean> lineTypes, StringBuilder sb) {

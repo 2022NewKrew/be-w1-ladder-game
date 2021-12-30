@@ -1,13 +1,11 @@
 package com.kakaocorp.laddergame.ladder.domain;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class NameLadder extends Ladder {
 
-    public List<String> members;
+    private List<String> members;
 
     @Override
     public boolean start() {
@@ -59,4 +57,7 @@ public class NameLadder extends Ladder {
         }
     }
 
+    public List<String> getMembers() {
+        return members;
+    }
 }
