@@ -5,24 +5,24 @@ public final class Precondition {
     private Precondition() {
     }
 
-    public static <T> T notNull(T object, String message) throws PreconditionViolationException {
-        condition(object != null, message);
+    public static <T> T notNull(T object, RuntimeException runtimeException) {
+        condition(object != null, runtimeException);
         return object;
     }
 
-    public static String notEmpty(String object, String message) throws PreconditionViolationException {
-        notNull(object, message);
-        condition(!object.isEmpty(), message);
+    public static String notEmpty(String object, RuntimeException runtimeException) {
+        notNull(object, runtimeException);
+        condition(!object.isEmpty(), runtimeException);
         return object;
     }
 
-    public static int notLessThanInt(int object, int another, String message) throws PreconditionViolationException {
-        condition(Integer.compare(object, another) >= 0, message);
+    public static int notLessThanInt(int object, int another, RuntimeException runtimeException) {
+        condition(Integer.compare(object, another) >= 0, runtimeException);
         return object;
     }
 
-    private static void condition(boolean predicate, String message) {
+    private static void condition(boolean predicate, RuntimeException runtimeException) {
         if (!predicate)
-            throw new PreconditionViolationException(message);
+            throw runtimeException;
     }
 }

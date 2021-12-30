@@ -1,6 +1,9 @@
 package com.gunyoung.one.ladder;
 
 import com.gunyoung.one.bridge.BridgeInfo;
+import com.gunyoung.one.exceptions.EmptyUserNameException;
+import com.gunyoung.one.exceptions.NonInitializedException;
+import com.gunyoung.one.exceptions.WrongLadderHeightException;
 import com.gunyoung.one.messages.ErrorMessage;
 import com.gunyoung.one.precondition.Precondition;
 import com.gunyoung.one.user.UserInfo;
@@ -14,7 +17,7 @@ public final class Ladder {
     private final BridgeInfo bridgeInfo;
 
     public static Ladder getInstance() {
-        Precondition.notNull(INSTANCE, ErrorMessage.LADDER_NOT_INITIALIZED);
+        Precondition.notNull(INSTANCE, new NonInitializedException(ErrorMessage.LADDER_NOT_INITIALIZED));
         return INSTANCE;
     }
 
@@ -24,8 +27,8 @@ public final class Ladder {
     }
 
     private Ladder(String userNames, int ladderHeight) {
-        Precondition.notEmpty(userNames, ErrorMessage.EMPTY_USER_NAME);
-        Precondition.notLessThanInt(ladderHeight, 1, ErrorMessage.WRONG_LADDER_HEIGHT);
+        Precondition.notEmpty(userNames, new EmptyUserNameException(ErrorMessage.EMPTY_USER_NAME));
+        Precondition.notLessThanInt(ladderHeight, 1, new WrongLadderHeightException(ErrorMessage.WRONG_LADDER_HEIGHT));
 
         this.ladderHeight = ladderHeight;
         this.userInfo = UserInfo.of(userNames);
