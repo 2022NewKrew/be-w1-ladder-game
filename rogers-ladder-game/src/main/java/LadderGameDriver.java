@@ -5,12 +5,16 @@ import factory.LadderFactory;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Objects;
+import java.util.NoSuchElementException;
 
 public class LadderGameDriver {
     public static void main(String[] args) {
-        InputDto inputDto = Objects.requireNonNull(InputView.input(System.in));
-        Ladder ladder = LadderFactory.getInstance(inputDto);
-        OutputView.output(new OutputDto(ladder));
+        try {
+            InputDto inputDto = InputView.input(System.in).orElseThrow();
+            Ladder ladder = LadderFactory.getInstance(inputDto).orElseThrow();
+            OutputView.output(new OutputDto(ladder));
+        }catch (NoSuchElementException noSuchElementException){
+            System.out.println("시스템을 종료합니다.");
+        }
     }
 }

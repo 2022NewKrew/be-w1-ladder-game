@@ -7,8 +7,8 @@ public class Ladder {
     private final People people;
 
     public Ladder(List<String> peopleNames, int ladderHeight) {
-        lines = Lines.valueOf(2 * peopleNames.size() - 1, ladderHeight);
-        people = People.valueOf(peopleNames);
+        lines = new Lines(2 * peopleNames.size() - 1, ladderHeight);
+        people = new People(peopleNames);
     }
 
     @Override

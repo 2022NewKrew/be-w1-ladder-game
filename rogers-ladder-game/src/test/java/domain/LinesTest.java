@@ -14,9 +14,9 @@ class LinesTest {
         int height = 5;
 
         IllegalArgumentException illegalArgumentException1
-                = assertThrows(IllegalArgumentException.class, ()->Lines.valueOf(width1, height));
+                = assertThrows(IllegalArgumentException.class, ()->new Lines(width1, height));
         IllegalArgumentException illegalArgumentException2
-                = assertThrows(IllegalArgumentException.class, ()->Lines.valueOf(width2, height));
+                = assertThrows(IllegalArgumentException.class, ()->new Lines(width2, height));
 
         assertEquals(Lines.WIDTH_LENGTH_EXCEPTION_MESSAGE, illegalArgumentException1.getMessage());
         assertEquals(Lines.WIDTH_LENGTH_EXCEPTION_MESSAGE, illegalArgumentException2.getMessage());
@@ -29,9 +29,9 @@ class LinesTest {
         int height2 = 0;
 
         IllegalArgumentException illegalArgumentException1
-                = assertThrows(IllegalArgumentException.class, ()->Lines.valueOf(width, height1));
+                = assertThrows(IllegalArgumentException.class, ()->new Lines(width, height1));
         IllegalArgumentException illegalArgumentException2
-                = assertThrows(IllegalArgumentException.class, ()->Lines.valueOf(width, height2));
+                = assertThrows(IllegalArgumentException.class, ()->new Lines(width, height2));
 
         assertEquals(Lines.HEIGHT_LENGTH_EXCEPTION_MESSAGE, illegalArgumentException1.getMessage());
         assertEquals(Lines.HEIGHT_LENGTH_EXCEPTION_MESSAGE, illegalArgumentException2.getMessage());

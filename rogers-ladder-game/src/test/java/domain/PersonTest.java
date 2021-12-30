@@ -13,9 +13,9 @@ class PersonTest {
 
         //when
         IllegalArgumentException illegalArgumentException1
-                = assertThrows(IllegalArgumentException.class, ()->Person.valueOf(name1));
+                = assertThrows(IllegalArgumentException.class, ()->new Person(name1));
         IllegalArgumentException illegalArgumentException2
-                = assertThrows(IllegalArgumentException.class, ()->Person.valueOf(name2));
+                = assertThrows(IllegalArgumentException.class, ()->new Person(name2));
 
         //then
         assertEquals(Person.NAME_LENGTH_EXCEPTION_MESSAGE, illegalArgumentException1.getMessage());
@@ -30,9 +30,9 @@ class PersonTest {
 
         //when
         IllegalArgumentException illegalArgumentException1
-                = assertThrows(IllegalArgumentException.class, ()->Person.valueOf(name1));
+                = assertThrows(IllegalArgumentException.class, ()->new Person(name1));
         IllegalArgumentException illegalArgumentException2
-                = assertThrows(IllegalArgumentException.class, ()->Person.valueOf(name2));
+                = assertThrows(IllegalArgumentException.class, ()->new Person(name2));
 
         //then
         assertEquals(Person.NAME_LENGTH_EXCEPTION_MESSAGE, illegalArgumentException1.getMessage());
@@ -45,8 +45,8 @@ class PersonTest {
         String name1 = "o";
         String name2 = "pobii";
 
-        Person person1 = Person.valueOf(name1);
-        Person person2 = Person.valueOf(name2);
+        Person person1 = new Person(name1);
+        Person person2 = new Person(name2);
 
         assertEquals(name1, person1.getName());
         assertEquals(name2, person2.getName());
