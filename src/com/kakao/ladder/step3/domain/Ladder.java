@@ -8,18 +8,22 @@ public class Ladder {
 
     private int height;
     private List<String> peoples;
+    private List<String> resultList;
+    private List<String> results = new ArrayList<>();
     private List<Line> lines = new ArrayList<>();
 
     // 사람, 높이를 주지 않으면 자동으로 설정해준다.
     public Ladder() {
-        this(Arrays.asList("A", "B"), 5);
+        this(Arrays.asList("A", "B"), Arrays.asList("꽝", "당첨"), 5);
     }
 
     // 사람, 높이를 주었을 때 그에 맞게 초기화해준다. 자동으로 사다리를 만든다.
-    public Ladder(List<String> peoples, int height) {
+    public Ladder(List<String> peoples, List<String> resultList, int height) {
         this.peoples = peoples;
         this.height = height;
+        this.resultList = resultList;
         makeLadder();
+        makeAllResult();
     }
 
     // bridge를 line에 추가해주고 bridge를 만들었다면 그 다음번엔 bridge를 만들지 못하므로 false를 return해준다.
@@ -62,13 +66,40 @@ public class Ladder {
         }
     }
 
-    // printLadder에 전달하기 위한 getter
+    private String makeResult(int location, int index) {
+        if(location == height)
+            return resultList.get(index);
+        Line line;
+        line = lines.get(location);
+        if(line.getBridge(index - 1))
+            return makeResult(location + 1, index - 1);
+        if(line.getBridge(index))
+            return makeResult(location + 1, index + 1);
+        return makeResult(location + 1, index);
+    }
+
+    private void makeAllResult() {
+        for(int i = 0; i < peoples.size(); i++) {
+            results.add(makeResult(0, i));
+        }
+    }
+
+    // printLadder에 전달하기 위한 getter들
+
     public List<Line> getLines() {
         return lines;
     }
 
     public List<String> getPeoples() {
         return peoples;
+    }
+
+    public List<String> getResults() {
+        return results;
+    }
+
+    public List<String> getResultList() {
+        return resultList;
     }
 
 }

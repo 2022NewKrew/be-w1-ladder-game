@@ -12,7 +12,9 @@ class LadderTest {
     // Ladder 클래스의 makeLine 메소드로 line을 만들어 bridge가 연속으로 생성되지 않는지 테스트해본다.
     @Test
     public void bridgeTest() {
-        Ladder ladder = new Ladder(Arrays.asList("a", "b", "c", "d", "e"), 5);
+        List<String> peoples = Arrays.asList("a", "b", "c", "d", "e");
+        List<String> resultList = Arrays.asList("꽝", "꽝", "꽝", "당첨", "꽝");
+        Ladder ladder = new Ladder(peoples, resultList, 5);
         Line line;
         boolean beforeBridge, bridge;
 

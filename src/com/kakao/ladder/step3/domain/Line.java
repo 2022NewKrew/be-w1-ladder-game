@@ -16,6 +16,8 @@ public class Line {
 
     // 해당 인덱스의 bridge를 제공
     protected boolean getBridge(int index) {
+        if(index < 0 || index >= points.size())
+            return false;
         return points.get(index);
     }
 
