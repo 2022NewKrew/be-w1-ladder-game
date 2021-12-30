@@ -13,7 +13,6 @@ class LadderInfoTest {
     private static final String[] RESULTS = new String[]{"1", "2", "3", "4", "5"};
     private static final int HEIGHT = 5;
 
-
     @Test
     void 참여자의_이름이_공백인경우_예외발생() {
         //given
