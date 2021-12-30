@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGenerator {
+    private static final Double MATH_RANDOM_PERCENT = 0.6;
 
     public Ladder createLadder(Integer playersNum, Integer maximumLadderHeight) {
         List<LadderLine> ladder = new ArrayList<LadderLine>();
+
         for (int i = 0; i < maximumLadderHeight; i++) {
             ladder.add(new LadderLine(createLadderLine(playersNum)));
         }
@@ -21,10 +23,10 @@ public class LadderGenerator {
         return pieces;
     }
 
-    private LadderLinePiece createLadderLinePiece(int i) {
-        if (i % 2 == 0) {
+    private LadderLinePiece createLadderLinePiece(int ladderLinePieceIdx) {
+        if (ladderLinePieceIdx % 2 == 0) {
             return LadderLinePiece.VERTICAL;
         }
-        return (Math.random() > 0.6) ? LadderLinePiece.EMPTY : LadderLinePiece.HORIZONTAL;
+        return (Math.random() > MATH_RANDOM_PERCENT) ? LadderLinePiece.EMPTY : LadderLinePiece.HORIZONTAL;
     }
 }
