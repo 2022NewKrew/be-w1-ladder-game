@@ -17,8 +17,10 @@ public class LadderGameTests {
     @Test
     @DisplayName("Test 모듈 작동 확인")
     public void basicTest() {
-      Assertions.assertThat(2 + 3)
-              .isEqualTo(5);
+        Assertions.assertThat(2 + 3)
+                .isEqualTo(5);
+        Assertions.assertThat(List.of(1, 2))
+                .isNotEqualTo(List.of(1, 2, 3));
     }
 
     @Test
