@@ -21,7 +21,6 @@ public class Ladder {
         rows = new ArrayList<>();
         this.participants = new HashMap<>();
         initLadder(participants);
-
     }
 
     private void initLadder(List<String> participants) {
