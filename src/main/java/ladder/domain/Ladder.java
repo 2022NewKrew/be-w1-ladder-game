@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.*;
+import static util.LadderUtil.*;
 
 public class Ladder {
     public List<String> names;
@@ -15,7 +16,6 @@ public class Ladder {
 
     public void setValue() {
 
-        Scanner sc = new Scanner(System.in);
 
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         names = Arrays.asList(sc.nextLine().split(","));
@@ -53,7 +53,7 @@ public class Ladder {
 
     }
 
-    public void insertLine(int line, int lineSize, Random rd){
+    public void insertLine(int line, int lineSize){
 
         for(int i = 0 ; i < lineSize ; i++) {
             lineStatus[line].value.add((long) rd.nextInt((int) peopleCount - 1));
@@ -66,11 +66,10 @@ public class Ladder {
 
     public void shuffle() {
 
-        Random rd = new Random();
 
         for(int i = 0 ; i < height ; i++) {
             int lineSize = rd.nextInt((int) peopleCount - 1);
-            insertLine(i, lineSize, rd); //lineSize 개수의 라인을 i 번째 높이에 랜덤으로 생성.
+            insertLine(i, lineSize); //lineSize 개수의 라인을 i 번째 높이에 랜덤으로 생성.
             validUpdateLine(i); //i번째 height에 연속적인 line이 생성된경우 제거로직 추가
         }
 

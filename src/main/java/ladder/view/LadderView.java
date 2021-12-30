@@ -5,6 +5,8 @@ import ladder.domain.Line;
 
 import java.util.List;
 
+import static util.LadderUtil.*;
+
 public class LadderView {
 
     private final static int GAP = 5;
@@ -48,7 +50,6 @@ public class LadderView {
     public void printLine(int line){
 
         int lineIdx = 0;
-        StringBuilder sb = new StringBuilder();
         for(int j = 0 ; j < peopleCount ; j++) {
             sb.append("|");
             sb.append( (lineIdx < lineStatus[line].value.size() && lineStatus[line].value.get(lineIdx) == j ? "-" : " ").repeat(GAP) );
@@ -57,6 +58,7 @@ public class LadderView {
             lineIdx = updateLineIdx(line, j, lineIdx);
         }
         System.out.print(sb);
+        sb.setLength(0);
 
     }
 
