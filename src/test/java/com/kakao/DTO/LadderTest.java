@@ -8,10 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
     String[] testPlayers = { "this", "is", "test" };
+    String[] testRewards = { "1000", "꽝", "3000" };
     int ladderTestHeight = 5;
 
     Ladder generateSampleLadder () {
-        Ladder ladder = new Ladder(testPlayers,ladderTestHeight);
+        Ladder ladder = new Ladder(testPlayers,testRewards,ladderTestHeight);
         return ladder;
     }
 

@@ -5,6 +5,7 @@ import com.kakao.data.LadderChar;
 import com.kakao.data.LadderOption;
 import com.kakao.exception.IntegerFormatException;
 import com.kakao.exception.PlayerFormatException;
+import com.kakao.exception.RewardFormatException;
 
 import java.io.*;
 import java.util.List;
@@ -15,16 +16,20 @@ public class LadderIO {
 
     public static Ladder inputLadderData () {
         String[] gamePlayers = null;
+        String[] gameRewards = null;
         Integer ladderHeight = null;
 
         while(gamePlayers == null) { // 정상 입력을 할 때까지 반복
             gamePlayers = inputGamePlayers();
         }
+        while(gameRewards == null) {
+            gameRewards = inputGameRewards(gamePlayers.length);
+        }
         while(ladderHeight == null) {
             ladderHeight = inputLadderHeight();
         }
 
-        return new Ladder(gamePlayers, ladderHeight);
+        return new Ladder(gamePlayers, gameRewards, ladderHeight);
     }
 
     // 입력함수
@@ -36,6 +41,18 @@ public class LadderIO {
             checkFormatOfPlayers(gamePlayers);
             return gamePlayers;
         } catch (IOException | PlayerFormatException e) { // 에러 출력
+            e.printStackTrace();
+            return null;
+        }
+    }
+    private static String[] inputGameRewards(int numberOfPlayers) {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        try {
+            String[] gameRewards = br.readLine().split(",");
+            checkFormatOfRewards(gameRewards, numberOfPlayers);
+            return gameRewards;
+        } catch (IOException | RewardFormatException e){
             e.printStackTrace();
             return null;
         }
@@ -53,11 +70,6 @@ public class LadderIO {
     }
 
     // 검사 함수
-    private static void checkFormatOfInteger(Integer data) throws IntegerFormatException {
-        if( data < 1 ) {
-            throw new IntegerFormatException();
-        }
-    }
     private static void checkFormatOfPlayers(String[] data) throws PlayerFormatException {
         for(String player : data) {
             checkFormatOfPlayer(player);
@@ -68,18 +80,38 @@ public class LadderIO {
             throw new PlayerFormatException();
         }
     }
+    private static void checkFormatOfInteger(Integer data) throws IntegerFormatException {
+        if( data < 1 ) {
+            throw new IntegerFormatException();
+        }
+    }
+    private static void checkFormatOfRewards(String[] data, int arrayLength) throws RewardFormatException {
+        if(data.length != arrayLength) {
+            throw new RewardFormatException();
+        }
+        for(String reward: data) {
+            checkFormatOfReward(reward);
+        }
+    }
+    private static void checkFormatOfReward(String data) throws RewardFormatException {
+        if(data.length() > LadderOption.MAX_REWARD_NAME_LENGTH){
+            throw new RewardFormatException();
+        }
+    }
 
     // 출력함수
     public static void printLadder(Ladder ladder) {
         // 사다리 전체 출력
         StringBuilder sb = new StringBuilder();
         String[] gamePlayers = ladder.getGamePlayers();
+        String[] gameRewards = ladder.getGameRewards();
         List<List<Boolean>> bridgeOfLadder = ladder.getBridgeOfLadder();
 
-        printPlayer(sb, gamePlayers);
+        printContents(sb, gamePlayers);
         for(List<Boolean> row: bridgeOfLadder){ // 높이
             printRow(sb, row); // 한 줄을 출력
         }
+        printContents(sb, gameRewards);
 
         try { // 실제 버퍼로 출력 시도
             bw.write(sb.toString());
@@ -104,13 +136,11 @@ public class LadderIO {
         }
         sb.append(LadderChar.LADDER_NEWLINE); // 줄바꿈
     }
-    private static void printPlayer(StringBuilder sb, String[] gamePlayers) {
+    private static void printContents(StringBuilder sb, String[] gamePlayers) {
         // 참여자 이름 출력
         for(String player: gamePlayers) {
             sb.append(String.format("%"+LadderOption.MAX_PLAYER_NAME_LENGTH+"s ",player));
         }
         sb.append(LadderChar.LADDER_NEWLINE);
     }
-
-
 }
