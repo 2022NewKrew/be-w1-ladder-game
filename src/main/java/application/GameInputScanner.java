@@ -13,7 +13,7 @@ public class GameInputScanner {
 
     public static List<String> inputNameList() {
         try {
-            List<String> nameList = convertStringToNameList(in.nextLine());
+            List<String> nameList = inputStringSeparator(in.nextLine());
             verifyInputNameList(nameList);
             return nameList;
         } catch (RuntimeException e) {
@@ -22,7 +22,7 @@ public class GameInputScanner {
         }
     }
 
-    private static List<String> convertStringToNameList(String input) {
+    private static List<String> inputStringSeparator(String input) {
         return Collections.list(new StringTokenizer(input, ","))
                 .stream()
                 .map(token -> ((String) token).trim())
@@ -46,8 +46,8 @@ public class GameInputScanner {
         }
     }
 
-    private static Integer getPositiveInteger() {
-        Integer value = Integer.valueOf(in.nextLine());
+    private static int getPositiveInteger() {
+        int value = Integer.parseInt(in.nextLine());
         if (value <= 0) {
             throw new NumberFormatException();
         }
