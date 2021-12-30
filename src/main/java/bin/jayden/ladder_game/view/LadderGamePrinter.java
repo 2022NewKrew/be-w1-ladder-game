@@ -1,5 +1,6 @@
 package bin.jayden.ladder_game.view;
 
+import bin.jayden.ladder_game.domain.Constants;
 import bin.jayden.ladder_game.domain.Ladder;
 import bin.jayden.ladder_game.domain.LadderInfo;
 import bin.jayden.ladder_game.domain.LadderRow;
@@ -23,7 +24,7 @@ public class LadderGamePrinter {
     private static void printLadder(Ladder ladder) {
         List<LadderRow> ladderRows = ladder.getLadderRows();
         for (LadderRow row : ladderRows) {
-            System.out.print("\n   |");
+            System.out.printf("\n%" + Constants.PREFIX_SIZE + "s", "|");
             row.getRow().forEach(isLine -> System.out.print(isLine ? "-----|" : "     |"));
         }
     }

@@ -10,8 +10,10 @@ public class LadderGame {
     }
 
     public static void startLadderGame() {
-        LadderInfo info = LadderInfoScanner.getLadderInfo();
-        Ladder ladder = new Ladder(info);
+        LadderInfo info = null;
+        while (info == null) //입력을 제대로 받을때까지 반복해서 입력을 받는다.
+            info = LadderInfoScanner.getLadderInfo();
+        Ladder ladder = new Ladder(info.getWidth(), info.getHeight());
         LadderGamePrinter.printGame(ladder, info);
     }
 }
