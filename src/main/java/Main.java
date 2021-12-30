@@ -1,20 +1,19 @@
 import dto.LadderInputInfo;
-import ladder.Ladder;
-import ladder.LadderBuilder;
-import ladder.LadderImplV2;
-import ladder.RandomLadderBuilderV2;
+import ladder.*;
 import view.InputView;
+import view.OutputView;
+
+import java.util.Scanner;
 
 public class Main {
 //    private static LadderBuilder ladderBuilder = new RandomLadderBuilder();
-    private static LadderBuilder ladderBuilder = new LadderImplV2.RandomLadderBuilder();
-//    private static LadderBuilder ladderBuilder = new RandomLadderBuilderV2();
+    private static LadderBuilder ladderBuilder = LadderImpl.randomLadderBuilder;
 
     public static void main(String[] args) {
         LadderInputInfo ladderInputInfo = InputView.getLadderInfo();
 
         Ladder ladder = ladderBuilder.createLadder(ladderInputInfo);
 
-        ladder.print();
+        OutputView.showOutput(ladder);
     }
 }

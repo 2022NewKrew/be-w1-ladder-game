@@ -1,10 +1,15 @@
 package ladder;
 
+import ladder.domain.LadderFloor;
+
 import java.util.List;
 
 public interface Ladder {
     public void print();
     public int getWidth();
     public int getHeight();
+
     public List<String> getParticipants();
+    public List<String> getResults();
+    public List<LadderFloor> getLadder();
 }

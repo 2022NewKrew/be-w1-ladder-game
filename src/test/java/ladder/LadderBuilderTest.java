@@ -10,8 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LadderBuilderTest {
-
-    RandomLadderBuilder ladderBuilder = new RandomLadderBuilder();
+    LadderBuilder ladderBuilder = LadderImpl.randomLadderBuilder;
 
     @Test
     void 사다리생성후_크기확인() {

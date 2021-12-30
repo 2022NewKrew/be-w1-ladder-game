@@ -1,6 +1,7 @@
 package view;
 
 import dto.LadderInputInfo;
+import input.InputManager;
 import ladder.domain.LadderConfig;
 
 import java.util.Arrays;
@@ -9,7 +10,6 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private static Scanner scanner = new Scanner(System.in);
     private static int maxNameLen = LadderConfig.MAX_NAME_LEN.getValue();
 
     /**
@@ -30,14 +30,14 @@ public class InputView {
     }
 
     private static List<String> inputParticipantsName() {
-        String beforeParsing = scanner.nextLine();
+        String beforeParsing = InputManager.nextLine();
         return Arrays.asList(beforeParsing.split(","))
                 .stream().map(name -> name.length() > maxNameLen ? name.substring(0, maxNameLen) : name)
                 .collect(Collectors.toList());
     }
 
     private static int inputHeight() {
-        int height = scanner.nextInt();
+        int height = InputManager.nextInt();
         if (height < 1) throw new IllegalArgumentException("높이는 1 이상입니다.");
         return height;
     }
