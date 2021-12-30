@@ -11,7 +11,7 @@ public class LadderGame {
         for (String name : scanner.nextLine().split(",")) {
             try {
                 players.add(new Player(name.strip()));
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
