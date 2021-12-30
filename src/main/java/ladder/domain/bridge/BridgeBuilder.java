@@ -1,4 +1,6 @@
-package ladder;
+package ladder.domain.bridge;
+
+import ladder.domain.ladder.LadderInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +12,10 @@ public class BridgeBuilder {
     private final int height;
     private final RandomBridgeProvider randomBridgeProvider;
 
-    public BridgeBuilder(String[] participants, int height, RandomBridgeProvider randomBridgeProvider) {
-        this.numOfParticipants = participants.length;
+    public BridgeBuilder(LadderInfo ladderInfo, RandomBridgeProvider randomBridgeProvider) {
+        this.numOfParticipants = ladderInfo.getParticipants().length;
         this.bridges = new ArrayList<>();
-        this.height = height;
+        this.height = ladderInfo.getHeight();
         this.randomBridgeProvider = randomBridgeProvider;
     }
 
@@ -29,13 +31,11 @@ public class BridgeBuilder {
     }
 
     private void connectRowBridges() {
-
         Bridge bridge = new Bridge();
 
         for (int currentPoint = 0; currentPoint < numOfParticipants - 1; currentPoint++) {
             bridge.addPoint(isConnectableBridge(bridge, currentPoint));
         }
-
         bridges.add(bridge);
     }
 

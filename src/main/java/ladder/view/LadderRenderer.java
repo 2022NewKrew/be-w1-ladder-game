@@ -1,4 +1,6 @@
-package ladder;
+package ladder.view;
+
+import ladder.domain.ladder.Ladder;
 
 public class LadderRenderer {
 
@@ -9,26 +11,26 @@ public class LadderRenderer {
     private static final char NEW_LINE = '\n';
     private static final int MAX_NAME_LENGTH = 5;
 
-    public static void render(Ladder ladder) {
+    public static String render(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
         int height = ladder.getHeight();
 
-        renderParticipants(sb, ladder);
+        renderLadderInfo(sb, ladder.getParticipants());
         for (int currentHeight = 0; currentHeight < height; currentHeight++) {
             renderRow(sb, ladder, currentHeight);
         }
-        System.out.print(sb);
+        renderLadderInfo(sb, ladder.getResults());
+        return sb.toString();
     }
 
-    private static void renderParticipants(StringBuilder sb, Ladder ladder) {
-        String[] participants = ladder.getParticipants();
+    private static void renderLadderInfo(StringBuilder sb, String[] strings) {
 
-        for (String participant : participants) {
-            int emptyPrefixCount = (MAX_NAME_LENGTH - participant.length()) / 2;
-            int emptyPostfixCount = emptyPrefixCount + (MAX_NAME_LENGTH - participant.length()) % 2 + 1;
+        for (String data : strings) {
+            int emptyPrefixCount = (MAX_NAME_LENGTH - data.length()) / 2;
+            int emptyPostfixCount = emptyPrefixCount + (MAX_NAME_LENGTH - data.length()) % 2 + 1;
 
             sb.append(EMPTY_SPACE.repeat(emptyPrefixCount));
-            sb.append(participant);
+            sb.append(data);
             sb.append(EMPTY_SPACE.repeat(emptyPostfixCount));
         }
         sb.append(NEW_LINE);
@@ -37,7 +39,7 @@ public class LadderRenderer {
     private static void renderRow(StringBuilder sb, Ladder ladder, int currentHeight) {
         int numOfParticipants = ladder.getParticipants().length;
 
-        sb.append(EMPTY_SPACE.repeat(2));
+        sb.append(EMPTY_SPACE.repeat(MAX_NAME_LENGTH / 2));
         for (int currentWidth = 0; currentWidth < numOfParticipants - 1; currentWidth++) {
             sb.append(VERTICAL_LINE);
             sb.append(getStringFromCurrentPosition(ladder, currentWidth, currentHeight));
