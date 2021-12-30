@@ -1,3 +1,5 @@
+package LadderGame.domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,9 +18,16 @@ public class Line {
     private final List<String> points;
     private final List<Boolean> isEmptyElement;
 
-    Line(int row) {
+    Line(int row) throws Exception {
         isEmptyElement = new ArrayList<>();
+        checkRowValid(row);
         points = IntStream.range(0, row).mapToObj(this::getLadderElement).collect(Collectors.toList());
+    }
+
+    private void checkRowValid(int row) throws Exception {
+        if(row <= 0){
+            throw new Exception("사다리의 높이는 0보다 커야합니다.");
+        }
     }
 
     private String getLadderElement(int rowNumber) {
@@ -49,10 +58,7 @@ public class Line {
         return random.nextInt(100) >= percent;
     }
 
-    @Override
-    public String toString() {
-        int padding = Name.firstNameLength / 2 + 1;
-        return " ".repeat(padding) + String.join("", points) + "\n";
+    public List<String> getPoints() {
+        return points;
     }
-
 }
