@@ -1,9 +1,9 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Line {
     private final ArrayList<Boolean> points = new ArrayList<>();
@@ -26,6 +26,10 @@ public class Line {
 
         points.add(true);
         return true;
+    }
+
+    public void test_checkDuplicatedLine() {
+        assertTrue(checkDuplicatedLine(false));
     }
 
     public ArrayList<Boolean> getPoints() {
