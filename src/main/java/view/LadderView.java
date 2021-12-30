@@ -1,3 +1,8 @@
+package view;
+
+import domain.Ladder;
+import domain.Line;
+
 import java.util.List;
 
 public class LadderView {
