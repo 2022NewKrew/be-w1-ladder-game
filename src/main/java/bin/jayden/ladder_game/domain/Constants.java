@@ -11,4 +11,7 @@ public class Constants {
     public final static String DELIMITER = ",";
     public final static String DELIMITER_NAME = "쉼표";
     public final static String CONSECUTIVE_VALUE = "11";//List<LadderRow>를 스트링으로 변환한 값에 11이 존재한다는건 연속된 줄이 존재한다는 의미
+    public final static char LADDER_LINE_CHARACTER = '-';
+    public final static char LADDER_EMPTY_CHARACTER = ' ';
+    public final static char LADDER_SEPARATION_CHARACTER = '|';
 }
