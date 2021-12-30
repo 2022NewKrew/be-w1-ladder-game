@@ -1,16 +1,12 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerRepository {
-    private final List<Player> players = new ArrayList<>();
+    private final List<Player> players;
 
-
-
-    public void addPlayer(Player player) {
-        players.add(player);
+    public PlayerRepository(List<Player> players) {
+        this.players = players;
     }
-
-
 }
+
