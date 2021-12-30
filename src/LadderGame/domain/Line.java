@@ -18,19 +18,12 @@ public class Line {
     private final List<String> points;
     private final List<Boolean> isEmptyElement;
 
-    Line(int row) throws Exception {
+    public Line(int row) {
         isEmptyElement = new ArrayList<>();
-        checkRowValid(row);
         points = IntStream.range(0, row).mapToObj(this::getLadderElement).collect(Collectors.toList());
     }
 
-    private void checkRowValid(int row) throws Exception {
-        if(row <= 0){
-            throw new Exception("사다리의 높이는 0보다 커야합니다.");
-        }
-    }
-
-    private String getLadderElement(int rowNumber) {
+    protected String getLadderElement(int rowNumber) {
         isEmptyElement.add(true);
         if (rowNumber % 2 == 0) {
             return BAR;

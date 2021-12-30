@@ -16,6 +16,7 @@ public class Ladder {
 
     // 메소드
     private void createLines(int column) throws Exception {
+        checkColumnValid(column);
         int row = 2 * this.names.getNamesSize() - 1;
 
         for (int i = 0; i < column; i++) {
@@ -24,11 +25,17 @@ public class Ladder {
         }
     }
 
+    protected void checkColumnValid(int row) throws Exception {
+        if (row <= 0) {
+            throw new Exception("사다리의 높이는 0보다 커야합니다.");
+        }
+    }
+
     public Name getNames() {
         return names;
     }
 
-    public List<Line> getLines(){
+    public List<Line> getLines() {
         return lines;
     }
 }
