@@ -38,7 +38,7 @@ public class LadderGame {
     }
 
     private static void printName(String name) {
-        if(name.length() > 5) {
+        if(name.length() > MAX_NAME_LENGTH) {
             name = StringUtils.truncate(name, MAX_NAME_LENGTH);
         }
         System.out.printf("%" + "-" + MAX_NAME_LENGTH + "s ", name);
