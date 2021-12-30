@@ -13,7 +13,11 @@ class CrossLineTest {
     }
 
     @Test
-    void 유효한로케이션테스트() {
+    void 랜덤바생성바로그전께설치되었을때() {
+        CrossLine crossLine = new CrossLine(size);
+        crossLine.getBars().set(0, true);
+
+        Assertions.assertEquals(crossLine.generateRandomBar(1), false);
         //공부를해야겟어여...
     }
 }
