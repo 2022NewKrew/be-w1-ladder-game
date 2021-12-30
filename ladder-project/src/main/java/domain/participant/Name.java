@@ -14,7 +14,7 @@ public class Name {
     }
 
     private void checkNameLength(String participantName) {
-        if(participantName.length() > 5) {
+        if (participantName.length() > 5) {
             throw new IllegalArgumentException("이름이 5글자를 넘을 수 없습니다");
         }
     }

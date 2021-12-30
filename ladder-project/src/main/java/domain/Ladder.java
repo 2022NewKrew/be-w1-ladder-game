@@ -11,7 +11,7 @@ public class Ladder {
     private final List<List<Boolean>> ladder;
 
     public Ladder(int column, int height) {
-        this.ladder = createLadderList(column-1, height);
+        this.ladder = createLadderList(column - 1, height);
         this.line = generateRandomLine();
         assert this.line > -1;
         initLadder();
@@ -19,7 +19,7 @@ public class Ladder {
 
     private List<List<Boolean>> createLadderList(int column, int height) {
         List<List<Boolean>> ladderList = new ArrayList<>();
-        for(int i = 0; i < height; i++) {
+        for (int i = 0; i < height; i++) {
             ladderList.add(createLadderColumnList(column));
         }
         return ladderList;
@@ -27,7 +27,7 @@ public class Ladder {
 
     private List<Boolean> createLadderColumnList(int column) {
         List<Boolean> ladderColumnList = new ArrayList<>();
-        for(int i = 0; i < column; i++) {
+        for (int i = 0; i < column; i++) {
             ladderColumnList.add(false);
         }
         return ladderColumnList;
@@ -43,10 +43,10 @@ public class Ladder {
     }
 
     private boolean checkLinePositionValidate(int rowPosition, int columnPosition) {
-        if(columnPosition - 1 >= 0 && ladder.get(rowPosition).get(columnPosition-1)) {
+        if (columnPosition - 1 >= 0 && ladder.get(rowPosition).get(columnPosition - 1)) {
             return false;
         }
-        if(columnPosition + 1 < ladder.get(0).size() && ladder.get(rowPosition).get(columnPosition+1)) {
+        if (columnPosition + 1 < ladder.get(0).size() && ladder.get(rowPosition).get(columnPosition + 1)) {
             return false;
         }
         return true;
