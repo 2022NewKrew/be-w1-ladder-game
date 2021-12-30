@@ -1,11 +1,10 @@
 package keith.view;
 
-import keith.domain.Ladder;
-import keith.domain.Line;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import keith.domain.Ladder;
+import keith.domain.Line;
 
 public class LadderToString {
     private static final char COLUMN = '|';
@@ -20,25 +19,26 @@ public class LadderToString {
 
     public LadderToString(Ladder ladder) {
         this.ladderString = new StringBuilder();
-        addNameRow(ladder, this.ladderString);
+        addStringRow(ladder.getParticipants(), this.ladderString);
         for (Line connectionRow : ladder.getConnections()) {
-            addRowString(connectionRow.getPoints(), this.ladderString);
+            addLadderRow(connectionRow.getPoints(), this.ladderString);
         }
+        addStringRow(ladder.getDestinations(), this.ladderString);
     }
 
-    private void addNameRow(Ladder ladder, StringBuilder result) {
-        Stream<String> stream = ladder.getParticipants().stream()
+    private void addStringRow(List<String> list, StringBuilder result) {
+        Stream<String> stream = list.stream()
                 .map(name -> name.substring(0, Math.min(Ladder.MAX_NAME_LEN, name.length())));
         List<String> nameToPrint = stream.collect(Collectors.toList());
 
         result.append(NAME_INDENT);
         for (String name : nameToPrint) {
-            addNameString(name, result);
+            addString(name, result);
         }
         result.append(LINE_BREAK);
     }
 
-    private void addNameString(String name, StringBuilder result) {
+    private void addString(String name, StringBuilder result) {
         // 왼쪽에 몫, 오른쪽에 몫+나머지만큼 공백
         int numberOfSpace = Ladder.MAX_NAME_LEN - name.length();
         int numberOfSpaceLeft = numberOfSpace / 2;
@@ -48,7 +48,7 @@ public class LadderToString {
                 .append(SPACE.repeat(numberOfSpaceRight));
     }
 
-    private void addRowString(List<Boolean> connectionRow, StringBuilder result) {
+    private void addLadderRow(List<Boolean> connectionRow, StringBuilder result) {
         result.append(LADDER_INDENT);
         for (int i = 1; i < connectionRow.size() - 1; i++) {
             result.append(COLUMN)
