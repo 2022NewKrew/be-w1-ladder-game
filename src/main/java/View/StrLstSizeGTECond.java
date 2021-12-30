@@ -3,7 +3,7 @@ package View;
 import java.util.ArrayList;
 
 public class StrLstSizeGTECond implements StrCond {
-    int limit;
+    private int limit;
 
     public StrLstSizeGTECond(int limit) {
         this.limit = limit;

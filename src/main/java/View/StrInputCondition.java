@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class StrInputCondition implements InputCondition {
 
     private String query;
-    ArrayList<StrCond> condLst;
+    private ArrayList<StrCond> condLst;
     private String errorMsg;
 
     public StrInputCondition(String query, ArrayList<StrCond> condLst, String errorMsg) {

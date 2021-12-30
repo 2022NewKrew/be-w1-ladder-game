@@ -1,8 +1,8 @@
 package View;
 
 public class Input<T> {
-    T value;
-    InputCondition inputCondition;
+    private T value;
+    private InputCondition inputCondition;
 
     public Input() {
     }

@@ -1,7 +1,7 @@
 package View;
 
 public class NoneInputCondition implements InputCondition{
-    String query;
+    private String query;
 
     public NoneInputCondition(String query){
         this.query = query;

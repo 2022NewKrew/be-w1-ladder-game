@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PlayerService {
 
-    PlayerList playerList;
+    private PlayerList playerList;
 
     public void makePlayerList(Input<ArrayList<String>> playerInput) {
         playerList = new PlayerList(playerInput);
