@@ -24,15 +24,15 @@ public class LadderFactory {
         boolean previousHorizontalLine = false;
 
         for (int peopleCounter = 0; peopleCounter < peopleSize - 1 ; peopleCounter++) {
-            boolean currentHorizontalLine = random.nextBoolean();
-            horizontalLines.add(resolveDivergence(previousHorizontalLine, currentHorizontalLine));
+            boolean currentHorizontalLine = resolveDivergence(previousHorizontalLine, random.nextBoolean());
+            horizontalLines.add(currentHorizontalLine);
             previousHorizontalLine = currentHorizontalLine;
         }
 
         return new Layer(horizontalLines);
     }
 
-    private static boolean resolveDivergence(boolean previous, boolean current) {
-        return !previous && current;
+    private static boolean resolveDivergence(boolean previous, boolean candidate) {
+        return !previous && candidate;
     }
 }
