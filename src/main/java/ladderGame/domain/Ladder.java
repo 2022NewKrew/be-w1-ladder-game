@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+    private static final int MIN_LADDER_HEIGHT = 1;
     private static final String ERROR_INVALID_LADDER_HEIGHT = "사다리의 높이는 0보다 큰 숫자를 입력해야합니다.";
 
     private final int ladderHeight;
@@ -29,7 +30,7 @@ public class Ladder {
     }
 
     private static void validateLadder(int ladderHeight) {
-        if (ladderHeight <= 0) {
+        if (ladderHeight <= MIN_LADDER_HEIGHT) {
             throw new IllegalArgumentException(ERROR_INVALID_LADDER_HEIGHT);
         }
     }

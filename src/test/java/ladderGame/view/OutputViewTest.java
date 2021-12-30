@@ -1,6 +1,6 @@
 package ladderGame.view;
 
-import ladderGame.domain.Player;
+import ladderGame.domain.PlayerInfo;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
@@ -13,9 +13,9 @@ class OutputViewTest {
 
     @Test
     void drawLadderGame() throws Exception {
-        final Player player = new Player(TEST_PLAYER_NAME_STRING);
+        final PlayerInfo player = new PlayerInfo(TEST_PLAYER_NAME_STRING);
 
-        final Method method = OutputView.class.getDeclaredMethod("drawPlayerName", Player.class);
+        final Method method = OutputView.class.getDeclaredMethod("drawPlayerName", PlayerInfo.class);
         method.setAccessible(true);
 
         String testResult = (String) method.invoke(OutputView.class, player);

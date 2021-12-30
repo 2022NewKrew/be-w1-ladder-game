@@ -6,32 +6,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderLine {
-    private final List<Boolean> oneLadderLines;
+    private final List<LadderLineBranch> ladderLineBranches;
 
-    public LadderLine(List<Boolean> oneLadderLines) {
-        this.oneLadderLines = new ArrayList<>(oneLadderLines);
+    public LadderLine(List<LadderLineBranch> ladderLineBranches) {
+        this.ladderLineBranches = new ArrayList<>(ladderLineBranches);
     }
 
     public static LadderLine makeLadderLine(int ladderWidth) {
-        List<Boolean> oneLadderLines = new ArrayList<>();
+        List<LadderLineBranch> ladderLineBranches = new ArrayList<>();
 
-        oneLadderLines.add(RandomUtil.getRandomBoolean());
+        ladderLineBranches.add(new LadderLineBranch(RandomUtil.getRandomBoolean()));
         for (int i = 1; i < ladderWidth; ++i) {
-            oneLadderLines.add(makeBranch(i, oneLadderLines));
+            ladderLineBranches.add(new LadderLineBranch(makeBranch(i, ladderLineBranches)));
         }
 
-        return new LadderLine(oneLadderLines);
+        return new LadderLine(ladderLineBranches);
     }
 
-    private static boolean makeBranch(int index, List<Boolean> oneLadderLines) {
-        if (oneLadderLines.get(index - 1)) {
+    private static boolean makeBranch(int index, List<LadderLineBranch> ladderLineBranches) {
+        if (ladderLineBranches.get(index - 1).isConnect()) {
             return false;
         }
 
         return RandomUtil.getRandomBoolean();
     }
 
-    public List<Boolean> getOneLadderLines() {
-        return oneLadderLines;
+    public List<LadderLineBranch> getladderLineBranches() {
+        return ladderLineBranches;
     }
 }

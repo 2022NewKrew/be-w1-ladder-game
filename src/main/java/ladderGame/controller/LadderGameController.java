@@ -1,27 +1,27 @@
 package ladderGame.controller;
 
 import ladderGame.domain.Ladder;
-import ladderGame.domain.Player;
+import ladderGame.domain.Players;
+import ladderGame.view.InputView;
+import ladderGame.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 public class LadderGameController {
-    private final Player player;
-    private final Ladder ladder;
+    private Players players;
+    private Ladder ladder;
 
-    public LadderGameController(int ladderHeight, String playerNameString) {
-        this.player = new Player(playerNameString);
+    public LadderGameController() { }
 
-        final int ladderWidth = player.getPlayerCount() - 1;
+    public void run() throws IOException {
+        final String playersName = InputView.inputPlayersName();
+        final int ladderHeight = InputView.inputLadderHeight();
+
+        this.players = Players.makePlayers(playersName);
+
+        final int ladderWidth = this.players.getPlayerCount() - 1;
         this.ladder = Ladder.makeLadder(ladderHeight, ladderWidth);
-    }
 
-    public Ladder getLadder() {
-        return ladder;
-    }
-
-    public Player getPlayer() {
-        return player;
+        OutputView.drawLadderGame(players, ladder);
     }
 }

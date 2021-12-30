@@ -15,6 +15,6 @@ class LadderLineTest {
         final Ladder ladder = Ladder.makeLadder(TEST_LADDER_HEIGHT, testLadderWidth);
 
         assertEquals(TEST_LADDER_HEIGHT, ladder.getLadderLines().size());
-        assertEquals(testLadderWidth, ladder.getLadderLines().get(0).getOneLadderLines().size());
+        assertEquals(testLadderWidth, ladder.getLadderLines().get(0).getladderLineBranchs().size());
     }
 }
