@@ -1,4 +1,4 @@
-package laddergame;
+package laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +23,8 @@ public class Ladder{
     }
 
     // 사다리 출력 메소드
-    public void printLadder(){
+    public void printLadder(int lineLength){
         for(Line line : this.lines)
-            line.printRow();
+            line.printRow(lineLength);
     }
 }

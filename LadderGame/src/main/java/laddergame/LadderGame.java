@@ -1,5 +1,8 @@
 package laddergame;
 
+import laddergame.domain.GameManager;
+import laddergame.view.StringEditor;
+
 import java.util.Scanner;
 
 public class LadderGame {
@@ -13,7 +16,8 @@ public class LadderGame {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         height = sc.nextInt();
 
-        GameManager game = new GameManager(playerNames, height);      // 사다리게임 인스턴스 생성
+        StringEditor se = new StringEditor();
+        GameManager game = new GameManager(se.nameSplit(playerNames), height);      // 사다리게임 인스턴스 생성
         game.printLadder();                                           // 사다리 출력
     }
 }
