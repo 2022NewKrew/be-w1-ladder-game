@@ -32,4 +32,8 @@ public class Line {
     public List<Boolean> getLines() {
         return new ArrayList<>(lines);
     }
+
+    public int getLineCount() {
+        return lines.size();
+    }
 }
