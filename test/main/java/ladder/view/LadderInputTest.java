@@ -31,8 +31,7 @@ class LadderInputTest {
         System.setIn(in);
 
         //when, then
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, LadderInput::new);
-        assertEquals("사다리의 높이는 1이상입니다.", exception.getMessage());
+        assertThrows(IllegalArgumentException.class, LadderInput::new);
     }
 
     @Test
@@ -43,7 +42,6 @@ class LadderInputTest {
         System.setIn(in);
 
         //when, then
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, LadderInput::new);
-        assertEquals("참여할 사람과 실행 결과의 수는 같아야 합니다.", exception.getMessage());
+        assertThrows(IllegalArgumentException.class, LadderInput::new);
     }
 }
