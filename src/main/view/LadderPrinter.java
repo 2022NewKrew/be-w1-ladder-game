@@ -16,37 +16,43 @@ public class LadderPrinter {
 
     public void printLadder() {
         StringBuilder sb = new StringBuilder();
-        appendPlayerNames(sb);
+        sb.append(getPlayerNames());
         for (int i = 0; i < ladder.getHeight(); i++) {
-            appendLadderRow(sb, i);
+            sb.append(getLadderRow(i));
         }
-        appendResults(sb);
+        sb.append(getResults());
         System.out.println(sb);
     }
 
-    private void appendPlayerNames(StringBuilder sb) {
+    private String getPlayerNames() {
+        StringBuilder sb = new StringBuilder();
         sb.append("\t");
         for (int i = 0; i < ladder.getWidth(); i++) {
             sb.append(String.format("%-6s", ladder.getLine(i).getName()));
         }
         sb.append("\n");
+        return sb.toString();
     }
 
-    private void appendLadderRow(StringBuilder sb, int position) {
+    private String getLadderRow(int position) {
+        StringBuilder sb = new StringBuilder();
         sb.append("\t").append(LADDER_LINE);
         for (int i = 0; i < ladder.getWidth() - 1; i++) {
             String status = ladder.getLine(i).isConnectedTo(ladder.getLine(i + 1), position) ? LADDER_EXIST : LADDER_EMPTY;
             sb.append(status).append(LADDER_LINE);
         }
         sb.append("\n");
+        return sb.toString();
     }
 
-    private void appendResults(StringBuilder sb) {
+    private String getResults() {
+        StringBuilder sb = new StringBuilder();
         sb.append("\t");
         for (int i = 0; i < ladder.getWidth(); i++) {
             sb.append(String.format("%-6s", ladder.getLine(i).getResult()));
         }
         sb.append("\n");
+        return sb.toString();
     }
 
     public void printAllResults() {
