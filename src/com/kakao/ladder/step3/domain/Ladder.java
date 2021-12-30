@@ -1,4 +1,4 @@
-package com.kakao.ladder.step3;
+package com.kakao.ladder.step3.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,41 +46,29 @@ public class Ladder {
     }
 
     // 현재 bridge를 만들수 있는 경우 canMake 값이 true이다. 초기에 가장 왼쪽 bridge는 항상 만들수 있으므로 true로 초기화한다.
-    private void makeLine() {
+    protected Line makeLine() {
         boolean canMake = true;
         Line line = new Line();
         for(int i = 1; i < peoples.size(); i++) {
             canMake = makeRandomBridge(canMake, line);
         }
-        lines.add(line);
+        return line;
     }
 
     // 사다리를 만들어준다.
     private void makeLadder() {
         for(int i = 0; i < height; i++) {
-            makeLine();
+            lines.add(makeLine());
         }
     }
 
-    // 이름이 5자 이상인 경우 앞의 5자까지만 추가해준다. 길이에 맞춰서 다음 사람의 이름까지 적절한 공백을 준다.
-    private void printPeople(String people) {
-        System.out.printf("%-6.5s", people);
+    // printLadder에 전달하기 위한 getter
+    public List<Line> getLines() {
+        return lines;
     }
 
-    // 사람 리스트를 출력한다.
-    private void printPeoples() {
-        for(String people : peoples) {
-            printPeople(people);
-        }
-        System.out.println();
-    }
-
-    //전체 사다리를 출력한다.
-    public void printLadder() {
-        printPeoples();
-        for(Line line : lines) {
-            System.out.println(line.toString());
-        }
+    public List<String> getPeoples() {
+        return peoples;
     }
 
 }

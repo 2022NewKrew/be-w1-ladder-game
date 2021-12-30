@@ -1,5 +1,8 @@
 package com.kakao.ladder.step3;
 
+import com.kakao.ladder.step3.domain.Ladder;
+import com.kakao.ladder.step3.view.LadderPrinter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -17,6 +20,7 @@ public class LadderGame {
         height = s.nextInt();
 
         Ladder ladder = new Ladder(peoples, height);
-        ladder.printLadder();
+        LadderPrinter ladderPrinter = new LadderPrinter(ladder);
+        ladderPrinter.printLadder();
     }
 }
