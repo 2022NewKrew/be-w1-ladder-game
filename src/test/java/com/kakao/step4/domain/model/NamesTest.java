@@ -1,4 +1,4 @@
-package com.kakao.step4.domain;
+package com.kakao.step4.domain.model;
 
 import com.kakao.step4.domain.model.Names;
 import com.kakao.step4.exceptions.DuplicatedInputException;
