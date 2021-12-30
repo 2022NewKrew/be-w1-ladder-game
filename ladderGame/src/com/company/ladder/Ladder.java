@@ -25,7 +25,10 @@ public class Ladder {
 
     public void makeLadder(){
         for(int ladderIndex = 0; ladderIndex < ladderHeight; ladderIndex++){
-            ladderArray.add(new Line(attendantNum));
+            Line line = new Line();
+            line.setLine(attendantNum);
+
+            ladderArray.add(line);
         }
     }
 
