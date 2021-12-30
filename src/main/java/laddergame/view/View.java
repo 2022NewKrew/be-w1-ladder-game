@@ -1,8 +1,8 @@
 package laddergame.view;
 
-import laddergame.Ladder;
-import laddergame.LadderComponent;
-import laddergame.User;
+import laddergame.domain.Ladder;
+import laddergame.domain.LadderComponent;
+import laddergame.domain.User;
 
 import java.util.Arrays;
 import java.util.List;
