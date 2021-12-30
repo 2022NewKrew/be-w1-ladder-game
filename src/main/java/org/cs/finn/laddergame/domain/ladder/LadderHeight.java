@@ -12,6 +12,9 @@ public final class LadderHeight {
     public LadderHeight(final String ladderHeightString)
             throws IndexOutOfBoundsException, NumberFormatException {
         Checker.checkIntMinMaxInit(INIT, MIN, MAX);
+        if (ladderHeightString == null) {
+            throw new RuntimeException("ladderHeightString is null!");
+        }
 
         int temp = Integer.parseInt(ladderHeightString, 10);
         Checker.checkIntBound(temp, MIN, MAX);

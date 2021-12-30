@@ -17,10 +17,6 @@ public class LadderView {
     }
 
     private void printOneHeight(final LadderRow ladderRow) {
-        if (ladderRow == null) {
-            throw new RuntimeException("LadderRow is null!");
-        }
-
         for (int i = 0; i < Ladder.BLANK_LEFT; i++) {
             System.out.print(' ');
         }

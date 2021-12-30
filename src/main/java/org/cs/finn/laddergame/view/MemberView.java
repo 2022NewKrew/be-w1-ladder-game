@@ -16,10 +16,6 @@ public class MemberView {
     }
 
     private void printMember(final String m) {
-        if (m == null) {
-            throw new RuntimeException("Member String is null!");
-        }
-
         final int space = Member.WIDTH - m.length();
         final int rightSpace = space / 2;
         final int leftSpace = rightSpace + (space & 0x1);
