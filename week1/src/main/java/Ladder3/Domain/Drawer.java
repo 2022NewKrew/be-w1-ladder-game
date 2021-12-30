@@ -1,6 +1,5 @@
-package Ladder4.Domain;
+package Ladder3.Domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +22,7 @@ public class Drawer {
             .collect(Collectors.joining(" ", "", "\n"));
     }
 
-    private String getNameTag(String name) {
+    public String getNameTag(String name) {
         final int spaceCnt = bridgeSize - name.length();
         // 중앙 정렬
         return name.length() >= bridgeSize

@@ -1,4 +1,4 @@
-package Ladder4.View;
+package Ladder3.View;
 
 import java.util.Scanner;
 
@@ -23,11 +23,17 @@ public class UserInterface {
         try {
             final Scanner sc = new Scanner(System.in);
             final int num = sc.nextInt();
-            if (num <= 0) throw new RuntimeException();
+            validatePositiveInteger(num);
             return num;
         } catch (Exception e) {
             System.out.println("양의 정수를 입력해주세요.");
             return inputPositiveInteger();
+        }
+    }
+
+    private void validatePositiveInteger(int num) throws IllegalArgumentException {
+        if (num <=0) {
+            throw new IllegalArgumentException();
         }
     }
 }

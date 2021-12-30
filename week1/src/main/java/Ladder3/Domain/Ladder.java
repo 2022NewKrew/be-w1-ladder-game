@@ -1,12 +1,8 @@
-package Ladder4.Domain;
+package Ladder3.Domain;
 
-import Ladder4.View.UserInterface;
+import Ladder3.View.UserInterface;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Ladder {
 

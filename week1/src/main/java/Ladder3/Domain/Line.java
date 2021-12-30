@@ -1,6 +1,5 @@
-package Ladder4.Domain;
+package Ladder3.Domain;
 
-import Ladder4.Main;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -15,7 +14,7 @@ public class Line {
     private final int bridgeSize;
     private final List<Boolean> steps = new ArrayList();
 
-    Line (int countOfPerson, int bridgeSize) {
+    protected Line (int countOfPerson, int bridgeSize) {
         this.bridgeSize = bridgeSize;
         boolean prevStep = false;
         for (int i=0; i < countOfPerson - 1; i++) {
