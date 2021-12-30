@@ -14,4 +14,21 @@ public class User {
     public String getName() {
         return name;
     }
+
+    public int getResultCol(Ladder ladder) {
+        if (row == ladder.getLadderHeight())
+            return col;
+        if (ladder.canMoveLeft(row, col)) {
+            col--;
+            row++;
+            return getResultCol(ladder);
+        }
+        if (ladder.canMoveRight(row, col)) {
+            col++;
+            row++;
+            return getResultCol(ladder);
+        }
+        row++;
+        return getResultCol(ladder);
+    }
 }

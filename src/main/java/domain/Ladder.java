@@ -4,13 +4,25 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private final List<Row> rows;
+    private final List<Line> lines;
 
-    public Ladder(List<Row> rows) {
-        this.rows = rows;
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
-    public List<Row> getRows() {
-        return Collections.unmodifiableList(rows);
+    public List<Line> getRows() {
+        return Collections.unmodifiableList(lines);
+    }
+
+    public int getLadderHeight() {
+        return lines.size();
+    }
+
+    public boolean canMoveLeft(int row, int col) {
+        return lines.get(row).existLeftBridge(col);
+    }
+
+    public boolean canMoveRight(int row, int col) {
+        return lines.get(row).existRightBridge(col);
     }
 }
