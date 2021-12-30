@@ -42,6 +42,6 @@ public class Line {
     private Boolean checkPreviousPoint(int index) {
         if (index < 0 || index >= width)
             return false;
-        return (!(index != 0 )|| !point.get(index - 1)) && Math.random() > 0.5;
+        return (!(index != 0) || !point.get(index - 1)) && Math.random() > 0.5;
     }
 }
