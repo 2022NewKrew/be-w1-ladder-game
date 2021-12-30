@@ -1,3 +1,5 @@
+package ladder.domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -5,7 +7,7 @@ import java.util.stream.Collectors;
 public class Ladder {
     private List<Line> lines;
 
-    public Ladder(int width, int height) {
+    Ladder(int width, int height) {
         setLines(width, height);
     }
 
@@ -26,7 +28,7 @@ public class Ladder {
     public String toString() {
         return lines.stream()
                 .map(Line::toString)
-                .collect(Collectors.joining());
+                .collect(Collectors.joining("\n"));
     }
 
 }
