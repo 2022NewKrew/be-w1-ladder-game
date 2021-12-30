@@ -3,13 +3,17 @@ package input;
 import java.util.Scanner;
 
 public class InputManager {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static String nextLine() {
         return scanner.nextLine();
     }
 
     public static int nextInt() {
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    public static void close() {
+        scanner.close();
     }
 }

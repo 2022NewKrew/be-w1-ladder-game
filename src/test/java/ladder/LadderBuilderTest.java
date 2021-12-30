@@ -1,6 +1,7 @@
 package ladder;
 
 import dto.LadderInputInfo;
+import exception.LadderInfoMismatchException;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -17,9 +18,10 @@ class LadderBuilderTest {
         // given
         final int height = 5;
         final List<String> participants = Arrays.asList(new String[]{"name", "js", "java"});
+        final List<String> results = Arrays.asList(new String[]{"3", "2", "1"});
 
         // when
-        Ladder ladder = ladderBuilder.createLadder(new LadderInputInfo(participants.size(), height, participants));
+        Ladder ladder = ladderBuilder.createLadder(new LadderInputInfo(participants.size(), height, participants, results));
 
         // then
         assertThat(ladder.getWidth()).isEqualTo(participants.size());
@@ -31,9 +33,10 @@ class LadderBuilderTest {
         // given
         final int height = 5;
         final List<String> participants = Arrays.asList(new String[]{"name", "js", "java", "asd", "qwert","poiur"});
+        final List<String> results = Arrays.asList(new String[]{"3", "2", "1","3", "2", "1"});
 
         // when
-        Ladder ladder = ladderBuilder.createLadder(new LadderInputInfo(participants.size(), height, participants));
+        Ladder ladder = ladderBuilder.createLadder(new LadderInputInfo(participants.size(), height, participants, results));
 
         // then
         ladder.print();
@@ -44,11 +47,12 @@ class LadderBuilderTest {
         //given
         final int height = 5;
         final List<String> participants = Arrays.asList(new String[]{});
+        final List<String> results = Arrays.asList(new String[]{});
 
         //when
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> ladderBuilder.createLadder(new LadderInputInfo(participants.size(), height, participants)));
+        assertThrows(IllegalArgumentException.class, () -> ladderBuilder.createLadder(new LadderInputInfo(participants.size(), height, participants, results)));
     }
 
     @Test
@@ -56,11 +60,25 @@ class LadderBuilderTest {
         //given
         final int height = 0;
         final List<String> participants = Arrays.asList(new String[]{"gosl", "java", "one", "some"});
+        final List<String> results = Arrays.asList(new String[]{"꽝","꽝","꽝","당첨"});
 
         //when
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> ladderBuilder.createLadder(new LadderInputInfo(participants.size(), height, participants)));
+        assertThrows(IllegalArgumentException.class, () -> ladderBuilder.createLadder(new LadderInputInfo(participants.size(), height, participants, results)));
+    }
+
+    @Test
+    void 참여자인원_보상갯수_불일치() {
+        // given
+        final int height = 10;
+        final List<String> participants = Arrays.asList(new String[]{"gosl", "java", "one", "some"});
+        final List<String> results = Arrays.asList(new String[]{"꽝","꽝","당첨"});
+
+        // when
+
+        // then
+        assertThrows(LadderInfoMismatchException.class, () -> ladderBuilder.createLadder(new LadderInputInfo(participants.size(), height, participants, results)));
     }
 
 }

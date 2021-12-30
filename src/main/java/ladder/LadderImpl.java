@@ -1,6 +1,7 @@
 package ladder;
 
 import dto.LadderInputInfo;
+import exception.LadderInfoMismatchException;
 import ladder.domain.LadderFloor;
 import ladder.domain.LadderFloorProxy;
 
@@ -18,16 +19,18 @@ public class LadderImpl implements Ladder{
     private List<String> results;
     private List<LadderFloor> ladder;
 
+    /**
+     * Inner Class
+     */
     public static class RandomLadderBuilder implements LadderBuilder {
         private static Random random = new Random();
         private LadderInputInfo ladderInfo;
 
-        public RandomLadderBuilder() {}
-
-        public Ladder createLadder(LadderInputInfo ladderInfo) throws IllegalArgumentException {
+        public Ladder createLadder(LadderInputInfo ladderInfo) throws IllegalArgumentException, LadderInfoMismatchException {
             this.ladderInfo = ladderInfo;
             if (ladderInfo.getWidth() < 1) throw new IllegalArgumentException("참여인원은 한명 이상입니다.");
             if (ladderInfo.getHeight() < 1) throw new IllegalArgumentException("높이가 잘못 입력되었습니다.");
+            if (ladderInfo.getParticipants().size() != ladderInfo.getResults().size()) throw new LadderInfoMismatchException("참여자 인원과 결과 갯수는 동일해야 합니다.");
             return new LadderImpl(ladderInfo, buildLadder());
         }
 
@@ -55,10 +58,12 @@ public class LadderImpl implements Ladder{
         }
     }
 
+
     private LadderImpl(LadderInputInfo ladderInputInfo, List<LadderFloor> ladder) {
         this.width = ladderInputInfo.getWidth();
-        this.participants = ladderInputInfo.getParticipants();
         this.height = ladderInputInfo.getHeight();
+        this.participants = ladderInputInfo.getParticipants();
+        this.results = ladderInputInfo.getResults();
         this.ladder = ladder;
     }
 

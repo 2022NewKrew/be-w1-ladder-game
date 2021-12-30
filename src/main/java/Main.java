@@ -1,12 +1,10 @@
 import dto.LadderInputInfo;
+import input.InputManager;
 import ladder.*;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Scanner;
-
 public class Main {
-//    private static LadderBuilder ladderBuilder = new RandomLadderBuilder();
     private static LadderBuilder ladderBuilder = LadderImpl.randomLadderBuilder;
 
     public static void main(String[] args) {
@@ -14,6 +12,8 @@ public class Main {
 
         Ladder ladder = ladderBuilder.createLadder(ladderInputInfo);
 
-        OutputView.showOutput(ladder);
+        OutputView.show(ladder);
+
+        InputManager.close();
     }
 }

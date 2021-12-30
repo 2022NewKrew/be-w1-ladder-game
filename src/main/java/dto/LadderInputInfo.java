@@ -6,11 +6,13 @@ public class LadderInputInfo {
     private final int width;
     private final int height;
     private final List<String> participants;
+    private final List<String> results;
 
-    public LadderInputInfo(int width, int height, List<String> participants) {
+    public LadderInputInfo(int width, int height, List<String> participants, List<String> results) {
         this.width = width;
         this.height = height;
         this.participants = participants;
+        this.results = results;
     }
 
 
@@ -24,5 +26,9 @@ public class LadderInputInfo {
 
     public List<String> getParticipants() {
         return participants;
+    }
+
+    public List<String> getResults() {
+        return results;
     }
 }

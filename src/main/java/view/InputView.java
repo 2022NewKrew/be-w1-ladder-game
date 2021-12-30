@@ -6,7 +6,6 @@ import ladder.domain.LadderConfig;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -23,10 +22,13 @@ public class InputView {
         List<String> participants = inputParticipantsName();
         System.out.println();
 
+        System.out.println("실행결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        List<String> results = inputParticipantsName();
+        System.out.println();
+
         System.out.println("최대 사다리 높이는 몇인가요?");
         int maxHeightOfLadder = inputHeight();
-
-        return new LadderInputInfo(participants.size(), maxHeightOfLadder, participants);
+        return new LadderInputInfo(participants.size(), maxHeightOfLadder, participants, results);
     }
 
     private static List<String> inputParticipantsName() {

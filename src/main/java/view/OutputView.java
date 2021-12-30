@@ -3,27 +3,53 @@ package view;
 import input.InputManager;
 import ladder.Ladder;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
+
 public class OutputView {
 
-    public static void showOutput(Ladder ladder) {
+    public static void show(Ladder ladder) {
         ladder.print();
-        showResults(ladder);
+        getInputAndShowResults(ladder);
     }
 
-    private static void showResults(Ladder ladder) {
+    //Map<> 으로 결과 갖다놓
+    private static void getInputAndShowResults(Ladder ladder) {
         String next = getInput();
-        if(checkEndCondition(next)) return;
+        Map<String, String> results = getResult(ladder);
+        if (checkEndCondition(next)) return;
         do {
-
-            //결과출력
-            String result = LadderResultViewer.getResult(ladder, next);
-            System.out.println(result);
+            if (next.equals("all")) {
+                showResultAll(results);
+            } else {
+                showResult(results.get(next));
+            }
             next = getInput();
-        }while(!checkEndCondition(next));
+        } while (!checkEndCondition(next));
+    }
+
+    private static Map<String, String> getResult(Ladder ladder) {
+        Map<String, String> resultsMap = new HashMap<>();
+        List<String> resultAll = LadderResultFinder.getResultAll(ladder);
+        List<String> participants = ladder.getParticipants();
+        IntStream.range(0, resultAll.size()).forEach(i -> resultsMap.put(participants.get(i) ,resultAll.get(i)));
+        return resultsMap;
+    }
+
+    private static void showResultAll(Map<String, String> results) {
+        results.keySet().stream().forEach(i -> System.out.println(i + ":" + results.get(i)));
+        System.out.println();
+    }
+
+    private static void showResult(String result) {
+        System.out.println(result);
+        System.out.println();
     }
 
     private static Boolean checkEndCondition(String str) {
-        if(str.equals("춘식이")) {
+        if (str.equals("춘식이")) {
             System.out.println("게임을 종료합니다.");
             return true;
         }
