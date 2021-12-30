@@ -1,12 +1,15 @@
 package ladder;
 
 import exception.InvalidBridgeException;
+import exception.OutOfInputStringException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class LadderSimpleGame extends LadderGame {
+
+    private final int MAX_INPUT_PARTICIPANT_NAME_LENGTH = 5;
 
     private final Random randomInstance = new Random();
 
@@ -56,6 +59,14 @@ public class LadderSimpleGame extends LadderGame {
     private void checkInvalidContinueTrueList(List<Boolean> list) {
         for (int i = 0; i < list.size() - 1; i++) {
             if (list.get(i) && list.get(i + 1)) throw new InvalidBridgeException("연속된 다리는 생성할 수 없습니다.");
+        }
+    }
+
+    public void checkInvalidNameLength() {
+        for (String participant : this.getParticipants()) {
+            if (participant.length() > MAX_INPUT_PARTICIPANT_NAME_LENGTH) {
+                throw new OutOfInputStringException("참가자 수의 이름은 최대 5개 입니다.");
+            }
         }
     }
 }

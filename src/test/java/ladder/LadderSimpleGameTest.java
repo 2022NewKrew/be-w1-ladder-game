@@ -1,15 +1,14 @@
 package ladder;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import exception.InvalidBridgeException;
-import org.junit.jupiter.api.BeforeEach;
+import exception.OutOfInputStringException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LadderSimpleGameTest {
 
@@ -53,5 +52,31 @@ class LadderSimpleGameTest {
 
         //then
         ladderSimpleGame.checkInvalidBridge();
+    }
+
+    @Test
+    public void 참가자_이름길이_5이하() throws Exception {
+        //given
+        LadderSimpleGame ladderSimpleGame = new LadderSimpleGame();
+
+        //when
+        String[] participants = {"AAAAA", "B", "CCC", "DD", "EEEEE"};
+        ladderSimpleGame.setParticipants(participants);
+
+        //then
+        ladderSimpleGame.checkInvalidNameLength();
+    }
+
+    @Test
+    public void 참가자_이름길이_5초과() throws Exception {
+        //given
+        LadderSimpleGame ladderSimpleGame = new LadderSimpleGame();
+
+        //when
+        String[] participants = {"AAAAAA", "B", "CCC", "DD", "EEEEE"};
+        ladderSimpleGame.setParticipants(participants);
+
+        //then
+        assertThrows(OutOfInputStringException.class, ladderSimpleGame::checkInvalidNameLength);
     }
 }
