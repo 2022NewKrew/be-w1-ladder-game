@@ -2,9 +2,7 @@ package laddergame.domain;
 
 import laddergame.util.Util;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Line {
     private List<Point> points = new ArrayList<>();
@@ -38,7 +36,6 @@ public class Line {
             return 1;
         }
         return 0;
-
     }
 
     public String toString(){
