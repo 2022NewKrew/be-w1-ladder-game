@@ -31,5 +31,4 @@ public class LadderGame {
         UserOutput.printLadderToConsole(ladder, users);
     }
 
-
 }

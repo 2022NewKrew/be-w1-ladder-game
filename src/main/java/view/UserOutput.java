@@ -53,5 +53,4 @@ public class UserOutput {
         int rightSpace = (int) (temp - leftSpace) - 1;
         System.out.print(EMPTY_SPACE.repeat(leftSpace) + userName + EMPTY_SPACE.repeat(rightSpace));
     }
-
 }

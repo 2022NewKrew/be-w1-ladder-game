@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 public class LadderGamePrecondition {
+
     public static void checkUsers(List<String> users, int maxLength) {
         isNotEmptyList(users);
         isLegalUsers(users, maxLength);
@@ -23,4 +24,5 @@ public class LadderGamePrecondition {
             throw new IllegalArgumentException("한명 이상의 사람을 입력해주세요.");
         }
     }
+
 }
