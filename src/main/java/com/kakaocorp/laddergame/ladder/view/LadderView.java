@@ -24,19 +24,14 @@ public class LadderView {
         this.ladder = ladder;
     }
 
-    public void print() {
-        ladder.getMembers().forEach(member ->
-                System.out.print(sliceName(member))
-        );
-        System.out.println();
-
+    public void ladderPrint() {
         StringBuilder sb = new StringBuilder();
         for (Line line : ladder.getLines()) {
             sb.append("  |");
             makeLineTypesString(line.getLineTypes(), sb);
             sb.append("\n");
         }
-
+        sb.setLength(sb.length()-1);
         System.out.println(sb.toString());
     }
 
@@ -48,6 +43,14 @@ public class LadderView {
         return StringUtils.leftPad(member, 5, " ") + " ";
     }
 
+    public String sliceResult(String result) {
+        if (result.length() >= 5) {
+            return result.substring(0, 5) + " ";
+        }
+        String leftPaddedResult = StringUtils.leftPad(result, (5 - result.length()) / 2, " ");
+        return StringUtils.rightPad(leftPaddedResult, 5, " ") + " ";
+    }
+
     private void makeLineTypesString(List<Boolean> lineTypes, StringBuilder sb) {
         for (Boolean lineType : lineTypes) {
             sb.append(viewItems.get(lineType));
@@ -55,4 +58,17 @@ public class LadderView {
         }
     }
 
+    public void memberPrint() {
+        ladder.getMembers().forEach(member ->
+                System.out.print(sliceName(member))
+        );
+        System.out.println();
+    }
+
+    public void resultPrint() {
+        ladder.getResults().forEach(result ->
+                System.out.print(sliceResult(result))
+        );
+        System.out.println();
+    }
 }
