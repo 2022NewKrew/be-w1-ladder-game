@@ -1,16 +1,27 @@
+package ladder.view;
+
+import ladder.constant.Const;
+import ladder.domain.Line;
+import ladder.entity.LadderInfo;
+import ladder.entity.LadderInput;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class LadderRenderer {
-    private final int nameLen;
+    private final LadderInput ladderInput;
+    private final LadderInfo ladderInfo;
+    private final int offset;
 
-    public LadderRenderer(int nameLen) {
-        this.nameLen = nameLen;
+    public LadderRenderer(LadderInput ladderInput, LadderInfo ladderInfo) {
+        this.ladderInput = ladderInput;
+        this.ladderInfo = ladderInfo;
+        offset = Const.MAX_NAME_LEN / 2;
     }
 
-    public void render(LadderInputManager ladderInputManager, LadderMaker ladderMaker) {
-        renderPlayers(ladderInputManager.getPlayerList());
-        renderLadder(ladderMaker.getLadder(), ladderMaker.getOffset());
+    public void render() {
+        renderPlayers(ladderInput.getPlayerList());
+        renderLadder(ladderInfo.getLadder());
     }
 
     private void renderPlayers(ArrayList<String> playerList) {
@@ -22,14 +33,14 @@ public class LadderRenderer {
 
     private String paddingPlayer(String player) {
         StringBuilder sb = new StringBuilder();
-        int length = nameLen - player.length();
+        int length = Const.MAX_NAME_LEN - player.length();
         sb.append(" ".repeat(length / 2 + length % 2));
         sb.append(player);
         sb.append(" ".repeat(length / 2));
         return sb.toString();
     }
 
-    private void renderLadder(ArrayList<Line> ladder, int offset) {
+    private void renderLadder(ArrayList<Line> ladder) {
         StringBuilder ladderString = new StringBuilder();
         for (Line line : ladder) {
             ladderString.append(renderLine(line.getPoints(), offset));
@@ -40,10 +51,8 @@ public class LadderRenderer {
     private StringBuilder renderLine(ArrayList<Boolean> points, int offset) {
         StringBuilder lineString = new StringBuilder();
 
-        //offset 만큼 공백을 더함
-        lineString.append(String.join("", Collections.nCopies(offset, " ")));
+        lineString.append(" ".repeat(offset));
 
-        //nameLen 만큼 공백이나 가로선을 더함
         for (boolean point : points) {
             lineString.append("|");
             lineString.append(renderLineElement(point));
@@ -54,7 +63,7 @@ public class LadderRenderer {
     }
 
     private String renderLineElement(boolean point) {
-        if (point) return "-".repeat(nameLen);
-        return " ".repeat(nameLen);
+        if (point) return "-".repeat(Const.MAX_NAME_LEN);
+        return " ".repeat(Const.MAX_NAME_LEN);
     }
 }

@@ -1,25 +1,25 @@
+package ladder.domain;
+
+import ladder.constant.Const;
+import ladder.entity.LadderInput;
+
 import java.util.*;
 
 public class LadderInputManager {
-    private final int maxHeight;
-    private final int nameLen;
-    private final ArrayList<String> playerList;
     private final Scanner scanner;
+    private final LadderInput ladderInput;
 
-    public LadderInputManager(int nameLen) {
-        this.nameLen = nameLen;
+    public LadderInputManager() {
         scanner = new Scanner(System.in);
 
-        playerList = getPlayers();
-        maxHeight = getInputNumber();
+        ArrayList<String> playerList = getPlayers();
+        int maxHeight = getInputNumber();
+
+        this.ladderInput = new LadderInput(maxHeight, playerList);
     }
 
-    public ArrayList<String> getPlayerList() {
-        return playerList;
-    }
-
-    public int getMaxHeight() {
-        return maxHeight;
+    public LadderInput getLadderInput() {
+        return ladderInput;
     }
 
     private ArrayList<String> getPlayers() {
@@ -31,17 +31,16 @@ public class LadderInputManager {
         ArrayList<String> playersList = new ArrayList<>();
         Collections.addAll(playersList, playersArray);
 
-        if (!checkNameLength(playersList)){
-            System.out.printf("이름은 %d자 이내로 입력해주세요.", nameLen);
-            System.out.println();
-        }
+        if (!checkNameLength(playersList))
+            System.out.printf("이름은 %d자 이내로 입력해주세요.\n", Const.MAX_NAME_LEN);
+
         return playersList;
     }
 
     private boolean checkNameLength(ArrayList<String> playerList) {
         boolean result = true;
         for (String name : playerList) {
-            result = result && name.length() > 0 && name.length() <= nameLen;
+            result = result && name.length() > 0 && name.length() <= Const.MAX_NAME_LEN;
         }
         return result;
     }
