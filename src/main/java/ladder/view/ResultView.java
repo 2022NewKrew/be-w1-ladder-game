@@ -61,11 +61,10 @@ public class ResultView {
     public static void printName(ArrayList<String> names) {
         printSpaceBetweenNames("", names.get(0));
         System.out.printf("%s", names.get(0));
-        IntStream.range(1, names.size())
-                .forEachOrdered(i -> {
-                    printSpaceBetweenNames(names.get(i - 1), names.get(i));
-                    System.out.printf("%s", names.get(i));
-                });
+        for (int i = 1; i < names.size(); i++) {
+            printSpaceBetweenNames(names.get(i - 1), names.get(i));
+            System.out.printf("%s", names.get(i));
+        }
         System.out.println();
     }
 }
