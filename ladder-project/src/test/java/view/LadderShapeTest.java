@@ -1,9 +1,9 @@
 package view;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class LadderShapeTest {
 
     @Test
+    @DisplayName("제대로 사다리를 그리는지 확인하는 테스트")
     void createTest() {
         //given
         List<List<Boolean>> list = new ArrayList<>();

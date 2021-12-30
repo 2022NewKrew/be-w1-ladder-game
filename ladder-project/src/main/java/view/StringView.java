@@ -3,27 +3,27 @@ package view;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class NameView {
+public class StringView {
 
     private final List<String> nameList;
 
-    private NameView(List<String> nameList) {
+    private StringView(List<String> nameList) {
         this.nameList = nameList;
     }
 
-    public static NameView create(List<String> nameList) {
-        return new NameView(nameList);
+    public static StringView create(List<String> nameList) {
+        return new StringView(nameList);
     }
 
-    public String getNameView() {
-        return String.join(" ", makeFiveWordList());
+    public String getStringView() {
+        return String.join(" ", makeFiveWords());
     }
 
-    public void printNameList() {
-        System.out.println(getNameView());
+    public void printStrings() {
+        System.out.println(getStringView());
     }
 
-    private List<String> makeFiveWordList() {
+    private List<String> makeFiveWords() {
         return nameList.stream()
                 .map(this::makeFiveWord)
                 .collect(Collectors.toList());

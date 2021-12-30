@@ -14,14 +14,6 @@ public final class LadderShape {
         return new LadderShape(generateLadderShape(ladder));
     }
 
-    public String getShape() {
-        return ladderShape;
-    }
-
-    public void printLadderShape() {
-        System.out.println(getShape());
-    }
-
     private static String generateLadderShape(List<List<Boolean>> ladder) {
         StringBuilder sb = new StringBuilder();
         for (List<Boolean> ladderLine : ladder) {
@@ -42,11 +34,14 @@ public final class LadderShape {
     }
 
     private static void checkBlock(boolean block, StringBuilder sb) {
-        if (!block) {
-            sb.append(LadderComponent.LADDER_EMPTY_COLUMN.getValue());
-        }
-        if (block) {
-            sb.append(LadderComponent.LADDER_COLUMN_LINE.getValue());
-        }
+        sb.append(block ? LadderComponent.LADDER_COLUMN_LINE.getValue() : LadderComponent.LADDER_EMPTY_COLUMN.getValue());
+    }
+
+    public String getShape() {
+        return ladderShape;
+    }
+
+    public void printLadderShape() {
+        System.out.println(getShape());
     }
 }

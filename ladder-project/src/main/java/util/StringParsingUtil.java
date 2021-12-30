@@ -6,7 +6,8 @@ import java.util.stream.Collectors;
 
 public final class StringParsingUtil {
 
-    private StringParsingUtil() { }
+    private StringParsingUtil() {
+    }
 
     public static List<String> parse(String stringList, String split) {
         String[] list = stringList.split(split);
