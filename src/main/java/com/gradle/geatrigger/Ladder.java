@@ -23,6 +23,7 @@ public class Ladder {
     public void makeLadder() {
         for (int i = 0; i < height; i++) {
             Line line = new Line(width);
+            line.makeLine();
             ladder.add(line);
         }
     }

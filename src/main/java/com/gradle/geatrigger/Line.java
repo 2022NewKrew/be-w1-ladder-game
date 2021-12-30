@@ -11,8 +11,6 @@ public class Line {
         this.width = width;
         sb = new StringBuilder();
         point = new ArrayList<Boolean>();
-        for (int i = 0; i < width; i++)
-            point.add(Math.random() > 0.5 ? true : false);
     }
 
     public String writeLine() {
@@ -34,5 +32,16 @@ public class Line {
 
     private String makeVerticals() {
         return "|";
+    }
+
+    public void makeLine() {
+        for (int i = 0; i < width; i++)
+            point.add(checkPreviousPoint(i));
+    }
+
+    private Boolean checkPreviousPoint(int index) {
+        if (index < 0 || index >= width)
+            return false;
+        return (!(index != 0) || !point.get(index - 1)) && Math.random() > 0.5;
     }
 }
