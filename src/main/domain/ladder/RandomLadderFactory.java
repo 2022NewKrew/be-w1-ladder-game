@@ -9,12 +9,12 @@ public class RandomLadderFactory implements LadderFactory {
     private static final Random random = new Random();
 
     @Override
-    public Ladder createLadder(String[] players, String[] results, int height) {
-        return makeRandomLadder(players, results, height);
+    public Ladder createLadder(String[] playerNames, String[] results, int height) {
+        return makeRandomLadder(playerNames, results, height);
     }
 
-    private Ladder makeRandomLadder(String[] players, String[] results, int height) {
-        Ladder ladder = new Ladder(players, results, height);
+    private Ladder makeRandomLadder(String[] playerNames, String[] results, int height) {
+        Ladder ladder = new Ladder(playerNames, results, height);
 
         for (int i = 0; i < ladder.getWidth() - 1; i++) {
             connectLine(ladder.getLine(i), ladder.getLine(i + 1));
