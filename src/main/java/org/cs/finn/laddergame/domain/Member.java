@@ -40,6 +40,7 @@ public class Member {
                 .filter(Predicate.not(String::isBlank))
                 .filter((s) -> (s.length() <= WIDTH))
                 .filter((s) -> (s.matches(ALPHA_NUMBER_REGEX)))
+                .limit(MAX + 1)
                 .toArray(String[]::new);
     }
 
