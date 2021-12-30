@@ -1,13 +1,11 @@
-package service;
+package domain;
 
+import common.value.Players;
 import configuration.LadderGameConfiguration;
-import common.data.GameResult;
+import domain.data.GameResult;
 import common.value.LadderHeight;
-import common.value.Player;
 import common.value.PlayerCount;
-import service.value.Line;
-
-import java.util.List;
+import domain.value.Ladder;
 
 public class LadderGameService {
 
@@ -15,25 +13,27 @@ public class LadderGameService {
 
     private final LadderGenerator ladderGenerator;
 
-    private List<Line> ladders;
-
     public LadderGameService(LadderGameConfiguration ladderGameConfiguration, LadderGenerator ladderGameGenerator) {
         this.ladderGameConfiguration = ladderGameConfiguration;
         this.ladderGenerator = ladderGameGenerator;
     }
 
+    /**
+     * 1. 사다리 생성
+     *
+     */
     public GameResult start() {
-        // 현재 게임의 기능은 사다리생성/사다리출력만 있으며,
-        // 추가로 게임의 로직이 정해지면 아래에 추가할 것.
-        // 1. 사다리 생성
+        Ladder ladder = generateLadder();
+        return new GameResult(ladderGameConfiguration.getPlayers(), ladder);
+    }
+
+    private Ladder generateLadder() {
         LadderHeight maxLadderHeight = ladderGameConfiguration.getMaxLadderHeight();
-        List<Player> playerList = ladderGameConfiguration.getPlayerList();
+        Players players = ladderGameConfiguration.getPlayers();
 
-        ladders = ladderGenerator.generate(
+        return ladderGenerator.generate(
                 maxLadderHeight,
-                new PlayerCount(playerList.size())
+                new PlayerCount(players.getCount())
         );
-
-        return new GameResult(ladderGameConfiguration.getPlayerList(), ladders);
     }
 }

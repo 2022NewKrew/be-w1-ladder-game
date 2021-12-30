@@ -1,4 +1,4 @@
-package service.value;
+package domain.value;
 
 import common.value.DirectionType;
 
