@@ -1,10 +1,13 @@
 import java.util.Scanner;
+import ladder.domain.LadderGame;
+import ladder.view.LadderGameView;
 
 public class LadderGameApplication {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         LadderGame ladderGame = new LadderGame();
+        LadderGameView ladderGameView = new LadderGameView();
 
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String nameInputs = scanner.next();
@@ -13,5 +16,6 @@ public class LadderGameApplication {
         int heightOfLadder = scanner.nextInt();
 
         ladderGame.run(nameInputs, heightOfLadder);
+        ladderGameView.showGameBoard(ladderGame);
     }
 }

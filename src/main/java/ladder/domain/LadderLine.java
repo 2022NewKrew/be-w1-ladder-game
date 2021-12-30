@@ -1,3 +1,5 @@
+package ladder.domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -5,10 +7,6 @@ import java.util.Random;
 public class LadderLine {
 
     private final Random random;
-
-    private final String BAR = "|";
-    private final String CONNECT = "-----";
-    private final String BLANK = "     ";
 
     private List<Boolean> line;
 
@@ -23,14 +21,8 @@ public class LadderLine {
         }
     }
 
-    public String shapeLine() {
-        StringBuilder stringBuilder = new StringBuilder("    ");
-        for (boolean connected : line) {
-            stringBuilder.append(BAR)
-                .append(connected ? CONNECT : BLANK);
-        }
-
-        return stringBuilder.append(BAR).toString();
+    public List<Boolean> getLine() {
+        return line;
     }
 
     private boolean decideNextConnection(int idx) {

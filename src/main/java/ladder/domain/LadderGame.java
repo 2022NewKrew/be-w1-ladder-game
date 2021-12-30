@@ -1,3 +1,5 @@
+package ladder.domain;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -6,6 +8,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class LadderGame {
+
+    private static final String NAME_INPUT_DELIMITER = ",";
 
     private final Random random;
 
@@ -23,14 +27,21 @@ public class LadderGame {
     public void run(String nameInputs, int heightOfLadder) {
         try {
             initGame(nameInputs, heightOfLadder);
-            showGameBoard();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public List<LadderLine> getGameBoard() {
+        return gameBoard;
+    }
+
+    public List<String> getParticipantsNames() {
+        return participantsNames;
+    }
+
     private void initGame(String nameInputs, int heightOfLadder) {
-        participantsNames = Arrays.stream(nameInputs.split(","))
+        participantsNames = Arrays.stream(nameInputs.split(NAME_INPUT_DELIMITER))
             .collect(Collectors.toList());
         width = participantsNames.size() - 1;
         height = heightOfLadder;
@@ -40,13 +51,6 @@ public class LadderGame {
         }
 
         makeGameBoard();
-    }
-
-    private void showGameBoard() {
-        if (gameBoard == null || gameBoard.isEmpty()) {
-            throw new NullPointerException("사다리가 생성되지 않았어요.");
-        }
-        printGameBoard();
     }
 
     private void makeGameBoard() {
@@ -60,19 +64,5 @@ public class LadderGame {
         LadderLine line = new LadderLine(random);
         line.makeLine(width);
         return line;
-    }
-
-    private void printGameBoard() {
-        List<String> printBoard = new ArrayList<>();
-
-        printBoard.add(" " + participantsNames.stream().map(this::formatName)
-            .collect(Collectors.joining(" ")));
-        gameBoard.forEach(line -> printBoard.add(line.shapeLine()));
-
-        System.out.println(String.join(System.lineSeparator(), printBoard));
-    }
-
-    private String formatName(String name) {
-        return String.format("%5s", name.length() <= 5 ? name : name.substring(0, 5));
     }
 }
