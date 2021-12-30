@@ -14,7 +14,7 @@ public class RandomBridgeBuilder {
                 .collect(Collectors.toList());
     }
 
-    public boolean getRandomBridge() {
+    private boolean getRandomBridge() {
         final Random random = new Random();
         preBridge = !preBridge && random.nextBoolean();
         return preBridge;

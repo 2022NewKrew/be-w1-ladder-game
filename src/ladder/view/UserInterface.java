@@ -8,7 +8,8 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class UserInterface {
-    private static final int MAX_NUM_STRING = 5;
+    static final int MAX_NUM_STRING = 5;
+    static final String SPACE = " ";
     private static final String SEPARATOR = ",";
 
     Scanner scanner = new Scanner(System.in);
@@ -27,7 +28,7 @@ public class UserInterface {
         }
     }
 
-    private void checkUserNames(String[] users) {
+    void checkUserNames(String[] users) {
         if (Arrays.stream(users).anyMatch(user -> user.length() > MAX_NUM_STRING))
             throw new IllegalArgumentException();
     }
@@ -51,6 +52,12 @@ public class UserInterface {
     }
 
     public void printLadderGame(List<String> userList, Ladder ladder) {
+        printUserInfo(userList);
+        System.out.println();
+        System.out.println(ladder);
+    }
+
+    public void printUserInfo(List<String> userList) {
         try{
             checkUserNames(userList.toArray(String[]::new));
         } catch (IllegalArgumentException iae) {
@@ -58,8 +65,6 @@ public class UserInterface {
                     .map(user -> user.length() > MAX_NUM_STRING? user.substring(0, MAX_NUM_STRING) : user)
                     .collect(Collectors.toList());
         }
-        userList.forEach(user -> System.out.printf("%" + MAX_NUM_STRING + "s ", user));
-        System.out.println();
-        System.out.println(ladder);
+        userList.forEach(user -> System.out.printf("%" + MAX_NUM_STRING + "s"+SPACE, user));
     }
 }
