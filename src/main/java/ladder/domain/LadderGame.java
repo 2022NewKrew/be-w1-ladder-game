@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class LadderGame {
 
     private static final String NAME_INPUT_DELIMITER = ",";
 
-    private final Random random;
+    private final RandomConnectStrategy randomConnectStrategy;
 
     private List<LadderLine> gameBoard;
     private List<String> participantsNames;
@@ -20,7 +19,7 @@ public class LadderGame {
     private int height;
 
     public LadderGame() {
-        random = new Random();
+        randomConnectStrategy = new RandomConnectStrategy();
         gameBoard = new ArrayList<>();
     }
 
@@ -61,8 +60,8 @@ public class LadderGame {
     }
 
     private LadderLine makeLine() {
-        LadderLine line = new LadderLine(random);
-        line.makeLine(width);
+        LadderLine line = new LadderLine();
+        line.makeLine(randomConnectStrategy, width);
         return line;
     }
 }
