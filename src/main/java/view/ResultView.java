@@ -9,7 +9,7 @@ import java.util.List;
 public class ResultView {
     private static final String LEFT = "-----|";
     private static final String DOWN = "     |";
-    private final static String MESSAGE_RESULT = "실행결과";
+    private static final String MESSAGE_RESULT = "실행결과";
 
     private ResultView() {
     }
