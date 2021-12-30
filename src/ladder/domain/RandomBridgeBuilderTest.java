@@ -1,23 +1,21 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class RandomBridgeBuilderTest {
 
     @Test
-    void getRandomLadderRow() {
+    void getRandomBridge() {
         // given
+        final boolean preBridge = RandomBridgeBuilder.preBridge;
         final RandomBridgeBuilder randomBridgeBuilder = new RandomBridgeBuilder();
 
         // when
-        final List<Boolean> randomLadderRow = randomBridgeBuilder.getRandomLadderRow(5);
+        final boolean curBridge = randomBridgeBuilder.getRandomBridge();
 
         // then
-        for (int idx = 0; idx < randomLadderRow.size() - 1; idx++) {
-            Assertions.assertFalse(randomLadderRow.get(idx) && randomLadderRow.get(idx + 1), "Invalid Ladder Row");
-        }
+        assertThat(preBridge != curBridge).isTrue();
     }
 }

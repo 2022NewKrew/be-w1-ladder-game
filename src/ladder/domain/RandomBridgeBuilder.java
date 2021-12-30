@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class RandomBridgeBuilder {
-    private static Boolean preBridge = false;
+    static boolean preBridge = false;
 
     public List<Boolean> getRandomLadderRow(int width) {
         return Stream.generate(this::getRandomBridge)
@@ -14,7 +14,7 @@ public class RandomBridgeBuilder {
                 .collect(Collectors.toList());
     }
 
-    private boolean getRandomBridge() {
+    synchronized boolean getRandomBridge() {
         final Random random = new Random();
         preBridge = !preBridge && random.nextBoolean();
         return preBridge;

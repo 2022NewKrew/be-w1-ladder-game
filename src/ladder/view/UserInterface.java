@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderRow;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +11,16 @@ import java.util.stream.Collectors;
 public class UserInterface {
     static final int MAX_NUM_STRING = 5;
     static final String SPACE = " ";
+
     private static final String SEPARATOR = ",";
+
+    private static final String PILLAR = "|";
+    private static final String EMPTY_BRIDGE = "     ";
+    private static final String BRIDGE = "-----";
+    
+    private static final String NULL_SPACE = "";
+    private static final String EMPTY_SPACE = "  ";
+    private static final String NEW_LINE = "\n";
 
     Scanner scanner = new Scanner(System.in);
 
@@ -28,7 +38,7 @@ public class UserInterface {
         }
     }
 
-    void checkUserNames(String[] users) {
+    private void checkUserNames(String[] users) {
         if (Arrays.stream(users).anyMatch(user -> user.length() > MAX_NUM_STRING))
             throw new IllegalArgumentException();
     }
@@ -54,17 +64,29 @@ public class UserInterface {
     public void printLadderGame(List<String> userList, Ladder ladder) {
         printUserInfo(userList);
         System.out.println();
-        System.out.println(ladder);
+        System.out.println(buildLadder(ladder));
     }
 
-    public void printUserInfo(List<String> userList) {
-        try{
+    void printUserInfo(List<String> userList) {
+        try {
             checkUserNames(userList.toArray(String[]::new));
         } catch (IllegalArgumentException iae) {
             userList = userList.stream()
-                    .map(user -> user.length() > MAX_NUM_STRING? user.substring(0, MAX_NUM_STRING) : user)
+                    .map(user -> user.length() > MAX_NUM_STRING ? user.substring(0, MAX_NUM_STRING) : user)
                     .collect(Collectors.toList());
         }
-        userList.forEach(user -> System.out.printf("%" + MAX_NUM_STRING + "s"+SPACE, user));
+        userList.forEach(user -> System.out.printf("%-" + MAX_NUM_STRING + "s" + SPACE, user));
+    }
+
+    private String buildLadder(Ladder ladder) {
+        return ladder.getLadder().stream()
+                .map(this::buildLadderRow)
+                .collect(Collectors.joining(NEW_LINE + EMPTY_SPACE, EMPTY_SPACE, NULL_SPACE));
+    }
+
+    private String buildLadderRow(LadderRow ladderRow) {
+        return ladderRow.getLadderRow().stream()
+                .map(bridge -> bridge ? BRIDGE : EMPTY_BRIDGE)
+                .collect(Collectors.joining(PILLAR, PILLAR, PILLAR));
     }
 }
