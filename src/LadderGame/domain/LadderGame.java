@@ -9,7 +9,6 @@ public class LadderGame {
     private static final Scanner scanner = new Scanner(System.in);
 
     public LadderGame() throws Exception {
-        // 인스턴스 변수
         String names = getConsoleNameList();
         int ladderHeight = getConsoleLadderHeight();
         scanner.close();
