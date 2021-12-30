@@ -19,7 +19,7 @@ public class GameInputScanner {
             List<String> nameList = inputStringSeparator(in.nextLine());
             verifyInputNameList(nameList);
             return IntStream.range(0, nameList.size())
-                    .mapToObj(i -> new User(nameList.get(i), i))
+                    .mapToObj(i -> new User(nameList.get(i), 0, i))
                     .collect(Collectors.toList());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());

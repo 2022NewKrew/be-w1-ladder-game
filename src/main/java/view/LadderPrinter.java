@@ -1,7 +1,7 @@
 package view;
 
 import domain.Ladder;
-import domain.Row;
+import domain.Line;
 import domain.User;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class LadderPrinter {
         drawStringList(users.stream().map(User::getName).collect(Collectors.toList()));
         System.out.print(ladder.getRows()
                 .stream()
-                .map(LadderPrinter::makeRow)
+                .map(LadderPrinter::makeLine)
                 .collect(Collectors.joining(""))
         );
         drawStringList(results);
@@ -30,9 +30,9 @@ public class LadderPrinter {
                 .collect(Collectors.joining("")));
     }
 
-    public static String makeRow(Row row) {
+    public static String makeLine(Line line) {
         return String.format("%" + MAXIMUM_NAME_LENGTH + "s", PILLAR)
-                + row.getBridges().stream()
+                + line.getBridges().stream()
                 .map(e -> (e ? BRIDGE : EMPTY).repeat(MAXIMUM_NAME_LENGTH))
                 .collect(Collectors.joining(PILLAR))
                 + PILLAR + "\n";
