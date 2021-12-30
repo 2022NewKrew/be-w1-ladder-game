@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 
 public class Ladder {
@@ -60,7 +61,7 @@ public class Ladder {
     }
 
     public String toPrettyString() {
-        String playersName = PLAYER_NAME_LINE_LEADING_SPACE + String.join(" ", players.stream().map(player -> getPaddedPlayerName(player)).toList());
+        String playersName = PLAYER_NAME_LINE_LEADING_SPACE + String.join(" ", players.stream().map(player -> getPaddedPlayerName(player)).collect(Collectors.toList()));
         String ladderShape = String.join(System.lineSeparator(), stateAsListOfString);
         return playersName + System.lineSeparator() + ladderShape;
     }
