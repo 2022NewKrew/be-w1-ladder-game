@@ -3,9 +3,9 @@ package controller;
 import java.util.List;
 
 public class LadderGamePrecondition {
-    public static void checkUsers(List<String> userList, int maxLength) {
-        isNotEmptyList(userList);
-        isLegalUsers(userList, maxLength);
+    public static void checkUsers(List<String> users, int maxLength) {
+        isNotEmptyList(users);
+        isLegalUsers(users, maxLength);
     }
 
     private static void isLegalUsers(List<String> users, int maxLength) {
@@ -15,11 +15,11 @@ public class LadderGamePrecondition {
     }
 
     private static boolean isIllegal(List<String> users, int maxLength) {
-        return users.stream().anyMatch(userName -> userName.length() > maxLength);
+        return users.stream().map(String::length).anyMatch(length -> length > maxLength);
     }
 
-    private static void isNotEmptyList(List<String> userList) {
-        if (userList.isEmpty()) {
+    private static void isNotEmptyList(List<String> users) {
+        if (users.isEmpty()) {
             throw new IllegalArgumentException("한명 이상의 사람을 입력해주세요.");
         }
     }
