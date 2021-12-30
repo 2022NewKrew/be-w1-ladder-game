@@ -6,8 +6,8 @@ public class Ladder {
 
     private final static int GAP = 5;
 
-    private List<String> name;
-    private long people, height;
+    private List<String> names;
+    private long peopleCount, height;
     private Line[] lineStatus;
 
     public Ladder() {
@@ -21,8 +21,8 @@ public class Ladder {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        name = Arrays.asList(sc.nextLine().split(","));
-        this.people = name.size();
+        names = Arrays.asList(sc.nextLine().split(","));
+        this.peopleCount = names.size();
 
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         this.height = sc.nextLong();
@@ -59,7 +59,7 @@ public class Ladder {
     public void insertLine(int line, int lineSize, Random rd){
 
         for(int i = 0 ; i < lineSize ; i++) {
-            lineStatus[line].value.add((long) rd.nextInt((int) people - 1));
+            lineStatus[line].value.add((long) rd.nextInt((int) peopleCount - 1));
         }
 
         lineStatus[line].value.sort(Long::compareTo);
@@ -72,7 +72,7 @@ public class Ladder {
         Random rd = new Random();
 
         for(int i = 0 ; i < height ; i++) {
-            int lineSize = rd.nextInt((int) people - 1);
+            int lineSize = rd.nextInt((int) peopleCount - 1);
             insertLine(i, lineSize, rd); //lineSize 개수의 라인을 i 번째 높이에 랜덤으로 생성.
             validUpdateLine(i); //i번째 height에 연속적인 line이 생성된경우 제거로직 추가
         }
@@ -89,8 +89,8 @@ public class Ladder {
     }
 
     public void printName(){
-        for(int i = 0 ; i < name.size() ; i++){
-            System.out.printf("%6s", name.get(i));
+        for(int i = 0 ; i < names.size() ; i++){
+            System.out.printf("%6s", names.get(i));
         }
         System.out.print("\n");
     }
@@ -99,7 +99,7 @@ public class Ladder {
 
         int lineIdx = 0;
         StringBuilder sb = new StringBuilder();
-        for(int j = 0 ; j < people ; j++) {
+        for(int j = 0 ; j < peopleCount ; j++) {
             sb.append("|");
             sb.append( (lineIdx < lineStatus[line].value.size() && lineStatus[line].value.get(lineIdx) == j ? "-" : " ").repeat(GAP) );
 
