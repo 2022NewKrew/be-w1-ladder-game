@@ -18,7 +18,8 @@ public class LadderGenerator {
 //                .limit(maximumLadderHeight)
 //                .forEachOrdered(ladder::add);
 
-        IntStream.range(0, maximumLadderHeight).forEach(i -> ladder.add(new LadderLine(createLadderLine(playersNum))));
+        IntStream.range(0, maximumLadderHeight)
+                .forEach(i -> ladder.add(new LadderLine(createLadderLine(playersNum))));
 //        for (int i = 0; i < maximumLadderHeight; i++) {
 //            ladder.add(new LadderLine(createLadderLine(playersNum)));
 //        }
@@ -32,7 +33,8 @@ public class LadderGenerator {
 //                .limit(playersNum * 2 - 1)
 //                .forEachOrdered(pieces::add);
 
-        IntStream.range(0, playersNum * 2 - 1).forEach(i -> pieces.add(createLadderLinePiece(i)));
+        IntStream.range(0, playersNum * 2 - 1)
+                .forEach(i -> pieces.add(createLadderLinePiece(i)));
         //        for (int i = 0; i < playersNum * 2 - 1; i++) {
 //            pieces.add(createLadderLinePiece(i));
 //        }
