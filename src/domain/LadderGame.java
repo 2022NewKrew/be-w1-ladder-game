@@ -15,10 +15,13 @@ public class LadderGame {
 
     private Scanner scanner = new Scanner(System.in);
 
-    public LadderGame() {
-        inputParticipants();
-        inputHeight();
-        numOfParticipants = participants.size();
+    public LadderGame() { }
+    public LadderGame(Boolean startGame) {
+        if (startGame) {
+            inputParticipants();
+            inputHeight();
+            numOfParticipants = participants.size();
+        }
     }
 
     public int getMaxNameLength() {

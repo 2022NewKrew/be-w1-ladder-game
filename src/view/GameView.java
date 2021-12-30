@@ -23,7 +23,7 @@ public class GameView {
     }
 
     public void showParticipants() {
-        print(getNameList());
+        print(getNameList(currentGame.getParticipants()));
     }
 
     public void showLadder() {
@@ -34,8 +34,8 @@ public class GameView {
         }
     }
 
-    private String getNameList() {
-        return currentGame.getParticipants()
+    protected String getNameList(List<String> participants) {
+        return participants
                 .stream()
                 .map(participantName -> getStandardizedName(participantName))
                 .collect(Collectors.joining(SPACE));
