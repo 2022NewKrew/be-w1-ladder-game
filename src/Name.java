@@ -23,8 +23,8 @@ public class Name {
     }
 
     private void catchMaxLengthName(String name) {
-        if (name.length() > 5) {
-            System.out.println("이름은 5글자를 넘을 수 없습니다.");
+        if (name.length() > MAX_NAME_SIZE) {
+            System.out.println("이름 크기는 "+MAX_NAME_SIZE+"을(를) 넘을 수 없습니다.");
             System.exit(0);
         }
     }
