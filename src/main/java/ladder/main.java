@@ -1,4 +1,6 @@
-package game;
+package ladder;
+
+import ladder.domain.Ladder;
 
 import java.util.ArrayList;
 import java.util.Arrays;

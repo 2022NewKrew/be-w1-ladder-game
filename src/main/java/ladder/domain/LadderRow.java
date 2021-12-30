@@ -1,9 +1,9 @@
-package game;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import static game.LadderType.*;
+import static ladder.domain.LadderType.*;
 
 
 public class LadderRow{

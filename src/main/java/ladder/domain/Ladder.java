@@ -1,4 +1,7 @@
-package game;
+package ladder.domain;
+
+import ladder.view.LadderRowView;
+import ladder.view.PlayerRowView;
 
 import java.util.ArrayList;
 

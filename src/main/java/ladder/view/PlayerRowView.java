@@ -1,8 +1,8 @@
-package game;
+package ladder.view;
 
 import java.util.ArrayList;
 
-import static game.Ladder.typeSize;
+import static ladder.domain.Ladder.typeSize;
 
 // Player 의 네임을 저장하는 row class
 public class PlayerRowView {

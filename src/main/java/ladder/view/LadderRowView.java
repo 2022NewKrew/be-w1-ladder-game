@@ -1,9 +1,11 @@
-package game;
+package ladder.view;
+
+import ladder.domain.LadderType;
 
 import java.util.ArrayList;
 
-import static game.LadderType.BAR;
-import static game.LadderType.BLANK;
+import static ladder.domain.LadderType.BAR;
+import static ladder.domain.LadderType.BLANK;
 
 public class LadderRowView {
     public static String DrawElement(ArrayList<LadderType> elementList) {
