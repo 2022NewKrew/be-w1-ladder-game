@@ -29,15 +29,15 @@ public class Line {
             return BAR;
         }
 
-        boolean isLadderBridge = getRandomBridgeByPercent(60);
-        if (noBridgeOnBothSide(rowNumber) && isLadderBridge) {
+        boolean isLadderBridge = getRandomBridgeByPercent(40);
+        if (noBridgeOnLeftSide(rowNumber) && isLadderBridge) {
             isEmptyElement.set(rowNumber, false);
             return BRIDGE;
         }
         return EMPTY;
     }
 
-    private boolean noBridgeOnBothSide(int rowNumber) {
+    protected boolean noBridgeOnLeftSide(int rowNumber) {
         final int FIRST_BRIDGE = 1;
         final int GAP = 2;
 
