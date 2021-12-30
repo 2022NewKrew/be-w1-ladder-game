@@ -1,8 +1,8 @@
-import LadderMaker.LadderManager;
+import controller.LadderController;
 
 public class Main {
     public static void main(String[] args) {
-        LadderManager ladderManager = new LadderManager();
-        ladderManager.ladderFlow();
+        LadderController ladderController = new LadderController();
+        ladderController.ladderFlow();
     }
 }
