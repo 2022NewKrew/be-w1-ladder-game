@@ -27,6 +27,15 @@ public class Ladder {
         this.makeRandomLadder();
     }
 
+
+    private void makeRandomLadder() {
+        stateAsListOfString = new ArrayList<>();
+
+        for (int lineNo = 0; lineNo < height; lineNo++) {
+            stateAsListOfString.add(makeRandomLine());
+        }
+    }
+
     private String makeRandomLine() {
         StringBuilder line = new StringBuilder(LADDER_LINE_LEADING_SPACE + BEAM);
         boolean isLastBeamAvailable = true;
@@ -41,12 +50,10 @@ public class Ladder {
         return line.toString();
     }
 
-    private void makeRandomLadder() {
-        stateAsListOfString = new ArrayList<>();
-
-        for (int lineNo = 0; lineNo < height; lineNo++) {
-            stateAsListOfString.add(makeRandomLine());
-        }
+    public String toPrettyString() {
+        String playersName = PLAYER_NAME_LINE_LEADING_SPACE + String.join(" ", players.stream().map(player -> getPaddedPlayerName(player)).collect(Collectors.toList()));
+        String ladderShape = String.join(System.lineSeparator(), stateAsListOfString);
+        return playersName + System.lineSeparator() + ladderShape;
     }
 
     private static String getPaddedPlayerName(Player player) {
@@ -58,12 +65,6 @@ public class Ladder {
         int leftSpaceCount = totalSpaceCount / 2;
         int rightSpaceCount = totalSpaceCount - leftSpaceCount;
         return " ".repeat(leftSpaceCount) + player.name + " ".repeat(rightSpaceCount);
-    }
-
-    public String toPrettyString() {
-        String playersName = PLAYER_NAME_LINE_LEADING_SPACE + String.join(" ", players.stream().map(player -> getPaddedPlayerName(player)).collect(Collectors.toList()));
-        String ladderShape = String.join(System.lineSeparator(), stateAsListOfString);
-        return playersName + System.lineSeparator() + ladderShape;
     }
 
     @Override
