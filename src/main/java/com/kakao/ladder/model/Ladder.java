@@ -1,5 +1,6 @@
 package com.kakao.ladder.model;
 
+import com.kakao.ladder.controller.ConstStringSpace;
 import com.kakao.ladder.view.UserInput;
 
 import java.util.ArrayList;
@@ -167,7 +168,7 @@ public class Ladder {
      */
     private void printLadderRow(int row) {
         for (int i = 0; i < memberNum; i++) {
-            System.out.print(ladderStatus.get(row).get(i) == State.EXIST ? "-----" : "     ");
+            System.out.print(ladderStatus.get(row).get(i) == State.EXIST ? ConstStringSpace.LADDER_BRIDGE : ConstStringSpace.LADDER_NONCONECT);
             System.out.print("|");
         }
     }
@@ -179,9 +180,9 @@ public class Ladder {
      */
     private void printNames(List<String> stringList) {
         stringList.stream().forEach(s -> {
-            System.out.print(" ".repeat((5 - s.length()) / 2));
+            System.out.print(" ".repeat((ConstStringSpace.MAX_NAME_LENGTH - s.length()) / 2));
             System.out.print(s);
-            System.out.print(" ".repeat((5 - s.length()) / 2));
+            System.out.print(" ".repeat((ConstStringSpace.MAX_NAME_LENGTH - s.length()) / 2));
             System.out.print(" ");
         });
         System.out.println();
@@ -191,10 +192,10 @@ public class Ladder {
      * 전체 결과를 보여주는 로직입니다.
      */
     public void printAllResult() {
-        System.out.println("실행 결과");
+        System.out.println(ConstStringSpace.SHOW_RESULT);
 
         for (String key : result.keySet()) {
-            System.out.println(key + " : " + result.get(key));
+            System.out.println(key + ConstStringSpace.KEY_VALUE_SEPERATOR + result.get(key));
         }
         System.out.println();
     }
@@ -205,7 +206,7 @@ public class Ladder {
      * @param name 보고 싶은 유저의 이름
      */
     public void printResult(String name) {
-        System.out.println("실행 결과");
+        System.out.println(ConstStringSpace.SHOW_RESULT);
 
         System.out.println(result.get(name));
         System.out.println();

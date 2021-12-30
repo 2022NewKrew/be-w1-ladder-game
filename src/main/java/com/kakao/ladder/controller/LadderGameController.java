@@ -12,8 +12,7 @@ public class LadderGameController {
     /**
      * ladder   컨트롤러에 연결된 사다리 객체입니다.
      */
-    public static final String END_CONDITION = "춘식이";
-    public static final String ALL_PRINT_CONDITION = "all";
+
     private final Ladder ladder;
 
     public LadderGameController() {
@@ -36,7 +35,7 @@ public class LadderGameController {
      */
     private void resultCheck() {
         String checkName = "";
-        while (!checkName.equals(END_CONDITION)) {
+        while (!checkName.equals(ConstStringSpace.END_CONDITION)) {
             checkName = UserInput.showResult(ladder.getNames());
 
             isAllOrName(checkName);
@@ -49,10 +48,10 @@ public class LadderGameController {
      * @param name 입력된 문자열 ( 유저 이름 or all or 춘식이 )
      */
     private void isAllOrName(String name) {
-        if (name.equals(END_CONDITION))
+        if (name.equals(ConstStringSpace.END_CONDITION))
             return;
 
-        if (name.equals(ALL_PRINT_CONDITION)) {
+        if (name.equals(ConstStringSpace.ALL_PRINT_CONDITION)) {
             ladder.printAllResult();
             return;
         }
