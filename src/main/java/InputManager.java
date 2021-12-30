@@ -33,22 +33,25 @@ public class InputManager {
     }
 
     private static int makeInputNumber() {
-        while (true) {
+        boolean pass = false;
+        int value = 5;
+        do {
             try {
-                int value = Integer.parseInt(sc.nextLine());
-                checkIntValue(value);
-                return value;
+                value = Integer.parseInt(sc.nextLine());
+                pass = checkIntValue(value);
             } catch (NumberFormatException e) {
+                System.out.println(value);
                 System.out.println("양의 정수를 입력해주세요.");
             }
-        }
+        }while(!pass);
+        return value;
     }
 
-    private static int checkIntValue(int value) {
+    private static boolean checkIntValue(int value) {
         if (value <= 0) {
             throw new NumberFormatException();
         }
-        return value;
+        return true;
     }
 }
 
