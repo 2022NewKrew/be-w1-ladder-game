@@ -1,21 +1,13 @@
-package org.cs.finn.laddergame;
+package org.cs.finn.laddergame.util;
 
 import org.assertj.core.api.Assertions;
-import org.cs.finn.laddergame.util.Checker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-
 public class CheckerTests {
-    @Test
-    @DisplayName("Test 모듈 작동 확인")
-    public void basicTest() {
-      Assertions.assertThat(2 + 3)
-              .isEqualTo(5);
-    }
 
     @Test
-    @DisplayName("Member 객체 검사")
+    @DisplayName("Checker 객체 검사")
     public void testChecker() {
         // then
         Assertions.assertThatThrownBy(() -> Checker.checkIntMinMaxInit(1, 2, 3))
