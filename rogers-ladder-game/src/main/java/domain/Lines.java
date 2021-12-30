@@ -6,8 +6,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 public class Lines {
-    static final String WIDTH_LENGTH_EXCEPTION_MESSAGE = "사다리의 넓이는 양수여야합니다.";
-    static final String HEIGHT_LENGTH_EXCEPTION_MESSAGE = "사다리의 높이는 양수여야합니다.";
+    static final String LENGTH_EXCEPTION_MESSAGE = "사다리의 너비와 높이는 양수여야합니다.";
 
     private static final String BLANK_SPACE = "    ";
 
@@ -19,12 +18,8 @@ public class Lines {
     }
 
     private static void validate(int width, int height){
-        if(width <= 0){
-            throw new IllegalArgumentException(WIDTH_LENGTH_EXCEPTION_MESSAGE);
-        }
-
-        if(height <= 0){
-            throw new IllegalArgumentException(HEIGHT_LENGTH_EXCEPTION_MESSAGE);
+        if(width <= 0 || height <= 0){
+            throw new IllegalArgumentException(LENGTH_EXCEPTION_MESSAGE);
         }
     }
 
@@ -40,5 +35,13 @@ public class Lines {
         return lines.stream()
                 .map(line -> BLANK_SPACE.concat(line.toString().concat("\n")))
                 .reduce("", String::concat);
+    }
+
+    public int followLine(int index){
+        for(Line line : lines){
+            index = line.nextPosition(index);
+        }
+
+        return index;
     }
 }

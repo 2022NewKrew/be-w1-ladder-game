@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +21,7 @@ class InputViewTest {
         InputStream inputStream = makeInput(names, height, " ");
 
         //when
-        Optional<InputDto> inputDtoOptional = InputView.input(inputStream);
+        Optional<InputDto> inputDtoOptional = InputView.input(new Scanner(inputStream));
 
         //then
         assertTrue(inputDtoOptional.isEmpty());
@@ -32,7 +33,7 @@ class InputViewTest {
         InputStream inputStream = makeInput(names, height, ",");
 
         //when
-        InputDto inputDto = InputView.input(inputStream).orElseThrow();
+        InputDto inputDto = InputView.input(new Scanner(inputStream)).orElseThrow();
 
         //then
         assertEquals(names.size(), inputDto.getNames().size());

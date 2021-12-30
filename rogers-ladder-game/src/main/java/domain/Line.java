@@ -60,4 +60,26 @@ public class Line {
                 .map(ComponentType::getShape)
                 .reduce("", String::concat);
     }
+
+    public int nextPosition(int index){
+        // 오른쪽으로 이동할 수 있으면 이동
+        if(index < components.size()-1 && components.get(index+1) == ComponentType.LADDER){
+            return index+2;
+        }
+
+        // 왼쪽으로 이동할 수 있으면 이동
+        if(index > 0 && components.get(index-1) == ComponentType.LADDER){
+            return index-2;
+        }
+
+        return index;
+    }
+
+    ComponentType getComponent(int index) {
+        return components.get(index);
+    }
+
+    public int getSize(){
+        return components.size();
+    }
 }
