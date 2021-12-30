@@ -21,7 +21,7 @@ public class Players {
 
         final String[] names = playersName.split(SPLIT_DELIMITER);
         for (String name : names) {
-            playerInfos.add(new PlayerInfo(name));
+            playerInfos.add(new PlayerInfo(name.trim()));
         }
 
         validatePlayerCount(playerInfos.size());
