@@ -25,11 +25,11 @@ public class Ladder {
         return people;
     }
 
-    public int getHeightOfLadder() {
-        return heightOfLadder;
-    }
-
-    public ArrayList<Line> getConnections() {
+    public ArrayList<ArrayList<Boolean>> getConnections() {
+        ArrayList<ArrayList<Boolean>> connections = new ArrayList<>();
+        for(Line line : this.connections){
+            connections.add(line.getConnections());
+        }
         return connections;
     }
 }

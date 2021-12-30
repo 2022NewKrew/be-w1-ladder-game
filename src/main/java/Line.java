@@ -11,7 +11,7 @@ public class Line {
         }
     }
 
-    public Boolean get(int idx){
-        return connections.get(idx);
+    public ArrayList<Boolean> getConnections() {
+        return connections;
     }
 }
