@@ -1,5 +1,8 @@
 package com.kakao.step4.domain;
 
+import com.kakao.step4.domain.model.Names;
+import com.kakao.step4.exceptions.DuplicatedInputException;
+import com.kakao.step4.exceptions.EmptyInputException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,22 +15,27 @@ class NamesTest {
     public void namePrintFormTest() throws Exception {
         String namesStr = "a,  bb, ccc,              dddd, eeeee,fffffffffffff";
         Names names = new Names(namesStr);
-        assertThat(names.toString()).isEqualTo("     a     bb   ccc   dddd eeeee fffff\n");
+        assertThat(names.toString()).isEqualTo("     a    bb    ccc  dddd  eeeee fffff\n");
     }
 
     @DisplayName("이름 입력에 빈 칸만 입력 시 오류 확인")
     @Test
     public void nameWrongInputTestWithOnlyBlanks() {
         String namesStr = "        ";
-        Exception e = assertThrows(Exception.class, () -> new Names(namesStr));
-        assertThat(e.getMessage()).isEqualTo("조건에 맞지 않는 이름이 입력되었습니다.");
+        assertThrows(EmptyInputException.class, () -> new Names(namesStr));
     }
 
     @DisplayName("이름 입력에 ,만 입력 시 오류 확인")
     @Test
     public void nameWrongInputTestWithOnlyCommas() {
         String namesStr = ",,,,,";
-        Exception e = assertThrows(Exception.class, () -> new Names(namesStr));
-        assertThat(e.getMessage()).isEqualTo("조건에 맞지 않는 이름이 입력되었습니다.");
+        assertThrows(EmptyInputException.class, () -> new Names(namesStr));
+    }
+
+    @DisplayName("이름 중복 입력 시 오류 확인")
+    @Test
+    public void nameWrongInputTestWithDuplicatedNames() {
+        String namesStr = "aaaaa,aaaaaaa";
+        assertThrows(DuplicatedInputException.class, () -> new Names(namesStr));
     }
 }

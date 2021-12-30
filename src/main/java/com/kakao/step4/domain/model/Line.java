@@ -1,11 +1,8 @@
-package com.kakao.step4.domain;
+package com.kakao.step4.domain.model;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Line {
-    private static final Random RAND = new Random();
-
     private final Points points;
 
     public Line(int countOfPeople) {

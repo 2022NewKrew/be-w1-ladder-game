@@ -1,9 +1,11 @@
 package com.kakao.step4.domain;
 
+import com.kakao.step4.domain.model.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

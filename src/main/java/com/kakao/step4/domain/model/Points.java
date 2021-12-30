@@ -1,5 +1,6 @@
-package com.kakao.step4.domain;
+package com.kakao.step4.domain.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -10,6 +11,10 @@ public class Points {
     private static final Random RAND = new Random();
 
     private final List<Boolean> points;
+
+    public Points() {
+        points = new ArrayList<>();
+    }
 
     public Points(List<Boolean> points) {
         this.points = points;
