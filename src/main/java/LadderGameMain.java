@@ -11,7 +11,10 @@ import service.domain.RandomLadderGenerator;
 import java.util.List;
 import java.util.Map;
 
+import static service.domain.LadderPlayResultInputStr.CHUNSIK;
+
 public class LadderGameMain {
+
     private final InputController inputController = new CommandLineInputController();
     private final LadderGenerator ladderGenerator = new RandomLadderGenerator();
     private final OutputController outputController = new CommandLineOutputController();
@@ -28,7 +31,7 @@ public class LadderGameMain {
 
     private void viewPlayLadderGameResult(Map<String, Integer> playLadderGameResult, List<String> gameResultsLine) {
         String name = inputController.inputNameForResult(playLadderGameResult.keySet());
-        while (!name.equals("춘식이")){
+        while (!name.equals(CHUNSIK)) {
             outputController.outputResult(playLadderGameResult, gameResultsLine, name);
             name = inputController.inputNameForResult(playLadderGameResult.keySet());
         }

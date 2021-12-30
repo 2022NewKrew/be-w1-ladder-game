@@ -1,6 +1,7 @@
 package validator;
 
 import service.LadderSizeConfig;
+import service.domain.LadderPlayResultInputStr;
 
 import java.util.List;
 import java.util.Set;
@@ -12,7 +13,7 @@ public class Validator {
         }
     }
 
-    public static void checkGameResultsLength(List<String> gameResults){
+    public static void checkGameResultsLength(List<String> gameResults) {
         gameResults.forEach(Validator::checkGameResultsLengthUnderMaxGameResultsLength);
     }
 
@@ -26,20 +27,20 @@ public class Validator {
         }
     }
 
-    private static void checkGameResultsLengthUnderMaxGameResultsLength(String gameResult){
-        if (gameResult.length() > LadderSizeConfig.MAX_GAME_RESULT_LENGTH){
+    private static void checkGameResultsLengthUnderMaxGameResultsLength(String gameResult) {
+        if (gameResult.length() > LadderSizeConfig.MAX_GAME_RESULT_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
 
     public static void checkParticipantsNameSizeAndGameResultsSize(int numberOfParticipants, int numberOfGameResults) {
-        if (numberOfParticipants != numberOfGameResults){
+        if (numberOfParticipants != numberOfGameResults) {
             throw new IllegalArgumentException();
         }
     }
 
     public static void containsName(String name, Set<String> participantsNames) {
-        if (!participantsNames.contains(name) && !name.equals("춘식이") && !name.equals("all")){
+        if (!participantsNames.contains(name) && !name.equals(LadderPlayResultInputStr.CHUNSIK) && !name.equals(LadderPlayResultInputStr.ALL)) {
             throw new IllegalArgumentException();
         }
     }

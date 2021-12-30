@@ -23,7 +23,7 @@ public class CommandLineOutputController implements OutputController {
 
     @Override
     public void outputResult(Map<String, Integer> playLadderGameResult, List<String> gameResultsLine, String result) {
-        if (result.equals(LadderPlayResultInputStr.ALL)){
+        if (result.equals(LadderPlayResultInputStr.ALL)) {
             printAllResults(playLadderGameResult, gameResultsLine);
             return;
         }

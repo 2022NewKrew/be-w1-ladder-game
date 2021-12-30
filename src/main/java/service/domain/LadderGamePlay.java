@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGamePlay {
-    public Map<String, Integer> playLadderGame(Ladder ladder){
+    public Map<String, Integer> playLadderGame(Ladder ladder) {
         List<List<Integer>> ladderAlgorithmBoard = new ArrayList<>();
         BuildLadderAlgorithmBoard(ladderAlgorithmBoard, ladder);
         return calculateLadderGamePlayResult(ladderAlgorithmBoard, ladder.getParticipantsNames());
@@ -16,7 +16,7 @@ public class LadderGamePlay {
 
     private Map<String, Integer> calculateLadderGamePlayResult(List<List<Integer>> ladderAlgorithmBoard, List<String> participantsNames) {
         HashMap<String, Integer> ladderGamePlayResult = new HashMap<>();
-        for (int playerNumber = 0; playerNumber < participantsNames.size(); playerNumber++){
+        for (int playerNumber = 0; playerNumber < participantsNames.size(); playerNumber++) {
             ladderGamePlayResult.put(participantsNames.get(playerNumber), downPlayerToResult(playerNumber, ladderAlgorithmBoard));
         }
         return ladderGamePlayResult;
@@ -43,8 +43,8 @@ public class LadderGamePlay {
     }
 
     private void buildLadderAlgorithmBoardLine(List<Integer> ladderAlgorithmBoardLine, List<Boolean> isLadderConnected) {
-        for (int i = 0; i < isLadderConnected.size(); i++){
-            if (isLadderConnected.get(i)){
+        for (int i = 0; i < isLadderConnected.size(); i++) {
+            if (isLadderConnected.get(i)) {
                 int tmp = ladderAlgorithmBoardLine.get(i);
                 ladderAlgorithmBoardLine.set(i, ladderAlgorithmBoardLine.get(i + 1));
                 ladderAlgorithmBoardLine.set(i + 1, tmp);
@@ -53,7 +53,7 @@ public class LadderGamePlay {
     }
 
     private void initLadderAlgorithmBoard(List<List<Integer>> ladderAlgorithmBoard, int heights, int numberOfParticipants) {
-        for (int i = 0; i < heights; i++){
+        for (int i = 0; i < heights; i++) {
             ladderAlgorithmBoard.add(IntStream.rangeClosed(0, numberOfParticipants - 1).boxed().collect(Collectors.toList()));
         }
     }

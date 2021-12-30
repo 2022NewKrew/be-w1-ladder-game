@@ -21,7 +21,7 @@ public class CommandLineInputController implements InputController {
             checkParticipantsNameSizeAndGameResultsSize(participantsNames.size(), gameResults.size());
             int heights = typeHeights();
             return new LadderInputRawData(participantsNames.size(), heights, participantsNames, gameResults);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("실행 결과의 갯수와 사람의 수는 일치하여야 합니다.");
             return inputLadderRawData();
         }
@@ -34,7 +34,7 @@ public class CommandLineInputController implements InputController {
             String name = sc.nextLine();
             Validator.containsName(name, participantsNames);
             return name;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("참가자의 이름을 정확하게 입력해야합니다.");
             return inputNameForResult(participantsNames);
         }
@@ -46,13 +46,13 @@ public class CommandLineInputController implements InputController {
     }
 
     private List<String> typeGameResultsLine() {
-        try{
+        try {
             System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
             String GameResultsNoSeparated = sc.nextLine();
             List<String> GameResultsLine = List.of(GameResultsNoSeparated.split(commaSeparationRegex));
             checkGameResultsLength(GameResultsLine);
             return GameResultsLine;
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("각 실행결과는 5글자 이하이어야 합니다.");
             return typeGameResultsLine();
         }
