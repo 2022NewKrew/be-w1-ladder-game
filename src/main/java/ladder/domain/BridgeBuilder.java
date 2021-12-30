@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +29,11 @@ public class BridgeBuilder {
     }
 
     private void connectRowBridges() {
-
         Bridge bridge = new Bridge();
 
         for (int currentPoint = 0; currentPoint < numOfParticipants - 1; currentPoint++) {
             bridge.addPoint(isConnectableBridge(bridge, currentPoint));
         }
-
         bridges.add(bridge);
     }
 
