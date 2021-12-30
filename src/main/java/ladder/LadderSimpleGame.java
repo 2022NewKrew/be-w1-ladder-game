@@ -1,19 +1,20 @@
 package ladder;
 
+import exception.InvalidBridgeException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class LadderSimpleGame extends LadderGame {
 
-
     private final Random randomInstance = new Random();
-
 
     public void createBridge() {
         int row = this.getLadderHeight();
         int col = this.getNumberOfParticipants() - 1;
         this.setBridge(createLadderMap(row, col));
+        checkInvalidBridge();
     }
 
     private List<Boolean> createNoneContinueTrueList(int col) {
@@ -21,7 +22,7 @@ public class LadderSimpleGame extends LadderGame {
         List<Boolean> map = new ArrayList<>();
         boolean previousColumnValue = false;
 
-        for (int j = 0; j < col; j++) {
+        for (int i = 0; i < col; i++) {
             boolean isBridge = (!previousColumnValue) && trueAndFalseGenerator();
             map.add(isBridge);
             previousColumnValue = isBridge;
@@ -44,5 +45,17 @@ public class LadderSimpleGame extends LadderGame {
 
     private boolean trueAndFalseGenerator() {
         return randomInstance.nextBoolean();
+    }
+
+    public void checkInvalidBridge() {
+        for (List<Boolean> list : this.getBridge()) {
+            checkInvalidContinueTrueList(list);
+        }
+    }
+
+    private void checkInvalidContinueTrueList(List<Boolean> list) {
+        for (int i = 0; i < list.size() - 1; i++) {
+            if (list.get(i) && list.get(i + 1)) throw new InvalidBridgeException("연속된 다리는 생성할 수 없습니다.");
+        }
     }
 }
