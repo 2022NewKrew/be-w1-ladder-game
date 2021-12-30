@@ -9,13 +9,13 @@ import static util.LadderUtil.*;
 
 public class LadderView {
 
-    private final static int GAP = 5;
+    private final int GAP = 5;
 
     private Ladder ladderObject;
 
-    public List<String> names;
-    public Long peopleCount, height;
-    public Line[] lineStatus;
+    private List<String> names;
+    private Long peopleCount, height;
+    private Line[] lineStatus;
 
     public LadderView(Ladder ladderObject) {
         this.ladderObject = ladderObject;
@@ -23,10 +23,10 @@ public class LadderView {
     };
 
     private void ladderViewInit(){
-        this.names = ladderObject.names;
-        this.peopleCount = ladderObject.peopleCount;
-        this.height = ladderObject.height;
-        this.lineStatus = ladderObject.lineStatus;
+        this.names = ladderObject.getNames();
+        this.peopleCount = ladderObject.getPeopleCount();
+        this.height = ladderObject.getHeight();
+        this.lineStatus = ladderObject.getLineStatus();
     }
 
 
@@ -40,14 +40,14 @@ public class LadderView {
         }
     }
 
-    public void printName(){
+    private void printName(){
         for(int i = 0 ; i < names.size() ; i++){
             System.out.printf("%6s", names.get(i));
         }
         System.out.print("\n");
     }
 
-    public void printLine(int line){
+    private void printLine(int line){
 
         int lineIdx = 0;
         for(int j = 0 ; j < peopleCount ; j++) {
@@ -63,7 +63,7 @@ public class LadderView {
     }
 
 
-    public int updateLineIdx(int line, int column, int lineIdx) {
+    private int updateLineIdx(int line, int column, int lineIdx) {
 
         //lineIdx 변수 갱신
         while(lineIdx < lineStatus[line].value.size() && lineStatus[line].value.get(lineIdx) == column ) {

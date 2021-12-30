@@ -9,6 +9,6 @@ public class Main {
 
         ladderObject.initLine();
         ladderObject.shuffle();
-        ladderObject.display();
+       // ladderObject.display();
     }
 }

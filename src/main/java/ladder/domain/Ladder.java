@@ -4,9 +4,9 @@ import java.util.*;
 import static util.LadderUtil.*;
 
 public class Ladder {
-    public List<String> names;
-    public long peopleCount, height;
-    public Line[] lineStatus;
+    private List<String> names;
+    private long peopleCount, height;
+    private Line[] lineStatus;
 
     public Ladder() {
 
@@ -14,7 +14,26 @@ public class Ladder {
 
     }
 
-    public void setValue() {
+    //getter
+    public List<String> getNames() {
+        return names;
+    }
+
+    public long getPeopleCount() {
+        return peopleCount;
+    }
+
+    public long getHeight() {
+        return height;
+    }
+
+    public Line[] getLineStatus() {
+        return lineStatus;
+    }
+
+
+
+    private void setValue() {
 
 
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -36,7 +55,7 @@ public class Ladder {
 
     }
 
-    public void checkDeletion(int line, int column){
+    private void checkDeletion(int line, int column){
 
         //if line inserted sequencial order, delete.
         while(column + 1 < lineStatus[line].value.size() && lineStatus[line].value.get(column) + 1 == lineStatus[line].value.get(column + 1)){
@@ -45,7 +64,7 @@ public class Ladder {
 
     }
 
-    public void validUpdateLine(int line){
+    private void validUpdateLine(int line){
 
         for(int i = lineStatus[line].value.size() - 2 ; i >= 0 ; i--){
             checkDeletion(line, i);
@@ -53,7 +72,7 @@ public class Ladder {
 
     }
 
-    public void insertLine(int line, int lineSize){
+    private void insertLine(int line, int lineSize){
 
         for(int i = 0 ; i < lineSize ; i++) {
             lineStatus[line].value.add((long) rd.nextInt((int) peopleCount - 1));
