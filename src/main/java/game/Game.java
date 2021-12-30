@@ -2,9 +2,11 @@ package game;
 
 public interface Game {
 
-    void init();
+    void init() throws Exception;
 
     void start();
 
     void printResult();
+
+    void printPlayerResult();
 }
