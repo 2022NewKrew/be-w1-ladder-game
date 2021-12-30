@@ -7,48 +7,61 @@ import java.util.Random;
 public class Ladder {
     private final int numParticipant;
     private final int height;
-    private List<ArrayList<Boolean>> connections;
-    private ArrayList<Player> players;
+    private List<Line> connections;
+    private List<Player> players;
 
-    public Ladder(int numParticipant, int height, ArrayList<Player> players) {
+    public static class Line {
+        private List<Boolean> line;
+        private int numberOfColumn;
+        private Random random = new Random();
+
+        public Line(int numberOfColumn){
+            this.numberOfColumn = numberOfColumn;
+            line = new ArrayList<>();
+            for(int j = 0; j < numberOfColumn; j++){
+                line.add(createCell(j));
+            }
+        }
+
+        public List<Boolean> getLine() {
+            return line;
+        }
+
+        private Boolean createCell(int colIndex){
+            if(canConnect(colIndex)){
+                return random.nextBoolean();
+            }
+            return Boolean.FALSE;
+        }
+
+        private boolean canConnect(int colIndex) {
+            return colIndex == 0 || Boolean.FALSE.equals(line.get(colIndex - 1));
+        }
+    }
+
+    public Ladder(int numParticipant, int height, List<Player> players) {
         this.numParticipant = numParticipant;
         this.height = height;
         this.players = players;
         createLadder();
     }
 
-    public int getNumParticipant() {
-        return numParticipant;
-    }
-
-    public List<ArrayList<Boolean>> getConnections() {
+    public List<Line> getConnections() {
         return connections;
     }
 
-    public ArrayList<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 
     private void createLadder(){
         connections = new ArrayList<>();
-        Random random = new Random();
         for(int i = 0; i < height; i++){
-            connections.add(createRow(random));
+            connections.add(createLine(numParticipant - 1));
         }
     }
 
-    private ArrayList<Boolean> createRow(Random random){
-        ArrayList<Boolean> row = new ArrayList<>();
-        for(int j = 0; j < numParticipant - 1; j++){
-            row.add(createCell(random, row, j));
-        }
-        return row;
-    }
-
-    private Boolean createCell(Random random, ArrayList<Boolean> row, int colIndex){
-        if(colIndex == 0 || Boolean.FALSE.equals(row.get(colIndex - 1))){
-            return random.nextBoolean();
-        }
-        return Boolean.FALSE;
+    private Line createLine(int numberOfColumn){
+        return new Line(numberOfColumn);
     }
 }
