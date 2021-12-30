@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -26,13 +28,7 @@ public class Line {
         return true;
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("  |");
-        for (Boolean e : points) {
-            sb.append(e ? "     |" : "-----|");
-        }
-        sb.append('\n');
-        return sb.toString();
+    public ArrayList<Boolean> getPoints() {
+        return this.points;
     }
 }
