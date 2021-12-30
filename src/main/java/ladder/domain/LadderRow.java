@@ -16,13 +16,13 @@ public class LadderRow {
     }
 
     private void createLadderRow() {
-        boolean previousLadderCell = false;
+        LineType previousLineType = LineType.EMPTY_LINE;
 
         for (int i = 0; i < ladderWidth - 1; i++) {
-            LadderCell ladderCell = new LadderCell(previousLadderCell);
+            LadderCell ladderCell = new LadderCell(previousLineType);
             row.add(ladderCell);
 
-            previousLadderCell = ladderCell.getLine();
+            previousLineType = ladderCell.getLine();
         }
     }
 

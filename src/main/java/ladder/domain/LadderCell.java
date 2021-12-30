@@ -4,21 +4,27 @@ import java.util.Random;
 
 public class LadderCell {
 
-    private final boolean line;
+    private final LineType lineType;
 
-    public LadderCell(boolean previousLadderCell) {
-        this.line = createLadderCell(previousLadderCell);
+    public LadderCell(LineType previousLineType) {
+        this.lineType = createLadderCell(previousLineType);
     }
 
-    private boolean createLadderCell(boolean previousLadderCell) {
-        if (previousLadderCell) {
-            return false;
+    private LineType createLadderCell(LineType previousLineType) {
+        if (previousLineType == LineType.HORIZONTAL_LINE) {
+            return LineType.EMPTY_LINE;
         }
-
-        return new Random().nextBoolean();
+        return selectLineType();
     }
 
-    public boolean getLine() {
-        return line;
+    private LineType selectLineType() {
+        if (new Random().nextBoolean()) {
+            return LineType.HORIZONTAL_LINE;
+        }
+        return LineType.EMPTY_LINE;
+    }
+
+    public LineType getLine() {
+        return lineType;
     }
 }
