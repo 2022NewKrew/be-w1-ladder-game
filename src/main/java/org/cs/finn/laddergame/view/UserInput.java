@@ -10,10 +10,6 @@ import java.util.Scanner;
 public class UserInput {
     private final Scanner sc = new Scanner(System.in);
 
-    public void closeScanner() {
-        sc.close();
-    }
-
     public Member requestMember() {
         System.out.println("참여할 사람 이름을 [" + Member.SEPARATOR + "]로 구분해서 입력하세요. [" + Member.MIN + " ~ " + Member.MAX + "명]");
         System.out.println(Member.MSG_ALLOWED_CHAR + "만 사용해 한 사람 당 " + Member.WIDTH + "자 이하로 써주세요.");
