@@ -15,23 +15,27 @@ public class LadderPrinter {
     }
 
     public void printLadder() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getPlayerNames());
-        for (int i = 0; i < ladder.getHeight(); i++) {
-            sb.append(getLadderRow(i));
-        }
-        sb.append(getResults());
-        System.out.println(sb);
+        printPlayerNames();
+        printLadderContent();
+        printLadderResults();
     }
 
-    private String getPlayerNames() {
+    private void printPlayerNames() {
         StringBuilder sb = new StringBuilder();
         sb.append("\t");
         for (int i = 0; i < ladder.getWidth(); i++) {
             sb.append(String.format("%-6s", ladder.getLine(i).getName()));
         }
         sb.append("\n");
-        return sb.toString();
+        System.out.println(sb);
+    }
+
+    private void printLadderContent() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < ladder.getHeight(); i++) {
+            sb.append(getLadderRow(i));
+        }
+        System.out.println(sb);
     }
 
     private String getLadderRow(int position) {
@@ -45,14 +49,14 @@ public class LadderPrinter {
         return sb.toString();
     }
 
-    private String getResults() {
+    private void printLadderResults() {
         StringBuilder sb = new StringBuilder();
         sb.append("\t");
         for (int i = 0; i < ladder.getWidth(); i++) {
             sb.append(String.format("%-6s", ladder.getLine(i).getResult()));
         }
         sb.append("\n");
-        return sb.toString();
+        System.out.println(sb);
     }
 
     public void printAllResults() {
