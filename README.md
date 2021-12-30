@@ -46,8 +46,8 @@
 
 - [x] Input, Ouput 클래스에 private 생성자 만들기
 - [ ] 입력단 예외처리
-- [ ] 상수를 변수로 바꾸기 & 사용되지 않는 인스턴스 변수 선언하지 않기
-- [ ] String[] 대신 List 사용하기
+- [x] 상수를 변수로 바꾸기 & 사용되지 않는 인스턴스 변수 선언하지 않기
+- [x] String[] 대신 List 사용하기
 - [ ] Ladder 객체의 Player에 대한 책임 분리하기
 - [ ] Line 클래스의 Random 변수 한번만 생성되게 하기
 - [ ] Line 클래스의 setConnection 로직 직관적으로 고쳐보기

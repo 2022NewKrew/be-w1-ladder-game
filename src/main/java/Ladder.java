@@ -1,28 +1,25 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Ladder {
 
-    private final int PLAYER_NUMBER;
-    private final int LADDER_HEIGHT;
-    private final List<String> PLAYER_LIST = new ArrayList<>();
-    private final List<Line> LINE_LIST = new ArrayList<>();
+    private final List<String> playerList;
+    private final List<Line> lineList;
 
-    public Ladder(String[] playerNames, int ladderHeight) {
-        PLAYER_NUMBER = playerNames.length;;
-        LADDER_HEIGHT = ladderHeight;
-        PLAYER_LIST.addAll(Arrays.asList(playerNames));
-        for (int i = 0; i < LADDER_HEIGHT; i++) {
-            LINE_LIST.add(new Line(PLAYER_NUMBER));
+    public Ladder(ArrayList<String> playerNames, int ladderHeight) {
+        playerList = List.copyOf(playerNames);
+        ArrayList<Line> temp = new ArrayList<>();
+        for (int i = 0; i < ladderHeight; i++) {
+            temp.add(new Line(playerNames.size()));
         }
+        lineList = List.copyOf(temp);
     }
 
-    public List<String> getPLAYER_LIST() {
-        return PLAYER_LIST;
+    public List<String> getPlayerList() {
+        return playerList;
     }
 
-    public List<Line> getLINE_LIST() {
-        return LINE_LIST;
+    public List<Line> getLineList() {
+        return lineList;
     }
 }

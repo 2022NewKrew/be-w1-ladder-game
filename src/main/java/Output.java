@@ -13,7 +13,7 @@ public class Output {
 
     public static void printPlayerList(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
-        List<String> playerList = ladder.getPLAYER_LIST();
+        List<String> playerList = ladder.getPlayerList();
         for (String playerName : playerList) {
             sb.append(String.format("%" + (LADDER_WIDTH + 1) + "s", playerName));
         }
@@ -22,7 +22,7 @@ public class Output {
 
     public static void printLadder(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
-        List<Line> lineList = ladder.getLINE_LIST();
+        List<Line> lineList = ladder.getLineList();
         for (Line line : lineList) {
             sb.append(lineToString(line));
             sb.append(NEWLINE);
