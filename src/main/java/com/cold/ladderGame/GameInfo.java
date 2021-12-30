@@ -53,7 +53,7 @@ public class GameInfo {
   }
 
   private boolean validateUser(String user){
-    return user.length()<6 && user.length() >0 ? true : false;
+    return user.length()<6 && user.length() >0;
   }
 
 }

@@ -12,7 +12,7 @@ public class Ladder {
   }
 
   private void createLadder(int width, int height) {
-    resultLadder = new ArrayList<Line>(height);
+    resultLadder = new ArrayList<>(height);
     for (int row = 0; row < height; row++) {
       resultLadder.add(new Line(width));
     }
