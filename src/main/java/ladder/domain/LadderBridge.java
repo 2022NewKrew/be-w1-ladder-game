@@ -1,4 +1,4 @@
-package main.java;
+package main.java.ladder.domain;
 
 public enum LadderBridge {
     BRIDGE_CONNECTED("-----"), BRIDGE_DISCONNECTED("     ");

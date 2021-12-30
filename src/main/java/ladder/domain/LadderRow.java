@@ -1,5 +1,4 @@
-package main.java;
-
+package main.java.ladder.domain;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -16,7 +15,6 @@ public class LadderRow {
 
     @Override
     public String toString() {
-
         StringJoiner joiner = new StringJoiner(Ladder.LADDER_LINE, Ladder.LADDER_LINE, Ladder.LADDER_LINE);
         for (LadderBridge bridge : bridges) {
             joiner.add(bridge.line);
