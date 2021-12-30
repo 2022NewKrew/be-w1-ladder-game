@@ -66,7 +66,6 @@ public class IO {
         StringBuilder stringBuilder = new StringBuilder();
         String[] names = ladder.getPeopleNames();
 
-
         for (String name : names){
             name = preprocessName(name, maxNameLength);
             stringBuilder.append(name);
@@ -89,13 +88,17 @@ public class IO {
     // if length of name >5 : truncate the name to set its length as 5.
     public static String preprocessName(String name, int maxNameLength) {
         final int nPads = maxNameLength - name.length();
+        // if length of name >5 : truncate first
+        if (nPads < 0 ) {
+            String shortedName = truncateName(name, maxNameLength);
+            return shortedName;
+        }
         if (nPads > 0) {
             String paddedName = addPad(name, nPads, maxNameLength);
             return paddedName;
         }
-        // [later] should implement when name>5 to avoid error
-        String shortedName = truncateName(name, maxNameLength);
-        return shortedName;
+
+        return name;
     }
 
     //add padding(' ') to the name
@@ -114,10 +117,15 @@ public class IO {
         return strRow;
     }
 
-    // [later] should implement when name>5 to avoid error
-    // 조건 주어지면 나중에 구현 예정
+    // should implement when name>5 to avoid error
+    // put empty string at last for padding
     public static String truncateName(String name, int maxNameLength){
-        return name;
+        StringBuilder stringBuilder = new StringBuilder();
+        String shortenName = name.substring(0, maxNameLength);
+        stringBuilder.append(shortenName);
+        stringBuilder.append(strEmpty);
+        String strRow = stringBuilder.toString();
+        return strRow;
     }
 
 
