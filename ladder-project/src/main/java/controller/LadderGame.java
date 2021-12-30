@@ -1,6 +1,6 @@
 package controller;
 
-import domain.Ladder;
+import domain.ladder.Ladder;
 import domain.participant.Participant;
 import util.StringParsingUtil;
 import view.LadderShape;
