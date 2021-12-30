@@ -4,9 +4,10 @@ import java.util.Random;
 
 public class RandomUtil {
 
-    public static final Random random = new Random();
+    private static final Random random = new Random();
 
-    private RandomUtil() {}
+    private RandomUtil() {
+    }
 
     public static Boolean nextBoolean() {
         return random.nextBoolean();

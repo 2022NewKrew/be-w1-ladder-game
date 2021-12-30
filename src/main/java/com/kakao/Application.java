@@ -1,8 +1,7 @@
 package com.kakao;
 
-import com.kakao.domain.Ladder;
-import com.kakao.domain.Player;
-import com.kakao.factory.LadderFactory;
+import com.kakao.domain.ladder.Ladder;
+import com.kakao.domain.player.Player;
 import com.kakao.view.InputView;
 import com.kakao.view.OutputView;
 import java.util.Arrays;
@@ -13,7 +12,6 @@ public class Application {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final LadderFactory ladderFactory = new LadderFactory();
 
     public static void main(String[] args) {
         Application application = new Application();
@@ -27,7 +25,7 @@ public class Application {
         List<Player> players = Arrays.stream(names)
             .map(Player::create)
             .collect(Collectors.toList());
-        Ladder ladder = ladderFactory.create(players.size(), heightOfLadder);
+        Ladder ladder = Ladder.create(players.size(), heightOfLadder);
 
         outputView.print(players, ladder);
     }

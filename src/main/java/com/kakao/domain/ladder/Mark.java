@@ -1,4 +1,4 @@
-package com.kakao.domain;
+package com.kakao.domain.ladder;
 
 public enum Mark {
     COL("|"), ROW("-----"), BLK("     ");
@@ -9,7 +9,7 @@ public enum Mark {
         this.shape = shape;
     }
 
-    public static Mark getMark(Boolean connected) {
+    public static Mark of(Boolean connected) {
         if (Boolean.TRUE.equals(connected)) {
             return Mark.ROW;
         }
