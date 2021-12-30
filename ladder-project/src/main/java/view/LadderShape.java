@@ -34,12 +34,7 @@ public final class LadderShape {
     }
 
     private static void checkBlock(boolean block, StringBuilder sb) {
-        if (!block) {
-            sb.append(LadderComponent.LADDER_EMPTY_COLUMN.getValue());
-        }
-        if (block) {
-            sb.append(LadderComponent.LADDER_COLUMN_LINE.getValue());
-        }
+        sb.append(block ? LadderComponent.LADDER_COLUMN_LINE.getValue() : LadderComponent.LADDER_EMPTY_COLUMN.getValue());
     }
 
     public String getShape() {
