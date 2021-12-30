@@ -1,23 +1,20 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class LadderData {
-    private final int rows;
-    private final int cols;
-    private final ArrayList<LadderRowData> ladderData = new ArrayList<>();
+    private final ArrayList<LadderRowData> ladderData;
 
-    public LadderData(int rows, int cols) {
-        this.rows = rows;
-        this.cols = cols;
-        generateRandomData();
+    private LadderData(ArrayList<LadderRowData> ladderData) {
+        this.ladderData = ladderData;
     }
 
-    private void generateRandomData() {
+    public static LadderData generateRandomly(int rows, int cols) {
+        ArrayList<LadderRowData> randomLadderData = new ArrayList<>();
         for (int i = 0; i < rows; ++i) {
-            ladderData.add(LadderRowData.generateByRandom(cols));
+            randomLadderData.add(LadderRowData.generateRandomly(cols));
         }
+        return new LadderData(randomLadderData);
     }
 
     public StringBuilder toStringBuilder(int ladderLength) {

@@ -6,11 +6,11 @@ import java.util.Random;
 public class LadderRowData {
     private final ArrayList<Boolean> ladderRowData;
 
-    public LadderRowData(ArrayList<Boolean> ladderRowData) {
+    private LadderRowData(ArrayList<Boolean> ladderRowData) {
         this.ladderRowData = ladderRowData;
     }
 
-    public static LadderRowData generateByRandom(int cols) {
+    public static LadderRowData generateRandomly(int cols) {
         if (cols == 0) {
             return new LadderRowData(new ArrayList<>());
         }

@@ -8,7 +8,7 @@ public class Ladder {
 
     public Ladder(ArrayList<String> players, int maxHeight) {
         ladderPlayers = new LadderPlayers(players);
-        ladderData = new LadderData(maxHeight, ladderPlayers.length() - 1);
+        ladderData = LadderData.generateRandomly(maxHeight, ladderPlayers.length() - 1);
     }
 
     public StringBuilder toStringBuilder(int maxPlayerNameLength) {
