@@ -1,4 +1,7 @@
-package com.laddergame;
+package ladder;
+
+import ladder.domain.Ladder;
+import ladder.view.DrawLadder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +16,6 @@ public class Main {
         int ladderNum = in.nextInt();
 
         Ladder ladder = new Ladder(peopleNames, ladderNum);
-        System.out.println(ladder);
+        System.out.println(DrawLadder.drawLadder(ladder));
     }
 }
