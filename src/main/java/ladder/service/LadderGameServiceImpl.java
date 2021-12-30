@@ -1,36 +1,44 @@
+package ladder.service;
+
+import ladder.view.LadderGameView;
+import ladder.view.LadderGameViewConsole;
+import ladder.domain.LadderSimpleGame;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class LadderGameServiceImpl implements LadderGameService {
 
-    private LadderSimpleGame ladderSimpleGame;
+    private LadderGameView ladderGameView;
     private int numberOfParticipants;
     private int ladderHeight;
     private String[] participants;
 
     @Override
     public void run() {
-        inputLadder();
+        inputLadderConsole();
         createLadder();
         printLadder();
     }
 
     private void createLadder() {
-        ladderSimpleGame = new LadderSimpleGame();
+        LadderSimpleGame ladderSimpleGame = new LadderSimpleGame();
         ladderSimpleGame.setNumberOfParticipants(numberOfParticipants);
         ladderSimpleGame.setLadderHeight(ladderHeight);
         ladderSimpleGame.setParticipants(participants);
         ladderSimpleGame.createBridge();
+
+        ladderGameView = new LadderGameViewConsole(ladderSimpleGame);
     }
 
     private void printLadder() {
-        System.out.println("실행결과\n");
-        System.out.println(ladderSimpleGame.getLadderString());
+        ladderGameView.printView();
     }
 
-    private void inputLadder() {
+    private void inputLadderConsole() {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
         try {
 
             System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
