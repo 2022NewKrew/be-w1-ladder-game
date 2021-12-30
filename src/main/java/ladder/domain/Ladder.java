@@ -1,4 +1,4 @@
-package com.gradle.geatrigger;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,17 +37,25 @@ public class Ladder {
 
     private void writeLadder() {
         for (int i = 0; i < height; i++) {
-            String lineString = ladder.get(i).writeLine();
+            String lineString = ladder.get(i).toString();
             sb.append(lineString);
         }
     }
 
-    private void writeNames() {
+    public void writeNames() {
+        int revealNameLength;
+        String revealName;
         for (String name : names) {
-            sb.append(" ".repeat(LadderConstant.INTERVAL / 2 - name.length() / 2));
-            sb.append(name);
-            sb.append(" ".repeat((LadderConstant.INTERVAL - LadderConstant.INTERVAL / 2) - (name.length() - name.length() / 2) + 1));
+            revealNameLength = name.length() > 5 ? 5 : name.length();
+            revealName = name.substring(0, revealNameLength);
+            sb.append(" ".repeat(LadderConstant.INTERVAL / 2 - revealNameLength / 2));
+            sb.append(revealName);
+            sb.append(" ".repeat((LadderConstant.INTERVAL - LadderConstant.INTERVAL / 2) - (revealNameLength - revealNameLength / 2) + 1));
         }
         sb.append("\n");
+    }
+
+    public String getCurrentString() {
+        return sb.toString();
     }
 }
