@@ -1,17 +1,17 @@
 package dao;
 
 import domain.ladder.Ladder;
-import dto.LadderDTO;
+import dto.ladderDto.LadderDTO;
 
 public class LadderDAO {
 
     private final Ladder ladder;
 
-    public LadderDAO(int frameLength, int height){
+    public LadderDAO(int frameLength, int height) {
         ladder = new Ladder(frameLength, height);
     }
 
-    public LadderDTO getLadderDTO(){
+    public LadderDTO getLadderDTO() {
         return new LadderDTO(ladder);
     }
 }

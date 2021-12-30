@@ -1,50 +1,33 @@
 package service;
 
-import domain.ladder.Ladder;
-import domain.ladder.LadderFrame;
-import domain.ladder.LadderFrameLine;
-import dto.LadderDTO;
+import dao.GameResultDAO;
+import dto.ladderDto.LadderDTO;
+import dto.gameResultDto.AllResultDTO;
+import dto.gameResultDto.TargetResultDTO;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LadderGameService {
     private final List<String> users;
     private final List<String> results;
+    private final GameResultDAO gameResultDAO = new GameResultDAO();
 
     public LadderGameService(List<String> users, List<String> results) {
         this.users = new ArrayList<>(users);
         this.results = results;
     }
 
-    public void calculateResult(LadderDTO ladder) {
-        for (LadderFrameLine line : ladder.getLines()) {
-            checkLine(line);
-        }
+    public void calculateGameResult(LadderDTO ladderDTO) {
+        gameResultDAO.saveGameResult(ladderDTO, users, results);
     }
 
-    public String getTargetResult(String target) {
-        return results.get(users.indexOf(target));
+    public TargetResultDTO getTargetResult(String target) {
+        return gameResultDAO.getTargetResultDto(target);
     }
 
-    public List<Map.Entry<String,String>> getAllResult() {
-        List<Map.Entry<String,String>> result = new ArrayList<>();
-        for(int i = 0 ; i < users.size(); i++){
-            result.add(new AbstractMap.SimpleEntry<>(users.get(i), results.get(users.indexOf(users.get(i)))));
-        }
-        return result.stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList());
+    public AllResultDTO getAllResult() {
+        return gameResultDAO.getAllResultDto();
     }
 
-    private void checkLine(LadderFrameLine line) {
-        int frameLength = line.getFrames().size();
-        for (int index = 0; index < frameLength; index++) {
-            checkFrame(line.getFrames().get(index), index);
-        }
-    }
-
-    private void checkFrame(LadderFrame frame, int index) {
-        if (frame == LadderFrame.BRIDGE) {
-            Collections.swap(users, index, index + 1);
-        }
-    }
 }

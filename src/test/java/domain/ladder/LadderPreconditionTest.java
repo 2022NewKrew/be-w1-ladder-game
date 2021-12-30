@@ -1,7 +1,6 @@
-package preconditions;
+package domain.ladder;
 
 
-import domain.ladder.LadderPrecondition;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package dto;
+package dto.ladderDto;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderFrameLine;
@@ -9,7 +9,7 @@ import java.util.List;
 public class LadderDTO {
     private final List<LadderFrameLine> lines;
 
-    public LadderDTO(Ladder ladder){
+    public LadderDTO(Ladder ladder) {
         lines = Collections.unmodifiableList(ladder.getLines());
     }
 

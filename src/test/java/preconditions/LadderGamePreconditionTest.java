@@ -1,6 +1,6 @@
 package preconditions;
 
-import controller.LadderGamePrecondition;
+import domain.gameResult.GameResultPrecondition;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,7 +25,7 @@ class LadderGamePreconditionTest {
         final int TEST_MAX_LENGTH = 5;
         //When : LadderGamePrecondition.checkUsers 메소드에 TEST_MAX_LENGTH와 testLegalUsers가 인자로 넘어갔을 때
         //Then
-        assertThatCode(() -> LadderGamePrecondition.checkUsers(testLegalUsers, TEST_MAX_LENGTH)).doesNotThrowAnyException();
+        assertThatCode(() -> GameResultPrecondition.checkUsers(testLegalUsers, TEST_MAX_LENGTH)).doesNotThrowAnyException();
     }
 
     @DisplayName("올바르지 못한 유저가 담긴 리스트일 때 IllegalArgumentException을 던짐")
@@ -36,7 +36,7 @@ class LadderGamePreconditionTest {
         final int TEST_MAX_LENGTH = 5;
         //When : LadderGamePrecondition.checkUsers 메소드에 TEST_MAX_LENGTH와 testIllegalUsers 인자로 넘어갔을 때
         //Then
-        assertThatThrownBy(() -> LadderGamePrecondition.checkUsers(testIllegalUsers, TEST_MAX_LENGTH)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> GameResultPrecondition.checkUsers(testIllegalUsers, TEST_MAX_LENGTH)).isInstanceOf(IllegalArgumentException.class);
     }
 
     private static Stream<List<String>> legalUsers() {

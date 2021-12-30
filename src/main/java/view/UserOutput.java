@@ -3,7 +3,9 @@ package view;
 import domain.ladder.Ladder;
 import domain.ladder.LadderFrame;
 import domain.ladder.LadderFrameLine;
-import dto.LadderDTO;
+import dto.ladderDto.LadderDTO;
+import dto.gameResultDto.AllResultDTO;
+import dto.gameResultDto.TargetResultDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -29,7 +31,7 @@ public class UserOutput {
 
     private static String ladderLineToShapeLine(LadderFrameLine ladderFrameLine) {
         StringJoiner stringJoiner = new StringJoiner(PILLAR, LEFT_PILLAR, RIGHT_PILLAR);
-        for(LadderFrame frame : ladderFrameLine.getFrames()){
+        for (LadderFrame frame : ladderFrameLine.getFrames()) {
             stringJoiner.add(ladderFrameToShape(frame));
         }
         return stringJoiner.toString();
