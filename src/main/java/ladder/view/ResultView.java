@@ -7,9 +7,9 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class ResultView {
-    static final String SIDE_RAIL = "|";
-    static final String RUNG = "-----";
-    static final String SPACE = "     ";
+    private static final String SIDE_RAIL = "|";
+    private static final String RUNG = "-----";
+    private static final String SPACE = "     ";
 
     /**
      * 사다리의 한 줄을 출력하는 메서드
