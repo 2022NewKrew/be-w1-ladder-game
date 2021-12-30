@@ -1,8 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import ladder.domain.exception.LadderException;
 import ladder.domain.exception.LadderException.ErrorCode;
-import ladder.domain.ladder.LadderInfo;
 import org.junit.jupiter.api.Test;
 
 import static ladder.domain.exception.LadderException.ErrorCode.*;
