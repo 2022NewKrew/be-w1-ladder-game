@@ -1,8 +1,10 @@
 package com.kakao.ladder.view;
 
+import com.kakao.ladder.controller.ConstStringSpace;
 import com.kakao.ladder.controller.LadderGameController;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.BiFunction;
@@ -42,9 +44,9 @@ public class UserInput {
      * @return UserInput 객체
      */
     public static UserInput getInputInofs() {
-        UserInput userinput = new UserInput();
-        userinput.inputPlayerInfo();
-        return userinput;
+        UserInput userInput = new UserInput();
+        userInput.inputPlayerInfo();
+        return userInput;
     }
 
     /**
@@ -56,15 +58,15 @@ public class UserInput {
     public static String showResult(List<String> names) {
         String whosResult = "";
 
-        while (!(whosResult.equals(LadderGameController.END_CONDITION) || whosResult.equals("all") || names.contains(whosResult))) {
-            System.out.println("결과를 보고 싶은 사람은?");
+        while (!(whosResult.equals(ConstStringSpace.END_CONDITION) || whosResult.equals(ConstStringSpace.ALL_PRINT_CONDITION) || names.contains(whosResult))) {
+            System.out.println(ConstStringSpace.WHOS_RESULT);
 
             whosResult = sc.nextLine();
         }
 
         System.out.println();
 
-        if (whosResult.equals(LadderGameController.END_CONDITION)) {
+        if (whosResult.equals(ConstStringSpace.END_CONDITION)) {
             sc.close();
         }
 
@@ -82,13 +84,13 @@ public class UserInput {
      * 입력을 받아 옳바른 요청으로 초기화 진행하는 함수입니다.
      */
     private void inputPlayerInfo() {
-        names = iterStringInput("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)", sc, this::readStringInitInput, list -> list.size() <= 0);
+        names = iterStringInput(ConstStringSpace.INPUT_USER_NAMES, sc, this::readStringInitInput, list -> list.size() <= 0);
 
-        results = iterStringInput("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)", sc, this::readStringInitInput, list ->
+        results = iterStringInput(ConstStringSpace.INPUT_LADDER_RESULT_STRINGS, sc, this::readStringInitInput, list ->
                 list.size() != names.size());
 
         do {
-            ladderHeight = readIntInput("최대 사다리 높이는 몇 개인가요?", sc);
+            ladderHeight = readIntInput(ConstStringSpace.INPUT_LADDER_HEIGHT, sc);
         } while (ladderHeight <= 0);
     }
 
@@ -104,9 +106,9 @@ public class UserInput {
 
         String tempUserString = sc.nextLine();
 
-        return Arrays.stream(tempUserString.split(","))
-                .filter(tempString -> tempString.length() != 0 && !tempString.equals(","))
-                .map(tempString -> tempString.substring(0, Math.min(5, tempString.length())))
+        return Arrays.stream(tempUserString.split(ConstStringSpace.SEPERATOR))
+                .filter(tempString -> tempString.length() != 0 && !tempString.equals(ConstStringSpace.SEPERATOR))
+                .map(tempString -> tempString.substring(0, Math.min(ConstStringSpace.MAX_NAME_LENGTH, tempString.length())))
 //                .distinct()
                 .collect(Collectors.toList());
     }
@@ -145,11 +147,12 @@ public class UserInput {
         try {
             tempUserNum = sc.nextInt();
         } catch (Exception e) {
+            sc.nextLine();
         }
 
-        if (tempUserNum <= 0) {
-            System.out.println("1 이상의 양수 값을 입력해 주세요.");
-        }
+        if (tempUserNum <= 0)
+            System.out.println(ConstStringSpace.INPUT_RANGE);
+
 
         return tempUserNum;
     }
