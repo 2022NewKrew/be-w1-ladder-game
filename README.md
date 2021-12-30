@@ -30,7 +30,7 @@
 ### 구현
 
 - ArrayList 활용
-- 사다리를 생성하는 객체 `Ladder`를 분리
+- 사다리를 생성하는 객체 `ladder.domain.Ladder`를 분리
 
 <br>
 
@@ -86,7 +86,7 @@
 - 사다리 타기가 정상적으로 동작하기 위해, 양 쪽에 사다리가 생기지 않도록 조정
 - ArrayList, Generic 활용
 - 다양한 input이 들어옴에 따라, 새로운 클래스 `input`을 작성하여 간소화
-  - `LadderInput`이라는 신규 클래스를 작성하여 모든 인풋을 하나로 작성되게 축약
+  - `ladder.domain.LadderInput`이라는 신규 클래스를 작성하여 모든 인풋을 하나로 작성되게 축약
 
 
 <br>
