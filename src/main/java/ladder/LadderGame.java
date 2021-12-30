@@ -1,8 +1,8 @@
 package ladder;
 
-import ladder.domain.BridgeBuilder;
-import ladder.domain.Ladder;
-import ladder.domain.RandomBridgeProvider;
+import ladder.domain.bridge.BridgeBuilder;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.bridge.RandomBridgeProvider;
 import ladder.view.LadderRenderer;
 
 import java.util.Scanner;

@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
+import ladder.domain.ladder.Ladder;
 
 public class LadderRenderer {
 
