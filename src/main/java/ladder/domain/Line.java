@@ -13,7 +13,7 @@ public class Line {
 
     private final List<Boolean> connected; // point 간 연결 여부
 
-    private Line(List<Boolean> connected) {
+    Line(List<Boolean> connected) {
         this.connected = connected;
     }
 
@@ -22,12 +22,22 @@ public class Line {
      */
     static Line createRandomLine(int size) {
         List<Boolean> connected = new ArrayList<>();
-        connected.add(RANDOM.nextBoolean());
-        for (int i = 1; i < size; i++) {
-            // 이전의 가로라인이 연결되어 있는 경우 false, 연결되어 있지 않은 경우 랜덤으로 연결 여부를 세팅한다.
-            connected.add(!connected.get(i - 1) && RANDOM.nextBoolean());
+        for (int i = 0; i < size; i++) {
+            addRandomBooleanIfPrevNotConnected(connected);
         }
         return new Line(connected);
+    }
+
+    /**
+     * 이전의 가로라인이 연결되어 있는 경우 false, 연결되어 있지 않은 경우 랜덤으로 연결 여부를 세팅한다.
+     */
+    private static void addRandomBooleanIfPrevNotConnected(List<Boolean> connected) {
+        if (connected.isEmpty()) {
+            connected.add(RANDOM.nextBoolean());
+            return;
+        }
+
+        connected.add(!connected.get(connected.size() - 1) && RANDOM.nextBoolean());
     }
 
     /**
@@ -48,8 +58,7 @@ public class Line {
                 .append(connected.stream()
                         .map(this::parseConnectedHorizontal)
                         .collect(Collectors.joining(VERTICAL)))
-                .append(VERTICAL)
-                .append("\n");
+                .append(VERTICAL);
        return line.toString();
     }
 
