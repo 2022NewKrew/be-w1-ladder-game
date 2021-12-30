@@ -20,8 +20,8 @@ public class ResultView {
         System.out.printf("%s%s", SPACE, SIDE_RAIL);
 
         for (Boolean aBoolean : line) {
-            System.out.printf("%s", aBoolean ? RUNG : SPACE);
-            System.out.printf("%s", SIDE_RAIL);
+            System.out.print(aBoolean ? RUNG : SPACE);
+            System.out.print(SIDE_RAIL);
         }
     }
 
