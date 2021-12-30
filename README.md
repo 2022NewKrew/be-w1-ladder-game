@@ -12,7 +12,7 @@
 
 # step 4
 - [x] src폴더 최상단위치로 이동
-- [ ] .idea 파일 gitignore에 반영
+- [x] .idea 파일 gitignore에 반영
 - [x] Ladder 클래스의 인스턴스 변수명 변경 (map -> lines)
 - [x] Ladder 클래스의 showMap() 함수를 OutputView 의 showLadder함수가 담당
 - [x] toString()에 @OverRide 어노테이션 추가
