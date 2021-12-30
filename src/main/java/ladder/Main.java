@@ -1,3 +1,7 @@
+package ladder;
+
+import ladder.domain.GameController;
+
 public class Main {
 
     private static GameController gameController;

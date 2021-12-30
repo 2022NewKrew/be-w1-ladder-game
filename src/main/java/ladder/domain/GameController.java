@@ -1,3 +1,7 @@
+package ladder.domain;
+
+import ladder.view.IOController;
+
 import java.util.List;
 
 public class GameController {

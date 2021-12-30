@@ -1,3 +1,5 @@
+package ladder.domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,12 +11,12 @@ public class Ladder {
     private final static Random rand = new Random();
     private List<Line> ladder;
 
-    public void setLadder(int players, int height) {
+    public void setLadder(int numOfPlayers, int numOfLine) {
         ladder = new ArrayList<>();
 
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < numOfLine; i++) {
             Line curLine = new Line();
-            curLine.setLine(players);
+            curLine.setLine(numOfPlayers);
             ladder.add(curLine);
         }
     }

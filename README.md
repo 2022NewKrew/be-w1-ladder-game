@@ -16,17 +16,17 @@
   
 ### 구현 내용
 다음과 같은 두 개의 클래스로 기능 구현
-- Ladder Class
+- ladder.domain.Ladder Class
   - generateLadder()
-    - 사다리 생성 / Main.startGame 에서 호출
+    - 사다리 생성 / ladder.Main.startGame 에서 호출
   - printLadder()
-    - 사다리 출력 / Main.startGame 에서 호출
+    - 사다리 출력 / ladder.Main.startGame 에서 호출
   - randomChar()
     - 랜덤 int 생성 후 char 반환 / generateLadder 에서 호출
   - isValidate(int players, int height)
     - 입력값에 대한 유효성 검사 수행 / generateLadder 에서 호출
     
-- Main Class
+- ladder.Main Class
   - startGame()
     - init, input values, generate & print ladder 역할 수행 / main 에서 호출
   - inputInt(String msg)
@@ -48,25 +48,25 @@
   
 ### 구현 내용
 step1 에서 구현한 코드 리팩토링 수행
-- Ladder -> Ladder 와 Line 클래스로 분리
-- GameController 클래스 생성, Main 클래스의 대부분의 메서드 GameController 로 이전
+- ladder.domain.Ladder -> ladder.domain.Ladder 와 Line 클래스로 분리
+- ladder.domain.GameController 클래스 생성, ladder.Main 클래스의 대부분의 메서드 ladder.domain.GameController 로 이전
 - 2차원 배열 -> 2차원 ArrayList 로 변경
 
 Line Class
 - 사다리 게임에서 하나의 층을 담당
 - 실질적으로 랜덤 사다리 요소를 만들고 출력하는 기능 수행
   
-Ladder Class
+ladder.domain.Ladder Class
 - Line Class 로 이루어진 ArrayList 를 관리하고 Line 의 메서드를 호출하는 역할 수행
   
-GameController Class
+ladder.domain.GameController Class
 - 게임 시작부터 종료까지 일련의 과정을 컨트롤하는 역할 수행
-- Ladder 인스턴스를 생성하여 사다리 생성, 출력 메서드 호출
+- ladder.domain.Ladder 인스턴스를 생성하여 사다리 생성, 출력 메서드 호출
 - 입력 및 유효성 검사 수행
 - 추후 게임 결과를 확인하는 메서드 추가할 예정
   
-Main Class
-- GameController 인스턴스를 생성하여 게임 시작
+ladder.Main Class
+- ladder.domain.GameController 인스턴스를 생성하여 게임 시작
   
 ## step3
 ### 기능 요구사항
@@ -85,8 +85,8 @@ Main Class
 - 배열 대신 ArrayList와 Generic을 활용해 구현한다.
   
 ### 구현 내용
-- Line 클래스를 Ladder 클래스의 내부 클래스로 변경
-- GameController 클래스에서 입출력부분을 IOController 로 이전
+- Line 클래스를 ladder.domain.Ladder 클래스의 내부 클래스로 변경
+- ladder.domain.GameController 클래스에서 입출력부분을 ladder.view.IOController 로 이전
 - 사다리에 중복된 다리가 생기는 것을 방지하는 로직 추가
 - 유저 이름 입력 및 출력 기능 추가
 - 유저 이름을 정렬하는 로직 추가
