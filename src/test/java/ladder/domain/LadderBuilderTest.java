@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class LadderBuilderTest {
     @Test
     @DisplayName("Should not create line builder with invalid parameter (numberOfPlayer is zero)")
-    void ShouldNotCreateLineBuildersWithInvalidPlayerNumber() {
+    void lineBuilderWithInvalidPlayerNumber() {
         int numberOfPlayer = 0;
         int height = 10;
 
@@ -17,7 +17,7 @@ public class LadderBuilderTest {
 
     @Test
     @DisplayName("Should not create line builder with invalid parameter (height is zero)")
-    void ShouldNotCreateLineBuildersWithInvalidHeight() {
+    void lineBuildersWithInvalidHeight() {
         int numberOfPlayer = 10;
         int height = 0;
 
