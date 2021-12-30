@@ -10,9 +10,10 @@ public class Main {
 
     public static void main(String[] args) {
         String[] players = inputPlayers();
+        String[] results = inputResults();
         int ladderHeight = inputLadderHeight();
 
-        new LadderGame(players, ladderHeight).start();
+        new LadderGame(players, results, ladderHeight).start();
     }
 
     private static int inputLadderHeight() {
@@ -21,6 +22,10 @@ public class Main {
     }
     private static String[] inputPlayers() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요.) (최대 5글자)");
+        return sc.nextLine().split("\\s*[,]\\s*");
+    }
+    private static String[] inputResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         return sc.nextLine().split("\\s*[,]\\s*");
     }
 }

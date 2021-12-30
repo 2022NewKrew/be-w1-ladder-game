@@ -9,9 +9,9 @@ public class LadderGame {
     private final LadderFactory factory;
     private final LadderPrinter ladderPrinter;
 
-    public LadderGame(String[] players, int ladderHeight) {
+    public LadderGame(String[] players, String[] results, int ladderHeight) {
         this.factory = new RandomLadderFactory();
-        Ladder ladder = factory.createLadder(players, ladderHeight);
+        Ladder ladder = factory.createLadder(players, results, ladderHeight);
         this.ladderPrinter = new LadderPrinter(ladder);
     }
 

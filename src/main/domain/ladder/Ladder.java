@@ -12,10 +12,10 @@ public class Ladder {
     private final int height;
     private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(String[] players, int height) {
+    public Ladder(String[] players, String[] results, int height) {
         this.height = height;
         for (int i = 0; i < players.length; i++) {
-            lines.add(new Line(cutOffTheName(players[i]), height));
+            lines.add(new Line(cutOffTheName(players[i]), results[i], height));
         }
     }
 

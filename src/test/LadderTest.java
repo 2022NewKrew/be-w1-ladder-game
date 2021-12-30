@@ -14,9 +14,9 @@ public class LadderTest {
     @DisplayName("Line객체에서 선을 그을 수 있는지 테스트")
     public void isConnectableLine() {
         // given
-        Line line1 = new Line("temp", 10);
-        Line line2 = new Line("kain", 10);
-        Line line3 = new Line("honux", 10);
+        Line line1 = new Line("temp", "o", 10);
+        Line line2 = new Line("kain", "x", 10);
+        Line line3 = new Line("honux", "o", 10);
 
         // when
         line1.connect(line2, 3);
@@ -33,7 +33,7 @@ public class LadderTest {
     @DisplayName("플레이어 이름 5글자 제한 테스트")
     public void playerNameValidTest() {
         // given
-        Ladder ladder = factory.createLadder(new String[]{"carrot1234", "verylongname"}, 5);
+        Ladder ladder = factory.createLadder(new String[]{"carrot1234", "verylongname"}, new String[] {"o", "x"}, 5);
 
         // when
         String carrot1234 = ladder.getLine(0).getName();
