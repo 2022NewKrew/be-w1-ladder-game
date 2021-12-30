@@ -18,6 +18,14 @@ public class OutputView {
 
     public static void outputParticipantResult(String result) {
         System.out.println(result);
+        System.out.println();
+    }
+
+    public static void outputAllParticipantResults(List<String> names, List<String> results) {
+        for(int i = 0; i < names.size(); i++) {
+            System.out.println(names.get(i) + " : " + results.get(i));
+        }
+        System.out.println();
     }
 
     private static void outputParticipantNames(List<String> names) {

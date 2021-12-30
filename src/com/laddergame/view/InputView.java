@@ -32,4 +32,5 @@ public class InputView {
     }
 
     public static String APPLICATION_EXIT = "춘식이";
+    public static String EVERY_PARTICIPANT = "all";
 }

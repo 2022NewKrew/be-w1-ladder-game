@@ -39,6 +39,10 @@ public class GameResults {
                 .findFirst().orElse(null);
     }
 
+    public List<GameResult> findAll() {
+        return this.gameResults;
+    }
+
     private static void validateResults(Participants participants, List<String> gameResults) {
         if(!matchesParticipantGameResultNumber(participants, gameResults)) {
             throw new IllegalArgumentException(NOT_MATCHING_PARTICIPANT_GAME_RESULT_NUMBER_EXCEPTION);
@@ -49,6 +53,7 @@ public class GameResults {
     private static boolean matchesParticipantGameResultNumber(Participants participants, List<String> gameResults) {
         return participants.getParticipantNumber() == gameResults.size();
     }
+
     private static void validateResult(String gameResult) {
         if (gameResult.length() < RESULT_LOWERBOUND) throw new IllegalArgumentException(GAME_RESULT_LOWERBOUND_EXCEPTION);
     }

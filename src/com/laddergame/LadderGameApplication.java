@@ -16,13 +16,13 @@ import static com.laddergame.view.OutputView.*;
 public class LadderGameApplication {
     public static void main(String[] args) {
         String ParticipantNames = inputParticipantName();
-        String gameResults = inputGameResult();
+        String inputGameResults = inputGameResult();
         int ladderHeight = inputLadderHeight();
 
-        LadderGame ladderGame = LadderGame.valueOf(ladderHeight, ParticipantNames, gameResults);
+        LadderGame ladderGame = LadderGame.valueOf(ladderHeight, ParticipantNames, inputGameResults);
         Lines lines = ladderGame.getLines();
         List<String> participantNames = ladderGame.getParticipantsNames();
-        List<String> participantResults = parseInput(gameResults);
+        List<String> participantResults = parseInput(inputGameResults);
         LinesDto linesDto = LinesDto.from(lines);
 
         outputLadderGameResult(linesDto.getGameResult(), participantNames, participantResults);
@@ -30,9 +30,18 @@ public class LadderGameApplication {
         while(true) {
             String targetParticipantName = inputToShowParticipantResult();
             if(Objects.equals(targetParticipantName, APPLICATION_EXIT)) break;
-            GameResults matchedGameResult = ladderGame.getGameResult();
-            GameResultDto participantResultDto = GameResultDto.from(matchedGameResult, targetParticipantName);
-            outputParticipantResult(participantResultDto.getParticipantResult());
+            GameResults gameResults = ladderGame.getGameResults();
+            boolean showsAllGameResults = Objects.equals(targetParticipantName, EVERY_PARTICIPANT);
+
+            GameResultDto participantResultDto = showsAllGameResults ?
+                    GameResultDto.from(gameResults) : GameResultDto.from(gameResults, targetParticipantName);
+
+            if(showsAllGameResults) {
+                outputAllParticipantResults(participantNames, participantResultDto.getParticipantResults());
+                continue;
+            }
+
+            outputParticipantResult(participantResultDto.getParticipantResults().get(0));
         }
     }
 }

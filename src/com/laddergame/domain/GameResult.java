@@ -7,7 +7,7 @@ public class GameResult {
     private final String participantName;
     private final String result;
 
-    public GameResult(String participantName, String result) {
+    private GameResult(String participantName, String result) {
         this.participantName = participantName;
         this.result = result;
     }

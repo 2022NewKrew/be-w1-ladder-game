@@ -22,9 +22,7 @@ public class Lines {
     }
 
     private static void validateHeight(int height) throws IllegalArgumentException {
-        if (height < HEIGHT_LOWERBOUND) {
-            throw new IllegalArgumentException(LADDER_HEIGHT_LOWERBOUND_EXCEPTION);
-        }
+        if (height < HEIGHT_LOWERBOUND) throw new IllegalArgumentException(LADDER_HEIGHT_LOWERBOUND_EXCEPTION);
     }
 
     public List<Line> getLines() {
