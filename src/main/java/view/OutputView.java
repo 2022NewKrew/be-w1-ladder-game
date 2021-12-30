@@ -1,5 +1,7 @@
 package view;
 
+import config.LadderGameConfig;
+import exception.NoSuchNameException;
 import input.InputManager;
 import ladder.Ladder;
 
@@ -21,13 +23,15 @@ public class OutputView {
         Map<String, String> results = getResult(ladder);
         if (checkEndCondition(next)) return;
         do {
-            if (next.equals("all")) {
-                showResultAll(results);
-            } else {
-                showResult(results.get(next));
-            }
+            validateName(results, next);
+            showResult(results, next);
             next = getInput();
         } while (!checkEndCondition(next));
+    }
+
+    private static void validateName(Map<String, String> results, String next) {
+        if(!results.containsKey(next) && !next.equals(LadderGameConfig.ALL_CONDITION.getValue()) && !next.equals(LadderGameConfig.END_CONDITION.getValue()))
+            throw new NoSuchNameException("그런 이름을 가진 참여자는 없습니다.");
     }
 
     private static Map<String, String> getResult(Ladder ladder) {
@@ -38,12 +42,20 @@ public class OutputView {
         return resultsMap;
     }
 
+    private static void showResult(Map<String, String> results, String next) {
+        if (next.equals("all")) {
+            showResultAll(results);
+            return;
+        }
+        showSingleResult(results.get(next));
+    }
+
     private static void showResultAll(Map<String, String> results) {
         results.keySet().stream().forEach(i -> System.out.println(i + ":" + results.get(i)));
         System.out.println();
     }
 
-    private static void showResult(String result) {
+    private static void showSingleResult(String result) {
         System.out.println(result);
         System.out.println();
     }

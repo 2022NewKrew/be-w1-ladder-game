@@ -8,7 +8,13 @@ import java.util.stream.Collectors;
 
 public class LadderResultFinder {
 
-    public static String getResult(Ladder ladder, String next) {
+    public static List<String> getResultAll(Ladder ladder) {
+        return ladder.getParticipants().stream()
+                .map(p -> getResult(ladder, p))
+                .collect(Collectors.toList());
+    }
+
+    private static String getResult(Ladder ladder, String next) {
         List<String> participants = ladder.getParticipants();
         List<LadderFloor> ladderFloors = ladder.getLadder();
         int idx = participants.indexOf(next);
@@ -16,12 +22,6 @@ public class LadderResultFinder {
             idx = nextIdx(idx, ladderFloors.get(i));
 
         return ladder.getResults().get(idx);
-    }
-
-    public static List<String> getResultAll(Ladder ladder) {
-        return ladder.getParticipants().stream()
-                .map(p -> getResult(ladder, p))
-                .collect(Collectors.toList());
     }
 
     private static int nextIdx(int currentIdx, LadderFloor ladderFloor) {
