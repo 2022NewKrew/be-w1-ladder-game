@@ -2,7 +2,9 @@ package org.cs.finn.laddergame.domain;
 
 import org.cs.finn.laddergame.util.Checker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -31,7 +33,7 @@ public class Member {
             throw new IllegalArgumentException("Valid member value is less then " + MIN + " or greater then " + MAX);
         }
 
-        member = List.of(members);
+        member = Arrays.asList(members);
     }
 
     private String[] splitAndFilterValidMember(final String memberString) {
@@ -49,6 +51,6 @@ public class Member {
     }
 
     public List<String> getMemberList() {
-        return member;
+        return Collections.unmodifiableList(member);
     }
 }

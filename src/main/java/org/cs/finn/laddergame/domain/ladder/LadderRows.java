@@ -1,5 +1,7 @@
 package org.cs.finn.laddergame.domain.ladder;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public final class LadderRows {
@@ -9,10 +11,10 @@ public final class LadderRows {
         if (list == null || list.isEmpty()) {
             throw new RuntimeException("List<LadderRow> is null or empty!");
         }
-        this.list = List.copyOf(list);
+        this.list = new ArrayList<>(list);
     }
 
     public List<LadderRow> getLadderRowList() {
-        return list;
+        return Collections.unmodifiableList(list);
     }
 }
