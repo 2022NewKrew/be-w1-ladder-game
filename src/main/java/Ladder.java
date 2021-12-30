@@ -3,19 +3,23 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<String> playerList;
+    private final List<Player> playerList;
     private final List<Line> lineList;
 
     public Ladder(ArrayList<String> playerNames, int ladderHeight) {
-        playerList = List.copyOf(playerNames);
-        ArrayList<Line> temp = new ArrayList<>();
-        for (int i = 0; i < ladderHeight; i++) {
-            temp.add(new Line(playerNames.size()));
+        ArrayList<Player> temp1 = new ArrayList<>();
+        for (String playerName : playerNames) {
+            temp1.add(new Player(playerName));
         }
-        lineList = List.copyOf(temp);
+        playerList = List.copyOf(temp1);
+        ArrayList<Line> temp2 = new ArrayList<>();
+        for (int i = 0; i < ladderHeight; i++) {
+            temp2.add(new Line(playerNames.size()));
+        }
+        lineList = List.copyOf(temp2);
     }
 
-    public List<String> getPlayerList() {
+    public List<Player> getPlayerList() {
         return playerList;
     }
 

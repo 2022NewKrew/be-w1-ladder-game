@@ -6,6 +6,7 @@ public class Output {
     private static final String HORIZONTAL_BAR = "-";
     private static final String EMPTY_BAR = " ";
     private static final int LADDER_WIDTH = 5;
+    private static final int NAME_GAP = 1;
     private static final String NEWLINE = "\n";
     private static final String BLANK = "    ";
 
@@ -13,9 +14,9 @@ public class Output {
 
     public static void printPlayerList(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
-        List<String> playerList = ladder.getPlayerList();
-        for (String playerName : playerList) {
-            sb.append(String.format("%" + (LADDER_WIDTH + 1) + "s", playerName));
+        List<Player> playerList = ladder.getPlayerList();
+        for (Player player : playerList) {
+            sb.append(player.getNameWithGap(LADDER_WIDTH, NAME_GAP));
         }
         System.out.println(sb);
     }
