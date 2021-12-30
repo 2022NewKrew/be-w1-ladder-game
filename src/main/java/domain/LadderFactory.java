@@ -8,14 +8,17 @@ public class LadderFactory {
 
     private static final Random random = new Random();
 
-    public static Ladder buildLadder(int peopleSize, int height) {
+    public static Ladder buildLadder(List<String> participants, List<String> results, int height) {
         List<Layer> layers = new ArrayList<>();
 
         for (int heightCounter = 0 ; heightCounter < height ; heightCounter++) {
-            layers.add(buildLayer(peopleSize));
+            layers.add(buildLayer(participants.size()));
         }
 
-        return new Ladder(layers);
+        Ladder ladder = new Ladder(participants, results, layers);
+        ladder.buildResultMap();
+
+        return ladder;
     }
 
     private static Layer buildLayer(int peopleSize) {
@@ -24,15 +27,15 @@ public class LadderFactory {
         boolean previousHorizontalLine = false;
 
         for (int peopleCounter = 0; peopleCounter < peopleSize - 1 ; peopleCounter++) {
-            boolean currentHorizontalLine = random.nextBoolean();
-            horizontalLines.add(resolveDivergence(previousHorizontalLine, currentHorizontalLine));
+            boolean currentHorizontalLine = resolveDivergence(previousHorizontalLine, random.nextBoolean());
+            horizontalLines.add(currentHorizontalLine);
             previousHorizontalLine = currentHorizontalLine;
         }
 
         return new Layer(horizontalLines);
     }
 
-    private static boolean resolveDivergence(boolean previous, boolean current) {
-        return !previous && current;
+    private static boolean resolveDivergence(boolean previous, boolean candidate) {
+        return !previous && candidate;
     }
 }

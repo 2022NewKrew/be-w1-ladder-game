@@ -15,23 +15,35 @@ public class OutputView {
 
     private static final int NAME_OUTPUT_LENGTH = 5;
 
+    private static final String KEYWORD_EXIT = "춘식이";
+    private static final String KEYWORD_EVERYONE = "all";
+
     public OutputView() {
 
     }
 
-    public void printPeople(List<String> people) {
-        StringBuilder peopleString = new StringBuilder();
-        for (String person : people) {
-            peopleString.append(padName(person));
-            peopleString.append(NAME_DELIMITER);
-        }
-        System.out.println(peopleString);
-    }
-
     public void printLadder(Ladder ladder) {
+        this.printPeople(ladder.getParticipants());
         for (Layer layer : ladder.getLayers()) {
             printLayer(layer);
         }
+        this.printResults(ladder.getResults());
+    }
+
+    public void printResult(Ladder ladder, String query) {
+        if (KEYWORD_EXIT.equals(query)) {
+            System.out.println("게임을 종료합니다.");
+            return;
+        }
+
+        System.out.println("실행 결과");
+
+        if (KEYWORD_EVERYONE.equals(query)) {
+            System.out.println(ladder.getEveryResults());
+            return;
+        }
+
+        System.out.println(ladder.getSingleResult(query));
     }
 
     private void printLayer(Layer layer) {
@@ -42,6 +54,24 @@ public class OutputView {
             System.out.print(VERTICAL_LINE);
         }
         System.out.println(RIGHT_PADDING);
+    }
+
+    private void printPeople(List<String> people) {
+        StringBuilder peopleString = new StringBuilder();
+        for (String person : people) {
+            peopleString.append(padName(person));
+            peopleString.append(NAME_DELIMITER);
+        }
+        System.out.println(peopleString);
+    }
+
+    private void printResults(List<String> results) {
+        StringBuilder resultString = new StringBuilder();
+        for (String result : results) {
+            resultString.append(padName(result));
+            resultString.append(NAME_DELIMITER);
+        }
+        System.out.println(resultString);
     }
 
     private String horizontalLineToString(Boolean horizontalLine) {

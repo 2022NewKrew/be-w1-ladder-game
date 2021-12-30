@@ -15,70 +15,85 @@ public class OutputViewTest {
     @Test
     @DisplayName("Padding test: length is 1")
     void padName_LengthIs1_ProperlyPadded() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        // Arrange
         Method padName = OutputView.class.getDeclaredMethod("padName", String.class);
         padName.setAccessible(true);
 
         String targetString = "a";
         String expectedPaddedString = "  a  ";
 
+        // Act
         String actualPaddedString = (String) padName.invoke(outputView, targetString);
 
+        // Assert
         assertThat(actualPaddedString).isEqualTo(expectedPaddedString);
     }
 
     @Test
     @DisplayName("Padding test: length is 2")
     void padName_LengthIs2_ProperlyPadded() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        // Arrange
         Method padName = OutputView.class.getDeclaredMethod("padName", String.class);
         padName.setAccessible(true);
 
         String targetString = "bb";
         String expectedPaddedString = "  bb ";
 
+        // Act
         String actualPaddedString = (String) padName.invoke(outputView, targetString);
 
+        // Assert
         assertThat(actualPaddedString).isEqualTo(expectedPaddedString);
     }
 
     @Test
     @DisplayName("Padding test: length is 3")
     void padName_LengthIs3_ProperlyPadded() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        // Arrange
         Method padName = OutputView.class.getDeclaredMethod("padName", String.class);
         padName.setAccessible(true);
 
         String targetString = "ccc";
         String expectedPaddedString = " ccc ";
 
+        // Act
         String actualPaddedString = (String) padName.invoke(outputView, targetString);
 
+        // Assert
         assertThat(actualPaddedString).isEqualTo(expectedPaddedString);
     }
 
     @Test
     @DisplayName("Padding test: length is 4")
     void padName_LengthIs4_ProperlyPadded() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        // Arrange
         Method padName = OutputView.class.getDeclaredMethod("padName", String.class);
         padName.setAccessible(true);
 
         String targetString = "dddd";
         String expectedPaddedString = " dddd";
 
+        // Act
         String actualPaddedString = (String) padName.invoke(outputView, targetString);
 
+        // Assert
         assertThat(actualPaddedString).isEqualTo(expectedPaddedString);
     }
 
     @Test
     @DisplayName("Padding test: length is 5")
     void padName_LengthIs5_ProperlyPadded() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        // Arrange
         Method padName = OutputView.class.getDeclaredMethod("padName", String.class);
         padName.setAccessible(true);
 
         String targetString = "eeeee";
         String expectedPaddedString = "eeeee";
 
+        // Act
         String actualPaddedString = (String) padName.invoke(outputView, targetString);
 
+        // Assert
         assertThat(actualPaddedString).isEqualTo(expectedPaddedString);
     }
 }

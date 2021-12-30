@@ -19,9 +19,9 @@ public class InputView {
 
         System.out.println("최대 사다리 높이는 몇 개 인가요?");
         try{
-            height = scanner.nextInt();
+            height = Integer.parseInt(scanner.nextLine());
             validatePositiveInteger(height);
-        } catch (NoSuchElementException | IllegalStateException exception) {
+        } catch (NumberFormatException | NoSuchElementException | IllegalStateException exception) {
             System.err.println("입력을 처리할 수 없습니다.");
             System.exit(1);
         }
@@ -43,6 +43,36 @@ public class InputView {
         }
 
         return peopleList;
+    }
+
+    public List<String> getResults() {
+        List<String> resultList = null;
+
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        try {
+            String resultString = scanner.nextLine();
+            resultList = List.of(resultString.split(","));
+        } catch (NoSuchElementException | IllegalStateException exception) {
+            System.err.println("입력을 처리할 수 없습니다.");
+            System.exit(1);
+        }
+
+        return resultList;
+    }
+
+    public String getResultQuery() {
+        String query = null;
+
+        System.out.println("결과를 보고싶은 사람은?");
+
+        try {
+            query = scanner.nextLine();
+        } catch (NoSuchElementException | IllegalStateException exception) {
+            System.err.println("입력을 처리할 수 없습니다.");
+            System.exit(1);
+        }
+
+        return query;
     }
 
     private void validatePositiveInteger(int value) throws InputMismatchException {
