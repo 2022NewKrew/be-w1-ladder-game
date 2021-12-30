@@ -10,15 +10,30 @@ public class LadderGame {
 
   private final ReadManager readManager;
   private final WriteManager writeManager;
+  private LadderBoard ladderBoard;
 
   public LadderGame() {
     this.readManager = BufferedReadManager.create();
     this.writeManager = BufferedWriteManager.create();
   }
 
+
+  private void setupLadderBoard() throws Exception {
+    Participants participants = readManager.getParticipants();
+    int ladderHeight = readManager.getLadderHeight();
+    Ladder ladder = Ladder.of(participants.size(), ladderHeight);
+    this.ladderBoard = LadderBoard.create(ladder, participants);
+  }
+
+
   public void run() throws Exception {
-    Ladder ladder = Ladder.ofInput(readManager);
-    ladder.drawWith(writeManager);
+
+    if (ladderBoard == null) {
+      setupLadderBoard();
+    }
+
+    ladderBoard.drawWith(writeManager);
+
   }
 
 }

@@ -18,9 +18,11 @@ public class BufferedWriteManager implements WriteManager {
     this.writer = new BufferedWriter(new OutputStreamWriter(System.out));
   }
 
+
   public static BufferedWriteManager create() {
     return new BufferedWriteManager();
   }
+
 
   @Override
   public void draw(String str) throws IOException {
