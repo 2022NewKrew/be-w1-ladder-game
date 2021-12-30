@@ -1,15 +1,18 @@
-package Ladder;
+package ladder.domain;
+
+import ladder.view.ShapeCharacter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class LadderRow {
-    private final List<Boolean> horizonBranch = new ArrayList<>();
+
+    public List<Boolean> horizonBranch = new ArrayList<>();
     private static final Random random = new Random();
 
     public LadderRow(int numParticipants) {
-        for (int i = 0; i < numParticipants-1; i++) {
+        for (int i = 0; i < numParticipants - 1; i++) {
             horizonBranch.add(getRandomHorizonBranch(i));
         }
     }
@@ -17,10 +20,10 @@ public class LadderRow {
     public String toString() {
         StringBuffer ladderRow = new StringBuffer();
 
-        ladderRow.append("  " + LadderShape.VERTICAL_BRANCH);
+        ladderRow.append("  " + ShapeCharacter.VERTICAL_BRANCH);
         for (int col = 0; col < horizonBranch.size(); col++) {
             ladderRow.append(selectCharacter(horizonBranch.get(col)));
-            ladderRow.append(LadderShape.VERTICAL_BRANCH);
+            ladderRow.append(ShapeCharacter.VERTICAL_BRANCH);
         }
         ladderRow.append("\n");
 
@@ -33,8 +36,8 @@ public class LadderRow {
     }
 
     private String selectCharacter(boolean isExistHorizon) {
-        if (isExistHorizon) return LadderShape.HORIZON_BRANCH;
-        return LadderShape.NO_HORIZON_BRANCH;
+        if (isExistHorizon) return ShapeCharacter.HORIZON_BRANCH;
+        return ShapeCharacter.NO_HORIZON_BRANCH;
     }
 
 }
