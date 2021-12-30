@@ -7,6 +7,8 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class LadderGame {
+    public static final int MAX_PLAYER_NAME_LENGTH = 5;
+
     private List<String> players;
 
     /**

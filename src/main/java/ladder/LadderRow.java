@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static ladder.LadderGame.MAX_PLAYER_NAME_LENGTH;
+
 /**
  * {@link Ladder}의 가로 한 줄을 담당하는 클래스
  */
@@ -12,8 +14,8 @@ public class LadderRow {
      * {@link LadderRow}의 가로줄 구성요소
      */
     private enum StepType {
-        EMPTY("     "),
-        STEP("-----");
+        EMPTY(" ".repeat(MAX_PLAYER_NAME_LENGTH)),
+        STEP("-".repeat(MAX_PLAYER_NAME_LENGTH));
 
         private final String displayStr;
         private static final Random random = new Random();
