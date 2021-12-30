@@ -26,6 +26,13 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    public int foundResult(int startPoint) {
+        for (Line line : lines) {
+            startPoint = line.movedPoint(startPoint);
+        }
+        return startPoint;
+    }
+
     public List<Line> getLines() {
         return new ArrayList<>(lines);
     }

@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +14,7 @@ import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LineTest {
@@ -19,15 +22,27 @@ class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4})
     @DisplayName("Line 을 생성한다.")
-    void valueOf(int person) {
+    void valueOf(int countOfPerson) {
         // given
-        Line line = Line.valueOf(person);
+        Line line = Line.valueOf(countOfPerson);
 
         // when
         List<Boolean> points = line.getPoints();
 
         // then
-        assertThat(points).hasSize(person - 1);
+        assertThat(points).hasSize(countOfPerson);
+    }
+
+    @Test
+    @DisplayName("(생성자) 리스트가 비어있다면 에러가 발생한다.")
+    void valueOfWithEmptyArray() {
+        // given
+
+        // when
+        ThrowingCallable callable = () -> new Line(new ArrayList<>());
+
+        // then
+        assertThatThrownBy(callable).isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
@@ -37,7 +52,7 @@ class LineTest {
         // given
 
         // when
-        ThrowingCallable callable = () -> valueOf(countOfPerson);
+        ThrowingCallable callable = () -> Line.valueOf(countOfPerson);
 
         // then
         assertThatThrownBy(callable).isExactlyInstanceOf(IllegalArgumentException.class);
@@ -75,5 +90,19 @@ class LineTest {
 
         // then
         assertThat(booleans).hasSize(2);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:1", "1:0", "2:3", "3:2", "4:4"}, delimiter = ':')
+    @DisplayName("라인을 이동시킨다.")
+    void movePoint(int startPoint, int expected) {
+        // given
+        Line line = new Line(Arrays.asList(true, false, true, false, false));
+
+        // when
+        int movedPoint = line.movedPoint(startPoint);
+
+        // then
+        assertThat(movedPoint).isEqualTo(expected);
     }
 }

@@ -17,10 +17,24 @@ public class InputView {
         return players;
     }
 
+    public static String[] inputReward() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String[] rewards = scanner.nextLine().split(SPLIT_REGEX);
+        System.out.println();
+        return rewards;
+    }
+
     public static int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        final int ladder = scanner.nextInt();
+        final int ladder = Integer.parseInt(scanner.nextLine());
         System.out.println();
         return ladder;
+    }
+
+    public static String inputRewardPlayerName() {
+        System.out.println("결과를 보고 싶은 사람은?(all을 입력하면 전체 결과 출력 후 게임이 종료됩니다.)");
+        final String playerName = scanner.nextLine();
+        System.out.println();
+        return playerName;
     }
 }
