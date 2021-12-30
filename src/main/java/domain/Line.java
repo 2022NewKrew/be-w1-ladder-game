@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,6 +14,10 @@ public class Line {
         this.personNum = personNum;
         makeLine();
 
+    }
+
+    public List<Boolean> getLine() {
+        return line;
     }
 
     private void makeLine() {

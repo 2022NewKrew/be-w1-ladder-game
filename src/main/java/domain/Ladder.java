@@ -1,3 +1,7 @@
+package domain;
+
+import view.LadderView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,16 +17,13 @@ public class Ladder {
         makeLadder(personNum, ladderHeight);
     }
 
+    public List<Line> getLadder() {
+        return ladder;
+    }
+
     private void makeLadder(int personNum, int ladderHeight) {
         for (int i = 0; i < ladderHeight; i++) {
             ladder.add(new Line(personNum));
         }
     }
-
-    public void printLadder() {
-        for (int i = 0; i < ladderHeight; i++) {
-            System.out.println(ladder.get(i));
-        }
-    }
-
 }
