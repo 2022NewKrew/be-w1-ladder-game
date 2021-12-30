@@ -1,6 +1,6 @@
-package view;
+package bin.jayden.ladder_game.view;
 
-import data.LadderInfo;
+import bin.jayden.ladder_game.domain.LadderInfo;
 
 import java.util.Scanner;
 
@@ -14,7 +14,7 @@ public class LadderInfoScanner {
     }
 
     public static LadderInfo getLadderInfo() {
-        System.out.printf("참여할 사람 이름을 입력하세요. (이름은 %s(%s)로 구분하세요)\n",DELIMITER_NAME,DELIMITER);
+        System.out.printf("참여할 사람 이름을 입력하세요. (이름은 %s(%s)로 구분하세요)\n", DELIMITER_NAME, DELIMITER);
         String inputString = scanner.nextLine();
         String[] participants = inputString.split(DELIMITER);
 

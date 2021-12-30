@@ -1,4 +1,4 @@
-package data;
+package bin.jayden.ladder_game.domain;
 
 import java.util.ArrayList;
 import java.util.List;

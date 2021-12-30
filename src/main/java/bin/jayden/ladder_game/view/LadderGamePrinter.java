@@ -1,8 +1,8 @@
-package view;
+package bin.jayden.ladder_game.view;
 
-import data.Ladder;
-import data.LadderInfo;
-import data.LadderRow;
+import bin.jayden.ladder_game.domain.Ladder;
+import bin.jayden.ladder_game.domain.LadderInfo;
+import bin.jayden.ladder_game.domain.LadderRow;
 
 import java.util.List;
 

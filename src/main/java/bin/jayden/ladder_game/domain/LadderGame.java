@@ -1,7 +1,7 @@
-import data.Ladder;
-import data.LadderInfo;
-import view.LadderGamePrinter;
-import view.LadderInfoScanner;
+package bin.jayden.ladder_game.domain;
+
+import bin.jayden.ladder_game.view.LadderGamePrinter;
+import bin.jayden.ladder_game.view.LadderInfoScanner;
 
 public class LadderGame {
 
