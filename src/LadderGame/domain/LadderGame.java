@@ -1,19 +1,20 @@
+package LadderGame.domain;
+
+import LadderGame.view.LadderView;
+
 import java.util.Scanner;
 
 public class LadderGame {
-
     // 클래스 변수
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-
+    public LadderGame() throws Exception {
         String names = getConsoleNameList();
         int ladderHeight = getConsoleLadderHeight();
         scanner.close();
 
-        Ladder ladder = new Ladder(names, ladderHeight);
-
-        System.out.println(ladder);
+        LadderView ladderView = new LadderView(new Ladder(names, ladderHeight));
+        ladderView.showLadder();
     }
 
     private static String getConsoleNameList() {
