@@ -5,21 +5,21 @@ import java.util.stream.Collectors;
 
 public class Participant {
 
-    private final List<Name> nameList;
+    private final List<Name> names;
 
-    public Participant(List<String> nameList) {
-        checkParticipantNumber(nameList.size());
-        this.nameList = nameList.stream()
+    public Participant(List<String> names) {
+        checkParticipantNumber(names.size());
+        this.names = names.stream()
                 .map(Name::new)
                 .collect(Collectors.toList());
     }
 
     public int howManyParticipant() {
-        return nameList.size();
+        return names.size();
     }
 
     public List<String> getParticipantNameList() {
-        return this.nameList.stream()
+        return this.names.stream()
                 .map(Name::getName)
                 .collect(Collectors.toList());
     }
