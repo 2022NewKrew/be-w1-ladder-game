@@ -1,7 +1,6 @@
 package main.view;
 
 import main.domain.ladder.Ladder;
-import main.domain.line.Line;
 
 public class LadderPrinter {
 
