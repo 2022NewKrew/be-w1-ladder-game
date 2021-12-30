@@ -1,12 +1,12 @@
 package LadderGame.domain.Ladder;
 
+import LadderGame.util.RandomUtil;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
     private final int ladderWidth;
-    private final Random random = new Random();
     public List<Boolean> chkLadder = new ArrayList<>();
     public List<String> ladderComponents = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class Line {
         if(canMakeRandomLadder(col)){
             return false;
         }
-        return random.nextBoolean();
+        return RandomUtil.getRandomBoolean();
     }
 
     private Boolean canMakeRandomLadder(int col){
