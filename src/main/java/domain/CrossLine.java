@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,7 +16,7 @@ public class CrossLine {
         bars = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            bars.add(isAvailableLocation(i));
+            bars.add(generateRandomBar(i));
         }
     }
 
@@ -30,16 +32,12 @@ public class CrossLine {
         return sb.toString();
     }
 
-    public boolean isAvailableLocation(int x) {
+    public boolean generateRandomBar(int x) {
         if (x - 1 >= 0 && bars.get(x - 1)) {
             return false;
         }
 
-        if (!RANDOM.nextBoolean()) {
-            return false;
-        }
-
-        return true;
+        return RANDOM.nextBoolean();
     }
 
     public List<Boolean> getBars() {

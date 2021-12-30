@@ -1,39 +1,20 @@
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Application {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static void runApp() {
-        List<Participant> participants = initializeParticipants();
-        Ladder ladder = initializeLadder(participants.size());
+        try {
+            String[] names = inputParticipants();
+            validateParticipants(names);
 
-        printParticipants(participants);
-        printLadder(ladder);
-    }
+            int height = inputHeight();
 
-    public static List<Participant> initializeParticipants() {
-        String[] nameOfParticipants = inputParticipants();
-
-        return Arrays.stream(nameOfParticipants).map(Participant::new).collect(Collectors.toList());
-    }
-
-    public static void printParticipants(List<Participant> participants) {
-        List<String> names = participants.stream().map(Participant::getName).collect(Collectors.toList());
-        System.out.println(String.join("", names));
-    }
-
-    public static Ladder initializeLadder(int numOfPeople) {
-        int heightOfLadder = inputHeight();
-        Ladder ladder = new Ladder(heightOfLadder, numOfPeople);
-
-        return ladder;
-    }
-
-    public static void printLadder(Ladder ladder) {
-        System.out.println(ladder.toString());
+            LadderGame ladderGame = new LadderGame(names, height);
+            ladderGame.printInformation();
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static int inputHeight() {
@@ -47,6 +28,18 @@ public class Application {
         String inputOfParticipants = SCANNER.nextLine();
 
         return inputOfParticipants.split(",");
+    }
+
+    public static void validateParticipants(String[] names) {
+        if (names.length <= 1) {
+            throw new RuntimeException("참여자의 수는 2명 이상이여야 합니다.");
+        }
+
+        for (int i = 0; i < names.length; i++) {
+            if (names[i].length() >= 6) {
+                throw new RuntimeException("참여자의 이름 길이는 5자 이하여야 합니다.");
+            }
+        }
     }
 
     public static void main(String[] args) {
