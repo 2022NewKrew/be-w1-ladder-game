@@ -13,7 +13,7 @@ public class Member {
     public static final int MIN = 2;
     public static final int MAX = 10;
     public static final int WIDTH = 5;
-
+    public static final String MSG_ALLOWED_CHAR = "영문 대소문자와 숫자";
     private static final String ALPHA_NUMBER_REGEX = "[a-zA-Z0-9]+";
 
     private final List<String> member;
