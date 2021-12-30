@@ -2,9 +2,9 @@ package keith.domain;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Ladder {
+    public static final int MAX_NAME_LEN = 5;
     private final List<Line> connections;
     private final List<String> participants;
 

@@ -7,7 +7,7 @@ import java.util.Random;
 public class Line {
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int width) {
+    protected Line(int width) {
         this.points.add(false);
         Random random = new Random();
         for (int j = 1; j < width; j++) {
