@@ -1,3 +1,8 @@
+import model.Ladder;
+import model.StartInfo;
+import view.InputManager;
+import view.PrintManager;
+
 public class Main {
     public static void main(String[] args) {
         // 게임 정보 입력받음

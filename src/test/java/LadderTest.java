@@ -1,3 +1,5 @@
+import model.Ladder;
+import model.Line;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.lang.reflect.Field;

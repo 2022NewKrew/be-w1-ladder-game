@@ -1,3 +1,5 @@
+package model;
+
 public class StartInfo {
     private final int numPeople;
     private final int maxHeight;
