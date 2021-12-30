@@ -58,7 +58,6 @@ public class Floor implements Iterable<LadderCell> {
 
   private boolean isPrevSeparatorEmpty(int current) {
     int prevIndex = current * 2 - 1;
-    System.out.println(prevIndex);
     return prevIndex < 0 || floor.get(prevIndex) == LadderCell.EMPTY_SEPARATOR;
   }
 
