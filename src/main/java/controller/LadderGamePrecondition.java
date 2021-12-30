@@ -3,19 +3,19 @@ package controller;
 import java.util.List;
 
 public class LadderGamePrecondition {
-    public static void checkUsers(List<String> userList, int MAX_LENGTH) {
+    public static void checkUsers(List<String> userList, int maxLength) {
         isNotEmptyList(userList);
-        isLegalUsers(userList, MAX_LENGTH);
+        isLegalUsers(userList, maxLength);
     }
 
-    private static void isLegalUsers(List<String> users, int MAX_LENGTH) {
-        if (isIllegal(users, MAX_LENGTH)) {
+    private static void isLegalUsers(List<String> users, int maxLength) {
+        if (isIllegal(users, maxLength)) {
             throw new IllegalArgumentException("사람의 이름은 5글자 이내여야 합니다.");
         }
     }
 
-    private static boolean isIllegal(List<String> users, int MAX_LENGTH) {
-        return users.stream().anyMatch(userName -> userName.length() > MAX_LENGTH);
+    private static boolean isIllegal(List<String> users, int maxLength) {
+        return users.stream().anyMatch(userName -> userName.length() > maxLength);
     }
 
     private static void isNotEmptyList(List<String> userList) {
