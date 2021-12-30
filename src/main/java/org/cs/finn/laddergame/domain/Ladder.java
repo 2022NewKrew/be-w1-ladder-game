@@ -46,11 +46,18 @@ public class Ladder {
 
         BridgeType bridgeType = BridgeType.EMPTY;
         for (int i = 0; i < size; i++) {
-            bridgeType = (bridgeType == BridgeType.LINE ? BridgeType.EMPTY : BridgeType.getRandomBridge(sRand));
+            bridgeType = getNextBridge(sRand, bridgeType);
             list.add(bridgeType);
         }
 
         return new LadderRow(list);
+    }
+
+    private BridgeType getNextBridge(final SecureRandom sRand, final BridgeType before) {
+        if (before == BridgeType.LINE) {
+            return BridgeType.EMPTY;
+        }
+        return BridgeType.getRandomBridge(sRand);
     }
 
     public LadderRows getLadderRows() {
