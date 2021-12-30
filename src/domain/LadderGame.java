@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +15,7 @@ public class LadderGame {
 
     private Scanner scanner = new Scanner(System.in);
 
-    LadderGame() {
+    public LadderGame() {
         inputParticipants();
         inputHeight();
         numOfParticipants = participants.size();

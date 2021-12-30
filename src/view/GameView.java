@@ -1,4 +1,8 @@
-import java.util.ArrayList;
+package view;
+
+import domain.LadderGame;
+import domain.Line;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +13,7 @@ public class GameView {
 
     private LadderGame currentGame;
 
-    GameView(LadderGame game) {
+    public GameView(LadderGame game) {
         currentGame = game;
     }
 
