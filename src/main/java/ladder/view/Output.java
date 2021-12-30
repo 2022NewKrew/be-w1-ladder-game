@@ -1,3 +1,9 @@
+package ladder.view;
+
+import ladder.domain.Ladder;
+import ladder.domain.Line;
+import ladder.domain.Player;
+
 import java.util.List;
 
 public class Output {
