@@ -19,4 +19,14 @@ public class Ladder {
     public ArrayList<Line> getLines(){
         return lines;
     }
+
+    public int getResultIndex(int index){
+        int height = lines.size();
+        int curindex = index;
+        for(int i = 0; i < height; i++){
+            Line curLine = lines.get(i);
+            curindex = curLine.getNextIndex(curindex);
+        }
+        return curindex;
+    }
 }

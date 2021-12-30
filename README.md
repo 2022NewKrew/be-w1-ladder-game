@@ -25,6 +25,14 @@
 - [x] 입출력 테스트 제거(참가자 이름 출력 테스트는 필수 요구사항에 포함되어 유지하였습니다)
 - [ ] Line 클래스의 cell 생성전략 변경 고려(인터페이스 사용)
 
-
-# Q&A
+### Q&A
 1. /test/java/domain/LineTest 의 '가로선_연속2개방지_테스트'를 위해 Line 클래스에 getter(getCells())을 만들었는데 테스트를 위해 getter를 만드는게 적절한 조치인지가 궁금합니다.
+
+# step 5
+- [x] Participant 클래스 추가(참가자의 이름과 순서포함)
+- [x] ParticipantList 클래스 추가(Participant 객체들을 갖고 있는 클래스)
+- [x] GameManager 클래스(게임을 진행하기 위한 클래스) 추가
+- [x] Result 클래스(게임 결과) 추가
+- [x] ResultList(게임 결과 목록) 클래스 추가
+
+### Q&A

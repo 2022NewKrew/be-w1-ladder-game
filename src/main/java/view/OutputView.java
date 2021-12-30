@@ -3,16 +3,19 @@ package view;
 import domain.Ladder;
 import domain.Line;
 import domain.ParticipantList;
+import domain.ResultList;
 
 import java.util.Arrays;
 
 public class OutputView {
     private Ladder ladder;
     private ParticipantList participantList;
+    private ResultList resultList;
 
-    public OutputView(Ladder ladder, ParticipantList participantList){
+    public OutputView(Ladder ladder, ParticipantList participantList, ResultList resultList){
         this.participantList = participantList;
         this.ladder = ladder;
+        this.resultList = resultList;
     }
 
     public void showMap(){
@@ -20,6 +23,7 @@ public class OutputView {
         System.out.println();
         System.out.println(showParticipants());
         showLadder();
+        System.out.println(showResultList());
     }
 
     public String showParticipants(){
@@ -40,9 +44,34 @@ public class OutputView {
         }
     }
 
+    public String showResultList(){
+        char[] resultsName = new char[(resultList.getListSize() + 1) * 6];
+        Arrays.fill(resultsName,' ');
+        for(int i = 0; i < resultList.getListSize(); i++){
+            writeresultToCharArr(resultsName, i);
+        }
+        return new String(resultsName);
+    }
+
+    public void writeresultToCharArr(char[] charArr, int index){
+        String result = resultList.getResultName(index);
+        for(int i = 0 ; i < result.length(); i++){
+            charArr[6 * index + 2
+                    - (int)(result.length() / 2)
+                    + i] = result.charAt(i);
+        }
+    }
+
     public void showLadder(){
         for(Line line : ladder.getLines()) {
             System.out.println(line);
         }
+    }
+
+    public void showResult(int index){
+        int resultIndex = ladder.getResultIndex(index);
+        String name = participantList.getParticipantName(index);
+        String result = resultList.getResultName(resultIndex);
+        System.out.println(name + " : " + result);
     }
 }

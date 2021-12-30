@@ -41,6 +41,31 @@ public class Line {
         return "     ";
     }
 
+    public int getNextIndex(int index){
+        if(isLeftLine(index)){
+            return index - 1;
+        }
+        if(isRightLine(index)){
+            return index + 1;
+        }
+        return index;
+    }
+
+    public Boolean isLeftLine(int index){
+        if(index == 0){
+            return false;
+        }
+        return cells.get(index - 1);
+    }
+
+    public Boolean isRightLine(int index){
+        int lastIndex = cells.size();
+        if(index == lastIndex){
+            return false;
+        }
+        return cells.get(index);
+    }
+
     @Override
     public String toString(){
         StringBuilder s = new StringBuilder();

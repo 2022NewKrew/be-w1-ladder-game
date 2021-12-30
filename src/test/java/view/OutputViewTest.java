@@ -1,8 +1,6 @@
 package view;
 
-import domain.Ladder;
-import domain.Participant;
-import domain.ParticipantList;
+import domain.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -25,7 +23,8 @@ class OutputViewTest {
                         new Participant("k")));
 
         ParticipantList participantList = new ParticipantList(participants);
-        OutputView outputView = new OutputView(ladder, participantList);
+        ResultList resultList = new ResultList(new ArrayList<Result>());
+        OutputView outputView = new OutputView(ladder, participantList,resultList);
         assertEquals(outputView.showParticipants(), " kim   jo   park  jeong   k         ");
     }
 }
