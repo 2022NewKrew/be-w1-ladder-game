@@ -9,13 +9,14 @@ import java.util.StringJoiner;
 
 public class UserOutput {
 
-    private static final String BRIDGE_SHAPE = "-----";
-    private static final String SPACE_SHAPE = "     ";
-    private static final String LEFT_PILLAR = "   |";
-    private static final String PILLAR = "|";
-    private static final String RIGHT_PILLAR = "|  ";
-    private static final int ALLOWED_SPACE = 7;
     private static final String EMPTY_SPACE = " ";
+    private static final String BRIDGE = "-";
+    private static final String PILLAR = "|";
+    private static final String BRIDGE_SHAPE = BRIDGE.repeat(5);
+    private static final String SPACE_SHAPE = EMPTY_SPACE.repeat(5);
+    private static final String LEFT_PILLAR = EMPTY_SPACE.repeat(3) + PILLAR;
+    private static final String RIGHT_PILLAR = PILLAR;
+    private static final int ALLOWED_SPACE = 7;
 
     public static void printLadderToConsole(Ladder ladder, List<String> userList) {
         printUserList(userList);
