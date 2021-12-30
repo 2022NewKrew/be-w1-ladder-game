@@ -5,6 +5,7 @@ import ladder.domain.exception.LadderException;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.bridge.RandomBridgeProviderImpl;
 import ladder.domain.ladder.LadderInfo;
+import ladder.domain.ladder.LadderResult;
 import ladder.view.LadderRenderer;
 
 import java.util.Scanner;
@@ -18,6 +19,9 @@ public class LadderGame {
         BridgeBuilder bridgeBuilder = new BridgeBuilder(ladderInfo, new RandomBridgeProviderImpl(System.currentTimeMillis()));
         Ladder ladder = new Ladder(ladderInfo, bridgeBuilder.build());
         System.out.println(LadderRenderer.render(ladder));
+
+        LadderResult ladderResult = new LadderResult(ladder);
+        printResult(sc, ladderResult);
     }
 
     private static LadderInfo getInput(Scanner sc) {
@@ -37,6 +41,28 @@ public class LadderGame {
             ladderInfo = getInput(sc);
         }
         return ladderInfo;
+    }
+
+    private static void printResult(Scanner sc, LadderResult ladderResult) {
+        String command = "";
+        while (!command.equals("춘식이")) {
+            System.out.println("결과를 보고 싶은 사람은?");
+            command = sc.next();
+            System.out.println(getResult(command, ladderResult));
+        }
+        System.out.println("게임을 종료합니다.");
+    }
+
+    private static String getResult(String command, LadderResult ladderResult) {
+        if (command.equals("all")) {
+            return ladderResult.getAllResult();
+        }
+
+        String oneResult = ladderResult.getOneResult(command);
+        if (oneResult != null) {
+            return oneResult;
+        }
+        return "";
     }
 
 }
