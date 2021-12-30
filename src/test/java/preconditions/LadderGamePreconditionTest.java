@@ -17,7 +17,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @Nested
 class LadderGamePreconditionTest {
 
-
     @DisplayName("올바른 유저들이 담긴 리스트일때는 예외를 던지지 않음")
     @ParameterizedTest
     @MethodSource("legalUsers")

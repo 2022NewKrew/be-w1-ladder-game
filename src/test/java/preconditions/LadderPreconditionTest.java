@@ -12,7 +12,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @DisplayName("Ladder 검증")
 @Nested
 class LadderPreconditionTest {
-
     @DisplayName("frame의 수 검증")
     @Nested
     class FrameLengthTest {
