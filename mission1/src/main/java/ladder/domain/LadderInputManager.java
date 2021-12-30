@@ -1,28 +1,29 @@
+package ladder.domain;
+
+import ladder.constant.Const;
+import ladder.entity.LadderInput;
+import ladder.exception.LadderException;
+
 import java.util.*;
 
 public class LadderInputManager {
-    private final int maxHeight;
-    private final int nameLen;
-    private final ArrayList<String> playerList;
     private final Scanner scanner;
+    private final LadderInput ladderInput;
 
-    public LadderInputManager(int nameLen) {
-        this.nameLen = nameLen;
+    public LadderInputManager(){
         scanner = new Scanner(System.in);
+        ArrayList<String> playerList = getPlayers();
 
-        playerList = getPlayers();
-        maxHeight = getInputNumber();
+        int maxHeight = getInputNumber();
+
+        this.ladderInput = new LadderInput(maxHeight, playerList);
     }
 
-    public ArrayList<String> getPlayerList() {
-        return playerList;
+    public LadderInput getLadderInput() {
+        return ladderInput;
     }
 
-    public int getMaxHeight() {
-        return maxHeight;
-    }
-
-    private ArrayList<String> getPlayers() {
+    private ArrayList<String> getPlayers(){
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         String players = scanner.nextLine();
@@ -31,19 +32,29 @@ public class LadderInputManager {
         ArrayList<String> playersList = new ArrayList<>();
         Collections.addAll(playersList, playersArray);
 
-        if (!checkNameLength(playersList)){
-            System.out.printf("이름은 %d자 이내로 입력해주세요.", nameLen);
-            System.out.println();
+        try{
+            checkPlayersList(playersList);
         }
+        catch(LadderException e){
+            playersList = getPlayers();
+        }
+
         return playersList;
     }
 
-    private boolean checkNameLength(ArrayList<String> playerList) {
-        boolean result = true;
-        for (String name : playerList) {
-            result = result && name.length() > 0 && name.length() <= nameLen;
+    private void checkPlayersList(ArrayList<String> playersList) throws LadderException {
+        for(String player : playersList) {
+            checkNameLength(player);
         }
-        return result;
+    }
+
+    private void checkNameLength(String playerName) throws LadderException{
+        if(playerName.length() == 0) {
+            throw new LadderException();
+        }
+        if(playerName.length() > Const.MAX_NAME_LEN) {
+            throw new LadderException();
+        }
     }
 
     private int getInputNumber() {
