@@ -3,8 +3,10 @@ package view;
 import domain.ladder.Ladder;
 import domain.ladder.LadderFrame;
 import domain.ladder.LadderFrameLine;
+import dto.LadderDTO;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 
 public class UserOutput {

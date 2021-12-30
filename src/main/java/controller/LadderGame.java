@@ -1,5 +1,6 @@
 package controller;
 
+import dao.LadderDAO;
 import domain.ladder.Ladder;
 import view.UserInput;
 import view.UserOutput;
