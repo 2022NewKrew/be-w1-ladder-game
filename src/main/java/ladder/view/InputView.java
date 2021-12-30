@@ -35,8 +35,8 @@ public class InputView {
         return height;
     }
 
-    private static void validateName(String Name) throws InputMismatchException {
-        if (Name.length() == 0 || Name.length() > MAX_NAME_LENGTH)
+    private static void validateName(String name) throws InputMismatchException {
+        if (name.isEmpty() || name.length() > MAX_NAME_LENGTH)
             throw new InputMismatchException();
     }
 

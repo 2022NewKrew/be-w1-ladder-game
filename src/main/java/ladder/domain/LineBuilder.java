@@ -1,12 +1,11 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
 class LineBuilder {
-    private final int MAX_RANDOM = 10;
-    private final int RANDOM_RANGE = 3;
     private final Random random = new Random();
     private final int numberOfPlayer;
 
@@ -20,7 +19,7 @@ class LineBuilder {
      * @return 포함시키면 true를 포함시키지 않으면 false를 반환한다
      */
     private Boolean getLineElement() {
-        return random.nextInt(MAX_RANDOM) < RANDOM_RANGE;
+        return random.nextBoolean();
     }
 
     /**
@@ -30,7 +29,7 @@ class LineBuilder {
      * @return ladder.domain.Line 객체를 반환한다
      */
     Line makeLine() {
-        ArrayList<Boolean> line = new ArrayList<>();
+        List<Boolean> line = new ArrayList<>();
 
         Stream.generate(this::getLineElement)
                 .limit(numberOfPlayer - 1)
