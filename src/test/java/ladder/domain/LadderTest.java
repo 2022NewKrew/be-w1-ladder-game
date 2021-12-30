@@ -17,25 +17,7 @@ class LadderTest {
 
     @BeforeEach
     public void setUp(){
-        this.ladder = new Ladder(
-                new ArrayList<String>(Arrays.asList("prod", "honux", "longname", "sam", "k", "jk")),
-                20
-        );
-    }
-
-    @Test
-    public void testConstructor(){
-        //personNames가 null일 때
-        assertThrows(IllegalArgumentException.class, ()->new Ladder(null, 20));
-
-        //빈 personNames일 때
-        assertThrows(IllegalArgumentException.class, ()->new Ladder(new ArrayList<>(), 20));
-
-        //height이 0일 때
-        assertThrows(IllegalArgumentException.class, ()->new Ladder(new ArrayList<>(Arrays.asList("a", "bb", "ccc")), 0));
-
-        //height이 음수일 때
-        assertThrows(IllegalArgumentException.class, ()->new Ladder(new ArrayList<>(Arrays.asList("a", "bb", "ccc")), -5));
+        this.ladder = new Ladder(5, 20);
     }
 
     @Test

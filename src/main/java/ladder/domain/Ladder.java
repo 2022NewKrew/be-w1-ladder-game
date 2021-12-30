@@ -12,14 +12,12 @@ public class Ladder {
     private int numOfPerson;
     private int height;
     private List<LadderRow> ladder;
-    private List<String> personNames;
 
-    public Ladder(List<String> personNames, int height) throws IllegalArgumentException {
-        if (personNames == null || personNames.isEmpty() || height <= 0)
+    public Ladder(int numOfPerson, int height) throws IllegalArgumentException {
+        if (numOfPerson <= 1 || height <= 0)
             throw new IllegalArgumentException();
 
-        this.personNames = personNames;
-        this.numOfPerson = personNames.size();
+        this.numOfPerson = numOfPerson;
         this.height = height;
 
         ladder = new ArrayList<>();
@@ -28,19 +26,19 @@ public class Ladder {
         }
     }
 
+    public int travel(int startIdx){
 
-    //
-    // Row를 한 줄씩 가져와 문자열로 반환합니다.
-    //
+        int currentIdx = startIdx;
+
+        for(LadderRow row : ladder){
+            currentIdx = row.travel(currentIdx);
+        }
+        return currentIdx;
+    }
+
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
-        for (String personName : personNames){
-            builder.append(centerAligned(personName, 5));
-            builder.append(" ");
-        }
-
-        builder.append("\n");
         for (LadderRow row : ladder) {
             builder.append("  "); //왼쪽 패딩 2칸 공백
             builder.append(row);
@@ -48,31 +46,6 @@ public class Ladder {
         }
 
         return builder.toString();
-    }
-
-    //
-    // 입력 문자를 size에 맞게 가운데 정렬합니다. 예시는 아래와 같습니다. (_:공백)
-    // 1글자,size=5 -> __a__
-    // 2글자,size=5 -> _aa__
-    // 3글자,size=5 -> _aaa_
-    // 4글자,size=5 -> aaaa_
-    private String centerAligned(String str, int size){
-
-        if(str.isEmpty() || str.isBlank())
-            return null;
-
-        if(str.length() > 5)
-            str = str.substring(0,5);
-
-        int leftPad = (int)((size - str.length()) / 2);
-
-        if (leftPad == 0)
-            return String.format("%"+(-size)+"s", str);
-
-        return String.format(
-                "%" + (-size) + "s",
-                String.format("%" + (leftPad+str.length()) + "s", str)
-                );
     }
 
 
@@ -110,6 +83,14 @@ public class Ladder {
                 prevPoint = currentPoint;
             }
             return true;
+        }
+
+        public int travel(int fromIdx){
+            if (fromIdx > 0 && points.get(fromIdx-1))
+                return fromIdx - 1;
+            if (fromIdx < numOfPerson-1 && points.get(fromIdx))
+                return fromIdx + 1;
+            return fromIdx;
         }
 
         public List<Boolean> getPoints(){
