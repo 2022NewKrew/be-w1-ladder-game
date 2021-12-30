@@ -53,16 +53,16 @@ public class Ladder {
     }
 
     public void buildResultMap() {
-        List<Integer> resultIndexes = IntStream.range(0, this.participants.size())
+        List<Integer> participantIndices = IntStream.range(0, this.participants.size())
                 .boxed()
                 .collect(Collectors.toList());
 
         for (Layer layer : this.layers) {
-            layer.proceed(resultIndexes);
+            layer.proceed(participantIndices);
         }
 
-        for (int participantIndex = 0 ; participantIndex < resultIndexes.size() ; participantIndex++) {
-            int resultIndex = resultIndexes.get(participantIndex);
+        for (int resultIndex = 0 ; resultIndex < participantIndices.size() ; resultIndex++) {
+            int participantIndex = participantIndices.get(resultIndex);
             this.assignResult(participantIndex, resultIndex);
         }
     }

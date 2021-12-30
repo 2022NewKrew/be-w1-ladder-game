@@ -14,17 +14,17 @@ public class Layer {
         return horizontalLines;
     }
 
-    public void proceed(List<Integer> resultIndexes) {
+    public void proceed(List<Integer> participantIndices) {
         for (int horizontalLineIndex = 0; horizontalLineIndex < horizontalLines.size(); horizontalLineIndex++) {
-            followHorizontalLine(resultIndexes, horizontalLineIndex);
+            followHorizontalLine(participantIndices, horizontalLineIndex);
         }
     }
 
-    private void followHorizontalLine(List<Integer> resultIndexes, int index) {
+    private void followHorizontalLine(List<Integer> participantIndices, int index) {
         if (this.horizontalLines.get(index)) {
-            int temp = resultIndexes.get(index);
-            resultIndexes.set(index, resultIndexes.get(index + 1));
-            resultIndexes.set(index + 1, temp);
+            int temp = participantIndices.get(index);
+            participantIndices.set(index, participantIndices.get(index + 1));
+            participantIndices.set(index + 1, temp);
         }
     }
 }
