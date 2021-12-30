@@ -9,7 +9,7 @@ public class Points {
     private static final String POINT_EMP = "     ";
     private static final Random RAND = new Random();
 
-    private List<Boolean> points;
+    private final List<Boolean> points;
 
     public Points(List<Boolean> points) {
         this.points = points;

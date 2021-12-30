@@ -10,13 +10,9 @@ public class LadderGame {
     private Names names;
     private int countOfLines;
 
-    public LadderGame() {
-        try {
-            askPeopleNames();
-            askCountOfLines();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public LadderGame() throws Exception {
+        askPeopleNames();
+        askCountOfLines();
 
         new LadderView(new Ladder(names, countOfLines));
     }
