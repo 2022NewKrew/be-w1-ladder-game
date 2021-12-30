@@ -1,3 +1,9 @@
+package ladder;
+
+import ladder.domain.Ladder;
+import ladder.domain.LadderConfig;
+import ladder.view.IO;
+
 import java.util.Scanner;
 
 public class Main {

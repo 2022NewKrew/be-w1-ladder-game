@@ -1,3 +1,9 @@
+package ladder.view;
+
+import ladder.domain.LadderConfig;
+import ladder.domain.Ladder;
+import ladder.domain.Line;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;

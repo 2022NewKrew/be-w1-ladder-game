@@ -1,3 +1,5 @@
+package ladder.domain;
+
 public class LadderConfig {
     private final int nPeople;
     private final int maxHeight;

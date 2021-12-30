@@ -1,5 +1,6 @@
+package ladder.domain;
+
 import java.util.ArrayList;
-import java.util.Random;
 
 
 public class Ladder {
