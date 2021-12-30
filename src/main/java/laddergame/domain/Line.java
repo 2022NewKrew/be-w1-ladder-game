@@ -27,8 +27,7 @@ public class Line {
             return;
         }
         boolean previousConnection = connectionList.get(connectionList.size() - 2);
-        boolean currentConnection = connectionList.get(connectionList.size() - 1);
-        if (previousConnection && currentConnection) {
+        if (previousConnection) {
             connectionList.set(connectionList.size() - 1, false);
         }
     }
