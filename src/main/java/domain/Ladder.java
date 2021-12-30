@@ -1,17 +1,23 @@
 package domain;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Layer> layers;
     private final List<String> participants;
     private final List<String> results;
+    private final Map<String, String> resultMap;
 
     public Ladder(List<String> participants, List<String> results, List<Layer> layers) {
         this.participants = Collections.unmodifiableList(participants);
         this.results = Collections.unmodifiableList(results);
         this.layers = Collections.unmodifiableList(layers);
+        this.resultMap = new HashMap<>();
     }
 
     public List<Layer> getLayers () {
@@ -25,4 +31,48 @@ public class Ladder {
     public List<String> getResults() {
         return results;
     }
+
+    public String getSingleResult(String query) {
+        if (resultMap.containsKey(query)) {
+            return resultMap.get(query);
+        }
+
+        return "해당 참가자가 존재하지 않습니다.";
+    }
+
+    public String getEveryResults() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String key : resultMap.keySet()){
+            stringBuilder.append(key);
+            stringBuilder.append(": ");
+            stringBuilder.append(resultMap.get(key));
+            stringBuilder.append("\n");
+        }
+
+        return stringBuilder.toString();
+    }
+
+    public void buildResultMap() {
+        List<Integer> resultIndexes = IntStream.range(0, this.participants.size())
+                .boxed()
+                .collect(Collectors.toList());
+
+        for (Layer layer : this.layers) {
+            layer.proceed(resultIndexes);
+        }
+
+        for (int participantIndex = 0 ; participantIndex < resultIndexes.size() ; participantIndex++) {
+            int resultIndex = resultIndexes.get(participantIndex);
+            this.assignResult(participantIndex, resultIndex);
+        }
+    }
+
+    private void assignResult(int participantIndex, int resultIndex) {
+        try{
+            this.resultMap.put(this.participants.get(participantIndex), this.results.get(resultIndex));
+        } catch (IndexOutOfBoundsException exception) {
+            this.resultMap.put(this.participants.get(participantIndex), "");
+        }
+    }
+
 }

@@ -60,6 +60,21 @@ public class InputView {
         return resultList;
     }
 
+    public String getResultQuery() {
+        String query = null;
+
+        System.out.println("결과를 보고싶은 사람은?");
+
+        try {
+            query = scanner.nextLine();
+        } catch (NoSuchElementException | IllegalStateException exception) {
+            System.err.println("입력을 처리할 수 없습니다.");
+            System.exit(1);
+        }
+
+        return query;
+    }
+
     private void validatePositiveInteger(int value) throws InputMismatchException {
         if (value <= 0) {
             throw new InputMismatchException();

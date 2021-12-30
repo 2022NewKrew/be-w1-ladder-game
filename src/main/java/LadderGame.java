@@ -7,6 +7,8 @@ import java.util.List;
 
 public class LadderGame {
 
+    private static final String KEYWORD_EXIT = "춘식이";
+
     public static void main(String[] args) {
         List<String> people, results;
         int height;
@@ -21,5 +23,11 @@ public class LadderGame {
         Ladder ladder = LadderFactory.buildLadder(people, results, height);
 
         outputView.printLadder(ladder);
+
+        String resultQuery = null;
+        while (!(KEYWORD_EXIT.equals(resultQuery))) {
+            resultQuery = inputView.getResultQuery();
+            outputView.printResult(ladder, resultQuery);
+        }
     }
 }

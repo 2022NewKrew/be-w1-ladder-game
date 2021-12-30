@@ -15,7 +15,10 @@ public class LadderFactory {
             layers.add(buildLayer(participants.size()));
         }
 
-        return new Ladder(participants, results, layers);
+        Ladder ladder = new Ladder(participants, results, layers);
+        ladder.buildResultMap();
+
+        return ladder;
     }
 
     private static Layer buildLayer(int peopleSize) {

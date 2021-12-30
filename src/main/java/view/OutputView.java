@@ -15,6 +15,9 @@ public class OutputView {
 
     private static final int NAME_OUTPUT_LENGTH = 5;
 
+    private static final String KEYWORD_EXIT = "춘식이";
+    private static final String KEYWORD_EVERYONE = "all";
+
     public OutputView() {
 
     }
@@ -25,6 +28,22 @@ public class OutputView {
             printLayer(layer);
         }
         this.printResults(ladder.getResults());
+    }
+
+    public void printResult(Ladder ladder, String query) {
+        if (KEYWORD_EXIT.equals(query)) {
+            System.out.println("게임을 종료합니다.");
+            return;
+        }
+
+        System.out.println("실행 결과");
+
+        if (KEYWORD_EVERYONE.equals(query)) {
+            System.out.println(ladder.getEveryResults());
+            return;
+        }
+
+        System.out.println(ladder.getSingleResult(query));
     }
 
     private void printLayer(Layer layer) {
