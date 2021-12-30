@@ -6,7 +6,12 @@ import java.util.Random;
 
 public class Line {
 
+    private static final String VERTICAL_BAR = "|";
+    private static final String HORIZONTAL_BAR = "-";
+    private static final String EMPTY_BAR = " ";
     private final static int FIRST_INDEX = 1;
+    private static final String BLANK = "    ";
+    private static final int LADDER_WIDTH = 5;
 
     private final int lineSize;
     private final List<Boolean> pointList;
@@ -18,10 +23,6 @@ public class Line {
         for (int i = 0; i < lineSize; i++) {
             pointList.add(setConnection(i));
         }
-    }
-
-    public int getLineSize() {
-        return lineSize;
     }
 
     private boolean setConnection(int index) {
@@ -57,5 +58,22 @@ public class Line {
 
     public boolean isVertical(int index) {
         return index % 2 == 0;
+    }
+
+    public StringBuilder pointListToString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(BLANK);
+        for (int i = 0; i < lineSize; i++) {
+            sb.append(pointToString(i));
+        }
+        return sb;
+    }
+
+    private String pointToString(int index) {
+        if (isVertical(index)) return VERTICAL_BAR;
+        if (isConnected(index)) {
+            return HORIZONTAL_BAR.repeat(LADDER_WIDTH);
+        }
+        return EMPTY_BAR.repeat(LADDER_WIDTH);
     }
 }

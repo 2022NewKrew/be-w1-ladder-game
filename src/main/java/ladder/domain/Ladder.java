@@ -5,6 +5,10 @@ import java.util.List;
 
 public class Ladder {
 
+    private static final String NEWLINE = "\n";
+    private static final int LADDER_WIDTH = 5;
+    private static final int NAME_GAP = 1;
+
     private final List<Player> playerList;
     private final List<Line> lineList;
 
@@ -21,11 +25,20 @@ public class Ladder {
         lineList = List.copyOf(temp2);
     }
 
-    public List<Player> getPlayerList() {
-        return playerList;
+    public StringBuilder lineListToString() {
+        StringBuilder sb = new StringBuilder();
+        for (Line line : lineList) {
+            sb.append(line.pointListToString());
+            sb.append(NEWLINE);
+        }
+        return sb;
     }
 
-    public List<Line> getLineList() {
-        return lineList;
+    public StringBuilder playerListToString() {
+        StringBuilder sb = new StringBuilder();
+        for (Player player : playerList) {
+            sb.append(player.getNameWithGap(LADDER_WIDTH, NAME_GAP));
+        }
+        return sb;
     }
 }
