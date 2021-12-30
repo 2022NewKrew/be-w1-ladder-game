@@ -8,14 +8,14 @@ public class LadderFactory {
 
     private static final Random random = new Random();
 
-    public static Ladder buildLadder(int peopleSize, int height) {
+    public static Ladder buildLadder(List<String> participants, List<String> results, int height) {
         List<Layer> layers = new ArrayList<>();
 
         for (int heightCounter = 0 ; heightCounter < height ; heightCounter++) {
-            layers.add(buildLayer(peopleSize));
+            layers.add(buildLayer(participants.size()));
         }
 
-        return new Ladder(layers);
+        return new Ladder(participants, results, layers);
     }
 
     private static Layer buildLayer(int peopleSize) {

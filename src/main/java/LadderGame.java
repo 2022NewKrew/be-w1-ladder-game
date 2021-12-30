@@ -18,10 +18,8 @@ public class LadderGame {
         results = inputView.getResults();
         height = inputView.getHeight();
 
-        Ladder ladder = LadderFactory.buildLadder(people.size(), height);
+        Ladder ladder = LadderFactory.buildLadder(people, results, height);
 
-        outputView.printPeople(people);
         outputView.printLadder(ladder);
-        outputView.printResults(results);
     }
 }

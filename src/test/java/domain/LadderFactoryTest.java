@@ -7,6 +7,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LadderFactoryTest {
 
@@ -14,26 +16,52 @@ public class LadderFactoryTest {
     @DisplayName("Ladder width check")
     void buildLadder_ValidWidth_HasOneLessHorizontalLines() {
         // Arrange
-        int width = 10;
+        List<String> participants = new ArrayList<>();
+        participants.add("testUser1");
+        participants.add("testUser2");
+        participants.add("testUser3");
+        participants.add("testUser4");
+        participants.add("testUser5");
+
+        List<String> results = new ArrayList<>();
+        participants.add("testResult1");
+        participants.add("testResult2");
+        participants.add("testResult3");
+        participants.add("testResult4");
+        participants.add("testResult5");
+
         int height = 10;
 
-        Ladder ladder = LadderFactory.buildLadder(width, height);
+        Ladder ladder = LadderFactory.buildLadder(participants, results, height);
 
         // Act
         int actualWidth = ladder.getLayers().get(0).getHorizontalLines().size();
 
         // Assert
-        assertThat(actualWidth).isEqualTo(width - 1);
+        assertThat(actualWidth).isEqualTo(participants.size() - 1);
     }
 
     @Test
     @DisplayName("Ladder height check")
     void buildLadder_ValidHeight_HasSameLayers() {
         // Arrange
-        int width = 10;
+        List<String> participants = new ArrayList<>();
+        participants.add("testUser1");
+        participants.add("testUser2");
+        participants.add("testUser3");
+        participants.add("testUser4");
+        participants.add("testUser5");
+
+        List<String> results = new ArrayList<>();
+        participants.add("testResult1");
+        participants.add("testResult2");
+        participants.add("testResult3");
+        participants.add("testResult4");
+        participants.add("testResult5");
+
         int height = 10;
 
-        Ladder ladder = LadderFactory.buildLadder(width, height);
+        Ladder ladder = LadderFactory.buildLadder(participants, results, height);
 
         // Act
         int actualWidth = ladder.getLayers().size();

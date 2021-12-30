@@ -19,28 +19,12 @@ public class OutputView {
 
     }
 
-    public void printPeople(List<String> people) {
-        StringBuilder peopleString = new StringBuilder();
-        for (String person : people) {
-            peopleString.append(padName(person));
-            peopleString.append(NAME_DELIMITER);
-        }
-        System.out.println(peopleString);
-    }
-
-    public void printResults(List<String> results) {
-        StringBuilder resultString = new StringBuilder();
-        for (String result : results) {
-            resultString.append(padName(result));
-            resultString.append(NAME_DELIMITER);
-        }
-        System.out.println(resultString);
-    }
-
     public void printLadder(Ladder ladder) {
+        this.printPeople(ladder.getParticipants());
         for (Layer layer : ladder.getLayers()) {
             printLayer(layer);
         }
+        this.printResults(ladder.getResults());
     }
 
     private void printLayer(Layer layer) {
@@ -51,6 +35,24 @@ public class OutputView {
             System.out.print(VERTICAL_LINE);
         }
         System.out.println(RIGHT_PADDING);
+    }
+
+    private void printPeople(List<String> people) {
+        StringBuilder peopleString = new StringBuilder();
+        for (String person : people) {
+            peopleString.append(padName(person));
+            peopleString.append(NAME_DELIMITER);
+        }
+        System.out.println(peopleString);
+    }
+
+    private void printResults(List<String> results) {
+        StringBuilder resultString = new StringBuilder();
+        for (String result : results) {
+            resultString.append(padName(result));
+            resultString.append(NAME_DELIMITER);
+        }
+        System.out.println(resultString);
     }
 
     private String horizontalLineToString(Boolean horizontalLine) {
