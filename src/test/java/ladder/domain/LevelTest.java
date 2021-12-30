@@ -3,7 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class LevelTest {
@@ -19,6 +19,7 @@ public class LevelTest {
     @Test
     void checkLineOverlap() {
         String levelString = level.toString();
-        assertTrue(!levelString.contains("|-----|-----|"));
+        assertFalse(levelString.contains("|-----|-----|"));
     }
+
 }

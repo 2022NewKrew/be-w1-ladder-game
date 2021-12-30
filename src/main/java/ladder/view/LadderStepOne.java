@@ -1,21 +1,20 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
 import java.util.Scanner;
 
+
 public class LadderStepOne {
+    final Scanner scanner = new Scanner(System.in);
 
-
-    public void runGame() {
-        Scanner scanner = new Scanner(System.in);
+    public int getPlayers() {
         System.out.println("참여할 사람은 몇명인가요?");
-        int numPlayers = scanner.nextInt();
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int ladderHeight = scanner.nextInt();
-        scanner.close();
-
-        Ladder ladder = new Ladder(ladderHeight, numPlayers);
-        ladder.printLadder();
+        return scanner.nextInt();
     }
+
+    public int getLadderHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return scanner.nextInt();
+    }
+
 
 }
