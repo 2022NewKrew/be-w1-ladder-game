@@ -25,7 +25,6 @@ public class Ladder {
     }
 
 
-
     public List<LadderFrameLine> getLines() {
         return lines;
     }
