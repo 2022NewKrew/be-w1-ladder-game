@@ -2,15 +2,8 @@ import java.util.ArrayList;
 
 public class InputArrayListString implements Input<ArrayList<String>> {
     private final char DELIMITER = ',';
-    private String inputMessage;
 
-    public InputArrayListString(String inputMessage) {
-        this.inputMessage = inputMessage;
-        printInputMessage();
-    }
-
-    private void printInputMessage() {
-        System.out.println(inputMessage);
+    public InputArrayListString() {
     }
 
     public ArrayList<String> getInputValue() {

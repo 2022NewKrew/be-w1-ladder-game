@@ -9,8 +9,11 @@ public class LadderGameView {
     }
 
     public LadderGameInfo inputLadderGameInfo() {
-        ArrayList<String> peopleNames = new InputArrayListString(peopleNameInputMessage).getInputValue();
-        Integer ladderHeight = new InputInteger(ladderHeightInputMessage).getInputValue();
+        System.out.println(peopleNameInputMessage);
+        ArrayList<String> peopleNames = new InputArrayListString().getInputValue();
+
+        System.out.println(ladderHeightInputMessage);
+        Integer ladderHeight = new InputInteger().getInputValue();
 
         return new LadderGameInfo(peopleNames, ladderHeight);
     }
