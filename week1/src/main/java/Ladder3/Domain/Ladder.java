@@ -8,14 +8,19 @@ public class Ladder {
 
     private final int bridgeSize;
     private final String[] people;
+    private final int height;
     private final List<Line> ladderLines = new ArrayList<>();
     private final UserInterface ui = new UserInterface();
 
     public Ladder(int bridgeSize) {
         people = ui.inputLadderCols();
-        final int height = ui.inputLadderRowSize();
+        height = ui.inputLadderRowSize();
         this.bridgeSize = bridgeSize;
 
+        initLadder();
+    }
+
+    private void initLadder() {
         for (int i = 0; i < height; i++)
             ladderLines.add(new Line(people.length, bridgeSize));
     }
