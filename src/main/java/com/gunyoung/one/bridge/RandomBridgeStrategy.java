@@ -2,19 +2,21 @@ package com.gunyoung.one.bridge;
 
 import com.gunyoung.one.utils.RandomMaker;
 
+import java.util.List;
+
 public class RandomBridgeStrategy implements BridgeMakeStrategy {
 
     private RandomMaker randomMaker = new RandomMaker();
 
     @Override
-    public void makeBridges(Bridge[][] bridges) {
-        for (int row = 0; row < bridges.length; row++) {
+    public void makeBridges(List<BridgesInRow> bridges) {
+        for (int row = 0; row < bridges.size(); row++) {
             makeBridgesForEachRowRandomly(bridges, row);
         }
     }
 
-    private void makeBridgesForEachRowRandomly(Bridge[][] bridges, int row) {
-        int maxNumOfBridgesInOneRow = bridges[row].length;
+    private void makeBridgesForEachRowRandomly(List<BridgesInRow> bridges, int row) {
+        int maxNumOfBridgesInOneRow = bridges.get(row).getCapacity();
         boolean[] isExist = getIsExistByRandom(maxNumOfBridgesInOneRow);
         removeConsecutiveTrueRandomly(isExist);
         makeBridgesOfRowByIsExist(bridges, row, isExist);
@@ -51,9 +53,10 @@ public class RandomBridgeStrategy implements BridgeMakeStrategy {
         return index + 1;
     }
 
-    private void makeBridgesOfRowByIsExist(Bridge[][] bridges, int row, boolean[] isExist) {
+    private void makeBridgesOfRowByIsExist(List<BridgesInRow> bridges, int row, boolean[] isExist) {
         for (int i = 0; i < isExist.length; i++) {
-            bridges[row][i] = Bridge.of(isExist[i]);
+            if(isExist[i])
+                bridges.get(row).addBridge(i);
         }
     }
 }

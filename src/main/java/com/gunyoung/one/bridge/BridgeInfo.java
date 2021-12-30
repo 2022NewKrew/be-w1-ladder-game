@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeInfo {
-    private final Bridge[][] bridges;
+    private final List<BridgesInRow> bridges;
     private final BridgeMakeStrategy makeStrategy;
 
     public BridgeInfo(int ladderHeight, int maxNumOfBridgesForEachRow) {
@@ -12,7 +12,10 @@ public class BridgeInfo {
     }
 
     public BridgeInfo(int ladderHeight, int maxNumOfBridgesForEachRow, BridgeMakeStrategy makeStrategy) {
-        this.bridges = new Bridge[ladderHeight][maxNumOfBridgesForEachRow];
+        this.bridges = new ArrayList<>(ladderHeight);
+        for(int i = 0; i < ladderHeight; i++) {
+            this.bridges.add(BridgesInRow.ofCapacity(maxNumOfBridgesForEachRow));
+        }
         this.makeStrategy = makeStrategy;
     }
 
@@ -21,10 +24,6 @@ public class BridgeInfo {
     }
 
     public List<Boolean> getIsExistOfRow(int row) {
-        List<Boolean> isExistOfRow = new ArrayList<>(bridges[row].length);
-        for (Bridge bridge : bridges[row]) {
-            isExistOfRow.add(bridge.isExist());
-        }
-        return isExistOfRow;
+        return bridges.get(row).getIsExistOfRow();
     }
 }

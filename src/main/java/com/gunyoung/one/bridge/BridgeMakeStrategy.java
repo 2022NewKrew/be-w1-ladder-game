@@ -1,5 +1,7 @@
 package com.gunyoung.one.bridge;
 
+import java.util.List;
+
 public interface BridgeMakeStrategy {
-    void makeBridges(Bridge[][] bridges);
+    void makeBridges(List<BridgesInRow> bridges);
 }
