@@ -21,6 +21,8 @@ public class Line {
     }
 
     public boolean existRightBridge(int location) {
+        if (location == bridges.size())
+            return false;
         return bridges.get(location);
     }
 }
