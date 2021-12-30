@@ -6,7 +6,6 @@ import domain.ladder.LadderFrameLine;
 
 import java.util.List;
 import java.util.StringJoiner;
-import java.util.stream.Stream;
 
 public class UserOutput {
 
