@@ -1,8 +1,8 @@
 package com.company.ladder;
-
 import com.company.view.PrintInterface;
 
 import java.util.ArrayList;
+
 import java.util.Random;
 
 public class Ladder {
@@ -11,10 +11,12 @@ public class Ladder {
     int ladderHeight;
     ArrayList<Line> ladderArray;
 
+
     public Ladder(){
         attendantNum = 0;
         ladderHeight = 0;
         ladderArray = new ArrayList<>();
+
     }
 
     public Ladder(int attendantNum, int ladderHeight){
@@ -36,5 +38,6 @@ public class Ladder {
         for(int ladderIndex = 0; ladderIndex < ladderHeight; ladderIndex++){
             ladderArray.get(ladderIndex).printLine(printInterface);
         }
+
     }
 }
