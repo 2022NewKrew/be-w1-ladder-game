@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 
 public class LadderGameServiceImpl implements LadderGameService {
 
+    private LadderGameView ladderGameView;
     private LadderSimpleGame ladderSimpleGame;
     private int numberOfParticipants;
     private int ladderHeight;
@@ -13,7 +14,7 @@ public class LadderGameServiceImpl implements LadderGameService {
 
     @Override
     public void run() {
-        inputLadder();
+        inputLadderConsole();
         createLadder();
         printLadder();
     }
@@ -24,14 +25,15 @@ public class LadderGameServiceImpl implements LadderGameService {
         ladderSimpleGame.setLadderHeight(ladderHeight);
         ladderSimpleGame.setParticipants(participants);
         ladderSimpleGame.createBridge();
+
+        ladderGameView = new LadderGameViewConsole(ladderSimpleGame);
     }
 
     private void printLadder() {
-        System.out.println("실행결과\n");
-        System.out.println(ladderSimpleGame.getLadderString());
+        ladderGameView.printView();
     }
 
-    private void inputLadder() {
+    private void inputLadderConsole() {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         try {
 
