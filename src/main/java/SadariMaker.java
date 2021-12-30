@@ -17,15 +17,15 @@ public class SadariMaker {
 
     private void makeRow(int rowNumber) {
         for (int i = 0; i < sadariMap.getNumberOfColumn(); i++) {
-            makeLine(rowNumber, i);
+            makeSadariMapStatus(rowNumber, i);
         }
 
-        sadariMap.storeLine(rowNumber, SadariMapStatus.END);
+        sadariMap.storeSadariMapStatus(rowNumber, SadariMapStatus.END);
     }
 
-    private void makeLine(int rowNumber, int columnNumberOfRow) {
+    private void makeSadariMapStatus(int rowNumber, int columnNumberOfRow) {
         if (SadariMapStatus.isBorder(columnNumberOfRow)) {
-            sadariMap.storeLine(rowNumber,SadariMapStatus.SADARI_BORDER);
+            sadariMap.storeSadariMapStatus(rowNumber,SadariMapStatus.SADARI_BORDER);
             return;
         }
 
@@ -34,19 +34,15 @@ public class SadariMaker {
 
     private void makeSadariLine(int rowNumber, int columnNumberOfRow) {
         if (canMakeSadariLine(rowNumber, columnNumberOfRow)) {
-            sadariMap.storeLine(rowNumber, SadariMapStatus.SADARI_LINE);
+            sadariMap.storeSadariMapStatus(rowNumber, SadariMapStatus.SADARI_LINE);
             return;
         }
 
-        sadariMap.storeLine(rowNumber, SadariMapStatus.EMPTY);
+        sadariMap.storeSadariMapStatus(rowNumber, SadariMapStatus.EMPTY);
     }
 
     private boolean canMakeSadariLine(int rowNumber, int columnNumberOfRow) {
-        if (sadariMap.isFirstSadariLineOfRow(columnNumberOfRow)) {
-            return random.nextBoolean();
-        }
-
-        if (sadariMap.isExistSadariLineCloseBy(rowNumber, columnNumberOfRow)) {
+        if (sadariMap.isNotExistSadariLineCloseBy(rowNumber, columnNumberOfRow)) {
             return random.nextBoolean();
         }
 
