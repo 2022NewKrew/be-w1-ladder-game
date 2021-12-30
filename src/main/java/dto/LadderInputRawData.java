@@ -2,15 +2,17 @@ package dto;
 
 import java.util.List;
 
-public class LadderInputInfo {
+public class LadderInputRawData {
     private final int numberOfParticipants;
     private final int heights;
-    private List<String> participantsNames;
+    private final List<String> participantsNames;
+    private final List<String> gameResultLine;
 
-    public LadderInputInfo(int numberOfParticipants, int heights, List<String> participantsNames) {
+    public LadderInputRawData(int numberOfParticipants, int heights, List<String> participantsNames, List<String> gameResultLine) {
         this.numberOfParticipants = numberOfParticipants;
         this.heights = heights;
         this.participantsNames = participantsNames;
+        this.gameResultLine = gameResultLine;
     }
 
     public int getNumberOfParticipants() {
@@ -25,7 +27,7 @@ public class LadderInputInfo {
         return participantsNames;
     }
 
-    public void setParticipantsNamesAfterPreprocessing(List<String> preprocessedParticipantsNames) {
-        participantsNames = preprocessedParticipantsNames;
+    public List<String> getGameResultLine() {
+        return gameResultLine;
     }
 }

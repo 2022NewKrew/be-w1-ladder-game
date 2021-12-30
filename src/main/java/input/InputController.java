@@ -1,7 +1,13 @@
 package input;
 
-import dto.LadderInputInfo;
+import dto.LadderInputRawData;
+
+import java.util.Set;
 
 public interface InputController {
-    LadderInputInfo inputLadderInfo();
+    LadderInputRawData inputLadderRawData();
+
+    String inputNameForResult(Set<String> participantsNames);
+
+    void close();
 }
