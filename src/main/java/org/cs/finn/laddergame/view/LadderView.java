@@ -11,20 +11,16 @@ public class LadderView {
             throw new RuntimeException("Ladder is null!");
         }
 
-        for (LadderRow ladderRow : ladder.getLadderRows().get()) {
+        for (LadderRow ladderRow : ladder.getLadderRows().getLadderRowList()) {
             printOneHeight(ladderRow);
         }
     }
 
     private void printOneHeight(final LadderRow ladderRow) {
-        if (ladderRow == null) {
-            throw new RuntimeException("LadderRow is null!");
-        }
-
         for (int i = 0; i < Ladder.BLANK_LEFT; i++) {
             System.out.print(' ');
         }
-        for (BridgeType bridgeType : ladderRow.get()) {
+        for (BridgeType bridgeType : ladderRow.getBridgeList()) {
             System.out.print(Ladder.BARRIER + bridgeType.toString());
         }
         System.out.println(Ladder.BARRIER);

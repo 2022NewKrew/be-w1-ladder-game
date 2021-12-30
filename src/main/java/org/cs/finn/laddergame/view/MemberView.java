@@ -9,17 +9,13 @@ public class MemberView {
             throw new RuntimeException("Ladder is null!");
         }
 
-        for (String m : member.getMember()) {
+        for (String m : member.getMemberList()) {
             printMember(m);
         }
         System.out.println();
     }
 
     private void printMember(final String m) {
-        if (m == null) {
-            throw new RuntimeException("Member String is null!");
-        }
-
         final int space = Member.WIDTH - m.length();
         final int rightSpace = space / 2;
         final int leftSpace = rightSpace + (space & 0x1);

@@ -14,7 +14,7 @@ public final class LadderRows {
         this.list = new ArrayList<>(list);
     }
 
-    public List<LadderRow> get() {
+    public List<LadderRow> getLadderRowList() {
         return Collections.unmodifiableList(list);
     }
 }

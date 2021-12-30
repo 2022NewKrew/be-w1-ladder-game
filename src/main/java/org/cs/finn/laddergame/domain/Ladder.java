@@ -30,12 +30,12 @@ public class Ladder {
     }
 
     private LadderRows build(final SecureRandom sRand, final LadderHeight ladderHeight, final Member member) {
-        final int memberVal = member.getMember().size();
-        final int ladderHeightVal = ladderHeight.getLadderHeight();
+        final int memberSize = member.getMemberList().size();
+        final int rows = ladderHeight.getLadderHeight();
         final List<LadderRow> list = new ArrayList<>();
 
-        for (int i = 0; i < ladderHeightVal; i++) {
-            list.add(generateLadderRow(sRand, memberVal - 1));
+        for (int i = 0; i < rows; i++) {
+            list.add(generateLadderRow(sRand, memberSize - 1));
         }
 
         return new LadderRows(list);
@@ -46,11 +46,18 @@ public class Ladder {
 
         BridgeType bridgeType = BridgeType.EMPTY;
         for (int i = 0; i < size; i++) {
-            bridgeType = (bridgeType == BridgeType.LINE ? BridgeType.EMPTY : BridgeType.getRandomBridge(sRand));
+            bridgeType = getNextBridge(sRand, bridgeType);
             list.add(bridgeType);
         }
 
         return new LadderRow(list);
+    }
+
+    private BridgeType getNextBridge(final SecureRandom sRand, final BridgeType before) {
+        if (before == BridgeType.LINE) {
+            return BridgeType.EMPTY;
+        }
+        return BridgeType.getRandomBridge(sRand);
     }
 
     public LadderRows getLadderRows() {

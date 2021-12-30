@@ -14,7 +14,7 @@ public class LadderRow {
         this.list = new ArrayList<>(list);
     }
 
-    public List<BridgeType> get() {
+    public List<BridgeType> getBridgeList() {
         return Collections.unmodifiableList(list);
     }
 
