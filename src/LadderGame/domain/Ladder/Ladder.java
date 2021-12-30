@@ -8,9 +8,16 @@ public class Ladder {
     private final List<Line> ladder;
 
     public Ladder(int ladderWidth, int ladderHeight) {
+        validateLadderHeight(ladderHeight);
         this.ladderWidth = ladderWidth;
         this.ladderHeight = ladderHeight;
         this.ladder = makeLadder();
+    }
+
+    private void validateLadderHeight(int ladderHeight){
+        if(ladderHeight < 1){
+            throw new IllegalArgumentException("사다리 높이는 1 이상이어야 합니다.");
+        }
     }
 
     private List<Line> makeLadder() {
@@ -29,5 +36,9 @@ public class Ladder {
     private void printLadderRow(Line ladderRow){
         ladderRow.ladderComponents.forEach(System.out::print);
         System.out.println();
+    }
+
+    public List<Line> getLadder() {
+        return ladder;
     }
 }
