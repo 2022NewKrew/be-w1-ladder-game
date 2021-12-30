@@ -2,37 +2,42 @@ package com.kakao.domain;
 
 import java.util.*;
 
-public class Line {
+class Line {
 
-    private final ArrayList<String> participants;
-    private final List<Step> line = new ArrayList<>();
+    private final List<String> participants;
+    private final List<Step> stepLine = new ArrayList<>();
 
-    public Line(ArrayList<String> participants) {
+    Line(List<String> participants) {
         this.participants = participants;
-        setLine();
+        setStepLine();
     }
 
-    public String getLine() {
-        StringBuilder line = new StringBuilder("|");
-        for (Step step : this.line) {
-            line.append(step.getStep());
-            line.append("|");
-        }
-        return line.toString();
+    List<Step> getStepLine() {
+        return stepLine;
     }
 
-    private void setLine() {
+    private void setStepLine() {
         int stepCnt = participants.size()-1;
         for (int i = 0; i < stepCnt; i++) {
-            line.add(makeStep());
+            stepLine.add(makeStep());
         }
     }
 
-    private Step makeStep() {
-        int lastIndex = line.size()-1;
-        if (line.isEmpty() || !line.get(lastIndex).isStep()) {
+    Step makeStep() {
+        int lastIndex = stepLine.size()-1;
+        if (stepLine.isEmpty() || !stepLine.get(lastIndex).isStep()) {
             return new Step(true);
         }
         return new Step(false);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder line = new StringBuilder("|");
+        for (Step step : stepLine) {
+            line.append(step);
+            line.append("|");
+        }
+        return line.toString();
     }
 }

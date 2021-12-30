@@ -2,7 +2,7 @@ package com.kakao.exception;
 
 import java.util.*;
 
-public class GameInputException {
+public class CheckGameInput {
 
     private static final int MAX_LENGTH = 5;
 
