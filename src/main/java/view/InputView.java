@@ -23,6 +23,7 @@ public class InputView {
             Player player = stringToPlayer(nameAfterDefined);
             players.add(player);
         }
+        OutputView.printPlayers(players);
         return players;
     }
 

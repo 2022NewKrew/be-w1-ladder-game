@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class PlayerRepository {
@@ -7,6 +8,10 @@ public class PlayerRepository {
 
     public PlayerRepository(List<Player> players) {
         this.players = players;
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 }
 
