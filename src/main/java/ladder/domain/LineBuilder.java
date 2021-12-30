@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
@@ -28,7 +29,7 @@ class LineBuilder {
      * @return ladder.domain.Line 객체를 반환한다
      */
     Line makeLine() {
-        ArrayList<Boolean> line = new ArrayList<>();
+        List<Boolean> line = new ArrayList<>();
 
         Stream.generate(this::getLineElement)
                 .limit(numberOfPlayer - 1)

@@ -3,7 +3,7 @@ package ladder.view;
 import ladder.domain.Line;
 
 import java.util.ArrayList;
-import java.util.stream.IntStream;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class ResultView {
@@ -16,7 +16,7 @@ public class ResultView {
      *
      * @param line 출력할 한 줄
      */
-    private static void printLine(ArrayList<Boolean> line) {
+    private static void printLine(List<Boolean> line) {
         System.out.printf("%s%s", SPACE, SIDE_RAIL);
 
         for (Boolean point : line) {
@@ -30,7 +30,7 @@ public class ResultView {
      *
      * @param lines 출력할 줄 리스트
      */
-    public static void printLadder(ArrayList<Line> lines) {
+    public static void printLadder(List<Line> lines) {
         for (Line line : lines) {
             printLine(line.getLine());
             System.out.println();

@@ -1,17 +1,17 @@
 package ladder.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
-    private final ArrayList<Line> lines;
+    private final List<Line> lines;
 
-    Ladder(ArrayList<Line> lines) {
+    Ladder(List<Line> lines) {
         if (lines == null)
             throw new IllegalArgumentException();
         this.lines = lines;
     }
 
-    public ArrayList<Line> getLadder() {
+    public List<Line> getLadder() {
         return lines;
     }
 }
