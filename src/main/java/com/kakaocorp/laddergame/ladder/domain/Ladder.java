@@ -12,16 +12,8 @@ public abstract class Ladder {
         return number;
     }
 
-    void setNumber(int number) {
-        this.number = number;
-    }
-
     int getHeight() {
         return height;
-    }
-
-    void setHeight(int height) {
-        this.height = height;
     }
 
     public List<Line> getLines() {
@@ -29,6 +21,6 @@ public abstract class Ladder {
     }
 
     public abstract boolean start();
-    public abstract void makeLadder();
+    public abstract void makeLines();
 
 }
