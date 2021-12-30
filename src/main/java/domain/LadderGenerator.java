@@ -2,11 +2,14 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LadderGenerator {
-    private static final Double MATH_RANDOM_PERCENT = 0.6;
+    Random random = new Random();
+//    private static final Boolean
+//    private static final Double MATH_RANDOM_PERCENT = 0.6;
 
     public Ladder createLadder(Integer playersNum, Integer maximumLadderHeight) {
         List<LadderLine> ladder = new ArrayList<>();
@@ -26,10 +29,10 @@ public class LadderGenerator {
         return pieces;
     }
 
-    private LadderLinePiece createLadderLinePiece(int ladderLinePieceIdx) {
-        if (ladderLinePieceIdx % 2 == 0) {
+    private LadderLinePiece createLadderLinePiece(int ladderLinePieceIndex) {
+        if (ladderLinePieceIndex % 2 == 0) {
             return LadderLinePiece.VERTICAL;
         }
-        return (Math.random() > MATH_RANDOM_PERCENT) ? LadderLinePiece.EMPTY : LadderLinePiece.HORIZONTAL;
+        return (random.nextBoolean()) ? LadderLinePiece.EMPTY : LadderLinePiece.HORIZONTAL;
     }
 }
