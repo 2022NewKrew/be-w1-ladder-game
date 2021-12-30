@@ -4,34 +4,33 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LadderFrameLine {
     private static final Random randomGenerator = new Random();
 
-    private final List<LadderFrame> ladderFrameList;
+    private final List<LadderFrame> frames;
 
-    public LadderFrameLine(int frameLineLength) {
-        ladderFrameList = generateLadderLine(frameLineLength);
+    public LadderFrameLine(int numberOfFrame) {
+        frames = generateFrames(numberOfFrame);
     }
 
-    private List<LadderFrame> generateLadderLine(int frameLineLength) {
-        List<LadderFrame> ladderFrameList = new ArrayList<>();
-        LadderFrame previousLadderFrame = LadderFrame.SPACE;
-        for (int i = 0; i < frameLineLength; i++) {
-            previousLadderFrame = generateBridge(previousLadderFrame);
-            ladderFrameList.add(previousLadderFrame);
-        }
-        return Collections.unmodifiableList(ladderFrameList);
+    private List<LadderFrame> generateFrames(int numberOfFrame) {
+        return Stream.iterate(LadderFrame.SPACE, this::generateBridge)
+                .skip(1)
+                .limit(numberOfFrame)
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    private LadderFrame generateBridge(LadderFrame previousLadderFrame) {
-        if (randomGenerator.nextBoolean() && previousLadderFrame.equals(LadderFrame.SPACE)) {
+    private LadderFrame generateBridge(LadderFrame previousFrame) {
+        if (randomGenerator.nextBoolean() && previousFrame.equals(LadderFrame.SPACE)) {
             return LadderFrame.BRIDGE;
         }
         return LadderFrame.SPACE;
     }
 
-    public List<LadderFrame> getLadderFrameList() {
-        return ladderFrameList;
+    public List<LadderFrame> getFrames() {
+        return frames;
     }
 }
