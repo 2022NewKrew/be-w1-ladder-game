@@ -16,13 +16,13 @@ public class Line {
         Boolean previousFlag = false;
         Boolean currentFlag;
         for (int i = 0; i < count; i++) {
-            currentFlag = getFlag(previousFlag);
+            currentFlag = getPreviousFlag(previousFlag);
             flags.add(currentFlag);
             previousFlag = currentFlag;
         }
     }
 
-    private Boolean getFlag(Boolean previousFlag) {
+    private Boolean getPreviousFlag(Boolean previousFlag) {
         if (previousFlag)
             return false;
 
