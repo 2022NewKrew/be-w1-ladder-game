@@ -8,7 +8,7 @@ public class Line {
         makeFlags(count);
     }
 
-    public Boolean getFlag(int index) {
+    public Boolean getFlagByIndex(int index) {
         return flags.get(index);
     }
 
@@ -16,13 +16,13 @@ public class Line {
         Boolean previousFlag = false;
         Boolean currentFlag;
         for (int i = 0; i < count; i++) {
-            currentFlag = getPreviousFlag(previousFlag);
+            currentFlag = getFlag(previousFlag);
             flags.add(currentFlag);
             previousFlag = currentFlag;
         }
     }
 
-    private Boolean getPreviousFlag(Boolean previousFlag) {
+    private Boolean getFlag(Boolean previousFlag) {
         if (previousFlag)
             return false;
 

@@ -18,7 +18,7 @@ public class Ladder {
         return width;
     }
 
-    public Line getLine(int index) {
+    public Line getLineByIndex(int index) {
         return lines.get(index);
     }
 

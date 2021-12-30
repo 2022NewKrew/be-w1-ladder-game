@@ -22,7 +22,7 @@ public class LadderView {
 
     private void printLadderLine(int row) {
         int ladderWidth = ladder.getWidth();
-        Line line = ladder.getLine(row);
+        Line line = ladder.getLineByIndex(row);
         StringBuilder ladderLine = makeLadderLineString(ladderWidth, line);
 
         System.out.println(ladderLine);
@@ -32,7 +32,7 @@ public class LadderView {
         StringBuilder ladderLine = new StringBuilder();
         ladderLine.append(DEFAULT_LADDER_LINE);
         for (int i = 0; i < ladderWidth; i++) {
-            Boolean flag = line.getFlag(i);
+            Boolean flag = line.getFlagByIndex(i);
             ladderLine.append(getRandomLadderLinePoint(flag));
             ladderLine.append(DEFAULT_LADDER_LINE);
         }
