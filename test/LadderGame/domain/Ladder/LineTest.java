@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Line 테스트")
 class LineTest {
 
-    private final int LADDER_WIDTH = 100;
+    private final int LADDER_WIDTH = 10000;
 
     @Test
     @DisplayName("마지막 인덱스의 사다리는 오른쪽 사다리가 존재하지 않는다.")
@@ -52,5 +52,4 @@ class LineTest {
         assertEquals(compareBeforeIndex.size(), 1);
         assertTrue(compareBeforeIndex.contains(false));
     }
-
 }
