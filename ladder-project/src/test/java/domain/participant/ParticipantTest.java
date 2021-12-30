@@ -47,7 +47,7 @@ class ParticipantTest {
     @DisplayName("사람의 이름 목록을 제대로 가져오는지 테스트")
     void getParticipantNameList() {
         //when
-        List<String> result = this.participantTest.getParticipantNameList();
+        List<Name> result = this.participantTest.getParticipantNameList();
 
         //then
         assertEquals(nameList.size(), result.size());
