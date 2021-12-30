@@ -19,15 +19,15 @@ class LineTest {
 
     @Test
     void points_Empty_테스트(){
-        assertEquals(line.pointsIsNotEmpty(),true);
+        assertEquals(line.cellsIsFill(),true);
     }
-
-//    @Test points_마지막원소값_확인_테스트(){
-//
-//    }
 
     @Test
-    void 가로선_출력_테스트() {
-        assertEquals(line.isLine(true),"-----");
+    void 가로선_연속2개방지_테스트(){
+        int lastindex = line.getCells().size() - 1;
+        if(line.getCells().get(lastindex)){
+            assertEquals(line.generateCellNotDuplicate(), false);
+        }
     }
+
 }

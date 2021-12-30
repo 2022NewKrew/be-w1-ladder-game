@@ -1,6 +1,8 @@
 package view;
 
 import domain.Ladder;
+import domain.Line;
+
 import java.util.Arrays;
 
 public class OutputView {
@@ -15,17 +17,17 @@ public class OutputView {
     public void showMap(){
         System.out.println("실행결과");
         System.out.println();
-        showParticipants();
+        System.out.println(showParticipants());
         showLadder();
     }
 
-    public void showParticipants(){
+    public String showParticipants(){
         char[] participantsName = new char[(participants.length + 1) * 6];
         Arrays.fill(participantsName,' ');
         for(int i = 0; i < participants.length; i++){
             writeParticipantToCharArr(participantsName, i);
         }
-        System.out.println(new String(participantsName));
+        return new String(participantsName);
     }
 
     public void writeParticipantToCharArr(char[] charArr, int index){
@@ -38,6 +40,8 @@ public class OutputView {
     }
 
     public void showLadder(){
-        ladder.showMap();
+        for(Line line : ladder.getLines()) {
+            System.out.println(line);
+        }
     }
 }

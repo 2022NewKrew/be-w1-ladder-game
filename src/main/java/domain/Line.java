@@ -4,32 +4,36 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Line {
-    private ArrayList<Boolean> points;
+    private ArrayList<Boolean> cells;
     public static Random random = new Random();
 
     Line (int peopleNum) {
-        points = new ArrayList<>();
-        getPoint(peopleNum);
+        cells = new ArrayList<>();
+        generatePoint(peopleNum);
     }
 
-    public void getPoint(int peopleNum) {
+    public ArrayList<Boolean> getCells(){
+        return this.cells;
+    }
+
+    public void generatePoint(int peopleNum) {
         for(int i = 0; i < peopleNum - 1; i++) {
-            points.add(getRandomAndNotDuplicate());
+            cells.add(generateCellNotDuplicate());
         }
     }
 
-    public Boolean getRandomAndNotDuplicate(){
-        if(pointsIsNotEmpty() && pointsLastTrue()) return false;
+    public Boolean generateCellNotDuplicate(){
+        if(cellsIsFill() && isLastCells()) return false;
         return random.nextBoolean();
     }
 
-    public Boolean pointsIsNotEmpty(){
-        return !points.isEmpty();
+    public Boolean cellsIsFill(){
+        return !cells.isEmpty();
     }
 
-    public Boolean pointsLastTrue(){
-        int lastindex = points.size() - 1;
-        return points.get(lastindex);
+    public Boolean isLastCells(){
+        int lastindex = cells.size() - 1;
+        return cells.get(lastindex);
     }
 
     public String isLine(Boolean point){
@@ -37,10 +41,11 @@ public class Line {
         return "     ";
     }
 
+    @Override
     public String toString(){
         StringBuilder s = new StringBuilder();
         s.append("  ");
-        for(Boolean point:points) {
+        for(Boolean point:cells) {
             s.append("|");
             s.append(isLine(point));
         }
