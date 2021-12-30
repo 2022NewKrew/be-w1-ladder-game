@@ -23,9 +23,9 @@ public class LadderGame {
         gameBoard = new ArrayList<>();
     }
 
-    public void run(String nameInputs, int heightOfLadder) {
+    public void run(String namesInput, int heightOfLadder) {
         try {
-            initGame(nameInputs, heightOfLadder);
+            initGame(namesInput, heightOfLadder);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -39,8 +39,8 @@ public class LadderGame {
         return participantsNames;
     }
 
-    private void initGame(String nameInputs, int heightOfLadder) {
-        participantsNames = Arrays.stream(nameInputs.split(NAME_INPUT_DELIMITER))
+    private void initGame(String namesInput, int heightOfLadder) {
+        participantsNames = Arrays.stream(namesInput.split(NAME_INPUT_DELIMITER))
             .collect(Collectors.toList());
         width = participantsNames.size() - 1;
         height = heightOfLadder;
