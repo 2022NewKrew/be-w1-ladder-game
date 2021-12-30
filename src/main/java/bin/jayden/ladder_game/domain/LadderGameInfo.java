@@ -3,39 +3,25 @@ package bin.jayden.ladder_game.domain;
 import bin.jayden.ladder_game.exception.InvalidLadderHeightException;
 import bin.jayden.ladder_game.exception.InvalidNameSizeException;
 import bin.jayden.ladder_game.exception.InvalidParticipantsSizeException;
+import bin.jayden.ladder_game.exception.InvalidResultSizeException;
 
 import java.util.Collections;
 import java.util.List;
 
-public class LadderInfo {
-    private final int height;
+public class LadderGameInfo {
     private final List<String> participants;
+    private final List<String> results;
+    private final int height;
 
-    public LadderInfo(List<String> participants, int height) throws Exception {
-        validation(participants, height);
+    public LadderGameInfo(List<String> participants, List<String> results, int height) throws Exception {
         this.participants = Collections.unmodifiableList(participants);
+        this.results = Collections.unmodifiableList(results);
         this.height = height;
+        validation();
     }
 
-    public LadderInfo(String[] participants, int height) throws Exception {
-        this(List.of(participants), height);
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getWidth() {
-        return participants.size();
-    }
-
-    public List<String> getParticipants() {
-        return participants;
-    }
-
-    private void validation(List<String> participants, int height) throws Exception {
-        participantsValidationCheck(participants);
-        ladderHeightValidationCheck(height);
+    public LadderGameInfo(String[] participants, String[] result, int height) throws Exception {
+        this(List.of(participants), List.of(result), height);
     }
 
     private static void participantsValidationCheck(List<String> participants) throws Exception {
@@ -51,9 +37,36 @@ public class LadderInfo {
             throw new InvalidNameSizeException();
     }
 
+    private static void ResultSizeValidationCheck(int participantsSize, int resultsSize) throws InvalidResultSizeException {
+        if (participantsSize != resultsSize)
+            throw new InvalidResultSizeException();
+    }
+
     private static void ladderHeightValidationCheck(int height) throws InvalidLadderHeightException {
         if (height < Constants.MIN_LADDER_HEIGHT || height > Constants.MAX_LADDER_HEIGHT)
             throw new InvalidLadderHeightException();
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return participants.size();
+    }
+
+    public List<String> getParticipants() {
+        return participants;
+    }
+
+    public List<String> getResults() {
+        return results;
+    }
+
+    private void validation() throws Exception {
+        participantsValidationCheck(participants);
+        ResultSizeValidationCheck(participants.size(), results.size());
+        ladderHeightValidationCheck(height);
     }
 
 }

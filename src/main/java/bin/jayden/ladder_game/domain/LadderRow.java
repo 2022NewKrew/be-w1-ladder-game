@@ -20,6 +20,10 @@ public class LadderRow {
         return row;
     }
 
+    public boolean getIsLine(int index) {
+        return row.get(index);
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
