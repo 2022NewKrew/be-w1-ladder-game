@@ -3,12 +3,13 @@ package com.laddergame;
 import com.laddergame.domain.GameResult;
 import com.laddergame.domain.LadderGame;
 import com.laddergame.domain.Lines;
+import com.laddergame.dto.LinesDto;
 import com.laddergame.dto.GameResultDto;
-import com.laddergame.dto.ParticipantResultDto;
 
 import java.util.List;
 import java.util.Objects;
 
+import static com.laddergame.util.Parser.parseInput;
 import static com.laddergame.view.InputView.*;
 import static com.laddergame.view.OutputView.*;
 
@@ -21,16 +22,16 @@ public class LadderGameApplication {
         LadderGame ladderGame = LadderGame.valueOf(ladderHeight, ParticipantNames, gameResults);
         Lines lines = ladderGame.getLines();
         List<String> participantNames = ladderGame.getParticipantsNames();
-        List<String> participantResults = List.of(gameResults.split(","));
-        GameResultDto gameResultDto = GameResultDto.from(lines);
+        List<String> participantResults = parseInput(gameResults);
+        LinesDto linesDto = LinesDto.from(lines);
 
-        outputLadderGameResult(gameResultDto.getGameResult(), participantNames, participantResults);
+        outputLadderGameResult(linesDto.getGameResult(), participantNames, participantResults);
 
         while(true) {
             String targetParticipantName = inputToShowParticipantResult();
             if(Objects.equals(targetParticipantName, APPLICATION_EXIT)) break;
             GameResult matchedGameResult = ladderGame.getGameResult();
-            ParticipantResultDto participantResultDto = ParticipantResultDto.from(matchedGameResult, targetParticipantName);
+            GameResultDto participantResultDto = GameResultDto.from(matchedGameResult, targetParticipantName);
             outputParticipantResult(participantResultDto.getParticipantResult());
         }
     }

@@ -7,20 +7,6 @@ public class OutputView {
         throw new RuntimeException("Unnecessary instance generation");
     }
 
-    private enum DELIMITER {
-        LADDER("-----"),
-        NO_LADDER("     "),
-        VERTICAL_LINE("|"),
-        LADDER_PADDING("    ")
-        ;
-
-        DELIMITER(String delimiter) {
-            this.value = delimiter;
-        }
-
-        private final String value;
-    }
-
     public static void outputLadderGameResult(List<List<Boolean>> lines, List<String> names, List<String> results) {
         System.out.println("사다리 결과\n");
         outputParticipantNames(names);
@@ -43,12 +29,12 @@ public class OutputView {
     }
 
     private static void outputLine(List<Boolean> line) {
-        System.out.print(DELIMITER.LADDER_PADDING.value);
+        System.out.print(ViewDelimiter.LADDER_PADDING.value);
         line.forEach(hasLadder -> {
-            System.out.print(DELIMITER.VERTICAL_LINE.value);
-            String ladder = hasLadder ? DELIMITER.LADDER.value : DELIMITER.NO_LADDER.value;
+            System.out.print(ViewDelimiter.VERTICAL_LINE.value);
+            String ladder = hasLadder ? ViewDelimiter.LADDER.value : ViewDelimiter.NO_LADDER.value;
             System.out.print(ladder);
         });
-        System.out.println(DELIMITER.VERTICAL_LINE.value);
+        System.out.println(ViewDelimiter.VERTICAL_LINE.value);
     }
 }

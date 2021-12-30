@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+import static com.laddergame.util.Parser.parseInput;
+
 public class GameResult {
     private final Map<String, String> matchedGameResults;
 
@@ -13,7 +15,7 @@ public class GameResult {
     }
 
     public static GameResult valueOf(Participants participantsNamesString, Lines lines, String gameResultsString) {
-        List<String> gameResults = parseResult(gameResultsString);
+        List<String> gameResults = parseInput(gameResultsString);
         Map<String, String> matchedGameResults = makeGameResults(participantsNamesString, lines, gameResults);
         return new GameResult(matchedGameResults);
     }
@@ -58,10 +60,4 @@ public class GameResult {
     public Map<String, String> getMatchedGameResults() {
         return matchedGameResults;
     }
-
-    private static List<String> parseResult(String gameResultsString) {
-        return List.of(gameResultsString.split(GAME_RESULT_DELIMITER));
-    }
-
-    private static final String GAME_RESULT_DELIMITER = ",";
 }

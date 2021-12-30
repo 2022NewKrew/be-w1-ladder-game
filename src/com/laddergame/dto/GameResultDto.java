@@ -1,29 +1,23 @@
 package com.laddergame.dto;
 
-import com.laddergame.domain.Line;
-import com.laddergame.domain.Lines;
+import com.laddergame.domain.GameResult;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 public class GameResultDto {
-    private static List<List<Boolean>> gameResult;
+    private static String participantResult;
 
-    GameResultDto(List<List<Boolean>> lines) {
-        gameResult = lines;
+    GameResultDto(String result) {
+        participantResult = result;
     }
 
-    public List<List<Boolean>> getGameResult() {
-        return gameResult;
+    public String getParticipantResult() {
+        return participantResult;
     }
 
-    public static GameResultDto from(Lines result) {
-        List<List<Boolean>> lines = result
-                .getLines()
-                .stream()
-                .map(Line::getHasLadders)
-                .collect(Collectors.toList());
-
-        return new GameResultDto(lines);
+    public static GameResultDto from(GameResult gameResult, String targetParticipant) {
+        Map<String, String> matchedGameResult = gameResult.getMatchedGameResults();
+        String result = matchedGameResult.get(targetParticipant);
+        return new GameResultDto(result);
     }
 }
