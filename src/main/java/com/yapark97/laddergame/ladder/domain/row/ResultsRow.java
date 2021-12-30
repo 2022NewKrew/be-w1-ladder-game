@@ -6,17 +6,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ParticipantsRow implements Row {
-    private final List<String> participants;
+public class ResultsRow implements Row{
+    private final List<String> results;
 
-    public ParticipantsRow(List<String> participants) {
-        this.participants = participants;
+    public ResultsRow(List<String> results) {
+        this.results = results;
     }
 
     @Override
     public String getSimpleOutput(final int WIDTH) {
-        return participants.stream()
-                .map(participant -> alignCenter(participant, WIDTH))
+        return results.stream()
+                .map(result -> alignCenter(result, WIDTH))
                 .collect(Collectors.joining(" "));
     }
 

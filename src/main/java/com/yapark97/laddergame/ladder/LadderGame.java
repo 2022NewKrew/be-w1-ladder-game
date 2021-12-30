@@ -25,11 +25,21 @@ public class LadderGame {
     private Ladder createLadder() {
         List<String> participants = ladderInput.takeParticipantsInput();
         int maxHeight = ladderInput.takeMaxHeightInput();
+        List<String> results = ladderInput.takeResultsInput(participants.size());
 
-        return new Ladder(participants, maxHeight);
+        return new Ladder(participants, maxHeight, results);
     }
 
     public void drawLadder() {
         ladderOutput.drawLadder(ladder);
+    }
+
+    public void play() {
+        boolean isFinished;
+
+        do {
+            String selection = ladderInput.selectParticipant(ladder);
+            isFinished = ladderOutput.showResult(ladder, selection);
+        } while (!isFinished);
     }
 }

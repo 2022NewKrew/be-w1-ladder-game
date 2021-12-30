@@ -9,6 +9,7 @@ public class Main {
         try {
             ladderGame.initGame();
             ladderGame.drawLadder();
+            ladderGame.play();
         } catch (Exception e) {
             System.err.println("exception 발생");
             System.err.println(e.getMessage());

@@ -52,4 +52,15 @@ public class LadderRow implements Row {
     private static char generateLadderBlock(boolean isConnected) {
         return isConnected ? LadderBlock.HORIZONTAL_LINE : LadderBlock.BLANK;
     }
+
+    @Override
+    public int move(int curIndex) {
+        if (curIndex > 0 && connections.get(curIndex - 1)) {
+            return curIndex - 1;
+        }
+        if (curIndex < connections.size() && connections.get(curIndex)) {
+            return curIndex + 1;
+        }
+        return curIndex;
+    }
 }
