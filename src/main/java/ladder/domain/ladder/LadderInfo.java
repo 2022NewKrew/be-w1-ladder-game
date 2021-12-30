@@ -15,6 +15,14 @@ public class LadderInfo {
         this.height = height;
     }
 
+    public String[] getParticipants() {
+        return participants;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     private void validateLadderInfo(String[] participants, int height) throws LadderException {
 
         if (height < 1) {

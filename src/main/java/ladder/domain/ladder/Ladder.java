@@ -10,9 +10,9 @@ public class Ladder {
     private final int height;
     private final List<Bridge> bridges;
 
-    public Ladder(String[] participants, int height, List<Bridge> bridges) {
-        this.participants = participants;
-        this.height = height;
+    public Ladder(LadderInfo ladderInfo, List<Bridge> bridges) {
+        this.participants = ladderInfo.getParticipants();
+        this.height = ladderInfo.getHeight();
         this.bridges = bridges;
     }
 
