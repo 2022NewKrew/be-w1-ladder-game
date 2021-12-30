@@ -1,39 +1,14 @@
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Application {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static void runApp() {
-        List<Participant> participants = initializeParticipants();
-        Ladder ladder = initializeLadder(participants.size());
+        String[] names = inputParticipants();
+        int height = inputHeight();
 
-        printParticipants(participants);
-        printLadder(ladder);
-    }
-
-    public static List<Participant> initializeParticipants() {
-        String[] nameOfParticipants = inputParticipants();
-
-        return Arrays.stream(nameOfParticipants).map(Participant::new).collect(Collectors.toList());
-    }
-
-    public static void printParticipants(List<Participant> participants) {
-        List<String> names = participants.stream().map(Participant::getName).collect(Collectors.toList());
-        System.out.println(String.join("", names));
-    }
-
-    public static Ladder initializeLadder(int numOfPeople) {
-        int heightOfLadder = inputHeight();
-        Ladder ladder = new Ladder(heightOfLadder, numOfPeople);
-
-        return ladder;
-    }
-
-    public static void printLadder(Ladder ladder) {
-        System.out.println(ladder.toString());
+        LadderGame ladderGame = new LadderGame(names, height);
+        ladderGame.printInformation();
     }
 
     public static int inputHeight() {
