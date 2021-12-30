@@ -1,7 +1,7 @@
 package view;
 
 import domain.Player;
-import domain.PlayerRepository;
+import validator.ValidationExceptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class InputView {
     private static final String PLAYER_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String PLAYER_NUMBERS = "참여할 사람은 몇 명인가요?";
     private static final String MAXIMUM_HEIGHT_LADDER = "최대 사다리 높이는 몇 개인가요";
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -27,12 +26,9 @@ public class InputView {
     }
 
     public static Player stringToPlayer(String nameAfterDefined) {
-        return new Player(nameAfterDefined);
-    }
-
-    public static int inputPlayersNum() {
-        System.out.println(PLAYER_NUMBERS);
-        return scanner.nextInt();
+        Player player = new Player(nameAfterDefined);
+        ValidationExceptions.validatePlayerName(new Player(nameAfterDefined));
+        return player;
     }
 
     public static int inputMaximumLadderHeight() {
