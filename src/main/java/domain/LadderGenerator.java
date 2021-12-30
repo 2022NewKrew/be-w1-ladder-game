@@ -2,16 +2,19 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class LadderGenerator {
     private static final Double MATH_RANDOM_PERCENT = 0.6;
 
     public Ladder createLadder(Integer playersNum, Integer maximumLadderHeight) {
-        List<LadderLine> ladder = new ArrayList<LadderLine>();
+        List<LadderLine> ladder = new ArrayList<>();
 
-        for (int i = 0; i < maximumLadderHeight; i++) {
-            ladder.add(new LadderLine(createLadderLine(playersNum)));
-        }
+        IntStream.range(0, maximumLadderHeight).forEach(i -> ladder.add(new LadderLine(createLadderLine(playersNum))));
+//        for (int i = 0; i < maximumLadderHeight; i++) {
+//            ladder.add(new LadderLine(createLadderLine(playersNum)));
+//        }
         return new Ladder(ladder);
     }
 
