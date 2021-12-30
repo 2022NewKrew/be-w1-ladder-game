@@ -6,7 +6,7 @@ import java.util.Random;
 
 class Line {
     static final Random rand = new Random();
-    boolean isSuccessive = false;
+    private boolean isSuccessive = false;
 
     private final List<LadderComponent> points;
 
@@ -40,5 +40,9 @@ class Line {
         StringBuilder sb = new StringBuilder();
         points.forEach(col -> sb.append(col.getValue()));
         return sb.toString();
+    }
+
+    public LadderComponent getPointComponent(int col){
+        return points.get(col);
     }
 }

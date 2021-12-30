@@ -3,30 +3,34 @@ package main.java.ladder.view;
 import java.util.List;
 import java.util.Scanner;
 
+import static main.java.Application.sc;
+
 public class LadderInput {
     private static final String DELIMITER = ",";
-    static final Scanner sc = new Scanner(System.in);
 
     private final List<String> players;
+    private final List<String> results;
     private final int height;
 
     public LadderInput() {
-        players = userInputPlayers();
+        players = userInputStringList("참여할 사람 이름을 입력하세요. (이름은 쉼표로(,)로 구분하세요)");
+        results = userInputStringList("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        validateLength();
         height = userInputHeight();
-        sc.close();
     }
 
-    private List<String> userInputPlayers() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표로(,)로 구분하세요)");
-        List<String> inputPlayers = List.of(sc.nextLine().split(DELIMITER));
+    private List<String> userInputStringList(String expression) {
+        System.out.println(expression);
+        List<String> inputStringList = List.of(sc.nextLine().split(DELIMITER));
 
-        validatePlayers(inputPlayers);
-        return inputPlayers;
+        validateStringList(inputStringList);
+        return inputStringList;
     }
 
-    private void validatePlayers(List<String> inputPlayers){
-        if (inputPlayers.stream().anyMatch(name -> name.length() > 5))
-            throw new IllegalArgumentException("사람 이름은 최대 5글자입니다.");
+    private void validateStringList(List<String> inputStringList) {
+        if (inputStringList.stream().anyMatch(str -> str.length() > 5)) {
+            throw new IllegalArgumentException("문자열은 최대 5글자입니다.");
+        }
     }
 
     private int userInputHeight() {
@@ -37,13 +41,24 @@ public class LadderInput {
         return inputHeight;
     }
 
-    private void validateHeight(int inputHeight){
-        if (inputHeight < 1)
+    private void validateHeight(int inputHeight) {
+        if (inputHeight < 1) {
             throw new IllegalArgumentException("사다리의 높이는 1이상입니다.");
+        }
+    }
+
+    private void validateLength() {
+        if (players.size() != results.size()) {
+            throw new IllegalArgumentException("참여할 사람과 실행 결과의 수는 같아야 합니다.");
+        }
     }
 
     public List<String> getPlayers() {
         return players;
+    }
+
+    public List<String> getResults() {
+        return results;
     }
 
     public int getHeight() {
