@@ -17,5 +17,4 @@ public class InputView {
         System.out.println(MAXIMUM_HEIGHT_LADDER);
         return scanner.nextInt();
     }
-
 }
