@@ -12,7 +12,7 @@ public class LadderGame {
     public LadderGame() {
     }
 
-    public void start() {
+    public static void start() {
         try (Scanner sc = new Scanner(System.in)) {
             LadderInput ladderInput = getLadderInput(sc);
             LadderPrinter ladderPrinter = createLadderPrinter(new RandomLadderFactory(), ladderInput);
@@ -23,7 +23,7 @@ public class LadderGame {
         }
     }
 
-    private LadderInput getLadderInput(Scanner sc) {
+    private static LadderInput getLadderInput(Scanner sc) {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요.) (최대 5글자)");
         String[] playerNames = sc.nextLine().split("\\s*[,]\\s*");
 
@@ -37,16 +37,16 @@ public class LadderGame {
         return new LadderInput(playerNames, results, height);
     }
 
-    private LadderPrinter createLadderPrinter(LadderFactory factory, LadderInput gameInput) {
+    private static LadderPrinter createLadderPrinter(LadderFactory factory, LadderInput gameInput) {
         Ladder ladder = factory.createLadder(gameInput.getPlayerNames(), gameInput.getResults(), gameInput.getHeight());
         return new LadderPrinter(ladder);
     }
 
-    public void queryResults(Scanner sc, LadderPrinter ladderPrinter) {
+    private static void queryResults(Scanner sc, LadderPrinter ladderPrinter) {
         while (queryResult(sc, ladderPrinter)); // exit: 춘식이
     }
 
-    private boolean queryResult(Scanner sc, LadderPrinter ladderPrinter) {
+    private static boolean queryResult(Scanner sc, LadderPrinter ladderPrinter) {
         System.out.println("결과를 보고 싶은 사람은?");
         String playerName = sc.nextLine().trim();
         switch (playerName) {
