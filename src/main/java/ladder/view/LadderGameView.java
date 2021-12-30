@@ -2,6 +2,7 @@ package ladder.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import ladder.domain.LadderGame;
 import ladder.domain.LadderLine;
@@ -15,6 +16,8 @@ public class LadderGameView {
     private static final String LADDER_CONNECT = "-----";
     private static final String LADDER_BLANK = "     ";
     private static final String GAME_RESULT_MESSAGE = String.format("%n%s%n", "사다리 결과");
+    private static final String SHOW_RESULT_MESSAGE = String.format("%n%s", "실행 결과");
+    private static final String RESULT_FORMAT_PATTERN = "%s : %s";
 
     private static final int MAX_STRING_LENGTH = 5;
 
@@ -50,5 +53,19 @@ public class LadderGameView {
     private String formatString(String value) {
         return String.format(NAME_RESULT_FORMAT,
             value.length() <= MAX_STRING_LENGTH ? value : value.substring(0, MAX_STRING_LENGTH));
+    }
+
+    public void showGameResult(LadderGame ladderGame, String userName) {
+        if (!ladderGame.isAvailable()) {
+            throw new NullPointerException("사다리 게임이 정상적으로 생성된 상태가 아니에요.");
+        }
+        Map<String, String> results = ladderGame.getResultMap(userName);
+        List<String> printResult = new ArrayList<>();
+
+        printResult.add(SHOW_RESULT_MESSAGE);
+        results.forEach(
+            (name, result) -> printResult.add(String.format(RESULT_FORMAT_PATTERN, name, result)));
+
+        System.out.println(String.join(System.lineSeparator(), printResult));
     }
 }
