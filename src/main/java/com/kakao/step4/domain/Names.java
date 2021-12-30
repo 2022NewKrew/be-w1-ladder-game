@@ -8,18 +8,32 @@ import java.util.stream.Collectors;
 
 public class Names {
     private static final int MAX_NAME_LEN = 5;
+    private static final String ERROR_MSG = "조건에 맞지 않는 이름이 입력되었습니다.";
 
     private final List<String> namesList;
 
     public Names(String namesStr) throws Exception {
-        if (namesStr.trim().isEmpty()) {
-            throw new Exception("조건에 맞지 않는 이름이 입력되었습니다.");
-        }
+        checkBeforeMakeNamesList(namesStr);
 
         this.namesList = Arrays.stream(namesStr.split(","))
                 .map(String::trim)
                 .map(s -> StringUtils.left(s, MAX_NAME_LEN))
                 .collect(Collectors.toList());
+
+        checkAfterMakeNamesList();
+    }
+    private void checkBeforeMakeNamesList(String namesStr) throws Exception {
+        if (namesStr.trim().isEmpty()) {
+            throw new Exception(ERROR_MSG);
+        }
+    }
+
+    private void checkAfterMakeNamesList() throws Exception {
+        if (this.namesList.isEmpty() ||
+                this.namesList.stream()
+                .anyMatch(s -> s.length() == 0)) {
+            throw new Exception(ERROR_MSG);
+        }
     }
 
     public int getSize() {

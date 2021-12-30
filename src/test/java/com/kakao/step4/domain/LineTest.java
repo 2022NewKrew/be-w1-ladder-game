@@ -8,7 +8,7 @@ import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
-    @DisplayName("라인 생성 테스트")
+    @DisplayName("라인 생성 시 겹치는 라인이 없는지 확인")
     @Test
     public void lineCreateTest() {
         int countOfPeople = 3;
