@@ -10,8 +10,6 @@ import java.util.Scanner;
 public class SimpleLadderInput implements LadderInput{
     private static SimpleLadderInput simpleLadderInput;
     private static final Scanner sc = new Scanner(System.in);
-    private static final String ALL = "all";
-    private static final String CUTE_CHOONSIK = "춘식이";
 
     private SimpleLadderInput() {}
 
@@ -66,6 +64,15 @@ public class SimpleLadderInput implements LadderInput{
     public String selectParticipant(Ladder ladder) {
         System.out.println("\n결과를 보고 싶은 사람은?");
         String input = sc.nextLine();
+        
+        if (input == null) {
+            throw new InputMismatchException("참여자 이름을 입력해 주세요.");
+        }
+        if (!ladder.getParticipants().contains(input) &&
+                !input.equals(Selection.ALL) &&
+                !input.equals(Selection.END_OF_GAME)) {
+            throw new InputMismatchException("존재하지 않는 참여자입니다.");
+        }
         return input;
     }
 }
