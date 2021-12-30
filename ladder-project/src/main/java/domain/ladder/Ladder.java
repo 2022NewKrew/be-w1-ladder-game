@@ -1,31 +1,28 @@
 package domain.ladder;
 
 import domain.ladder.line.Line;
-import domain.ladder.line.RandomLineStrategy;
+import domain.ladder.line.LineStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Ladder {
 
     private final List<Line> ladder;
 
-    public Ladder(int column, int height) {
-        this.ladder = createLadder(column - 1, height);
+    public Ladder(int column, int height, LineStrategy strategy) {
+        this.ladder = createLadder(column - 1, height, strategy);
     }
 
-    private List<Line> createLadder(int column, int height) {
+    private List<Line> createLadder(int column, int height, LineStrategy strategy) {
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladder.add(Line.createToStrategy(new RandomLineStrategy(), column));
+            ladder.add(Line.createToStrategy(strategy, column));
         }
         return ladder;
     }
 
-    public List<List<Boolean>> getLadder() {
-        return ladder.stream()
-                .map(Line::getLines)
-                .collect(Collectors.toList());
+    public List<Line> getLadder() {
+        return new ArrayList<>(ladder);
     }
 }
