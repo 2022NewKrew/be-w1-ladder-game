@@ -34,8 +34,7 @@ public class Ladder {
     }
 
     private void printLadderRow(Line ladderRow){
-        ladderRow.ladderComponents.forEach(System.out::print);
-        System.out.println();
+        System.out.println(ladderRow.toString());
     }
 
     public List<Line> getLadder() {

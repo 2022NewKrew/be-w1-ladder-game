@@ -8,7 +8,7 @@ import java.util.List;
 public class Line {
     private final int ladderWidth;
     public List<Boolean> chkLadder = new ArrayList<>();
-    public List<String> ladderComponents = new ArrayList<>();
+    public List<LadderShape> ladderShape = new ArrayList<>();
 
     public Line(int ladderWidth) {
         this.ladderWidth = ladderWidth;
@@ -43,8 +43,8 @@ public class Line {
     }
 
     private void makeLadderComponents(boolean hasLadder){
-        ladderComponents.add(LadderShape.VERTICAL_LINE.getShape());
-        ladderComponents.add(getLadderShape(hasLadder).getShape());
+        ladderShape.add(LadderShape.VERTICAL_LINE);
+        ladderShape.add(getLadderShape(hasLadder));
     }
 
     private LadderShape getLadderShape(boolean hasLadder){
@@ -52,5 +52,12 @@ public class Line {
             return LadderShape.HORIZONTAL_LINE;
         }
         return LadderShape.BLANK;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        ladderShape.forEach((shape) -> sb.append(shape.getShape()));
+        return sb.toString();
     }
 }

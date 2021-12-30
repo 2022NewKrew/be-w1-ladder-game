@@ -7,8 +7,8 @@ public enum LadderShape {
 
     private final String shape;
 
-    LadderShape(String components) {
-        this.shape = components;
+    LadderShape(String shape) {
+        this.shape = shape;
     }
 
     public String getShape(){
