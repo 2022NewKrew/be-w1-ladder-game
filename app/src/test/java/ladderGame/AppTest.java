@@ -3,12 +3,37 @@
  */
 package ladderGame;
 
+import ladderGame.view.LadderGame;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import java.util.Arrays;
+import java.util.List;
 
 public class AppTest {
-    @Test public void appHasAGreeting() {
-        GameStarter classUnderTest = new GameStarter();
-      //  assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+
+    /*
+    *   발판이 연속해서 있는 경우가 있는지 테스트하는 메소드
+    * */
+    @Test
+    @DisplayName("Line Test")
+    public void lineTest() {
+        // given
+        List<String> playersTest = Arrays.asList("p1", "p2", "p3", "p4", "p5");
+        LadderGame classUnderTest = new LadderGame(playersTest, 6);
+
+        for(int i = 0; i < 6 ; i++) { // ?
+            // when ..?
+            List<Boolean> pointsTest = classUnderTest.getLadder().get(i).getPoints();
+
+            // then
+            Assertions.assertAll(
+                    () -> Assertions.assertFalse(pointsTest.get(0) & pointsTest.get(1)),
+                    () -> Assertions.assertFalse(pointsTest.get(1) & pointsTest.get(2)),
+                    () -> Assertions.assertFalse(pointsTest.get(2) & pointsTest.get(3))
+            );
+        }
     }
+
+
 }
