@@ -1,15 +1,20 @@
+import model.Ladder;
+import model.StartInfo;
+import view.InputManager;
+import view.PrintManager;
+
 public class Main {
     public static void main(String[] args) {
-        // 게임인원, 사다리높이 받음
+        // 게임 정보 입력받음
         StartInfo startInfo = InputManager.makeStartInfo();
 
-        // 사다리 랜덤 생성
-        Ladder ladder = new Ladder(startInfo.getNumPeople(), startInfo.getMaxHeight());
+        // 사다리 생성
+        Ladder ladder = new Ladder(startInfo.getNamePeople(), startInfo.getNumPeople(), startInfo.getMaxHeight());
 
         // 참가자 프린트
-        PrintManager.printPeople(startInfo.getNamePeople());
+        PrintManager.printPeople(ladder.getNamePeople());
         // 사다리 프린트
-        PrintManager.printLadder(ladder.getLadder());
+        PrintManager.printLadder(ladder.toString());
         }
     }
 
