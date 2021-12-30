@@ -48,7 +48,7 @@ public class Member {
         return new Member(String.join(SEPARATOR, DEFAULT_MEMBER.toArray(new String[0])));
     }
 
-    public List<String> getList() {
+    public List<String> getMemberList() {
         return member;
     }
 }

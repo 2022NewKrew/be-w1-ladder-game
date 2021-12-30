@@ -12,7 +12,7 @@ public class LadderRow {
         this.list = List.copyOf(list);
     }
 
-    public List<BridgeType> getList() {
+    public List<BridgeType> getBridgeList() {
         return list;
     }
 
