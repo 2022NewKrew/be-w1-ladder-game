@@ -7,11 +7,13 @@ import static ladder.domain.exception.LadderException.ErrorCode.*;
 public class LadderInfo {
 
     private final String[] participants;
+    private final String[] results;
     private final int height;
 
-    public LadderInfo(String[] participants, int height) throws LadderException {
-        validateLadderInfo(participants, height);
+    public LadderInfo(String[] participants, String[] results, int height) throws LadderException {
+        validateLadderInfo(participants, results, height);
         this.participants = participants;
+        this.results = results;
         this.height = height;
     }
 
@@ -23,18 +25,20 @@ public class LadderInfo {
         return height;
     }
 
-    private void validateLadderInfo(String[] participants, int height) throws LadderException {
-
+    private void validateLadderInfo(String[] participants, String[] results, int height) throws LadderException {
         if (height < 1) {
             throw new LadderException(INVALID_HEIGHT, height);
         }
         if (participants.length == 0) {
             throw new LadderException(EMPTY_PARTICIPANTS);
         }
-        for (String participant : participants) {
-            validateParticipantName(participant);
+        if (participants.length != results.length) {
+            throw new LadderException(MISMATCH_PARTICIPANTS_AND_RESULT);
         }
-
+        for (int i = 0; i < participants.length; i++) {
+            validateParticipantName(participants[i]);
+            validateResultName(results[i]);
+        }
     }
 
     private void validateParticipantName(String participant) throws LadderException {
@@ -43,6 +47,15 @@ public class LadderInfo {
         }
         if (participant.length() > 5) {
             throw new LadderException(EXCEED_MAX_PARTICIPANT_NAME, participant);
+        }
+    }
+
+    private void validateResultName(String result) throws LadderException {
+        if (result.length() == 0) {
+            throw new LadderException(EMPTY_RESULT_NAME);
+        }
+        if (result.length() > 5) {
+            throw new LadderException(EXCEED_MAX_RESULT_NAME);
         }
     }
 }

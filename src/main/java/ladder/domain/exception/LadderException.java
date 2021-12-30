@@ -33,6 +33,12 @@ public class LadderException extends Exception {
                 return String.format("'%s' 사다리 게임 참여자의 이름 최대 길이를 초과했습니다.", errorParameter);
             case EMPTY_PARTICIPANT_NAME:
                 return "사다리 게임 참여자의 이름은 공백일 수 없습니다.";
+            case MISMATCH_PARTICIPANTS_AND_RESULT:
+                return "사다리 게임 참여자와 결과의 개수가 일치하지 않습니다.";
+            case EMPTY_RESULT_NAME:
+                return "사다리 게임 결과의 이름은 공백일 수 없습니다.";
+            case EXCEED_MAX_RESULT_NAME:
+                return String.format("'%s' 사다리 게임 결과의 이름 최대 길이를 초과했습니다.", errorParameter);
         }
         return "";
     }
@@ -42,7 +48,14 @@ public class LadderException extends Exception {
     }
 
     public enum ErrorCode {
-        OK, INVALID_HEIGHT, EMPTY_PARTICIPANTS, EMPTY_PARTICIPANT_NAME, EXCEED_MAX_PARTICIPANT_NAME
+        OK,
+        INVALID_HEIGHT,
+        EMPTY_PARTICIPANTS,
+        EMPTY_PARTICIPANT_NAME,
+        EXCEED_MAX_PARTICIPANT_NAME,
+        MISMATCH_PARTICIPANTS_AND_RESULT,
+        EMPTY_RESULT_NAME,
+        EXCEED_MAX_RESULT_NAME
     }
 
 }
