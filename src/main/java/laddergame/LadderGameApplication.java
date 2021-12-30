@@ -1,5 +1,6 @@
 package laddergame;
 
+import laddergame.domain.LadderGame;
 import laddergame.view.View;
 
 public class LadderGameApplication {

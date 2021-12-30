@@ -1,4 +1,4 @@
-package laddergame;
+package laddergame.domain;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -16,6 +16,10 @@ public class LadderComponent {
 
     public Boolean hasRightHorizon() {
         return hasRightHorizon;
+    }
+
+    public Boolean hasLeftHorizon() {
+        return hasLeftHorizon;
     }
 
     private Boolean makeRandomHorizon() {
