@@ -21,13 +21,12 @@ public class Line {
         for(boolean stepExistence : steps){
             System.out.printf(getOneStep(stepExistence));
         }
-        
+
         System.out.println();
     }
 
-
     private boolean getNewStep(int lineIndex) {
-        Boolean isPrevStepExist = lineIndex > 0 && steps.get(lineIndex -1);
+        boolean isPrevStepExist = lineIndex > 0 && steps.get(lineIndex -1);
         if(isPrevStepExist){
             return false;
         }
@@ -40,5 +39,4 @@ public class Line {
          }
         return "     |";
     }
-
 }
