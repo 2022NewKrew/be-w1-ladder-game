@@ -14,7 +14,7 @@ public class Result {
         return result;
     }
 
-    public String toString(){
+    public String toString() {
         return result;
     }
 }

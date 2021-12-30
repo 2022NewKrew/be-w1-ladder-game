@@ -43,16 +43,16 @@ public class LadderRow {
         return sb.toString();
     }
 
-    public ArrayList<LadderCell> getRow(){
+    public ArrayList<LadderCell> getRow() {
         return row;
     }
 
-    public LadderCell get(int idx){
-        if(idx < 0 || this.row.size() <= idx) return null;
+    public LadderCell get(int idx) {
+        if (idx < 0 || this.row.size() <= idx) return null;
         return row.get(idx);
     }
 
-    public int size(){
+    public int size() {
         return row.size();
     }
 }
