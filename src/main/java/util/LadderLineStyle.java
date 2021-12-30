@@ -1,3 +1,5 @@
+package util;
+
 public enum LadderLineStyle {
 	HORIZONTAL_LINE("-----"),
 	HORIZONTAL_EMPTY("     "),
