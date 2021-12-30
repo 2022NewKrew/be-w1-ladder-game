@@ -5,10 +5,10 @@ public class InputDTO {
     private String[] namesOfPeople;
     private int heightOfLadder;
 
-    private InputDTO(){}
+
     public InputDTO(String[] names, int height) {
-        this.namesOfPeople=names;
-        this.heightOfLadder=height;
+        this.namesOfPeople = names;
+        this.heightOfLadder = height;
     }
 
     public String[] getNamesOfPeople() {

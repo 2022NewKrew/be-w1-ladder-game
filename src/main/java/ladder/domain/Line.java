@@ -5,13 +5,23 @@ import java.util.List;
 
 public class Line {
 
-    private List<Boolean> isLinkLists=new ArrayList<>();
+    private List<Boolean> isLinkLists = new ArrayList<>();
 
-    public Line(){}
+    public Line() {
+    }
 
-    public void setAbleLink(boolean isLink){
+    public void setAbleLink(boolean isLink) {
         this.isLinkLists.add(isLink);
     }
 
-    public List<Boolean> getIsLinkLists(){return this.isLinkLists;}
+    public List<Boolean> getIsLinkLists() {
+        return this.isLinkLists;
+    }
+
+    public boolean checkAbleLink(boolean previousLink, boolean isLink) {
+        if (!previousLink && isLink)
+            return true;
+
+        return false;
+    }
 }

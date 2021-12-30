@@ -11,30 +11,31 @@ public class InputView {
 
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    private InputView(){}
+    private InputView() {
+    }
 
     public static InputDTO inputComponentOfLadder() throws IOException {
         String[] names = inputNameOfPeople();
         int height = inputHeightOfLadder();
-        return new InputDTO(names,height);
+        return new InputDTO(names, height);
     }
 
 
-    private static int inputHeightOfLadder() throws IOException{
+    private static int inputHeightOfLadder() throws IOException {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int height=stoi(br.readLine());
+        int height = stoi(br.readLine());
         Validation.heightValidation(height);
         return height;
     }
 
-    private static String[] inputNameOfPeople() throws IOException{
+    private static String[] inputNameOfPeople() throws IOException {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) ");
         String[] nameOfPeopleAry = br.readLine().split(",");
-        Validation.nameCountValidation(nameOfPeopleAry.length);
+        Validation.nameValidation(nameOfPeopleAry);
         return nameOfPeopleAry;
     }
 
-    public static int stoi(String input){
+    public static int stoi(String input) {
         return Integer.parseInt(input);
     }
 
