@@ -14,8 +14,8 @@ public class LadderRow {
      * {@link LadderRow}의 가로줄 구성요소
      */
     private enum StepType {
-        EMPTY(" ".repeat(MAX_PLAYER_NAME_LENGTH)),
-        STEP("-".repeat(MAX_PLAYER_NAME_LENGTH));
+        EMPTY(emptyStr.repeat(MAX_PLAYER_NAME_LENGTH)),
+        STEP(stepStr.repeat(MAX_PLAYER_NAME_LENGTH));
 
         private final String displayStr;
         private static final Random random = new Random();
@@ -35,8 +35,11 @@ public class LadderRow {
         }
     }
 
+    private static final String poleStr = "|";
+    private static final String emptyStr = " ";
+    private static final String stepStr = "-";
+
     private final List<StepType> steps = new ArrayList<>();
-    private final String poleStr = "|";
 
     LadderRow(int numOfPeople) {
         for (int i = 0; i < numOfPeople - 1; ++i) {
