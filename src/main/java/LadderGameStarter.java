@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class LadderGameStarter {
-    Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
     private final int maxNameLength;
 
     public LadderGameStarter(int maxNameLength) {
