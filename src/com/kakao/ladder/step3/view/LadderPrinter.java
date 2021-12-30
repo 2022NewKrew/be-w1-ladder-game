@@ -33,6 +33,7 @@ public class LadderPrinter {
         System.out.println();
     }
 
+    // 결과가 5자 이상인 경우 앞의 5자까지만 출력해준다.
     private void printEachResult(String result) {
         System.out.printf("%-6.5s", result);
     }
@@ -55,6 +56,7 @@ public class LadderPrinter {
         printResultList();
     }
 
+    // all을 입력받았을 때 모든 결과를 출력한다.
     private boolean printAll() {
         for(int i = 0; i < peoples.size(); i++) {
             System.out.println(peoples.get(i) + " : " + results.get(i));
@@ -62,16 +64,19 @@ public class LadderPrinter {
         return true;
     }
 
+    // 존재하지 않는 이름을 입력받았을 때의 출력
     private boolean falseName() {
         System.out.println("잘못된 이름입니다");
         return true;
     }
 
+    // 춘식이를 입력받았을 때 false를 리턴하여 게임을 종료한다.
     private boolean exitGame() {
         System.out.println("게임을 종료합니다.");
         return false;
     }
 
+    // people값에 따라 원하는 결과를 출력해준다.
     private boolean printResult(String people) {
         if(people.equals("춘식이"))
             return exitGame();
@@ -85,6 +90,7 @@ public class LadderPrinter {
         return true;
     }
 
+    // result를 반복문을 돌며 출력. 춘식이를 입력받을 때까지 입력받는다.
     public void printResults() {
         Scanner s = new Scanner(System.in);
         String people;

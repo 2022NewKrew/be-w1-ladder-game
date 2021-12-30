@@ -66,6 +66,8 @@ public class Ladder {
         }
     }
 
+    // 재귀문을 돌며 각 사람마다 결과를 출력해준다. location은 높이, index는 위치.
+    // index의 왼쪽, 오른쪽에 bridge 여부를 확인해가며 사다리를 타고 내려간다.
     private String makeResult(int location, int index) {
         if(location == height)
             return resultList.get(index);
@@ -78,6 +80,7 @@ public class Ladder {
         return makeResult(location + 1, index);
     }
 
+    // 모든 결과를 만들어준다.
     private void makeAllResult() {
         for(int i = 0; i < peoples.size(); i++) {
             results.add(makeResult(0, i));
