@@ -7,8 +7,7 @@ import ladder.view.LadderView;
 public class Main {
 
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws Exception {
         //set ladder
         Ladder ladderObject = new Ladder();
         ladderObject.setValue(ladderObject.inputName(), ladderObject.inputHeight());

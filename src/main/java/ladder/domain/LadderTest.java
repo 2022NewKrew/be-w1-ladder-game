@@ -9,7 +9,7 @@ public class LadderTest {
 
 
     @Test
-    void 참여자수테스트(){
+    void 참여자수테스트() throws Exception {
         Ladder ladderObject = new Ladder();
         String nameAry = "a,ab,abc,abcd,abcde";
         Long height = Long.valueOf(10);
@@ -19,7 +19,7 @@ public class LadderTest {
     }
 
     @Test
-    void 연속적인_사다리_선_제거_테스트(){
+    void 연속적인_사다리_선_제거_테스트() throws Exception {
         Ladder ladderObject = new Ladder();
         String nameAry = "a,ab,abc,abcd,abcde,a,b,c,d,e,a,b,c,d,e";
         Long height = Long.valueOf(100000); //테스트를 위해 높은 height로 지정

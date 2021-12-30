@@ -39,7 +39,24 @@ public class Ladder {
         return sc.nextLong();
     }
 
-    public void setValue(String fullName, Long height) {
+    private void inputValidationCheck(String fullName, Long height) throws Exception {
+        List<String> nameTemp =  Arrays.asList(fullName.split(","));
+        for(int i = 0 ; i < nameTemp.size() ; i++){
+            if(nameTemp.get(i).length() <= 0 || nameTemp.get(i).contains(" ")){ //공백이 존재하거나 길이가 0인경우 예외처리
+                throw new Exception();
+            }
+        }
+
+        if(height <= 0){
+            throw new Exception();
+        }
+
+
+    }
+
+    public void setValue(String fullName, Long height) throws Exception {
+
+        inputValidationCheck(fullName, height);
 
         names = Arrays.asList(fullName.split(","));
         this.peopleCount = names.size();
