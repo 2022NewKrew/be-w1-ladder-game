@@ -21,12 +21,12 @@ public class Line {
 
     public void connect(Line targetLine, int depth) {
         if (isConnectable(targetLine, depth)) {
-            this.setConnection(targetLine, depth);
-            targetLine.setConnection(this, depth);
+            this.connectOneDirection(targetLine, depth);
+            targetLine.connectOneDirection(this, depth);
         }
     }
 
-    public void setConnection(Line targetLine, int depth) {
+    void connectOneDirection(Line targetLine, int depth) {
         connections.get(depth).connect(targetLine);
     }
 
