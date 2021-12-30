@@ -1,6 +1,6 @@
-package domain;
+package domain.ladder;
 
-import view.input.LadderConfig;
+import view.input.config.LadderConfig;
 import type.StuffType;
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class LadderBuilder {
+public class LadderGenerator {
 
     protected static Random rd = new Random();
 
@@ -19,23 +19,28 @@ public class LadderBuilder {
 
     // ladderShape 를 만들어 Ladder 객체 완성
     public Ladder createLadder(LadderConfig ladderConfig){
-        final int width = ladderConfig.getWidth();
+        final int peopleCount = ladderConfig.getPeopleCount();
         final int height = ladderConfig.getHeight();
 
-        Ladder ladder = new Ladder(width, height);
-
         // 한 줄(List<String>) 을 createRow 함수로 생성하여 add
-        IntStream.range(0, height).forEach(j -> ladder.getLadderShape().add(new Line(createRow(width))));
+        List<Line> ladderShape = new ArrayList<>();
+        IntStream.range(0, height).forEach(j -> ladderShape.add(new Line(createRow(peopleCount))));
+
+        Ladder ladder = new Ladder.Builder()
+                .peopleCount(peopleCount)
+                .height(height)
+                .ladderShape(ladderShape)
+                .build();
 
         return ladder;
     }
 
     // 사다리 한 줄을 생성
-    protected static List<Integer> createRow(int width) {
+    protected static List<Integer> createRow(int peopleCount) {
         List<Integer> line = new ArrayList<>();
 
         // 각 칸의 Stuff(기둥, 다리, 공간) 을 decideStuff 가 결정하여 반환해줌
-        final int rowListSize = (width - 1) * 2 + 1;
+        final int rowListSize = (peopleCount - 1) * 2 + 1;
         IntStream.range(0, rowListSize)
                 .forEach(i -> line.add(decideStuff(i, line)));
         return line;

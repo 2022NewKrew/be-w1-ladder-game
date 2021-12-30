@@ -1,6 +1,6 @@
 package view.output;
 
-import domain.Ladder;
+import domain.ladder.Ladder;
 
 public interface LadderPrinter {
     void printLadderShape(Ladder ladder);

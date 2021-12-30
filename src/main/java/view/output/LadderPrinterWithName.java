@@ -1,15 +1,17 @@
 package view.output;
 
-import domain.Ladder;
-import domain.LadderWithName;
-import domain.Line;
+import domain.ladder.Ladder;
+import domain.ladder.LadderWithName;
+import domain.ladder.Line;
 import type.StuffType;
 
 import java.util.List;
 
-public class LadderPrinterWithNameImpl implements LadderPrinter{
+public class LadderPrinterWithName implements LadderPrinter{
     @Override
     public void printLadderShape(Ladder ladder) {
+        System.out.println("사다리 결과");
+
         StringBuilder sb = new StringBuilder();
 
         // 이름 출력 (업캐스팅)
