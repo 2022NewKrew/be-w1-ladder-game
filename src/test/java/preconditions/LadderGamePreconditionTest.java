@@ -16,12 +16,16 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @DisplayName("LadderGame 검증")
 @Nested
 class LadderGamePreconditionTest {
-    private static final int TEST_MAX_LENGTH = 5;
+
 
     @DisplayName("올바른 유저들이 담긴 리스트일때는 예외를 던지지 않음")
     @ParameterizedTest
     @MethodSource("legalUsers")
     public void checkLegalUsers(List<String> testLegalUsers) {
+        //Give : testLegalUsers, TEST_MAX_LENGTH
+        final int TEST_MAX_LENGTH = 5;
+        //When : LadderGamePrecondition.checkUsers 메소드에 TEST_MAX_LENGTH와 testLegalUsers가 인자로 넘어갔을 때
+        //Then
         assertThatCode(() -> LadderGamePrecondition.checkUsers(testLegalUsers, TEST_MAX_LENGTH)).doesNotThrowAnyException();
     }
 
@@ -29,6 +33,10 @@ class LadderGamePreconditionTest {
     @ParameterizedTest
     @MethodSource("illegalUsers")
     public void checkIllegalUsers(List<String> testIllegalUsers) {
+        //Give : testIllegalUsers, TEST_MAX_LENGTH
+        final int TEST_MAX_LENGTH = 5;
+        //When : LadderGamePrecondition.checkUsers 메소드에 TEST_MAX_LENGTH와 testIllegalUsers 인자로 넘어갔을 때
+        //Then
         assertThatThrownBy(() -> LadderGamePrecondition.checkUsers(testIllegalUsers, TEST_MAX_LENGTH)).isInstanceOf(IllegalArgumentException.class);
     }
 

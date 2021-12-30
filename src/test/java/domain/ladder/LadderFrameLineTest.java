@@ -10,22 +10,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("LadderFrameLine 테스트")
 class LadderFrameLineTest {
-    public static final int NUMBER_OF_FRAME = 5;
-
     @Nested
     @DisplayName("LadderFrameLine 클래스 생성자 테스트")
     class ConstructorTest {
-        private final LadderFrameLine testLadderFrameLine = new LadderFrameLine(NUMBER_OF_FRAME);
 
         @Test
         @DisplayName("생성자가 프레임 리스트를 올바르게 생성하는지 확인")
         public void checkConstructor() {
+            //Give
+            final int NUMBER_OF_FRAME = 5;
+            //When
+            LadderFrameLine testLadderFrameLine = new LadderFrameLine(NUMBER_OF_FRAME);
+            //Then
             assertThat(testLadderFrameLine.getFrames().size()).isEqualTo(NUMBER_OF_FRAME);
         }
 
         @Test
         @DisplayName("브릿지가 연속으로 생성되어 있는지 확인")
         public void isLegalFrames() {
+            //Give
+            final int NUMBER_OF_FRAME = 5;
+            //When
+            LadderFrameLine testLadderFrameLine = new LadderFrameLine(NUMBER_OF_FRAME);
+            //Then
             assertThat(hasContinuousBridge(testLadderFrameLine.getFrames())).isTrue();
         }
 
