@@ -1,6 +1,8 @@
-package ladder;
+package ladder.service;
 
-import exception.OutOfInputStringException;
+import ladder.view.LadderGameView;
+import ladder.view.LadderGameViewConsole;
+import ladder.domain.LadderSimpleGame;
 
 import java.io.BufferedReader;
 import java.io.IOException;

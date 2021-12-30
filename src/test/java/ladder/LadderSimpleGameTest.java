@@ -1,7 +1,8 @@
 package ladder;
 
-import exception.InvalidBridgeException;
-import exception.OutOfInputStringException;
+import ladder.exception.InvalidBridgeException;
+import ladder.exception.OutOfInputStringException;
+import ladder.domain.LadderSimpleGame;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

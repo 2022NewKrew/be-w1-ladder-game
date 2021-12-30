@@ -1,7 +1,7 @@
-package ladder;
+package ladder.domain;
 
-import exception.InvalidBridgeException;
-import exception.OutOfInputStringException;
+import ladder.exception.InvalidBridgeException;
+import ladder.exception.OutOfInputStringException;
 
 import java.util.ArrayList;
 import java.util.List;

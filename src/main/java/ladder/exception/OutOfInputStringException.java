@@ -1,4 +1,4 @@
-package exception;
+package ladder.exception;
 
 public class OutOfInputStringException extends RuntimeException {
     public OutOfInputStringException() {

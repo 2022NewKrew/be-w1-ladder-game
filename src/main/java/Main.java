@@ -1,5 +1,5 @@
-import ladder.LadderGameService;
-import ladder.LadderGameServiceImpl;
+import ladder.service.LadderGameService;
+import ladder.service.LadderGameServiceImpl;
 
 public class Main {
 
