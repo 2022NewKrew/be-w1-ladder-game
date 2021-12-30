@@ -6,6 +6,7 @@ import com.kakao.data.LadderOption;
 import com.kakao.exception.IntegerFormatException;
 import com.kakao.exception.PlayerFormatException;
 import com.kakao.exception.RewardFormatException;
+import com.kakao.model.RandomStrategy;
 
 import java.io.*;
 import java.util.List;
@@ -14,7 +15,7 @@ public class LadderIO {
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-    public static Ladder inputLadderData () {
+    public static Ladder inputLadderData (RandomStrategy<Boolean> randomStrategy) {
         String[] gamePlayers = null;
         String[] gameRewards = null;
         Integer ladderHeight = null;
@@ -29,7 +30,7 @@ public class LadderIO {
             ladderHeight = inputLadderHeight();
         }
 
-        return new Ladder(gamePlayers, gameRewards, ladderHeight);
+        return new Ladder(gamePlayers, gameRewards, ladderHeight, randomStrategy);
     }
 
     // 입력함수

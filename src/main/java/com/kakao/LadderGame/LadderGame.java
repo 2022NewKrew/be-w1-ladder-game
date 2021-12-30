@@ -1,13 +1,15 @@
 package com.kakao.LadderGame;
 
 import com.kakao.model.Ladder;
+import com.kakao.model.RandomStrategy;
 
 public class LadderGame {
 
     private Ladder ladder;
 
-    public void generateLadder() {
-        this.ladder = LadderIO.inputLadderData();
+    // 사다리 만들기
+    public void generateLadder(RandomStrategy<Boolean> randomStrategy) {
+        this.ladder = LadderIO.inputLadderData(randomStrategy);
     }
 
     // 사다리 출력
@@ -16,8 +18,8 @@ public class LadderGame {
     }
 
     // 메인
-    public void play() {
-        this.generateLadder();
+    public void play(RandomStrategy<Boolean> randomStrategy) {
+        this.generateLadder(randomStrategy);
         this.printLadder();
     }
 }

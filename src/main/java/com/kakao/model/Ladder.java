@@ -7,21 +7,21 @@ import java.util.Random;
 public class Ladder {
     private static final int START_OF_ROW = 0;
     private static final int START_OF_BRIDGE = 1;
-    private static final Random random = new Random();
 
     private String[] gamePlayers, gameRewards;
     private int ladderHeight;
     private List<List<Boolean>> bridgeOfLadder; // 사다리 연결 정보
+    private RandomStrategy<Boolean> randomStrategy;
 
     // 생성자
-    public Ladder(String[] gamePlayers, String[] gameRewards, int ladderHeight) {
+    public Ladder(String[] gamePlayers, String[] gameRewards, int ladderHeight, RandomStrategy<Boolean> randomStrategy) {
         this.gamePlayers = gamePlayers;
         this.gameRewards = gameRewards;
         this.ladderHeight = ladderHeight;
+        this.randomStrategy = randomStrategy;
+
         this.bridgeOfLadder = makeLadder(gamePlayers, ladderHeight);
     }
-
-
 
     // Getter
     public String[] getGamePlayers() {
@@ -53,6 +53,6 @@ public class Ladder {
     }
     private boolean getRandomBrigde(boolean lastBridge) {
         // 중복 연결을 제거하기 위한 용도의 함수
-        return lastBridge ? false : random.nextBoolean();
+        return lastBridge ? false : randomStrategy.random();
     }
 }

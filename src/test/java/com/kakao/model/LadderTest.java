@@ -9,9 +9,10 @@ class LadderTest {
     String[] testPlayers = { "this", "is", "test" };
     String[] testRewards = { "1000", "꽝", "3000" };
     int ladderTestHeight = 5;
+    RandomStrategy<Boolean> randomStrategy = new RandomStrategyOfBoolean();
 
     Ladder generateSampleLadder () {
-        Ladder ladder = new Ladder(testPlayers,testRewards,ladderTestHeight);
+        Ladder ladder = new Ladder(testPlayers,testRewards,ladderTestHeight, randomStrategy);
         return ladder;
     }
 
