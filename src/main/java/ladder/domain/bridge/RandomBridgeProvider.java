@@ -1,16 +1,7 @@
 package ladder.domain.bridge;
 
-import java.util.Random;
+public interface RandomBridgeProvider {
 
-public class RandomBridgeProvider {
+    boolean isConnectableBridgeByRandom();
 
-    private final Random random;
-
-    public RandomBridgeProvider(long seed) {
-        this.random = new Random(seed);
-    }
-
-    public boolean isConnectableBridgeByRandom() {
-        return random.nextBoolean();
-    }
 }

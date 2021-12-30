@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import static ladder.domain.exception.LadderException.ErrorCode.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderTest {
+class LadderInfoTest {
 
-    private static final String[] PARTICIPANTS = new String[]{"a", "bb", "ccc", "ddddd", "eeeee"};
+    private static final String[] PARTICIPANTS = new String[]{"a", "bb", "ccc", "dddd", "eeeee"};
     private static final int HEIGHT = 5;
 
 

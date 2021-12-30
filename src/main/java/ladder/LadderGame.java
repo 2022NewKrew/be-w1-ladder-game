@@ -3,7 +3,7 @@ package ladder;
 import ladder.domain.bridge.BridgeBuilder;
 import ladder.domain.exception.LadderException;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.bridge.RandomBridgeProvider;
+import ladder.domain.bridge.RandomBridgeProviderImpl;
 import ladder.domain.ladder.LadderInfo;
 import ladder.view.LadderRenderer;
 
@@ -15,9 +15,9 @@ public class LadderGame {
         Scanner sc = new Scanner(System.in);
         LadderInfo ladderInfo = getInput(sc);
 
-        BridgeBuilder bridgeBuilder = new BridgeBuilder(ladderInfo, new RandomBridgeProvider(System.currentTimeMillis()));
+        BridgeBuilder bridgeBuilder = new BridgeBuilder(ladderInfo, new RandomBridgeProviderImpl(System.currentTimeMillis()));
         Ladder ladder = new Ladder(ladderInfo, bridgeBuilder.build());
-        LadderRenderer.render(ladder);
+        System.out.println(LadderRenderer.render(ladder));
     }
 
     private static LadderInfo getInput(Scanner sc) {

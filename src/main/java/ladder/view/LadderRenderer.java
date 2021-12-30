@@ -11,7 +11,7 @@ public class LadderRenderer {
     private static final char NEW_LINE = '\n';
     private static final int MAX_NAME_LENGTH = 5;
 
-    public static void render(Ladder ladder) {
+    public static String render(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
         int height = ladder.getHeight();
 
@@ -19,7 +19,7 @@ public class LadderRenderer {
         for (int currentHeight = 0; currentHeight < height; currentHeight++) {
             renderRow(sb, ladder, currentHeight);
         }
-        System.out.print(sb);
+        return sb.toString();
     }
 
     private static void renderParticipants(StringBuilder sb, Ladder ladder) {
