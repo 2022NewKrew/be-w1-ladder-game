@@ -3,6 +3,7 @@ package controller;
 import dao.LadderDAO;
 import domain.gameResult.GameResultPrecondition;
 import domain.ladder.Ladder;
+import dto.LadderDTO;
 import service.LadderGameService;
 import view.UserInput;
 import view.UserOutput;
@@ -14,7 +15,7 @@ public class LadderGame {
 
     private static LadderGame INSTANCE;
     private final List<String> users;
-    private final Ladder ladder;
+    private final LadderDAO ladderDAO;
     private final List<String> results;
     private final LadderGameService ladderGameService;
 
@@ -22,7 +23,7 @@ public class LadderGame {
     private LadderGame() {
         List<String> users = UserInput.getUserList();
         this.users = users;
-        this.ladder = new Ladder(this.users.size(), UserInput.getLadderHeight());
+        this.ladderDAO = new LadderDAO();
         this.results = results;
         this.ladderGameService = new LadderGameService(users, results);
     }
@@ -36,15 +37,16 @@ public class LadderGame {
 
     public void run() {
 
-        ladderGameService.calculateResult(ladder);
-        String target = null;
-        while (target != "춘식이") {
+        ladderGameService.calculateResult(ladderDAO.getLadderDTO());
+        String target = "";
+        while (!target.equals("춘식이")) {
             target = UserInput.getTarget();
-            printResult(ladderGameService.getResult(target));
+            printResult(target);
         }
     }
 
     public void printLadder() {
-        UserOutput.printLadderToConsole(ladder, users, results);
+        UserOutput.printLadderToConsole(ladderDAO.getLadderDTO(), users, results);
     }
+
 }
