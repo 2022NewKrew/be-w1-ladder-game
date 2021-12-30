@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,7 +20,6 @@ class LineTest {
     public void 마지막_인덱스_사다리_테스트() throws Exception{
         //given
         Line line = new Line(LADDER_WIDTH);
-        line.chkLadder.add(true);
         Method method = line.getClass().getDeclaredMethod("makeRandomLadder", int.class);
         method.setAccessible(true);
 
@@ -35,15 +35,17 @@ class LineTest {
     public void 직전_사다리_유뮤_테스트() throws Exception{
         //given
         Line line = new Line(LADDER_WIDTH);
+        Set<Boolean> compareBeforeIndex = new HashSet<>();
+        List<Boolean> chkLadder = line.getChkLadder();
+
         Method method = line.getClass().getDeclaredMethod("makeLineInfo");
         method.setAccessible(true);
 
         //when
         method.invoke(line);
-        Set<Boolean> compareBeforeIndex = new HashSet<>();
         for (int i = 1; i < LADDER_WIDTH; i++){
-            if(line.chkLadder.get(i-1)){
-                compareBeforeIndex.add(line.chkLadder.get(i));
+            if(chkLadder.get(i-1)){
+                compareBeforeIndex.add(chkLadder.get(i));
             }
         }
         //then

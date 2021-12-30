@@ -54,6 +54,10 @@ public class Line {
         return LadderShape.BLANK;
     }
 
+    public List<Boolean> getChkLadder() {
+        return chkLadder;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
