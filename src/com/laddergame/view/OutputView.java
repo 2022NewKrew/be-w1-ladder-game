@@ -1,12 +1,9 @@
 package com.laddergame.view;
 
 import java.util.List;
-import java.util.Scanner;
 
-public class View {
-    private final static Scanner scanner = new Scanner(System.in);
-
-    private View() throws RuntimeException {
+public class OutputView {
+    private OutputView() throws RuntimeException {
         throw new RuntimeException("Unnecessary instance generation");
     }
 
@@ -24,28 +21,24 @@ public class View {
         private final String value;
     }
 
-    public static String inputParticipantName() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return scanner.nextLine();
+    public static void outputLadderGameResult(List<List<Boolean>> result, List<String> names) {
+        System.out.println("사다리 결과\n");
+        outputParticipantNames(names);
+        result.forEach(OutputView::outputLineResult);
     }
 
-    public static int inputLadderHeight() {
-        System.out.println("최대 사다리 높이는 몇인가요?");
-        return scanner.nextInt();
+    public static void outputParticipantResult(String result) {
+        System.out.println(result);
     }
 
-    public static void outputParticipantNames(List<String> names) {
+    private static void outputParticipantNames(List<String> names) {
         names.forEach(name -> System.out.printf("%6s", name));
         System.out.println();
     }
 
-    public static void outputLadderGameResult(List<List<Boolean>> result) {
-        result.forEach(View::outputRoundResult);
-    }
-
-    private static void outputRoundResult(List<Boolean> roundResult) {
+    private static void outputLineResult(List<Boolean> lineResult) {
         System.out.print(DELIMITER.LADDER_PADDING.value);
-        roundResult.forEach(hasLadder -> {
+        lineResult.forEach(hasLadder -> {
             System.out.print(DELIMITER.VERTICAL_LINE.value);
             String ladder = hasLadder ? DELIMITER.LADDER.value : DELIMITER.NO_LADDER.value;
             System.out.print(ladder);
