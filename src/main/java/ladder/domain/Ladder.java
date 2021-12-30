@@ -14,7 +14,9 @@ public class Ladder {
 
     private void makeLadder(int rowCount, int columnCount) {
         for (int i = 0; i < rowCount; i++) {
-            lines.add(new Line(columnCount));
+            Line line = new Line();
+            line.makeLine(columnCount);
+            lines.add(line);
         }
     }
 

@@ -10,12 +10,11 @@ public class Line {
     private final ArrayList<Boolean> bridges;
     private final Random random = new Random();
 
-    public Line(int columnCount) {
+    public Line() {
         this.bridges = new ArrayList<>();
-        makeLine(columnCount);
     }
 
-    private void makeLine(int columnCount) {
+    public void makeLine(int columnCount) {
         for (int j = 0; j < columnCount; j++) {
             bridges.add(makeBridge(j));
         }
