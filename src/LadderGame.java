@@ -1,64 +1,38 @@
-import java.io.InputStream;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class LadderGame {
-    private final String DEFAULT_LADDER_LINE = "|";
-    private final String RANDOM_LADDER_LINE = "-";
-    private final String NO_LADDER_LINE = " ";
-
-    private int peopleCount;
-    private int ladderHeight;
+    private LadderGameView view;
+    private LadderGameInfo gameInfo;
     private Ladder ladder;
+    private ArrayList<String> people;
 
-    LadderGame() {
+    public LadderGame() {
+        view = new LadderGameView();
     }
 
-    void startGame() {
-        inputLadderInfo();
+    public void startGame() {
+        inputLadderGameInfo();
+        makePeople();
         makeLadder();
-        printLadder();
+        printLadderGameResult();
     }
 
-    private void inputLadderInfo() {
-        InputStream inputStream = System.in;
-        Scanner scan = new Scanner(inputStream);
+    private void inputLadderGameInfo() {
+        gameInfo = view.inputLadderGameInfo();
+    }
 
-        System.out.println("참여할 사람은 몇 명인가요?");
-        peopleCount = scan.nextInt();
-
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        ladderHeight = scan.nextInt();
+    private void makePeople() {
+        this.people = gameInfo.getPeopleNames();
     }
 
     private void makeLadder() {
-        int ladderWidth = peopleCount - 1;
-        this.ladder = new Ladder(ladderWidth, ladderHeight);
+        int width = people.size() - 1;
+        int height = gameInfo.getLadderHeight();
+        ladder = new Ladder(width, height);
+        ladder.makeLadder();
     }
 
-    private void printLadder() {
-        int ladderHeight = ladder.getHeight();
-        for(int i = 0; i < ladderHeight; i++)
-            System.out.println(getLadderLine(i));
-    }
-
-    private StringBuilder getLadderLine(int row) {
-        StringBuilder ladderLine = new StringBuilder();
-        ladderLine.append(DEFAULT_LADDER_LINE);
-
-        int ladderWidth = ladder.getWidth();
-        for(int i = 0; i < ladderWidth; i++) {
-            ladderLine.append(getRandomLadderLine(row, i));
-            ladderLine.append(DEFAULT_LADDER_LINE);
-        }
-
-        return ladderLine;
-    }
-
-    private String getRandomLadderLine(int row, int col) {
-        Boolean lineFlag = ladder.getLineFlag(row, col);
-        if(lineFlag)
-            return RANDOM_LADDER_LINE;
-
-        return NO_LADDER_LINE;
+    private void printLadderGameResult() {
+        view.printLadderGameResult(people, ladder);
     }
 }
