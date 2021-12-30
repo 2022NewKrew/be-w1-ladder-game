@@ -20,7 +20,7 @@ public class LadderRow{
     public ArrayList<LadderType> getElementList() {
         return elementList;
     }
-    LadderType decideElement() {
+    private LadderType decideElement() {
         //|-----|-----|     방지
         if ((elementList.isEmpty() || elementList.get(elementList.size() - 1) != BRIDGE)
                 && random.nextBoolean()) {
