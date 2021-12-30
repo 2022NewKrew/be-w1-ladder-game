@@ -23,9 +23,20 @@ public class Input {
     public static int getLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String userInput = sc.nextLine();
-        boolean isValidated = userInput.chars().allMatch( Character::isDigit );
-        if (isValidated) return Integer.parseInt(userInput);
-        System.out.println("최대 사디로 높이는 숫자로만 입력하세요");
+        if (!isDigit(userInput)) {
+            System.out.println("최대 사디리 높이는 숫자로만 입력하세요");
+            return getLadderHeight();
+        }
+        if (isBiggerThanZero(userInput)) return Integer.parseInt(userInput);
+        System.out.println("최대 사디리 높이는 0보다 큰 값을 입력하세요");
         return getLadderHeight();
+    }
+
+    private static boolean isDigit(String str) {
+        return str.chars().allMatch( Character::isDigit );
+    }
+
+    private static boolean isBiggerThanZero(String str) {
+        return Integer.parseInt(str) > 0;
     }
 }
