@@ -6,6 +6,7 @@
 
 - Application
   - 게임 객체 생성 및 입출력담당
+  - 입력 검증
 - LadderGame
   - 사다리게임에 필요한 객체 생성 및 관리
 - View
