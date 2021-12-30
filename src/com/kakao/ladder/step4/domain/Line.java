@@ -1,4 +1,4 @@
-package com.kakao.ladder.step3.domain;
+package com.kakao.ladder.step4.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,13 @@ public class Line {
     // 값을 추가
     protected void addLine(boolean isBridge) {
         points.add(isBridge);
+    }
+
+    // 해당 인덱스의 bridge를 제공
+    protected boolean getBridge(int index) {
+        if(index < 0 || index >= points.size())
+            return false;
+        return points.get(index);
     }
 
     // toString에 쓰이는 method. boolean 값에 맞게 bridge를 string으로 만들어준다.

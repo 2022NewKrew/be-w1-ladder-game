@@ -1,7 +1,7 @@
-package com.kakao.ladder.step3;
+package com.kakao.ladder.step4;
 
-import com.kakao.ladder.step3.domain.Ladder;
-import com.kakao.ladder.step3.view.LadderPrinter;
+import com.kakao.ladder.step4.domain.Ladder;
+import com.kakao.ladder.step4.view.LadderPrinter;
 
 import java.util.ArrayList;
 import java.util.Arrays;

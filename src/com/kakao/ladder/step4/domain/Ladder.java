@@ -1,4 +1,4 @@
-package com.kakao.ladder.step3.domain;
+package com.kakao.ladder.step4.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;

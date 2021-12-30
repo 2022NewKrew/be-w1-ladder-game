@@ -1,6 +1,6 @@
-package com.kakao.ladder.step3.view;
+package com.kakao.ladder.step4.view;
 
-import com.kakao.ladder.step3.domain.Ladder;
+import com.kakao.ladder.step4.domain.Ladder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;

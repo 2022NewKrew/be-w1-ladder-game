@@ -1,4 +1,4 @@
-package com.kakao.ladder.step3.domain;
+package com.kakao.ladder.step4.domain;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +13,7 @@ class LadderTest {
     @Test
     public void bridgeTest() {
         List<String> peoples = Arrays.asList("a", "b", "c", "d", "e");
-        List<String> resultList = Arrays.asList("꽝", "꽝", "꽝", "당첨", "꽝");
-        Ladder ladder = new Ladder(peoples, resultList, 5);
+        Ladder ladder = new Ladder(peoples, 5);
         Line line;
         boolean beforeBridge, bridge;
 

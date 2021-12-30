@@ -1,7 +1,7 @@
-package com.kakao.ladder.step3.view;
+package com.kakao.ladder.step4.view;
 
-import com.kakao.ladder.step3.domain.Ladder;
-import com.kakao.ladder.step3.domain.Line;
+import com.kakao.ladder.step4.domain.Ladder;
+import com.kakao.ladder.step4.domain.Line;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ public class LadderPrinter {
 
     private List<Line> lines;
     private List<String> peoples;
+
 
     public LadderPrinter(Ladder ladder){
         this.lines = ladder.getLines();
