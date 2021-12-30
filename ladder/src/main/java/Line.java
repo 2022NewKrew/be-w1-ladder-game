@@ -3,6 +3,7 @@ import java.util.Random;
 
 public class Line {
     public char[] line;
+
     public Line(int width) {
         Random random = new Random();
         line = new char[width];
