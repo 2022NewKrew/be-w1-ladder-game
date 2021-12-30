@@ -25,6 +25,17 @@ public class LadderGame {
 
         Ladder ladder = new Ladder(LineGeneratorFactory.getLadderLines(nameList.size() - 1, heightLadder));
         LadderPrinter.drawLadder(nameList, ladder, resultList);
+
+        while (true) {
+            System.out.println("결과를 보고 싶은 사람은?");
+            String nameCheckResult = GameInputScanner.inputNameCheckResult(nameList);
+            User user = nameList.stream()
+                    .filter(e -> nameCheckResult.equals(e.getName()))
+                    .distinct()
+                    .findAny()
+                    .get();
+            System.out.println(resultList.get(user.getResultCol(ladder)));
+        }
     }
 
 }

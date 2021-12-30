@@ -45,6 +45,23 @@ public class GameInputScanner {
                 .collect(Collectors.toList());
     }
 
+    public static String inputNameCheckResult(List<User> nameList) {
+        try {
+            String inputName = in.nextLine();
+            verifyNameExists(nameList, inputName);
+            return inputName;
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return inputNameCheckResult(nameList);
+        }
+    }
+
+    private static void verifyNameExists(List<User> nameList, String inputName) {
+        if (nameList.stream().noneMatch(e -> inputName.equals(e.getName()))) {
+            throw new RuntimeException("정확한 이름을 입력해주세요.");
+        }
+    }
+
     private static void verifyInputNameList(List<String> nameList) throws RuntimeException {
         boolean existWrongName = nameList.stream()
                 .anyMatch(e -> (e.length() == 0) || (e.length() > MAXIMUM_NAME_LENGTH));
