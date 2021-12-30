@@ -5,7 +5,6 @@ import dto.ladderDto.LadderDTO;
 import java.util.List;
 
 public class GameResultPrecondition {
-
     public static void checkUsers(List<String> users, int maxLength) {
         isNotEmptyList(users);
         isLegal(users, maxLength);
@@ -30,9 +29,7 @@ public class GameResultPrecondition {
     }
 
     private static boolean isIllegal(List<String> users, int maxLength) {
-
         return users.stream().map(String::length).anyMatch(length -> length > maxLength);
-
     }
 
     private static void isNotEmptyList(List<String> users) {

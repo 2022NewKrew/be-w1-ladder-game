@@ -1,11 +1,11 @@
 package view;
 
-import domain.ladder.Ladder;
 import domain.ladder.LadderFrame;
 import domain.ladder.LadderFrameLine;
 import dto.gameResultDto.AllResultDTO;
 import dto.gameResultDto.TargetResultDTO;
 import dto.ladderDto.LadderDTO;
+
 
 import java.util.List;
 import java.util.Map;
@@ -29,12 +29,12 @@ public class UserOutput {
         }
     }
 
-    public static void printTargetResult(String result) {
-        System.out.println(result);
+    public static void printTargetResult(TargetResultDTO result) {
+        System.out.println(result.getResult());
     }
 
-    public static void printAllResult(List<Map.Entry<String,String>> results){
-        for(Map.Entry<String, String> result : results){
+    public static void printAllResult(AllResultDTO results) {
+        for (Map.Entry<String, String> result : results.getResults()) {
             System.out.println(result.getKey() + " : " + result.getValue());
         }
     }

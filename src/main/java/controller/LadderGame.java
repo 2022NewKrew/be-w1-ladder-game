@@ -1,22 +1,25 @@
 package controller;
 
+<<<<<<< HEAD
 import dao.LadderDAO;
 import domain.gameResult.GameResultPrecondition;
 import domain.ladder.Ladder;
 import dto.LadderDTO;
+=======
+>>>>>>> ae03577 (5단계 구현 완료)
 import service.LadderGameService;
+import service.LadderService;
 import view.UserInput;
 import view.UserOutput;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 public class LadderGame {
 
     private static LadderGame INSTANCE;
     private final List<String> users;
-    private final LadderDAO ladderDAO;
     private final List<String> results;
+    private final LadderService ladderService;
     private final LadderGameService ladderGameService;
 
 
@@ -25,6 +28,7 @@ public class LadderGame {
         this.users = users;
         this.ladderDAO = new LadderDAO();
         this.results = results;
+        this.ladderService = new LadderService(this.users.size(), UserInput.getLadderHeight());
         this.ladderGameService = new LadderGameService(users, results);
     }
 
@@ -36,17 +40,16 @@ public class LadderGame {
     }
 
     public void run() {
-
-        ladderGameService.calculateResult(ladderDAO.getLadderDTO());
+        ladderGameService.calculateGameResult(ladderService.getLadderDto());
         String target = "";
         while (!target.equals("춘식이")) {
             target = UserInput.getTarget();
-            printResult(target);
+            printGameResult(target);
         }
     }
 
     public void printLadder() {
-        UserOutput.printLadderToConsole(ladderDAO.getLadderDTO(), users, results);
+        UserOutput.printLadderToConsole(ladderService.getLadderDto(), users, results);
     }
 
 }
