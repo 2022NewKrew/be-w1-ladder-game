@@ -1,12 +1,12 @@
 package com.kakao.ladder.step5.view;
 
 import com.kakao.ladder.step5.domain.Ladder;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,100 +15,60 @@ class LadderPrinterTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
-    /*
-    @Before
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @After
-    public void restoreStreams() {
-        System.setOut(originalOut);
-    }
-    */
-
-    @Test
-    public void lengthMoreThanFiveTest() {
+    public void printTest(String people, String result) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
 
         Ladder ladder = new Ladder();
         LadderPrinter ladderPrinter = new LadderPrinter(ladder);
         System.setOut(new PrintStream(outContent));
+        Method method = ladderPrinter.getClass().getDeclaredMethod("printPeople", String.class);
+        method.setAccessible(true);
 
-        String name = "abcdefgh";
-        ladderPrinter.printPeople(name);
-        assertEquals("abcde ", outContent.toString());
+        method.invoke(ladderPrinter, people);
+        assertEquals(result, outContent.toString());
 
         System.setOut(originalOut);
     }
 
     @Test
-    public void lengthFiveTest() {
-
-        Ladder ladder = new Ladder();
-        LadderPrinter ladderPrinter = new LadderPrinter(ladder);
-        System.setOut(new PrintStream(outContent));
-
-        String name = "abcde";
-        ladderPrinter.printPeople(name);
-        assertEquals("abcde ", outContent.toString());
-
-        System.setOut(originalOut);
+    public void lengthMoreThanFiveTest() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        String people = "abcdefgh";
+        String result = "abcde ";
+        printTest(people, result);
     }
 
     @Test
-    public void lengthFourTest() {
-
-        Ladder ladder = new Ladder();
-        LadderPrinter ladderPrinter = new LadderPrinter(ladder);
-        System.setOut(new PrintStream(outContent));
-
-        String name = "abcd";
-        ladderPrinter.printPeople(name);
-        assertEquals("abcd  ", outContent.toString());
-
-        System.setOut(originalOut);
+    public void lengthFiveTest() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        String people = "abcde";
+        String result = "abcde ";
+        printTest(people, result);
     }
 
     @Test
-    public void lengthThreeTest() {
-
-        Ladder ladder = new Ladder();
-        LadderPrinter ladderPrinter = new LadderPrinter(ladder);
-        System.setOut(new PrintStream(outContent));
-
-        String name = "abc";
-        ladderPrinter.printPeople(name);
-        assertEquals("abc   ", outContent.toString());
-
-        System.setOut(originalOut);
+    public void lengthFourTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        String people = "abcd";
+        String result = "abcd  ";
+        printTest(people, result);
     }
 
     @Test
-    public void lengthTwoTest() {
-
-        Ladder ladder = new Ladder();
-        LadderPrinter ladderPrinter = new LadderPrinter(ladder);
-        System.setOut(new PrintStream(outContent));
-
-        String name = "ab";
-        ladderPrinter.printPeople(name);
-        assertEquals("ab    ", outContent.toString());
-
-        System.setOut(originalOut);
+    public void lengthThreeTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        String people = "abc";
+        String result = "abc   ";
+        printTest(people, result);
     }
 
     @Test
-    public void lengthOneTest() {
+    public void lengthTwoTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        String people = "ab";
+        String result = "ab    ";
+        printTest(people, result);
+    }
 
-        Ladder ladder = new Ladder();
-        LadderPrinter ladderPrinter = new LadderPrinter(ladder);
-        System.setOut(new PrintStream(outContent));
-
-        String name = "a";
-        ladderPrinter.printPeople(name);
-        assertEquals("a     ", outContent.toString());
-
-        System.setOut(originalOut);
+    @Test
+    public void lengthOneTest() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        String people = "a";
+        String result = "a     ";
+        printTest(people, result);
     }
 
 }

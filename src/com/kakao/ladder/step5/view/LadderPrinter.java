@@ -11,17 +11,17 @@ public class LadderPrinter {
     private List<Line> lines;
     private List<String> peoples;
     private List<String> results;
-    private List<String> resultList;
+    private List<String> inputResult;
 
     public LadderPrinter(Ladder ladder){
         this.lines = ladder.getLines();
         this.peoples = ladder.getPeoples();
         this.results = ladder.getResults();
-        this.resultList = ladder.getResultList();
+        this.inputResult = ladder.getInputResult();
     };
 
     // 이름이 5자 이상인 경우 앞의 5자까지만 추가해준다. 길이에 맞춰서 다음 사람의 이름까지 적절한 공백을 준다.
-    protected void printPeople(String people) {
+    private void printPeople(String people) {
         System.out.printf("%-6.5s", people);
     }
 
@@ -40,7 +40,7 @@ public class LadderPrinter {
 
     // 결과 리스트를 출력한다.
     private void printResultList() {
-        for(String result : resultList) {
+        for(String result : inputResult) {
             printEachResult(result);
         }
         System.out.println();
@@ -92,12 +92,12 @@ public class LadderPrinter {
 
     // result를 반복문을 돌며 출력. 춘식이를 입력받을 때까지 입력받는다.
     public void printResults() {
-        Scanner s = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String people;
         boolean doMore = true;
         while(doMore) {
             System.out.println("\n결과를 보고 싶은 사람은?");
-            people = s.nextLine();
+            people = scanner.nextLine();
             doMore = printResult(people);
         }
     }

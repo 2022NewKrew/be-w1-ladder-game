@@ -8,7 +8,7 @@ public class Ladder {
 
     private int height;
     private List<String> peoples;
-    private List<String> resultList;
+    private List<String> inputResult;
     private List<String> results = new ArrayList<>();
     private List<Line> lines = new ArrayList<>();
 
@@ -21,7 +21,7 @@ public class Ladder {
     public Ladder(List<String> peoples, List<String> resultList, int height) {
         this.peoples = peoples;
         this.height = height;
-        this.resultList = resultList;
+        this.inputResult = resultList;
         makeLadder();
         makeAllResult();
     }
@@ -50,7 +50,7 @@ public class Ladder {
     }
 
     // 현재 bridge를 만들수 있는 경우 canMake 값이 true이다. 초기에 가장 왼쪽 bridge는 항상 만들수 있으므로 true로 초기화한다.
-    protected Line makeLine() {
+    private Line makeLine() {
         boolean canMake = true;
         Line line = new Line();
         for(int i = 1; i < peoples.size(); i++) {
@@ -70,7 +70,7 @@ public class Ladder {
     // index의 왼쪽, 오른쪽에 bridge 여부를 확인해가며 사다리를 타고 내려간다.
     private String makeResult(int location, int index) {
         if(location == height)
-            return resultList.get(index);
+            return inputResult.get(index);
         Line line;
         line = lines.get(location);
         if(line.getBridge(index - 1))
@@ -101,8 +101,8 @@ public class Ladder {
         return results;
     }
 
-    public List<String> getResultList() {
-        return resultList;
+    public List<String> getInputResult() {
+        return inputResult;
     }
 
 }
