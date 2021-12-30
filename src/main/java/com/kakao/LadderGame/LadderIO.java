@@ -1,6 +1,6 @@
 package com.kakao.LadderGame;
 
-import com.kakao.DTO.Ladder;
+import com.kakao.model.Ladder;
 import com.kakao.data.LadderChar;
 import com.kakao.data.LadderOption;
 import com.kakao.exception.IntegerFormatException;

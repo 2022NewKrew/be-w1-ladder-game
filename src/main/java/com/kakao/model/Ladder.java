@@ -1,4 +1,4 @@
-package com.kakao.DTO;
+package com.kakao.model;
 
 import java.util.ArrayList;
 import java.util.List;

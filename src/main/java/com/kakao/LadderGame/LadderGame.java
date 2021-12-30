@@ -1,6 +1,6 @@
 package com.kakao.LadderGame;
 
-import com.kakao.DTO.Ladder;
+import com.kakao.model.Ladder;
 
 public class LadderGame {
 

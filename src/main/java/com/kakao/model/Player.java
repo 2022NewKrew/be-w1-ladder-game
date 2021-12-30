@@ -1,4 +1,4 @@
-package com.kakao.DTO;
+package com.kakao.model;
 
 public class Player {
 }
