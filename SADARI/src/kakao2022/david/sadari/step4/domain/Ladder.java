@@ -1,22 +1,19 @@
 package kakao2022.david.sadari.step4.domain;
 
-import kakao2022.david.sadari.step4.view.LadderUI;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
-    private ArrayList<String> peopleList = new ArrayList<>();
+    private final List<String> peopleList;
     private final int countOfPerson;
     private final int ladderHeight;
-    private final ArrayList<Line> ladderBoard = new ArrayList<>();
+    private final List<Line> ladderBoard = new ArrayList<>();
 
-    public Ladder() {
-        boolean isDone = false;
-        while (!isDone) {
-            peopleList = LadderUI.inputPeople();
-            isDone = CheckName.checkPeopleList(peopleList);
-        }
+    public Ladder(List<String> peopleList, int ladderHeight) {
+        this.peopleList = peopleList;
         countOfPerson = peopleList.size();
-        ladderHeight = LadderUI.inputLadderHeight();
+        this.ladderHeight = ladderHeight;
+        makeLine();
     }
 
     private void makeLine() {
@@ -26,9 +23,15 @@ public class Ladder {
         }
     }
 
-    public void startGame() {
-        makeLine();
-        LadderUI.printPeopleList(peopleList);
-        LadderUI.printLadder(ladderBoard);
+    public StringBuilder getLadderInfo() {
+        StringBuilder ladderInfo = new StringBuilder();
+        for (String person : peopleList) {
+            ladderInfo.append(String.format("%-6s", person));
+        }
+        for (Line line : ladderBoard) {
+            ladderInfo.append("\n");
+            ladderInfo.append(line.getLineInfo());
+        }
+        return ladderInfo;
     }
 }
