@@ -19,8 +19,8 @@ public class ResultView {
     private static void printLine(ArrayList<Boolean> line) {
         System.out.printf("%s%s", SPACE, SIDE_RAIL);
 
-        for (Boolean aBoolean : line) {
-            System.out.print(aBoolean ? RUNG : SPACE);
+        for (Boolean point : line) {
+            System.out.print(point ? RUNG : SPACE);
             System.out.print(SIDE_RAIL);
         }
     }
