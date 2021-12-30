@@ -1,5 +1,6 @@
 package domain.participant;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,10 +19,8 @@ public class Participant {
         return names.size();
     }
 
-    public List<String> getParticipantNameList() {
-        return this.names.stream()
-                .map(Name::getName)
-                .collect(Collectors.toList());
+    public List<Name> getParticipantNameList() {
+        return new ArrayList<>(names);
     }
 
     private void checkParticipantNumber(int number) {
