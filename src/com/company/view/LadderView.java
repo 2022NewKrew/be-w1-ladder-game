@@ -1,6 +1,5 @@
 package com.company.view;
 
-import com.company.domain.Ladder;
 import com.company.domain.LadderDTO;
 
 import java.util.ArrayList;
@@ -9,28 +8,33 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderView {
-    private List<String> nameView;
-    private List<String> ladderView;
+    private final List<String> nameView;
+    private final List<String> ladderView;
+
     public LadderView(LadderDTO ladderDTO) {
-        this.nameView = getNameView(ladderDTO.getNames(), 5);
-        this.ladderView = getLadderView(ladderDTO.getLadderInfo());
+        this.nameView = generateNameView(ladderDTO.getNames(), 5);
+        this.ladderView = generateLadderView(ladderDTO.getLadderInfo());
     }
 
-    protected List<String> getLadderView(List<String> ladderInfo) {
+    public List<String> getNameView() {
+        return nameView;
+    }
+
+    protected List<String> generateLadderView(List<String> ladderInfo) {
         List<String> retLadderView = new ArrayList<String>();
-        for(String line : ladderInfo) {
+        for (String line : ladderInfo) {
             retLadderView.add("  |"
                     + Arrays.stream(line.split(""))
-                    .map(s->s.repeat(5))
+                    .map(s -> s.repeat(5))
                     .collect(Collectors.joining("|"))
                     + "|");
         }
         return retLadderView;
     }
 
-    protected List<String > getNameView(List<String> names, int size) {
+    protected List<String> generateNameView(List<String> names, int size) {
         List<String> retNameView = new ArrayList<String>();
-        for(String name : names) {
+        for (String name : names) {
             retNameView.add(getPaddedName(name, size));
         }
         return retNameView;
@@ -44,13 +48,13 @@ public class LadderView {
 
     public void printLadder() {
         printNames();
-        for(String line : ladderView) {
+        for (String line : ladderView) {
             System.out.println(line);
         }
     }
 
     protected void printNames() {
-        for(String name : nameView) {
+        for (String name : nameView) {
             System.out.print(name + " ");
         }
         System.out.println();
