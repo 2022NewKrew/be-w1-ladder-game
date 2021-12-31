@@ -4,19 +4,20 @@ import ladder.exception.IllegalPlayerNameException;
 
 public class Player {
 
-    private static final int MAX_USER_NAME_LENGTH = 5;
     private static final int MIN_USER_NAME_LENGTH = 1;
 
     private final String name;
+    private final int maxUserNameLength;
 
-    public Player(String name) {
+    public Player(String name, int maxUserNameLength) {
         this.name = name;
+        this.maxUserNameLength = maxUserNameLength;
         validatePlayerName(name);
     }
 
     private void validatePlayerName(String name) {
-        if (name.length() > MAX_USER_NAME_LENGTH) {
-            throw new IllegalPlayerNameException("참가자의 이름은 5글자까지 입력할 수 있습니다.");
+        if (name.length() > maxUserNameLength) {
+            throw new IllegalPlayerNameException("참가자의 이름은 " + maxUserNameLength + "글자까지 입력할 수 있습니다.");
         }
 
         if (name.length() < MIN_USER_NAME_LENGTH) {
@@ -28,8 +29,16 @@ public class Player {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getNameLength() {
+        return this.name.length();
+    }
+
     @Override
     public String toString() {
-        return this.name + " ".repeat((MAX_USER_NAME_LENGTH - name.length()) / 2);
+        return name;
     }
 }
