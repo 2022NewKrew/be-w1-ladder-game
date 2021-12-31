@@ -7,7 +7,7 @@ import java.util.List;
 public class Ladder {
     private final List<Line> lines;
     protected Ladder(List<Line> lines) {
-        this.lines = lines;
+        this.lines = Collections.unmodifiableList(lines);
     }
 
     private void initPlayersPosition(Players players, HashMap<Player, Integer> playersPosition){
@@ -32,6 +32,6 @@ public class Ladder {
     }
 
     public List<Line> lines(){
-        return Collections.unmodifiableList(lines);
+        return lines;
     }
 }
