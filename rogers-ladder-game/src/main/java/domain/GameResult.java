@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class GameResult {
     private static final String BANNER = "실행 결과\n";
+    static final String NO_USER_EXCEPTION_MESSAGE = BANNER.concat("해당 이름을 가진 사람 없음.");
 
     private final Map<String, Reward> resultMap;
 
@@ -24,11 +25,10 @@ public class GameResult {
 
     public String getResult(String name){
         if(!resultMap.containsKey(name)){
-            return BANNER.concat("해당 이름을 가진 사람 없음.");
+            return NO_USER_EXCEPTION_MESSAGE;
         }
 
         Reward reward = resultMap.get(name);
         return BANNER.concat(reward.toString());
     }
-
 }

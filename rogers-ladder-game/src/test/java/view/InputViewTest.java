@@ -13,12 +13,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
     private static final List<String> names = List.of("pobi", "honux", "crong", "jk");
+    private static final List<String> awards = List.of("꽝", "5000", "꽝", "3000");
     private static final int height = 5;
 
     @Test
     public void testFailedWhenWrongFormat(){
         //given
-        InputStream inputStream = makeInput(names, height, " ");
+        InputStream inputStream = createInputStream(names, awards, height, " ");
 
         //when
         Optional<InputDto> inputDtoOptional = InputView.input(new Scanner(inputStream));
@@ -30,22 +31,33 @@ class InputViewTest {
     @Test
     public void testSuccessWhenRightFormat(){
         //given
-        InputStream inputStream = makeInput(names, height, ",");
+        InputStream inputStream = createInputStream(names, awards, height, ",");
 
         //when
-        InputDto inputDto = InputView.input(new Scanner(inputStream)).orElseThrow();
+        Optional<InputDto> inputDtoOptional = InputView.input(new Scanner(inputStream));
 
         //then
+        assertTrue(inputDtoOptional.isPresent());
+        InputDto inputDto = inputDtoOptional.get();
+
         assertEquals(names.size(), inputDto.getNames().size());
         assertEquals(height, inputDto.getHeight());
     }
 
-    private static InputStream makeInput(List<String> names, int height, String nameSeparator){
-        String inputString = names.stream()
-                .reduce((name1, name2) -> name1.concat(nameSeparator).concat(name2))
-                .get()
+    private static InputStream createInputStream(List<String> names, List<String> awards, int height, String separator){
+        String nameStrings = names.stream()
+                .reduce((name1, name2) -> name1.concat(separator).concat(name2))
+                .orElse("NONE");
+
+        String awardStrings = awards.stream()
+                .reduce((award1, award2) -> award1.concat(separator).concat(award2))
+                .orElse("NONE");
+
+        String inputString = nameStrings
                 .concat("\n")
-                .concat(Integer.toString(height));
+                .concat(awardStrings)
+                .concat("\n")
+                .concat(String.valueOf(height));
 
         return convertToStream(inputString);
     }

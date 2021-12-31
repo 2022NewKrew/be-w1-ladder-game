@@ -18,14 +18,12 @@ public class LadderFactory {
     }
 
     private static Optional<Ladder> createInstance(InputDto inputDto){
-        Ladder newInstance = null;
-
         try{
-            newInstance = new Ladder(inputDto.getNames(), inputDto.getRewardStrings(), inputDto.getHeight());
+            Ladder newInstance = new Ladder(inputDto.getNames(), inputDto.getRewardStrings(), inputDto.getHeight());
+            return Optional.of(newInstance);
         }catch (IllegalArgumentException illegalArgumentException){
             System.err.println(illegalArgumentException.getMessage());
+            return Optional.empty();
         }
-
-        return Optional.ofNullable(newInstance);
     }
 }

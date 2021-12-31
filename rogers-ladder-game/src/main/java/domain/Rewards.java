@@ -11,6 +11,7 @@ public class Rewards {
 
     public Rewards(List<String> rewardStrings, int numberOfPeople) {
         validate(rewardStrings, numberOfPeople);
+
         this.rewards = rewardStrings.stream()
                 .map(Reward::new)
                 .collect(toList());

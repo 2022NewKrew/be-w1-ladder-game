@@ -22,6 +22,4 @@ class LinesTest {
         assertEquals(Lines.LENGTH_EXCEPTION_MESSAGE, illegalArgumentException1.getMessage());
         assertEquals(Lines.LENGTH_EXCEPTION_MESSAGE, illegalArgumentException2.getMessage());
     }
-
-
 }
