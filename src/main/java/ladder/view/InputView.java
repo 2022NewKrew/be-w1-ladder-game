@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Person;
+import ladder.domain.Result;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -20,6 +21,18 @@ public class InputView {
         return people;
     }
 
+    public static ArrayList<Result> inputResult() {
+        System.out.println();
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String[] inputStrings = sc.nextLine().split(",");
+
+        ArrayList<Result> results = new ArrayList<>();
+        for (String inputString : inputStrings) {
+            results.add(new Result(inputString));
+        }
+        return results;
+    }
+
     public static int inputLadderCount() {
         System.out.println();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
@@ -28,5 +41,11 @@ public class InputView {
         return ladderCount;
     }
 
-
+    public static String inputResultPerson() {
+        System.out.println();
+        System.out.println("결과를 보고 싶은 사람은?");
+        String resultPerson = sc.next();
+        System.out.println();
+        return resultPerson;
+    }
 }
