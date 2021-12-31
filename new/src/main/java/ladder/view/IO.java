@@ -9,11 +9,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 public class IO {
     private static final String qPeopleNames = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String qNumPeople = "참여할 사람은 몇 명인가요?";
+    private static final String qOutputs = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String qMaxHeight = "최대 사다리 높이는 몇 개인가요?";
-
-
-
 
     public IO() {
     }
@@ -22,12 +19,21 @@ public class IO {
         Scanner scanner = new Scanner(System.in);
 
         String[] peopleNames = this.setPeopleNames(scanner);
-        int nPeople = this.setNumPeople(scanner);
+        String[] outputs = this.setOutputs(scanner);
+        int nPeople = this.setNumPeople(peopleNames);
         int maxHeight = this.setMaxHeight(scanner);
 
-        LadderConfig ladderConfig = new LadderConfig(nPeople, maxHeight, peopleNames);
+        LadderConfig ladderConfig = new LadderConfig(nPeople, maxHeight, peopleNames, outputs);
         return ladderConfig;
     }
+
+    private String[] setOutputs(Scanner scanner) {
+        System.out.println(qOutputs);
+        String strPeopleNames = scanner.next();
+        String[] outputs = strPeopleNames.split(",");
+        return outputs;
+    }
+
     public String[] setPeopleNames(Scanner scanner) {
         System.out.println(qPeopleNames);
         String strPeopleNames = scanner.next();
@@ -35,9 +41,8 @@ public class IO {
 
         return peopleNames;
     }
-    public int setNumPeople(Scanner scanner) {
-        System.out.println(qNumPeople);
-        int nPeople = scanner.nextInt();
+    public int setNumPeople(String[] peopleNames) {
+        int nPeople = peopleNames.length;
         return nPeople;
     }
 

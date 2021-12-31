@@ -17,7 +17,8 @@ class IOTest {
     public void setup() {
         io = new IO();
         String[] peopleTest1 = {"adfeaf","s","ekrkewl","ss","r"};
-        ladderConfig = new LadderConfig(5,5, peopleTest1);
+        String[] outputTest1 = {"꽝", "400", "5000", "1000"};
+        ladderConfig = new LadderConfig(5,5, peopleTest1, outputTest1);
         ladder = new Ladder(ladderConfig);
     }
 

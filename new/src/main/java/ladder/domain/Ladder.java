@@ -5,6 +5,7 @@ public class Ladder {
     private final int nPeople;
     private final int maxHeight;
     private final String[] peopleNames;
+    private final String[] outputs;
     private final ArrayList<Line> arr;
     private String arrStr;
 
@@ -22,6 +23,7 @@ public class Ladder {
         this.nPeople = ladderConfig.getNumPeople();
         this.maxHeight = ladderConfig.getMaxHeight();
         this.peopleNames = ladderConfig.getPeopleNames();
+        this.outputs = ladderConfig.getOutputs();
         this.arr = new ArrayList<Line>();
 
         buildLines();
@@ -44,6 +46,7 @@ public class Ladder {
 
     private String ladderToStr() {
         StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder backStringBuilder = new StringBuilder();
         ArrayList<Line> ladderList = this.arr;
 
         //print names at the top of ladder
@@ -51,8 +54,13 @@ public class Ladder {
 
         //print ladders
         for (Line line : ladderList) {
-            stringBuilder = rowToStr(stringBuilder, line);
+            rowToStr(stringBuilder, line);
         }
+        //print outputs
+        headerToStr(backStringBuilder, this.outputs);
+
+        stringBuilder.append(backStringBuilder);
+
         String strRow = stringBuilder.toString();
         return strRow;
     }
