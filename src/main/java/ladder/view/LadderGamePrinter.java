@@ -7,7 +7,7 @@ import ladder.domain.Step;
 
 import java.util.List;
 
-public class LadderPrinter {
+public class LadderGamePrinter {
     private final String EMPTY_STR = " ";
     private final String FILLED_STR = "-";
     private final String POLE_STR = "|";
