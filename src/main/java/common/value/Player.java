@@ -16,10 +16,6 @@ public class Player {
         return name;
     }
 
-    public int getNameLength() {
-        return name.length();
-    }
-
     private boolean validateName(String name) {
         if(name.length() > 5) {
             return false;

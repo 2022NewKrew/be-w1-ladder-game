@@ -1,4 +1,4 @@
-package domain.value;
+package domain;
 
 import common.value.LadderHeight;
 import common.value.Player;
@@ -21,8 +21,6 @@ class LadderTest {
 
     @Test
     void test() {
-        // TDD : run을 개발할 때, 테스트 코드를 먼저 설정한 후 개발했는데, 일급컬렉션안에 비지니스로직(행위)을 구현한 것이
-        // 개발할 때 많은 도움이 되었습니다.
         // given
         Ladder ladder = new Ladder(new PlayerCount(4), new LadderHeight(5));
 
@@ -43,13 +41,10 @@ class LadderTest {
         Players players = new Players(playerList);
 
         // then
-        // LadderBoardScreen ladderBoardScreen = new LadderBoardScreen();
-        // LadderGameResult ladderGameResult = new LadderGameResult(players, ladder);
-        // ladderBoardScreen.render(ladderGameResult);
-        assertEquals(ladder.run(POBI), 0);
-        assertEquals(ladder.run(HONUX), 3);
-        assertEquals(ladder.run(CRONG), 2);
-        assertEquals(ladder.run(JK), 1);
+        assertEquals(ladder.runToGoal(POBI), 0);
+        assertEquals(ladder.runToGoal(HONUX), 3);
+        assertEquals(ladder.runToGoal(CRONG), 2);
+        assertEquals(ladder.runToGoal(JK), 1);
     }
 
 }

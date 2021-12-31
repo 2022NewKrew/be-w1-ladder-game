@@ -2,17 +2,17 @@ package domain.data;
 
 import java.util.List;
 
-public class LadderResults {
+public class Goals {
 
-    private final List<Goal> resultList;
+    private final List<Goal> goalList;
 
-    public LadderResults(List<Goal> resultList) {
-        this.resultList = resultList;
+    public Goals(List<Goal> goalList) {
+        this.goalList = goalList;
     }
 
-    public Goal getResult(int index) {
-        return resultList.get(index);
+    public Goal getGoal(int index) {
+        return goalList.get(index);
     }
 
-    public int getCount() { return resultList.size(); }
+    public int getCount() { return goalList.size(); }
 }

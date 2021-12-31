@@ -1,14 +1,14 @@
 package domain.data;
 
-public class LadderResult {
+public class Goal {
 
-    private final String result;
+    private final String value;
 
-    public LadderResult(String result) {
-        this.result = result;
+    public Goal(String value) {
+        this.value = value;
     }
 
-    public String getResult() {
-        return result;
+    public String getValue() {
+        return value;
     }
 }

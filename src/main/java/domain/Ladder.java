@@ -1,8 +1,10 @@
-package domain.value;
+package domain;
 
 import common.value.DirectionType;
 import common.value.LadderHeight;
 import common.value.PlayerCount;
+import domain.value.Point;
+import domain.value.VerticalLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +51,7 @@ public class Ladder {
      * RIGHT : column -> column + 1, height -> height + 1
      * DOWN : height -> height + 1
      */
-    public int run(int playerNum) {
+    public int runToGoal(int playerNum) {
         int curIndex = playerNum;
 
         for(int curHeight = 0; curHeight < getLadderHeight(); curHeight++) {
