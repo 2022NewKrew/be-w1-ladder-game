@@ -7,9 +7,10 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class ResultView {
+    private static final int RUNG_LENGTH = 5;
     private static final String SIDE_RAIL = "|";
-    private static final String RUNG = "-----";
-    private static final String SPACE = "     ";
+    private static final String RUNG = "-".repeat(RUNG_LENGTH);
+    private static final String SPACE = " ".repeat(RUNG_LENGTH);
 
     /**
      * 사다리의 한 줄을 출력하는 메서드
