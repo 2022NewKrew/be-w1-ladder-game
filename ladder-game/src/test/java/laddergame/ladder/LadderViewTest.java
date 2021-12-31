@@ -10,7 +10,7 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderViewTest {
-    static Ladder ld = new Ladder("pobi,honux,crong,jk",5);
+    static Ladder ld = new Ladder("pobi,honux,crong,jk","꽝,5000,꽝,3000",5);
     static Scanner sc = new Scanner(System.in);
     ArrayList<String> participantList;
 
