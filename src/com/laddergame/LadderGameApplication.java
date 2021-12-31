@@ -16,13 +16,13 @@ import static com.laddergame.view.OutputView.*;
 public class LadderGameApplication {
     public static void main(String[] args) {
         String ParticipantNames = inputParticipantName();
-        String inputGameResults = inputGameResult();
+        String gameResults = inputGameResult();
         int ladderHeight = inputLadderHeight();
 
-        LadderGame ladderGame = LadderGame.valueOf(ladderHeight, ParticipantNames, inputGameResults);
+        LadderGame ladderGame = LadderGame.valueOf(ladderHeight, ParticipantNames, gameResults);
         Lines lines = ladderGame.getLines();
         List<String> participantNames = ladderGame.getParticipantsNames();
-        List<String> participantResults = parseInput(inputGameResults);
+        List<String> participantResults = parseInput(gameResults);
         LinesDto linesDto = LinesDto.from(lines);
 
         outputLadderGameResult(linesDto.getGameResult(), participantNames, participantResults);
