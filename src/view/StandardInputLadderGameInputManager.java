@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StandardInputLadderGameInputManager implements LadderGameInputManager {
-    private final String NEWLINE = String.format("%n");
     private final int MAX_NAME_LENGTH = 5;
     private static final String ESCAPE_WORD = "춘식이";
 
@@ -29,7 +28,7 @@ public class StandardInputLadderGameInputManager implements LadderGameInputManag
         }
 
         System.out.println("잘못 입력하셨습니다!");
-        System.out.println("이름은 " + MAX_NAME_LENGTH + "자 이하여야 합니다." + NEWLINE);
+        System.out.println("이름은 " + MAX_NAME_LENGTH + "자 이하여야 합니다." + System.lineSeparator());
         return getParticipants();
     }
 
@@ -47,7 +46,7 @@ public class StandardInputLadderGameInputManager implements LadderGameInputManag
         }
 
         System.out.println("잘못 입력하셨습니다!");
-        System.out.println("양의 정수만 입력해주세요" + NEWLINE);
+        System.out.println("양의 정수만 입력해주세요" + System.lineSeparator());
         return getHeight();
     }
 
@@ -61,13 +60,13 @@ public class StandardInputLadderGameInputManager implements LadderGameInputManag
         }
 
         System.out.println("잘못 입력하셨습니다!");
-        System.out.println("결과는 " + MAX_NAME_LENGTH + "자 이하여야 합니다." + NEWLINE);
+        System.out.println("결과는 " + MAX_NAME_LENGTH + "자 이하여야 합니다." + System.lineSeparator());
         return getResults();
     }
 
     @Override
     public String getRequest() {
-        System.out.println(NEWLINE + "결과를 보고 싶은 사람은?");
+        System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
         String answer = getString();
 
         if(answer.equals(ESCAPE_WORD)) {

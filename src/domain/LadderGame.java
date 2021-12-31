@@ -58,6 +58,7 @@ public class LadderGame{
         String answer = inputManager.getRequest();
 
         while(answer != null) { //ESCAPE_WORD면 null
+            renderer.displaySentence(System.lineSeparator() + "실행결과");
             getResponse(answer);
             answer = inputManager.getRequest();
         }

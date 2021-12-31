@@ -6,7 +6,6 @@ import domain.Line;
 import java.util.List;
 
 public class StandardOutLadderGameRenderer implements LadderGameRenderer {
-    private final String NEWLINE = String.format("%n");
     private final String STRIPE = "|";
     private final String BRIDGE = "-----";
     private final String SPACE = "     ";
@@ -15,7 +14,7 @@ public class StandardOutLadderGameRenderer implements LadderGameRenderer {
     public void displayGameSettings(List<String> participants, Ladder ladder, List<String> results) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(stringListToString(participants)).append(NEWLINE)
+        sb.append(stringListToString(participants)).append(System.lineSeparator())
                 .append(ladderToString(ladder))
                 .append(stringListToString(results));
 
@@ -38,7 +37,7 @@ public class StandardOutLadderGameRenderer implements LadderGameRenderer {
         StringBuilder sb = new StringBuilder();
         List<Line> listTypeLadder = ladder.getLadderToList();
 
-        listTypeLadder.forEach(line -> sb.append(lineToString(line)).append(NEWLINE));
+        listTypeLadder.forEach(line -> sb.append(lineToString(line)).append(System.lineSeparator()));
 
         return sb.toString();
     }
