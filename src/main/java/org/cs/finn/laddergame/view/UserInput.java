@@ -19,6 +19,7 @@ public class UserInput {
 
         final Members members = getMembersFromInput();
         System.out.println("게임에 참여하는 사람 목록: " + members.getList());
+        System.out.println();
         return members;
     }
 
@@ -26,8 +27,8 @@ public class UserInput {
         try {
             return new Members(sc.nextLine());
         } catch (IllegalArgumentException e) {
-            System.out.println("유효한 입력 값의 개수가 제한 범위[" + Members.MIN + ", " + Members.MAX + "]를 벗어났으므로 " +
-                    "기본 값 " + Members.DEFAULT_MEMBER_LIST + "을 사용합니다");
+            System.out.println("유효한 입력 값의 개수가 제한 범위[" + Members.MIN + ", " + Members.MAX + "]를 벗어났으므로");
+            System.out.println("기본 값 " + Members.DEFAULT_MEMBER_LIST + "을 사용합니다");
         }
 
         return Members.getDefault();
@@ -42,6 +43,7 @@ public class UserInput {
 
         final Rewards rewards = getRewardsFromInput(members.getList().size());
         System.out.println("보상 목록: " + rewards.getList());
+        System.out.println();
         return rewards;
     }
 
@@ -49,8 +51,8 @@ public class UserInput {
         try {
             return new Rewards(sc.nextLine(), requestSize);
         } catch (IllegalArgumentException e) {
-            System.out.println("유효한 입력 값의 개수가 입력 허용 범위[" + Rewards.MIN + ", " + Rewards.MAX + "]를 벗어났으므로 " +
-                    "기본 값 " + Rewards.DEFAULT_REWARD_LIST + "을 기준으로 사람 수 만큼 조절 후 사용합니다");
+            System.out.println("유효한 입력 값의 개수가 입력 허용 범위[" + Rewards.MIN + ", " + Rewards.MAX + "]를 벗어났으므로");
+            System.out.println("기본 값 " + Rewards.DEFAULT_REWARD_LIST + "을 기준으로 사람 수 만큼 조절 후 사용합니다");
         }
 
         return Rewards.getDefault(requestSize);
@@ -66,6 +68,7 @@ public class UserInput {
 
         System.out.println("최대 사다리 높이는 몇 개인가요? [" + LadderHeight.MIN + ", " + LadderHeight.MAX + "]");
         final LadderHeight ladderHeight = getLadderHeightFromInput();
+        System.out.println();
 
         return new Ladder(sRand, ladderHeight, members);
     }
