@@ -2,61 +2,43 @@ package ladder.view;
 
 import ladder.domain.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Map;
 
-public class LadderView {
+public class OutputView {
 
-    private static final String DELIMITER = ",";
     private static final String PADDING = "  ";
-    private static final int MAX_USER_NAME_LENGTH = 5;
+    private final int maxUserNameLength;
 
-    private final Scanner scanner;
-
-    public LadderView() {
-        scanner = new Scanner(System.in);
+    public OutputView(int maxUserNameLength) {
+        this.maxUserNameLength = maxUserNameLength;
     }
 
-    public List<Player> inputPlayers() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String[] inputPlayers = scanner.nextLine().split(DELIMITER);
-        List<Player> players = new ArrayList<>();
-
-        for (String inputPlayer : inputPlayers) {
-            players.add(new Player(inputPlayer, MAX_USER_NAME_LENGTH));
-        }
-        return players;
-    }
-
-    public List<Result> inputResults() {
-        System.out.println("");
-    }
-
-    public int inputMaxLadderHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return scanner.nextInt();
-    }
-
-    public void printLadder(List<Player> players, Ladder ladder) {
+    public void printLadder(List<Player> players, List<Result> results, Ladder ladder) {
         int ladderHeight = ladder.getMaxLadderHeight();
+
+        System.out.println("\n사다리 결과\n");
         printPlayers(players);
 
         for (int i = 0; i < ladderHeight; i++) {
             LadderRow ladderRow = ladder.getLadderRow(i);
             printLadderRow(ladderRow);
         }
+        printResults(results);
     }
 
     private void printPlayers(List<Player> players) {
-        for (Player player : players) {
-            System.out.printf("%5s ", player + getNamePadding(player.getNameLength()));
-        }
+        players.forEach(player -> System.out.printf("%5s ", player + getNamePadding(player.getNameLength())));
         System.out.println();
     }
 
+    private void printResults(List<Result> results) {
+        results.forEach(result -> System.out.printf("%5s ", result + getNamePadding(result.getResultLength())));
+        System.out.println("\n");
+    }
+
     private String getNamePadding(int nameLength) {
-        return " ".repeat((MAX_USER_NAME_LENGTH - nameLength) / 2);
+        return " ".repeat((maxUserNameLength - nameLength) / 2);
     }
 
     private void printLadderRow(LadderRow ladderRow) {
@@ -68,5 +50,31 @@ public class LadderView {
             System.out.print(ladderCell.getLine());
         }
         System.out.println(LineType.VERTICAL_LINE);
+    }
+
+    public void printResult(String playerName, Map<String, String> resultMap) {
+        if (playerName.equals("all")) {
+            printGameResultAll(resultMap);
+            return;
+        }
+        if (!resultMap.containsKey(playerName)) {
+            return;
+        }
+        printGameResult(playerName, resultMap);
+    }
+
+    private void printGameResult(String playerName, Map<String, String> resultMap) {
+        System.out.println("\n실행결과");
+        System.out.println(resultMap.get(playerName) + "\n");
+    }
+
+    private void printGameResultAll(Map<String, String> resultMap) {
+        System.out.println("\n실행결과");
+        resultMap.forEach((key, value) -> System.out.println(key + " : " + value));
+        System.out.println();
+    }
+
+    public void printGameEnd() {
+        System.out.println("\n게임을 종료합니다.");
     }
 }

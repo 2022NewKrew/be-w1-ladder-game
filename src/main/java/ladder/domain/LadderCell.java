@@ -7,10 +7,10 @@ public class LadderCell {
     private final LineType lineType;
 
     public LadderCell(LineType previousLineType) {
-        this.lineType = createLadderCell(previousLineType);
+        this.lineType = createLineType(previousLineType);
     }
 
-    private LineType createLadderCell(LineType previousLineType) {
+    private LineType createLineType(LineType previousLineType) {
         if (previousLineType == LineType.HORIZONTAL_LINE) {
             return LineType.EMPTY_LINE;
         }

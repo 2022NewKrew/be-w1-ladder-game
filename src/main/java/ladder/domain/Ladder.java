@@ -28,7 +28,11 @@ public class Ladder {
         return new LadderRow(numberOfPlayers);
     }
 
-    public List<LadderRow> getLadderRows() {
-        return ladderRows;
+    public LadderRow getLadderRow(int index) {
+        return ladderRows.get(index);
+    }
+
+    public int getMaxLadderHeight() {
+        return this.maxLadderHeight;
     }
 }
