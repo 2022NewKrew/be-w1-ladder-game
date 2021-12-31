@@ -16,7 +16,7 @@ class PointGeneratorTest {
         List<Boolean> points = List.of(Boolean.TRUE);
 
         // then
-        Boolean testBoolean = pointGenerator.addPoint(points);
+        Boolean testBoolean = pointGenerator.appendPoint(points);
         Assertions.assertThat(testBoolean).isFalse(); // TRUE 뒤에 추가되는 점은 무조건 FALSE 여야 함
     }
 }

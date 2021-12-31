@@ -13,7 +13,7 @@ public class PointGenerator {
     }
 
     // 메서드
-    public Boolean addPoint(List<Boolean> points) {
+    public Boolean appendPoint(List<Boolean> points) {
         if (points.size() == 0) {
             return random.nextBoolean();
         }
