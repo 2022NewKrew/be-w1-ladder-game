@@ -5,9 +5,9 @@ import repository.Ladder;
 import java.util.*;
 
 public class LadderInfoScanner {
-    private StringListScanner nameScanner = new NameScanner();
-    private StringListScanner resultScanner = new ResultScanner();
-    private HeightOfLadderScanner heightScanner = new HeightOfLadderScanner();
+    private final StringListScanner nameScanner = new NameScanner();
+    private final StringListScanner resultScanner = new ResultScanner();
+    private final HeightOfLadderScanner heightScanner = new HeightOfLadderScanner();
 
     public LadderInfoScanner() { }
 

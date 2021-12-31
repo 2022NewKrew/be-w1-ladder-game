@@ -4,7 +4,7 @@ import repository.Constant;
 import repository.Ladder;
 
 public class LadderRenderer {
-    private int MAX_LENGTH;
+    private int MAX_LENGTH = Constant.MAX_NAME_LENGTH;
     public LadderRenderer() { }
 
     public void renderLadder(Ladder ladder){

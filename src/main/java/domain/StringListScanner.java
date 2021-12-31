@@ -9,7 +9,7 @@ public abstract class StringListScanner {
     public abstract List<String> getInput();
 
     protected boolean validateNumOfElement(String input){
-        if(!input.contains(input)){
+        if(!input.contains(",")){
             System.out.println("둘 이상 입력해주세요.");
             return false;
         }

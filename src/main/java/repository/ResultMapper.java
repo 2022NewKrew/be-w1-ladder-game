@@ -1,8 +1,8 @@
 package repository;
 
 public class ResultMapper {
-    private NameToPointMapping nameToPointMapping;
-    private PointToResultMapping pointToResultMapping;
+    private final NameToPointMapping nameToPointMapping;
+    private final PointToResultMapping pointToResultMapping;
 
     public ResultMapper(NameToPointMapping nameToPointMapping, PointToResultMapping pointToResultMapping){
         this.nameToPointMapping = nameToPointMapping;
