@@ -1,8 +1,10 @@
-package domain.value;
+package domain;
 
 import common.value.DirectionType;
 import common.value.LadderHeight;
 import common.value.PlayerCount;
+import domain.value.Point;
+import domain.value.VerticalLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,5 +44,21 @@ public class Ladder {
         VerticalLine rightLine = getVerticalLine(playerNum + 1);
         Point rightPoint = rightLine.getPoint(height);
         rightPoint.setDirection(DirectionType.LEFT);
+    }
+
+    /**
+     * LEFT : column -> column - 1, height -> height + 1
+     * RIGHT : column -> column + 1, height -> height + 1
+     * DOWN : height -> height + 1
+     */
+    public int runToGoal(int playerNum) {
+        int curIndex = playerNum;
+
+        for(int curHeight = 0; curHeight < getLadderHeight(); curHeight++) {
+            Point curPoint = getVerticalLine(curIndex).getPoint(curHeight);
+            curIndex = curPoint.getNextVerticalLine(curIndex);
+        }
+
+        return curIndex;
     }
 }

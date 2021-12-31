@@ -1,9 +1,10 @@
 package view.screen;
 
-import domain.data.GameResult;
+import domain.data.LadderGameResult;
 import common.value.DirectionType;
 import common.value.Players;
-import domain.value.Ladder;
+import domain.Ladder;
+import domain.data.Goals;
 import domain.value.Point;
 
 public class LadderBoardScreen {
@@ -16,9 +17,12 @@ public class LadderBoardScreen {
 
     private static final int LADDER_WIDTH = 5;
 
-    public void render(GameResult gameResult) {
+    public void render(LadderGameResult gameResult) {
+        System.out.println("\n사다리 결과");
         printPlayerList(gameResult.getPlayers());
-        printLadderRows(gameResult.getLadders());
+        printLadder(gameResult.getLadder());
+        printGoals(gameResult.getGoals());
+        System.out.println();
     }
 
     private void printPlayerList(Players players) {
@@ -35,7 +39,7 @@ public class LadderBoardScreen {
         System.out.println(sb);
     }
 
-    private void printLadderRows(Ladder ladder) {
+    private void printLadder(Ladder ladder) {
         if(ladder.getPlayerCount() <= 0) { return; }
         int height = ladder.getLadderHeight();
         for(int row = 0; row < height; row++) {
@@ -64,5 +68,17 @@ public class LadderBoardScreen {
         }
 
         return sb.toString();
+    }
+
+    private void printGoals(Goals goals) {
+        int goalCount = goals.getCount();
+        if(goalCount <= 0) { return; }
+
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < goalCount; i++) {
+            sb.append(String.format("%-5s ", goals.getGoal(i).getValue()));
+        }
+
+        System.out.println(sb);
     }
 }

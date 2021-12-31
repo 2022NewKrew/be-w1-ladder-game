@@ -15,7 +15,7 @@ class UserInputScreenTest {
     @Test
     void 사용자이름을_최대_5글자만_표시한다() {
         // given
-        String input = "pobipobi,honuxhonux,crongcrong,jk\n5\n";
+        String input = "pobipobi,honuxhonux,crongcrong,jk\n1,2,3,4\n5\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 

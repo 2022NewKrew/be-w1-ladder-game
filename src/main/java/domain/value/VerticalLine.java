@@ -26,11 +26,6 @@ public class VerticalLine {
     public boolean isConnectableTo(VerticalLine target, int height) {
         Point point = points.get(height);
         Point targetPoint = target.getPoint(height);
-        if(point.getDirection() == DirectionType.LEFT ||
-                point.getDirection() == DirectionType.RIGHT ||
-                targetPoint.getDirection() == DirectionType.RIGHT) {
-            return false;
-        }
-        return true;
+        return point.isConnectableTo(targetPoint);
     }
 }

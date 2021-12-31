@@ -1,5 +1,5 @@
 import configuration.*;
-import domain.data.GameResult;
+import domain.data.LadderGameResult;
 import domain.LadderGameService;
 import domain.LadderGenerator;
 import domain.LadderRandomGenerator;
@@ -29,9 +29,11 @@ public class Main {
         UserInputInfo userInputInfo = ladderGameUI.renderUserInputScreen();
 
         LadderGameService ladderGameService = makeLadderGameService(userInputInfo);
-        GameResult gameResult = ladderGameService.start();
+        LadderGameResult gameResult = ladderGameService.start();
 
         ladderGameUI.renderLadderBoard(gameResult);
+
+        ladderGameUI.renderLadderGameResultQueryScreen(gameResult);
     }
 
     private static LadderGameService makeLadderGameService(UserInputInfo userInputInfo) {
@@ -43,6 +45,7 @@ public class Main {
     private static LadderGameConfiguration makeLadderGameConfiguration(UserInputInfo userInputInfo) {
         return new LadderGameConfiguration(
                 userInputInfo.getPlayers(),
+                userInputInfo.getLadderResults(),
                 userInputInfo.getMaxLadderHeight()
         );
     }

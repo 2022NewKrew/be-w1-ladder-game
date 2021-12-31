@@ -26,4 +26,17 @@ public class Players {
     public String getPlayerName(int index) {
         return players.get(index).getName();
     }
+
+    public Player getPlayer(int index) {
+        return players.get(index);
+    }
+
+    public Player getPlayer(String playerName) {
+        for(Player player : players) {
+            if(player.getName().equals(playerName)) {
+                return player;
+            }
+        }
+        return new Player("");
+    }
 }
