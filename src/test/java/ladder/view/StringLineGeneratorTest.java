@@ -10,12 +10,12 @@ class StringLineGeneratorTest {
     @Test
     void 줄_만들기_테스트() {
         // given
-        StringLineGenerator stringLineGenerator = new StringLineGenerator();
+        StringLineGenerator stringLineGenerator = new StringLineGenerator(1);
 
         // when
         List<Boolean> testPoints = List.of(Boolean.FALSE, Boolean.TRUE);
         String testString =
-                stringLineGenerator.createRowString(testPoints, "|", "-", " ", 1);
+                stringLineGenerator.createRowString(testPoints);
 
         // then
         Assertions.assertThat(testString).isEqualTo("| |-|");

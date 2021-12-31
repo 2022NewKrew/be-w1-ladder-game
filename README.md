@@ -64,3 +64,18 @@
 
 - `Line`의 `createRowString()`과 `toString()`을 통합할 수 있음
 - 길이 제한이 변경될 경우 사다리 줄과 공백을 나타내는 문자열도 변경 필요
+
+## 사다리 게임 4단계 구현
+
+### 코드 리뷰 피드백
+
+- 모든 파일의 EOF에 NL 삽입
+- 루프에서 `repeat()` 여러 번 호출하지 않도록 변경
+- `LabelListTest`에서 5자보다 작은 입력을 받았을 때 5자로 출력하는 테스트 추가
+- `StringLineGenerator`의 `toString()` 파라미터 변경
+- `PointGenerator`의 `addPoint()` 메소드명 `appendPoint()` 로 변경
+- 입력 제한 초과 메시지 출력 채널 변경
+
+### 피어세션 및 자체 피드백
+
+- 
