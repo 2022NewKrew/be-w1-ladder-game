@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
 
-    @DisplayName("Line 객체에서 선을 그릴 수 있는지 판단하는 로직 정상 작동 테스트")
+    @DisplayName("사다리 라인 연속해서 그리는 경우 예외처리 로직 테스트")
     @Test
-    public void makeLine() {
+    public void 연속된_사다리라인_확인() {
         //given
         int cnt = 1000;
 
