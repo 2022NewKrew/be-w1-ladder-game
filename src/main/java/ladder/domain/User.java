@@ -12,7 +12,7 @@ public class User {
 
     private void validateNameLength(String name) {
         if (name.length() > MAX_NAME_LEN) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름의 길이는 5를 넘을 수 없습니다.");
         }
     }
 
