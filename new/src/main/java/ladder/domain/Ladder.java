@@ -18,6 +18,8 @@ public class Ladder {
 
     private static final int maxNameLength = 5;
 
+    private static LadderGame ladderGame;
+
 
     //constructor
     public Ladder(LadderConfig ladderConfig) {
@@ -29,10 +31,16 @@ public class Ladder {
 
         buildLines();
         this.arrStr = ladderToStr();
+
+        this.ladderGame = new LadderGame(this.arr);
     }
 
     public String getLadderStr(){
         return this.arrStr;
+    }
+
+    public String[] getPeopleNames(){
+        return this.peopleNames;
     }
 
     //line 생성
@@ -166,15 +174,25 @@ public class Ladder {
         return stringBuilder;
     }
 
+
+
     public String runGame(String userName){
-        LadderGame ladderGame = new LadderGame(this.arr);
+
         int userId = Arrays.asList(this.peopleNames).indexOf(userName);
         if (userId==-1){// all
-            return "all"; //have to do something
+            return "NOT Existing User"; //have to do something
         }
-        int outId = ladderGame.getResultIdx(userId);
+        int outId = this.ladderGame.getResultIdx(userId);
         return this.outputs[outId];
 
+    }
+
+    public String[] runGameForAll(){
+        String[] outputs = new String[this.nPeople];
+        for(int i=0; i<this.nPeople; i++){
+            outputs[i] = runGame(this.peopleNames[i]);
+        }
+        return outputs;
     }
 }
 

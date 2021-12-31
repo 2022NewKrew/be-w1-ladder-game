@@ -18,6 +18,10 @@ public class LadderGame {
     }
 
     private static int move(ArrayList<Boolean> line, int pos){
+        if(pos==line.size()){
+            int moving = line.get(pos-1) ? -1 : 0;
+            return pos + moving;
+        }
         if(pos==0){
             int moving = line.get(pos) ? 1 : 0;
             return pos + moving;

@@ -65,7 +65,14 @@ public class IO {
     }
 
     public static void printResultEach(String output){
-        System.out.println("실행결과?\n"+output);
+        System.out.println("실행결과\n"+output);
+    }
+
+    public static void printResultsAll(String[] outputs, String[] names){
+        System.out.println("실행결과");
+        for(int i=0; i< outputs.length;i++){
+            System.out.println(String.format("%s : %s", names[i],outputs[i]));
+        }
     }
 
 

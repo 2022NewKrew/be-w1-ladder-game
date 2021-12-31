@@ -16,18 +16,28 @@ public class Main {
         String ladderStr = ladder.getLadderStr();
         ioDriver.printLadder(ladderStr);
 
-        run(ioDriver, ladder);
+        while (true){
+            //try catch 로 나오기
+            run(ioDriver, ladder);
+        }
 
     }
 
     private static void run(IO ioDriver, Ladder ladder) {
-        while (true){
-            String resultUser = ioDriver.getResultsUser();
-            String output=  ladder.runGame(resultUser);
-            ioDriver.printResultEach(output);
 
+        String resultUser = ioDriver.getResultsUser();
+        if (resultUser.equals("all")){
+            String[] outputs = ladder.runGameForAll();
+            String[] names = ladder.getPeopleNames();
+            ioDriver.printResultsAll(outputs, names);
+            return;
         }
-
+        String output = ladder.runGame(resultUser);
+        if (output.equals("NOT Existing User")){
+            //error 해당 유저 없으면 while 문 나오기
+        }
+        // 결과 알고자하는 유저 한명일 경우
+        ioDriver.printResultEach(output);
 
     }
 }
