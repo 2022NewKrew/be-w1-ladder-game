@@ -2,7 +2,6 @@ package view;
 
 import dto.InputDto;
 
-import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -10,25 +9,22 @@ import java.util.regex.Pattern;
 
 public class InputView {
     static final String NAMES_FORMAT_MESSAGE = "이름은 쉼표(,)로 구분하세요";
-    static final String AWARDS_FORMAT_MESSAGE = "결과는 쉼표(,)로 구분하세요";
+    static final String AWARDS_FORMAT_MESSAGE = "결과는 꽝 또는 숫자만 입력하시고 쉼표(,)로 구분하세요";
 
     private static final Pattern namesPattern = Pattern.compile("^[a-zA-Z]{1,5}(,[a-zA-Z]{1,5})*$");
     private static final Pattern moneyPattern = Pattern.compile("^((꽝)|[1-9][0-9]*)(,((꽝)|[1-9][0-9]*))*$");
 
     public static Optional<InputDto> input(Scanner scanner){
-        InputDto inputDto = null;
-
         try{
             List<String> peopleNames = inputNames(scanner);
             List<String> awardStrings = inputAwards(scanner);
             int height = inputHeight(scanner);
 
-            inputDto = new InputDto(peopleNames, awardStrings, height);
+            return Optional.of(new InputDto(peopleNames, awardStrings, height));
         }catch (IllegalArgumentException illegalArgumentException){
             System.err.println(illegalArgumentException.getMessage());
+            return Optional.empty();
         }
-
-        return Optional.ofNullable(inputDto);
     }
 
     private static List<String> inputNames(Scanner scanner){
@@ -36,7 +32,6 @@ public class InputView {
 
         String names = scanner.nextLine();
         validateNamesFormat(names);
-
         return List.of(names.split(","));
     }
 
@@ -51,7 +46,6 @@ public class InputView {
 
         String awards = scanner.nextLine();
         validateAwardsFormat(awards);
-
         return List.of(awards.split(","));
     }
 
