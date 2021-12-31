@@ -1,7 +1,7 @@
 package org.cs.finn.laddergame;
 
 import org.cs.finn.laddergame.domain.Ladder;
-import org.cs.finn.laddergame.domain.Members;
+import org.cs.finn.laddergame.domain.stringvalues.Members;
 import org.cs.finn.laddergame.view.LadderView;
 import org.cs.finn.laddergame.view.MemberView;
 import org.cs.finn.laddergame.view.UserInput;

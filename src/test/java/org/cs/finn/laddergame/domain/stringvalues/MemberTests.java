@@ -1,4 +1,4 @@
-package org.cs.finn.laddergame.domain;
+package org.cs.finn.laddergame.domain.stringvalues;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +12,7 @@ public class MemberTests {
     @DisplayName("Member 객체 검사")
     public void testMember() {
         // given
-        final List<Member> normalExpected = Members.DEFAULT_MEMBER;
+        final List<Member> normalExpected = Members.DEFAULT_MEMBER_LIST;
         final Members memberNormal = Members.getDefault();
 
         final List<String> digit = List.of("1", "12", "123", "1234", "12345", "123456");
@@ -35,13 +35,13 @@ public class MemberTests {
         Assertions.assertThatThrownBy(() -> new Members(String.join(Members.SEPARATOR, exceed)))
                 .isInstanceOf(IllegalArgumentException.class);
 
-        Assertions.assertThat(memberNormal.getMemberList())
+        Assertions.assertThat(memberNormal.getList())
                 .isEqualTo(normalExpected);
-        Assertions.assertThat(memberDigit.getMemberList())
+        Assertions.assertThat(memberDigit.getList())
                 .isEqualTo(digitExpected);
-        Assertions.assertThat(memberAlphaNum.getMemberList())
+        Assertions.assertThat(memberAlphaNum.getList())
                 .isEqualTo(alphaNumExpected);
-        Assertions.assertThat(memberUnicode.getMemberList())
+        Assertions.assertThat(memberUnicode.getList())
                 .isEqualTo(unicodeExpected);
     }
 }

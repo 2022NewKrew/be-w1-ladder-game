@@ -4,6 +4,8 @@ import org.cs.finn.laddergame.domain.ladder.BridgeType;
 import org.cs.finn.laddergame.domain.ladder.LadderHeight;
 import org.cs.finn.laddergame.domain.ladder.LadderRow;
 import org.cs.finn.laddergame.domain.ladder.LadderRows;
+import org.cs.finn.laddergame.domain.stringvalues.Member;
+import org.cs.finn.laddergame.domain.stringvalues.Members;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ public class Ladder {
     }
 
     private LadderRows build(final SecureRandom sRand, final LadderHeight ladderHeight, final Members members) {
-        final int memberSize = members.getMemberList().size();
+        final int memberSize = members.getList().size();
         final int rows = ladderHeight.getLadderHeight();
         final List<LadderRow> list = new ArrayList<>();
 

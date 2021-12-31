@@ -2,6 +2,7 @@ package org.cs.finn.laddergame.domain;
 
 import org.assertj.core.api.Assertions;
 import org.cs.finn.laddergame.domain.ladder.LadderHeight;
+import org.cs.finn.laddergame.domain.stringvalues.Members;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

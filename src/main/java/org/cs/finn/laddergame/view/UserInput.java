@@ -1,8 +1,8 @@
 package org.cs.finn.laddergame.view;
 
 import org.cs.finn.laddergame.domain.Ladder;
-import org.cs.finn.laddergame.domain.Member;
-import org.cs.finn.laddergame.domain.Members;
+import org.cs.finn.laddergame.domain.stringvalues.Member;
+import org.cs.finn.laddergame.domain.stringvalues.Members;
 import org.cs.finn.laddergame.domain.ladder.LadderHeight;
 
 import java.security.SecureRandom;
@@ -16,7 +16,7 @@ public class UserInput {
         System.out.println(Member.MSG_ALLOWED_CHAR + "만 사용해 한 사람 당 " + Member.WIDTH + "자 이하로 써주세요.");
 
         final Members members = getMembersFromInput();
-        System.out.println("게임에 참여하는 사람 목록: " + members.getMemberList());
+        System.out.println("게임에 참여하는 사람 목록: " + members.getList());
         return members;
     }
 
@@ -25,7 +25,7 @@ public class UserInput {
             return new Members(sc.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println("유효한 입력 값의 개수가 제한 범위[" + Members.MIN + ", " + Members.MAX + "]를 벗어났으므로 " +
-                    "기본 값 " + Members.DEFAULT_MEMBER + "을 사용합니다");
+                    "기본 값 " + Members.DEFAULT_MEMBER_LIST + "을 사용합니다");
         }
 
         return Members.getDefault();

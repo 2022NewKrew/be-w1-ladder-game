@@ -1,7 +1,7 @@
 package org.cs.finn.laddergame.view;
 
-import org.cs.finn.laddergame.domain.Member;
-import org.cs.finn.laddergame.domain.Members;
+import org.cs.finn.laddergame.domain.stringvalues.Member;
+import org.cs.finn.laddergame.domain.stringvalues.Members;
 
 public class MemberView {
 
@@ -10,7 +10,7 @@ public class MemberView {
             throw new RuntimeException("Members is null!");
         }
 
-        for (Member member : members.getMemberList()) {
+        for (Member member : members.getList()) {
             printMember(member);
         }
         System.out.println();
