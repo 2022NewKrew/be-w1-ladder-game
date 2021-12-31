@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
@@ -10,7 +11,9 @@ public class LadderRow {
 
     LadderRow(int userNum) {
         BridgeGenerator bridgeGenerator = new BridgeGenerator();
-        bridges = IntStream.range(0, userNum - 1).mapToObj(e -> bridgeGenerator.generateBridge()).collect(Collectors.toList());
+        bridges = Collections.unmodifiableList(IntStream.range(0, userNum - 1)
+                .mapToObj(e -> bridgeGenerator.generateBridge())
+                .collect(Collectors.toList()));
     }
 
     @Override
