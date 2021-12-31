@@ -1,7 +1,7 @@
 package org.cs.finn.laddergame;
 
 import org.cs.finn.laddergame.domain.Ladder;
-import org.cs.finn.laddergame.domain.Member;
+import org.cs.finn.laddergame.domain.Members;
 import org.cs.finn.laddergame.view.LadderView;
 import org.cs.finn.laddergame.view.MemberView;
 import org.cs.finn.laddergame.view.UserInput;
@@ -21,10 +21,10 @@ public class LadderGame {
 
     public void run() {
         // 사용자로부터 사다리 생성에 필요한 값을 입력 받아 사다리 객체 생성
-        final Member member = userInput.requestMember();
-        final Ladder ladder = userInput.requestLadder(sRand, member);
+        final Members members = userInput.requestMembers();
+        final Ladder ladder = userInput.requestLadder(sRand, members);
         // 사다리 출력
-        memberView.print(member);
+        memberView.print(members);
         ladderView.print(ladder);
     }
 }

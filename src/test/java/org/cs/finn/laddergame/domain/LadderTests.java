@@ -16,14 +16,14 @@ public class LadderTests {
     public void testLadder() {
         // given
         final LadderHeight ladderHeight = LadderHeight.getDefault();
-        final Member member = Member.getDefault();
-        final Ladder ladder = new Ladder(secureRandom, ladderHeight, member);
+        final Members members = Members.getDefault();
+        final Ladder ladder = new Ladder(secureRandom, ladderHeight, members);
         // when
 
         // then
-        Assertions.assertThatThrownBy(() -> new Ladder(null, ladderHeight, member))
+        Assertions.assertThatThrownBy(() -> new Ladder(null, ladderHeight, members))
                 .isInstanceOf(RuntimeException.class);
-        Assertions.assertThatThrownBy(() -> new Ladder(secureRandom, null, member))
+        Assertions.assertThatThrownBy(() -> new Ladder(secureRandom, null, members))
                 .isInstanceOf(RuntimeException.class);
         Assertions.assertThatThrownBy(() -> new Ladder(secureRandom, ladderHeight, null))
                 .isInstanceOf(RuntimeException.class);
@@ -39,6 +39,6 @@ public class LadderTests {
                         .get(0)
                         .getBridgeList()
                         .size()
-                ).isEqualTo(Member.INIT - 1);
+                ).isEqualTo(Members.INIT - 1);
     }
 }
