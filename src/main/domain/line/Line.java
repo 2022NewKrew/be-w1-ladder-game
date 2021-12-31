@@ -6,50 +6,50 @@ import java.util.List;
 public class Line {
 
     private final String name;
-    private final int height;
-    private final List<Connection> connections = new ArrayList<>();
+    private final String result;
+    private final List<Line> links = new ArrayList<>();
 
-    public Line(String name, int height) {
+    public Line(String name, String result, int height) {
         this.name = name;
-        this.height = height;
+        this.result = result;
         for (int i = 0; i < height; i++) {
-            connections.add(new Connection());
+            links.add(null);
         }
     }
 
-    public void connect(Line targetLine, int position) {
-        if (isConnectable(targetLine, position)) {
-            this.setConnection(targetLine, position);
-            targetLine.setConnection(this, position);
+    public void connect(Line targetLine, int depth) {
+        if (isConnectable(targetLine, depth)) {
+            this.connectOneDirection(targetLine, depth);
+            targetLine.connectOneDirection(this, depth);
         }
     }
 
-    public void setConnection(Line targetLine, int position) {
-        connections.get(position).connect(targetLine);
+    void connectOneDirection(Line targetLine, int depth) {
+        links.set(depth, targetLine);
     }
 
-    public boolean isConnectable(Line targetLine, int position) {
-        return !isConnected(position) && !targetLine.isConnected(position);
+    public boolean isConnectable(Line targetLine, int depth) {
+        return !isConnected(depth) && !targetLine.isConnected(depth);
     }
 
-    public boolean isConnected(int position) {
-        return connections.get(position).isConnected();
+    public boolean isConnected(int depth) {
+        return links.get(depth) != null;
     }
 
-    public boolean isConnectedTo(Line targetLine, int position) {
-        Line connectedLine = getConnectedLine(position);
+    public boolean isConnectedTo(Line targetLine, int depth) {
+        Line connectedLine = getConnectedLine(depth);
         return connectedLine != null && connectedLine.equals(targetLine);
     }
 
-    public Line getConnectedLine(int position) {
-        return connections.get(position).getTargetLine();
-    }
-
-    public int getHeight() {
-        return height;
+    public Line getConnectedLine(int depth) {
+        return links.get(depth);
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getResult() {
+        return result;
     }
 }
