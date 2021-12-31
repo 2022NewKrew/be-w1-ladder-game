@@ -21,16 +21,16 @@ class IOTest {
         ladder = new Ladder(ladderConfig);
     }
 
-    @Test
-    public void printHeaderLengthTest() {
-        String printedHeader = io.printHeader(ladder, maxNameLength);
-        String after = printedHeader.trim().replaceAll(" +", " ");
-        String[] strArr = after.split("\\s");
-
-        assertThat(strArr).as("Name Length Error").allSatisfy(elem -> assertThat(elem.length()).isLessThan(6));
-
-
-    }
+//    @Test
+//    public void printHeaderLengthTest() {
+//        String printedHeader = io.printHeader(ladder, maxNameLength);
+//        String after = printedHeader.trim().replaceAll(" +", " ");
+//        String[] strArr = after.split("\\s");
+//
+//        assertThat(strArr).as("Name Length Error").allSatisfy(elem -> assertThat(elem.length()).isLessThan(6));
+//
+//
+//    }
 
     @AfterEach
     public void teardown() {

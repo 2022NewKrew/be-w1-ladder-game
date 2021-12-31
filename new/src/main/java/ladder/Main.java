@@ -11,7 +11,8 @@ public class Main {
         IO ioDriver = new IO();
         LadderConfig ladderConfig= ioDriver.getInput();
         Ladder ladder = new Ladder(ladderConfig);
-        ioDriver.printLadder(ladder);
+        String ladderStr = ladder.getLadderStr();
+        ioDriver.printLadder(ladderStr);
 
     }
 }
