@@ -1,9 +1,9 @@
 package dao;
 
 import domain.gameResult.GameResult;
-import dto.ladderDto.LadderDTO;
 import dto.gameResultDto.AllResultDTO;
 import dto.gameResultDto.TargetResultDTO;
+import dto.ladderDto.LadderDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,10 @@ public class GameResultDAO {
     }
 
     public TargetResultDTO getTargetResultDto(String target) {
-        return new TargetResultDTO(gameResult.getResult().get(target));
+        String result = gameResult.getResult().get(target);
+        if (result == null) {
+            throw new IllegalArgumentException("찾는 사람이 없습니다.");
+        }
+        return new TargetResultDTO(result);
     }
 }

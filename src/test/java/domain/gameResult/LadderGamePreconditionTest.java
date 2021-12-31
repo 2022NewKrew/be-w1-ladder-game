@@ -52,10 +52,10 @@ class LadderGamePreconditionTest {
     public void checkLegalDTO(Ladder testLegalLadder) {
         //Give
         final LadderDTO ladderDTO = new LadderDTO(testLegalLadder);
-        final int TEST_EXPECTED_LENGTH = 5;
-        //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, TEST_EXPECTED_LENGTH 인자로 넘어갔을 때
+        final int TEST_USER_LENGTH = 6;
+        //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, TEST_USER_LENGTH 인자로 넘어갔을 때
         //Then
-        assertThatCode(() -> GameResultPrecondition.checkLadderDto(ladderDTO, TEST_EXPECTED_LENGTH)).doesNotThrowAnyException();
+        assertThatCode(() -> GameResultPrecondition.checkLadderDto(ladderDTO, TEST_USER_LENGTH)).doesNotThrowAnyException();
     }
 
     @DisplayName("LadderDTO와 User의 정보가 다르면 IllegalArgumentException을 던짐")
@@ -64,10 +64,10 @@ class LadderGamePreconditionTest {
     public void checkIllegalDTO(Ladder testIllegalLadder) {
         //Give
         final LadderDTO ladderDTO = new LadderDTO(testIllegalLadder);
-        final int TEST_EXPECTED_LENGTH = 5;
-        //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, TEST_EXPECTED_LENGTH 인자로 넘어갔을 때
+        final int TEST_USER_LENGTH = 6;
+        //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, TEST_USER_LENGTH 인자로 넘어갔을 때
         //Then
-        assertThatThrownBy(() -> GameResultPrecondition.checkLadderDto(ladderDTO, TEST_EXPECTED_LENGTH)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> GameResultPrecondition.checkLadderDto(ladderDTO, TEST_USER_LENGTH)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("올바른 결과들이 담겨있다면 예외를 던지지 않음")

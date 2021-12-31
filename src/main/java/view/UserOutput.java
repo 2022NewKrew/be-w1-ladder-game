@@ -3,9 +3,9 @@ package view;
 import domain.ladder.Ladder;
 import domain.ladder.LadderFrame;
 import domain.ladder.LadderFrameLine;
-import dto.ladderDto.LadderDTO;
 import dto.gameResultDto.AllResultDTO;
 import dto.gameResultDto.TargetResultDTO;
+import dto.ladderDto.LadderDTO;
 
 import java.util.List;
 import java.util.Map;

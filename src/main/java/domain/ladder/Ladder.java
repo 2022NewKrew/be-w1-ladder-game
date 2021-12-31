@@ -12,7 +12,7 @@ public class Ladder {
     public Ladder(int frameLength, int height) {
         LadderPrecondition.checkFrameLength(frameLength, FRAME_MIN_LENGTH);
         LadderPrecondition.checkLadderHeight(height, HEIGHT_MIN_LENGTH);
-        this.lines = generateLines(frameLength - 1, height);
+        this.lines = generateLines(frameLength, height);
     }
 
     private List<LadderFrameLine> generateLines(int frameLength, int height) {

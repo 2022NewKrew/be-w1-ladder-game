@@ -5,9 +5,13 @@ import dto.ladderDto.LadderDTO;
 
 public class LadderDAO {
 
-    private final Ladder ladder;
+    private Ladder ladder;
 
-    public LadderDAO(int frameLength, int height) {
+    public LadderDAO() {
+
+    }
+
+    public void saveLadder(int frameLength, int height) {
         ladder = new Ladder(frameLength, height);
     }
 

@@ -1,24 +1,19 @@
 package service;
 
 import dao.GameResultDAO;
-import dto.ladderDto.LadderDTO;
 import dto.gameResultDto.AllResultDTO;
 import dto.gameResultDto.TargetResultDTO;
+import dto.ladderDto.LadderDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class LadderGameService {
-    private final List<String> users;
-    private final List<String> results;
+public class GameResultService {
     private final GameResultDAO gameResultDAO = new GameResultDAO();
 
-    public LadderGameService(List<String> users, List<String> results) {
-        this.users = new ArrayList<>(users);
-        this.results = results;
+    public GameResultService() {
     }
 
-    public void calculateGameResult(LadderDTO ladderDTO) {
+    public void calculateGameResult(LadderDTO ladderDTO, List<String> users, List<String> results) {
         gameResultDAO.saveGameResult(ladderDTO, users, results);
     }
 
