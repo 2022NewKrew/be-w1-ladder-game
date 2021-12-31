@@ -1,7 +1,6 @@
 package view;
 
 import repository.ResultMapper;
-
 import java.util.Scanner;
 
 public class UserInteractController {

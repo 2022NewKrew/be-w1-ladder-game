@@ -1,5 +1,4 @@
 package domain;
-
 import repository.Point;
 import repository.ResultMapper;
 
