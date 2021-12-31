@@ -1,5 +1,6 @@
 package view;
 
+import domain.ConditionCheck;
 import domain.Ladder;
 
 import java.util.Arrays;
@@ -7,10 +8,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class StandardInputLadderGameInputManager implements LadderGameInputManager {
-    private final int MAX_NAME_LENGTH = 5;
-    private static final String ESCAPE_WORD = "춘식이";
+import static domain.ConditionCheck.ESCAPE_WORD;
+import static domain.ConditionCheck.MAX_NAME_LENGTH;
 
+public class StandardInputLadderGameInputManager implements LadderGameInputManager {
     private final Scanner scan = new Scanner(System.in);
 
     @Override
@@ -23,7 +24,7 @@ public class StandardInputLadderGameInputManager implements LadderGameInputManag
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요");
         List<String> participants = Arrays.asList(getString().split(","));
 
-        if (!participants.isEmpty() && participants.stream().allMatch(s -> s.length() <= MAX_NAME_LENGTH)) {
+        if (!participants.isEmpty() && ConditionCheck.elementLengthCheck(participants)) {
             return Collections.unmodifiableList(participants);
         }
 
@@ -41,7 +42,7 @@ public class StandardInputLadderGameInputManager implements LadderGameInputManag
         System.out.println("최대 사다리 높이는 몇 개 인가요?");
         String height = getString();
 
-        if(height.chars().allMatch(Character::isDigit) && Integer.parseInt(height) > 0) {
+        if(ConditionCheck.isPositiveInteger(height)) {
             return Integer.parseInt(height);
         }
 
@@ -55,7 +56,7 @@ public class StandardInputLadderGameInputManager implements LadderGameInputManag
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요");
         List<String> results = Arrays.asList(getString().split(","));
 
-        if (!results.isEmpty() && results.stream().allMatch(s -> s.length() <= MAX_NAME_LENGTH)) {
+        if (!results.isEmpty() && ConditionCheck.elementLengthCheck(results)) {
             return Collections.unmodifiableList(results);
         }
 
