@@ -21,6 +21,9 @@ public abstract class AbstractStringValues<T extends AbstractStringValue> {
     }
 
     public void adjustListSize(final int size, final T value) {
+        if (size <= 0) {
+            throw new RuntimeException("size is not positive integer! - " + size);
+        }
         if (value == null) {
             throw new RuntimeException("value is null!");
         }

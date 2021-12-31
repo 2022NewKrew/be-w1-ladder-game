@@ -10,7 +10,7 @@ public abstract class AbstractStringValue {
             throw new RuntimeException("value String is null!");
         }
         if (maxLen <= 0) {
-            throw new RuntimeException("length is not positive integer!");
+            throw new RuntimeException("maxLen is not positive integer! - " + maxLen);
         }
         if (regex == null || regex.isBlank()) {
             throw new RuntimeException("regex String is null or blank!");

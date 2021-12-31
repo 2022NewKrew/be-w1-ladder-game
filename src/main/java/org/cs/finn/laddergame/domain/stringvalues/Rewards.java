@@ -30,7 +30,7 @@ public class Rewards extends AbstractStringValues<Reward> {
 
     public static Rewards getDefault(final int requestSize) {
         if (requestSize <= 0) {
-            throw new RuntimeException("requestSize is not positive integer!");
+            throw new RuntimeException("requestSize is not positive integer! - " + requestSize);
         }
         return new Rewards(getDefaultGenerator(DEFAULT_REWARD_LIST, SEPARATOR), requestSize);
     }
