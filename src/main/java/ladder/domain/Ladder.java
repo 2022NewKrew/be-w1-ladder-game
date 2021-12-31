@@ -1,5 +1,6 @@
 package main.java.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -9,7 +10,7 @@ public class Ladder {
     private final List<LadderRow> rows;
 
     public Ladder(int userNum, int height) {
-        this.rows = IntStream.range(0, height).mapToObj(e -> new LadderRow(userNum)).collect(Collectors.toList());
+        this.rows = Collections.unmodifiableList(IntStream.range(0, height).mapToObj(e -> new LadderRow(userNum)).collect(Collectors.toList()));
     }
 
     @Override
