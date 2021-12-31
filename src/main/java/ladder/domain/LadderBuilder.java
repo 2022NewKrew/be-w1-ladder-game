@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LadderBuilder {
@@ -21,11 +22,10 @@ public class LadderBuilder {
      * @return ladder.domain.Ladder 객체를 반환한다
      */
     public Ladder makeLadder() {
-        List<Line> lines = new ArrayList<>();
-
-        Stream.generate(lineBuilder::makeLine)
+        List<Line> lines = Stream.generate(lineBuilder::makeLine)
                 .limit(height)
-                .forEachOrdered(lines::add);
+                .collect(Collectors.toList());
+
         return new Ladder(lines);
     }
 }
