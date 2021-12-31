@@ -1,5 +1,6 @@
 package ladder.domain;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Ladder {
     private final int nPeople;
@@ -165,14 +166,15 @@ public class Ladder {
         return stringBuilder;
     }
 
-    //repeat given character n times -> return string
-    private String repeat(char chr, int n) {
-        StringBuilder sb = new StringBuilder();
-        for(int i=0; i <n; i++) {
-            sb.append(chr);
+    public String runGame(String userName){
+        LadderGame ladderGame = new LadderGame(this.arr);
+        int userId = Arrays.asList(this.peopleNames).indexOf(userName);
+        if (userId==-1){// all
+            return "all"; //have to do something
         }
-        String strRow = sb.toString();
-        return strRow;
+        int outId = ladderGame.getResultIdx(userId);
+        return this.outputs[outId];
+
     }
 }
 
