@@ -136,5 +136,4 @@ public class Ladder {
             }
         }
         ladderResult.add(resultList.get(personIdx));
-    }
 }

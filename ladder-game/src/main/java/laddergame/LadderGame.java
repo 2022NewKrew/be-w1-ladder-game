@@ -21,5 +21,6 @@ public class LadderGame {
         ladder.repeatPerson();
         ladderView.printResult(ladder);
 
+
     }
 }
