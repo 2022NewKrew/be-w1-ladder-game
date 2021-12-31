@@ -10,5 +10,5 @@ public class Line {
 
     public void addPoint(Point element) { line.add(element); }
     public Stream<Point> getLineStream() { return line.stream(); }
-    public boolean getPointValid(int idx) { return line.get(idx).getValid(); }
+    public boolean getPointValid(int idx) { return line.get(idx).getConnected(); }
 }

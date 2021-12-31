@@ -28,9 +28,9 @@ public class LadderRenderer {
 
     private void printNames(Ladder ladder){
         StringBuilder sb = new StringBuilder();
-        ladder.getPlayerStream()
+        ladder.getNameStream()
                 .forEach(name -> {
-                    sb.append(paddingStrings(name.getName()));
+                    sb.append(paddingStrings(name));
                     sb.append(" ");
                 });
         System.out.println(sb);
@@ -50,7 +50,7 @@ public class LadderRenderer {
         rowString.append(Constant.VERTICAL);
         ladder.getConnectedStream(row)
                 .forEach(column -> {
-                    rowString.append(getConnectedString(column.getValid()));
+                    rowString.append(getConnectedString(column.getConnected()));
                     rowString.append(Constant.VERTICAL);
                 });
         System.out.println(rowString);
