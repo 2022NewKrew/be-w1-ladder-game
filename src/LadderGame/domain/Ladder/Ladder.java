@@ -6,12 +6,14 @@ import java.util.List;
 public class Ladder {
     private final int ladderWidth, ladderHeight;
     private final List<Line> ladder;
+    private final List<Integer> gameResult;
 
     public Ladder(int ladderWidth, int ladderHeight) {
         validateLadderHeight(ladderHeight);
         this.ladderWidth = ladderWidth;
         this.ladderHeight = ladderHeight;
         this.ladder = makeLadder();
+        this.gameResult = new ArrayList<>();
     }
 
     private void validateLadderHeight(int ladderHeight){
@@ -39,5 +41,25 @@ public class Ladder {
 
     public List<Line> getLadder() {
         return ladder;
+    }
+
+    public void makeGameResult(){
+        for (int player = 0; player < ladderWidth; player++){
+            gameResult.add(playGame(player));
+        }
+    }
+
+    private int playGame(int player){
+        int nowLocation = player;
+        for (int row = 0; row < ladderHeight; row++) {
+            List<Integer> connectionPoints = ladder.get(row).getConnectionPoints();
+            int nextLadder = connectionPoints.get(nowLocation);
+            if(nextLadder != -1) nowLocation = nextLadder;
+        }
+        return nowLocation;
+    }
+
+    public List<Integer> getGameResult() {
+        return gameResult;
     }
 }

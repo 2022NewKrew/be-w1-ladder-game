@@ -31,25 +31,21 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("직전에 사다리가 있다면 그 다음 사다리는 존재하지 않는다.")
+    @DisplayName("직전에 사다리가 있으면 사다리를 그릴 수 없다.")
     public void 직전_사다리_유뮤_테스트() throws Exception{
         //given
         Line line = new Line(LADDER_WIDTH);
-        Set<Boolean> compareBeforeIndex = new HashSet<>();
-        List<Boolean> chkLadder = line.getChkLadder();
+        List<Integer> connectionPoints = line.getConnectionPoints();
+        connectionPoints.set(0, 1);
+        connectionPoints.set(1, 0);
 
-        Method method = line.getClass().getDeclaredMethod("makeLineInfo");
+        Method method = line.getClass().getDeclaredMethod("makeRandomLadder", int.class);
         method.setAccessible(true);
 
         //when
-        method.invoke(line);
-        for (int i = 1; i < LADDER_WIDTH; i++){
-            if(chkLadder.get(i-1)){
-                compareBeforeIndex.add(chkLadder.get(i));
-            }
-        }
+        boolean result = (boolean) method.invoke(line, 1);
+
         //then
-        assertEquals(compareBeforeIndex.size(), 1);
-        assertTrue(compareBeforeIndex.contains(false));
+        assertFalse(result);
     }
 }

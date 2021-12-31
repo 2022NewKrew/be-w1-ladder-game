@@ -3,35 +3,41 @@ package LadderGame.domain.Ladder;
 import LadderGame.util.RandomUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
     private final int ladderWidth;
-    public List<Boolean> chkLadder = new ArrayList<>();
-    public List<LadderShape> ladderShape = new ArrayList<>();
+    private final List<Integer> connectionPoints;
+    private final List<LadderShape> ladderShape;
 
     public Line(int ladderWidth) {
         this.ladderWidth = ladderWidth;
+        this.connectionPoints = new ArrayList<>(Collections.nCopies(ladderWidth, -1));
+        this.ladderShape = new ArrayList<>();
         makeLineInfo();
     }
 
     private void makeLineInfo(){
         for (int col = 0; col < ladderWidth; col++){
             boolean hasLadder = makeRandomLadder(col);
-            chkLadder.add(hasLadder);
-            makeLadderComponents(hasLadder);
+            setLadderConnectionPoints(hasLadder, col);
+            makeLadderShape(hasLadder);
+        }
+    }
+
+    private void setLadderConnectionPoints(boolean hasLadder, int col){
+        if(hasLadder){
+            this.connectionPoints.set(col, col + 1);
+            this.connectionPoints.set(col+1, col);
         }
     }
 
     private Boolean makeRandomLadder(int col){
-        if(canMakeRandomLadder(col)){
+        if(isLastIndex(col) || isBeforeIndexHasLadder(col)){
             return false;
         }
         return RandomUtil.getRandomBoolean();
-    }
-
-    private Boolean canMakeRandomLadder(int col){
-        return isLastIndex(col) || isBeforeIndexHasLadder(col);
     }
 
     private Boolean isLastIndex(int col){
@@ -39,10 +45,10 @@ public class Line {
     }
 
     private Boolean isBeforeIndexHasLadder(int col){
-        return col != 0 && chkLadder.get(col - 1);
+        return connectionPoints.get(col) != -1;
     }
 
-    private void makeLadderComponents(boolean hasLadder){
+    private void makeLadderShape(boolean hasLadder){
         ladderShape.add(LadderShape.VERTICAL_LINE);
         ladderShape.add(getLadderShape(hasLadder));
     }
@@ -54,8 +60,8 @@ public class Line {
         return LadderShape.BLANK;
     }
 
-    public List<Boolean> getChkLadder() {
-        return chkLadder;
+    public List<Integer> getConnectionPoints() {
+        return connectionPoints;
     }
 
     @Override
