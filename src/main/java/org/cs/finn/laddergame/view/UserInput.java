@@ -11,6 +11,9 @@ import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class UserInput {
+    private static final String strTerminator = "춘식이";
+    private static final String strRetryer = "무지";
+
     private final Scanner sc = new Scanner(System.in);
 
     public Members requestMembers() {
@@ -84,5 +87,19 @@ public class UserInput {
         }
 
         return LadderHeight.getDefault();
+    }
+
+    public Member requestMember(final Members members) {
+
+        // strTerminator, strRetryer, members 중 1명이 나올때까지 반복
+
+        System.out.println("결과를 보고 싶은 사람의 이름을 입력하세요 " + members.getList());
+        System.out.println(strRetryer + "를 입력해 새 사다리를 만들거나");
+        System.out.println(strTerminator + "를 입력해 종료할 수 있습니다");
+
+        final Member member = getMemberFromInput();
+        System.out.println("게임에 참여하는 사람 목록: " + members.getList());
+        System.out.println();
+        return member;
     }
 }

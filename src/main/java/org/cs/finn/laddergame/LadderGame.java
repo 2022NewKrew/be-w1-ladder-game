@@ -23,13 +23,47 @@ public class LadderGame {
     }
 
     public void run() {
-        // 사용자로부터 사다리 생성에 필요한 값을 입력 받아 사다리 객체 생성
-        final Members members = userInput.requestMembers();
-        final Rewards rewards = userInput.requestRewards(members);
-        final Ladder ladder = userInput.requestLadder(sRand, members);
-        // 사다리 출력
+        Member member = Member.EMPTY;
+
+        while (member.isNotTerminator()) {
+            final Members members = userInput.requestMembers();
+            final Rewards rewards = userInput.requestRewards(members);
+            final Ladder ladder = userInput.requestLadder(sRand, members);
+
+            printLadder(members, ladder, rewards);
+            member = queryMember(members, ladder, rewards);
+        }
+    }
+
+    private void printLadder(final Members members, final Ladder ladder, final Rewards rewards) {
         stringValuesView.print(members, Member.WIDTH);
         ladderView.print(ladder);
         stringValuesView.print(rewards, Reward.WIDTH);
+    }
+
+    private Member queryMember(final Members members, final Ladder ladder, final Rewards rewards) {
+        Member member = userInput.requestMember(members);
+        while (member.isNotTerminator() || member.isNotRetryer()) {
+            printLadderWithReward(members, ladder, rewards, member);
+            member = userInput.requestMember(members);
+        }
+        return member;
+    }
+
+    private void printLadderWithReward(
+            final Members members,
+            final Ladder ladder,
+            final Rewards rewards,
+            final Member member
+    )
+    {
+        stringValuesView.print(members, Member.WIDTH);
+        final int rewardIdx = ladderView.printWithRewardPath(ladder, indexOfMember(members, member));
+        stringValuesView.print(rewards, Reward.WIDTH);
+        stringValuesView.printReward(member, rewards, rewardIdx);
+    }
+
+    private int indexOfMember(final Members members, final Member member) {
+        return members.getList().indexOf(member);
     }
 }
