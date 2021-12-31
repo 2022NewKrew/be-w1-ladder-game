@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
+    private static final int MAX_USER_NAME_LENGTH = 5;
+
     @Test
     @DisplayName("참가자의 이름은 5글자 이하여야 된다.")
     public void playerNameTest() {
@@ -15,7 +17,7 @@ class PlayerTest {
         String playerName = "flip1";
         // when
         // then
-        Player player = new Player(playerName);
+        Player player = new Player(playerName, MAX_USER_NAME_LENGTH);
     }
 
     @Test
@@ -24,18 +26,18 @@ class PlayerTest {
         // given
         String playerName = "";
         // when
-        Throwable exception = assertThrows(IllegalPlayerNameException.class, () -> new Player(playerName));
+        Throwable exception = assertThrows(IllegalPlayerNameException.class, () -> new Player(playerName, MAX_USER_NAME_LENGTH));
         // then
         assertEquals("참가자의 이름은 최소 1글자 이상이어야 합니다.", exception.getMessage());
     }
 
     @Test
-    @DisplayName("참가자의 이름은 최소 1글자 이상이어야 된다.")
+    @DisplayName("참가자의 이름은 공백일 수 없다.")
     public void emptyPlayerNameTest() {
         // given
         String playerName = " ";
         // when
-        Throwable exception = assertThrows(IllegalPlayerNameException.class, () -> new Player(playerName));
+        Throwable exception = assertThrows(IllegalPlayerNameException.class, () -> new Player(playerName, MAX_USER_NAME_LENGTH));
         // then
         assertEquals("참가자의 이름은 공백일 수 없습니다.", exception.getMessage());
     }
@@ -47,7 +49,7 @@ class PlayerTest {
         String playerName = "flip1945";
 
         // when
-        Throwable exception = assertThrows(IllegalPlayerNameException.class, () -> new Player(playerName));
+        Throwable exception = assertThrows(IllegalPlayerNameException.class, () -> new Player(playerName, MAX_USER_NAME_LENGTH));
 
         // then
         assertEquals("참가자의 이름은 5글자까지 입력할 수 있습니다.", exception.getMessage());

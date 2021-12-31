@@ -26,9 +26,7 @@ class LadderRowTest {
         for (LadderCell ladderCell : row) {
             LineType currentLineType = ladderCell.getLine();
 
-            if (previousLineType == LineType.HORIZONTAL_LINE && currentLineType == LineType.HORIZONTAL_LINE) {
-                fail("연속된 가로줄이 올 수 없습니다.");
-            }
+            assertFalse(previousLineType == LineType.HORIZONTAL_LINE && currentLineType == LineType.HORIZONTAL_LINE, "연속된 가로줄이 올 수 없습니다.");
 
             previousLineType = ladderCell.getLine();
         }
@@ -54,11 +52,9 @@ class LadderRowTest {
             for (LadderCell ladderCell : row) {
                 LineType currentLineType = ladderCell.getLine();
 
-                if (previousLineType == LineType.HORIZONTAL_LINE && currentLineType == LineType.HORIZONTAL_LINE) {
-                    fail("연속된 가로줄이 올 수 없습니다.");
-                }
+                assertFalse(previousLineType == LineType.HORIZONTAL_LINE && currentLineType == LineType.HORIZONTAL_LINE, "연속된 가로줄이 올 수 없습니다.");
 
-                previousLineType = ladderCell.getLine();
+                previousLineType = currentLineType;
             }
         }
     }
