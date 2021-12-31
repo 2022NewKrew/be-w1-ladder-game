@@ -6,6 +6,7 @@ import view.GameGuidePrinter;
 import view.LadderPrinter;
 
 import java.util.List;
+import java.util.Optional;
 
 public class LadderGame {
     public static final int MAXIMUM_NAME_LENGTH = 5;
@@ -34,7 +35,6 @@ public class LadderGame {
         return ladder;
     }
 
-
     private static void checkLadderGameResult(List<User> nameList, List<String> resultList, Ladder ladder) {
         while (true) {
             GameGuidePrinter.resultOfUserInputGuide();
@@ -48,11 +48,16 @@ public class LadderGame {
     }
 
     private static void printOneResult(List<User> nameList, List<String> resultList, Ladder ladder, String nameCheckResult) {
-        User user = nameList.stream()
+        Optional<User> optionalUser = nameList.stream()
                 .filter(e -> nameCheckResult.equals(e.getName()))
                 .distinct()
-                .findAny()
-                .get();
+                .findAny();
+
+        if (optionalUser.isEmpty()) {
+            return;
+        }
+
+        User user = optionalUser.get();
         System.out.println(resultList.get(user.getResultCol(ladder)));
     }
 
