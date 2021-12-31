@@ -4,6 +4,8 @@ import org.cs.finn.laddergame.domain.Ladder;
 import org.cs.finn.laddergame.domain.stringvalues.Member;
 import org.cs.finn.laddergame.domain.stringvalues.Members;
 import org.cs.finn.laddergame.domain.ladder.LadderHeight;
+import org.cs.finn.laddergame.domain.stringvalues.Reward;
+import org.cs.finn.laddergame.domain.stringvalues.Rewards;
 
 import java.security.SecureRandom;
 import java.util.Scanner;
@@ -29,6 +31,26 @@ public class UserInput {
         }
 
         return Members.getDefault();
+    }
+
+    public Rewards requestRewards(final Members members) {
+        System.out.println("보상 목록을 [" + Rewards.SEPARATOR + "]로 구분해서 입력하세요. [" + members.getList().size() + "개]");
+        System.out.println(Reward.MSG_ALLOWED_CHAR + "만 사용해 보상마다 " + Reward.WIDTH + "자 이하로 써주세요.");
+
+        final Rewards rewards = getRewardsFromInput(members.getList().size());
+        System.out.println("보상 목록: " + rewards.getList());
+        return rewards;
+    }
+
+    private Rewards getRewardsFromInput(final int requestSize) {
+        try {
+            return new Rewards(sc.nextLine(), requestSize);
+        } catch (IllegalArgumentException e) {
+            System.out.println("유효한 입력 값의 개수가 제한 범위[" + Rewards.MIN + ", " + Rewards.MAX + "]를 벗어났으므로 " +
+                    "기본 값 " + Rewards.DEFAULT_REWARD_LIST + "을 기준으로 사람 수 만큼 조절 후 사용합니다");
+        }
+
+        return Rewards.getDefault(requestSize);
     }
 
     public Ladder requestLadder(final SecureRandom sRand, final Members members) {

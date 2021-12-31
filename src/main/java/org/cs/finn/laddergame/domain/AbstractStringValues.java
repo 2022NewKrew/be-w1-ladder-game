@@ -20,6 +20,19 @@ public abstract class AbstractStringValues<T extends AbstractStringValue> {
         this.list = build(values, min, max);
     }
 
+    public void adjustListSize(final int size, final T value) {
+        if (value == null) {
+            throw new RuntimeException("value is null!");
+        }
+
+        for (int i = list.size(); i < size; i++) {
+            list.add(value);
+        }
+        if (list.size() > size) {
+            list.subList(size, list.size()).clear();
+        }
+    }
+
     private List<T> build(final String[] values, final int min, final int max) {
         final List<T> valueList = getFilteredList(values, max);
         if (valueList.size() < min || valueList.size() > max) {
