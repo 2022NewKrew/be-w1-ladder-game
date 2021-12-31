@@ -13,12 +13,13 @@ public class Validation {
     }
 
     public static void validateNames(ArrayList<String> names) {
-        names.stream().forEachOrdered(Validation::validateName);
+        condition(!names.isEmpty(), new InvalidName("주어진 이름이 없습니다"));
+        names.forEach(Validation::validateName);
     }
 
-    public static void validateName(String name) {
+    private static void validateName(String name) {
         condition(!name.isEmpty(), new InvalidName("사람 이름이 비었습니다"));
-        condition(name.length() <= MAX_NAME_LENGTH, new InvalidName("이름 길이는 5자 미만이어야 합니다"));
+        condition(name.length() <= MAX_NAME_LENGTH, new InvalidName("이름 길이는 5자 이하여야 합니다"));
     }
 
     private static void condition(boolean predicate, RuntimeException runtimeException) {
