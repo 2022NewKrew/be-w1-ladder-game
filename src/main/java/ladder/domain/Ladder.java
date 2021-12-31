@@ -3,6 +3,9 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 사다리 클래스. {@link LadderRow}의 리스트로 구성되어 있다
+ */
 public class Ladder {
     private final List<LadderRow> rows = new ArrayList<>();
 
