@@ -17,8 +17,8 @@ public class GameResultPrecondition {
         checkSize(results, expectedResultLength);
     }
 
-    public static void checkLadderDto(LadderDTO ladderDTO, int numberOfUser){
-        if(!isSameInformation(ladderDTO, numberOfUser)){
+    public static void checkLadderDto(LadderDTO ladderDTO, int numberOfUser) {
+        if (!isSameInformation(ladderDTO, numberOfUser)) {
             throw new IllegalArgumentException("사다리의 정보와 유저의 정보가 다릅니다.");
         }
     }
@@ -47,7 +47,7 @@ public class GameResultPrecondition {
         }
     }
 
-    private static boolean isSameInformation(LadderDTO ladderDTO, int numberOfUser){
+    private static boolean isSameInformation(LadderDTO ladderDTO, int numberOfUser) {
         return getFramesLength(ladderDTO) == numberOfUser - 1;
     }
 
