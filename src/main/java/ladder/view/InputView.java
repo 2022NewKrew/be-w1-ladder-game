@@ -15,11 +15,10 @@ public class InputView {
      *
      * @throws InputMismatchException 양의 정수가 아닌 다른 정수가 들어오면 예외를 던진다
      */
-    public static int inputHeight() throws InputMismatchException {
+    public static int inputHeight() {
         System.out.println(LADDER_HEIGHT_INPUT_MESSAGE);
 
-        int height = in.nextInt();
-        return height;
+        return in.nextInt();
     }
 
     /**
