@@ -58,12 +58,12 @@ public class LadderGame {
         }
 
         User user = optionalUser.get();
-        System.out.println(resultList.get(user.getResultCol(ladder)));
+        System.out.println(resultList.get(user.getResultOfMovingOnLadder(ladder)));
     }
 
     private static boolean printAllResult(List<User> nameList, List<String> resultList, Ladder ladder, String nameCheckResult) {
         if (nameCheckResult.equals("all")) {
-            nameList.forEach(user -> System.out.println(user.getName() + ": " + resultList.get(user.getResultCol(ladder))));
+            nameList.forEach(user -> System.out.println(user.getName() + ": " + resultList.get(user.getResultOfMovingOnLadder(ladder))));
             return true;
         }
         return false;

@@ -15,20 +15,33 @@ public class User {
         return name;
     }
 
-    public int getResultCol(Ladder ladder) {
-        if (row == ladder.getLadderHeight())
+    public int getResultOfMovingOnLadder(Ladder ladder) {
+        if (row == ladder.getLadderHeight()) {
             return col;
+        }
         if (ladder.canMoveLeft(row, col)) {
-            col--;
-            row++;
-            return getResultCol(ladder);
+            moveLeft();
+            return getResultOfMovingOnLadder(ladder);
         }
         if (ladder.canMoveRight(row, col)) {
-            col++;
-            row++;
-            return getResultCol(ladder);
+            moveRight();
+            return getResultOfMovingOnLadder(ladder);
         }
+        moveDown();
+        return getResultOfMovingOnLadder(ladder);
+    }
+
+    private void moveDown() {
         row++;
-        return getResultCol(ladder);
+    }
+
+    private void moveRight() {
+        col++;
+        row++;
+    }
+
+    private void moveLeft() {
+        col--;
+        row++;
     }
 }
