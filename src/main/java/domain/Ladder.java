@@ -43,4 +43,20 @@ public class Ladder {
         Point rightPoint = rightLine.getPoint(height);
         rightPoint.setDirection(DirectionType.LEFT);
     }
+
+    /**
+     * LEFT : column -> column - 1, height -> height + 1
+     * RIGHT : column -> column + 1, height -> height + 1
+     * DOWN : height -> height + 1
+     */
+    public int run(int playerNum) {
+        int curIndex = playerNum;
+
+        for(int curHeight = 0; curHeight < getLadderHeight(); curHeight++) {
+            Point curPoint = getVerticalLine(curIndex).getPoint(curHeight);
+            curIndex = curPoint.getNextVerticalLine(curIndex);
+        }
+
+        return curIndex;
+    }
 }
