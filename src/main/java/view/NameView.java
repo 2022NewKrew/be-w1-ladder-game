@@ -3,8 +3,6 @@ package view;
 import domain.Name;
 import domain.NameRepository;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class NameView {
 
