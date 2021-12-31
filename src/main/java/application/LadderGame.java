@@ -23,19 +23,52 @@ public class LadderGame {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int heightLadder = GameInputScanner.inputNumber();
 
+        Ladder ladder = makeLadder(nameList, resultList, heightLadder);
+        checkLadderGameResult(nameList, resultList, ladder);
+    }
+
+    private static Ladder makeLadder(List<User> nameList, List<String> resultList, int heightLadder) {
         Ladder ladder = new Ladder(LineGeneratorFactory.getLadderLines(nameList.size() - 1, heightLadder));
         LadderPrinter.drawLadder(nameList, ladder, resultList);
+        return ladder;
+    }
 
+
+    private static void checkLadderGameResult(List<User> nameList, List<String> resultList, Ladder ladder) {
         while (true) {
             System.out.println("결과를 보고 싶은 사람은?");
             String nameCheckResult = GameInputScanner.inputNameCheckResult(nameList);
-            User user = nameList.stream()
-                    .filter(e -> nameCheckResult.equals(e.getName()))
-                    .distinct()
-                    .findAny()
-                    .get();
-            System.out.println(resultList.get(user.getResultCol(ladder)));
+
+            if (quitLadderGame(nameCheckResult)) return;
+            if (printAllResult(nameList, resultList, ladder, nameCheckResult)) continue;
+
+            printOneResult(nameList, resultList, ladder, nameCheckResult);
         }
+    }
+
+    private static void printOneResult(List<User> nameList, List<String> resultList, Ladder ladder, String nameCheckResult) {
+        User user = nameList.stream()
+                .filter(e -> nameCheckResult.equals(e.getName()))
+                .distinct()
+                .findAny()
+                .get();
+        System.out.println(resultList.get(user.getResultCol(ladder)));
+    }
+
+    private static boolean printAllResult(List<User> nameList, List<String> resultList, Ladder ladder, String nameCheckResult) {
+        if (nameCheckResult.equals("all")) {
+            nameList.forEach(user -> System.out.println(user.getName() + ": " + resultList.get(user.getResultCol(ladder))));
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean quitLadderGame(String nameCheckResult) {
+        if (nameCheckResult.equals("춘식이")) {
+            System.out.println("게임을 종료합니다.");
+            return true;
+        }
+        return false;
     }
 
 }

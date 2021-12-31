@@ -57,6 +57,9 @@ public class GameInputScanner {
     }
 
     private static void verifyNameExists(List<User> nameList, String inputName) {
+        if (inputName.equals("all") || inputName.equals("춘식이")) {
+            return;
+        }
         if (nameList.stream().noneMatch(e -> inputName.equals(e.getName()))) {
             throw new RuntimeException("정확한 이름을 입력해주세요.");
         }
