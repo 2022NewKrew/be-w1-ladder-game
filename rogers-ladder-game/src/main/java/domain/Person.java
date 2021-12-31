@@ -9,13 +9,13 @@ public class Person {
 
     private final String name;
 
-    public static Person valueOf(String name){
-        return new Person(name);
-    }
-
-    private Person(String name){
+    public Person(String name){
         validate(name);
         this.name = name;
+    }
+
+    public Person(Person person){
+        this.name = person.name;
     }
 
     private static void validate(String name){

@@ -5,12 +5,27 @@ import factory.LadderFactory;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Objects;
+import java.util.Optional;
+import java.util.Scanner;
 
 public class LadderGameDriver {
     public static void main(String[] args) {
-        InputDto inputDto = Objects.requireNonNull(InputView.input(System.in));
-        Ladder ladder = LadderFactory.getInstance(inputDto);
-        OutputView.output(new OutputDto(ladder));
+        try (Scanner scanner = new Scanner(System.in)){
+            startGame(scanner);
+        }
+    }
+
+    private static void startGame(Scanner scanner){
+        Optional<InputDto> inputDtoOptional = InputView.input(scanner);
+        if(inputDtoOptional.isEmpty()){
+            return;
+        }
+
+        Optional<Ladder> ladderOptional = LadderFactory.getInstance(inputDtoOptional.get());
+        if(ladderOptional.isEmpty()){
+            return;
+        }
+
+        OutputView.output(new OutputDto(ladderOptional.get()), scanner);
     }
 }
