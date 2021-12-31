@@ -66,7 +66,7 @@ public class LadderGame {
     /**
      * @return {@link Scanner}로부터 입력받은 양의 정수
      */
-    private static int getPositiveIntFromScanner(Scanner scanner, String prompt) {
+    private int getPositiveIntFromScanner(Scanner scanner, String prompt) {
         int input;
         System.out.print(prompt);
         while (!scanner.hasNextInt() || (input = scanner.nextInt()) <= 0) {
