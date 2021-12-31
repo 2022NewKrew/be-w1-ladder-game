@@ -7,49 +7,64 @@ public class Ladder {
     private int personNum;
     private int ladderHeight;
     private String participants;
+    private String result;
     private ArrayList<String> participantList;
+    private ArrayList<String> resultList;
+    private ArrayList<String> ladderResult;
     //    private ArrayList<ArrayList<Character>> ladder;
     private ArrayList<Line> ladder;
 
-    public Ladder(String participants, int ladderHeight){
+    public Ladder(String participants, String result, int ladderHeight){
         this.participants = participants;
         this.ladderHeight = ladderHeight;
         String [] people = participants.split(",");
         this.participantList = new ArrayList<String>(Arrays.asList(people));
         this.personNum = participantList.size();
+        String [] tmpResult = result.split(",");
+        this.result = result;
+        this.resultList = new ArrayList<String>(Arrays.asList(tmpResult));
+        this.ladderResult = new ArrayList<>();
     }
 
     public int getPersonNum() {
         return personNum;
     }
 
-    public void setPersonNum() {
-        this.personNum = participantList.size();
+    public ArrayList<String> getLadderResult() {
+        return ladderResult;
     }
+
+//    public void setPersonNum() {
+//        this.personNum = participantList.size();
+//    }
 
     public int getLadderHeight() {
         return ladderHeight;
     }
 
-    public void setLadderHeight(int ladderHeight) {
-        this.ladderHeight = ladderHeight;
-    }
+//    public void setLadderHeight(int ladderHeight) {
+//        this.ladderHeight = ladderHeight;
+//    }
 
-    public String getParticipants() {
-        return participants;
-    }
+//    public String getParticipants() {
+//        return participants;
+//    }
+//
+//    public void setParticipants(String participants) {
+//        this.participants = participants;
+//    }
 
-    public void setParticipants(String participants) {
-        this.participants = participants;
-    }
-
-    public void setParticipantList(){
-        String [] people = participants.split(",");
-        participantList = new ArrayList<String>(Arrays.asList(people));
-    }
+//    public void setParticipantList(){
+//        String [] people = participants.split(",");
+//        participantList = new ArrayList<String>(Arrays.asList(people));
+//    }
 
     public ArrayList<String> getParticipantList(){
         return participantList;
+    }
+
+    public ArrayList<String> getResultList() {
+        return resultList;
     }
 
     public void makeBasicLadder(){
@@ -61,7 +76,7 @@ public class Ladder {
 
     public void makeCompleteLadder(){
         for(int i=0;i<ladderHeight;i++){
-            System.out.print("    ");
+            System.out.print("  ");
             drawIteration(i);
             System.out.println();
         }
@@ -91,4 +106,34 @@ public class Ladder {
         }
         return "     ";
     }
+
+    public void repeatPerson(){
+        for (int i=0;i<personNum;i++){
+            makeResult(i);
+        }
+    }
+
+    public void makeResult(int personIdx){
+        for (int i=0;i<ladderHeight;i++){
+            ArrayList<Boolean> currentLine = ladder.get(i).getLine();
+            if (personIdx==0){
+                if (currentLine.get(0)){
+                    personIdx++;
+                }
+            }
+            else if (personIdx==personNum-1){
+                if (currentLine.get(personIdx-1)){
+                    personIdx--;
+                }
+            }
+            else{
+                if (currentLine.get(personIdx-1)){
+                    personIdx--;
+                }
+                else if (currentLine.get(personIdx)){
+                    personIdx++;
+                }
+            }
+        }
+        ladderResult.add(resultList.get(personIdx));
 }
