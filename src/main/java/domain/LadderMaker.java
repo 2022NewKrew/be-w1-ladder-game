@@ -1,30 +1,33 @@
 package domain;
 
-import repository.Ladder;
 import repository.Line;
 import repository.Point;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class LadderMaker {
-    private final RandomController randomController;
-    public LadderMaker(){
-        randomController = new RandomController();
-    }
+    Random random = new Random();
+    public LadderMaker(){ }
 
-    public void makeLadder(Ladder ladder){
-        for(int row = 0; row < ladder.getHeightOfLadder(); row++) {
-            makeRow(ladder);
+    public List<Line> makeConnectedInfo(int heightOfLadder, int numOfPeople){
+        List<Line> connectedInfo = new ArrayList<>();
+        for(int row = 0; row < heightOfLadder; row++) {
+            connectedInfo.add(makeRow(numOfPeople));
         }
+        return connectedInfo;
     }
 
-    public void makeRow(Ladder ladder){
+    private Line makeRow(int numOfPeople){
         Line line = new Line();
-        line.addPoint(new Point(0, randomController.getRandomBoolean()));
+        line.addPoint(new Point(0, random.nextBoolean()));
 
-        for(int column = 1; column < ladder.getNumOfPeople() - 1; column++){
-            boolean valid = !line.getPointValid(column - 1) && randomController.getRandomBoolean();
+        for(int column = 1; column < numOfPeople - 1; column++){
+            boolean valid = !line.getPointValid(column - 1) && random.nextBoolean();
             Point point = new Point(column, valid);
             line.addPoint(point);
         }
-        ladder.addConnectedInfo(line);
+        return line;
     }
 }

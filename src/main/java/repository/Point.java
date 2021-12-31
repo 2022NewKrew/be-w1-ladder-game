@@ -2,12 +2,12 @@ package repository;
 
 public class Point {
     private final int point;
-    private final boolean valid;
-    public Point(int point, boolean valid){
+    private final boolean connected;
+    public Point(int point, boolean connected){
         this.point = point;
-        this.valid = valid;
+        this.connected = connected;
     }
 
     public int getPoint() { return point; }
-    public boolean getValid() { return valid; }
+    public boolean getConnected() { return connected; }
 }
