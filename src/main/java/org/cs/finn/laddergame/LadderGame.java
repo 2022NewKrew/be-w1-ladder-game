@@ -1,10 +1,12 @@
 package org.cs.finn.laddergame;
 
 import org.cs.finn.laddergame.domain.Ladder;
+import org.cs.finn.laddergame.domain.stringvalues.Member;
 import org.cs.finn.laddergame.domain.stringvalues.Members;
+import org.cs.finn.laddergame.domain.stringvalues.Reward;
 import org.cs.finn.laddergame.domain.stringvalues.Rewards;
 import org.cs.finn.laddergame.view.LadderView;
-import org.cs.finn.laddergame.view.MemberView;
+import org.cs.finn.laddergame.view.StringValuesView;
 import org.cs.finn.laddergame.view.UserInput;
 
 import java.security.SecureRandom;
@@ -14,7 +16,7 @@ public class LadderGame {
 
     private final UserInput userInput = new UserInput();
     private final LadderView ladderView = new LadderView();
-    private final MemberView memberView = new MemberView();
+    private final StringValuesView stringValuesView = new StringValuesView();
 
     public LadderGame() {
         System.out.println("--- 사다리 게임 ---");
@@ -26,7 +28,8 @@ public class LadderGame {
         final Rewards rewards = userInput.requestRewards(members);
         final Ladder ladder = userInput.requestLadder(sRand, members);
         // 사다리 출력
-        memberView.print(members);
+        stringValuesView.print(members, Member.WIDTH);
         ladderView.print(ladder);
+        stringValuesView.print(rewards, Reward.WIDTH);
     }
 }
