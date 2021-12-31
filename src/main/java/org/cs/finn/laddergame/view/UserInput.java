@@ -34,8 +34,11 @@ public class UserInput {
     }
 
     public Rewards requestRewards(final Members members) {
-        System.out.println("보상 목록을 [" + Rewards.SEPARATOR + "]로 구분해서 입력하세요. [" + members.getList().size() + "개]");
+        final int request = members.getList().size();
+        System.out.println("보상 목록을 [" + Rewards.SEPARATOR + "]로 구분해서 입력하세요. [" + request + "개]");
         System.out.println(Reward.MSG_ALLOWED_CHAR + "만 사용해 보상마다 " + Reward.WIDTH + "자 이하로 써주세요.");
+        System.out.println("입력 값 중 유효한 값의 개수가 " + request + "개보다 부족한 경우 \"X\"로 채우며");
+        System.out.println(request + "개 보다 많은 경우 " + request + "개 뒤의 값들을 지웁니다");
 
         final Rewards rewards = getRewardsFromInput(members.getList().size());
         System.out.println("보상 목록: " + rewards.getList());
@@ -46,7 +49,7 @@ public class UserInput {
         try {
             return new Rewards(sc.nextLine(), requestSize);
         } catch (IllegalArgumentException e) {
-            System.out.println("유효한 입력 값의 개수가 제한 범위[" + Rewards.MIN + ", " + Rewards.MAX + "]를 벗어났으므로 " +
+            System.out.println("유효한 입력 값의 개수가 입력 허용 범위[" + Rewards.MIN + ", " + Rewards.MAX + "]를 벗어났으므로 " +
                     "기본 값 " + Rewards.DEFAULT_REWARD_LIST + "을 기준으로 사람 수 만큼 조절 후 사용합니다");
         }
 
