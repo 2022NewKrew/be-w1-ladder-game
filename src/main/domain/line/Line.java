@@ -7,13 +7,13 @@ public class Line {
 
     private final String name;
     private final String result;
-    private final List<Connection> connections = new ArrayList<>();
+    private final List<Line> links = new ArrayList<>();
 
     public Line(String name, String result, int height) {
         this.name = name;
         this.result = result;
         for (int i = 0; i < height; i++) {
-            connections.add(new Connection());
+            links.add(null);
         }
     }
 
@@ -25,7 +25,7 @@ public class Line {
     }
 
     void connectOneDirection(Line targetLine, int depth) {
-        connections.get(depth).connect(targetLine);
+        links.set(depth, targetLine);
     }
 
     public boolean isConnectable(Line targetLine, int depth) {
@@ -33,7 +33,7 @@ public class Line {
     }
 
     public boolean isConnected(int depth) {
-        return connections.get(depth).isConnected();
+        return links.get(depth) != null;
     }
 
     public boolean isConnectedTo(Line targetLine, int depth) {
@@ -42,7 +42,7 @@ public class Line {
     }
 
     public Line getConnectedLine(int depth) {
-        return connections.get(depth).getTargetLine();
+        return links.get(depth);
     }
 
     public String getName() {
