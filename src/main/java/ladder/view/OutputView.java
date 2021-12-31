@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LadderView {
+
     private static final String DELIMITER = ",";
     private static final String PADDING = "  ";
+    private static final int MAX_USER_NAME_LENGTH = 5;
 
     private final Scanner scanner;
 
@@ -22,9 +24,13 @@ public class LadderView {
         List<Player> players = new ArrayList<>();
 
         for (String inputPlayer : inputPlayers) {
-            players.add(new Player(inputPlayer));
+            players.add(new Player(inputPlayer, MAX_USER_NAME_LENGTH));
         }
         return players;
+    }
+
+    public List<Result> inputResults() {
+        System.out.println("");
     }
 
     public int inputMaxLadderHeight() {
@@ -33,24 +39,28 @@ public class LadderView {
     }
 
     public void printLadder(List<Player> players, Ladder ladder) {
-        int ladderWidth = ladder.getLadderRows().size();
+        int ladderHeight = ladder.getMaxLadderHeight();
         printPlayers(players);
 
-        for (int i = 0; i < ladderWidth; i++) {
-            LadderRow ladderRow = ladder.getLadderRows().get(i);
-            List<LadderCell> row = ladderRow.getRow();
-            printLadderRow(row);
+        for (int i = 0; i < ladderHeight; i++) {
+            LadderRow ladderRow = ladder.getLadderRow(i);
+            printLadderRow(ladderRow);
         }
     }
 
     private void printPlayers(List<Player> players) {
         for (Player player : players) {
-            System.out.printf("%5s ", player);
+            System.out.printf("%5s ", player + getNamePadding(player.getNameLength()));
         }
         System.out.println();
     }
 
-    private void printLadderRow(List<LadderCell> row) {
+    private String getNamePadding(int nameLength) {
+        return " ".repeat((MAX_USER_NAME_LENGTH - nameLength) / 2);
+    }
+
+    private void printLadderRow(LadderRow ladderRow) {
+        List<LadderCell> row = ladderRow.getRow();
         System.out.print(PADDING);
 
         for (LadderCell ladderCell : row) {
