@@ -3,23 +3,31 @@ package bin.jayden.ladder_game.view;
 import bin.jayden.ladder_game.domain.Constants;
 import bin.jayden.ladder_game.domain.LadderGame;
 import bin.jayden.ladder_game.domain.LadderGameInfo;
+import bin.jayden.ladder_game.exception.InvalidLadderHeightException;
+import bin.jayden.ladder_game.exception.InvalidNameSizeException;
+import bin.jayden.ladder_game.exception.InvalidParticipantsSizeException;
+import bin.jayden.ladder_game.exception.InvalidResultSizeException;
 
 
 public class LadderInfoScanner {
 
     private LadderInfoScanner() {
-        //instance 생성 제한용 생성자
+        // instance 생성 제한용 생성자
     }
 
     public static LadderGameInfo getLadderInfo() {
+        String[] participants = getParticipants();
+        String[] results = getResults();
+        int height;
         try {
-            String[] participants = getParticipants();
-            String[] results = getResults();
-            int height = getHeight();
-            return new LadderGameInfo(participants, results, height);
+            height = getHeight();
         } catch (NumberFormatException numberFormatException) {
             System.out.println("사다리의 높이는 숫자로 입력해주세요.");
-        } catch (Exception exception) {
+            return null;
+        }
+        try {
+            return new LadderGameInfo(participants, results, height);
+        } catch (InvalidParticipantsSizeException | InvalidLadderHeightException | InvalidResultSizeException | InvalidNameSizeException exception) {
             System.out.println(exception.getMessage());
         }
         return null;

@@ -1,7 +1,9 @@
 package bin.jayden.ladder_game.exception;
 
+import bin.jayden.ladder_game.domain.Constants;
+
 public class InvalidParticipantException extends Exception {
     public InvalidParticipantException() {
-        super("존재하지 않는 사용자");
+        super(Constants.INVALID_PARTICIPANT_MESSAGE);
     }
 }

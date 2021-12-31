@@ -17,15 +17,17 @@ public class LadderGame {
     @SuppressWarnings("StatementWithEmptyBody")
     public void startLadderGame() {
         info = null;
-        while (info == null) //입력을 제대로 받을때까지 반복해서 입력을 받는다.
+        while (info == null) { // 입력을 제대로 받을때까지 반복해서 입력을 받는다.
             info = LadderInfoScanner.getLadderInfo();
+        }
 
         ladder = new Ladder(info.getWidth(), info.getHeight());
 
         LadderGamePrinter printer = new LadderGamePrinter(ladder, info, resultMap);
         printer.printGame();
         getResults();
-        while (printer.printResult());
+        while (printer.printResult()) {
+        }
         System.out.println("\n게임을 종료합니다.");
     }
 

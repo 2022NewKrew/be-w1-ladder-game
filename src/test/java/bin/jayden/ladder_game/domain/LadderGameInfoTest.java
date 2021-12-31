@@ -13,68 +13,68 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class LadderGameInfoTest {
     @Test
     public void wrongParticipantSizeTest() {
-        //given
+        // given
         String[] participants = {"one"};
         String[] result = {"1000", "2000"};
         int height = 5;
 
-        //when
+        // when
         final InvalidParticipantsSizeException exception = assertThrows(InvalidParticipantsSizeException.class, () -> new LadderGameInfo(participants, result, height));
 
-        //then
-        assertThat(exception.getMessage()).isEqualTo(String.format("잘못된 크기의 참가자 수 입니다. (최소 : %d, 최대 : %d)", Constants.MIN_PARTICIPANT_SIZE, Constants.MAX_PARTICIPANT_SIZE));
+        // then
+        assertThat(exception.getMessage()).isEqualTo(Constants.INVALID_PARTICIPANTS_SIZE_MESSAGE);
     }
 
     @Test
     public void wrongParticipantNameSizeTest() {
-        //given
+        // given
         String[] participants = {"longlongName", "two"};
         String[] result = {"1000", "2000"};
         int height = 5;
 
-        //when
+        // when
         final InvalidNameSizeException exception = assertThrows(InvalidNameSizeException.class, () -> new LadderGameInfo(participants, result, height));
 
-        //then
-        assertThat(exception.getMessage()).isEqualTo(String.format("잘못된 크기의 이름을 가진 참가자가 존재합니다. (최소 : %d, 최대 : %d)", Constants.MIN_NAME_SIZE, Constants.MAX_NAME_SIZE));
+        // then
+        assertThat(exception.getMessage()).isEqualTo(Constants.INVALID_NAME_SIZE_MESSAGE);
     }
 
     @Test
     public void wrongResultsSizeTest() {
-        //given
+        // given
         String[] participants = {"one", "two"};
         String[] result = {"1000", "2000", "3000"};
         int height = 5;
 
-        //when
+        // when
         final InvalidResultSizeException exception = assertThrows(InvalidResultSizeException.class, () -> new LadderGameInfo(participants, result, height));
 
-        //then
-        assertThat(exception.getMessage()).isEqualTo("참가자 수와 결과의 개수가 같지않습니다.");
+        // then
+        assertThat(exception.getMessage()).isEqualTo(Constants.INVALID_RESULT_SIZE_MESSAGE);
     }
 
     @Test
     public void wrongLadderHeightTest() {
-        //given
+        // given
         String[] participants = {"one", "two"};
         String[] result = {"1000", "2000"};
         int height = -1;
 
-        //when
+        // when
         final InvalidLadderHeightException exception = assertThrows(InvalidLadderHeightException.class, () -> new LadderGameInfo(participants, result, height));
 
-        //then
-        assertThat(exception.getMessage()).isEqualTo(String.format("잘못된 크기의 사다리 높이입니다. (최소 : %d, 최대 : %d)", Constants.MIN_LADDER_HEIGHT, Constants.MAX_LADDER_HEIGHT));
+        // then
+        assertThat(exception.getMessage()).isEqualTo(Constants.INVALID_LADDER_HEIGHT_MESSAGE);
     }
 
     @Test
     public void ladderGameInfoTest() {
-        //given
+        // given
         String[] participants = {"one", "two"};
         String[] result = {"1000", "2000"};
         int height = 5;
 
-        //when
+        // when
         assertDoesNotThrow(() -> new LadderGameInfo(participants, result, height));
     }
 }

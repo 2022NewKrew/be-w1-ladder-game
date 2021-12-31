@@ -1,5 +1,6 @@
 package bin.jayden.ladder_game.view;
 
+import bin.jayden.ladder_game.domain.Constants;
 import bin.jayden.ladder_game.domain.Ladder;
 import bin.jayden.ladder_game.domain.LadderGameInfo;
 import bin.jayden.ladder_game.exception.InvalidParticipantException;
@@ -16,7 +17,7 @@ class LadderGamePrinterTest {
 
     @Test
     void getAllResultsTest() {
-        //given
+        // given
         String[] participants = {"one", "two"};
         String[] result = {"1000", "2000"};
         int height = 5;
@@ -27,17 +28,17 @@ class LadderGamePrinterTest {
         resultsMap.put("one", "1000");
         resultsMap.put("two", "2000");
 
-        //when
+        // when
         LadderGamePrinter ladderGamePrinter = new LadderGamePrinter(ladder, info, resultsMap);
         String allResults = ladderGamePrinter.getAllResults();
 
-        //then
+        // then
         assertThat(allResults).isEqualTo("\n실행 결과\none : 1000\ntwo : 2000");
     }
 
     @Test
     void getOneResultTest() {
-        //given
+        // given
         String[] participants = {"one", "two"};
         String[] result = {"1000", "2000"};
         int height = 5;
@@ -49,16 +50,16 @@ class LadderGamePrinterTest {
         resultsMap.put("two", "2000");
         LadderGamePrinter ladderGamePrinter = new LadderGamePrinter(ladder, info, resultsMap);
 
-        //when
+        // when
         String oneResult = assertDoesNotThrow(() -> ladderGamePrinter.getOneResult("one"));
 
-        //then
+        // then
         assertThat(oneResult).isEqualTo("\n실행 결과\n1000");
     }
 
     @Test
     void getOneResultWrongNameTest() {
-        //given
+        // given
         String[] participants = {"one", "two"};
         String[] result = {"1000", "2000"};
         int height = 5;
@@ -70,11 +71,11 @@ class LadderGamePrinterTest {
         resultsMap.put("two", "2000");
         LadderGamePrinter ladderGamePrinter = new LadderGamePrinter(ladder, info, resultsMap);
 
-        //when
+        // when
         final InvalidParticipantException exception = assertThrows(InvalidParticipantException.class, () -> ladderGamePrinter.getOneResult("wrong"));
 
-        //then
-        assertThat(exception.getMessage()).isEqualTo("존재하지 않는 사용자");
+        // then
+        assertThat(exception.getMessage()).isEqualTo(Constants.INVALID_PARTICIPANT_MESSAGE);
 
     }
 

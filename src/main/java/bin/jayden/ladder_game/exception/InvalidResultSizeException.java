@@ -1,7 +1,9 @@
 package bin.jayden.ladder_game.exception;
 
+import bin.jayden.ladder_game.domain.Constants;
+
 public class InvalidResultSizeException extends Exception {
     public InvalidResultSizeException() {
-        super("참가자 수와 결과의 개수가 같지않습니다.");
+        super(Constants.INVALID_RESULT_SIZE_MESSAGE);
     }
 }

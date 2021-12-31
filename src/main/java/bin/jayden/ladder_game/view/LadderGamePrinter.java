@@ -20,8 +20,9 @@ public class LadderGamePrinter {
 
     private static void printLine(boolean isLine) {
         char ladderCharacter = isLine ? Constants.LADDER_LINE_CHARACTER : Constants.LADDER_EMPTY_CHARACTER;
-        for (int i = 0; i < Constants.MAX_NAME_SIZE; i++)
+        for (int i = 0; i < Constants.MAX_NAME_SIZE; i++) {
             System.out.print(ladderCharacter);
+        }
         System.out.print(Constants.LADDER_SEPARATION_CHARACTER);
     }
 
