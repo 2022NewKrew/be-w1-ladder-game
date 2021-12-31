@@ -21,7 +21,7 @@ public class LadderPrinter {
 
     private void printPlayers(List<String> players) {
         StringBuilder sb = new StringBuilder();
-        for (String player: players) {
+        for (String player : players) {
             sb.append(String.format("%-6s", player));
         }
         System.out.println(sb);
@@ -33,9 +33,9 @@ public class LadderPrinter {
         for (LadderRow row : rows) {
             List<Step> steps = row.getSteps();
             for (Step step : steps) {
-                sb.append(POLE_STR + getStepDisplayString(step, stepWidth));
+                sb.append(POLE_STR).append(getStepDisplayString(step, stepWidth));
             }
-            sb.append(POLE_STR + System.lineSeparator());
+            sb.append(POLE_STR).append(System.lineSeparator());
         }
         System.out.println(sb);
     }
