@@ -15,6 +15,6 @@ public class Participant {
     public boolean equals(Object o){
         if(!(o instanceof Participant)) return false;
         Participant other = (Participant) o;
-        return this.getName() == other.getName();
+        return this.getName().equals(other.getName()) ;
     }
 }
