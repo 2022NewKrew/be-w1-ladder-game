@@ -19,11 +19,11 @@ public class Members extends AbstractStringValues<Member> {
     }
 
     @Override
-    public Member generateValue(final String value) {
-        if (value == null) {
-            throw new RuntimeException("String array is null!");
+    public Member generateValue(final String member) {
+        if (member == null) {
+            throw new RuntimeException("member String is null!");
         }
-        return new Member(value);
+        return new Member(member);
     }
 
     public static Members getDefault() {
