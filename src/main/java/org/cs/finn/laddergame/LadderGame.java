@@ -23,7 +23,7 @@ public class LadderGame {
     }
 
     public void run() {
-        Member member = Member.EMPTY;
+        Member member = Member.RETRYER;
 
         while (member.isNotTerminator()) {
             final Members members = userInput.requestMembers();
@@ -31,7 +31,7 @@ public class LadderGame {
             final Ladder ladder = userInput.requestLadder(sRand, members);
 
             printLadder(members, ladder, rewards);
-            member = queryMember(members, ladder, rewards);
+            member = getMemberAndPrintLadderWithReward(members, ladder, rewards);
         }
     }
 
@@ -41,7 +41,7 @@ public class LadderGame {
         stringValuesView.print(rewards, Reward.WIDTH);
     }
 
-    private Member queryMember(final Members members, final Ladder ladder, final Rewards rewards) {
+    private Member getMemberAndPrintLadderWithReward(final Members members, final Ladder ladder, final Rewards rewards) {
         Member member = userInput.requestMember(members);
         while (member.isNotTerminator() || member.isNotRetryer()) {
             printLadderWithReward(members, ladder, rewards, member);
@@ -58,12 +58,8 @@ public class LadderGame {
     )
     {
         stringValuesView.print(members, Member.WIDTH);
-        final int rewardIdx = ladderView.printWithRewardPath(ladder, indexOfMember(members, member));
+        final int rewardIdx = ladderView.printWithRewardPath(ladder, members, member);
         stringValuesView.print(rewards, Reward.WIDTH);
         stringValuesView.printReward(member, rewards, rewardIdx);
-    }
-
-    private int indexOfMember(final Members members, final Member member) {
-        return members.getList().indexOf(member);
     }
 }

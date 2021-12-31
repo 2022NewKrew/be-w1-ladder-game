@@ -3,7 +3,6 @@ package org.cs.finn.laddergame.domain.stringvalues;
 import org.cs.finn.laddergame.domain.AbstractStringValue;
 
 public class Member extends AbstractStringValue {
-    public static final Member EMPTY = new Member("lXTlW");
     public static final Member TERMINATOR = new Member("dBB8c");
     public static final Member RETRYER = new Member("Z9mrl");
 

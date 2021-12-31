@@ -98,7 +98,6 @@ public class UserInput {
         System.out.println(strTerminator + "를 입력해 종료할 수 있습니다");
 
         final Member member = getMemberFromInput();
-        System.out.println("게임에 참여하는 사람 목록: " + members.getList());
         System.out.println();
         return member;
     }
