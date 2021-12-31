@@ -2,6 +2,7 @@ package application;
 
 import domain.Ladder;
 import domain.User;
+import view.GameGuidePrinter;
 import view.LadderPrinter;
 
 import java.util.List;
@@ -14,13 +15,13 @@ public class LadderGame {
     }
 
     public static void ladderGamePlay() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        GameGuidePrinter.userListInputGuide();
         List<User> nameList = GameInputScanner.inputNameList();
 
-        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        GameGuidePrinter.resultListInputGuide();
         List<String> resultList = GameInputScanner.inputResultList(nameList.size());
 
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        GameGuidePrinter.heightOfLadderInputGuide();
         int heightLadder = GameInputScanner.inputNumber();
 
         Ladder ladder = makeLadder(nameList, resultList, heightLadder);
@@ -36,7 +37,7 @@ public class LadderGame {
 
     private static void checkLadderGameResult(List<User> nameList, List<String> resultList, Ladder ladder) {
         while (true) {
-            System.out.println("결과를 보고 싶은 사람은?");
+            GameGuidePrinter.resultOfUserInputGuide();
             String nameCheckResult = GameInputScanner.inputNameCheckResult(nameList);
 
             if (quitLadderGame(nameCheckResult)) return;
@@ -65,7 +66,7 @@ public class LadderGame {
 
     private static boolean quitLadderGame(String nameCheckResult) {
         if (nameCheckResult.equals("춘식이")) {
-            System.out.println("게임을 종료합니다.");
+            GameGuidePrinter.finishOfGame();
             return true;
         }
         return false;
