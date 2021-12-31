@@ -1,7 +1,7 @@
-package main.java.ladder.view;
+package ladder.view;
 
-import main.java.ladder.domain.Ladder;
-import main.java.ladder.domain.User;
+import ladder.domain.Ladder;
+import ladder.domain.User;
 
 import java.util.Arrays;
 import java.util.Collections;

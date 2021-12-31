@@ -1,4 +1,4 @@
-package main.java.ladder.domain;
+package ladder.domain;
 
 public class User {
     static final int MAX_NAME_LEN = 5;

@@ -1,8 +1,8 @@
-package main.java.ladder;
+package ladder;
 
-import main.java.ladder.domain.Ladder;
-import main.java.ladder.domain.User;
-import main.java.ladder.view.Engine;
+import ladder.domain.Ladder;
+import ladder.domain.User;
+import ladder.view.Engine;
 
 import java.util.List;
 
