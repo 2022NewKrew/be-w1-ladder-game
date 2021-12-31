@@ -5,7 +5,10 @@ import domain.ladder.LadderFrameLine;
 import dto.gameResultDto.AllResultDTO;
 import dto.gameResultDto.TargetResultDTO;
 import dto.ladderDto.LadderDTO;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6cc2af7 (LadderService, GameResultService, LadderGame 코드 및 테스트케이스 정리)
 
 import java.util.List;
 import java.util.Map;
