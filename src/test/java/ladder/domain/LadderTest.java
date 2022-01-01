@@ -17,6 +17,7 @@ public class LadderTest {
     void 이름에_공백이_포함되면_예외가_발생한다(){
         //given
         String nameSample = "a,ab,abc,abcd,   abcde";
+        String destination = "1,2,3,4";
         Long height = Long.valueOf(10);
 
 
@@ -26,7 +27,7 @@ public class LadderTest {
 
         //then
         assertThatThrownBy(() -> {
-            Ladder ladderObject = new Ladder(nameSample, height);
+            Ladder ladderObject = new Ladder(nameSample, destination, height);
         }).isInstanceOf(Exception.class).hasMessageContaining("Space_Inside_Name");
     }
 
@@ -35,11 +36,12 @@ public class LadderTest {
 
         //given
         String nameAry = "a,ab,abc,abcd,abcde,a,b,c,d,e,a,b,c,d,e";
+        String destination = "1,2,3,4";
         Long height = Long.valueOf(100000); //테스트를 위해 높은 height로 지정
 
 
         //when
-        Ladder ladderObject = new Ladder(nameAry, height); //사다리 구성
+        Ladder ladderObject = new Ladder(nameAry, destination, height); //사다리 구성
 
 
 
@@ -57,10 +59,11 @@ public class LadderTest {
     void 콤마를_기준으로_참여자수를_나눈다() {
         //given
         String nameAry = "a,ab,abc,abcd"; //공백발생 예외
+        String destination = "1,2,3,4";
         Long height = Long.valueOf(10);
 
         //when
-        Ladder ladderObject = new Ladder(nameAry, height);
+        Ladder ladderObject = new Ladder(nameAry, destination, height);
 
 
         //then
@@ -71,6 +74,7 @@ public class LadderTest {
     void 높이가_0_미만이면_예외가_발생한다() {
         //given
         String nameAry = "a,ab,abc,abcd";
+        String destination = "1,2,3,4";
         Long height = Long.valueOf(0); //높이가 0인 예외사항
 
 
@@ -80,7 +84,7 @@ public class LadderTest {
 
         //then
         assertThatThrownBy(() -> {
-                Ladder ladderObject = new Ladder(nameAry, height);
+                Ladder ladderObject = new Ladder(nameAry, destination, height);
         }).isInstanceOf(Exception.class).hasMessageContaining("HeightBelowZero");
     }
 }
