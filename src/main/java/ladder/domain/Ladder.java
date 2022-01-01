@@ -19,7 +19,7 @@ public class Ladder {
     // 인스턴스 변수
     private final List<Line> ladder;
     private final LabelList participantList;
-    private final Map<String, Integer> participantsSet;
+    private final Map<String, Integer> participantsOrder;
     private final LabelList result;
     private final int peopleCount;
     private final StringLineGenerator stringLineGenerator;
@@ -27,7 +27,7 @@ public class Ladder {
     // 생성자
     public Ladder(String stringEntry, String stringResult, int height) {
         participantList = new LabelList(stringEntry, CHAR_LIMIT);
-        participantsSet = createParticipantMap();
+        participantsOrder = createParticipantMap();
         result = new LabelList(stringResult, CHAR_LIMIT);
         peopleCount = this.participantList.getEntryCount();
         ladder = new ArrayList<>();
@@ -48,11 +48,11 @@ public class Ladder {
         return result;
     }
     public boolean hasPerson(String person) {
-        return participantsSet.containsKey(person);
+        return participantsOrder.containsKey(person);
     }
 
     public String followLadder(String person) {
-        Integer x = participantsSet.get(person);
+        Integer x = participantsOrder.get(person);
         for (Line line : ladder) {
             x = line.moveLine(x);
         }
