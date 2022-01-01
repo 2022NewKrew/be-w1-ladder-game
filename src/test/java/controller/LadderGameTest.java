@@ -8,19 +8,22 @@ import org.junit.jupiter.api.Test;
 
 import domain.Ladder;
 import domain.Player;
+import domain.Result;
 
 class LadderGameTest {
 	LadderGame ladderGame;
 
 	Player player;
 	Ladder ladder;
+	Result result;
 
 	@BeforeEach
 	void setUp() {
 		player = mock(Player.class);
 		ladder = mock(Ladder.class);
+		result = mock(Result.class);
 
-		ladderGame = new LadderGame(player, ladder);
+		ladderGame = new LadderGame(player, ladder, result);
 	}
 
 	@Test
