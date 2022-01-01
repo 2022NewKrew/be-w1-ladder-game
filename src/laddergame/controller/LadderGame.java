@@ -8,7 +8,6 @@ import java.util.List;
 
 public class LadderGame {
     private LadderGameView view;
-    private LadderGameInfo gameInfo;
     private Ladder ladder;
     private List<String> people;
 
@@ -17,21 +16,17 @@ public class LadderGame {
     }
 
     public void startGame() {
-        inputLadderGameInfo();
-        makePeople();
-        makeLadder();
+        LadderGameInfo gameInfo = view.inputLadderGameInfo();
+        makePeople(gameInfo);
+        makeLadder(gameInfo);
         printLadderGameResult();
     }
 
-    private void inputLadderGameInfo() {
-        gameInfo = view.inputLadderGameInfo();
-    }
-
-    private void makePeople() {
+    private void makePeople(LadderGameInfo gameInfo) {
         this.people = gameInfo.getPeopleNames();
     }
 
-    private void makeLadder() {
+    private void makeLadder(LadderGameInfo gameInfo) {
         int width = people.size() - 1;
         int height = gameInfo.getLadderHeight();
         ladder = new Ladder(width, height);

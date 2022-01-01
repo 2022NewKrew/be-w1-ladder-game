@@ -1,34 +1,16 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Line {
-    private static RandomFlag randomFlag = new RandomFlag();
-    private List<Boolean> flags = new ArrayList<Boolean>();
+    private Flags flags = new Flags();
 
-    public Line(int count) {
-        makeFlags(count);
+    Line() {
     }
 
-    public Boolean getFlagByIndex(int index) {
-        return flags.get(index);
+    public Flag getFlagByIndex(int index) {
+        return flags.getFlagByIndex(index);
     }
 
-    private void makeFlags(int count) {
-        Boolean previousFlag = false;
-        Boolean currentFlag;
-        for (int i = 0; i < count; i++) {
-            currentFlag = getFlag(previousFlag);
-            flags.add(currentFlag);
-            previousFlag = currentFlag;
-        }
-    }
-
-    private Boolean getFlag(Boolean previousFlag) {
-        if (previousFlag)
-            return false;
-
-        return randomFlag.getRandomFlag();
+    void makeLine(int count) {
+        flags.makeFlags(count);
     }
 }

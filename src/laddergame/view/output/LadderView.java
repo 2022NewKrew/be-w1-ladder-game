@@ -1,5 +1,6 @@
 package laddergame.view.output;
 
+import laddergame.domain.Flag;
 import laddergame.domain.Ladder;
 import laddergame.domain.Line;
 
@@ -35,7 +36,7 @@ public class LadderView {
         StringBuilder ladderLine = new StringBuilder();
         ladderLine.append(DEFAULT_LADDER_LINE);
         for (int i = 0; i < ladderWidth; i++) {
-            Boolean flag = line.getFlagByIndex(i);
+            Flag flag = line.getFlagByIndex(i);
             ladderLine.append(getRandomLadderLinePoint(flag));
             ladderLine.append(DEFAULT_LADDER_LINE);
         }
@@ -43,8 +44,9 @@ public class LadderView {
         return ladderLine;
     }
 
-    private String getRandomLadderLinePoint(Boolean flag) {
-        if (flag)
+    private String getRandomLadderLinePoint(Flag flag) {
+        Boolean flagValue = flag.getFlag();
+        if (flagValue)
             return RANDOM_LADDER_POINT;
 
         return NO_LADDER_POINT;
