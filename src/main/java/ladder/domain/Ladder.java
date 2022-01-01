@@ -9,12 +9,13 @@ public class Ladder {
     private List<String> names;
     private long peopleCount, height;
     private List<Line> lineStatus;
+    private List<String> destination;
 
     public LadderView ladderView; //ladderView를 ladder객체 내부에서 관리하도록 수정
 
-    public Ladder(String nameAry, long height) {
+    public Ladder(String nameAry, String destinationAry, long height) {
         ladderView = new LadderView(this);
-        ladderView.setValue(nameAry, height);
+        ladderView.setValue(nameAry, destinationAry, height);
         initLine();
         shuffle();
     }
@@ -32,6 +33,11 @@ public class Ladder {
         return height;
     }
 
+    public List<Line> getLineStatus() {
+        return lineStatus;
+    }
+
+    //setter
     public void setNames(List<String> names) {
         this.names = names;
     }
@@ -44,9 +50,11 @@ public class Ladder {
         this.height = height;
     }
 
-    public List<Line> getLineStatus() {
-        return lineStatus;
+    public void setDestination(List<String> destination) {
+        this.destination = destination;
     }
+
+
 
 
 

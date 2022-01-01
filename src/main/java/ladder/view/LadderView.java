@@ -21,12 +21,13 @@ public class LadderView {
 
 
 
-    public void setValue(String fullName, Long height) {
+    public void setValue(String fullName, String destination, Long height) {
 
         inputValidationCheckName(fullName);
         inputValidationCheckHeight(height);
 
         ladderObject.setNames(Arrays.asList(fullName.split(",")));
+        ladderObject.setDestination(Arrays.asList(destination.split(",")));
         ladderObject.setPeopleCount(ladderObject.getNames().size());
         ladderObject.setHeight(height);
     }
@@ -36,6 +37,12 @@ public class LadderView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         return new Scanner(System.in).nextLine();
     }
+
+    public static String inputDestination(){
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return new Scanner(System.in).nextLine();
+    }
+
 
     public static Long inputHeight(){
 
