@@ -18,8 +18,8 @@ public class UserInterface {
 
     public Input<ArrayList<String>> readPlayers() {
         Input<ArrayList<String>> playerInput = null;
-        ArrayList<StrCond> playerConds = new ArrayList<>(Arrays.asList(new StrLstSizeGTECond(1), new LenLTStrCond(5)));
-        StrInputCondition playerInputCond = new StrInputCondition("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)", playerConds, "2명 이상의 사람 수를 입력해주세요!");
+        ArrayList<StringCond> playerConds = new ArrayList<>(Arrays.asList(new StringListSizeGreaterThanEqualCond(1), new StringLengthLessThanCond(5)));
+        StringInputCondition playerInputCond = new StringInputCondition("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)", playerConds, "2명 이상의 사람 수를 입력해주세요!");
         do {
             playerInput = new Input<>(playerInputCond);
             System.out.println(playerInputCond.getQuery());
@@ -41,8 +41,8 @@ public class UserInterface {
 
     public Input<ArrayList<String>> readResult(int len) {
         Input<ArrayList<String>> resultInput = null;
-        ArrayList<StrCond> playerConds = new ArrayList<>(Arrays.asList(new StrLstSizeEqCond(len), new LenLTStrCond(5)));
-        StrInputCondition playerInputCond = new StrInputCondition("실행 결과를 입력하세요.", playerConds, "사람 수에 맞게 결과를 입력하세요!");
+        ArrayList<StringCond> playerConds = new ArrayList<>(Arrays.asList(new StringListSizeEqualCond(len), new StringLengthLessThanCond(5)));
+        StringInputCondition playerInputCond = new StringInputCondition("실행 결과를 입력하세요.", playerConds, "사람 수에 맞게 결과를 입력하세요!");
         do {
             resultInput = new Input<>(playerInputCond);
             System.out.println(playerInputCond.getQuery());
@@ -116,14 +116,19 @@ public class UserInterface {
         System.out.println(ladder.toString());
     }
 
-    // 테스트용 임시함수
-    public void printDst(Ladder ladder) {
-        ladder.printDst();
+    public void printPlayers(PlayerList playerList) {
+        StringBuilder sb = new StringBuilder();
+        List<Player> players = playerList.getPlayers();
+        int len = (players.size() + 1) * 5 + players.size();
+        for (int i = 0; i < len; i++, sb.append(" ")) ;
+        for (int i = 0, cursor = 5; i < players.size(); i++, cursor += 6) {
+            String player = players.get(i).toString();
+            int mid = player.length() / 2;
+            sb.replace(cursor - mid, cursor - mid + player.length(), player);
+        }
+        System.out.print(sb.toString());
     }
 
-    public void printPlayers(PlayerList playerList) {
-        System.out.println(playerList.toString());
-    }
 
     public void printResults(ResultList resultList) {
         System.out.println(resultList.toString());

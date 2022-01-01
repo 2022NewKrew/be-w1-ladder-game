@@ -7,10 +7,18 @@ public class Ladder {
 
     private int height;
     private int manCount;
-    private ArrayList<LadderRow> ladderMap;
-    private ArrayList<LadderDst> dstLst;
+    private List<LadderRow> ladderMap;
+    private List<LadderDst> dstLst;
 
     private Ladder(int height, int manCount) {
+
+        if(height < 1){
+            throw new IllegalArgumentException("사다리의 높이는 1 이상 이어야 합니다!");
+        }
+        if(manCount < 2){
+            throw new IllegalArgumentException("플레이어는 2 명 이상 이어야 합니다!");
+        }
+
         this.height = height;
         this.manCount = manCount;
         this.ladderMap = new ArrayList<>();

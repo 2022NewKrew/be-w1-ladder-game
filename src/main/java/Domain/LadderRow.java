@@ -2,12 +2,13 @@ package Domain;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class LadderRow {
     private int manCount;
     private int cellCount;
-    private ArrayList<LadderCell> row;
+    private List<LadderCell> row;
 
     private LadderRow(int manCount) {
         this.manCount = manCount;
@@ -26,7 +27,7 @@ public class LadderRow {
             row.add(LadderCell.getInstance(decideHorizon(row, i)));
     }
 
-    public boolean decideHorizon(ArrayList<LadderCell> row, int idx) {
+    public boolean decideHorizon(List<LadderCell> row, int idx) {
         Random rand = new Random();
         if (idx != 0 && row.get(idx - 1).getIsHorizontal()) return false;
         return rand.nextBoolean();
@@ -43,7 +44,7 @@ public class LadderRow {
         return sb.toString();
     }
 
-    public ArrayList<LadderCell> getRow() {
+    public List<LadderCell> getRow() {
         return row;
     }
 
