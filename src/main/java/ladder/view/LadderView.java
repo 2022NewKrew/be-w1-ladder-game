@@ -13,6 +13,7 @@ public class LadderView {
 
     private final int GAP = 5;
     private final String endString = "춘식이";
+    private final String endMessage = "게임을 종료합니다.";
 
     public Ladder ladderObject;
 
@@ -133,20 +134,20 @@ public class LadderView {
     private void printTarget(String targetName){
         //all이라는 참여자가 있는경우 참여자 이름만 검색하도록 함.
         if(targetName.equals("all") && !ladderObject.getNames().contains("all")){
-            printAll();
-            return;
+            printAll(); return;
         }
 
+        //춘식이가 입력된경우
         if(targetName.equals(endString)){
-            printFinished = true;
+            printFinished = true; return;
+        }
+
+        //입력되지 않는 참가자인경우
+        if(ladderObject.getResult().get(targetName) == null) {
             return;
         }
 
-        if(ladderObject.getResult().get(targetName) == null){
-           System.out.println("참여자가 아닙니다.");
-           return;
-        }
-
+        //참여자 결과 출력
         System.out.println(ladderObject.getResult().get(targetName));
     }
 
@@ -159,9 +160,10 @@ public class LadderView {
             System.out.println("결과를 보고 싶은 사람은?");
             targetName = sc.nextLine();
             System.out.println("실행 결과");
-
             printTarget(targetName);
         }
+
+        System.out.println(endMessage);
     }
 
 }
