@@ -79,3 +79,15 @@
 ### 피어세션 및 자체 피드백
 
 - 출력 양식 변경
+
+## 사다리 게임 5단계 구현
+
+### 코드 리뷰 피드백
+
+- `participantsSet` 변수 이름 `participantsOrder`로 변경
+- 이름 출력 길이 초과시 오류 출력하는 위치 변경
+
+### 자체 피드백
+
+- 이름 길이 검사하는 기능을 `checkLabelSize()` 메소드로 분리
+- `centerString()` 메소드 접근 제어자 `private`으로 변경
