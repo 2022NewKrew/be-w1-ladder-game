@@ -1,3 +1,7 @@
+import domain.Ladder;
+import view.InputView;
+import view.ResultView;
+
 import java.util.List;
 
 public class LadderMain {
@@ -6,12 +10,12 @@ public class LadderMain {
     }
 
     public static void startGame() {
-        List<String> namesOfPeople = LadderUI.getNamesOfPeople();
+        List<String> namesOfPeople = InputView.getNamesOfPeople();
         int numOfPeople = namesOfPeople.size();
-        int height = LadderUI.getHeight();
+        int height = InputView.getHeight();
 
         Ladder ladder = new Ladder(numOfPeople, height);
 
-        LadderUI.printNamesAndLadder(namesOfPeople, ladder);
+        ResultView.printNamesAndLadder(namesOfPeople, ladder);
     }
 }

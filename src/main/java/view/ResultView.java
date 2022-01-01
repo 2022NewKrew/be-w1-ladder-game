@@ -1,27 +1,20 @@
-import java.util.Arrays;
+package view;
+
+import domain.Ladder;
+import domain.Line;
+import domain.Point;
+
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class LadderUI {
+public class ResultView {
 
-    private static final Scanner scanner = new Scanner(System.in);
     private static final int MAX_LENGTH = 6;
     private static final String BLANK = " ";
     private static final String FIRST = "   |";
     private static final String STEP_EXIST = "-----|";
     private static final String STEP_NOT_EXIST = "     |";
     private static final String EMPTY_DELIMITER = "";
-
-    public static List<String> getNamesOfPeople() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return Arrays.asList(scanner.nextLine().split(","));
-    }
-
-    public static int getHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return scanner.nextInt();
-    }
 
     public static void printNamesAndLadder(List<String> namesOfPeople, Ladder ladder) {
         printNames(namesOfPeople);
@@ -30,7 +23,7 @@ public class LadderUI {
 
     private static void printNames(List<String> namesOfPeople) {
         String nameLine = namesOfPeople.stream()
-                .map(LadderUI::resizeName)
+                .map(ResultView::resizeName)
                 .collect(Collectors.joining(EMPTY_DELIMITER));
         System.out.println(nameLine);
     }
@@ -60,7 +53,7 @@ public class LadderUI {
     private static void printLine(Line line){
         String lineStr = FIRST + line.getPoints()
                 .stream()
-                .map(LadderUI::convertPoint)
+                .map(ResultView::convertPoint)
                 .collect(Collectors.joining(EMPTY_DELIMITER));
 
         System.out.println(lineStr);
