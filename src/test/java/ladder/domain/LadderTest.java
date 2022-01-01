@@ -17,22 +17,22 @@ public class LadderTest {
         //Ladder ladderObject = new Ladder();
         String nameAry = "a,ab,abc,abcd,abcde";
         Long height = Long.valueOf(10);
-       // ladderObject.setValue(nameAry, height);
+        // ladderObject.setValue(nameAry, height);
 
-       // assertTrue(ladderObject.getPeopleCount() == 5);
+        // assertTrue(ladderObject.getPeopleCount() == 5);
     }
 
     @Test
     void 연속적인_사다리_선_제거_테스트() throws Exception {
-    //    Ladder ladderObject = new Ladder();
+        //    Ladder ladderObject = new Ladder();
         String nameAry = "a,ab,abc,abcd,abcde,a,b,c,d,e,a,b,c,d,e";
         Long height = Long.valueOf(100000); //테스트를 위해 높은 height로 지정
-       // ladderObject.setValue(nameAry, height);
+        // ladderObject.setValue(nameAry, height);
 //        ladderObject.initLine();
-    //    ladderObject.shuffle();
+        //    ladderObject.shuffle();
 
 
-     //   List<Line> lineStatus = ladderObject.getLineStatus();
+        //   List<Line> lineStatus = ladderObject.getLineStatus();
 
 //        for(int i = 0 ; i < height ; i++){
 //            for(int j = 0 ; j < lineStatus.get(i).value.size() - 1 ; j++){
@@ -43,14 +43,14 @@ public class LadderTest {
 
     @Test
     void 입력시_이름에_공백이_추가되는경우_예외가_발생한다() throws Exception{
-       // Ladder ladderObject = new Ladder();
+        // Ladder ladderObject = new Ladder();
         String nameAry = "a,ab,abc,    abcd"; //공백발생 예외
         Long height = Long.valueOf(10);
 
         boolean isException = false;
 
         try{
-           // ladderObject.setValue(nameAry, height);
+            // ladderObject.setValue(nameAry, height);
         } catch(Exception e){
             isException = true;
         }
@@ -60,14 +60,14 @@ public class LadderTest {
 
     @Test
     void 높이가_0_미만이면_예외가_발생한다() throws Exception{
-       // Ladder ladderObject = new Ladder();
+        // Ladder ladderObject = new Ladder();
         String nameAry = "a,ab,abc,abcd";
         Long height = Long.valueOf(0); //높이가 0인 예외사항
 
         boolean isException = false;
 
         try{
-    //        ladderObject.setValue(nameAry, height);
+            //        ladderObject.setValue(nameAry, height);
         } catch(Exception e){
             isException = true;
         }
