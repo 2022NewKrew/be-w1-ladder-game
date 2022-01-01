@@ -1,40 +1,76 @@
 package domain;
 
-import view.LadderInfoGetter;
+import DTO.InputDTO;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Ladder {
-    private int heightOfLadder;
+    private final List<String> people;
+    private final List<String> peopleSwapped;
+    private final List<String> results;
+    private final int heightOfLadder;
+    private final List<LadderLine> ladderLines = new ArrayList<>();
+    private final HashMap<String, String> matchedResult = new HashMap<>();
 
-    private List<String> people = new ArrayList<String>();
-    private List<Line> ladder = new ArrayList<Line>();
+    public Ladder(InputDTO inputDTO) {
+        people = inputDTO.getPeople();
+        peopleSwapped = new ArrayList<>(people);
+        results = inputDTO.getResults();
+        heightOfLadder = inputDTO.getHeightOfLadder();
+        buildLadder();
+        playLadderGame();
+    }
 
-    public Ladder() {
-        LadderInfoGetter ladderInfoGetter = new LadderInfoGetter();
-        ladderInfoGetter.getInfoFromClient();
-        people = ladderInfoGetter.getPeople();
-        heightOfLadder = ladderInfoGetter.getHeightOfLadder();
+    private void buildLadder() {
         for(int i = 0 ; i < heightOfLadder ; i++) {
-            Line line = new Line(people.size());
-            ladder.add(line);
+            LadderLine line = new LadderLine(people.size());
+            ladderLines.add(line);
         }
     }
 
-    public int getHeightOfLadder() {
-        return heightOfLadder;
+    private void playLadderGame() {
+        for(LadderLine ladderLine : ladderLines) {
+            swapLadderLine(ladderLine);
+        }
+        mapResults();
     }
 
-    public int getCountOfPerson() {
-        return people.size();
+    private void swapLadderLine(LadderLine ladderLine) {
+        List<Boolean> points = ladderLine.getPoints();
+        for (int i = 0 ; i < points.size() ; i++) {
+            swapTwoPeople(i, points.get(i));
+        }
     }
 
-    public Line getLine(int i) {
-        return ladder.get(i);
+    private void swapTwoPeople(int index, Boolean isSwappable) {
+        if (isSwappable) {
+            Collections.swap(peopleSwapped,index,index+1);
+        }
+        return;
+    }
+
+    private void mapResults() {
+        for (int i = 0 ; i < people.size() ; i++) {
+            matchedResult.put(peopleSwapped.get(i),results.get(i));
+        }
     }
 
     public List<String> getPeople() {
         return people;
+    }
+
+    public HashMap<String, String> getMatchedResult() {
+        return matchedResult;
+    }
+
+    public List<String> getResults() {
+        return results;
+    }
+
+    public List<LadderLine> getLadderLines() {
+        return ladderLines;
     }
 }
