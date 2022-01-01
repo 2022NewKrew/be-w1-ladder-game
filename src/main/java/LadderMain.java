@@ -1,3 +1,6 @@
+import domain.Ladder;
+import view.LadderUI;
+
 import java.util.List;
 
 public class LadderMain {

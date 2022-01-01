@@ -1,3 +1,5 @@
+package domain;
+
 public class Point {
     private final boolean step;
 
