@@ -5,12 +5,18 @@ import domain.LadderLine;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class LadderRenderer {
+    private static final Scanner scanner = new Scanner(System.in);
+
     private final String VERTICAL_LINE = "|";
     private final int nameLength = 5;
     private final String BAR = "-".repeat(nameLength);
     private final String BLANK = " ".repeat(nameLength);
+
+    private final String PRINT_ALL_CODE = "all";
+    private final String PRINT_TERM_CODE = "춘식이";
 
     private final List<String> people;
     private final HashMap<String, String> matchedResult;
@@ -40,7 +46,46 @@ public class LadderRenderer {
     }
 
     public void printQuery() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String query = scanner.next();
+        while (!query.equals(PRINT_TERM_CODE)) {
+            printQueryNotTerminated(query);
+            System.out.println("결과를 보고 싶은 사람은?");
+            query = scanner.next();
+        }
+        System.out.println();
+        System.out.println("게임을 종료합니다.");
+    }
 
+    public void printQueryNotTerminated(String query) {
+        if (query.equals(PRINT_ALL_CODE)) {
+            printAllMatchedResult();
+            return;
+        }
+        printSpecifiedMatchedResult(query);
+    }
+
+    public void printAllMatchedResult() {
+        System.out.println();
+        System.out.println("실행 결과");
+        for (String person : people) {
+            System.out.println(person + " : " + matchedResult.get(person));
+        }
+        System.out.println();
+    }
+
+    public void printSpecifiedMatchedResult(String query) {
+        if (matchedResult.containsKey(query)) {
+            System.out.println(matchedResult.get(query));
+            System.out.println();
+            return;
+        }
+        nameNotFound(query);
+    }
+
+    public void nameNotFound(String query) {
+        System.out.println(query + "는 없는 이름입니다. 다시 입력해주세요.");
+        System.out.println();
     }
 
     private String printItems(List<String> items) {
