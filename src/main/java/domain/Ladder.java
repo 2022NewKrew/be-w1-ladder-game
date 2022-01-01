@@ -2,6 +2,7 @@ package domain;
 
 import DTO.InputDTO;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,6 +13,7 @@ public class Ladder {
     private final List<String> results;
     private final int heightOfLadder;
     private final List<LadderLine> ladderLines = new ArrayList<>();
+    private final HashMap<String, String> matchedResult = new HashMap<>();
 
     public Ladder(InputDTO inputDTO) {
         people = inputDTO.getPeople();
@@ -33,6 +35,7 @@ public class Ladder {
         for(LadderLine ladderLine : ladderLines) {
             swapLadderLine(ladderLine);
         }
+        mapResults();
     }
 
     private void swapLadderLine(LadderLine ladderLine) {
@@ -49,12 +52,18 @@ public class Ladder {
         return;
     }
 
+    private void mapResults() {
+        for (int i = 0 ; i < people.size() ; i++) {
+            matchedResult.put(peopleSwapped.get(i),results.get(i));
+        }
+    }
+
     public List<String> getPeople() {
         return people;
     }
 
-    public List<String> getPeopleSwapped() {
-        return peopleSwapped;
+    public HashMap<String, String> getMatchedResult() {
+        return matchedResult;
     }
 
     public List<String> getResults() {

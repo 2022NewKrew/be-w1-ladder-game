@@ -3,6 +3,7 @@ package view;
 import DTO.OutputDTO;
 import domain.LadderLine;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class LadderRenderer {
@@ -12,13 +13,13 @@ public class LadderRenderer {
     private final String BLANK = " ".repeat(nameLength);
 
     private final List<String> people;
-    private final List<String> peopleSwapped;
+    private final HashMap<String, String> matchedResult;
     private final List<String> results;
     private final List<LadderLine> ladderLines;
 
     public LadderRenderer(OutputDTO outputDTO) {
         this.people = outputDTO.getPeople();
-        this.peopleSwapped = outputDTO.getPeopleSwapped();
+        this.matchedResult = outputDTO.getMatchedResult();
         this.results = outputDTO.getResults();
         this.ladderLines = outputDTO.getLadderLines();
     }
@@ -29,6 +30,8 @@ public class LadderRenderer {
     }
 
     public void printLadder() {
+        System.out.println("사다리 결과");
+        System.out.println();
         System.out.println(printItems(people));
         for(LadderLine ladderLine: ladderLines) {
             System.out.println(printLine(ladderLine));
@@ -37,7 +40,7 @@ public class LadderRenderer {
     }
 
     public void printQuery() {
-        System.out.println(printItems(peopleSwapped));
+
     }
 
     private String printItems(List<String> items) {

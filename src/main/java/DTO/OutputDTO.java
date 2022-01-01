@@ -3,17 +3,18 @@ package DTO;
 import domain.Ladder;
 import domain.LadderLine;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class OutputDTO {
     private final List<String> people;
-    private final List<String> peopleSwapped;
+    private final HashMap<String, String> matchedResult;
     private final List<String> results;
     private final List<LadderLine> ladderLines;
 
     public OutputDTO(Ladder ladder) {
         this.people = ladder.getPeople();
-        this.peopleSwapped = ladder.getPeopleSwapped();
+        this.matchedResult = ladder.getMatchedResult();
         this.results = ladder.getResults();
         this.ladderLines = ladder.getLadderLines();
     }
@@ -22,8 +23,8 @@ public class OutputDTO {
         return people;
     }
 
-    public List<String> getPeopleSwapped() {
-        return peopleSwapped;
+    public HashMap<String, String> getMatchedResult() {
+        return matchedResult;
     }
 
     public List<String> getResults() {
