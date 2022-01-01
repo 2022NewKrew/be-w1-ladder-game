@@ -1,3 +1,7 @@
+import domain.Ladder;
+import view.LadderGameStarter;
+import view.LadderRenderer;
+
 public class LadderGame {
     private static final int MAX_NAME_LENGTH = 5;
 
