@@ -23,7 +23,8 @@ public class LadderView {
 
     public void setValue(String fullName, Long height) throws Exception {
 
-        inputValidationCheck(fullName, height);
+        inputValidationCheckName(fullName);
+        inputValidationCheckHeight(height);
 
         ladderObject.setNames(Arrays.asList(fullName.split(",")));
         ladderObject.setPeopleCount(ladderObject.getNames().size());
@@ -42,18 +43,20 @@ public class LadderView {
         return new Scanner(System.in).nextLong();
     }
 
-    private void inputValidationCheck(String fullName, Long height) throws Exception {
+    private void inputValidationCheckHeight(Long height) throws Exception {
+
+        if (height <= 0) {
+            throw new Exception("HeightBelowZero");
+        }
+    }
+
+    private void inputValidationCheckName(String fullName) throws Exception {
         List<String> nameTemp =  Arrays.asList(fullName.split(","));
         for(int i = 0 ; i < nameTemp.size() ; i++){
             if(nameTemp.get(i).length() <= 0 || nameTemp.get(i).contains(" ")){ //공백이 존재하거나 길이가 0인경우 예외처리
-                throw new Exception();
+                throw new Exception("Space_Inside_Name");
             }
         }
-
-        if(height <= 0){
-            throw new Exception();
-        }
-
 
     }
 
