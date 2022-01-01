@@ -11,6 +11,7 @@ public class Ladder {
     private List<Line> lineStatus;
     private List<String> destination;
 
+
     public LadderView ladderView; //ladderView를 ladder객체 내부에서 관리하도록 수정
 
     public Ladder(String nameAry, String destinationAry, long height) {
@@ -23,6 +24,10 @@ public class Ladder {
     //getter
     public List<String> getNames() {
         return names;
+    }
+
+    public List<String> getDestination() {
+        return destination;
     }
 
     public long getPeopleCount() {

@@ -77,11 +77,19 @@ public class LadderView {
             printLine(i); //ith height에 대한 정보를 출력
             System.out.print("\n");
         }
+        printDestination();
     }
 
     private void printName(){
         for(int i = 0 ; i < ladderObject.getNames().size() ; i++){
             System.out.printf("%6s", ladderObject.getNames().get(i));
+        }
+        System.out.print("\n");
+    }
+
+    private void printDestination(){
+        for(int i = 0 ; i < ladderObject.getDestination().size() ; i++){
+            System.out.printf("%6s", ladderObject.getDestination().get(i));
         }
         System.out.print("\n");
     }
