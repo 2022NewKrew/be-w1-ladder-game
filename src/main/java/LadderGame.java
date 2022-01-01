@@ -11,7 +11,7 @@ public class LadderGame {
         Ladder ladder = new Ladder(inputDTO);
         OutputDTO outputDTO = new OutputDTO(ladder);
         LadderRenderer ladderRenderer = new LadderRenderer(outputDTO);
-        ladderRenderer.printAll();
+        ladderRenderer.printResult();
     }
 }
 
