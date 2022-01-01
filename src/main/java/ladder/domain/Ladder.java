@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.view.LadderView;
+
 import java.util.*;
 import static util.LadderUtil.*;
 
@@ -8,7 +10,10 @@ public class Ladder {
     private long peopleCount, height;
     private List<Line> lineStatus;
 
+    public LadderView ladderView; //ladderView를 ladder객체 내부에서 관리하도록 수정
+
     public Ladder() {
+        ladderView = new LadderView(this);
     }
 
     //getter

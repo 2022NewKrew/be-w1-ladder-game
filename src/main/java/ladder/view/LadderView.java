@@ -11,7 +11,7 @@ public class LadderView {
 
     private final int GAP = 5;
 
-    private Ladder ladderObject;
+    public Ladder ladderObject;
 
     private List<String> names;
     private Long peopleCount, height;
@@ -19,7 +19,6 @@ public class LadderView {
 
     public LadderView(Ladder ladderObject) {
         this.ladderObject = ladderObject;
-        ladderViewInit();
     };
 
     private void ladderViewInit(){
@@ -31,6 +30,8 @@ public class LadderView {
 
 
     public void display() {
+        ladderViewInit();
+
         System.out.println("실행결과");
         printName();
         for(int i = 0 ; i < height ; i++) {

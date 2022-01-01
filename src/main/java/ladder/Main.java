@@ -15,7 +15,6 @@ public class Main {
         ladderObject.shuffle();
 
         //set view of ladder
-        LadderView ladderView = new LadderView(ladderObject);
-        ladderView.display();
+        ladderObject.ladderView.display(); //ladder객체에서 연결된 view객체로 이동 후 출력.
     }
 }
