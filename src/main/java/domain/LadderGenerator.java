@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class LadderGenerator {
     Random random = new Random();
@@ -26,8 +25,8 @@ public class LadderGenerator {
         return new Ladder(ladder);
     }
 
-    private List<LadderLinePiece> createLadderLine(Integer playersNum) {
-        List<LadderLinePiece> pieces = new ArrayList<>();
+    private List<Piece> createLadderLine(Integer playersNum) {
+        List<Piece> pieces = new ArrayList<>();
 
 //        Stream.generate(LadderGenerator::createLadderLinePiece)
 //                .limit(playersNum * 2 - 1)
@@ -41,10 +40,10 @@ public class LadderGenerator {
         return pieces;
     }
 
-    private LadderLinePiece createLadderLinePiece(int ladderLinePieceIndex) {
+    private Piece createLadderLinePiece(int ladderLinePieceIndex) {
         if (ladderLinePieceIndex % 2 == 0) {
-            return LadderLinePiece.VERTICAL;
+            return Piece.VERTICAL;
         }
-        return (random.nextBoolean()) ? LadderLinePiece.EMPTY : LadderLinePiece.HORIZONTAL;
+        return (random.nextBoolean()) ? Piece.EMPTY : Piece.HORIZONTAL;
     }
 }

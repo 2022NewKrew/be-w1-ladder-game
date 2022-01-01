@@ -1,13 +1,13 @@
 package domain;
 
-public enum LadderLinePiece {
+public enum Piece {
     EMPTY(" "),
     VERTICAL("|"),
     HORIZONTAL("-");
 
     private final String value;
 
-    LadderLinePiece(String value) {
+    Piece(String value) {
         this.value = value;
     }
 

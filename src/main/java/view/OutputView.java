@@ -23,7 +23,7 @@ public class OutputView {
     }
 
     public static void printLadderLine(LadderLine ladderLine) {
-        for (LadderLinePiece piece : ladderLine.getLadderLinePieces()) {
+        for (Piece piece : ladderLine.getLadderLinePieces()) {
             System.out.print(piece.getValue());
         }
     }
