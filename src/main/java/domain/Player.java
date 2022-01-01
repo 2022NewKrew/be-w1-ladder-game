@@ -2,8 +2,6 @@ package domain;
 
 import validator.Validation;
 
-import java.util.Collections;
-
 public class Player {
     private final String name;
 
