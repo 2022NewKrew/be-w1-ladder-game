@@ -1,3 +1,9 @@
+package laddergame.controller;
+
+import laddergame.domain.Ladder;
+import laddergame.dto.LadderGameInfo;
+import laddergame.view.LadderGameView;
+
 import java.util.ArrayList;
 
 public class LadderGame {

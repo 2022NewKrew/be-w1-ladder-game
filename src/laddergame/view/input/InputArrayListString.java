@@ -1,3 +1,5 @@
+package laddergame.view.input;
+
 import java.util.ArrayList;
 
 public class InputArrayListString implements Input<ArrayList<String>> {

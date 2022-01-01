@@ -1,3 +1,5 @@
+package laddergame.dto;
+
 import java.util.ArrayList;
 
 public class LadderGameInfo {

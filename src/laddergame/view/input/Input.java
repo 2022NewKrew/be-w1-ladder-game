@@ -1,3 +1,5 @@
+package laddergame.view.input;
+
 import java.io.InputStream;
 import java.util.Scanner;
 

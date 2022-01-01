@@ -1,3 +1,5 @@
+package laddergame.view.output;
+
 import java.util.ArrayList;
 
 public class PeopleView {

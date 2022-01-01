@@ -1,4 +1,7 @@
-import java.util.ArrayList;
+package laddergame.view.output;
+
+import laddergame.domain.Ladder;
+import laddergame.domain.Line;
 
 public class LadderView {
     private final String DEFAULT_LADDER_LINE = "|";

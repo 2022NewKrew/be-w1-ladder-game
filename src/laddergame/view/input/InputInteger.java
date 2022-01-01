@@ -1,3 +1,5 @@
+package laddergame.view.input;
+
 public class InputInteger implements Input<Integer> {
     public InputInteger() {
     }
