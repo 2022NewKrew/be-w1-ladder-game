@@ -1,14 +1,15 @@
 package View;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class StrInputCondition implements InputCondition {
+public class StringInputCondition implements InputCondition {
 
     private String query;
-    private ArrayList<StrCond> condLst;
+    private List<StringCond> condLst;
     private String errorMsg;
 
-    public StrInputCondition(String query, ArrayList<StrCond> condLst, String errorMsg) {
+    public StringInputCondition(String query, List<StringCond> condLst, String errorMsg) {
         this.query = query;
         this.condLst = condLst;
         this.errorMsg = errorMsg;
@@ -22,8 +23,8 @@ public class StrInputCondition implements InputCondition {
         return true;
     }
 
-    private boolean checkConds(ArrayList<StrCond> condLst, ArrayList<String> words, String word) {
-        for (StrCond cond : condLst)
+    private boolean checkConds(List<StringCond> condLst, List<String> words, String word) {
+        for (StringCond cond : condLst)
             if (!cond.isValid(words, word)) return false;
         return true;
     }
