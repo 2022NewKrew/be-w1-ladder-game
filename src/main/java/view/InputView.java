@@ -1,7 +1,7 @@
 package view;
 
 import domain.Player;
-import validator.ValidationExceptions;
+import validator.Validation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class InputView {
 
     public static Player stringToPlayer(String nameAfterDefined) {
         Player player = new Player(nameAfterDefined);
-        ValidationExceptions.validatePlayerName(new Player(nameAfterDefined));
+        Validation.validatePlayerName(new Player(nameAfterDefined));
         return player;
     }
 

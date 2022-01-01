@@ -3,7 +3,7 @@ package validator;
 import domain.Player;
 import validator.Player.LengthOfPlayerNameException;
 
-public class ValidationExceptions {
+public class Validation {
     private static final int MAXIMUM_PLAYER_NAME_LENGTH = 5;
 
     public static void validatePlayerName(Player player) {
