@@ -1,10 +1,11 @@
 package laddergame.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
     private static RandomFlag randomFlag = new RandomFlag();
-    private ArrayList<Boolean> flags = new ArrayList<Boolean>();
+    private List<Boolean> flags = new ArrayList<Boolean>();
 
     public Line(int count) {
         makeFlags(count);
