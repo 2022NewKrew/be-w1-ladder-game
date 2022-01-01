@@ -2,10 +2,8 @@ package laddergame.view;
 
 import laddergame.domain.Ladder;
 import laddergame.dto.LadderGameInfo;
-import laddergame.view.input.InputInteger;
-import laddergame.view.input.InputStringList;
-import laddergame.view.output.LadderView;
-import laddergame.view.output.PeopleView;
+import laddergame.view.input.*;
+import laddergame.view.output.*;
 
 import java.util.List;
 
