@@ -19,8 +19,8 @@ public class Person {
     }
 
     private String convertName(String name){
-        if(name.length() > 5){
-            return name.substring(0, 5);
+        if(name.length() > LadderConst.OUTPUT_NAME_SIZE){
+            return name.substring(0, LadderConst.OUTPUT_NAME_SIZE);
         }
 
         return name;

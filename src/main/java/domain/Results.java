@@ -19,8 +19,8 @@ public class Results {
     }
 
     private String convertResult(String res){
-        if(res.length() > 5){
-            return res.substring(0, 5);
+        if(res.length() > LadderConst.OUTPUT_RESULT_SIZE){
+            return res.substring(0, LadderConst.OUTPUT_RESULT_SIZE);
         }
 
         return res;

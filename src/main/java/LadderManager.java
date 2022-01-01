@@ -1,13 +1,9 @@
-import domain.Ladder;
-import domain.LadderResult;
-import domain.Person;
-import domain.Results;
+import domain.*;
 import view.LadderView;
 
 import java.util.Scanner;
 
 public class LadderManager {
-    private static final String GAME_END = "춘식이";
     private final Scanner sc = new Scanner(System.in);
     private LadderView ladderView;
 
@@ -29,7 +25,7 @@ public class LadderManager {
     public void inputLadderResult(){
         String inputResult;
 
-        while(!(inputResult = inputName()).equals(GAME_END)){
+        while(!(inputResult = inputName()).equals(LadderConst.GAME_END)){
             ladderView.printResult(inputResult);
         }
 

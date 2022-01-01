@@ -1,6 +1,6 @@
 package domain;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +18,7 @@ public class LadderResult {
     public String findResult(String name){
         int index = person.getPerson().indexOf(name);
         if(index < 0){
-            return "Not Found";
+            return "결과를 찾을 수 없습니다.";
         }
         int resultIndex = ladder.ladderResult(index);
 
@@ -26,7 +26,7 @@ public class LadderResult {
     }
 
     public Map<String, String> findAllResult(){
-        Map<String, String> resultMap = new HashMap<>();
+        Map<String, String> resultMap = new LinkedHashMap<>();
 
         for (String name : person.getPerson()) {
             resultMap.put(name, findResult(name));
