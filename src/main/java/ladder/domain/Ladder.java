@@ -6,7 +6,7 @@ import static util.LadderUtil.*;
 public class Ladder {
     private List<String> names;
     private long peopleCount, height;
-    private Line[] lineStatus;
+    private List<Line> lineStatus;
 
     public Ladder() {
     }
@@ -24,7 +24,7 @@ public class Ladder {
         return height;
     }
 
-    public Line[] getLineStatus() {
+    public List<Line> getLineStatus() {
         return lineStatus;
     }
 
@@ -65,10 +65,10 @@ public class Ladder {
 
     public void initLine() {
 
-        lineStatus = new Line[(int) this.height];
+        lineStatus = new ArrayList<Line>() ;
         for(int i = 0 ; i < height ; i++) {
-            lineStatus[i] = new Line();
-            lineStatus[i].value = new ArrayList<Long>();
+            lineStatus.add(new Line());
+            lineStatus.get(i).value = new ArrayList<Long>();
         }
 
     }
@@ -76,15 +76,15 @@ public class Ladder {
     private void checkDeletion(int line, int column){
 
         //if line inserted sequencial order, delete.
-        while(column + 1 < lineStatus[line].value.size() && lineStatus[line].value.get(column) + 1 == lineStatus[line].value.get(column + 1)){
-            lineStatus[line].value.remove(column + 1);
+        while(column + 1 < lineStatus.get(line).value.size() && lineStatus.get(line).value.get(column) + 1 == lineStatus.get(line).value.get(column + 1)){
+            lineStatus.get(line).value.remove(column + 1);
         }
 
     }
 
     private void validUpdateLine(int line){
 
-        for(int i = lineStatus[line].value.size() - 2 ; i >= 0 ; i--){
+        for(int i = lineStatus.get(line).value.size() - 2 ; i >= 0 ; i--){
             checkDeletion(line, i);
         }
 
@@ -93,10 +93,10 @@ public class Ladder {
     private void insertLine(int line, int lineSize){
 
         for(int i = 0 ; i < lineSize ; i++) {
-            lineStatus[line].value.add((long) rd.nextInt((int) peopleCount - 1));
+            lineStatus.get(line).value.add((long) rd.nextInt((int) peopleCount - 1));
         }
 
-        lineStatus[line].value.sort(Long::compareTo);
+        lineStatus.get(line).value.sort(Long::compareTo);
 
     }
 

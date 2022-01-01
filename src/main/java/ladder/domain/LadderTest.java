@@ -4,7 +4,8 @@ package ladder.domain;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 
-import java.awt.*;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,11 +32,11 @@ public class LadderTest {
         ladderObject.shuffle();
 
 
-        Line[] lineStatus = ladderObject.getLineStatus();
+        List<Line> lineStatus = ladderObject.getLineStatus();
 
         for(int i = 0 ; i < height ; i++){
-            for(int j = 0 ; j < lineStatus[i].value.size() - 1 ; j++){
-                assertTrue(lineStatus[i].value.get(j) + 1 != lineStatus[i].value.get(j+1));
+            for(int j = 0 ; j < lineStatus.get(i).value.size() - 1 ; j++){
+                assertTrue(lineStatus.get(i).value.get(j) + 1 != lineStatus.get(i).value.get(j+1));
             }
         }
     }

@@ -15,7 +15,7 @@ public class LadderView {
 
     private List<String> names;
     private Long peopleCount, height;
-    private Line[] lineStatus;
+    private List<Line> lineStatus;
 
     public LadderView(Ladder ladderObject) {
         this.ladderObject = ladderObject;
@@ -52,7 +52,7 @@ public class LadderView {
         int lineIdx = 0;
         for(int j = 0 ; j < peopleCount ; j++) {
             sb.append("|");
-            sb.append( (lineIdx < lineStatus[line].value.size() && lineStatus[line].value.get(lineIdx) == j ? "-" : " ").repeat(GAP) );
+            sb.append( (lineIdx < lineStatus.get(line).value.size() && lineStatus.get(line).value.get(lineIdx) == j ? "-" : " ").repeat(GAP) );
 
             //updating lineIdx
             lineIdx = updateLineIdx(line, j, lineIdx);
@@ -66,7 +66,7 @@ public class LadderView {
     private int updateLineIdx(int line, int column, int lineIdx) {
 
         //lineIdx 변수 갱신
-        while(lineIdx < lineStatus[line].value.size() && lineStatus[line].value.get(lineIdx) == column ) {
+        while(lineIdx < lineStatus.get(line).value.size() && lineStatus.get(line).value.get(lineIdx) == column ) {
             lineIdx++;
         }
         return lineIdx;
