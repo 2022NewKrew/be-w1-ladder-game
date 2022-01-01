@@ -1,20 +1,20 @@
 package laddergame.view.input;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-public class InputArrayListString implements Input<ArrayList<String>> {
+public class InputStringList implements Input<List<String>> {
     private final String DELIMITER = ",";
 
-    public InputArrayListString() {
+    public InputStringList() {
     }
 
-    public ArrayList<String> getInputValue() {
+    public List<String> getInputValue() {
         String inputValue = scanner.nextLine();
         return makeArrayList(inputValue);
     }
 
-    private ArrayList<String> makeArrayList(String inputValue) {
+    private List<String> makeArrayList(String inputValue) {
         return Arrays.asList(inputValue.split(DELIMITER));
     }
 }

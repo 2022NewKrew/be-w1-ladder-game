@@ -4,13 +4,13 @@ import laddergame.domain.Ladder;
 import laddergame.dto.LadderGameInfo;
 import laddergame.view.LadderGameView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class LadderGame {
     private LadderGameView view;
     private LadderGameInfo gameInfo;
     private Ladder ladder;
-    private ArrayList<String> people;
+    private List<String> people;
 
     public LadderGame() {
         view = new LadderGameView();

@@ -1,15 +1,15 @@
 package laddergame.view.output;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class PeopleView {
     private final int MAX_NAME_LENGTH = 5;
     private final String LEFT_MARGIN = "  ";
     private final String BLANK = " ";
 
-    private ArrayList<String> people;
+    private List<String> people;
 
-    public PeopleView(ArrayList<String> people) {
+    public PeopleView(List<String> people) {
         this.people = people;
     }
 

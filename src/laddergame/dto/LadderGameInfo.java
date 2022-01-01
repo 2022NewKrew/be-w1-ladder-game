@@ -1,17 +1,17 @@
 package laddergame.dto;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class LadderGameInfo {
-    private ArrayList<String> peopleNames;
+    private List<String> peopleNames;
     private Integer ladderHeight;
 
-    public LadderGameInfo(ArrayList<String> peopleNames, Integer ladderHeight) {
+    public LadderGameInfo(List<String> peopleNames, Integer ladderHeight) {
         this.peopleNames = peopleNames;
         this.ladderHeight = ladderHeight;
     }
 
-    public ArrayList<String> getPeopleNames() {
+    public List<String> getPeopleNames() {
         return peopleNames;
     }
 
