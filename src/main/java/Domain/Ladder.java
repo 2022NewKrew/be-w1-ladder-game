@@ -22,7 +22,7 @@ public class Ladder {
         this.height = height;
         this.manCount = manCount;
         this.ladderRows = new LadderRows(height, manCount);
-        this.ladderDestinations = new LadderDestinations(this.ladderRows);
+        this.ladderDestinations = new LadderDestinations(this.ladderRows, manCount);
     }
 
 

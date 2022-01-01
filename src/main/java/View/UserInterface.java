@@ -130,7 +130,7 @@ public class UserInterface {
             int mid = player.length() / 2;
             sb.replace(cursor - mid, cursor - mid + player.length(), player);
         }
-        System.out.print(sb.toString());
+        System.out.println(sb);
     }
 
     public void printResults(ResultList resultList) {

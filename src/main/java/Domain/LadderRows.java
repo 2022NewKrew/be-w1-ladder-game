@@ -34,9 +34,9 @@ public class LadderRows implements Iterable<LadderRow> {
         return dst;
     }
 
-    List<LadderDestination> makeLadderDestinations() {
+    List<LadderDestination> makeLadderDestinations(int manCount) {
         List<LadderDestination> ladderDestinations = new ArrayList<>();
-        for (int i = 0; i < ladderRows.size(); i++)
+        for (int i = 0; i < manCount; i++)
             ladderDestinations.add(new LadderDestination(i, calDst(i)));
         return ladderDestinations;
     }
