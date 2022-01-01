@@ -13,5 +13,6 @@ public class Main {
 
         //set view of ladder
         ladderObject.ladderView.display(); //ladder객체에서 연결된 view객체로 이동 후 출력.
+        ladderObject.ladderView.printResult();
     }
 }

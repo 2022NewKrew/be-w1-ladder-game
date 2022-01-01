@@ -2,6 +2,8 @@ package ladder.domain;
 
 import ladder.view.LadderView;
 
+import javax.print.attribute.standard.PresentationDirection;
+import java.nio.channels.ClosedByInterruptException;
 import java.util.*;
 import static util.LadderUtil.*;
 
@@ -10,7 +12,7 @@ public class Ladder {
     private long peopleCount, height;
     private List<Line> lineStatus;
     private List<String> destination;
-
+    private HashMap<String, String> result = new HashMap<>();
 
     public LadderView ladderView; //ladderView를 ladder객체 내부에서 관리하도록 수정
 
@@ -19,7 +21,10 @@ public class Ladder {
         ladderView.setValue(nameAry, destinationAry, height);
         initLine();
         shuffle();
+        makeResult();
     }
+
+
 
     //getter
     public List<String> getNames() {
@@ -40,6 +45,9 @@ public class Ladder {
 
     public List<Line> getLineStatus() {
         return lineStatus;
+    }
+    public HashMap<String, String> getResult() {
+        return result;
     }
 
     //setter
@@ -96,8 +104,16 @@ public class Ladder {
             lineStatus.get(line).value.add((long) rd.nextInt((int) peopleCount - 1));
         }
 
+        //make lineStatus unique.
         lineStatus.get(line).value.sort(Long::compareTo);
 
+        List<Long> newLineStatus = new ArrayList<>();
+        for(int i = 0 ; i < lineStatus.get(line).value.size() ; i++){
+            if(i == 0 || !(lineStatus.get(line).value.get(i - 1).equals(lineStatus.get(line).value.get(i)))){
+                newLineStatus.add(lineStatus.get(line).value.get(i));
+            }
+        }
+        lineStatus.get(line).value = newLineStatus;
     }
 
 
@@ -112,7 +128,23 @@ public class Ladder {
 
     }
 
+    private void updateState(int line, ArrayList<String> resultString){
+        for(int i = 0 ; i < lineStatus.get(line).value.size() ; i++){
+            int targetColumn = Math.toIntExact(lineStatus.get(line).value.get(i));
+            Collections.swap(resultString, targetColumn, targetColumn + 1);
+        }
+    }
 
+    private void makeResult(){
+        ArrayList<String> resultString = new ArrayList<>(names);
+        for(int i = 0 ; i < height ; i++){
+            updateState(i, resultString);
+        }
+
+        for(int i = 0 ; i < resultString.size() ; i++){
+            result.put(resultString.get(i), destination.get(i));
+        }
+    }
 
 
 

@@ -12,8 +12,11 @@ import static util.LadderUtil.*;
 public class LadderView {
 
     private final int GAP = 5;
+    private final String endString = "춘식이";
 
     public Ladder ladderObject;
+
+    private boolean printFinished = false;
 
     public LadderView(Ladder ladderObject) {
         this.ladderObject = ladderObject;
@@ -118,6 +121,47 @@ public class LadderView {
             lineIdx++;
         }
         return lineIdx;
+    }
+
+    private void printAll(){
+        for(int i = 0 ; i < ladderObject.getNames().size() ; i++){
+            String targetName = ladderObject.getNames().get(i);
+            System.out.println(targetName + " : " + ladderObject.getResult().get(targetName));
+        }
+    }
+
+    private void printTarget(String targetName){
+        //all이라는 참여자가 있는경우 참여자 이름만 검색하도록 함.
+        if(targetName.equals("all") && !ladderObject.getNames().contains("all")){
+            printAll();
+            return;
+        }
+
+        if(targetName.equals(endString)){
+            printFinished = true;
+            return;
+        }
+
+        if(ladderObject.getResult().get(targetName) == null){
+           System.out.println("참여자가 아닙니다.");
+           return;
+        }
+
+        System.out.println(ladderObject.getResult().get(targetName));
+    }
+
+
+    public void printResult(){
+        String targetName;
+        Scanner sc = new Scanner(System.in);
+
+        while(!printFinished) {
+            System.out.println("결과를 보고 싶은 사람은?");
+            targetName = sc.nextLine();
+            System.out.println("실행 결과");
+
+            printTarget(targetName);
+        }
     }
 
 }
