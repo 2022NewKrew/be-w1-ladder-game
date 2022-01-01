@@ -6,14 +6,12 @@ public class Ladder {
     private final List<Line> lines = new ArrayList<>();
 
     public Ladder(int numOfPeople, int height) {
-        int width = 2 * numOfPeople - 1;
-
-        createLines(height, width);
+        createLines(height, numOfPeople);
     }
 
-    private void createLines(int height, int width) {
+    private void createLines(int height, int numOfPeople) {
         for (int i = 0; i < height; i++) {
-            Line line = new Line(width);
+            Line line = new Line(numOfPeople);
             lines.add(line);
         }
     }

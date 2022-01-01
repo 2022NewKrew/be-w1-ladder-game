@@ -3,33 +3,25 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Line {
-    private static final char VERTICAL_LINE = '|';
-    private static final char HORIZONTAL_LINE = '-';
-    private static final char EMPTY_LINE = ' ';
     private static final Random random = new Random();
 
-    private List<Character> points;
+    private final List<Point> points = new ArrayList<>();
 
-    public Line(int width) {
-        createLine(width);
+    public Line(int numOfPeople) {
+        int pointCnt = numOfPeople - 1;
+        createLine(pointCnt);
     }
 
-    private void createLine(int width) {
-        points = new ArrayList<>();
-        points = IntStream.range(0, width)
-                .mapToObj(this::getPointChar)
-                .collect(Collectors.toList());
+    private void createLine(int pointCnt) {
+        for (int i = 0; i < pointCnt; i++) {
+            points.add(new Point(random.nextBoolean()));
+        }
     }
 
-    private char getPointChar(int index) {
-        if (index % 2 == 0) return VERTICAL_LINE;
-        if (random.nextBoolean()) return HORIZONTAL_LINE;
-        return EMPTY_LINE;
-    }
-
-    public List<Character> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 }
