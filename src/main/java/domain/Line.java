@@ -8,7 +8,7 @@ public class Line {
     private final List<Point> points = new ArrayList<>();
 
     public Line(int numOfPeople) {
-        if(numOfPeople<1) {
+        if (numOfPeople < 1) {
             throw new IllegalArgumentException();
         }
 
@@ -26,8 +26,8 @@ public class Line {
         }
     }
 
-    private Point createPoint(boolean isPrevStep){
-        if(isPrevStep) return new Point(false);
+    private Point createPoint(boolean isPrevStep) {
+        if (isPrevStep) return new Point(false);
 
         return new Point(random.nextBoolean());
     }

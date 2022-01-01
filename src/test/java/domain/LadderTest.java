@@ -11,20 +11,20 @@ class LadderTest {
     @Test
     void createWrongNumOfPeople() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Ladder(0,  3));
+                .isThrownBy(() -> new Ladder(0, 3));
     }
 
     @DisplayName("높이 1보다 작으면 예외 발생")
     @Test
     void createWrongHeight() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Ladder(3,  0));
+                .isThrownBy(() -> new Ladder(3, 0));
     }
 
     @DisplayName("lines를 수정하면 예외 발생")
     @Test
     void getLines() {
-        Ladder ladder = new Ladder(3,4);
+        Ladder ladder = new Ladder(3, 4);
 
         assertThatThrownBy(() -> ladder.getLines().remove(0))
                 .isInstanceOf(UnsupportedOperationException.class);
