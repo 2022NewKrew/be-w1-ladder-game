@@ -71,7 +71,7 @@ public class Ladder {
 
 
 
-    public void initLine() {
+    private void initLine() {
 
         lineStatus = new ArrayList<Line>() ;
         for(int i = 0 ; i < height ; i++) {
@@ -117,7 +117,7 @@ public class Ladder {
     }
 
 
-    public void shuffle() {
+    private void shuffle() {
 
 
         for(int i = 0 ; i < height ; i++) {
