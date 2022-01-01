@@ -14,7 +14,7 @@ public class LadderTest {
 
 
     @Test
-    void 이름에_공백이_포함되면_예외가_발생한다() throws Exception {
+    void 이름에_공백이_포함되면_예외가_발생한다(){
         //given
         String nameSample = "a,ab,abc,abcd,   abcde";
         Long height = Long.valueOf(10);
@@ -31,7 +31,7 @@ public class LadderTest {
     }
 
     @Test
-    void 연속적인_사다리_선_제거_테스트() throws Exception {
+    void 연속적인_사다리_선_제거_테스트() {
 
         //given
         String nameAry = "a,ab,abc,abcd,abcde,a,b,c,d,e,a,b,c,d,e";
@@ -54,7 +54,7 @@ public class LadderTest {
     }
 
     @Test
-    void 콤마를_기준으로_참여자수를_나눈다() throws Exception{
+    void 콤마를_기준으로_참여자수를_나눈다() {
         //given
         String nameAry = "a,ab,abc,abcd"; //공백발생 예외
         Long height = Long.valueOf(10);
@@ -68,7 +68,7 @@ public class LadderTest {
     }
 
     @Test
-    void 높이가_0_미만이면_예외가_발생한다() throws Exception{
+    void 높이가_0_미만이면_예외가_발생한다() {
         //given
         String nameAry = "a,ab,abc,abcd";
         Long height = Long.valueOf(0); //높이가 0인 예외사항

@@ -15,13 +15,13 @@ public class LadderView {
 
     public Ladder ladderObject;
 
-    public LadderView(Ladder ladderObject) throws Exception {
+    public LadderView(Ladder ladderObject) {
         this.ladderObject = ladderObject;
     };
 
 
 
-    public void setValue(String fullName, Long height) throws Exception {
+    public void setValue(String fullName, Long height) {
 
         inputValidationCheckName(fullName);
         inputValidationCheckHeight(height);
@@ -43,18 +43,18 @@ public class LadderView {
         return new Scanner(System.in).nextLong();
     }
 
-    private void inputValidationCheckHeight(Long height) throws Exception {
+    private void inputValidationCheckHeight(Long height){
 
         if (height <= 0) {
-            throw new Exception("HeightBelowZero");
+            throw new IllegalArgumentException("HeightBelowZero");
         }
     }
 
-    private void inputValidationCheckName(String fullName) throws Exception {
+    private void inputValidationCheckName(String fullName) {
         List<String> nameTemp =  Arrays.asList(fullName.split(","));
         for(int i = 0 ; i < nameTemp.size() ; i++){
             if(nameTemp.get(i).length() <= 0 || nameTemp.get(i).contains(" ")){ //공백이 존재하거나 길이가 0인경우 예외처리
-                throw new Exception("Space_Inside_Name");
+                throw new IllegalArgumentException("Space_Inside_Name");
             }
         }
 
