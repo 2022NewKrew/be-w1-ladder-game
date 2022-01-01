@@ -7,10 +7,10 @@ public class Ladder {
     private final List<LadderLine> ladder;
 
     public Ladder(List<LadderLine> ladder) {
-        this.ladder = ladder;
+        this.ladder = Collections.unmodifiableList(ladder);
     }
 
     public List<LadderLine> getLadder() {
-        return Collections.unmodifiableList(ladder);
+        return ladder;
     }
 }
