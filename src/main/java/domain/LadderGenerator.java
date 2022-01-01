@@ -33,8 +33,6 @@ public class LadderGenerator {
 
     private Piece createRowOrSpace() {
         Random random = new Random();
-        System.out.println("안녕하세요");
-        System.out.print(random.nextBoolean());
         return (random.nextBoolean()) ? new Piece(true) : new Piece(false);
     }
 }
