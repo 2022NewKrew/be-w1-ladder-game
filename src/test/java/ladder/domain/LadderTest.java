@@ -87,4 +87,24 @@ public class LadderTest {
                 Ladder ladderObject = new Ladder(nameAry, destination, height);
         }).isInstanceOf(Exception.class).hasMessageContaining("HeightBelowZero");
     }
+
+    @Test
+    void 모든_참가자는_사다리_결과를_갖고있다() {
+        //given
+        String nameAry = "a,ab,abc,abcd,abcde";
+        String destination = "1,2,3,4,5";
+        Long height = Long.valueOf(1000000);
+
+
+        //when
+        Ladder ladderObject = new Ladder(nameAry, destination, height);
+
+
+        //then
+        for(int i = 0 ; i < ladderObject.getNames().size() ; i++){
+            String name = ladderObject.getNames().get(i);
+            assertTrue(ladderObject.getDestination().contains(  ladderObject.getResult().get(name))  );
+        }
+    }
+
 }
