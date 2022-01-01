@@ -1,46 +1,63 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Person;
+import domain.*;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.List;
+import java.util.Map;
 
 public class LadderView {
     private static final String CREATE_LINE = "-----";
     private static final String BLANK_LINE = "     ";
     private static final String STICK = "|";
-    private final Ladder ladder;
-    private final Person person;
+    private static final String PRINT_ALL = "all";
 
-    public LadderView(Ladder ladder, Person person) {
-        this.ladder = ladder;
-        this.person = person;
+    private final LadderResult ladderResult;
+
+    public LadderView(LadderResult ladderResult) {
+        this.ladderResult = ladderResult;
     }
 
-    public void view(){
-        printUser();
-        printLadder();
-    }
-
-    private void printUser(){
+    public void printLadder(){
         StringBuilder sb = new StringBuilder();
 
-        person.getPerson()
-                .forEach(name -> sb.append(StringUtils.center(name, 5)).append(" "));
+        sb.append(printList(ladderResult.getPerson()));
 
-        System.out.println(sb);
-    }
-
-    private void printLadder(){
-        StringBuilder sb = new StringBuilder();
-
-        for(Line line : ladder.getLadder()){
+        for(Line line : ladderResult.getLadder()){
             sb.append("  " + STICK);
             sb.append(printLine(line));
             sb.append("\n");
         }
+        sb.append(printList(ladderResult.getResult()));
+        System.out.print(sb);
+    }
 
-        System.out.println(sb);
+    public void printResult(String resultInput){
+        String result = ladderResult.findResult(resultInput);
+        if(resultInput.equals(PRINT_ALL)){
+            result = printAllResult();
+        }
+
+        System.out.println(result);
+    }
+
+    private String printAllResult(){
+        StringBuilder sb = new StringBuilder();
+
+        ladderResult.findAllResult()
+                .forEach((name, result) -> sb.append(String.format("%s : %s", name, result))
+                        .append("\n"));
+
+        return sb.toString();
+    }
+
+    private String printList(List<String> list){
+        StringBuilder sb = new StringBuilder();
+
+        list.forEach(str -> sb.append(StringUtils.center(str, 5)).append(" "));
+        sb.append("\n");
+
+        return sb.toString();
     }
 
     private String printLine(Line line){
@@ -48,7 +65,6 @@ public class LadderView {
         line.getLine()
                 .forEach(l -> sb.append(l ? CREATE_LINE : BLANK_LINE)
                         .append(STICK));
-
         return sb.toString();
     }
 }

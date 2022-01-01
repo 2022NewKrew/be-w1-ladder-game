@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Line {
     private final List<Boolean> line;
@@ -18,14 +19,15 @@ public class Line {
         return line;
     }
 
-    public boolean randomValue(int index){
-        if(collisionCheck(index))
+    private boolean randomValue(int index){
+        if(checkCollision(index))
             return false;
 
-        return (int)(Math.random()*2) == 1;
+        Random random = new Random();
+        return random.nextBoolean();
     }
 
-    private boolean collisionCheck(int index){
+    private boolean checkCollision(int index){
         return index > 0 && line.get(index - 1);
     }
 }

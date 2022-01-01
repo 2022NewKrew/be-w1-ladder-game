@@ -10,7 +10,7 @@ public class Person {
         person = new ArrayList<>();
 
         for (String name : nameList) {
-            person.add(nameLengthCheck(name));
+            person.add(convertName(name));
         }
     }
 
@@ -18,7 +18,7 @@ public class Person {
         return person;
     }
 
-    private String nameLengthCheck(String name){
+    private String convertName(String name){
         if(name.length() > 5){
             return name.substring(0, 5);
         }

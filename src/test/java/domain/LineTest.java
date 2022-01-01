@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
@@ -13,9 +15,10 @@ class LineTest {
         int numOfPerson = 5;
         Line line = new Line(numOfPerson);
 
+        List<Boolean> lineList = line.getLine();
         for(int i=0; i<numOfPerson-1; i++){
-            if(line.getLine().get(i)){
-                assertFalse(line.randomValue(i + 1));
+            if(lineList.get(i)){
+                assertFalse(lineList.get(i+1));
             }
         }
     }
