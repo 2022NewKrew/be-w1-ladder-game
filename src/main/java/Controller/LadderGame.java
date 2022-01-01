@@ -13,8 +13,8 @@ public class LadderGame {
         int playerNums = playerRepository.getPlayers().size();
         int maximumLadderHeight = InputView.inputMaximumLadderHeight();
 
-        LadderGenerator ladderGenerator = new LadderGenerator();
-        Ladder ladder = ladderGenerator.createLadder(playerNums, maximumLadderHeight);
+        LadderGenerator ladderGenerator = new LadderGenerator(playerNums, maximumLadderHeight);
+        Ladder ladder = ladderGenerator.createLadder();
 
         OutputView.printPlayers(playerRepository);
         OutputView.printLadder(ladder);

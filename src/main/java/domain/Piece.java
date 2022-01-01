@@ -1,17 +1,13 @@
 package domain;
 
-public enum Piece {
-    EMPTY(" "),
-    VERTICAL("|"),
-    HORIZONTAL("-");
+public class Piece {
+    private final Boolean piece;
 
-    private final String value;
-
-    Piece(String value) {
-        this.value = value;
+    public Piece(Boolean piece) {
+        this.piece = piece;
     }
 
-    public String getValue() {
-        return value;
+    public Boolean getPiece() {
+        return piece;
     }
 }
