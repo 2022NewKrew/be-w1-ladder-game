@@ -8,12 +8,17 @@ public class Line {
     private final List<Point> points = new ArrayList<>();
 
     public Line(int numOfPeople) {
+        if(numOfPeople<1) {
+            throw new IllegalArgumentException();
+        }
+
         int pointCnt = numOfPeople - 1;
         createLine(pointCnt);
     }
 
     private void createLine(int pointCnt) {
         boolean isPrevStep = false;
+
         for (int i = 0; i < pointCnt; i++) {
             Point point = createPoint(isPrevStep);
             points.add(point);
