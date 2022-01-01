@@ -5,6 +5,7 @@ import ladder.domain.Line;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import static util.LadderUtil.*;
 
@@ -32,13 +33,13 @@ public class LadderView {
 
     public static String inputName(){
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return sc.nextLine();
+        return new Scanner(System.in).nextLine();
     }
 
     public static Long inputHeight(){
 
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return sc.nextLong();
+        return new Scanner(System.in).nextLong();
     }
 
     private void inputValidationCheck(String fullName, Long height) throws Exception {
@@ -77,6 +78,7 @@ public class LadderView {
 
     private void printLine(int line){
 
+        StringBuilder sb = new StringBuilder();
         int lineIdx = 0;
         for(int j = 0 ; j < ladderObject.getPeopleCount() ; j++) {
             sb.append("|");

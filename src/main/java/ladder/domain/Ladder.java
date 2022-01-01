@@ -14,7 +14,7 @@ public class Ladder {
 
     public Ladder(String nameAry, long height) throws Exception {
         ladderView = new LadderView(this);
-        ladderView.setValue(nameAry, heig
+        ladderView.setValue(nameAry, height);
         initLine();
         shuffle();
     }
