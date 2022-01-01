@@ -12,7 +12,7 @@ public class Ladder {
 
     public LadderView ladderView; //ladderView를 ladder객체 내부에서 관리하도록 수정
 
-    public Ladder() {
+    public Ladder() throws Exception {
         ladderView = new LadderView(this);
     }
 
@@ -29,44 +29,23 @@ public class Ladder {
         return height;
     }
 
+    public void setNames(List<String> names) {
+        this.names = names;
+    }
+
+    public void setPeopleCount(long peopleCount) {
+        this.peopleCount = peopleCount;
+    }
+
+    public void setHeight(long height) {
+        this.height = height;
+    }
+
     public List<Line> getLineStatus() {
         return lineStatus;
     }
 
-    public String inputName(){
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return sc.nextLine();
-    }
 
-    public Long inputHeight(){
-
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return sc.nextLong();
-    }
-
-    private void inputValidationCheck(String fullName, Long height) throws Exception {
-        List<String> nameTemp =  Arrays.asList(fullName.split(","));
-        for(int i = 0 ; i < nameTemp.size() ; i++){
-            if(nameTemp.get(i).length() <= 0 || nameTemp.get(i).contains(" ")){ //공백이 존재하거나 길이가 0인경우 예외처리
-                throw new Exception();
-            }
-        }
-
-        if(height <= 0){
-            throw new Exception();
-        }
-
-
-    }
-
-    public void setValue(String fullName, Long height) throws Exception {
-
-        inputValidationCheck(fullName, height);
-
-        names = Arrays.asList(fullName.split(","));
-        this.peopleCount = names.size();
-        this.height = height;
-    }
 
     public void initLine() {
 

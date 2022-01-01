@@ -10,7 +10,6 @@ public class Main {
     public static void main(String[] args) throws Exception {
         //set ladder
         Ladder ladderObject = new Ladder();
-        ladderObject.setValue(ladderObject.inputName(), ladderObject.inputHeight());
         ladderObject.initLine();
         ladderObject.shuffle();
 

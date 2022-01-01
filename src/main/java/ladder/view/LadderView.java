@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static util.LadderUtil.*;
@@ -13,28 +14,55 @@ public class LadderView {
 
     public Ladder ladderObject;
 
-    private List<String> names;
-    private Long peopleCount, height;
-    private List<Line> lineStatus;
-
-    public LadderView(Ladder ladderObject) {
+    public LadderView(Ladder ladderObject) throws Exception {
         this.ladderObject = ladderObject;
+        setValue(inputName(), inputHeight());
     };
 
-    private void ladderViewInit(){
-        this.names = ladderObject.getNames();
-        this.peopleCount = ladderObject.getPeopleCount();
-        this.height = ladderObject.getHeight();
-        this.lineStatus = ladderObject.getLineStatus();
+
+
+    public void setValue(String fullName, Long height) throws Exception {
+
+        inputValidationCheck(fullName, height);
+
+        ladderObject.setNames(Arrays.asList(fullName.split(",")));
+        ladderObject.setPeopleCount(ladderObject.getNames().size());
+        ladderObject.setHeight(height);
+    }
+
+
+    public String inputName(){
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        return sc.nextLine();
+    }
+
+    public Long inputHeight(){
+
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return sc.nextLong();
+    }
+
+    private void inputValidationCheck(String fullName, Long height) throws Exception {
+        List<String> nameTemp =  Arrays.asList(fullName.split(","));
+        for(int i = 0 ; i < nameTemp.size() ; i++){
+            if(nameTemp.get(i).length() <= 0 || nameTemp.get(i).contains(" ")){ //공백이 존재하거나 길이가 0인경우 예외처리
+                throw new Exception();
+            }
+        }
+
+        if(height <= 0){
+            throw new Exception();
+        }
+
+
     }
 
 
     public void display() {
-        ladderViewInit();
 
         System.out.println("실행결과");
         printName();
-        for(int i = 0 ; i < height ; i++) {
+        for(int i = 0 ; i < ladderObject.getHeight() ; i++) {
             System.out.print(" ".repeat((GAP + 1) / 2));
             printLine(i); //ith height에 대한 정보를 출력
             System.out.print("\n");
@@ -42,8 +70,8 @@ public class LadderView {
     }
 
     private void printName(){
-        for(int i = 0 ; i < names.size() ; i++){
-            System.out.printf("%6s", names.get(i));
+        for(int i = 0 ; i < ladderObject.getNames().size() ; i++){
+            System.out.printf("%6s", ladderObject.getNames().get(i));
         }
         System.out.print("\n");
     }
@@ -51,9 +79,9 @@ public class LadderView {
     private void printLine(int line){
 
         int lineIdx = 0;
-        for(int j = 0 ; j < peopleCount ; j++) {
+        for(int j = 0 ; j < ladderObject.getPeopleCount() ; j++) {
             sb.append("|");
-            sb.append( (lineIdx < lineStatus.get(line).value.size() && lineStatus.get(line).value.get(lineIdx) == j ? "-" : " ").repeat(GAP) );
+            sb.append( (lineIdx < ladderObject.getLineStatus().get(line).value.size() && ladderObject.getLineStatus().get(line).value.get(lineIdx) == j ? "-" : " ").repeat(GAP) );
 
             //updating lineIdx
             lineIdx = updateLineIdx(line, j, lineIdx);
@@ -67,7 +95,7 @@ public class LadderView {
     private int updateLineIdx(int line, int column, int lineIdx) {
 
         //lineIdx 변수 갱신
-        while(lineIdx < lineStatus.get(line).value.size() && lineStatus.get(line).value.get(lineIdx) == column ) {
+        while(lineIdx < ladderObject.getLineStatus().get(line).value.size() && ladderObject.getLineStatus().get(line).value.get(lineIdx) == column ) {
             lineIdx++;
         }
         return lineIdx;

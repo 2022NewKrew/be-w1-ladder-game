@@ -17,7 +17,7 @@ public class LadderTest {
         Ladder ladderObject = new Ladder();
         String nameAry = "a,ab,abc,abcd,abcde";
         Long height = Long.valueOf(10);
-        ladderObject.setValue(nameAry, height);
+       // ladderObject.setValue(nameAry, height);
 
         assertTrue(ladderObject.getPeopleCount() == 5);
     }
@@ -27,7 +27,7 @@ public class LadderTest {
         Ladder ladderObject = new Ladder();
         String nameAry = "a,ab,abc,abcd,abcde,a,b,c,d,e,a,b,c,d,e";
         Long height = Long.valueOf(100000); //테스트를 위해 높은 height로 지정
-        ladderObject.setValue(nameAry, height);
+       // ladderObject.setValue(nameAry, height);
         ladderObject.initLine();
         ladderObject.shuffle();
 
@@ -50,7 +50,7 @@ public class LadderTest {
         boolean isException = false;
 
         try{
-            ladderObject.setValue(nameAry, height);
+           // ladderObject.setValue(nameAry, height);
         } catch(Exception e){
             isException = true;
         }
@@ -67,7 +67,7 @@ public class LadderTest {
         boolean isException = false;
 
         try{
-            ladderObject.setValue(nameAry, height);
+    //        ladderObject.setValue(nameAry, height);
         } catch(Exception e){
             isException = true;
         }
