@@ -1,14 +1,22 @@
 package ladder.domain;
 
+import ladder.view.LadderView;
+
 import java.util.*;
 import static util.LadderUtil.*;
 
 public class Ladder {
     private List<String> names;
     private long peopleCount, height;
-    private Line[] lineStatus;
+    private List<Line> lineStatus;
 
-    public Ladder() {
+    public LadderView ladderView; //ladderView를 ladder객체 내부에서 관리하도록 수정
+
+    public Ladder(String nameAry, long height) {
+        ladderView = new LadderView(this);
+        ladderView.setValue(nameAry, height);
+        initLine();
+        shuffle();
     }
 
     //getter
@@ -24,51 +32,30 @@ public class Ladder {
         return height;
     }
 
-    public Line[] getLineStatus() {
-        return lineStatus;
+    public void setNames(List<String> names) {
+        this.names = names;
     }
 
-    public String inputName(){
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return sc.nextLine();
+    public void setPeopleCount(long peopleCount) {
+        this.peopleCount = peopleCount;
     }
 
-    public Long inputHeight(){
-
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return sc.nextLong();
-    }
-
-    private void inputValidationCheck(String fullName, Long height) throws Exception {
-        List<String> nameTemp =  Arrays.asList(fullName.split(","));
-        for(int i = 0 ; i < nameTemp.size() ; i++){
-            if(nameTemp.get(i).length() <= 0 || nameTemp.get(i).contains(" ")){ //공백이 존재하거나 길이가 0인경우 예외처리
-                throw new Exception();
-            }
-        }
-
-        if(height <= 0){
-            throw new Exception();
-        }
-
-
-    }
-
-    public void setValue(String fullName, Long height) throws Exception {
-
-        inputValidationCheck(fullName, height);
-
-        names = Arrays.asList(fullName.split(","));
-        this.peopleCount = names.size();
+    public void setHeight(long height) {
         this.height = height;
     }
 
+    public List<Line> getLineStatus() {
+        return lineStatus;
+    }
+
+
+
     public void initLine() {
 
-        lineStatus = new Line[(int) this.height];
+        lineStatus = new ArrayList<Line>() ;
         for(int i = 0 ; i < height ; i++) {
-            lineStatus[i] = new Line();
-            lineStatus[i].value = new ArrayList<Long>();
+            lineStatus.add(new Line());
+            lineStatus.get(i).value = new ArrayList<Long>();
         }
 
     }
@@ -76,15 +63,15 @@ public class Ladder {
     private void checkDeletion(int line, int column){
 
         //if line inserted sequencial order, delete.
-        while(column + 1 < lineStatus[line].value.size() && lineStatus[line].value.get(column) + 1 == lineStatus[line].value.get(column + 1)){
-            lineStatus[line].value.remove(column + 1);
+        while(column + 1 < lineStatus.get(line).value.size() && lineStatus.get(line).value.get(column) + 1 == lineStatus.get(line).value.get(column + 1)){
+            lineStatus.get(line).value.remove(column + 1);
         }
 
     }
 
     private void validUpdateLine(int line){
 
-        for(int i = lineStatus[line].value.size() - 2 ; i >= 0 ; i--){
+        for(int i = lineStatus.get(line).value.size() - 2 ; i >= 0 ; i--){
             checkDeletion(line, i);
         }
 
@@ -93,10 +80,10 @@ public class Ladder {
     private void insertLine(int line, int lineSize){
 
         for(int i = 0 ; i < lineSize ; i++) {
-            lineStatus[line].value.add((long) rd.nextInt((int) peopleCount - 1));
+            lineStatus.get(line).value.add((long) rd.nextInt((int) peopleCount - 1));
         }
 
-        lineStatus[line].value.sort(Long::compareTo);
+        lineStatus.get(line).value.sort(Long::compareTo);
 
     }
 
