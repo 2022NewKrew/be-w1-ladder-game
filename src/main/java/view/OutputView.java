@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public static void printPlayer(Player player) {
-        System.out.print(player.getName());
+        System.out.print(String.format("%5s", player.getName()));
     }
 
     public static void printLadder(Ladder ladder) {
