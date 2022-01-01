@@ -28,6 +28,7 @@ public class LadderGenerator {
         Stream.generate(this::createRowOrSpace)
                 .limit(playerNums - 1)
                 .forEachOrdered(pieces::add);
+//        .forEachOrdered(pieces::add);
         return new LadderLine(pieces);
     }
 
