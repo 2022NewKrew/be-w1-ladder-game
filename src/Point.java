@@ -1,11 +1,15 @@
 public class Point {
-    private final boolean step;
+    private boolean step;
 
     public Point(boolean step) {
         this.step = step;
     }
 
-    public boolean isStep(){
+    public boolean isStep() {
         return step;
+    }
+
+    public void removeStep() {
+        this.step = false;
     }
 }

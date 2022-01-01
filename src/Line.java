@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Line {
     private static final Random random = new Random();
@@ -19,6 +16,23 @@ public class Line {
         for (int i = 0; i < pointCnt; i++) {
             points.add(new Point(random.nextBoolean()));
         }
+        validatePoints();
+    }
+
+    private void validatePoints(){
+        for(int i=0; i< points.size(); i++){
+            checkLeftPoint(i);
+        }
+    }
+
+    private void checkLeftPoint(int index){
+        int leftIndex = index -1;
+        if(leftIndex < 0) return;
+        if(points.get(leftIndex).isStep()) updatePoint(index);
+    }
+
+    private void updatePoint(int index){
+        points.get(index).removeStep();
     }
 
     public List<Point> getPoints() {
