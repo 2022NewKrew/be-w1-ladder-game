@@ -17,11 +17,20 @@ public class LabelList {
         this.charLimit = charLimit;
         this.labelList = new ArrayList<>();
         while (stringTokenizer.hasMoreTokens()) {
-            this.labelList.add(stringTokenizer.nextToken());
+            String label = stringTokenizer.nextToken();
+            this.labelList.add(checkLabelSize(label));
         }
     }
 
     // 메소드
+    private String checkLabelSize(String label) {
+        if (label.length() > charLimit) {
+            System.out.println("이름 " + label + "의 길이가 " + charLimit + "글자를 초과하므로 " + charLimit + "자만 표시됩니다.");
+            return label.substring(0, charLimit);
+        }
+
+        return label;
+    }
     public int getEntryCount() {
         return labelList.size();
     }
@@ -30,32 +39,27 @@ public class LabelList {
         return labelList;
     }
 
-    public String centerString(String s, int size) {
-        if (s.length() == size) {
+    private String centerString(String s) {
+        if (s.length() == charLimit) {
             return s;
         }
 
-        if (s.length() > size) {
-            System.err.println("이름 " + s + "의 길이가 " + size + "글자를 초과하므로 " + size + "자만 표시됩니다.");
-            return s.substring(0, size);
-        }
-
-        int padLeft = (size - s.length()) / 2;
-        int padRight = (size - s.length() + 1) / 2;
+        int padLeft = (charLimit - s.length()) / 2;
+        int padRight = (charLimit - s.length() + 1) / 2;
         return " ".repeat(padLeft) + s + " ".repeat(padRight);
     }
 
     @Override
     public String toString() {
         return labelList.stream()
-                .map(s -> centerString(s, charLimit))
+                .map(this::centerString)
                 .collect(Collectors.joining(" "));
     }
 
     public String toString(int maxSize) {
         return labelList.stream()
                 .limit(maxSize)
-                .map(s -> centerString(s, charLimit))
+                .map(this::centerString)
                 .collect(Collectors.joining(" "));
     }
 }
