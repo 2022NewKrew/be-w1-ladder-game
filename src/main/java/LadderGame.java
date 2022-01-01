@@ -35,8 +35,6 @@ public class LadderGame {
         ladderService.makeLadder(heightInput, playersInput.size());
         playerService.makePlayerList(playersInput);
         resultService.makeResultList(resultInput, playersInput.size());
-
-
     }
 
     private void printData() {

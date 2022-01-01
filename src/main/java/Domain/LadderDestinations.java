@@ -7,8 +7,8 @@ public class LadderDestinations implements Iterable<LadderDestination> {
 
     List<LadderDestination> ladderDestinations;
 
-    public LadderDestinations(LadderRows ladderRows) {
-        ladderDestinations = ladderRows.makeLadderDestinations();
+    public LadderDestinations(LadderRows ladderRows, int manCount) {
+        ladderDestinations = ladderRows.makeLadderDestinations(manCount);
     }
 
     @Override

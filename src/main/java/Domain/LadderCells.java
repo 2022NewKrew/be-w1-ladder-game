@@ -1,5 +1,6 @@
 package Domain;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -9,6 +10,7 @@ public class LadderCells implements Iterable<LadderCell> {
     List<LadderCell> ladderCells;
 
     public LadderCells(int cellCount) {
+        ladderCells = new ArrayList<>();
         for (int i = 0; i < cellCount; i++)
             ladderCells.add(new LadderCell(decideHorizon(i)));
     }
