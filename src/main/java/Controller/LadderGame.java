@@ -10,7 +10,7 @@ public class LadderGame {
 
     public void run() {
         PlayerRepository playerRepository = new PlayerRepository(InputView.inputPlayerNames());
-        int playerNums = playerRepository.getPlayers().size();
+        int playerNums = playerRepository.getPlayerNums();
         int maximumLadderHeight = InputView.inputMaximumLadderHeight();
 
         LadderGenerator ladderGenerator = new LadderGenerator(playerNums, maximumLadderHeight);

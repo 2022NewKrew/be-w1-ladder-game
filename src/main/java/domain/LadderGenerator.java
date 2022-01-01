@@ -15,7 +15,7 @@ public class LadderGenerator {
     }
 
     public Ladder createLadder() {
-        List<LadderLine> ladder = new ArrayList<>();
+        List<LadderLine> ladder = new ArrayList<>(maximumLadderHeight);
         Stream.generate(this::createLadderLine)
                 .limit(maximumLadderHeight)
                 .forEach(ladder::add);
@@ -24,7 +24,7 @@ public class LadderGenerator {
 
 
     private LadderLine createLadderLine() {
-        List<Piece> pieces = new ArrayList<>();
+        List<Piece> pieces = new ArrayList<>(playerNums);
         Stream.generate(this::createRowOrSpace)
                 .limit(playerNums - 1)
                 .forEachOrdered(pieces::add);
