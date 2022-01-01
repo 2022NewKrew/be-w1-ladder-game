@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         //set ladder
-        Ladder ladderObject = new Ladder();
+        Ladder ladderObject = new Ladder(LadderView.inputName(), LadderView.inputHeight());
         ladderObject.initLine();
         ladderObject.shuffle();
 

@@ -12,8 +12,9 @@ public class Ladder {
 
     public LadderView ladderView; //ladderView를 ladder객체 내부에서 관리하도록 수정
 
-    public Ladder() throws Exception {
+    public Ladder(String nameAry, long height) throws Exception {
         ladderView = new LadderView(this);
+        ladderView.setValue(nameAry, height);
     }
 
     //getter
