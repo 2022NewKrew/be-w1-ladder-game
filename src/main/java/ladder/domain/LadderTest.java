@@ -13,7 +13,7 @@ public class LadderTest {
 
 
     @Test
-    void 참여자수테스트() throws Exception {
+    void 콤마로_구분한_참여자수테스트() throws Exception {
         //Ladder ladderObject = new Ladder();
         String nameAry = "a,ab,abc,abcd,abcde";
         Long height = Long.valueOf(10);
@@ -42,7 +42,7 @@ public class LadderTest {
     }
 
     @Test
-    void 잘못된_입력_테스트_names() throws Exception{
+    void 입력시_이름에_공백이_추가되는경우_예외가_발생한다() throws Exception{
        // Ladder ladderObject = new Ladder();
         String nameAry = "a,ab,abc,    abcd"; //공백발생 예외
         Long height = Long.valueOf(10);
@@ -59,7 +59,7 @@ public class LadderTest {
     }
 
     @Test
-    void 잘못된_입력_테스트_height() throws Exception{
+    void 높이가_0_미만이면_예외가_발생한다() throws Exception{
        // Ladder ladderObject = new Ladder();
         String nameAry = "a,ab,abc,abcd";
         Long height = Long.valueOf(0); //높이가 0인 예외사항
