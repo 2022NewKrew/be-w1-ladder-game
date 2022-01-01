@@ -7,11 +7,10 @@ public class PlayerRepository {
     private final List<Player> players;
 
     public PlayerRepository(List<Player> players) {
-        this.players = players;
+        this.players = Collections.unmodifiableList(players);
     }
 
     public List<Player> getPlayers() {
-        return Collections.unmodifiableList(players);
+        return players;
     }
 }
-
