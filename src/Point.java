@@ -1,5 +1,5 @@
 public class Point {
-    private boolean step;
+    private final boolean step;
 
     public Point(boolean step) {
         this.step = step;
@@ -7,9 +7,5 @@ public class Point {
 
     public boolean isStep() {
         return step;
-    }
-
-    public void removeStep() {
-        this.step = false;
     }
 }

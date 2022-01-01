@@ -11,26 +11,18 @@ public class Line {
     }
 
     private void createLine(int pointCnt) {
+        boolean isPrevStep = false;
         for (int i = 0; i < pointCnt; i++) {
-            points.add(new Point(random.nextBoolean()));
-        }
-        validatePoints();
-    }
-
-    private void validatePoints(){
-        for(int i=0; i< points.size(); i++){
-            checkLeftPoint(i);
+            Point point = createPoint(isPrevStep);
+            points.add(point);
+            isPrevStep = point.isStep();
         }
     }
 
-    private void checkLeftPoint(int index){
-        int leftIndex = index -1;
-        if(leftIndex < 0) return;
-        if(points.get(leftIndex).isStep()) updatePoint(index);
-    }
+    private Point createPoint(boolean isPrevStep){
+        if(isPrevStep) return new Point(false);
 
-    private void updatePoint(int index){
-        points.get(index).removeStep();
+        return new Point(random.nextBoolean());
     }
 
     public List<Point> getPoints() {
