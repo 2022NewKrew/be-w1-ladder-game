@@ -2,34 +2,23 @@ package view;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class LadderRendererTest {
-    @Test
-    public void 입력된_이름이_최대글자수_이상인_경우(){
-        // Given
-        int MAX_NAME_LENGTH = 5;
-        LadderGameStarter starter = new LadderGameStarter(MAX_NAME_LENGTH);
-        String[] people = "a,bb,cccccc".split(",");
-
-        // When
-        boolean isValid = starter.isValid(people);
-
-        // Then
-        assertFalse(isValid);
-    }
+    private final int MAX_NAME_LENGTH = 5;
 
     @Test
-    public void 입력된_이름이_빈칸인_경우(){
-        // Given
-        int MAX_NAME_LENGTH = 5;
-        LadderGameStarter starter = new LadderGameStarter(MAX_NAME_LENGTH);
-        String[] people = "a,,ccc".split(",");
+    public void 최대글자수_이하로_출력되는지(){
+        String[] people = {"a", "bb","ccc","dddd","eeeee"};
+        LadderRenderer renderer = new LadderRenderer(MAX_NAME_LENGTH);
 
-        // When
-        boolean isValid = starter.isValid(people);
+        StringBuilder print = renderer.renderName(people);
+        boolean isTooLong = Arrays.stream(print.toString()
+                .split(" "))
+                .anyMatch(name-> name.length() > MAX_NAME_LENGTH);
 
-        // Then
-        assertFalse(isValid);
+        assertFalse(isTooLong);
     }
 }
