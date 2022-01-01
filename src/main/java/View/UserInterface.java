@@ -16,7 +16,9 @@ public class UserInterface {
         this.scanner = new Scanner(System.in);
     }
 
-    public Input<ArrayList<String>> readPlayers() {
+    /* 도메인 응집도를 위한 2차 UI 개발 start line */
+
+    public List<String> readPlayers() {
         Input<ArrayList<String>> playerInput = null;
         ArrayList<StringCond> playerConds = new ArrayList<>(Arrays.asList(new StringListSizeGreaterThanEqualCond(1), new StringLengthLessThanCond(5)));
         StringInputCondition playerInputCond = new StringInputCondition("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)", playerConds, "2명 이상의 사람 수를 입력해주세요!");
@@ -25,10 +27,10 @@ public class UserInterface {
             System.out.println(playerInputCond.getQuery());
             playerInput.setValue(new ArrayList<>(Arrays.asList(readStr().split(","))));
         } while (!isValid(playerInput));
-        return playerInput;
+        return playerInput.getValue();
     }
 
-    public Input<Integer> readHeight() {
+    public int readHeight() {
         Input<Integer> heightInput = null;
         IntInputCondition heightInputCond = new IntInputCondition("사다리의 최대 높이는 몇 개 인가요?", 0, "1 이상의 사다리 높이를 입력해주세요!");
         do {
@@ -36,10 +38,10 @@ public class UserInterface {
             System.out.println(heightInputCond.getQuery());
             heightInput.setValue(readInt());
         } while (!isValid(heightInput));
-        return heightInput;
+        return heightInput.getValue();
     }
 
-    public Input<ArrayList<String>> readResult(int len) {
+    public List<String> readResult(int len) {
         Input<ArrayList<String>> resultInput = null;
         ArrayList<StringCond> playerConds = new ArrayList<>(Arrays.asList(new StringListSizeEqualCond(len), new StringLengthLessThanCond(5)));
         StringInputCondition playerInputCond = new StringInputCondition("실행 결과를 입력하세요.", playerConds, "사람 수에 맞게 결과를 입력하세요!");
@@ -48,10 +50,10 @@ public class UserInterface {
             System.out.println(playerInputCond.getQuery());
             resultInput.setValue(new ArrayList<>(Arrays.asList(readStr().split(","))));
         } while (!isValid(resultInput));
-        return resultInput;
+        return resultInput.getValue();
     }
 
-    public Input<ArrayList<String>> readQuery() {
+    public List<String> readQuery() {
         Input<ArrayList<String>> queryInput = null;
         NoneInputCondition queryInputCond = new NoneInputCondition("결과를 보고 싶은 사람은?");
         do {
@@ -59,8 +61,10 @@ public class UserInterface {
             System.out.println(queryInputCond.getQuery());
             queryInput.setValue(new ArrayList<>(Arrays.asList(readStr().split(","))));
         } while (!isValid(queryInput));
-        return queryInput;
+        return queryInput.getValue();
     }
+
+    /* 도메인 응집도를 위한 2차 UI 개발 end line */
 
     private String readStr() {
         Input<String> target = new Input<>();
@@ -118,7 +122,7 @@ public class UserInterface {
 
     public void printPlayers(PlayerList playerList) {
         StringBuilder sb = new StringBuilder();
-        List<Player> players = playerList.getPlayers();
+        List<Player> players = playerList.getPlayers().getPlayers();
         int len = (players.size() + 1) * 5 + players.size();
         for (int i = 0; i < len; i++, sb.append(" ")) ;
         for (int i = 0, cursor = 5; i < players.size(); i++, cursor += 6) {
@@ -129,14 +133,28 @@ public class UserInterface {
         System.out.print(sb.toString());
     }
 
-
     public void printResults(ResultList resultList) {
-        System.out.println(resultList.toString());
+        StringBuilder sb = new StringBuilder();
+        Results results = resultList.getResults();
+        int len = (results.size() + 1) * 5 + results.size();
+
+        for (int i = 0; i < len; i++)
+            sb.append(" ");
+
+        for (int i = 0; i < results.size(); i++) {
+            int cursor = 5 + 6 * i;
+            String player = results.get(i).toString();
+            int mid = player.length() / 2;
+            sb.replace(cursor - mid, cursor - mid + player.length(), player);
+        }
+        System.out.println(sb);
     }
 
+
     public void printResultForQuery(ResultList resultList) {
-        ArrayList<Result> results = resultList.getResults();
-        for (Result result : results)
+        Results results = resultList.getResults();
+
+        for (Result result : results.getResults())
             System.out.println(result);
     }
 
@@ -153,8 +171,8 @@ public class UserInterface {
     }
 
     public void printAllPlayerAndResult(PlayerList queryPlayers, ResultList resultList) {
-        List<Result> resultStr = resultList.getResults();
-        List<Player> players = queryPlayers.getPlayers();
+        Results resultStr = resultList.getResults();
+        Players players = queryPlayers.getPlayers();
 
         for (int i = 0; i < players.size() && i < resultStr.size(); i++)
             System.out.printf("%s : %s\n", players.get(i).toString(), resultStr.get(i));

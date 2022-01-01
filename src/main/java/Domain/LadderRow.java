@@ -1,42 +1,20 @@
 package Domain;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 public class LadderRow {
     private int manCount;
     private int cellCount;
-    private List<LadderCell> row;
+    private LadderCells ladderCells;
 
-    private LadderRow(int manCount) {
+    public LadderRow(int manCount) {
         this.manCount = manCount;
         this.cellCount = this.manCount - 1;
-        this.row = new ArrayList<>();
-    }
-
-    public static LadderRow getInstance(int manCount) {
-        LadderRow ladderRow = new LadderRow(manCount);
-        ladderRow.makeRow();
-        return ladderRow;
-    }
-
-    public void makeRow() {
-        for (int i = 0; i < cellCount; i++)
-            row.add(LadderCell.getInstance(decideHorizon(row, i)));
-    }
-
-    public boolean decideHorizon(List<LadderCell> row, int idx) {
-        Random rand = new Random();
-        if (idx != 0 && row.get(idx - 1).getIsHorizontal()) return false;
-        return rand.nextBoolean();
+        this.ladderCells = new LadderCells(cellCount);
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("     |");
-        for (LadderCell cell : row) {
+        for (LadderCell cell : ladderCells) {
             sb.append(cell.toString());
             sb.append("|");
         }
@@ -44,16 +22,20 @@ public class LadderRow {
         return sb.toString();
     }
 
-    public List<LadderCell> getRow() {
-        return row;
+    public LadderCells getLadderCells() {
+        return ladderCells;
     }
 
     public LadderCell get(int idx) {
-        if (idx < 0 || this.row.size() <= idx) return null;
-        return row.get(idx);
+        if (idx < 0 || this.ladderCells.size() <= idx) return null;
+        return ladderCells.get(idx);
+    }
+
+    public int calCol(int dst) {
+        return ladderCells.calCol(dst);
     }
 
     public int size() {
-        return row.size();
+        return ladderCells.size();
     }
 }

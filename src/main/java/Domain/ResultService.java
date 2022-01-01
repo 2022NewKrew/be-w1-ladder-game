@@ -1,15 +1,12 @@
 package Domain;
 
-import View.Input;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ResultService {
     ResultList resultList;
 
-    public void makeResultList(Input<ArrayList<String>> resultInput) {
-        resultList = new ResultList(resultInput);
+    public void makeResultList(List<String> resultInput, int size) {
+        resultList = new ResultList(resultInput, size);
     }
 
     public ResultList getResultList() {

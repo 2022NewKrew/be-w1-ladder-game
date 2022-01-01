@@ -1,56 +1,31 @@
 package Domain;
 
-import View.Input;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerList {
-    private List<Player> players;
+    private Players players;
 
-    public PlayerList() {
-        players = new ArrayList<>();
+    public PlayerList(List<String> playerInput) {
+        players = new Players(playerInput);
     }
 
-    public PlayerList(Input<ArrayList<String>> playerInput) {
-        this();
-        makePlayers(playerInput);
-    }
-
-    private void makePlayers(Input<ArrayList<String>> playerInput) {
-        ArrayList<String> playerStrs = playerInput.getValue();
-        for (String player : playerStrs)
-            players.add(new Player(player));
-    }
-
-    public List<Integer> getPlayerIdxLst(Input<ArrayList<String>> playerInput) {
-        ArrayList<String> playerStrs = playerInput.getValue();
+    public List<Integer> getPlayerIdxLst(List<String> playerStrs) {
         List<Integer> idxList = new ArrayList<>();
         for (int i = 0; i < playerStrs.size(); i++)
-            idxList.add(getPlayerIdx(playerStrs.get(i)));
+            idxList.add(players.getPlayerIdx(playerStrs.get(i)));
         return idxList;
     }
 
     public List<Integer> getAllPlayerIdxLst() {
-        List<Integer> idxList = new ArrayList<>();
-        for (int i = 0; i < players.size(); i++)
-            idxList.add(i);
-        return idxList;
+        return players.getAllPlayerIdxLst();
     }
 
-    int getPlayerIdx(String playerStr) {
-        for (int i = 0; i < players.size(); i++) {
-            Player player = players.get(i);
-            if (player.getName().equals(playerStr)) return i;
-        }
-        return -1;
-    }
-
-    public List<Player> getPlayers() {
+    public Players getPlayers() {
         return players;
     }
 
-    public String toString(){
+    public String toString() {
         return players.toString();
     }
 

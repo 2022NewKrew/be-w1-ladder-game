@@ -1,16 +1,12 @@
 package Domain;
 
-public class LadderDst {
+public class LadderDestination {
     private int start;
     private int dst;
 
-    public LadderDst(int start, int dst) {
+    public LadderDestination(int start, int dst) {
         this.start = start;
         this.dst = dst;
-    }
-
-    public int getStart() {
-        return this.start;
     }
 
     public int getDst() {

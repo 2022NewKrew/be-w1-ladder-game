@@ -18,7 +18,7 @@ public class CalculateService {
     }
 
 
-    public ResultList calculatePlayerResult(Input<ArrayList<String>> players) {
+    public ResultList calculatePlayerResult(List<String> players) {
         List<Integer> playerIdxLst = playerService.getPlayerIdxLst(players);
         List<Integer> dstIdxLst = ladderService.getPlayerDstIdx(playerIdxLst);
         ResultList results = resultService.getResultList(dstIdxLst);
