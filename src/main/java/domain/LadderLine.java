@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class LadderLine {
 
-    private List<Boolean> points = new ArrayList<Boolean>();
+    private final List<Boolean> points = new ArrayList<>();
     private static final Random random = new Random();
 
     public LadderLine(int countOfPerson) {

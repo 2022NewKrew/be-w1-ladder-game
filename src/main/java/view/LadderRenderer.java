@@ -11,15 +11,13 @@ public class LadderRenderer {
     private final String BAR = "-".repeat(nameLength);
     private final String BLANK = " ".repeat(nameLength);
 
-    private List<String> people;
-    private List<String> results;
-    private int heightOfLadder;
-    private List<LadderLine> ladderLines;
+    private final List<String> people;
+    private final List<String> results;
+    private final List<LadderLine> ladderLines;
 
     public LadderRenderer(OutputDTO outputDTO) {
         this.people = outputDTO.getPeople();
         this.results = outputDTO.getResults();
-        this.heightOfLadder = outputDTO.getHeightOfLadder();
         this.ladderLines = outputDTO.getLadderLines();
     }
 
@@ -34,7 +32,7 @@ public class LadderRenderer {
     private String printItems(List<String> items) {
         StringBuilder stringBuilder = new StringBuilder();
         for (String item: items) {
-            stringBuilder.append(printItem(item)+" ");
+            stringBuilder.append(printItem(item)).append(" ");
         }
         return stringBuilder.toString();
     }

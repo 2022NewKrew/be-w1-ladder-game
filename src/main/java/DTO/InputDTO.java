@@ -3,9 +3,9 @@ package DTO;
 import java.util.List;
 
 public class InputDTO {
-    private List<String> people;
-    private List<String> results;
-    private int heightOfLadder;
+    private final List<String> people;
+    private final List<String> results;
+    private final int heightOfLadder;
 
     public InputDTO(List<String> people, List<String> results, int heightOfLadder) {
         this.people = people;

@@ -6,11 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private List<String> people;
-    private List<String> results;
-    private int heightOfLadder;
-
-    private List<LadderLine> ladderLines = new ArrayList<LadderLine>();
+    private final List<String> people;
+    private final List<String> results;
+    private final int heightOfLadder;
+    private final List<LadderLine> ladderLines = new ArrayList<>();
 
     public Ladder(InputDTO inputDTO) {
         people = inputDTO.getPeople();
@@ -32,10 +31,6 @@ public class Ladder {
 
     public List<String> getResults() {
         return results;
-    }
-
-    public int getHeightOfLadder() {
-        return heightOfLadder;
     }
 
     public List<LadderLine> getLadderLines() {
