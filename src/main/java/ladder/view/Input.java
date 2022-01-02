@@ -2,6 +2,7 @@ package ladder.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Input {
@@ -11,13 +12,22 @@ public class Input {
 
     private Input() {}
 
-    public static ArrayList<String> getPlayerNames() {
+    public static List<String> getPlayerNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        ArrayList<String> userInput = new ArrayList<>(Arrays.asList(sc.nextLine().split(SPLIT_REGEX)));
+        List<String> userInput = new ArrayList<>(Arrays.asList(sc.nextLine().split(SPLIT_REGEX)));
         boolean isValidated = userInput.stream().allMatch(str -> str.length() < 6 && str.length() > 0);
         if (isValidated) return userInput;
         System.out.println("이름을 형식에 맞게 다시 입력하세요. (이름은 1~5자 사이로 입력하세요)");
         return getPlayerNames();
+    }
+
+    public static List<String> getResultNames() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        List<String> userInput = new ArrayList<>(Arrays.asList(sc.nextLine().split(SPLIT_REGEX)));
+        boolean isValidated = userInput.stream().allMatch(str -> str.length() < 6 && str.length() > 0);
+        if (isValidated) return userInput;
+        System.out.println("실행 결과를 형식에 맞게 다시 입력하세요. (결과는 1~5자 사이로 입력하세요)");
+        return getResultNames();
     }
 
     public static int getLadderHeight() {
@@ -38,5 +48,10 @@ public class Input {
 
     private static boolean isBiggerThanZero(String str) {
         return Integer.parseInt(str) > 0;
+    }
+
+    public static String getPlayerNameOfResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return sc.nextLine();
     }
 }

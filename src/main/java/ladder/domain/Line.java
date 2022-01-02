@@ -76,4 +76,14 @@ public class Line {
         }
         return EMPTY_BAR.repeat(LADDER_WIDTH);
     }
+
+    public int goToNextPoint(int index) {
+        if (index != 0 && pointList.get(index - 1)) {
+            return 1;
+        }
+        if (index != pointList.size() - 1 && pointList.get(index + 1)) {
+            return 2;
+        }
+        return 3;
+    }
 }
