@@ -2,7 +2,7 @@ package laddergame.domain;
 
 public class Flag {
     private static RandomFlag randomFlag = new RandomFlag();
-    private Boolean flag;
+    private Boolean flag = false;
 
     Flag() {
     }
@@ -12,9 +12,7 @@ public class Flag {
     }
 
     void makeFlag(Boolean previousFlag) {
-        if (previousFlag)
-            flag = false;
-
-        flag = randomFlag.getRandomFlag();
+        if (!previousFlag)
+            flag = randomFlag.getRandomFlag();
     }
 }
