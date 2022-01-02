@@ -1,14 +1,20 @@
+package service;
+
+import domain.sadari.SadariMap;
+import domain.sadari.SadariMapStatus;
+
 import java.util.Random;
 
-public class SadariMaker {
+public class SadariMakerImpl implements SadariMaker {
 
     private final Random random = new Random();
     private final SadariMap sadariMap;
 
-    public SadariMaker(SadariMap sadariMap) {
+    public SadariMakerImpl(SadariMap sadariMap) {
         this.sadariMap = sadariMap;
     }
 
+    @Override
     public void makeSadariGame() {
         for (int i = 0; i < sadariMap.getNumberOfRow(); i++) {
             makeRow(i);
@@ -24,7 +30,7 @@ public class SadariMaker {
     }
 
     private void makeSadariMapStatus(int rowNumber, int columnNumberOfRow) {
-        if (SadariMapStatus.isBorder(columnNumberOfRow)) {
+        if (sadariMap.isBorder(columnNumberOfRow)) {
             sadariMap.storeSadariMapStatus(rowNumber,SadariMapStatus.SADARI_BORDER);
             return;
         }
@@ -42,7 +48,7 @@ public class SadariMaker {
     }
 
     private boolean canMakeSadariLine(int rowNumber, int columnNumberOfRow) {
-        if (sadariMap.isNotExistSadariLineCloseBy(rowNumber, columnNumberOfRow)) {
+        if (sadariMap.isNotExistPreviousSadariLine(rowNumber, columnNumberOfRow)) {
             return random.nextBoolean();
         }
 

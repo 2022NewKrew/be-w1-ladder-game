@@ -1,3 +1,5 @@
+package domain.sadari;
+
 public enum SadariMapStatus {
     SADARI_BORDER(() -> System.out.print("|")),
     SADARI_LINE(()-> System.out.print("-----")),
@@ -8,10 +10,6 @@ public enum SadariMapStatus {
 
     SadariMapStatus(Runnable printStrategy) {
         this.printStrategy = printStrategy;
-    }
-
-    public static boolean isBorder(int columnNumberOfRow) {
-        return columnNumberOfRow % 2 == 0;
     }
 
     public void printStatus() {
