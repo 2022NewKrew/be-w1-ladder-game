@@ -1,3 +1,5 @@
+package domain.sadari;
+
 import java.util.ArrayList;
 import java.util.List;
 
