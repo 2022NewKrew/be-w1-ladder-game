@@ -1,11 +1,12 @@
 package domain;
 
-import java.util.Collections;
+import validator.Validation;
 
 public class Player {
     private final String name;
 
     public Player(String name) {
+        Validation.validatePlayerName(name);
         this.name = name;
     }
 

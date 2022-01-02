@@ -3,48 +3,41 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LadderGenerator {
-    Random random = new Random();
-//    private static final Boolean
-//    private static final Double MATH_RANDOM_PERCENT = 0.6;
+    private final int playerNums;
+    private final int maximumLadderHeight;
+    private static final Random random = new Random();
 
-    public Ladder createLadder(Integer playersNum, Integer maximumLadderHeight) {
-        List<LadderLine> ladder = new ArrayList<>();
+    public LadderGenerator(int playerNums, int maximumLadderHeight) {
+        this.playerNums = playerNums;
+        this.maximumLadderHeight = maximumLadderHeight;
 
-//        Stream.generate(this::createLadderLine)
-//                .limit(maximumLadderHeight)
-//                .forEachOrdered(ladder::add);
+    }
 
-        IntStream.range(0, maximumLadderHeight)
-                .forEach(i -> ladder.add(new LadderLine(createLadderLine(playersNum))));
-//        for (int i = 0; i < maximumLadderHeight; i++) {
-//            ladder.add(new LadderLine(createLadderLine(playersNum)));
-//        }
+    public Ladder createLadder() {
+        List<LadderLine> ladder = Stream.generate(this::createLadderLine)
+                .limit(maximumLadderHeight)
+                .collect(Collectors.toList());
         return new Ladder(ladder);
     }
 
-    private List<LadderLinePiece> createLadderLine(Integer playersNum) {
-        List<LadderLinePiece> pieces = new ArrayList<>();
-
-//        Stream.generate(LadderGenerator::createLadderLinePiece)
-//                .limit(playersNum * 2 - 1)
-//                .forEachOrdered(pieces::add);
-
-        IntStream.range(0, playersNum * 2 - 1)
-                .forEach(i -> pieces.add(createLadderLinePiece(i)));
-        //        for (int i = 0; i < playersNum * 2 - 1; i++) {
-//            pieces.add(createLadderLinePiece(i));
-//        }
-        return pieces;
+    private LadderLine createLadderLine() {
+        List<Piece> pieces = new ArrayList<>(playerNums - 1);
+        pieces.add(createRowOrSpace(false));
+        for (int indexPieceBefore = 0; indexPieceBefore < playerNums - 2; indexPieceBefore++) {
+            pieces.add(createRowOrSpace(pieces.get(indexPieceBefore).getPiece()));
+        }
+        pieces.add(new Piece(false));
+        return new LadderLine(pieces);
     }
 
-    private LadderLinePiece createLadderLinePiece(int ladderLinePieceIndex) {
-        if (ladderLinePieceIndex % 2 == 0) {
-            return LadderLinePiece.VERTICAL;
+    private Piece createRowOrSpace(boolean isRowBefore) {
+        if (isRowBefore) {
+            return new Piece(false);
         }
-        return (random.nextBoolean()) ? LadderLinePiece.EMPTY : LadderLinePiece.HORIZONTAL;
+        return (random.nextBoolean()) ? new Piece(true) : new Piece(false);
     }
 }

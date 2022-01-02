@@ -3,13 +3,13 @@ package domain;
 import java.util.List;
 
 public class LadderLine {
-    private final List<LadderLinePiece> ladderLinePieces;
+    private final List<Piece> pieces;
 
-    public LadderLine(List<LadderLinePiece> ladderLinePieces) {
-        this.ladderLinePieces = ladderLinePieces;
+    public LadderLine(List<Piece> pieces) {
+        this.pieces = pieces;
     }
 
-    public List<LadderLinePiece> getLadderLinePieces() {
-        return ladderLinePieces;
+    public List<Piece> getLadderLinePieces() {
+        return pieces;
     }
 }
