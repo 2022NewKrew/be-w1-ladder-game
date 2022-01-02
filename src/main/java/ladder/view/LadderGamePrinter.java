@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderGame;
-import ladder.domain.LadderRow;
-import ladder.domain.Step;
+import ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,9 +17,9 @@ public class LadderGamePrinter {
         printLadder(game.getLadder(), LadderGame.PLAYER_NAME_LENGTH_LIMIT);
     }
 
-    private void printPlayers(List<String> players) {
+    private void printPlayers(List<Player> players) {
         StringBuilder sb = new StringBuilder();
-        for (String player : players) {
+        for (Player player : players) {
             sb.append(String.format("%-6s", player));
         }
         System.out.println(sb);
