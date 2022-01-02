@@ -25,7 +25,7 @@ public class ResultCalculatorTest {
         ResultCalculator resultCalculator = new ResultCalculator(ladder);
 
         // then
-        assertThat(resultCalculator.getGameResult(0)).isBetween(0,5);
+        assertThat(resultCalculator.getGameResult(0)).isBetween(0, 5);
     }
 
     @Test

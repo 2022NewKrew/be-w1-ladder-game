@@ -46,7 +46,7 @@ public class LadderPrinter {
     }
 
     private static void printResults(List<String> results) {
-        for(String result : results) {
+        for (String result : results) {
             System.out.printf("%5s ", result);
         }
         System.out.println();

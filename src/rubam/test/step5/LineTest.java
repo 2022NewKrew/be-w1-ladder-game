@@ -30,7 +30,7 @@ public class LineTest {
         // then
         boolean before = false;
         for (Boolean b : line.getStepsData()) {
-            if(before)
+            if (before)
                 assertThat(b).isEqualTo(false);
             before = b;
         }

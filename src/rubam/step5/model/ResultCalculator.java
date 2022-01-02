@@ -29,7 +29,7 @@ public class ResultCalculator {
 
     private void executeGame() {
 
-        for(int i=0; i<people; i++) {
+        for (int i = 0; i < people; i++) {
             gameResults.add(calculateLines(i));
         }
     }
@@ -43,9 +43,9 @@ public class ResultCalculator {
 
     private int calculateStep(int currentLocation, Line line) {
 
-        if(currentLocation != line.getStepsData().size() && line.getStepsData().get(currentLocation))
+        if (currentLocation != line.getStepsData().size() && line.getStepsData().get(currentLocation))
             return currentLocation + 1;
-        else if(currentLocation > 0 && line.getStepsData().get(currentLocation - 1))
+        else if (currentLocation > 0 && line.getStepsData().get(currentLocation - 1))
             return currentLocation - 1;
         return currentLocation;
     }

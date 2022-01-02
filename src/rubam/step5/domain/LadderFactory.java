@@ -44,7 +44,7 @@ public class LadderFactory {
     }
 
     private static void checkResultCount(List<String> results, int peopleNum) {
-        if(results.size() != peopleNum) {
+        if (results.size() != peopleNum) {
             throw new LadderInputException(LADDER_INPUT_RESULT_ERROR_MESSAGE);
         }
     }
