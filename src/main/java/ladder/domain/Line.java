@@ -67,18 +67,34 @@ public class Line {
     private String pointToString(int index) {
         if (isVertical(index)) return VERTICAL_BAR;
         if (isConnected(index)) {
-            return HORIZONTAL_BAR.repeat(LADDER_WIDTH);
+            return HORIZONTAL_BAR;
         }
-        return EMPTY_BAR.repeat(LADDER_WIDTH);
+        return EMPTY_BAR;
     }
 
     public Move goToNextPoint(int index) {
-        if (index != 0 && pointList.get(index - 1)) {
+        if (!isFirstIndex(index) && isGoLeft(index)) {
             return Move.LEFT;
         }
-        if (index != pointList.size() - 1 && pointList.get(index + 1)) {
+        if (!isLastIndex(index) && isGoRight(index)) {
             return Move.RIGHT;
         }
         return Move.DOWN;
+    }
+
+    private boolean isGoLeft(int index) {
+        return pointList.get(index - 1);
+    }
+
+    private boolean isGoRight(int index) {
+        return pointList.get(index + 1);
+    }
+
+    private boolean isFirstIndex(int index) {
+        return index != 0;
+    }
+
+    private boolean isLastIndex(int index) {
+        return index != pointList.size() - 1;
     }
 }

@@ -95,8 +95,7 @@ public class Ladder {
         int currentRow = -1;
         while (currentRow < lineList.size() - 1) {
             currentRow++;
-            Line currentLine = lineList.get(currentRow);
-            Move nextMove = currentLine.goToNextPoint(currentColumn);
+            Move nextMove = lineList.get(currentRow).goToNextPoint(currentColumn);
             switch (nextMove) {
                 case LEFT:
                     currentColumn -= 2;
