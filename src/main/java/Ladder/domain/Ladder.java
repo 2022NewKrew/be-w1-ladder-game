@@ -25,10 +25,10 @@ public class Ladder {
     }
 
     public void printLadder() {
-        OutputView.printNameLine(new outputLineDTO(nameLine.getNames()));
+        OutputView.printLine(new outputLineDTO(nameLine.getPrintLine()));
 
         for (HorizontalBarLine r : horizBarArr) {
-            OutputView.printLine(new outputLineDTO(r.getLine()));
+            OutputView.printLine(new outputLineDTO(r.getPrintLine()));
         }
     }
 }

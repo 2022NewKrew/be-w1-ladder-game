@@ -21,7 +21,7 @@ public class HorizontalBarLineTest {
 
     @Test
     void testMakingRule() {
-        List<String> line = HorizontalLine.getLine();
+        List<String> line = HorizontalLine.getPrintLine();
 
         System.out.println(line.size());
         if (line.size() == 0) {

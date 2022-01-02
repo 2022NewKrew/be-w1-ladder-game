@@ -99,16 +99,18 @@ be-w1-ladder-game
   * 일회성 배열 객체를 지역변수에서 인자로 변경
   * NPE 트릭
   * private 생성자 만들기 
+* 출력 구문 수정
+  * 어떠한 값이 출력될 것인가에 대한 로직을 각각의 도메인에서 구현하도록 변경
+  * OutputView 내에서는 단순 출력만 할 수 있도록
+  * StringBuilder 사용
+  * HorizBarLine 내의 상수들을 수정이 용이하도록 변경
 
 ### TODO
 * 입력
   * 값이 valid 한지 체크
   * DTO 객체 생성의 책임을 다시 살펴보기
 * get 함수로 List를 가져오는 경우 내부 로직 변경
-* 출력 구문 수정
-  * StringBuilder 사용
-  * HorizBarLine 내의 상수들 변경
-  * OutputView 객체 내의 로직들을 HorizBarLine
+
 * 객체 리팩토링
   * Ladder 객체를 두개로 나눈다?
   * HorizBarLine과 NameLine의 상위객체를 만들까?

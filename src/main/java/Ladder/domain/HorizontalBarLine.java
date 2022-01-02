@@ -7,8 +7,11 @@ public class HorizontalBarLine {
     private final List<String> line;
 
     //클래스 내 상수들
-    private static final String HOR_BAR = "-----";
-    private static final String BLANK = "     ";
+    private static final int REPEAT =5;
+    private static final String HOR_BAR = "-".repeat(REPEAT);
+    private static final String BLANK = " ".repeat(REPEAT);
+    private static final String VER_BAR = "|";
+    private static final String PADDING = " ".repeat(REPEAT/2);
     private static final double UPPERBOUND = 0.3;
 
     public HorizontalBarLine(int width) {
@@ -32,7 +35,17 @@ public class HorizontalBarLine {
         line.add(HOR_BAR);
     }
 
-    public List<String> getLine() {
-        return line;
+    public List<String> getPrintLine() {
+        List <String> printList = new ArrayList<>();
+        printList.add(PADDING);
+
+        for (String cell : line) {
+            printList.add(VER_BAR);
+            printList.add(cell);
+        }
+
+        printList.add(VER_BAR);
+        printList.add(PADDING);
+        return printList;
     }
 }
