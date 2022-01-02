@@ -11,24 +11,12 @@ public class LadderRow {
         this.ladderCells = new LadderCells(cellCount);
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("     |");
-        for (LadderCell cell : ladderCells) {
-            sb.append(cell.toString());
-            sb.append("|");
-        }
-        sb.append("     ");
-        return sb.toString();
-    }
-
     public LadderCells getLadderCells() {
         return ladderCells;
     }
 
-    public LadderCell get(int idx) {
-        if (idx < 0 || this.ladderCells.size() <= idx) return null;
-        return ladderCells.get(idx);
+    public String toString() {
+        return ladderCells.toString();
     }
 
     public int calCol(int dst) {

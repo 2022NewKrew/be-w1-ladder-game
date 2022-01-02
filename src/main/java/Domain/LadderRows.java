@@ -22,10 +22,6 @@ public class LadderRows implements Iterable<LadderRow> {
         return ladderRows.size();
     }
 
-    public LadderRow get(int idx) {
-        return ladderRows.get(idx);
-    }
-
     int calDst(int start) {
         int dst = start;
         for (int i = 0; i < ladderRows.size(); i++) {

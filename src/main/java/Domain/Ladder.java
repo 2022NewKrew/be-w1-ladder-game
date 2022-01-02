@@ -33,13 +33,7 @@ public class Ladder {
         return dstIdxLst;
     }
 
-
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (LadderRow row : ladderRows) {
-            sb.append(row.toString());
-            sb.append("\n");
-        }
-        return sb.toString();
+    public LadderRows getLadderRows() {
+        return ladderRows;
     }
 }

@@ -115,14 +115,29 @@ public class UserInterface {
         return res;
     }
 
-
     public void printLadder(Ladder ladder) {
-        System.out.println(ladder.toString());
+        StringBuilder sb = new StringBuilder();
+        LadderRows ladderRows = ladder.getLadderRows();
+        for (LadderRow ladderRow : ladderRows)
+            sb.append(printLadderRow(ladderRow));
+        System.out.println(sb);
+    }
+
+    public String printLadderRow(LadderRow ladderRow) {
+        LadderCells ladderCells = ladderRow.getLadderCells();
+        StringBuilder sb = new StringBuilder();
+        sb.append("     |");
+        for (LadderCell cell : ladderCells) {
+            sb.append(cell.toString());
+            sb.append("|");
+        }
+        sb.append("     \n");
+        return sb.toString();
     }
 
     public void printPlayers(PlayerList playerList) {
         StringBuilder sb = new StringBuilder();
-        List<Player> players = playerList.getPlayers().getPlayers();
+        Players players = playerList.getPlayers();
         int len = (players.size() + 1) * 5 + players.size();
         for (int i = 0; i < len; i++, sb.append(" ")) ;
         for (int i = 0, cursor = 5; i < players.size(); i++, cursor += 6) {

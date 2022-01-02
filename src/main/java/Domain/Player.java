@@ -10,10 +10,6 @@ public class Player {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public boolean is(String name) {
         return this.name.equals(name);
     }
