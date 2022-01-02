@@ -3,20 +3,36 @@ import model.Line;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
+
     @Test
     void testToString() {
-        Ladder ladder = new Ladder(new String[]{"ben","jake","creed","kina","pug"}, 5, 5);
+        List<String> namePeople = new ArrayList<>();
+        namePeople.add("ben");
+        namePeople.add("jake");
+        namePeople.add("creed");
+        namePeople.add("kina");
+        namePeople.add("pug");
+
+        Ladder ladder = new Ladder(namePeople, 5, 5);
         assertNotNull(ladder);
     }
 
     @Test
     void testLadderContainsNull(){
-        Ladder ladder = new Ladder(new String[]{"ben","jake","creed","kina","pug"}, 5, 5);
+        List<String> namePeople = new ArrayList<>();
+        namePeople.add("ben");
+        namePeople.add("jake");
+        namePeople.add("creed");
+        namePeople.add("kina");
+        namePeople.add("pug");
+
+        Ladder ladder = new Ladder(namePeople, 5, 5);
         try{
             Field field = ladder.getClass().getDeclaredField("ladder");
             field.setAccessible(true);

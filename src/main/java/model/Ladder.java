@@ -1,14 +1,15 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> ladder;
-    private final String[] namePeople;
+    private List<String> namePeople;
 
-    public Ladder(String[] namePeople, int numPeople, int maxHeight){
+    public Ladder(List<String> namePeople, int numPeople, int maxHeight){
         ladder = IntStream
                 .range(0,maxHeight)
                 .mapToObj(i -> new Line(numPeople))
@@ -24,7 +25,7 @@ public class Ladder {
                 .collect(Collectors.joining("\n"));
     }
 
-    public String[] getNamePeople() {
+    public List<String> getNamePeople() {
         return namePeople;
     }
 }
