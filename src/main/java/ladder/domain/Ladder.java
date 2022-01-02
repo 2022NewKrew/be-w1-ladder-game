@@ -98,15 +98,15 @@ public class Ladder {
         while (currentRow < lineList.size() - 1) {
             currentRow++;
             Line currentLine = lineList.get(currentRow);
-            int nextMove = currentLine.goToNextPoint(currentColumn);
+            Move nextMove = currentLine.goToNextPoint(currentColumn);
             switch (nextMove) {
-                case 1:
+                case LEFT:
                     currentColumn -= 2;
                     break;
-                case 2:
+                case RIGHT:
                     currentColumn += 2;
                     break;
-                case 3:
+                case DOWN:
                     break;
             }
         }

@@ -77,13 +77,13 @@ public class Line {
         return EMPTY_BAR.repeat(LADDER_WIDTH);
     }
 
-    public int goToNextPoint(int index) {
+    public Move goToNextPoint(int index) {
         if (index != 0 && pointList.get(index - 1)) {
-            return 1;
+            return Move.LEFT;
         }
         if (index != pointList.size() - 1 && pointList.get(index + 1)) {
-            return 2;
+            return Move.RIGHT;
         }
-        return 3;
+        return Move.DOWN;
     }
 }
