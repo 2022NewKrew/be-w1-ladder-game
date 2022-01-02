@@ -6,13 +6,16 @@ import ladder.view.ResultView;
 import java.util.ArrayList;
 
 public class GameManager {
-    static ArrayList<String> names;
-    static int height;
-    static Ladder ladder;
+    private static ArrayList<String> names;
+    private static ArrayList<String> ladderResults;
+    private static int height;
+    private static Ladder ladder;
 
     private static void inputInfo() {
         names = InputView.inputName();
         Validation.validateNames(names);
+        ladderResults = InputView.inputLadderResult();
+        Validation.validateLadderResults(ladderResults, names.size());
         height = InputView.inputHeight();
         Validation.validateHeight(height);
     }
@@ -22,14 +25,16 @@ public class GameManager {
         ladder = ladderBuilder.makeLadder();
     }
 
-    private static void viewResult() {
-        ResultView.printName(names);
+    private static void viewGameResult() {
+        ResultView.printGameResultMessage();
+        ResultView.printNameOrResult(names);
         ResultView.printLadder(ladder.getLadder());
+        ResultView.printNameOrResult(ladderResults);
     }
 
     public static void startGame() {
         inputInfo();
         buildLadder();
-        viewResult();
+        viewGameResult();
     }
 }

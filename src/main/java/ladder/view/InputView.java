@@ -22,6 +22,18 @@ public class InputView {
     }
 
     /**
+     * 사다리 결과를 입력받는 메서드
+     * @return 사다리 결과를 저장하는 ArrayList를 반환한다
+     */
+    public static ArrayList<String> inputLadderResult() {
+        System.out.println(GameMessage.RESULT_INPUT.getMessage());
+
+        String input = in.nextLine();
+        String[] result = input.split(",");
+        return new ArrayList<>(Arrays.asList(result));
+    }
+
+    /**
      * 이름을 입력받는 메서드
      * @return 이름을 저장하는 ArrayList를 반환한다
      */

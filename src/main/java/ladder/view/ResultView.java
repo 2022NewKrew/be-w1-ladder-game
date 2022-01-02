@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Line;
+import ladder.message.GameMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,10 @@ public class ResultView {
     private static final String SIDE_RAIL = "|";
     private static final String RUNG = "-".repeat(RUNG_LENGTH);
     private static final String SPACE = " ".repeat(RUNG_LENGTH);
+
+    public static void printGameResultMessage() {
+        System.out.println(GameMessage.GAME_RESULT.getMessage());
+    }
 
     /**
      * 사다리의 한 줄을 출력하는 메서드
@@ -59,7 +64,7 @@ public class ResultView {
      *
      * @param names 출력할 이름 리스트
      */
-    public static void printName(ArrayList<String> names) {
+    public static void printNameOrResult(ArrayList<String> names) {
         printSpaceBetweenNames("", names.get(0));
         System.out.printf("%s", names.get(0));
         for (int i = 1; i < names.size(); i++) {

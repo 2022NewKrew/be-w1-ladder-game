@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.InvalidHeight;
+import ladder.exception.InvalidLadderResult;
 import ladder.exception.InvalidName;
 import ladder.message.ErrorMessage;
 
@@ -8,9 +9,21 @@ import java.util.ArrayList;
 
 public class Validation {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final int MAX_LADDER_RESULT_LENGTH = 5;
 
     public static void validateHeight(int height) {
         condition(0 < height, new InvalidHeight(ErrorMessage.NEGATIVE_HEIGHT.getMessage()));
+    }
+
+    public static void validateLadderResults(ArrayList<String> ladderResults, int namesSize) {
+        condition(!ladderResults.isEmpty(), new InvalidLadderResult(ErrorMessage.EMPTY_LADDER_RESULTS.getMessage()));
+        condition(namesSize != ladderResults.size(), new InvalidLadderResult(ErrorMessage.NAME_AND_RESULT_SIZE_ARE_DIFFERENT.getMessage()));
+        ladderResults.forEach(Validation::validateLadderResult);
+    }
+
+    private static void validateLadderResult(String ladderResult) {
+        condition(!ladderResult.isEmpty(), new InvalidName(ErrorMessage.EMPTY_LADDER_RESULT.getMessage()));
+        condition(ladderResult.length() <= MAX_LADDER_RESULT_LENGTH, new InvalidLadderResult(ErrorMessage.EXCEED_MAX_LADDER_RESULT.getMessage()));
     }
 
     public static void validateNames(ArrayList<String> names) {
