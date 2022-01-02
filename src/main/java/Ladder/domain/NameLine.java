@@ -3,13 +3,11 @@ package Ladder.domain;
 import java.util.List;
 
 public class NameLine {
-    private List<String> nameArray;
+    private List<String> names;
 
     public NameLine(List<String> nameLine) {
-        nameArray = nameLine;
+        names = nameLine;
     }
 
-    public List<String> getNameArray() {
-        return nameArray;
-    }
+    public List<String> getNames() { return names; }
 }

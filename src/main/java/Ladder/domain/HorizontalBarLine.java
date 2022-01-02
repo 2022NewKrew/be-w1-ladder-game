@@ -3,7 +3,7 @@ package Ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HorizBarLine {
+public class HorizontalBarLine {
     private final List<String> line;
 
     //클래스 내 상수들
@@ -11,7 +11,7 @@ public class HorizBarLine {
     private static final String BLANK = "     ";
     private static final double UPPERBOUND = 0.3;
 
-    public HorizBarLine(int width) {
+    public HorizontalBarLine(int width) {
         line = new ArrayList<>();
 
         for (int i = 0; i < width; i++) {
@@ -20,7 +20,7 @@ public class HorizBarLine {
     }
 
     private void setCell() {
-        if (line.size() > 0 && line.get(line.size() - 1).equals(HOR_BAR)) {
+        if (line.size() > 0 && HOR_BAR.equals(line.get(line.size() - 1))) {
             line.add(BLANK);
             return;
         }

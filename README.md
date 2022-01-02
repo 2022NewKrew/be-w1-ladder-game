@@ -93,18 +93,20 @@ be-w1-ladder-game
 * package 이름 변경
 * 단위 테스트 추가
 * 제거 하지 않은 파일들 제거
+* Minor Refactoring Issue
+  * 멤버 변수에 private 키워드 추가
+  * 변수 및 클래스 이름 조정
+  * 일회성 배열 객체를 지역변수에서 인자로 변경
+  * NPE 트릭
+  * private 생성자 만들기 
 
 ### TODO
-* 마이너 이슈들 해결
-  * NPE 트릭
-  * private
-  * 배열 객체를 인자로 일회성으로 쓰이는 경우 지역변수로 설정하지 말것
-  * 변수 및 클래스 이름 조정
-  * private 생성자 만들기
-  * StringBuilder 사용
-* 입력 구문 체크 구문 추가
+* 입력
+  * 값이 valid 한지 체크
+  * DTO 객체 생성의 책임을 다시 살펴보기
 * get 함수로 List를 가져오는 경우 내부 로직 변경
 * 출력 구문 수정
+  * StringBuilder 사용
   * HorizBarLine 내의 상수들 변경
   * OutputView 객체 내의 로직들을 HorizBarLine
 * 객체 리팩토링

@@ -8,15 +8,15 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class HorizBarLineTest {
-    public HorizBarLine HorizontalLine;
+public class HorizontalBarLineTest {
+    public HorizontalBarLine HorizontalLine;
 
     private static final int WIDTH = 8;
     private static final String BLANK = "     ";
 
     @BeforeEach
     void setUp() {
-        HorizontalLine = new HorizBarLine(WIDTH);
+        HorizontalLine = new HorizontalBarLine(WIDTH);
     }
 
     @Test

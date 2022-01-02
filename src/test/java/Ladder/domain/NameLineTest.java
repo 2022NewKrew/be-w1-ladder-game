@@ -31,7 +31,7 @@ public class NameLineTest {
 
     @Test
     void testNameLen() {
-        for (String name : testNameLine.getNameArray()) {
+        for (String name : testNameLine.getNames()) {
             assertThat(name.length()).isLessThanOrEqualTo(NAME_LEN);
         }
     }

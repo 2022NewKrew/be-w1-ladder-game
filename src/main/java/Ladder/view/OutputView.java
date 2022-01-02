@@ -10,6 +10,9 @@ public class OutputView {
     private static final String PADDING = "  ";
     private static final int NAME_LEN = 5;
 
+    private OutputView() {}
+
+    //지역변수로 List 객체가 있지만 이 부분은 출력 구문 교체 시에 해결
     public static void printLine(outputLineDTO line) {
         List<String> printLine = line.getLine();
 
@@ -22,6 +25,7 @@ public class OutputView {
         System.out.println(PADDING);
     }
 
+    //지역변수로 List 객체가 있지만 이 부분은 출력 구문 교체 시에 해결
     public static void printNameLine(outputLineDTO line) {
         List<String> printLine = line.getLine();
 
