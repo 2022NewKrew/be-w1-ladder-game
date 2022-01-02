@@ -9,7 +9,7 @@ public class InputView {
     private InputView() {
     }
 
-    public static List<String> inputPeople() {
+    public static List<String> inputNameList() {
         List<String> peopleNameList;
         while (true) {
             try {
@@ -40,5 +40,26 @@ public class InputView {
             }
         }
         return ladderHeight;
+    }
+
+    public static List<String> inputResultList(){
+        List<String> resultList;
+        while (true) {
+            try {
+                System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+                String results = scanner.nextLine();
+                resultList = new ArrayList<>(Arrays.asList(results.split(",")));
+                if (resultList.size() < 1) throw new InputMismatchException();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("잘못 된 입력입니다. 다시 입력해주세요.\n");
+                scanner.next();
+            }
+        }
+        return resultList;
+    }
+
+    public static String inputPersonName(){
+        return scanner.next();
     }
 }
