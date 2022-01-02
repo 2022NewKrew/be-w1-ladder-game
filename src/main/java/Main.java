@@ -17,5 +17,7 @@ public class Main {
 
         // 결과 요약 프린트
         PrintManager.printSummary(startInfo,resultInfo);
+        // 결과 확인
+        PrintManager.checkResult(startInfo,resultInfo);
     }}
 
