@@ -35,7 +35,7 @@ public class Line {
         return index != FIRST_INDEX && !isLeftConnected(index) && possibilityOneHalf();
     }
 
-    private boolean isLeftConnected(int index) {
+    public boolean isLeftConnected(int index) {
         return pointList.get(index - 2);
     }
 
