@@ -1,14 +1,19 @@
 package view;
 
 import domain.*;
+import service.LadderGameResult;
 
 import java.util.List;
+import java.util.Objects;
 
 public class OutputView {
     private static final int PIECE_REPEAT_NUM = 5;
     private static final String PIECE_HORIZONTAL = "|";
     private static final String PIECE_ROW = "-".repeat(PIECE_REPEAT_NUM);
     private static final String PIECE_SPACE = " ".repeat(PIECE_REPEAT_NUM);
+    private static final String WHO_WANT_TO_SEE = "결과를 보고 싶은 사람은?";
+    private static final String GAME_OVER = "게임을 종료합니다.";
+    private static final String STOP_WORD = "춘식이";
 
     public static void printPlayers(PlayerRepository playerRepository) {
         for (Player player : playerRepository.getPlayers()) {
@@ -35,12 +40,32 @@ public class OutputView {
             String temp = (piece.getPiece()) ? PIECE_ROW : PIECE_SPACE;
             System.out.print(temp);
         }
-        System.out.print(PIECE_HORIZONTAL);
     }
 
     public static void printResult(List<String> results) {
         for (String result : results) {
             System.out.print(String.format("%6s", result));
         }
+    }
+
+    public static void printGame(LadderGameResult ladderGameResult, List<String> inputExecution) {
+        String searchPlayer;
+        do {
+            System.out.println();
+            System.out.println(WHO_WANT_TO_SEE);
+            searchPlayer = InputView.inputPrintGame();
+            if (Objects.equals(searchPlayer, "all")) {
+                printGameAll(ladderGameResult, inputExecution);
+            } else {
+            System.out.println(inputExecution.get(ladderGameResult.getResult().get(searchPlayer)));
+            }
+        } while (!Objects.equals(searchPlayer, STOP_WORD));
+        System.out.println(GAME_OVER);
+    }
+
+    public static void printGameAll(LadderGameResult ladderGameResult, List<String> inputExecution) {
+        ladderGameResult.getResult().forEach((key, value) -> {
+            System.out.println(key + ":" + inputExecution.get(ladderGameResult.getResult().get(key)));
+        });
     }
 }

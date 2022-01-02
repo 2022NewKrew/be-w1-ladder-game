@@ -23,10 +23,10 @@ public class LadderGame {
 
         LadderGameResult ladderGameResult = LadderGameService.serviceStart(playerRepository, ladder, inputExecution);
 
-
         OutputView.printPlayers(playerRepository);
         OutputView.printLadder(ladder);
         OutputView.printResult(inputExecution);
+        OutputView.printGame(ladderGameResult, inputExecution);
 
     }
 }

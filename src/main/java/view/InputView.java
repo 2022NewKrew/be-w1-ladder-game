@@ -43,4 +43,10 @@ public class InputView {
         System.out.println(MAXIMUM_HEIGHT_LADDER);
         return scanner.nextInt();
     }
+
+    public static String inputPrintGame() {
+        String searchPlayer;
+        searchPlayer = scanner.next();
+        return searchPlayer;
+    }
 }

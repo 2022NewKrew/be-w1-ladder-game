@@ -30,6 +30,7 @@ public class LadderGenerator {
         for (int indexPieceBefore = 0; indexPieceBefore < playerNums - 2; indexPieceBefore++) {
             pieces.add(createRowOrSpace(pieces.get(indexPieceBefore).getPiece()));
         }
+        pieces.add(new Piece(false));
         return new LadderLine(pieces);
     }
 
