@@ -17,6 +17,7 @@ public class Players {
         this.players = Arrays.stream(players)
                 .map(Player::new)
                 .collect(Collectors.toList());
+        this.players = Collections.unmodifiableList(this.players);
     }
 
     private void validate(String[] players) {
@@ -30,6 +31,6 @@ public class Players {
     }
 
     public List<Player> players(){
-        return Collections.unmodifiableList(players);
+        return players;
     }
 }
