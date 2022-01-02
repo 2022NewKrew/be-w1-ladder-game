@@ -1,6 +1,6 @@
 import Ladder.DTO.InputDTO;
-import Ladder.view.InputView;
 import Ladder.domain.Ladder;
+import Ladder.view.InputView;
 
 public class Main {
     public static void main(String[] args) {
