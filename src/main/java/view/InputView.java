@@ -13,6 +13,7 @@ public class InputView {
     private static final String NATURAL_NUMBER_REGEX = "[1-9][0-9]*$";
     private static final Pattern PATTERN_NATURAL_NUMBER = Pattern.compile(NATURAL_NUMBER_REGEX);
     private static final Scanner scanner = new Scanner(System.in);
+    private static final String MESSAGE_PLAYER_YOU_WANT = "결과를 보고 싶은 사람은?";
 
     private InputView() {}
 
@@ -46,5 +47,11 @@ public class InputView {
     public static int enterHeight() {
         System.out.println(MESSAGE_HEIGHT);
         return checkNaturalNumber(scanner.nextLine());
+    }
+
+    public static String enterPlayerYouWant(){
+        System.out.println();
+        System.out.println(MESSAGE_PLAYER_YOU_WANT);
+        return scanner.nextLine();
     }
 }

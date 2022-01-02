@@ -26,8 +26,6 @@ public class LineGenerator {
         generateFirstPoint(points);
         generateIntermediatePoint(points, numberOfPlayers);
         generateLastPoint(points);
-        points.forEach(point -> System.out.print(point.move()));
-        System.out.println();
         return new Line(points);
     }
 }

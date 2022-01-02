@@ -31,7 +31,23 @@ public class Ladder {
         }
     }
 
+    private HashMap<Player, String> playersResults(HashMap<Player, Integer> playersPosition, ExecutionResults executionResults){
+        HashMap<Player, String> playersResults = new HashMap<>();
+        List<String> executionResultsList = executionResults.executionResults();
+        for(Player player : playersPosition.keySet()) {
+            playersResults.put(player, executionResultsList.get(playersPosition.get(player)));
+        }
+        return playersResults;
+    }
+
     public List<Line> lines(){
         return lines;
+    }
+
+    public LadderResults ladderResults(Players players, ExecutionResults executionResults){
+        HashMap<Player, Integer> playersPosition = new HashMap<>();
+        initPlayersPosition(players,playersPosition);
+        movePlayersPosition(playersPosition);
+        return new LadderResults(playersResults(playersPosition, executionResults));
     }
 }
