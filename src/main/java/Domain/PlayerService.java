@@ -9,7 +9,7 @@ public class PlayerService {
 
     private PlayerList playerList;
 
-    public void makePlayerList(Input<ArrayList<String>> playerInput) {
+    public void makePlayerList(List<String> playerInput) {
         playerList = new PlayerList(playerInput);
     }
 
@@ -17,7 +17,7 @@ public class PlayerService {
         return playerList;
     }
 
-    public List<Integer> getPlayerIdxLst(Input<ArrayList<String>> playerInput) {
+    public List<Integer> getPlayerIdxLst(List<String> playerInput) {
         return playerList.getPlayerIdxLst(playerInput);
     }
 

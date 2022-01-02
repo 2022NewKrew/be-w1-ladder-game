@@ -3,6 +3,7 @@ import View.Input;
 import View.UserInterface;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LadderGame {
 
@@ -28,14 +29,12 @@ public class LadderGame {
     }
 
     private void initData() {
-        Input<ArrayList<String>> playersInput = userInterface.readPlayers();
-        Input<ArrayList<String>> resultInput = userInterface.readResult(playersInput.getValue().size());
-        Input<Integer> heightInput = userInterface.readHeight();
-        ladderService.makeLadder(heightInput.getValue(), playersInput.getValue().size());
+        List<String> playersInput = userInterface.readPlayers();
+        List<String> resultInput = userInterface.readResult(playersInput.size());
+        int heightInput = userInterface.readHeight();
+        ladderService.makeLadder(heightInput, playersInput.size());
         playerService.makePlayerList(playersInput);
-        resultService.makeResultList(resultInput);
-
-
+        resultService.makeResultList(resultInput, playersInput.size());
     }
 
     private void printData() {
@@ -44,14 +43,14 @@ public class LadderGame {
         userInterface.printResults(resultService.getResultList());
     }
 
-    private boolean readQuery(){
-        Input<ArrayList<String>> queryPlayers = userInterface.readQuery();
-        String cmd = queryPlayers.getValue().get(0);
-        if(userInterface.isEnd(cmd)){
+    private boolean readQuery() {
+        List<String> queryPlayers = userInterface.readQuery();
+        String cmd = queryPlayers.get(0);
+        if (userInterface.isEnd(cmd)) {
             userInterface.printBye();
             return false;
         }
-        if(userInterface.isAll(cmd)){
+        if (userInterface.isAll(cmd)) {
             ResultList resultList = calculateService.calculateAllPlayerResult();
             PlayerList playerList = playerService.getPlayerList();
             userInterface.printAllPlayerAndResult(playerList, resultList);
@@ -61,8 +60,8 @@ public class LadderGame {
         return true;
     }
 
-    public void loopQuery(){
-        while(readQuery());
+    public void loopQuery() {
+        while (readQuery()) ;
     }
 
 }

@@ -1,5 +1,5 @@
 import Domain.LadderCell;
-import Domain.LadderRow;
+import Domain.LadderCells;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,26 +7,24 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 public class LineTest {
-    static LadderRow ladderRow;
+    static LadderCells ladderCells;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         System.out.println("line test start");
-        ladderRow = LadderRow.getInstance(0);
+        ladderCells = new LadderCells(0);
     }
 
     @AfterEach
-    void tearDown(){
+    void tearDown() {
         System.out.println("line test done");
     }
 
     @Test
-    void decideHorizonTest(){
-        ladderRow.getRow().add(LadderCell.getInstance(true));
-        System.out.println(ladderRow.getRow().get(0).getIsHorizontal());
-        assertThat(ladderRow.decideHorizon(ladderRow.getRow(), 1)).isEqualTo(false);
+    void decideHorizonTest() {
+        ladderCells.add(new LadderCell(true));
+        assertThat(ladderCells.decideHorizon(1)).isEqualTo(false);
     }
-
 
 
 }

@@ -7,85 +7,32 @@ public class Ladder {
 
     private int height;
     private int manCount;
-    private ArrayList<LadderRow> ladderMap;
-    private ArrayList<LadderDst> dstLst;
+    private LadderRows ladderRows;
+    private LadderDestinations ladderDestinations;
 
-    private Ladder(int height, int manCount) {
+    public Ladder(int height, int manCount) {
+
+        if (height < 1) {
+            throw new IllegalArgumentException("사다리의 높이는 1 이상 이어야 합니다!");
+        }
+        if (manCount < 2) {
+            throw new IllegalArgumentException("플레이어는 2 명 이상 이어야 합니다!");
+        }
+
         this.height = height;
         this.manCount = manCount;
-        this.ladderMap = new ArrayList<>();
-        this.dstLst = new ArrayList<>();
-        makeMap();
-    }
-
-    public static Ladder getInstance(int height, int manCount) {
-        Ladder ladder = new Ladder(height, manCount);
-        return ladder;
-    }
-
-    private void makeMap() {
-        for (int i = 0; i < height; i++)
-            makeRow(manCount);
-    }
-
-    private void makeRow(int manCount) {
-        ladderMap.add(LadderRow.getInstance(manCount));
+        this.ladderRows = new LadderRows(height, manCount);
+        this.ladderDestinations = new LadderDestinations(this.ladderRows, manCount);
     }
 
     public List<Integer> getPlayerDstIdx(List<Integer> playerIdxLst) {
         List<Integer> dstIdxLst = new ArrayList<>();
         for (int playerIdx : playerIdxLst)
-            dstIdxLst.add(dstLst.get(playerIdx).getDst());
+            dstIdxLst.add(ladderDestinations.get(playerIdx).getDst());
         return dstIdxLst;
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (LadderRow row : ladderMap) {
-            sb.append(row.toString());
-            sb.append("\n");
-        }
-        return sb.toString();
+    public LadderRows getLadderRows() {
+        return ladderRows;
     }
-
-    //테스트용 임시 함수
-    public String printDst() {
-        for (LadderDst dst : dstLst) {
-            System.out.println(dst.getStart() + " - " + dst.getDst());
-        }
-        return "";
-    }
-
-    void makeDstLst() {
-        for (int i = 0; i < manCount; i++)
-            dstLst.add(new LadderDst(i, calDst(i)));
-    }
-
-    int calDst(int start) {
-        int dst = start;
-        for (int i = 0; i < ladderMap.size(); i++) {
-            dst = calCol(ladderMap.get(i), dst);
-        }
-        return dst;
-    }
-
-    private int calCol(LadderRow row, int curIdx) {
-        if (goLeft(row, curIdx)) return curIdx - 1;
-        else if (goRight(row, curIdx)) return curIdx + 1;
-        return curIdx;
-    }
-
-    private boolean goLeft(LadderRow row, int curIdx) {
-        int leftCol = curIdx - 1;
-        if (leftCol >= 0 && row.get(leftCol).getIsHorizontal()) return true;
-        return false;
-    }
-
-    private boolean goRight(LadderRow row, int curIdx) {
-        int rightCol = curIdx;
-        if (rightCol < row.size() && row.get(rightCol).getIsHorizontal()) return true;
-        return false;
-    }
-
-
 }
