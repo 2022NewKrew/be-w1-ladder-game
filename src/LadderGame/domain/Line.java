@@ -54,4 +54,8 @@ public class Line {
     public List<String> getPoints() {
         return points;
     }
+
+    public boolean isBRIDGE(int idx){
+        return points.get(idx).compareTo(BRIDGE) >= 0;
+    }
 }
