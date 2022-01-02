@@ -21,7 +21,7 @@ public class LadderGame {
         LadderGenerator ladderGenerator = new LadderGenerator(playerNums, maximumLadderHeight);
         Ladder ladder = ladderGenerator.createLadder();
 
-        LadderGameResult ladderGameResult = LadderGameService.serviceStart(playerRepository, ladder);
+        LadderGameResult ladderGameResult = LadderGameService.serviceStart(playerRepository, ladder, inputExecution);
 
 
         OutputView.printPlayers(playerRepository);
