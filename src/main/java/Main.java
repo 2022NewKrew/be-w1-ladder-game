@@ -1,3 +1,4 @@
+import DTO.ResultInfo;
 import model.Ladder;
 import DTO.StartInfo;
 import view.InputManager;
@@ -11,10 +12,13 @@ public class Main {
         // 사다리 생성
         Ladder ladder = new Ladder(startInfo.getNamePeople(), startInfo.getNumPeople(), startInfo.getMaxHeight());
 
+        // 사다리로부터 결과 받음
+        ResultInfo resultInfo = ladder.makeResultInfo();
+
         // 참가자 프린트
         PrintManager.printPeople(startInfo.getNamePeople());
         // 사다리 프린트
-        PrintManager.printLadder(ladder.toString());
+        PrintManager.printLadder(resultInfo.getStringLadder());
         }
     }
 

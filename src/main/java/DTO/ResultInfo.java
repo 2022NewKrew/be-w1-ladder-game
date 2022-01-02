@@ -15,7 +15,7 @@ public class ResultInfo {
         return stringLadder;
     }
 
-    public List<Integer> getResultPeople() {
+    public List<Integer> getResultOrder() {
         return resultOrder;
     }
 }
