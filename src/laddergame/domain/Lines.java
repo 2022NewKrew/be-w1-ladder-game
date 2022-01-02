@@ -1,23 +1,15 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Lines {
-    private List<Line> lines = new ArrayList<Line>();
+    private List<Line> lines;
 
-    Lines() {
+    Lines(List<Line> lines) {
+        this.lines = lines;
     }
 
-    Line getLineByIndex(int index) {
+    public Line getLineByIndex(int index) {
         return lines.get(index);
-    }
-
-    void makeLines(int count, int width) {
-        for (int i = 0; i < count; i++) {
-            Line line = new Line();
-            line.makeLine(width);
-            lines.add(line);
-        }
     }
 }

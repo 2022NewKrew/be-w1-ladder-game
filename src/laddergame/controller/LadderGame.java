@@ -1,6 +1,7 @@
 package laddergame.controller;
 
 import laddergame.domain.Ladder;
+import laddergame.domain.LadderFactory;
 import laddergame.dto.LadderGameInfo;
 import laddergame.view.LadderGameView;
 
@@ -29,8 +30,7 @@ public class LadderGame {
     private void makeLadder(LadderGameInfo gameInfo) {
         int width = people.size() - 1;
         int height = gameInfo.getLadderHeight();
-        ladder = new Ladder(width, height);
-        ladder.makeLadder();
+        ladder = LadderFactory.create(width, height);
     }
 
     private void printLadderGameResult() {

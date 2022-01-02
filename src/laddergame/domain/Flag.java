@@ -1,18 +1,13 @@
 package laddergame.domain;
 
 public class Flag {
-    private static RandomFlag randomFlag = new RandomFlag();
-    private Boolean flag = false;
+    private Boolean flag;
 
-    Flag() {
+    Flag(Boolean flag) {
+        this.flag = flag;
     }
 
     public Boolean getFlag() {
         return flag;
-    }
-
-    void makeFlag(Boolean previousFlag) {
-        if (!previousFlag)
-            flag = randomFlag.getRandomFlag();
     }
 }

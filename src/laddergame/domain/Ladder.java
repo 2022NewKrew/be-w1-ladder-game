@@ -3,11 +3,12 @@ package laddergame.domain;
 public class Ladder {
     private int width;
     private int height;
-    private Lines lines = new Lines();
+    private Lines lines;
 
-    public Ladder(int width, int height) {
+    Ladder(int width, int height, Lines lines) {
         this.width = width;
         this.height = height;
+        this.lines = lines;
     }
 
     public int getWidth() {
@@ -20,9 +21,5 @@ public class Ladder {
 
     public Line getLineByIndex(int index) {
         return lines.getLineByIndex(index);
-    }
-
-    public void makeLadder() {
-        lines.makeLines(height, width);
     }
 }

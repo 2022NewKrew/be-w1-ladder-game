@@ -25,16 +25,15 @@ public class LadderView {
     }
 
     private void printLadderLine(int row) {
-        int ladderWidth = ladder.getWidth();
         Line line = ladder.getLineByIndex(row);
-        StringBuilder ladderLine = makeLadderLineString(ladderWidth, line);
-
+        StringBuilder ladderLine = makeLadderLineString(line);
         System.out.println(ladderLine);
     }
 
-    private StringBuilder makeLadderLineString(int ladderWidth, Line line) {
+    private StringBuilder makeLadderLineString(Line line) {
         StringBuilder ladderLine = new StringBuilder();
         ladderLine.append(DEFAULT_LADDER_LINE);
+        int ladderWidth = ladder.getWidth();
         for (int i = 0; i < ladderWidth; i++) {
             Flag flag = line.getFlagByIndex(i);
             ladderLine.append(getRandomLadderLinePoint(flag));
