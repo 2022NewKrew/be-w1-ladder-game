@@ -8,15 +8,9 @@ import ladder.domain.Step;
 import java.util.List;
 
 public class LadderGamePrinter {
-    private final String emptyStepStr;
-    private final String filledStepStr;
-    private final String poleStr;
-
-    public LadderGamePrinter(String emptyStepStr, String filledStepStr, String poleStr) {
-        this.emptyStepStr = emptyStepStr;
-        this.filledStepStr = filledStepStr;
-        this.poleStr = poleStr;
-    }
+    private static final String EMPTY_STEP_STR = " ";
+    private static final String FILLED_STEP_STR = "-";
+    private static final String POLE_STR = "|";
 
     public void printLadderGame(LadderGame game) {
         System.out.println("** 실행 결과 **");
@@ -39,17 +33,17 @@ public class LadderGamePrinter {
         for (LadderRow row : rows) {
             List<Step> steps = row.getSteps();
             for (Step step : steps) {
-                sb.append(poleStr).append(getStepDisplayString(step, stepWidth));
+                sb.append(POLE_STR).append(getStepDisplayString(step, stepWidth));
             }
-            sb.append(poleStr).append(System.lineSeparator());
+            sb.append(POLE_STR).append(System.lineSeparator());
         }
         System.out.println(sb);
     }
 
     private String getStepDisplayString(Step step, int width) {
         if (step == Step.FILLED) {
-            return filledStepStr.repeat(width);
+            return FILLED_STEP_STR.repeat(width);
         }
-        return emptyStepStr.repeat(width);
+        return EMPTY_STEP_STR.repeat(width);
     }
 }
