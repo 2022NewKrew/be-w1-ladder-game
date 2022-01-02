@@ -12,7 +12,7 @@ public class Main {
         Ladder ladder = new Ladder(startInfo.getNamePeople(), startInfo.getNumPeople(), startInfo.getMaxHeight());
 
         // 참가자 프린트
-        PrintManager.printPeople(ladder.getNamePeople());
+        PrintManager.printPeople(startInfo.getNamePeople());
         // 사다리 프린트
         PrintManager.printLadder(ladder.toString());
         }
