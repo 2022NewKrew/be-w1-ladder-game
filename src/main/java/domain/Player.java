@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Player {
 	private static final int PRINT_LIMIT = 5;
+	public static final int NO_PLAYER_INDEX = -1;
 
 	private final List<String> playerList;
 
@@ -17,6 +18,16 @@ public class Player {
 
 	public int getNumberOfPlayer() {
 		return playerList.size();
+	}
+
+	public int getPlayerIndex(String name) {
+		for (int i = 0; i < playerList.size(); i++) {
+			if (name.equals(playerList.get(i))) {
+				return i * 2;
+			}
+		}
+
+		return NO_PLAYER_INDEX;
 	}
 
 	public String printPlayer() {
