@@ -1,3 +1,4 @@
+
 import DTO.ResultInfo;
 import model.Ladder;
 import DTO.StartInfo;
@@ -20,4 +21,3 @@ public class Main {
         // 결과 확인
         PrintManager.checkResult(startInfo,resultInfo);
     }}
-
