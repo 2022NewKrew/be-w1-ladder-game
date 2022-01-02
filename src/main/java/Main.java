@@ -19,6 +19,6 @@ public class Main {
         PrintManager.printPeople(startInfo.getNamePeople());
         // 사다리 프린트
         PrintManager.printLadder(resultInfo.getStringLadder());
-        }
-    }
+        System.out.println(resultInfo.getResultOrder());
+    }}
 

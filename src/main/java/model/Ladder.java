@@ -1,10 +1,6 @@
 package model;
 
 import DTO.ResultInfo;
-
-import javax.imageio.event.IIOReadUpdateListener;
-import javax.xml.transform.Result;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -21,14 +17,26 @@ public class Ladder {
 
     @Override
     public String toString(){
-        return ladder.stream()
+        return ladder.
+                stream()
                 .map(Line::toString)
                 .collect(Collectors.joining("\n"));
+    }
+    private List<Integer> makeResultOrder(){
+        List<Integer> resultOrder = IntStream
+                .range(0,ladder.get(0).size()+1)
+                .boxed()
+                .collect(Collectors.toList());
+
+        ladder
+                .forEach(line -> line.makeSwap(resultOrder));
+
+        return resultOrder;
     }
 
     public ResultInfo makeResultInfo(){
         String stringLadder = toString();
-        List<Integer> resultOrder = new ArrayList<>();
+        List<Integer> resultOrder = makeResultOrder();
 
         return new ResultInfo(stringLadder, resultOrder);
     }
