@@ -1,6 +1,5 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
 import ladder.domain.Result;
 import ladder.domain.User;
 
@@ -36,23 +35,15 @@ public class Engine {
         return scanner.nextInt();
     }
 
-    public void showLadder(Ladder ladder) {
-        System.out.print(ladder);
-    }
-
     public void printUsers(List<User> users) {
         StringBuilder builder = new StringBuilder();
-        for (User user : users) {
-            builder.append(user);
-        }
+        users.forEach(builder::append);
         System.out.println(builder);
     }
 
     public void printResults(List<Result> results) {
         StringBuilder builder = new StringBuilder();
-        for (Result result : results) {
-            builder.append(result);
-        }
+        results.forEach(builder::append);
         System.out.println(builder);
     }
 }

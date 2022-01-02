@@ -10,16 +10,20 @@ public class LadderRow {
 
     LadderRow(int userNum) {
         BridgeGenerator bridgeGenerator = new BridgeGenerator();
-        bridges = IntStream.range(0, userNum - 1)
-                .mapToObj(e -> bridgeGenerator.generateBridge()).collect(Collectors.toUnmodifiableList());
+        bridges = IntStream.range(0, userNum)
+                .mapToObj(i -> {
+                    if (i == userNum - 1) return LadderBridge.BRIDGE_DISCONNECTED;
+                    return bridgeGenerator.generateBridge();
+                })
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner(Ladder.LADDER_LINE, Ladder.LADDER_LINE, Ladder.LADDER_LINE);
-        for (LadderBridge bridge : bridges) {
-            joiner.add(bridge.line);
-        }
+        IntStream.range(0, bridges.size() - 1)
+                .mapToObj(bridges::get)
+                .forEach(bridge -> joiner.add(bridge.line));
         return joiner.toString();
     }
 }

@@ -16,7 +16,7 @@ public class Main {
         final int ladderHeight = engine.inputLadderHeight();
         final Ladder ladder = new Ladder(users.size(), ladderHeight);
         engine.printUsers(users);
-        engine.showLadder(ladder);
+        ladder.print();
         engine.printResults(results);
     }
 }
