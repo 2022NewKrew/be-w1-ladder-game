@@ -6,6 +6,7 @@ import ladder.domain.LadderRow;
 import ladder.domain.Step;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGamePrinter {
     private static final String EMPTY_STEP_STR = " ";
@@ -30,13 +31,15 @@ public class LadderGamePrinter {
     private void printLadder(Ladder ladder, int stepWidth) {
         StringBuilder sb = new StringBuilder();
         List<LadderRow> rows = ladder.getRows();
-        for (LadderRow row : rows) {
-            List<Step> steps = row.getSteps();
-            for (Step step : steps) {
-                sb.append(POLE_STR).append(getStepDisplayString(step, stepWidth));
-            }
-            sb.append(POLE_STR).append(System.lineSeparator());
-        }
+        rows.forEach(row -> {
+            String stepsDisplay = row.getSteps().stream()
+                    .map(step -> getStepDisplayString(step, stepWidth))
+                    .collect(Collectors.joining(POLE_STR));
+            sb.append(POLE_STR)
+                    .append(stepsDisplay)
+                    .append(POLE_STR)
+                    .append(System.lineSeparator());
+        });
         System.out.println(sb);
     }
 
