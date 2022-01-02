@@ -19,4 +19,29 @@ public class Ladder {
     public List<LadderRow> getRows() {
         return Collections.unmodifiableList(rows);
     }
+
+    public int getRunResult(int startIndex) {
+        int yPos = 0;
+        int xPos = startIndex;
+        final int width = rows.get(0).getSteps().size();
+        LadderRow row;
+
+        while (yPos < rows.size()) {
+            row = rows.get(yPos);
+            xPos += getXPosDelta(row, xPos, width);
+            ++yPos;
+        }
+
+        return xPos;
+    }
+
+    private int getXPosDelta(LadderRow row, int xPos, final int width) {
+        if (xPos < width && row.getSteps().get(xPos) == Step.FILLED) {
+            return 1;
+        }
+        if (xPos > 0 && row.getSteps().get(xPos-1) == Step.FILLED) {
+            return -1;
+        }
+        return 0;
+    }
 }
