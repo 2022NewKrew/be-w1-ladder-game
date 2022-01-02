@@ -30,13 +30,13 @@ class LineTest {
         Line line = new Line(participants);
         List<Step> stepLine = line.getStepLine();
         Step lastStep = stepLine.get(stepLine.size()-1);
-        Step newStep = line.makeStep();
+//        Step newStep = line.makeStep();
 
-        if (lastStep.isStep()) {
-            assertFalse(newStep.isStep());
-        }
-
-        System.out.println(lastStep.isStep() + " " + newStep.isStep() + "\n");
+//        if (lastStep.isStep()) {
+//            assertFalse(newStep.isStep());
+//        }
+//
+//        System.out.println(lastStep.isStep() + " " + newStep.isStep() + "\n");
 
 //        # Reflection을 이용한 private method 테스트를 하려 했으나 실패하였습니다..
 //

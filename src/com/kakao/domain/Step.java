@@ -2,16 +2,16 @@ package com.kakao.domain;
 
 import java.util.*;
 
-class Step {
+public class Step {
 
     private static final Random random = new Random();
     private final Boolean step;
 
-    Step(Boolean bool) {
+    public Step(Boolean bool) {
         this.step = setStep(bool);
     }
 
-    Boolean isStep() {
+    public Boolean isStep() {
         return step;
     }
 
