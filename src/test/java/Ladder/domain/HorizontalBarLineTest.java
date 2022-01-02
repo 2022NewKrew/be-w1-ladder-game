@@ -11,8 +11,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class HorizontalBarLineTest {
     public HorizontalBarLine HorizontalLine;
 
+    private static final int REPEAT = 5;
     private static final int WIDTH = 8;
-    private static final String BLANK = "     ";
+    private static final String BLANK = " ".repeat(REPEAT);
+    private static final int PADDING_LEN = 2;
 
     @BeforeEach
     void setUp() {
@@ -23,13 +25,12 @@ public class HorizontalBarLineTest {
     void testMakingRule() {
         List<String> line = HorizontalLine.getPrintLine();
 
-        System.out.println(line.size());
         if (line.size() == 0) {
             return;
         }
 
-        String prev = line.get(0);
-        for (int i = 1; i < line.size(); i++) {
+        String prev = line.get(PADDING_LEN);
+        for (int i = PADDING_LEN + 2; i < line.size() - PADDING_LEN; i += 2) {
             String cur = line.get(i);
             checkConsecutiveString(prev, cur);
             prev = cur;
