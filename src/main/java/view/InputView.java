@@ -26,8 +26,7 @@ public class InputView {
     }
 
     public static Player stringToPlayer(String nameAfterDefined) {
-        Player player = new Player(nameAfterDefined);
-        return player;
+        return new Player(nameAfterDefined);
     }
 
     public static int inputMaximumLadderHeight() {
