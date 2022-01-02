@@ -110,7 +110,7 @@ be-w1-ladder-game
   * DTO 객체 생성의 책임을 일단은 main함수로 변경
   
 ### TODO
-* get 함수로 List를 가져오는 경우 내부 로직 변경
-* 객체 리팩토링
+* 객체 리팩토링 ==> 다음번에...
   * Ladder 객체를 두개로 나눈다?
   * HorizBarLine과 NameLine의 상위객체를 만들까?
+* Test code의 테스트 코드들이 잘 돌아가는지 확인할 것
