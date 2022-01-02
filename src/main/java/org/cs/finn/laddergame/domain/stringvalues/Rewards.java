@@ -28,6 +28,11 @@ public class Rewards extends AbstractStringValues<Reward> {
         return new Reward(reward);
     }
 
+    @Override
+    public Reward getNoneValue() {
+        return Reward.NONE;
+    }
+
     public static Rewards getDefault(final int requestSize) {
         if (requestSize <= 0) {
             throw new RuntimeException("requestSize is not positive integer! - " + requestSize);

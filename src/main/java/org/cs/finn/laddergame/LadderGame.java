@@ -23,9 +23,9 @@ public class LadderGame {
     }
 
     public void run() {
-        Member member = Member.RETRYER;
+        Member member = Member.NONE;
 
-        while (member.isNotTerminator()) {
+        while (!member.isTerminator()) {
             final Members members = userInput.requestMembers();
             final Rewards rewards = userInput.requestRewards(members);
             final Ladder ladder = userInput.requestLadder(sRand, members);
@@ -43,11 +43,38 @@ public class LadderGame {
 
     private Member getMemberAndPrintLadderWithReward(final Members members, final Ladder ladder, final Rewards rewards) {
         Member member = userInput.requestMember(members);
-        while (member.isNotTerminator() || member.isNotRetryer()) {
-            printLadderWithReward(members, ladder, rewards, member);
+        while (!member.isTerminator() && !member.isRetryer()) {
+            printReward(members, ladder, rewards, member);
             member = userInput.requestMember(members);
         }
         return member;
+    }
+
+    private void printReward(
+            final Members members,
+            final Ladder ladder,
+            final Rewards rewards,
+            final Member member
+    )
+    {
+        if (member.isAll()) {
+            printRewardAll(members, ladder, rewards);
+            return;
+        }
+        if (!member.isNone()) {
+            printLadderWithReward(members, ladder, rewards, member);
+        }
+    }
+
+    private void printRewardAll(
+            final Members members,
+            final Ladder ladder,
+            final Rewards rewards
+    )
+    {
+        for (Member m : members.getList()) {
+            printLadderWithReward(members, ladder, rewards, m);
+        }
     }
 
     private void printLadderWithReward(
@@ -58,8 +85,8 @@ public class LadderGame {
     )
     {
         stringValuesView.print(members, Member.WIDTH);
-        final int rewardIdx = ladderView.printWithRewardPath(ladder, members, member);
+        //final int rewardIdx = ladderView.printWithReward(ladder, members, member);
         stringValuesView.print(rewards, Reward.WIDTH);
-        stringValuesView.printReward(member, rewards, rewardIdx);
+        //stringValuesView.printTwoValue(member, rewards.get(rewardIdx));
     }
 }

@@ -11,8 +11,9 @@ import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class UserInput {
-    private static final String strTerminator = "춘식이";
-    private static final String strRetryer = "무지";
+    private static final String memberTerminator = "춘식이";
+    private static final String memberRetryer = "무지";
+    private static final String memberAll = Member.ALL.toString();
 
     private final Scanner sc = new Scanner(System.in);
 
@@ -28,7 +29,7 @@ public class UserInput {
 
     private Members getMembersFromInput() {
         try {
-            return new Members(sc.nextLine());
+            return new Members(sc.nextLine().trim());
         } catch (IllegalArgumentException e) {
             System.out.println("유효한 입력 값의 개수가 제한 범위[" + Members.MIN + ", " + Members.MAX + "]를 벗어났으므로");
             System.out.println("기본 값 " + Members.DEFAULT_MEMBER_LIST + "을 사용합니다");
@@ -52,7 +53,7 @@ public class UserInput {
 
     private Rewards getRewardsFromInput(final int requestSize) {
         try {
-            return new Rewards(sc.nextLine(), requestSize);
+            return new Rewards(sc.nextLine().trim(), requestSize);
         } catch (IllegalArgumentException e) {
             System.out.println("유효한 입력 값의 개수가 입력 허용 범위[" + Rewards.MIN + ", " + Rewards.MAX + "]를 벗어났으므로");
             System.out.println("기본 값 " + Rewards.DEFAULT_REWARD_LIST + "을 기준으로 사람 수 만큼 조절 후 사용합니다");
@@ -78,7 +79,7 @@ public class UserInput {
 
     private LadderHeight getLadderHeightFromInput() {
         try {
-            return new LadderHeight(sc.nextLine());
+            return new LadderHeight(sc.nextLine().trim());
         } catch (NumberFormatException e) {
             System.out.println("잘못된 값 입력으로 기본 값 (" + LadderHeight.INIT + ")을 사용합니다");
         } catch (IndexOutOfBoundsException e) {
@@ -90,15 +91,55 @@ public class UserInput {
     }
 
     public Member requestMember(final Members members) {
+        if (members == null) {
+            throw new RuntimeException("Members is null!");
+        }
 
-        // strTerminator, strRetryer, members 중 1명이 나올때까지 반복
+        Member member = Member.NONE;
+        while (member.isNone()) {
+            System.out.println("결과를 보고 싶은 사람의 이름을 입력하세요 " + members.getList());
+            System.out.println(memberAll + "를 입력해 모든 결과를 출력할 수 있습니다");
+            System.out.println(memberRetryer + "를 입력해 새 사다리를 만들거나");
+            System.out.println(memberTerminator + "를 입력해 종료할 수 있습니다");
 
-        System.out.println("결과를 보고 싶은 사람의 이름을 입력하세요 " + members.getList());
-        System.out.println(strRetryer + "를 입력해 새 사다리를 만들거나");
-        System.out.println(strTerminator + "를 입력해 종료할 수 있습니다");
-
-        final Member member = getMemberFromInput();
-        System.out.println();
+            member = getMemberFromInput(members);
+            System.out.println();
+        }
         return member;
+    }
+
+    private Member getMemberFromInput(final Members members) {
+        final String input = sc.nextLine().trim();
+        if (input.isBlank()) {
+            return Member.NONE;
+        }
+        if (isReservedMemberString(input)) {
+            return getReservedMember(input);
+        }
+
+        final Member member = members.find(input);
+        if (member.isNone()) {
+            System.out.println("입력한 멤버를 찾을 수 없습니다");
+        }
+        return member;
+    }
+
+    private boolean isReservedMemberString(final String input) {
+        return memberRetryer.equals(input) ||
+                memberTerminator.equals(input) ||
+                memberAll.equals(input);
+    }
+
+    private Member getReservedMember(final String input) {
+        if (memberRetryer.equals(input)) {
+            return Member.RETRYER;
+        }
+        if (memberTerminator.equals(input)) {
+            return Member.TERMINATOR;
+        }
+        if (memberAll.equals(input)) {
+            return Member.ALL;
+        }
+        return Member.NONE;
     }
 }

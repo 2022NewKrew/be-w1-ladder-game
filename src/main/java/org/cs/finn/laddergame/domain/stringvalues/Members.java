@@ -23,7 +23,15 @@ public class Members extends AbstractStringValues<Member> {
         if (member == null) {
             throw new RuntimeException("member String is null!");
         }
+        if (Member.ALL.toString().equals(member)) {
+            throw new IllegalArgumentException("all String is reserved for command!");
+        }
         return new Member(member);
+    }
+
+    @Override
+    public Member getNoneValue() {
+        return Member.NONE;
     }
 
     public static Members getDefault() {

@@ -58,13 +58,21 @@ public abstract class AbstractStringValues<T extends AbstractStringValue> {
         if (list.size() > limit) {
             return;
         }
-
+        T t;
         try {
+            t = generateValue(value);
+        } catch (IllegalArgumentException e) {
+            return;
+        }
+
+        if (!list.contains(t)) {
             list.add(generateValue(value));
-        } catch (IllegalArgumentException ignored) {}
+        }
     }
 
     public abstract T generateValue(final String value);
+
+    public abstract T getNoneValue();
 
     public static String getDefaultGenerator(final List<? extends AbstractStringValue> defaultValuesList, final String separator) {
         if (defaultValuesList == null || defaultValuesList.isEmpty()) {
@@ -83,5 +91,32 @@ public abstract class AbstractStringValues<T extends AbstractStringValue> {
 
     public List<T> getList() {
         return Collections.unmodifiableList(list);
+    }
+
+    public T get(final int idx) {
+        if (idx < 0 || idx >= list.size()) {
+            throw new IndexOutOfBoundsException("idx is out of [0, (list size) - 1]!");
+        }
+        return list.get(idx);
+    }
+
+    public T find(final String value) {
+        if (value == null) {
+            throw new RuntimeException("value String is null!");
+        }
+
+        T t;
+        try {
+            t = generateValue(value);
+        } catch (IllegalArgumentException e) {
+            return getNoneValue();
+        }
+
+        final int idx = list.indexOf(t);
+        if (idx != -1) {
+            return list.get(idx);
+        }
+
+        return getNoneValue();
     }
 }
