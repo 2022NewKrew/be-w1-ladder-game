@@ -13,10 +13,14 @@ public class InputManager {
     public static StartInfo makeStartInfo() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         List<String> namePeople = makeInputString();
+
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요");
+        List<String> resultString = makeInputString();
+
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int maxHeight = makeInputNumber();
 
-        return new StartInfo(namePeople.size(), namePeople, maxHeight);
+        return new StartInfo(namePeople.size(), namePeople, resultString, maxHeight);
     }
     private static List<String> makeInputString() {
         boolean pass = false;
@@ -32,7 +36,7 @@ public class InputManager {
         if(namePeople.stream().allMatch(name -> name.length()<=5)){
             return true;
         }
-        System.out.println("사람이름은 5글자 이하로 정해주세요.");
+        System.out.println("항목은 5글자 이하로 정해주세요.");
         return false;
     }
 

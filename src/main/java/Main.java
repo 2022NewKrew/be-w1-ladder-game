@@ -15,10 +15,7 @@ public class Main {
         // 사다리로부터 결과 받음
         ResultInfo resultInfo = ladder.makeResultInfo();
 
-        // 참가자 프린트
-        PrintManager.printPeople(startInfo.getNamePeople());
-        // 사다리 프린트
-        PrintManager.printLadder(resultInfo.getStringLadder());
-        System.out.println(resultInfo.getResultOrder());
+        // 결과 요약 프린트
+        PrintManager.printSummary(startInfo,resultInfo);
     }}
 
