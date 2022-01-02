@@ -9,12 +9,14 @@ public class Input {
 
     private static final Scanner sc = new Scanner(System.in);
     private static final String SPLIT_REGEX = ",";
+    private static int playerNumber;
 
     private Input() {}
 
     public static List<String> getPlayerNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         List<String> userInput = new ArrayList<>(Arrays.asList(sc.nextLine().split(SPLIT_REGEX)));
+        playerNumber = userInput.size();
         boolean isValidated = userInput.stream().allMatch(str -> str.length() < 6 && str.length() > 0);
         if (isValidated) return userInput;
         System.out.println("이름을 형식에 맞게 다시 입력하세요. (이름은 1~5자 사이로 입력하세요)");
@@ -24,9 +26,9 @@ public class Input {
     public static List<String> getResultNames() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         List<String> userInput = new ArrayList<>(Arrays.asList(sc.nextLine().split(SPLIT_REGEX)));
-        boolean isValidated = userInput.stream().allMatch(str -> str.length() < 6 && str.length() > 0);
+        boolean isValidated = userInput.size() == playerNumber && userInput.stream().allMatch(str -> str.length() < 6 && str.length() > 0);
         if (isValidated) return userInput;
-        System.out.println("실행 결과를 형식에 맞게 다시 입력하세요. (결과는 1~5자 사이로 입력하세요)");
+        System.out.println("실행 결과를 형식에 맞게 다시 입력하세요. (결과는 참여자 수만큼 1~5자 사이로 입력하세요)");
         return getResultNames();
     }
 

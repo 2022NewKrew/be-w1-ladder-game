@@ -1,8 +1,10 @@
+import ladder.domain.Ladder;
 import ladder.domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -28,5 +30,21 @@ public class LadderTest {
 
         //then
         assertThat(consecutiveConnection).doesNotContain(true); //true 값이 있으면 test 실패
+    }
+
+    @Test
+    @DisplayName("사다리 결과를 출력할 때 최대 5글자를 정확히 출력하는지 처리하는 로직 테스트")
+    public void OutputTest() {
+        //given
+        List<String> playerNames = new ArrayList<>(Arrays.asList("abcdefg", "hij", "klm", "nop"));
+        List<String> resultList = new ArrayList<>(Arrays.asList("3000", "꽝", "5000", "꽝"));
+        int ladderHeight = 5;
+        Ladder ld = new Ladder(playerNames, resultList, ladderHeight);
+
+        //when
+        StringBuilder sb = ld.playerListToString();
+
+        //then
+        assertThat(sb.toString()).isEqualTo(" abcde   hij   klm   nop");
     }
 }

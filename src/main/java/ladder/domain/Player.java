@@ -9,6 +9,9 @@ public class Player {
     }
 
     public String getNameWithGap(int ladderWidth, int nameGap) {
+        if (name.length() > ladderWidth) {
+            return String.format("%" + (ladderWidth + nameGap) + "s", name.substring(0, 5));
+        }
         return String.format("%" + (ladderWidth + nameGap) + "s", name);
     }
 
