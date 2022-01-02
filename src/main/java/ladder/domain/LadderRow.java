@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -11,12 +12,12 @@ public class LadderRow {
 
     LadderRow(int numOfPeople) {
         for (int i = 0; i < numOfPeople - 1; ++i) {
-            boolean isleftFilled = (i != 0 && steps.get(steps.size() - 1) == Step.FILLED);
-            steps.add(StepGenerator.getNextStep(isleftFilled));
+            boolean isleftFilled = (i != 0 && steps.get(i - 1) == Step.FILLED);
+            steps.add(StepGenerator.generateNextStep(isleftFilled));
         }
     }
 
     public List<Step> getSteps() {
-        return steps;
+        return Collections.unmodifiableList(steps);
     }
 }

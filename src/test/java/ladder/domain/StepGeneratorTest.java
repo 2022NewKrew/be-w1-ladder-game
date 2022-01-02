@@ -15,7 +15,7 @@ class StepGeneratorTest {
         boolean isLeftStepFilled = true;
 
         // when
-        Step nextStep = StepGenerator.getNextStep(isLeftStepFilled);
+        Step nextStep = StepGenerator.generateNextStep(isLeftStepFilled);
 
         // then
         assertThat(nextStep).isEqualTo(Step.EMPTY);
