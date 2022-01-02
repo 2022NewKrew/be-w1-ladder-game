@@ -104,13 +104,13 @@ be-w1-ladder-game
   * OutputView 내에서는 단순 출력만 할 수 있도록
   * StringBuilder 사용
   * HorizBarLine 내의 상수들을 수정이 용이하도록 변경
-
-### TODO
 * 입력
-  * 값이 valid 한지 체크
-  * DTO 객체 생성의 책임을 다시 살펴보기
+  * 입력값으로 들어온 이름의 길이가 0인 경우 다시 입력받도록 수정
+  * 입력값으로 들어온 사다리의 높이가 자연수가 아닌경우 다시 입력받도록 수정
+  * DTO 객체 생성의 책임을 일단은 main함수로 변경
+  
+### TODO
 * get 함수로 List를 가져오는 경우 내부 로직 변경
-
 * 객체 리팩토링
   * Ladder 객체를 두개로 나눈다?
   * HorizBarLine과 NameLine의 상위객체를 만들까?

@@ -28,8 +28,8 @@ public class NameLine {
     }
 
     public static String centAlign(@NotNull String str) {
-        if (str.length() == NAME_LEN) {
-            return str;
+        if (str.length() >= NAME_LEN) {
+            return str.substring(0, NAME_LEN);
         }
 
         int preBlankLen = (NAME_LEN - str.length()) / 2;
