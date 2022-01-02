@@ -1,70 +1,92 @@
 package ladder;
 
 import ladder.domain.*;
-import ladder.exception.NameLengthException;
 import ladder.stratgey.LadderStrategy;
 import ladder.stratgey.LadderStrategyFactory;
+import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 //사다리 게임 서비스
 public class LadderGameService {
     //사다리게임
-    private Players players = null; //게임 플레이어 정보
-    private Ladder ladder = null; //사다리 정보
+    private Players players; //게임 플레이어 정보
+    private Ladder ladder; //사다리 정보
+    private Results results; //사다리 게임 결과
 
     //입출력
+    private InputView inputView = InputView.getInstance();
     private OutputView outputView = OutputView.getInstance();
 
     //게임전략
+    private static final String LADDER_STRATEGY = "RANDOM";
     private LadderStrategy ladderStrategy;
 
+    //종료
+    private static final String EXIT_CODE = "춘식이";
+    private static final String EXIT_MESSAGE = "게임을 종료합니다";
 
-    //플레이어들 이름 구하기
-    public List<String> getPlayersName() {
-        return players.getPlayersName();
+    public LadderGameService() {
+        players = new Players();
+        ladder = new Ladder();
+        results = new Results();
     }
 
-    public Ladder getLadder() {
-        return ladder;
-    }
+    //게임 시작
+    public void startGame() {
+        List<String> playersName = inputView.inputPlayersName();
+        List<String> gameResults = inputView.inputGameResults();
+        int height = inputView.inputLadderHeight();
 
-    //사다리게임 정보 출력
-    public void printLadderInfo() {
-        outputView.printPlayersName(players);
-        outputView.printLadder(ladder, players.getPlayersCnt());
+        initGameInfo(playersName, gameResults, height);
+        drawBridgesByStrategy();
+        results.findAllResults(players, ladder);
+
+        outputView.printLadderGameResults(players, ladder, results);
+        showGameResults();
+    }
+    
+    //사용자로부터 원하는 플레어에대한 결과를 보여줌
+    private void showGameResults() {
+        String resultPlayerName = inputView.inputResultPlayerName();
+
+        while (!EXIT_CODE.equals(resultPlayerName)) {
+            System.out.println(results.getGameResult(resultPlayerName));
+            resultPlayerName = inputView.inputResultPlayerName();
+        }
+        System.out.println(EXIT_MESSAGE);
+    }
+    
+    //게임에 필요한 정보 초기화
+    public void initGameInfo(List<String> playersName, List<String> gameResults, int height) {
+        makePlayers(playersName);
+        makeGameResults(gameResults);
+        makeLadder(height);
+        makeStrategy();
+    }
+    
+    //사다리 하단 게임결과 정보 생성
+    private void makeGameResults(List<String> gameResults) {
+        gameResults.forEach(r -> this.results.addResult(r));
     }
 
     //플레이어들의 정보 생성
-    public void makePlayers(List<String> playersName) {
-        int initialSize = playersName.size();
-
-        playersName = playersName.stream().filter(this::checkNameLength).collect(Collectors.toList());
-        if (playersName.size() < initialSize) {
-            throw new NameLengthException("플레이어의 이름은 5글자 미만으로 입력하시오.");
-        }
-
-        players = new Players(playersName.size());
+    private void makePlayers(List<String> playersName) {
         for (String playerName : playersName) {
-            players.addPlayer(new Player(playerName));
-        }
-    }
+            Player player = new Player(playerName);
+            player.checkPlayerName();
 
-    //플레이어 이름 길이 검증
-    private boolean checkNameLength(String name) {
-        if (name.length() <= 5) {
-            return true;
+            players.addPlayer(player);
         }
-        return false;
     }
 
     //사다리 정보 생성
-    public void makeLadder(int height) {
+    private void makeLadder(int height) {
         int playersCnt = players.getPlayersCnt();
 
-        ladder = new Ladder(playersCnt);
+        ladder = new Ladder();
         ladder.initLadder(playersCnt, height);
 
         for (int i = 0; i < playersCnt; i++) {
@@ -74,10 +96,10 @@ public class LadderGameService {
     }
 
     //전략 정보 생성
-    public void makeStrategy(String type) {
+    private void makeStrategy() {
         LadderStrategyFactory ladderStrategyFactory = new LadderStrategyFactory();
 
-        ladderStrategy = ladderStrategyFactory.getLadderStrategy(type);
+        ladderStrategy = ladderStrategyFactory.getLadderStrategy(LADDER_STRATEGY);
     }
 
     //선택된 정책에 의한 브릿지 그리기
@@ -90,40 +112,7 @@ public class LadderGameService {
             int bridgeIdx = ladderStrategy.getBridgeIdx() % height;
             int lineIdx = ladderStrategy.getLineIdx() % (playersCnt - 1);
 
-            drawBridge(lineIdx, bridgeIdx);
+            ladder.drawBridge(lineIdx, bridgeIdx);
         }
     }
-
-    //사다리 가로 브릿지 정보 추가
-    public void drawBridge(int lineIdx, int bridgeIdx) {
-        if (!checkLadderPolicy(lineIdx, bridgeIdx)) {
-            return;
-        }
-        Line line = ladder.getOneLine(lineIdx);
-        Bridge bridge = line.getOneBridge(bridgeIdx);
-
-        bridge.drawBridge();
-    }
-
-    //사다리 인접 브릿지 검사
-    private boolean checkLadderPolicy(int lineIdx, int bridgeIdx) {
-        if (lineIdx == 0) {
-            return checkBridgeExist(lineIdx + 1, bridgeIdx); // 오른쪽에 bridge 존재하는지 체크
-        } else if (lineIdx == players.getPlayersCnt() - 1) {
-            return checkBridgeExist(lineIdx - 1, bridgeIdx);
-        }
-        return checkBridgeExist(lineIdx - 1, bridgeIdx) && checkBridgeExist(lineIdx + 1, bridgeIdx); // 양쪽에 bridge 존재하는지 체크
-    }
-
-    //브릿지 존재 여부 검증
-    private boolean checkBridgeExist(int lineIdx, int bridgeIdx) {
-        Line line = ladder.getOneLine(lineIdx);
-        Bridge bridge = line.getOneBridge(bridgeIdx);
-
-        if (bridge.isExist()) {
-            return false;
-        }
-        return true;
-    }
-
 }

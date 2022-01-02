@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 public class Players {
     private List<Player> players;
 
-    public Players(int playerCnt) {
-        players = new ArrayList<>(playerCnt);
+    public Players() {
+        players = new ArrayList<>();
     }
 
     public void addPlayer(Player player) {
@@ -22,6 +22,10 @@ public class Players {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public Player getOnePlayer(int idx) {
+        return players.get(idx);
     }
 
     public List<String> getPlayersName() {
