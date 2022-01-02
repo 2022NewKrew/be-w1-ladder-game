@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Ladder {
     // 인스턴스 변수
-    private final Name names;
+    private final UserList userList;
     private final List<Line> lines = new ArrayList<>();
 
     // 생성자

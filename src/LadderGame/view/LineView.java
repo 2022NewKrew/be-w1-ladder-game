@@ -12,7 +12,7 @@ public class LineView {
 
     @Override
     public String toString() {
-        int padding = Name.firstNameLength / 2 + 1;
+        int padding = UserList.firstNameLength / 2 + 1;
         return " ".repeat(padding) + String.join("", lines.getPoints()) + "\n";
     }
 }
