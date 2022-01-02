@@ -1,3 +1,7 @@
+package com.meg.laddergame.view;
+
+import com.meg.laddergame.validation.Validator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +17,19 @@ public class InputView {
             Validator.checkName(names);
             return names;
         } catch (IllegalArgumentException e) {
-            System.out.println("[Error] 이름을 1자 이상 5자 이하로 입력해주세요.");
+            System.out.println(e.getMessage());
+            return askNames();
+        }
+    }
+
+    public static List<String> askResult() {
+        try {
+            System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+            List<String> results = Arrays.asList(sc.next().split(","));
+            Validator.checkName(results);
+            return results;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return askNames();
         }
     }
@@ -28,6 +44,11 @@ public class InputView {
             System.out.println("[Error] 높이를 1자 이상 입력해주세요.");
             return askHeight();
         }
+    }
+
+    public static String askResultOfUser() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return sc.next();
     }
 
 }
