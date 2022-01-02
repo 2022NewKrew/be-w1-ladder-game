@@ -1,6 +1,6 @@
 package view;
 
-import model.StartInfo;
+import DTO.StartInfo;
 
 import java.util.Arrays;
 import java.util.Scanner;

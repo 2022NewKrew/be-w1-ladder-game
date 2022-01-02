@@ -1,5 +1,5 @@
 import model.Ladder;
-import model.StartInfo;
+import DTO.StartInfo;
 import view.InputManager;
 import view.PrintManager;
 
