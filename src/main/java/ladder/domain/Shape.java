@@ -1,9 +1,13 @@
 package ladder.domain;
 
+import java.util.stream.Stream;
+
+import static ladder.domain.LadderMain.MAX_LENGTH;
+
 public enum Shape {
     COL("|"),
-    ROW("-----"),
-    BLANK_ROW("     ");
+    ROW("-"),
+    BLANK_ROW(" ");
 
     private final String shape;
 
@@ -12,6 +16,7 @@ public enum Shape {
     }
 
     public String getShape() {
-        return shape;
+        if(shape.equals("|")) return shape;
+        return Stream.generate(() -> shape).limit(MAX_LENGTH).reduce((a, b) -> a + b).get();
     }
 }
