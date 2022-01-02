@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Ladder {
+import static ladder.domain.LadderConstant.*;
 
-    private static final String NEWLINE = "\n";
-    private static final int LADDER_WIDTH = 5;
-    private static final int NAME_GAP = 1;
+public class Ladder {
 
     private final List<Player> playerList;
     private final List<Result> resultList;

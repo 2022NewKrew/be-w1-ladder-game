@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Line {
+import static ladder.domain.LadderConstant.*;
 
-    private static final String VERTICAL_BAR = "|";
-    private static final String HORIZONTAL_BAR = "-";
-    private static final String EMPTY_BAR = " ";
-    private final static int FIRST_INDEX = 1;
-    private static final String BLANK = "    ";
-    private static final int LADDER_WIDTH = 5;
+public class Line {
 
     private final int lineSize;
     private final List<Boolean> pointList;

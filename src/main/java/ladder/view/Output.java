@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Output {
 
-    private Output() {};
+    private Output() {}
     
     public static void printTotal(Ladder ladder) {
         System.out.println("사다리 결과");
