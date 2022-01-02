@@ -23,21 +23,29 @@ public class LadderGamePrinter {
 
     public void printResult(LadderGame game) {
         Scanner scanner = new Scanner(System.in);
-        while (getNext(game, scanner)) {
-
-        }
+        while (getNext(game, scanner)) {}
     }
 
     private boolean getNext(LadderGame game, Scanner scanner) {
         String input = scanner.nextLine();
-        if (input.equals(END_WORD)) {
+        if (input.equals(END_WORD))
             return false;
-        }
+        if (input.equals("all"))
+            return getAllPrizes(game);
+
         try {
-            Prize prize = game.getPrizeByName(input);
-            System.out.println("실행 결과 " + prize);
+            System.out.println("실행 결과 " + game.getPrizeByName(input));
         } catch (NoSuchElementException e) {
             System.out.println("사람 이름을 다시 입력해주세요");
+        }
+        return true;
+    }
+
+    private boolean getAllPrizes(LadderGame game) {
+        List<Player> players = game.getPlayers();
+        System.out.println("실행 결과");
+        for (Player player: players) {
+            System.out.println(player + ": " + game.getPrizeByName(player.getName()));
         }
         return true;
     }
