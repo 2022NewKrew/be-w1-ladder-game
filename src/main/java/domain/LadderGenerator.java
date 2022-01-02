@@ -17,18 +17,15 @@ public class LadderGenerator {
 
     }
 
-
     public Ladder createLadder() {
-        List<LadderLine> ladder = new ArrayList<>(maximumLadderHeight);
-        Stream.generate(this::createLadderLine)
+        List<LadderLine> ladder = Stream.generate(this::createLadderLine)
                 .limit(maximumLadderHeight)
-                .forEach(ladder::add);
+                .collect(Collectors.toList());
         return new Ladder(ladder);
     }
 
-
     private LadderLine createLadderLine() {
-        List<Piece> pieces = new ArrayList<>(playerNums);
+        List<Piece> pieces = new ArrayList<>(playerNums - 1);
         pieces.add(createRowOrSpace(false));
         for (int indexPieceBefore = 0; indexPieceBefore < playerNums - 2; indexPieceBefore++) {
             pieces.add(createRowOrSpace(pieces.get(indexPieceBefore).getPiece()));
