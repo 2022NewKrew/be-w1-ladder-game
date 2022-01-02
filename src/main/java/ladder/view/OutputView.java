@@ -17,21 +17,31 @@ public class OutputView {
         return OutputView.LazyHolder.INSTANCE;
     }
 
-    public void printPlayersName(Players players) {
-        List<Player> playerList = players.getPlayers();
+    public void printLadderGameResults(Players players, Ladder ladder, Results results) {
+        System.out.println("사다리 결과");
+        printPlayersName(players);
+        printLadder(ladder, players.getPlayersCnt());
+        printResults(results);
+    }
 
-        for (Player player : playerList) {
-            System.out.printf("%5s ", player.getName());
-        }
+    private void printPlayersName(Players players) {
+        players.getPlayersName()
+                .forEach(n -> System.out.printf("%5s ", n));
         System.out.println();
     }
 
-    public void printLadder(Ladder ladder, int playersCnt) {
+    private void printLadder(Ladder ladder, int playersCnt) {
         List<Line> curLadder = ladder.getLadder();
 
         for (int i = 0; i < ladder.getHeight(); i++) {
             printLadderRow(curLadder, i, playersCnt);
         }
+    }
+
+    private void printResults(Results results) {
+        results.getResults()
+                .forEach(r -> System.out.printf("%5s ", r));
+        System.out.println();
     }
 
     private void printLadderRow(List<Line> ladder, int curHeight, int playersCnt) {
@@ -49,4 +59,5 @@ public class OutputView {
         }
         System.out.println("|");
     }
+
 }
