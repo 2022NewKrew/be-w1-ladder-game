@@ -2,7 +2,7 @@ package ladder.view;
 
 import java.util.List;
 
-import static ladder.domain.LadderMain.MAX_LENGTH;
+import static ladder.LadderMain.MAX_LENGTH;
 
 public class OutputView {
 

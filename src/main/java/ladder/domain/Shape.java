@@ -2,7 +2,7 @@ package ladder.domain;
 
 import java.util.stream.Stream;
 
-import static ladder.domain.LadderMain.MAX_LENGTH;
+import static ladder.LadderMain.MAX_LENGTH;
 
 public enum Shape {
     COL("|"),

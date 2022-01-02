@@ -10,7 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 
-import static ladder.domain.LadderMain.MAX_LENGTH;
+import static ladder.LadderMain.MAX_LENGTH;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class OutputViewTest {

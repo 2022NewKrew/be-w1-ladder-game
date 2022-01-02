@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder;
 
+import ladder.domain.Ladder;
 import ladder.view.InputView;
 
 import java.util.List;
