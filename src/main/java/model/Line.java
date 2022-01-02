@@ -1,9 +1,8 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Line {
     private static final Random rand = new Random();
@@ -14,18 +13,23 @@ public class Line {
     private static final String PADDING = "  ";
 
     public Line(int numPeople){
-        for (int i = 0; i < numPeople-1; i++) {
-            addPoints(i);
-        }
+        IntStream
+                .range(0,numPeople-1)
+                .forEach(this::addPoints);
     }
     @Override
     public String toString(){
         return PADDING + VLINE
-                + points.stream()
+                + points
+                .stream()
                 .map(p -> p ? HLINE : SPACE)
                 .collect(Collectors.joining(VLINE))
                 + VLINE;
     }
+    public int size(){
+        return points.size();
+    }
+
     private void addPoints(int i){
         if(isNextLadder(i)){
             points.add(false);
@@ -36,5 +40,17 @@ public class Line {
 
     private boolean isNextLadder(int i){
         return i==0? false: points.get(i - 1);
+    }
+
+    public void makeSwap(List<Integer> resultOrder){
+        IntStream.
+                range(0,points.size())
+                .boxed()
+                .forEach(i -> isSwap(i,resultOrder));
+    }
+    private void isSwap(int point, List<Integer> resultOrder){
+        if(points.get(point)){
+            Collections.swap(resultOrder, point,point+1);
+        }
     }
 }
