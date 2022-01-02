@@ -45,12 +45,14 @@ public class InputStringList implements Input<List<String>> {
     }
 
     private void checkInputCountLack(int count) throws InputValidException {
+        String COUNT_LACK_MESSAGE = "입력한 사람 수가 " + TARGET_COUNT + "명 보다 적습니다. 다시 입력해주세요.";
         if(count < TARGET_COUNT)
-            throw new InputValidException("입력된 사람 수가 " + TARGET_COUNT + "명 보다 많습니다. 다시 입력해주세요.");
+            throw new InputValidException(COUNT_LACK_MESSAGE);
     }
 
     private void checkInputCountExceed(int count) throws InputValidException {
+        String COUNT_EXCEED_MESSAGE = "입력된 사람 수가 " + TARGET_COUNT + "명 보다 많습니다. 다시 입력해주세요.";
         if(count > TARGET_COUNT)
-            throw new InputValidException("입력한 사람 수가 " + TARGET_COUNT + "명 보다 적습니다. 다시 입력해주세요.");
+            throw new InputValidException(COUNT_EXCEED_MESSAGE);
     }
 }
