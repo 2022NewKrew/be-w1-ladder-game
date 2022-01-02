@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class LadderGame {
     private List<String> players;
     private final Ladder ladder;
-    public final int PLAYER_NAME_LENGTH_LIMIT = 5;
+    public static final int PLAYER_NAME_LENGTH_LIMIT = 5;
 
     public List<String> getPlayers() {
         return players;
@@ -17,10 +17,6 @@ public class LadderGame {
 
     public Ladder getLadder() {
         return ladder;
-    }
-
-    public int getPlayerNameLengthLimit() {
-        return PLAYER_NAME_LENGTH_LIMIT;
     }
 
     public LadderGame() {

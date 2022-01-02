@@ -16,7 +16,7 @@ public class LadderGamePrinter {
         System.out.println("** 실행 결과 **");
 
         printPlayers(game.getPlayers());
-        printLadder(game.getLadder(), game.getPlayerNameLengthLimit());
+        printLadder(game.getLadder(), LadderGame.PLAYER_NAME_LENGTH_LIMIT);
     }
 
     private void printPlayers(List<String> players) {
