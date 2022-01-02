@@ -25,7 +25,6 @@ public class Ladder {
         this.ladderDestinations = new LadderDestinations(this.ladderRows, manCount);
     }
 
-
     public List<Integer> getPlayerDstIdx(List<Integer> playerIdxLst) {
         List<Integer> dstIdxLst = new ArrayList<>();
         for (int playerIdx : playerIdxLst)
