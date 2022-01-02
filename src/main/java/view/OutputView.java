@@ -2,6 +2,8 @@ package view;
 
 import domain.*;
 
+import java.util.List;
+
 public class OutputView {
     private static final int PIECE_REPEAT_NUM = 5;
     private static final String PIECE_HORIZONTAL = "|";
@@ -36,5 +38,9 @@ public class OutputView {
         System.out.print(PIECE_HORIZONTAL);
     }
 
-    public static void printResult()
+    public static void printResult(List<String> results) {
+        for (String result : results) {
+            System.out.print(String.format("%6s", result));
+        }
+    }
 }

@@ -32,6 +32,7 @@ public class InputView {
     }
 
     public static List<String> inputExecution() {
+        System.out.println(EXECUTION_INPUT);
         String ResultsBeforeDefined = scanner.next();
         String[] ResultsAfterDefined = ResultsBeforeDefined.split(",");
         return new ArrayList<>(Arrays.asList(ResultsAfterDefined));

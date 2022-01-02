@@ -8,11 +8,14 @@ import service.LadderGameService;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
+
 public class LadderGame {
 
     public void run() {
         PlayerRepository playerRepository = new PlayerRepository(InputView.inputPlayerNames());
         int playerNums = playerRepository.getPlayerNums();
+        List<String> inputExecution = InputView.inputExecution();
         int maximumLadderHeight = InputView.inputMaximumLadderHeight();
 
         LadderGenerator ladderGenerator = new LadderGenerator(playerNums, maximumLadderHeight);
@@ -23,6 +26,7 @@ public class LadderGame {
 
         OutputView.printPlayers(playerRepository);
         OutputView.printLadder(ladder);
+        OutputView.printResult(inputExecution);
 
     }
 }
