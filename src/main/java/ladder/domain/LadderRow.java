@@ -12,7 +12,7 @@ public class LadderRow {
 
     LadderRow(int numOfPeople) {
         for (int i = 0; i < numOfPeople - 1; ++i) {
-            boolean isleftFilled = (i != 0 && steps.get(steps.size() - 1) == Step.FILLED);
+            boolean isleftFilled = (i != 0 && steps.get(i - 1) == Step.FILLED);
             steps.add(StepGenerator.generateNextStep(isleftFilled));
         }
     }
