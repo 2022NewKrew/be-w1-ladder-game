@@ -29,13 +29,19 @@ public class LadderGame {
      */
     private Ladder generateLadder(Scanner scanner) {
         while (true) {
-            try {
-                players = getPlayersFromScanner(scanner, "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) ");
-                int height = getPositiveIntFromScanner(scanner, "사다리 높이는 몇개인가요? ");
-                return new Ladder(players.size(), height);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            Ladder ladder = tryGenerateLadder(scanner);
+            if (ladder != null) return ladder;
+        }
+    }
+
+    private Ladder tryGenerateLadder(Scanner scanner) {
+        try {
+            players = getPlayersFromScanner(scanner, "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요) ");
+            int height = getPositiveIntFromScanner(scanner, "사다리 높이는 몇개인가요? ");
+            return new Ladder(players.size(), height);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
