@@ -41,5 +41,4 @@ public class Line {
         }
         return true;
     }
-
 }

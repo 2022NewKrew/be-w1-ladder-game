@@ -8,13 +8,13 @@ import ladder.view.OutputView;
 
 import java.util.List;
 
+
 //사다리 게임 서비스
 public class LadderGameService {
     //사다리게임
     private Players players; //게임 플레이어 정보
     private Ladder ladder; //사다리 정보
     private Results results; //사다리 게임 결과
-
 
     //입출력
     private InputView inputView = InputView.getInstance();
@@ -34,6 +34,7 @@ public class LadderGameService {
         results = new Results();
     }
 
+    //게임 시작
     public void startGame() {
         List<String> playersName = inputView.inputPlayersName();
         List<String> gameResults = inputView.inputGameResults();
@@ -46,7 +47,8 @@ public class LadderGameService {
         outputView.printLadderGameResults(players, ladder, results);
         showGameResults();
     }
-
+    
+    //사용자로부터 원하는 플레어에대한 결과를 보여줌
     private void showGameResults() {
         String resultPlayerName = inputView.inputResultPlayerName();
 
@@ -56,14 +58,16 @@ public class LadderGameService {
         }
         System.out.println(EXIT_MESSAGE);
     }
-
+    
+    //게임에 필요한 정보 초기화
     public void initGameInfo(List<String> playersName, List<String> gameResults, int height) {
         makePlayers(playersName);
         makeGameResults(gameResults);
         makeLadder(height);
         makeStrategy();
     }
-
+    
+    //사다리 하단 게임결과 정보 생성
     private void makeGameResults(List<String> gameResults) {
         gameResults.forEach(r -> this.results.addResult(r));
     }

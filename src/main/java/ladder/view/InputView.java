@@ -37,6 +37,7 @@ public class InputView {
     //사다리 높이 입력
     public int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
+      
         int result = scanner.nextInt();
         scanner.nextLine();
 

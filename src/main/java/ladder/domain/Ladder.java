@@ -38,6 +38,7 @@ public class Ladder {
         return ladder.get(index);
     }
 
+    //사다리 브릿지 그리기
     public void drawBridge(int lineIdx, int bridgeIdx) {
         if (!checkLadderPolicy(lineIdx, bridgeIdx)) {
             return;
@@ -48,6 +49,7 @@ public class Ladder {
         bridge.drawBridge();
     }
 
+    //사다리 정책에 맞게 체크
     public boolean checkLadderPolicy(int lineIdx, int bridgeIdx) {
         if (lineIdx == 0) {
             return getOneLine(lineIdx + 1).checkBridgeExist(bridgeIdx); // 오른쪽에 bridge 존재하는지 체크
