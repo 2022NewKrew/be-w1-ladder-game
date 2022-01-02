@@ -20,10 +20,6 @@ public class Lines {
         }
     }
 
-    public int getSize() {
-        return lines.size();
-    }
-
     public Line lineOf(int i) {
         return lines.get(i);
     }

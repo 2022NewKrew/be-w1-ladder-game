@@ -26,16 +26,16 @@ public class Points {
         }
     }
 
-    public int checkNextIndex(int personIndex) {
-        int leftPointIndex = personIndex - 1, rightPointIndex = personIndex;
+    public int checkNextIndex(int rightIndex) {
+        int leftIndex = rightIndex - 1;
 
-        if (leftPointIndex >= 0 && points.get(leftPointIndex)) {
-            return personIndex - 1;
-        } else if (rightPointIndex < points.size() && points.get(rightPointIndex)) {
-            return personIndex + 1;
+        if (leftIndex >= 0 && points.get(leftIndex)) {
+            return rightIndex - 1;
+        } else if (rightIndex < points.size() && points.get(rightIndex)) {
+            return rightIndex + 1;
         }
 
-        return personIndex;
+        return rightIndex;
     }
 
     @Override

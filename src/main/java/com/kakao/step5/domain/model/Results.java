@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class Results {
     private static final int MAX_RESULT_LEN = 5;
 
-    private List<String> resultsList;
+    private final List<String> resultsList;
 
     public Results(String resultsStr, int namesSize) {
         checkBeforeMakeResultsList(resultsStr);
@@ -32,7 +32,7 @@ public class Results {
 
     private void checkAfterMakeResultsList(int namesSize) {
         if (this.resultsList.isEmpty() || this.resultsList.stream()
-                .anyMatch(s -> s.length() == 0))
+                .anyMatch(StringUtils::isBlank))
             throw new EmptyInputException("입력하신 결과 중 빈 칸만 입력된 결과 값이 존재합니다.");
         if (this.resultsList.size() != namesSize)
             throw new DifferentQuantityException(namesSize, this.resultsList.size());
