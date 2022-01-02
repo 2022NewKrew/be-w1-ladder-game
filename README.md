@@ -92,9 +92,9 @@ be-w1-ladder-game
 ### Done
 * package 이름 변경
 * 단위 테스트 추가
+* 제거 하지 않은 파일들 제거
 
 ### TODO
-* 제거 되지 않은 파일들 제거
 * 마이너 이슈들 해결
   * NPE 트릭
   * private
