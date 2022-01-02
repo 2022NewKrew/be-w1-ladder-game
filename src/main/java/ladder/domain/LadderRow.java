@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,6 +18,6 @@ public class LadderRow {
     }
 
     public List<Step> getSteps() {
-        return steps;
+        return Collections.unmodifiableList(steps);
     }
 }
