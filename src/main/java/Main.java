@@ -1,4 +1,4 @@
-import Controller.LadderGame;
+import controller.LadderGame;
 
 public class Main {
     public static void main(String[] args) {

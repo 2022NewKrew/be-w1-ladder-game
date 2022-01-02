@@ -35,4 +35,6 @@ public class OutputView {
         }
         System.out.print(PIECE_HORIZONTAL);
     }
+
+    public static void printResult()
 }
