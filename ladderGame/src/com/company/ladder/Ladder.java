@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ladder {
-    Random random = new Random();
-    int attendantNum;
-    int ladderHeight;
-    ArrayList<Line> ladderArray;
+    private int attendantNum;
+    private int ladderHeight;
+    private ArrayList<Line> ladderArray;
 
 
     public Ladder(){
