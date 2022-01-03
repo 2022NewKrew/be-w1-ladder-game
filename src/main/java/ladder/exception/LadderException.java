@@ -39,8 +39,9 @@ public class LadderException extends Exception {
                 return "사다리 게임 결과의 이름은 공백일 수 없습니다.";
             case EXCEED_MAX_RESULT_NAME:
                 return String.format("'%s' 사다리 게임 결과의 이름 최대 길이를 초과했습니다.", errorParameter);
+            default:
+                return "에러 코드가 존재하지 않습니다.";
         }
-        return "";
     }
 
     public ErrorCode getErrorCode() {
