@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="ladder-game" target="11" />
+      <module name="ladder-game.main" target="11" />
+      <module name="ladder-game.test" target="11" />
+      <module name="untitled" target="11" />
+      <module name="untitled1.main" target="11" />
+      <module name="untitled1.main.main" target="11" />
+      <module name="untitled1.main.test" target="11" />
+      <module name="untitled_main" target="11" />
+      <module name="untitled_test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

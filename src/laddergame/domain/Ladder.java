@@ -1,13 +1,14 @@
-import java.util.ArrayList;
+package laddergame.domain;
 
 public class Ladder {
     private int width;
     private int height;
-    private ArrayList<Line> lines = new ArrayList<Line>();
+    private Lines lines;
 
-    public Ladder(int width, int height) {
+    Ladder(int width, int height, Lines lines) {
         this.width = width;
         this.height = height;
+        this.lines = lines;
     }
 
     public int getWidth() {
@@ -19,11 +20,6 @@ public class Ladder {
     }
 
     public Line getLineByIndex(int index) {
-        return lines.get(index);
-    }
-
-    public void makeLadder() {
-        for (int i = 0; i < height; i++)
-            lines.add(new Line(width));
+        return lines.getLineByIndex(index);
     }
 }

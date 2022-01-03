@@ -1,12 +1,14 @@
+package laddergame.domain;
+
 import java.util.Random;
 
 public class RandomFlag {
     private static Random random = new Random();
 
-    public RandomFlag() {
+    private RandomFlag() {
     }
 
-    public Boolean getRandomFlag() {
+    public static Boolean getRandomFlag() {
         return random.nextBoolean();
     }
 }
