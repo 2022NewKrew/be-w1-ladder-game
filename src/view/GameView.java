@@ -46,17 +46,17 @@ public class GameView {
         }
     }
 
-    public int showGameResult(String wantToSee) {
+    public void showGameResult(String wantToSee) {
         if (wantToSee.equals("춘식이")) {
             print("게임을 종료합니다.");
-            return 0;
+            return;
         }
         if (wantToSee.equals("all")) {
             showAllResult();
-            return 0;
+            return;
         }
         showSingleResult(wantToSee);
-        return 0;
+        return;
     }
 
 
