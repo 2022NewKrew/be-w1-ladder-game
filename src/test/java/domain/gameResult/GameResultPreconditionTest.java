@@ -17,48 +17,47 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("GameResult 검증")
 @Nested
-class LadderGamePreconditionTest {
+class GameResultPreconditionTest {
 
 
     public static final int TEST_LEGAL_NUBMER_OF_FRAME = 5;
     public static final int TEST_LADDER_HEIGHT = 10;
     public static final int TEST_ILLEGAL_NUMBER_OF_FRAME = 10;
+    public static final int TEST_MAX_LENGTH = 5;
 
-    @DisplayName("올바른 유저들이 담긴 리스트일때는 예외를 던지지 않음")
+    @DisplayName("올바른 유저 리스트로 LadderGamePrecondition.checkUsers 메소드를 실행하면 예외를 던지지 않는다.")
     @ParameterizedTest
     @MethodSource("legalUsers")
     public void checkLegalUsers(List<String> testLegalUsers) {
-        //Give : 올바른 유저 리스트, 글자수 제한
-        final int TEST_MAX_LENGTH = 5;
+        //Give : 올바른 유저 리스트
         //When : LadderGamePrecondition.checkUsers 메소드에 TEST_MAX_LENGTH와 testLegalUsers가 인자로 넘어갔을 때
         //Then
         assertThatCode(() -> GameResultPrecondition.checkUsers(testLegalUsers, TEST_MAX_LENGTH)).doesNotThrowAnyException();
     }
 
-    @DisplayName("올바르지 못한 유저가 담긴 리스트일 때 IllegalArgumentException을 던짐")
+    @DisplayName("올바르지 못한 유저 리스트로 LadderGamePrecondition.checkUsers 메소드를 실행하면 IllegalArgumentException을 던진다.")
     @ParameterizedTest
     @MethodSource("illegalUsers")
     public void checkIllegalUsers(List<String> testIllegalUsers) {
-        //Give : 올바르지 못한 유저 리스트, 글자수 제한
-        final int TEST_MAX_LENGTH = 5;
+        //Give : 올바르지 못한 유저 리스트
         //When : LadderGamePrecondition.checkUsers 메소드에 TEST_MAX_LENGTH와 testIllegalUsers 인자로 넘어갔을 때
         //Then
         assertThatThrownBy(() -> GameResultPrecondition.checkUsers(testIllegalUsers, TEST_MAX_LENGTH)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("LadderDTO와 User의 정보가 같다면 예외를 던지지 않음")
+    @DisplayName("올바른 LadderDTO와 Users의 길이로 GameResultPrecondition.checkLadderDto 메서드를 실행하면 예외를 던지지 않는다.")
     @ParameterizedTest
     @MethodSource("legalLadder")
     public void checkLegalDTO(Ladder testLegalLadder) {
         //Give
         final LadderDTO ladderDTO = new LadderDTO(testLegalLadder);
         final int TEST_USER_LENGTH = 6;
-        //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, TEST_USER_LENGTH 인자로 넘어갔을 때
+        //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, testUserLength 인자로 넘어갔을 때
         //Then
         assertThatCode(() -> GameResultPrecondition.checkLadderDto(ladderDTO, TEST_USER_LENGTH)).doesNotThrowAnyException();
     }
 
-    @DisplayName("LadderDTO와 User의 정보가 다르면 IllegalArgumentException을 던짐")
+    @DisplayName("올바르지 못한 LadderDTO와 Users의 길이로 GameResultPrecondition.checkLadderDto 메서드를 실행하면 IllegalArgumentException 예외를 던진다.")
     @ParameterizedTest
     @MethodSource("illegalLadder")
     public void checkIllegalDTO(Ladder testIllegalLadder) {
@@ -70,7 +69,7 @@ class LadderGamePreconditionTest {
         assertThatThrownBy(() -> GameResultPrecondition.checkLadderDto(ladderDTO, TEST_USER_LENGTH)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("올바른 결과들이 담겨있다면 예외를 던지지 않음")
+    @DisplayName("올바른 결과값과 올바른 유저값이 주어졌을 때 GameResultPrecondition.checkResults 메서드를 실행하면 예외를 던지지 않는다.")
     @ParameterizedTest
     @MethodSource("legalResults")
     public void checkLegalResult(List<String> testLegalResults, List<String> testLegalUsers) {
@@ -81,7 +80,7 @@ class LadderGamePreconditionTest {
         assertThatCode(() -> GameResultPrecondition.checkResults(testLegalResults, TEST_MAX_LENGTH, testLegalUsers.size())).doesNotThrowAnyException();
     }
 
-    @DisplayName("올바르지 못한 결과들이 담겨있다면 IllegalArgumentException을 던짐")
+    @DisplayName("올바르지 못한 결과값과 올바른 유저값이 주어졌을 때 GameResultPrecondition.checkResults 메서드를 실행하면 IllegalArgumentException 예외를 던진다.")
     @ParameterizedTest
     @MethodSource("illegalResults")
     public void checkIllegalResult(List<String> testIllegalResults, List<String> testLegalUsers) {

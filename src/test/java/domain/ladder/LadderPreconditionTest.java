@@ -14,7 +14,7 @@ class LadderPreconditionTest {
     @DisplayName("frame의 수 검증")
     @Nested
     class FrameLengthTest {
-        @DisplayName("프레임의 길이가 문제 없을때는 예외를 던지지 않음")
+        @DisplayName("올바른 프레임 길이가 주어졌을때 LadderPrecondition.checkFrameLength 메서드를 실행하면 예외를 던지지 않는다.")
         @Test
         void isLegalFrames() {
             //Give
@@ -25,7 +25,7 @@ class LadderPreconditionTest {
             assertThatCode(() -> LadderPrecondition.checkFrameLength(TEST_LEGAL_FRAME_LENGTH, TEST_MIN_FRAME_LENGTH)).doesNotThrowAnyException();
         }
 
-        @DisplayName("프레임의 길이가 문제 있을 때 IllegalArgumentException을 던짐")
+        @DisplayName("올바르지 못한 프레임 길이가 주어졌을때 LadderPrecondition.checkFrameLength 메서드를 실행하면 IllegalArgumentException 예외를 던진다.")
         @Test
         void isIllegalFrames() {
             //Give
@@ -41,7 +41,7 @@ class LadderPreconditionTest {
     @DisplayName("height 검증")
     @Nested
     class HeightTest {
-        @DisplayName("높이가 문제 없을 때는 예외를 던지지 않음")
+        @DisplayName("올바른 높이가 주어졌을 때 LadderPrecondition.checkLadderHeight 메서드를 실행하면 예외를 던지지 않는다.")
         @Test
         void isLegalHeight() {
             //Give
@@ -52,7 +52,7 @@ class LadderPreconditionTest {
             assertThatCode(() -> LadderPrecondition.checkLadderHeight(TEST_LEGAL_LADDER_HEIGHT, TEST_MIN_LADDER_HEIGHT)).doesNotThrowAnyException();
         }
 
-        @DisplayName("높이가 문제 있을 때 IllegalArgumentException을 던짐 ")
+        @DisplayName("올바르지 못한 높이가 주어졌을 때 LadderPrecondition.checkLadderHeight 메서드를 실행하면 IllegalArgumentException 예외를 던진다.")
         @Test
         void isIllegalHeight() {
             //Give
