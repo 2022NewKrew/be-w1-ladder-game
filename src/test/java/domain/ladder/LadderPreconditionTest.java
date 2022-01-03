@@ -14,6 +14,7 @@ class LadderPreconditionTest {
     @DisplayName("frame의 수 검증")
     @Nested
     class FrameLengthTest {
+
         @DisplayName("올바른 프레임 길이가 주어졌을때 LadderPrecondition.checkFrameLength 메서드를 실행하면 예외를 던지지 않는다.")
         @Test
         void isLegalFrames() {
@@ -41,6 +42,7 @@ class LadderPreconditionTest {
     @DisplayName("height 검증")
     @Nested
     class HeightTest {
+
         @DisplayName("올바른 높이가 주어졌을 때 LadderPrecondition.checkLadderHeight 메서드를 실행하면 예외를 던지지 않는다.")
         @Test
         void isLegalHeight() {
