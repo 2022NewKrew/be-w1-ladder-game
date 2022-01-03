@@ -58,7 +58,10 @@ cmake-build-*/
 *.iws
 
 # IntelliJ
-out/
+#out/
+
+# Mac
+.DS_Store
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
