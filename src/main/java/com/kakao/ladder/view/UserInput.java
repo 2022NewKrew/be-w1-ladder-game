@@ -55,10 +55,10 @@ public class UserInput {
      * @param names 유저가 입력한 결과 문자열
      * @return 정상적인 결과 요청 입력 문자열
      */
-    public static String showResult(List<String> names) {
+    public static String stringManufacture(List<String> names) {
         String whosResult = "";
 
-        while (!(whosResult.equals(ConstStringSpace.END_CONDITION) || whosResult.equals(ConstStringSpace.ALL_PRINT_CONDITION) || names.contains(whosResult))) {
+        while (!(ConstStringSpace.END_CONDITION.equals(whosResult) || ConstStringSpace.ALL_PRINT_CONDITION.equals(whosResult) || names.contains(whosResult))) {
             System.out.println(ConstStringSpace.WHOS_RESULT);
 
             whosResult = sc.nextLine();
@@ -66,7 +66,7 @@ public class UserInput {
 
         System.out.println();
 
-        if (whosResult.equals(ConstStringSpace.END_CONDITION)) {
+        if (ConstStringSpace.END_CONDITION.equals(whosResult)) {
             sc.close();
         }
 
@@ -107,7 +107,7 @@ public class UserInput {
         String tempUserString = sc.nextLine();
 
         return Arrays.stream(tempUserString.split(ConstStringSpace.SEPERATOR))
-                .filter(tempString -> tempString.length() != 0 && !tempString.equals(ConstStringSpace.SEPERATOR))
+                .filter(tempString -> tempString.length() != 0 && !ConstStringSpace.SEPERATOR.equals(tempString))
                 .map(tempString -> tempString.substring(0, Math.min(ConstStringSpace.MAX_NAME_LENGTH, tempString.length())))
 //                .distinct()
                 .collect(Collectors.toList());
