@@ -27,19 +27,19 @@ public class GameSimulator {
         }
 
         private void moveLeft() {
-            row -= MOVING_UNIT;
+            col -= MOVING_UNIT;
         }
 
         private void moveRight() {
-            row += MOVING_UNIT;
-        }
-
-        private void moveDown() {
             col += MOVING_UNIT;
         }
 
+        private void moveDown() {
+            row += MOVING_UNIT;
+        }
+
         private boolean isNotFinished(int endHeight) {
-            return col != endHeight;
+            return row != endHeight;
         }
     }
 
@@ -57,14 +57,14 @@ public class GameSimulator {
                 );
     }
 
-    private int getResultOf(int rowIndex) {
-        Point point = new Point(rowIndex, START_HEIGHT);
+    private int getResultOf(int colIndex) {
+        Point point = new Point(START_HEIGHT, colIndex);
 
         while (point.isNotFinished(ladder.getLadderHeight())) {
             move(point);
         }
 
-        return point.getRow();
+        return point.getCol();
     }
 
     private void move(Point point) {

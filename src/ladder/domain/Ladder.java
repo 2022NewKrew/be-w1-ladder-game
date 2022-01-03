@@ -21,16 +21,16 @@ public class Ladder {
     }
 
     public boolean isPossibleMovingLeft(int row, int col) {
-        if (row == FIRST_INDEX) {
+        if (col == FIRST_INDEX) {
             return false;
         }
-        return ladder.get(col).isExistBridge(row - 1);
+        return ladder.get(row).isExistBridge(col - 1);
     }
 
     public boolean isPossibleMovingRight(int row, int col) {
-        if (row == ladder.get(0).getLadderRow().size()) {
+        if (col == ladder.get(row).getLadderRow().size()) {
             return false;
         }
-        return ladder.get(col).isExistBridge(row);
+        return ladder.get(row).isExistBridge(col);
     }
 }
