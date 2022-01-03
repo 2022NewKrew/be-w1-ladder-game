@@ -42,7 +42,7 @@ public class GameView {
     }
 
     // MAX_NAME_LENGTH 에 맞춰 이름 양쪽에 공백을 더해줘서 사이즈를 규격화
-    private String getStandardizedName(String name) {
+    protected String getStandardizedName(String name) {
         int maxNameLength = currentGame.getMaxNameLength();
         // 현재 참가자 이름의 길이
         int nameLength = name.length();
