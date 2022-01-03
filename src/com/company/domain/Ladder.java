@@ -2,10 +2,7 @@ package com.company.domain;
 
 import com.company.view.LadderView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Ladder {
@@ -15,14 +12,18 @@ public class Ladder {
     private final LadderDTO ladderDTO;
     private final LadderView ladderView;
 
-    public Ladder(String[] names, int height) {
+    public Ladder(String[] names, String[] results, int height) {
         random = new Random();
+
         List<String> fixedNames = Arrays.stream(names)
+                .map(s -> s.substring(0, Math.min(s.length(), 5)))
+                .collect(Collectors.toList());
+        List<String> fixedResults = Arrays.stream(results)
                 .map(s -> s.substring(0, Math.min(s.length(), 5)))
                 .collect(Collectors.toList());
         List<String> ladderInfo = makeNewLadder(fixedNames.size(), height);
 
-        ladderDTO = new LadderDTO(fixedNames, ladderInfo);
+        ladderDTO = new LadderDTO(fixedNames, fixedResults, ladderInfo, generateResult(fixedNames, fixedResults, ladderInfo));
         ladderView = new LadderView(ladderDTO);
     }
 
@@ -51,7 +52,37 @@ public class Ladder {
     }
 
     public void printLadder() {
+        System.out.println("<사다리 결과>");
         ladderView.printLadder();
     }
+
+    public void printResultList() {
+        ladderView.printResultList();
+    }
+
+    public void printResultOfName(String name) {
+        ladderView.printResultOfName(name);
+    }
+
+    public Map<String, String> generateResult(List<String> names, List<String> results, List<String> ladderInfo) {
+        Map<String, String> ret = new HashMap<String, String>();
+        List<Integer> indices = new ArrayList<Integer>();
+        for(int i = 0; i < names.size(); i++) indices.add(i);
+
+        ladderInfo.forEach(line -> climb(indices, line));
+
+        for(int i = 0; i < indices.size(); i++) {
+            ret.put(names.get(indices.get(i)), results.get(i));
+        }
+
+        return ret;
+    }
+
+    public void climb(List<Integer> indices, String line) {
+        for(int i = 0; i < line.length(); i++) {
+            if(line.charAt(i) == '-') Collections.swap(indices, i, i+1);
+        }
+    }
+
 }
 
