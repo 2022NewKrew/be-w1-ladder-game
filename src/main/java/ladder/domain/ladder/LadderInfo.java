@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.config.LadderGameConfig;
 import ladder.exception.LadderException;
 
 import static ladder.exception.LadderException.ErrorCode.*;
@@ -49,7 +50,7 @@ public class LadderInfo {
         if (participant.length() == 0) {
             throw new LadderException(EMPTY_PARTICIPANT_NAME);
         }
-        if (participant.length() > 5) {
+        if (participant.length() > LadderGameConfig.MAX_INPUT_LENGTH) {
             throw new LadderException(EXCEED_MAX_PARTICIPANT_NAME, participant);
         }
     }
@@ -58,7 +59,7 @@ public class LadderInfo {
         if (result.length() == 0) {
             throw new LadderException(EMPTY_RESULT_NAME);
         }
-        if (result.length() > 5) {
+        if (result.length() > LadderGameConfig.MAX_INPUT_LENGTH) {
             throw new LadderException(EXCEED_MAX_RESULT_NAME);
         }
     }

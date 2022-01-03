@@ -33,4 +33,8 @@ public class Ladder {
     public boolean isConnected(int bridgeWidth, int bridgeHeight) {
         return bridges.get(bridgeHeight).isConnected(bridgeWidth);
     }
+
+    public int getNumOfParticipants() {
+        return participants.length;
+    }
 }

@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.config.LadderGameConfig;
 import ladder.domain.ladder.Ladder;
 
 public class LadderRenderer {
@@ -8,8 +9,7 @@ public class LadderRenderer {
     private static final String EMPTY_LINE = "     ";
     private static final String EMPTY_SPACE = " ";
     private static final char VERTICAL_LINE = '|';
-    private static final char NEW_LINE = '\n';
-    private static final int MAX_NAME_LENGTH = 5;
+
 
     public static String render(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
@@ -26,26 +26,26 @@ public class LadderRenderer {
     private static void renderLadderInfo(StringBuilder sb, String[] strings) {
 
         for (String data : strings) {
-            int emptyPrefixCount = (MAX_NAME_LENGTH - data.length()) / 2;
-            int emptyPostfixCount = emptyPrefixCount + (MAX_NAME_LENGTH - data.length()) % 2 + 1;
+            int emptyPrefixCount = (LadderGameConfig.MAX_INPUT_LENGTH - data.length()) / 2;
+            int emptyPostfixCount = emptyPrefixCount + (LadderGameConfig.MAX_INPUT_LENGTH - data.length()) % 2 + 1;
 
             sb.append(EMPTY_SPACE.repeat(emptyPrefixCount));
             sb.append(data);
             sb.append(EMPTY_SPACE.repeat(emptyPostfixCount));
         }
-        sb.append(NEW_LINE);
+        sb.append(LadderGameConfig.NEW_LINE);
     }
 
     private static void renderRow(StringBuilder sb, Ladder ladder, int currentHeight) {
         int numOfParticipants = ladder.getParticipants().length;
 
-        sb.append(EMPTY_SPACE.repeat(MAX_NAME_LENGTH / 2));
+        sb.append(EMPTY_SPACE.repeat(LadderGameConfig.MAX_INPUT_LENGTH / 2));
         for (int currentWidth = 0; currentWidth < numOfParticipants - 1; currentWidth++) {
             sb.append(VERTICAL_LINE);
             sb.append(getStringFromCurrentPosition(ladder, currentWidth, currentHeight));
         }
         sb.append(VERTICAL_LINE);
-        sb.append(NEW_LINE);
+        sb.append(LadderGameConfig.NEW_LINE);
     }
 
     private static String getStringFromCurrentPosition(Ladder ladder, int currentWidth, int currentHeight) {

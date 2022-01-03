@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.config.LadderGameConfig;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,65 +18,74 @@ public class LadderResult {
         String[] participants = ladder.getParticipants();
 
         for (int currentParticipant = 0; currentParticipant < participants.length; currentParticipant++) {
-            String result = findResult(ladder, currentParticipant, 0, ladder.getResults(), false);
+            String result = startLadderFlow(ladder, currentParticipant);
             resultMap.put(participants[currentParticipant], result);
         }
         return resultMap;
     }
 
-    private String findResult(Ladder ladder, int currentPosition, int currentHeight, String[] results, boolean passed) {
+    private String startLadderFlow(Ladder ladder, int currentParticipant) {
+        return ladderFlow(ladder, currentParticipant, 0, false);
+    }
+
+    private String ladderFlow(Ladder ladder, int currentPosition, int currentHeight, boolean isPassed) {
         if (currentHeight == ladder.getHeight()) {
-            return results[currentPosition];
+            return ladder.getResults()[currentPosition];
         }
-
         if (currentPosition == 0) {
-            return leftSide(ladder, currentPosition, currentHeight, results, passed);
-        } else if (currentPosition == ladder.getParticipants().length - 1) {
-            return rightSide(ladder, currentPosition, currentHeight, results, passed);
+            return leftSide(ladder, currentPosition, currentHeight, isPassed);
         }
-        return middleSide(ladder, currentPosition, currentHeight, results, passed);
+        if (currentPosition == ladder.getNumOfParticipants() - 1) {
+            return rightSide(ladder, currentPosition, currentHeight, isPassed);
+        }
+        return middleSide(ladder, currentPosition, currentHeight, isPassed);
     }
 
-    private String leftSide(Ladder ladder, int currentPosition, int currentHeight, String[] results, boolean passed) {
+    private String leftSide(Ladder ladder, int currentPosition, int currentHeight, boolean passed) {
         if (ladder.isConnected(currentPosition, currentHeight) && !passed) {
-            return moveRight(ladder, currentPosition, currentHeight, results);
+            return moveRight(ladder, currentPosition, currentHeight);
         }
-        return moveDown(ladder, currentPosition, currentHeight, results);
+        return moveDown(ladder, currentPosition, currentHeight);
     }
 
-    private String rightSide(Ladder ladder, int currentPosition, int currentHeight, String[] results, boolean passed) {
+    private String rightSide(Ladder ladder, int currentPosition, int currentHeight, boolean passed) {
         if (ladder.isConnected(currentPosition - 1, currentHeight) && !passed) {
-            return moveLeft(ladder, currentPosition, currentHeight, results);
+            return moveLeft(ladder, currentPosition, currentHeight);
         }
-        return moveDown(ladder, currentPosition, currentHeight, results);
+        return moveDown(ladder, currentPosition, currentHeight);
     }
 
-    private String middleSide(Ladder ladder, int currentPosition, int currentHeight, String[] results, boolean passed) {
+    private String middleSide(Ladder ladder, int currentPosition, int currentHeight, boolean passed) {
         if (ladder.isConnected(currentPosition - 1, currentHeight) && !passed) {
-            return moveLeft(ladder, currentPosition, currentHeight, results);
-        } else if (ladder.isConnected(currentPosition, currentHeight) && !passed) {
-            return moveRight(ladder, currentPosition, currentHeight, results);
+            return moveLeft(ladder, currentPosition, currentHeight);
         }
-        return moveDown(ladder, currentPosition, currentHeight, results);
+        if (ladder.isConnected(currentPosition, currentHeight) && !passed) {
+            return moveRight(ladder, currentPosition, currentHeight);
+        }
+        return moveDown(ladder, currentPosition, currentHeight);
     }
 
-    private String moveLeft(Ladder ladder, int currentPosition, int currentHeight, String[] results) {
-        return findResult(ladder, currentPosition - 1, currentHeight, results, true);
+    private String moveLeft(Ladder ladder, int currentPosition, int currentHeight) {
+        return ladderFlow(ladder, currentPosition - 1, currentHeight, true);
     }
 
-    private String moveRight(Ladder ladder, int currentPosition, int currentHeight, String[] results) {
-        return findResult(ladder, currentPosition + 1, currentHeight, results, true);
+    private String moveRight(Ladder ladder, int currentPosition, int currentHeight) {
+        return ladderFlow(ladder, currentPosition + 1, currentHeight, true);
     }
 
-    private String moveDown(Ladder ladder, int currentPosition, int currentHeight, String[] results) {
-        return findResult(ladder, currentPosition, currentHeight + 1, results, false);
+    private String moveDown(Ladder ladder, int currentPosition, int currentHeight) {
+        return ladderFlow(ladder, currentPosition, currentHeight + 1, false);
     }
 
     public String getAllResult() {
         StringBuilder sb = new StringBuilder();
 
-        resultMap.forEach((k, v) ->
-                sb.append(String.format("%s : %s\n", k, v))
+        resultMap.forEach((participant, result) -> {
+                    sb.append(participant);
+                    sb.append(" : ");
+                    sb.append(result);
+                    sb.append(LadderGameConfig.NEW_LINE);
+                }
         );
         return sb.toString();
     }
