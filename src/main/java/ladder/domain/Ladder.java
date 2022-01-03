@@ -3,15 +3,22 @@ package ladder.domain;
 import java.util.List;
 import java.util.ArrayList;
 
+final class LadderConstants {
+    static final int maxNameLength = 5;
+
+    private LadderConstants() {}
+}
+
 public class Ladder {
     final int ladderHeight, numPlayers;
-    final int maxNameLength = 5;
+    final int maxNameLength = LadderConstants.maxNameLength;
     private final List<String> ladderArray = new ArrayList<>();
-    private List<String> players = new ArrayList<>();
+    private final List<String> players;
 
     public Ladder(int ladderHeight, int numPlayers) {
         this.ladderHeight = ladderHeight;
         this.numPlayers = numPlayers;
+        this.players = new ArrayList<>();
         getLadder();
     }
 
