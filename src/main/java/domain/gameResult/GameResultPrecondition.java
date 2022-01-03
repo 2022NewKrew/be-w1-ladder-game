@@ -43,7 +43,7 @@ public class GameResultPrecondition {
 
     private static void checkSize(List<String> results, int expectedResultLength) {
         if (results.size() != expectedResultLength) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("결과값의 수는 입력한 유저수와 동일해야 합니다.");
         }
     }
 
