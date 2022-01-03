@@ -1,9 +1,12 @@
 package org.cs.finn.laddergame;
 
 import org.cs.finn.laddergame.domain.Ladder;
-import org.cs.finn.laddergame.domain.Member;
+import org.cs.finn.laddergame.domain.stringvalues.Member;
+import org.cs.finn.laddergame.domain.stringvalues.Members;
+import org.cs.finn.laddergame.domain.stringvalues.Reward;
+import org.cs.finn.laddergame.domain.stringvalues.Rewards;
 import org.cs.finn.laddergame.view.LadderView;
-import org.cs.finn.laddergame.view.MemberView;
+import org.cs.finn.laddergame.view.StringValuesView;
 import org.cs.finn.laddergame.view.UserInput;
 
 import java.security.SecureRandom;
@@ -13,18 +16,77 @@ public class LadderGame {
 
     private final UserInput userInput = new UserInput();
     private final LadderView ladderView = new LadderView();
-    private final MemberView memberView = new MemberView();
+    private final StringValuesView stringValuesView = new StringValuesView();
 
     public LadderGame() {
         System.out.println("--- 사다리 게임 ---");
     }
 
     public void run() {
-        // 사용자로부터 사다리 생성에 필요한 값을 입력 받아 사다리 객체 생성
-        final Member member = userInput.requestMember();
-        final Ladder ladder = userInput.requestLadder(sRand, member);
-        // 사다리 출력
-        memberView.print(member);
+        Member member = Member.NONE;
+
+        while (!member.isTerminator()) {
+            final Members members = userInput.requestMembers();
+            final Rewards rewards = userInput.requestRewards(members);
+            final Ladder ladder = userInput.requestLadder(sRand, members);
+
+            printLadder(members, ladder, rewards);
+            member = getMemberAndPrintLadderWithReward(members, ladder, rewards);
+        }
+    }
+
+    private void printLadder(final Members members, final Ladder ladder, final Rewards rewards) {
+        stringValuesView.print(members, Member.WIDTH);
         ladderView.print(ladder);
+        stringValuesView.print(rewards, Reward.WIDTH);
+    }
+
+    private Member getMemberAndPrintLadderWithReward(final Members members, final Ladder ladder, final Rewards rewards) {
+        Member member = userInput.requestMember(members);
+        while (!member.isTerminator() && !member.isRetryer()) {
+            printReward(members, ladder, rewards, member);
+            member = userInput.requestMember(members);
+        }
+        return member;
+    }
+
+    private void printReward(
+            final Members members,
+            final Ladder ladder,
+            final Rewards rewards,
+            final Member member
+    )
+    {
+        if (member.isAll()) {
+            printRewardAll(members, ladder, rewards);
+            return;
+        }
+        if (!member.isNone()) {
+            printLadderWithReward(members, ladder, rewards, member);
+        }
+    }
+
+    private void printRewardAll(
+            final Members members,
+            final Ladder ladder,
+            final Rewards rewards
+    )
+    {
+        for (Member m : members.getList()) {
+            printLadderWithReward(members, ladder, rewards, m);
+        }
+    }
+
+    private void printLadderWithReward(
+            final Members members,
+            final Ladder ladder,
+            final Rewards rewards,
+            final Member member
+    )
+    {
+        stringValuesView.print(members, Member.WIDTH);
+        final int rewardIdx = ladderView.printWithReward(ladder, members.indexOf(member));
+        stringValuesView.print(rewards, Reward.WIDTH);
+        stringValuesView.printTwoValue(member, rewards.get(rewardIdx));
     }
 }

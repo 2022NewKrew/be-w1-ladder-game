@@ -10,9 +10,12 @@ public class Checker {
             final int max
     ) throws IndexOutOfBoundsException
     {
-      if (val != Math.max(min, Math.min(val, max))) {
-          throw new IndexOutOfBoundsException(val + " is out of [" + min + ", " + max + "]");
-      }
+        if (val < 0 || min < 0 || max < 0) {
+            throw new IllegalStateException("val or min or max is not 0 or positive integer! - [" + val + ", " + min + ", " + max + "]");
+        }
+        if (val != Math.max(min, Math.min(val, max))) {
+            throw new IndexOutOfBoundsException(val + " is out of [" + min + ", " + max + "]");
+        }
     }
 
     public static void checkIntMinMaxInit (
@@ -21,6 +24,9 @@ public class Checker {
             final int max
     ) throws IllegalStateException
     {
+        if (init < 0 || min < 0 || max < 0) {
+            throw new IllegalStateException("init or min or max is not 0 or positive integer! - [" + init + ", " + min + ", " + max + "]");
+        }
         if (min > max) {
             throw new IllegalStateException("min value(" + min + ") is greater then max value(" + max + ")");
         }
