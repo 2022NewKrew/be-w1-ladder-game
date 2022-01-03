@@ -25,7 +25,7 @@ public class Results {
     }
 
     private void checkBeforeMakeResultsList(String namesStr) {
-        if (namesStr.trim().isEmpty()) {
+        if (StringUtils.isBlank(namesStr)) {
             throw new EmptyInputException("입력하신 결과에 빈 칸만 존재합니다.");
         }
     }

@@ -1,8 +1,5 @@
 package com.kakao.step5.domain.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Ladder {
     private final Names names;
     private final Results results;
