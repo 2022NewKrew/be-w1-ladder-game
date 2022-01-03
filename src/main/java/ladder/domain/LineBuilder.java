@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Stream;
 
 class LineBuilder {
     private final Random random = new Random();
@@ -18,8 +17,15 @@ class LineBuilder {
      *
      * @return 포함시키면 true를 포함시키지 않으면 false를 반환한다
      */
-    private Boolean getLineElement() {
+
+    private Boolean getRung() {
         return random.nextBoolean();
+    }
+
+    private Boolean getValidRung(Boolean beforeRung, Boolean afterRung) {
+        if (beforeRung && afterRung)
+            return false;
+        return afterRung;
     }
 
     /**
@@ -31,9 +37,11 @@ class LineBuilder {
     Line makeLine() {
         List<Boolean> line = new ArrayList<>();
 
-        Stream.generate(this::getLineElement)
-                .limit(numberOfPlayer - 1)
-                .forEachOrdered(line::add);
+        line.add(getRung());
+        for (int i = 1; i < numberOfPlayer - 1; i++) {
+            Boolean nowElement = getRung();
+            line.add(getValidRung(line.get(i - 1), nowElement));
+        }
         return new Line(line);
     }
 }
