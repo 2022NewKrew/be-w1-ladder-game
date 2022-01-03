@@ -15,7 +15,6 @@ public class LadderGame {
 
     private Scanner scanner = new Scanner(System.in);
 
-    public LadderGame() { }
     public LadderGame(Boolean startGame) {
         if (startGame) {
             inputParticipants();
