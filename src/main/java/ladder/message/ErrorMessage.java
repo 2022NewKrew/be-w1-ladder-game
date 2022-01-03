@@ -11,7 +11,6 @@ public enum ErrorMessage {
     NAME_AND_RESULT_SIZE_ARE_DIFFERENT("이름 개수와 결과 개수가 다릅니다"),
     PLAYER_NOT_EXIST("존재하지 않는 사용자입니다");
 
-
     private final String message;
 
     ErrorMessage(String message) {

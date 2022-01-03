@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LadderBuilder {
+class LadderBuilder {
     private final int height;
     private final LineBuilder lineBuilder;
 
-    public LadderBuilder(int numberOfPlayer, int height) {
+    LadderBuilder(int numberOfPlayer, int height) {
         if (height <= 0 || numberOfPlayer <= 0)
             throw new IllegalArgumentException();
         this.height = height;
@@ -21,7 +21,7 @@ public class LadderBuilder {
      *
      * @return ladder.domain.Ladder 객체를 반환한다
      */
-    public Ladder makeLadder() {
+    Ladder makeLadder() {
         List<Line> lines = Stream.generate(lineBuilder::makeLine)
                 .limit(height)
                 .collect(Collectors.toList());

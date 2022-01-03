@@ -11,7 +11,7 @@ public class GameManager {
     private static ArrayList<String> ladderResults;
     private static int height;
     private static Ladder ladder;
-    private static final HashMap<String, String> playerResults = new HashMap<String, String>();
+    private static final HashMap<String, String> playerResults = new HashMap<>();
     private static final String END_COMMAND = "춘식이";
     private static final String SHOW_ALL_RESULT_COMMAND = "all";
 

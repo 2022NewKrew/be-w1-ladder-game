@@ -17,7 +17,6 @@ public class InputView {
      */
     public static int inputHeight() {
         System.out.println(GameMessage.LADDER_HEIGHT_INPUT.getMessage());
-
         return in.nextInt();
     }
 
@@ -49,7 +48,6 @@ public class InputView {
 
     public static String inputCommand() {
         System.out.println(GameMessage.PLAYER_WHO_WANTS_TO_SEE_RESULT.getMessage());
-
         return in.next();
     }
 }
