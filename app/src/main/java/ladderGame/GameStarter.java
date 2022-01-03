@@ -1,7 +1,7 @@
 package ladderGame;
 
-import ladderGame.view.LadderGame;
-import ladderGame.view.OutputView;
+import ladderGame.domain.Input;
+import ladderGame.ladder.LadderGame;
 
 /*
 *   게임을 수행시키는 주체가 되는 클래스입니다.
@@ -9,7 +9,11 @@ import ladderGame.view.OutputView;
 * */
 public class GameStarter {
     public static void main(String[] args) {
-        LadderGame ladderGame = LadderGame.getLadderGameInstance();
-        OutputView.printLadder(ladderGame);
+        Input.openScanner();
+
+        LadderGame ladderGame = LadderGame.newInstance();
+        ladderGame.start();
+
+        Input.closeScanner();
     }
 }

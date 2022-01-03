@@ -1,4 +1,4 @@
-package ladderGame.view;
+package ladderGame.ladder;
 
 import java.util.Random;
 import java.util.List;
@@ -20,7 +20,7 @@ public class Line {
         }
     }
 
-    private final Boolean generateBar(int idx) { // 발판이 연속하지 않는지 확인하고 랜덤 Boolean 생성
+    private Boolean generateBar(int idx) { // 발판이 연속하지 않는지 확인하고 랜덤 Boolean 생성
         if(idx != 0 && points.get(idx-1)) // 옆에 발판이 이미 존재하는 경우
             return false;
 
