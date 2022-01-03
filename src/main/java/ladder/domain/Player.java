@@ -25,4 +25,10 @@ public class Player {
     public String getName() {
         return name;
     }
+
+    public boolean equalsName(String name) {
+        return this.name.equals(name);
+    }
+
+
 }

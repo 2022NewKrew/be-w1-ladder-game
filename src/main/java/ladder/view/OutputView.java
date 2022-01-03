@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+import ladder.dto.InfoDto;
 import ladder.dto.LadderDto;
 import ladder.dto.LineDto;
 import ladder.dto.PlayerDto;
-import ladder.dto.PlayersDto;
-import ladder.dto.InfoDto;
 
 public class OutputView {
 
@@ -33,18 +32,18 @@ public class OutputView {
         printInputData(infoDto.getRewardsDto().getRewards());
     }
 
-    private static void printInputData(List<String> dates) {
+    private static void printInputData(List<String> data) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (String date : dates) {
+        for (String datum : data) {
             stringBuilder.append(" ")
-                .append(getBuffer(date))
-                .append(date);
+                .append(getBuffer(datum))
+                .append(datum);
         }
         System.out.println(stringBuilder);
     }
 
-    private static String getBuffer(String name) {
-        return " ".repeat(Math.max(0, MAX_NAME_SIZE - name.length()));
+    private static String getBuffer(String item) {
+        return " ".repeat(Math.max(0, MAX_NAME_SIZE - item.length()));
     }
 
     public static void printLadder(LadderDto ladderDto) {
@@ -82,10 +81,10 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printResultAll(Map<String, String> results) {
+    public static void printResultAll(Map<PlayerDto, String> results) {
         System.out.println("실행 결과");
-        for (Entry<String, String> result : results.entrySet()) {
-            System.out.printf("%s : %s%s", result.getKey(), result.getValue(), NEW_LINE);
+        for (Entry<PlayerDto, String> result : results.entrySet()) {
+            System.out.printf("%s : %s%s", result.getKey().getName(), result.getValue(), NEW_LINE);
         }
         System.out.println();
     }

@@ -39,4 +39,11 @@ public class Players {
     public Player get(int index) {
         return players.get(index);
     }
+
+    public Player get(String name) {
+        return players.stream()
+            .filter(player -> player.equalsName(name))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
+    }
 }

@@ -7,6 +7,7 @@ import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.domain.Rewards;
 import ladder.dto.InfoDto;
+import ladder.dto.PlayerDto;
 
 public class LadderController {
 
@@ -31,13 +32,17 @@ public class LadderController {
         return InfoDto.valueOf(ladder, players, rewards);
     }
 
-    public Map<String, String> foundResult() {
-        Map<String, String> results = new LinkedHashMap<>();
+    public Map<PlayerDto, String> foundResult() {
+        Map<PlayerDto, String> results = new LinkedHashMap<>();
         for (int i = 0; i < players.size(); i++) {
             int resultIndex = ladder.foundResult(i);
             Player player = players.get(i);
-            results.put(player.getName(), rewards.getReward(resultIndex));
+            results.put(PlayerDto.valueOf(player), rewards.getReward(resultIndex));
         }
         return results;
+    }
+
+    public PlayerDto findPlayer(String name) {
+        return PlayerDto.valueOf(players.get(name));
     }
 }

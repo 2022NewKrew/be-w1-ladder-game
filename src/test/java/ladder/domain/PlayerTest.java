@@ -52,4 +52,32 @@ class PlayerTest {
         // then
         assertThatThrownBy(callable).isExactlyInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("이름이 일치하면 true 를 반환한다.")
+    void equalsName() {
+        // given
+        String name = "ato";
+        Player player = new Player(name);
+
+        // when
+        boolean value = player.equalsName(name);
+
+        // then
+        assertThat(value).isTrue();
+    }
+
+    @Test
+    @DisplayName("이름이 일치하지 않는다면 false 를 반환한다.")
+    void equalsNameWithNotEquals() {
+        // given
+        String name = "ato";
+        Player player = new Player(name);
+
+        // when
+        boolean value = player.equalsName("mungto");
+
+        // then
+        assertThat(value).isFalse();
+    }
 }
