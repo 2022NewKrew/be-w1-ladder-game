@@ -3,26 +3,28 @@ package ladder.domain.ladder;
 import ladder.config.LadderGameConfig;
 import ladder.exception.LadderException;
 
+import java.util.List;
+
 import static ladder.exception.LadderException.ErrorCode.*;
 
 public class LadderInfo {
 
-    private final String[] participants;
-    private final String[] results;
+    private final List<String> participants;
+    private final List<String> results;
     private final int height;
 
-    public LadderInfo(String[] participants, String[] results, int height) throws LadderException {
+    public LadderInfo(List<String> participants, List<String> results, int height) throws LadderException {
         validateLadderInfo(participants, results, height);
         this.participants = participants;
         this.results = results;
         this.height = height;
     }
 
-    public String[] getParticipants() {
+    public List<String> getParticipants() {
         return participants;
     }
 
-    public String[] getResults() {
+    public List<String> getResults() {
         return results;
     }
 
@@ -30,19 +32,19 @@ public class LadderInfo {
         return height;
     }
 
-    private void validateLadderInfo(String[] participants, String[] results, int height) throws LadderException {
+    private void validateLadderInfo(List<String> participants, List<String> results, int height) throws LadderException {
         if (height < 1) {
             throw new LadderException(INVALID_HEIGHT, height);
         }
-        if (participants.length == 0) {
+        if (participants.size() == 0) {
             throw new LadderException(EMPTY_PARTICIPANTS);
         }
-        if (participants.length != results.length) {
+        if (participants.size() != results.size()) {
             throw new LadderException(MISMATCH_PARTICIPANTS_AND_RESULT);
         }
-        for (int i = 0; i < participants.length; i++) {
-            validateParticipantName(participants[i]);
-            validateResultName(results[i]);
+        for (int i = 0; i < participants.size(); i++) {
+            validateParticipantName(participants.get(i));
+            validateResultName(results.get(i));
         }
     }
 

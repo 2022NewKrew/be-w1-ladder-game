@@ -3,6 +3,8 @@ package ladder.view;
 import ladder.config.LadderGameConfig;
 import ladder.domain.ladder.Ladder;
 
+import java.util.List;
+
 public class LadderRenderer {
 
     private static final String HORIZONTAL_LINE = "-----";
@@ -22,7 +24,7 @@ public class LadderRenderer {
         return sb.toString();
     }
 
-    private static void renderLadderInfo(StringBuilder sb, String[] strings) {
+    private static void renderLadderInfo(StringBuilder sb, List<String> strings) {
 
         for (String data : strings) {
             int emptyPrefixCount = (LadderGameConfig.MAX_INPUT_LENGTH - data.length()) / 2;
@@ -36,7 +38,7 @@ public class LadderRenderer {
     }
 
     private static void renderRow(StringBuilder sb, Ladder ladder, int currentHeight) {
-        int numOfParticipants = ladder.getParticipants().length;
+        int numOfParticipants = ladder.getNumOfParticipants();
 
         sb.append(EMPTY_SPACE.repeat(LadderGameConfig.MAX_INPUT_LENGTH / 2));
         for (int currentWidth = 0; currentWidth < numOfParticipants - 1; currentWidth++) {
