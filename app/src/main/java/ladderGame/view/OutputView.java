@@ -1,5 +1,7 @@
 package ladderGame.view;
 
+import ladderGame.ladder.Line;
+
 import java.util.List;
 
 /*
@@ -51,11 +53,7 @@ public final class OutputView {
     }
 
     private static void printBar(Boolean exist) {
-        if(exist) {
-            System.out.print(BAR);
-            return;
-        }
-        System.out.print(EMPTY);
+        System.out.print(exist ? BAR : EMPTY);
     }
 
     public static void printAllResult(List<String> players, List<String> results) {

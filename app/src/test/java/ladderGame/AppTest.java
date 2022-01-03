@@ -3,12 +3,14 @@
  */
 package ladderGame;
 
-import ladderGame.view.LadderGame;
+import ladderGame.ladder.LadderGame;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class AppTest {
 
@@ -19,20 +21,25 @@ public class AppTest {
     @DisplayName("Line Test")
     public void lineTest() {
         // given
-        List<String> playersTest = Arrays.asList("p1", "p2", "p3", "p4", "p5");
-        List<String> result = Arrays.asList("1", "2", "3", "4", "5");
-        LadderGame classUnderTest = LadderGame.of(playersTest, result, 6);
+        Random random = new Random();
+        List<String> playersTest = new ArrayList(10);
+        List<String> result = new ArrayList(10);
+        int height = random.nextInt(10);
 
-        for(int i = 0; i < 6 ; i++) { // ?
+        for(int i = 0; i < random.nextInt(10); i++){
+            playersTest.add("p");
+            result.add("r");
+        }
+        LadderGame classUnderTest = LadderGame.of(playersTest, result, height);
+
+        for(int i = 0; i < height ; i++) { // ?
             // when ..?
             List<Boolean> pointsTest = classUnderTest.getLadder().get(i).getPoints();
 
             // then
-            Assertions.assertAll(
-                    () -> Assertions.assertFalse(pointsTest.get(0) & pointsTest.get(1)),
-                    () -> Assertions.assertFalse(pointsTest.get(1) & pointsTest.get(2)),
-                    () -> Assertions.assertFalse(pointsTest.get(2) & pointsTest.get(3))
-            );
+            for(int j = 0; j < playersTest.size() - 1; j++) {
+                Assertions.assertFalse(pointsTest.get(j) & pointsTest.get(j+1));
+            }
         }
     }
 

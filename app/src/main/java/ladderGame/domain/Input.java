@@ -12,7 +12,7 @@ public final class Input {
     private static final String MSG_INPUT_HEIGHT = "\n최대 사다리 높이는 몇 개인가요?";
     private static final String MSG_INPUT_RESULT = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String MSG_INPUT_SELECT = "\n결과를 보고 싶은 사람은?";
-    private static final Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner;
 
     // 인스턴스 생성 막기
     private Input() {
@@ -46,6 +46,7 @@ public final class Input {
         return scanner.next();
     }
 
+    public static void openScanner() { scanner = new Scanner(System.in); }
     public static void closeScanner() { scanner.close(); }
 
     private static boolean checkPlayersName(String[] players) {

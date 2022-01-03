@@ -1,9 +1,11 @@
 /*
  * @author ed.shim
  */
-package ladderGame.view;
+package ladderGame.ladder;
 
 import ladderGame.domain.Input;
+import ladderGame.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -54,7 +56,6 @@ public class LadderGame {
         OutputView.printLadder(players, ladder, results);
         calculateResult();
         while(play()) { }
-        Input.closeScanner();
     }
 
     public final boolean play() { // 게임 끝나는 경우 return false

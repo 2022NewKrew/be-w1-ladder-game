@@ -1,4 +1,4 @@
-package ladderGame.view;
+package ladderGame.ladder;
 
 import java.util.Random;
 import java.util.List;
