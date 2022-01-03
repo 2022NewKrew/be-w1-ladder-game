@@ -12,7 +12,7 @@ public class InputInteger implements Input<Integer> {
 
     public Integer getInputValue() {
         Boolean isDone = false;
-        while(!isDone) {
+        while (!isDone) {
             getNewInput();
             isDone = (inputValue != 0);
         }
@@ -36,7 +36,7 @@ public class InputInteger implements Input<Integer> {
 
     private void checkInputValueRange(int inputValue) throws InputValidException {
         String UNVALID_RANGE_MESSAGE = "잘못된 입력입니다. 1 이상의 정수만 입력 가능합니다.";
-        if(inputValue <= 0)
+        if (inputValue <= 0)
             throw new InputValidException(UNVALID_RANGE_MESSAGE);
     }
 }

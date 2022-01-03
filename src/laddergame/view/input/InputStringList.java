@@ -29,9 +29,7 @@ public class InputStringList implements Input<List<String>> {
         try {
             String input = scanner.nextLine();
             List<String> inputValues = makeArrayList(input);
-
             checkInputMaxLength(inputValues);
-
             this.inputValues = inputValues;
         } catch (InputValidException e) {
             System.out.println(e.getMessage());
