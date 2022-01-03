@@ -4,6 +4,7 @@ import domain.ladder.Ladder;
 import dto.ladderDto.LadderDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -19,17 +20,16 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @Nested
 class GameResultPreconditionTest {
 
-
     public static final int TEST_LEGAL_NUBMER_OF_FRAME = 5;
     public static final int TEST_LADDER_HEIGHT = 10;
     public static final int TEST_ILLEGAL_NUMBER_OF_FRAME = 10;
     public static final int TEST_MAX_LENGTH = 5;
 
     @DisplayName("올바른 유저 리스트로 LadderGamePrecondition.checkUsers 메소드를 실행하면 예외를 던지지 않는다.")
-    @ParameterizedTest
-    @MethodSource("legalUsers")
-    public void checkLegalUsers(List<String> testLegalUsers) {
+    @Test
+    public void checkLegalUsers() {
         //Give : 올바른 유저 리스트
+        List<String> testLegalUsers = Arrays.asList("abc", "bcd", "abcd", "abcde", "efg");
         //When : LadderGamePrecondition.checkUsers 메소드에 TEST_MAX_LENGTH와 testLegalUsers가 인자로 넘어갔을 때
         //Then
         assertThatCode(() -> GameResultPrecondition.checkUsers(testLegalUsers, TEST_MAX_LENGTH))
@@ -37,10 +37,10 @@ class GameResultPreconditionTest {
     }
 
     @DisplayName("올바르지 못한 유저 리스트로 LadderGamePrecondition.checkUsers 메소드를 실행하면 IllegalArgumentException을 던진다.")
-    @ParameterizedTest
-    @MethodSource("illegalUsers")
-    public void checkIllegalUsers(List<String> testIllegalUsers) {
+    @Test
+    public void checkIllegalUsers() {
         //Give : 올바르지 못한 유저 리스트
+        List<String> testIllegalUsers = Arrays.asList("abcde", "abcdef", "abc", "def", "hij");
         //When : LadderGamePrecondition.checkUsers 메소드에 TEST_MAX_LENGTH와 testIllegalUsers 인자로 넘어갔을 때
         //Then
         assertThatThrownBy(() -> GameResultPrecondition.checkUsers(testIllegalUsers, TEST_MAX_LENGTH))
@@ -48,10 +48,10 @@ class GameResultPreconditionTest {
     }
 
     @DisplayName("올바른 LadderDTO와 Users의 길이로 GameResultPrecondition.checkLadderDto 메서드를 실행하면 예외를 던지지 않는다.")
-    @ParameterizedTest
-    @MethodSource("legalLadder")
-    public void checkLegalDTO(Ladder testLegalLadder) {
+    @Test
+    public void checkLegalDTO() {
         //Give
+        Ladder testLegalLadder = new Ladder(TEST_LEGAL_NUBMER_OF_FRAME, TEST_LADDER_HEIGHT);
         final LadderDTO ladderDTO = new LadderDTO(testLegalLadder);
         final int testUserLength = 6;
         //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, testUserLength 인자로 넘어갔을 때
@@ -61,10 +61,10 @@ class GameResultPreconditionTest {
     }
 
     @DisplayName("올바르지 못한 LadderDTO와 Users의 길이로 GameResultPrecondition.checkLadderDto 메서드를 실행하면 IllegalArgumentException 예외를 던진다.")
-    @ParameterizedTest
-    @MethodSource("illegalLadder")
-    public void checkIllegalDTO(Ladder testIllegalLadder) {
+    @Test
+    public void checkIllegalDTO() {
         //Give
+        Ladder testIllegalLadder = new Ladder(TEST_ILLEGAL_NUMBER_OF_FRAME, TEST_LADDER_HEIGHT);
         final LadderDTO ladderDTO = new LadderDTO(testIllegalLadder);
         final int testUserLength = 6;
         //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, TEST_USER_LENGTH 인자로 넘어갔을 때
@@ -74,9 +74,10 @@ class GameResultPreconditionTest {
     }
 
     @DisplayName("올바른 결과값과 올바른 유저값이 주어졌을 때 GameResultPrecondition.checkResults 메서드를 실행하면 예외를 던지지 않는다.")
-    @ParameterizedTest
-    @MethodSource("legalResults")
-    public void checkLegalResult(List<String> testLegalResults, List<String> testLegalUsers) {
+    @Test
+    public void checkLegalResult() {
+        List<String> testLegalResults = Arrays.asList("abc", "bcd", "abcd", "abcde", "efg");
+        List<String> testLegalUsers = Arrays.asList("abc", "bcd", "abcd", "abcde", "efg");
         //Give : 올바른 결과 리스트, 올바른 유저 리스트, 글자수 제한
         //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, TEST_EXPECTED_LENGTH 인자로 넘어갔을 때
         //Then
@@ -85,47 +86,15 @@ class GameResultPreconditionTest {
     }
 
     @DisplayName("올바르지 못한 결과값과 올바른 유저값이 주어졌을 때 GameResultPrecondition.checkResults 메서드를 실행하면 IllegalArgumentException 예외를 던진다.")
-    @ParameterizedTest
-    @MethodSource("illegalResults")
-    public void checkIllegalResult(List<String> testIllegalResults, List<String> testLegalUsers) {
+    @Test
+    public void checkIllegalResult() {
         //Give : 올바지 못한 결과 리스트, 올바른 유저 리스트, 글자수 제한
+        List<String> testIllegalResults = Arrays.asList("abcde", "abcdef", "abc", "def", "hij");
+        List<String> testLegalUsers = Arrays.asList("abc", "bcd", "abcd", "abcde", "efg");
         //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, TEST_EXPECTED_LENGTH 인자로 넘어갔을 때
         //Then
         assertThatThrownBy(() -> GameResultPrecondition.checkResults(testIllegalResults, TEST_MAX_LENGTH, testLegalUsers.size()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    private static Stream<List<String>> legalUsers() {
-        return Stream.of(Arrays.asList("abc", "bcd", "abcd", "abcde", "efg"));
-    }
-
-    private static Stream<List<String>> illegalUsers() {
-        return Stream.of(Arrays.asList("abcde", "abcdef", "abc", "def", "hij"));
-    }
-
-    private static Stream<Arguments> legalResults() {
-        return Stream.of(
-                Arguments.of(
-                        Arrays.asList("abc", "bcd", "abcd", "abcde", "efg"),
-                        Arrays.asList("abc", "bcd", "abcd", "abcde", "efg")
-                )
-        );
-    }
-
-    private static Stream<Arguments> illegalResults() {
-        return Stream.of(
-                Arguments.of(
-                        Arrays.asList("abcde", "abcdef", "abc", "def", "hij"),
-                        Arrays.asList("abc", "bcd", "abcd", "abcde", "efg")
-                )
-        );
-    }
-
-    private static Stream<Ladder> legalLadder() {
-        return Stream.of(new Ladder(TEST_LEGAL_NUBMER_OF_FRAME, TEST_LADDER_HEIGHT));
-    }
-
-    private static Stream<Ladder> illegalLadder() {
-        return Stream.of(new Ladder(TEST_ILLEGAL_NUMBER_OF_FRAME, TEST_LADDER_HEIGHT));
-    }
 }
