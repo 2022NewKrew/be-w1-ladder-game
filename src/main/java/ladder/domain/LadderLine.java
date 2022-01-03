@@ -34,6 +34,18 @@ public class LadderLine {
         return str;
     }
 
+    //해당 라인에서 생성된 사다리를 타고 위치 이동
+    public int moveToNextPosition(int startPos) {
+        int nextPos = startPos;
+        int leftPos = startPos - 1;
+
+        if (leftPos >= 0 && points.get(leftPos)) { nextPos = leftPos; }
+        else if (startPos < points.size() && points.get(startPos)) {
+            nextPos = startPos + 1;
+        }
+        return nextPos;
+    }
+
     private Boolean canBuildBridge() {
         if (points.isEmpty()) return true;
         return !points.get(points.size() - 1);

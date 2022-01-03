@@ -21,4 +21,15 @@ public class Ladder {
         if (ladder == null) return null;
         return ladder;
     }
+
+    public int getResult(int startPos) {
+        int height = 0;
+
+        while (height < ladder.size()) {
+            startPos = ladder.get(height).moveToNextPosition(startPos);
+            height++;
+        }
+
+        return startPos;
+    }
 }

@@ -6,7 +6,7 @@ public class Main {
 
     private static GameController gameController;
 
-    static public void main(String[] args) {
+    static public void main(String[] args) throws IllegalArgumentException {
         initialize();
         gameController.startGame();
     }
