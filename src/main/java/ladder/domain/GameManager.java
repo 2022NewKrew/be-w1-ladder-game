@@ -43,21 +43,29 @@ public class GameManager {
         }
     }
 
-    private static void viewPlayerResult() {
-        // TODO - depth 줄이기
-        while (true) {
-            String command = InputView.inputCommand();
-            Validation.validateName(command, playerResults);
+    private static Boolean isGameEnd(String command) {
+        if (command.equals(END_COMMAND)) {
+            ResultView.printEndGameMessage();
+            return true;
+        }
+        return false;
+    }
 
-            if (command.equals(END_COMMAND)) {
-                ResultView.printEndGameMessage();
-                return;
-            }
-            if (command.equals(SHOW_ALL_RESULT_COMMAND)) {
-                ResultView.printPlayerResults(playerResults);
-                continue;
-            }
-            ResultView.printPlayerResult(playerResults.get(command));
+    private static void viewPlayerResult(String command) {
+        if (command.equals(SHOW_ALL_RESULT_COMMAND)) {
+            ResultView.printPlayerResults(playerResults);
+            return;
+        }
+        Validation.validateName(command, playerResults);
+        ResultView.printPlayerResult(playerResults.get(command));
+    }
+
+    private static void inputPlayerCommand() {
+        String command = InputView.inputCommand();
+
+        while (!isGameEnd(command)) {
+            viewPlayerResult(command);
+            command = InputView.inputCommand();
         }
     }
 
@@ -66,6 +74,6 @@ public class GameManager {
         buildLadder();
         viewLadderGameResult();
         playerLadder();
-        viewPlayerResult();
+        inputPlayerCommand();
     }
 }
