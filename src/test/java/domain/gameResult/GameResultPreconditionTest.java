@@ -51,10 +51,10 @@ class GameResultPreconditionTest {
     public void checkLegalDTO(Ladder testLegalLadder) {
         //Give
         final LadderDTO ladderDTO = new LadderDTO(testLegalLadder);
-        final int TEST_USER_LENGTH = 6;
+        final int testUserLength = 6;
         //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, testUserLength 인자로 넘어갔을 때
         //Then
-        assertThatCode(() -> GameResultPrecondition.checkLadderDto(ladderDTO, TEST_USER_LENGTH)).doesNotThrowAnyException();
+        assertThatCode(() -> GameResultPrecondition.checkLadderDto(ladderDTO, testUserLength)).doesNotThrowAnyException();
     }
 
     @DisplayName("올바르지 못한 LadderDTO와 Users의 길이로 GameResultPrecondition.checkLadderDto 메서드를 실행하면 IllegalArgumentException 예외를 던진다.")
@@ -63,10 +63,10 @@ class GameResultPreconditionTest {
     public void checkIllegalDTO(Ladder testIllegalLadder) {
         //Give
         final LadderDTO ladderDTO = new LadderDTO(testIllegalLadder);
-        final int TEST_USER_LENGTH = 6;
+        final int testUserLength = 6;
         //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, TEST_USER_LENGTH 인자로 넘어갔을 때
         //Then
-        assertThatThrownBy(() -> GameResultPrecondition.checkLadderDto(ladderDTO, TEST_USER_LENGTH)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> GameResultPrecondition.checkLadderDto(ladderDTO, testUserLength)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("올바른 결과값과 올바른 유저값이 주어졌을 때 GameResultPrecondition.checkResults 메서드를 실행하면 예외를 던지지 않는다.")
@@ -74,7 +74,6 @@ class GameResultPreconditionTest {
     @MethodSource("legalResults")
     public void checkLegalResult(List<String> testLegalResults, List<String> testLegalUsers) {
         //Give : 올바른 결과 리스트, 올바른 유저 리스트, 글자수 제한
-        final int TEST_MAX_LENGTH = 5;
         //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, TEST_EXPECTED_LENGTH 인자로 넘어갔을 때
         //Then
         assertThatCode(() -> GameResultPrecondition.checkResults(testLegalResults, TEST_MAX_LENGTH, testLegalUsers.size())).doesNotThrowAnyException();
@@ -85,7 +84,6 @@ class GameResultPreconditionTest {
     @MethodSource("illegalResults")
     public void checkIllegalResult(List<String> testIllegalResults, List<String> testLegalUsers) {
         //Give : 올바지 못한 결과 리스트, 올바른 유저 리스트, 글자수 제한
-        final int TEST_MAX_LENGTH = 5;
         //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, TEST_EXPECTED_LENGTH 인자로 넘어갔을 때
         //Then
         assertThatThrownBy(() -> GameResultPrecondition.checkResults(testIllegalResults, TEST_MAX_LENGTH, testLegalUsers.size())).isInstanceOf(IllegalArgumentException.class);
