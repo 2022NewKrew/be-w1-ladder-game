@@ -11,8 +11,7 @@ public class LadderTest {
     @Test
     public void 이름_5글자_확인() {
         String[] names = {"123456", "1234567", "12345678"};
-        String[] results = {"x", "o", "x"};
-        Ladder ladder = new Ladder(names, results, 5);
+        Ladder ladder = new Ladder(names, 5);
         LadderDTO ladderDTO = ladder.getLadderDTO();
         LadderView ladderView = ladder.getLadderView();
 
@@ -23,14 +22,12 @@ public class LadderTest {
     @Test
     public void 사다리줄_겹침_확인() {
         String[] names = new String[10];
-        String[] results = new String[10];
         for (int i = 0; i < 10; i++) {
             names[i] = String.valueOf(i);
-            results[i] = "x";
         }
 
         for (int i = 0; i < 1000; i++) {
-            Ladder ladder = new Ladder(names, results, 5);
+            Ladder ladder = new Ladder(names, 5);
             LadderDTO ladderDTO = ladder.getLadderDTO();
 
             for (String line : ladderDTO.getLadderInfo()) {
