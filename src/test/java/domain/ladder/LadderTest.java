@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Ladder 테스트")
 class LadderTest {
-    
+
     @DisplayName("Ladder클래스 생성자 테스트")
     @Nested
     class ConstructorTest {

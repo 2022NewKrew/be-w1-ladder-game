@@ -1,7 +1,8 @@
 package domain.ladder;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
@@ -18,11 +19,18 @@ public class Ladder {
     private List<LadderFrameLine> generateLines(int frameLength, int height) {
         return Stream.generate(() -> new LadderFrameLine(frameLength))
                 .limit(height)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
     }
-
 
     public List<LadderFrameLine> getLines() {
         return lines;
+    }
+
+    public List<Integer> getBridgeIndexes() {
+        List<Integer> indexes = new ArrayList<>();
+        for (LadderFrameLine line : lines) {
+            indexes.addAll(line.getBridgeIndexes());
+        }
+        return Collections.unmodifiableList(indexes);
     }
 }

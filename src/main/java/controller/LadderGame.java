@@ -30,7 +30,7 @@ public class LadderGame {
         List<String> users = UserInput.getUserList();
         List<String> results = UserInput.getLadderResult();
         ladderService.generateLadder(users.size() - 1, UserInput.getLadderHeight());
-        gameResultService.calculateGameResult(ladderService.getLadderDto(), users, results);
+        gameResultService.calculateGameResult(users, results);
         printLadder(users, results);
         String target = "";
         while (!target.equals("춘식이")) {

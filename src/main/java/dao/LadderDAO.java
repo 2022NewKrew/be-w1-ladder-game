@@ -1,21 +1,28 @@
 package dao;
 
 import domain.ladder.Ladder;
-import dto.ladderDto.LadderDTO;
 
 public class LadderDAO {
 
+    private static LadderDAO INSTANCE;
+
     private Ladder ladder;
 
-    public LadderDAO() {
+    private LadderDAO() {
+    }
 
+    public static synchronized LadderDAO getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new LadderDAO();
+        }
+        return INSTANCE;
     }
 
     public void saveLadder(int frameLength, int height) {
         ladder = new Ladder(frameLength, height);
     }
 
-    public LadderDTO getLadderDTO() {
-        return new LadderDTO(ladder);
+    public Ladder getLadder() {
+        return ladder;
     }
 }

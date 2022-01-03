@@ -1,6 +1,5 @@
 package view;
 
-import domain.ladder.Ladder;
 import domain.ladder.LadderFrame;
 import domain.ladder.LadderFrameLine;
 import dto.gameResultDto.AllResultDTO;
