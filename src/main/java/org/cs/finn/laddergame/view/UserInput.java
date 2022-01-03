@@ -110,11 +110,9 @@ public class UserInput {
 
     private Member getMemberFromInput(final Members members) {
         final String input = sc.nextLine().trim();
-        if (input.isBlank()) {
-            return Member.NONE;
-        }
-        if (isReservedMemberString(input)) {
-            return getReservedMember(input);
+        final Member reserved = getReservedMember(input);
+        if (!reserved.isNone()) {
+            return reserved;
         }
 
         final Member member = members.find(input);
@@ -122,12 +120,6 @@ public class UserInput {
             System.out.println("입력한 멤버를 찾을 수 없습니다");
         }
         return member;
-    }
-
-    private boolean isReservedMemberString(final String input) {
-        return memberRetryer.equals(input) ||
-                memberTerminator.equals(input) ||
-                memberAll.equals(input);
     }
 
     private Member getReservedMember(final String input) {

@@ -85,8 +85,8 @@ public class LadderGame {
     )
     {
         stringValuesView.print(members, Member.WIDTH);
-        //final int rewardIdx = ladderView.printWithReward(ladder, members, member);
+        final int rewardIdx = ladderView.printWithReward(ladder, members.indexOf(member));
         stringValuesView.print(rewards, Reward.WIDTH);
-        //stringValuesView.printTwoValue(member, rewards.get(rewardIdx));
+        stringValuesView.printTwoValue(member, rewards.get(rewardIdx));
     }
 }

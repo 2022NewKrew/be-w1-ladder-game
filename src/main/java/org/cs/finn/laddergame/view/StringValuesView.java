@@ -33,4 +33,8 @@ public class StringValuesView {
             System.out.print(' ');
         }
     }
+
+    public void printTwoValue(final AbstractStringValue value1, final AbstractStringValue value2) {
+        System.out.println(value1 + " : " + value2);
+    }
 }

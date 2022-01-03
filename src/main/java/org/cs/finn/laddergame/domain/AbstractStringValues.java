@@ -112,11 +112,26 @@ public abstract class AbstractStringValues<T extends AbstractStringValue> {
             return getNoneValue();
         }
 
-        final int idx = list.indexOf(t);
+        return find(t);
+    }
+
+    public T find(final T value) {
+        if (value == null) {
+            throw new RuntimeException("value is null!");
+        }
+
+        final int idx = indexOf(value);
         if (idx != -1) {
             return list.get(idx);
         }
 
         return getNoneValue();
+    }
+
+    public int indexOf(final T value) {
+        if (value == null) {
+            throw new RuntimeException("value is null!");
+        }
+        return list.indexOf(value);
     }
 }
