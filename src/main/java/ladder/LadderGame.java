@@ -54,32 +54,21 @@ public class LadderGame {
             command = sc.next();
             System.out.println(getResult(command, ladderResult));
         } while (!command.equals(END_COMMAND));
-<<<<<<< HEAD
-=======
-        System.out.println("게임을 종료합니다.");
->>>>>>> e12e8ef1f80c5080d7ace40b8c9a973ef5ee2b56
     }
 
     private static String getResult(String command, LadderResult ladderResult) {
         if (command.equals(ALL_COMMAND)) {
             return ladderResult.getAllResult();
         }
-<<<<<<< HEAD
         if (command.equals(END_COMMAND)) {
             return "게임을 종료합니다.";
         }
-=======
->>>>>>> e12e8ef1f80c5080d7ace40b8c9a973ef5ee2b56
 
         String oneResult = ladderResult.getOneResult(command);
         if (oneResult != null) {
             return oneResult;
         }
-<<<<<<< HEAD
         return "입력한 참여자의 정보가 없습니다.";
-=======
-        return "";
->>>>>>> e12e8ef1f80c5080d7ace40b8c9a973ef5ee2b56
     }
 
 }
