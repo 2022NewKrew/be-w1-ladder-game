@@ -9,7 +9,6 @@ import java.util.List;
 
 public class LadderTest {
     @Test
-<<<<<<< HEAD
     @DisplayName("[성공] Ladder 객체를 생성할 수 있다")
     void canMakeLadder() {
         List<Line> testLines = new ArrayList<>();
@@ -23,9 +22,6 @@ public class LadderTest {
 
     @Test
     @DisplayName("[실패] Ladder 생성자에 null을 넣으면 IllegalArgumentException을 던져야 한다")
-=======
-    @DisplayName("Should not create ladders with invalid parameter (null)")
->>>>>>> 01c34da0c1a9889ac35531770c2259bd8ba26763
     void laddersWithInvalidParameter() {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new Ladder(null));

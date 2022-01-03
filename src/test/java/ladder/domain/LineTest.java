@@ -9,7 +9,6 @@ import java.util.List;
 
 public class LineTest {
     @Test
-<<<<<<< HEAD
     @DisplayName("[성공] Line 객체를 생성할 수 있다")
     void canMakeLine() {
         List<Boolean> line = new ArrayList<>();
@@ -23,9 +22,6 @@ public class LineTest {
 
     @Test
     @DisplayName("[실패] Line 생성자에 null을 넣으면 IllegalArgumentException을 던져야 한다")
-=======
-    @DisplayName("Should not create lines with invalid parameter (null)")
->>>>>>> 01c34da0c1a9889ac35531770c2259bd8ba26763
     void linesWithInvalidParameter() {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new Line(null));

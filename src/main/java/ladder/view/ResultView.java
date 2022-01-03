@@ -4,7 +4,6 @@ import ladder.domain.Line;
 import ladder.message.GameMessage;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -23,15 +22,6 @@ public class ResultView {
     public static void printEndGameMessage() {
         System.out.println(GameMessage.END_GAME.getMessage());
     }
-=======
-import java.util.List;
-import java.util.stream.Stream;
-
-public class ResultView {
-    private static final String SIDE_RAIL = "|";
-    private static final String RUNG = "-----";
-    private static final String SPACE = "     ";
->>>>>>> 01c34da0c1a9889ac35531770c2259bd8ba26763
 
     /**
      * 사다리의 한 줄을 출력하는 메서드
