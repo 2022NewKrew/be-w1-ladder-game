@@ -7,6 +7,7 @@ import dto.gameResultDto.TargetResultDTO;
 import dto.ladderDto.LadderDTO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -28,6 +29,8 @@ public class GameResultTest {
 
     private static final LadderDAO ladderDAO = new LadderDAO();
     private static final GameResultDAO gameResultDAO = new GameResultDAO();
+    public static final String EXPECTED_RESULT = "1";
+    public static final String TARGET = "a";
 
     @BeforeAll
     static void generateLadder() {
@@ -36,10 +39,12 @@ public class GameResultTest {
     }
 
     @DisplayName("올바른 결과값을 가지고 게임결과를 생성했을 때 올바른 결과값과 생성된 결과값이 같다.")
-    @ParameterizedTest
-    @MethodSource("allResultArguments")
-    void calculateResultTest(Map<String, String> expected, List<String> users, List<String> results) {
+    @Test
+    void calculateResultTest() {
         //Give : 기대값, 유저 목록, 결과 목록
+        Map<String, String> expected = getExpectedMap();
+        List<String> users = getUsers();
+        List<String> results = getResults();
         LadderDTO ladderDTO = ladderDAO.getLadderDTO();
         //When
         gameResultDAO.saveGameResult(ladderDTO, users, results);
@@ -49,16 +54,16 @@ public class GameResultTest {
     }
 
     @DisplayName("올바른 결과값을 가지고 게임결과를 생성했을 때 조회하고 싶은 대상의 결과가 올바른 결과와 같다.")
-    @ParameterizedTest
-    @MethodSource("targetResultArguments")
-    void targetResultTest(String expected, List<String> users, List<String> results) {
+    @Test
+    void targetResultTest() {
         //Give : 기대값, 유저 목록, 결과 목록
+        List<String> users = getUsers();
+        List<String> results = getResults();
         LadderDTO ladderDTO = ladderDAO.getLadderDTO();
-        String target = "a";
         //When
         gameResultDAO.saveGameResult(ladderDTO, users, results);
         //Then
-        assertThat(isSame(gameResultDAO.getTargetResultDto(target), expected)).isTrue();
+        assertThat(isSame(gameResultDAO.getTargetResultDto(TARGET), EXPECTED_RESULT)).isTrue();
 
     }
 
@@ -76,26 +81,6 @@ public class GameResultTest {
 
     private boolean isSame(TargetResultDTO targetResultDTO, String result) {
         return targetResultDTO.getResult() == result;
-    }
-
-    private static Stream<Arguments> allResultArguments() {
-        return Stream.of(
-                Arguments.of(
-                        getExpectedMap(),
-                        getUsers(),
-                        getResults()
-                )
-        );
-    }
-
-    private static Stream<Arguments> targetResultArguments() {
-        return Stream.of(
-                Arguments.of(
-                        "1",
-                        getUsers(),
-                        getResults()
-                )
-        );
     }
 
     private static Map<String, String> getExpectedMap() {
