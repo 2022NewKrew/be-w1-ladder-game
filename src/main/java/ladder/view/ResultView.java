@@ -50,32 +50,14 @@ public class ResultView {
     }
 
     /**
-     * 이름 사이의 공백을 출력하는 메서드
-     *
-     * @param beforeName 공백 이전 이름
-     * @param afterName  공백 이후 이름
-     */
-    private static void printSpaceBetweenNames(String beforeName, String afterName) {
-        int beforeNameLength = beforeName.length() == 0 ? 0 : (beforeName.length() + 1) / 2 - 1;
-        int afterNameLength = afterName.length() / 2;
-        int spaceCount = SPACE.length() - beforeNameLength - afterNameLength;
-
-        Stream.generate(() -> " ")
-                .limit(spaceCount)
-                .forEach(System.out::print);
-    }
-
-    /**
      * 사다리타기의 맨 윗줄 이름을 출력하는 메서드
      *
      * @param names 출력할 이름 리스트
      */
     public static void printNameOrResult(ArrayList<String> names) {
-        printSpaceBetweenNames("", names.get(0));
-        System.out.printf("%s", names.get(0));
+        System.out.printf("%6s", names.get(0));
         for (int i = 1; i < names.size(); i++) {
-            printSpaceBetweenNames(names.get(i - 1), names.get(i));
-            System.out.printf("%s", names.get(i));
+            System.out.printf("%6s", names.get(i));
         }
         System.out.println();
     }
