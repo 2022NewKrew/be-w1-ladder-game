@@ -30,5 +30,23 @@ public class UserInput {
 
     }
 
+    public static List<String> getLadderResult() {
+        try {
+            System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+            String inputLine = scanner.nextLine();
+            List<String> userList = Arrays.asList(inputLine.split(","));
+            return Collections.unmodifiableList(userList);
+        } catch (Exception exception) {
+            throw new IllegalArgumentException("올바른 방법으로 결과를 입력해주세요");
+        }
+    }
 
+    public static String getTarget() {
+        try {
+            System.out.println("결과를 보고 싶은 사람은?");
+            return scanner.next();
+        } catch (Exception exception) {
+            throw new IllegalArgumentException("올바른 방법으로 결과를 입력해주세요");
+        }
+    }
 }

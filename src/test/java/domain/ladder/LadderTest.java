@@ -8,10 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Ladder 테스트")
 class LadderTest {
-
-
-
-
+    
     @DisplayName("Ladder클래스 생성자 테스트")
     @Nested
     class ConstructorTest {
@@ -43,9 +40,10 @@ class LadderTest {
                     .getLines()
                     .get(0)
                     .getFrames()
-                    .size())
-                    .isEqualTo(TEST_FRAME_LENGTH - 1);
+                    .size()
+            ).isEqualTo(TEST_FRAME_LENGTH);
         }
     }
+
 
 }
