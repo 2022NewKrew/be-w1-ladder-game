@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 public class LadderGame {
     static final Scanner scanner = new Scanner(System.in);
-
     private PrintInterface printInterface;
     private List<String> attendants;
     private int ladderHeight;
