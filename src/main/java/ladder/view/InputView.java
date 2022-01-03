@@ -20,6 +20,7 @@ public class InputView {
         return in.nextInt();
     }
 
+<<<<<<< HEAD
     /**
      * 사다리 결과를 입력받는 메서드
      *
@@ -31,6 +32,11 @@ public class InputView {
         String input = in.nextLine();
         String[] result = input.split(",");
         return new ArrayList<>(Arrays.asList(result));
+=======
+    private static void validateName(String name) throws InputMismatchException {
+        if (name.isEmpty() || name.length() > MAX_NAME_LENGTH)
+            throw new InputMismatchException();
+>>>>>>> 01c34da0c1a9889ac35531770c2259bd8ba26763
     }
 
     /**

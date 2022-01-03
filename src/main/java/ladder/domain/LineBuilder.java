@@ -17,6 +17,7 @@ class LineBuilder {
      *
      * @return 포함시키면 true를 포함시키지 않으면 false를 반환한다
      */
+<<<<<<< HEAD
     private Boolean getRung() {
         return random.nextBoolean();
     }
@@ -25,6 +26,10 @@ class LineBuilder {
         if (beforeRung && afterRung)
             return false;
         return afterRung;
+=======
+    private Boolean getLineElement() {
+        return random.nextBoolean();
+>>>>>>> 01c34da0c1a9889ac35531770c2259bd8ba26763
     }
 
     /**

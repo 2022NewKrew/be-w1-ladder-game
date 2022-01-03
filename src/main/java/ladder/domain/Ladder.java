@@ -1,6 +1,9 @@
 package ladder.domain;
 
+<<<<<<< HEAD
 import java.util.Collections;
+=======
+>>>>>>> 01c34da0c1a9889ac35531770c2259bd8ba26763
 import java.util.List;
 
 public class Ladder {
@@ -12,6 +15,7 @@ public class Ladder {
         this.lines = Collections.unmodifiableList(lines);
     }
 
+<<<<<<< HEAD
     int play(int startIndex) {
         int currentIndex = startIndex;
 
@@ -20,6 +24,8 @@ public class Ladder {
         return currentIndex;
     }
 
+=======
+>>>>>>> 01c34da0c1a9889ac35531770c2259bd8ba26763
     public List<Line> getLadder() {
         return lines;
     }
