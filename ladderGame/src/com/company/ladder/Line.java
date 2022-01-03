@@ -3,15 +3,15 @@ package com.company.ladder;
 import com.company.view.PrintInterface;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Line {
     static final Random random = new Random();
-    ArrayList<Boolean> steps;
+    private List<Boolean> steps;
 
     public Line(){
         steps = new ArrayList<>();
-
     }
 
     public void setLine(int attendantNum) {

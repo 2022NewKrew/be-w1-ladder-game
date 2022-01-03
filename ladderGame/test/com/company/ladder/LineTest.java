@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class LineTest {
-    Line line;
+    private Line line;
     @Before
     public void setUp() throws Exception {
         line = new Line();
