@@ -9,6 +9,9 @@ public class StartGame {
         GameView gameView = new GameView(ladderGame);
         gameView.showParticipants();
         gameView.showLadder();
+        gameView.showResults();
+        ladderGame.executeGame();
+        gameView.resultLoop();
     }
 
 }

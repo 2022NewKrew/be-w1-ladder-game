@@ -4,6 +4,7 @@ import domain.LadderGame;
 import domain.Line;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class GameView {
@@ -12,6 +13,8 @@ public class GameView {
     private static final String SPACE = " ";
 
     private LadderGame currentGame;
+
+    private Scanner scanner = new Scanner(System.in);
 
     public GameView(LadderGame game) {
         currentGame = game;
@@ -24,6 +27,48 @@ public class GameView {
 
     public void showParticipants() {
         print(getNameList(currentGame.getParticipants()));
+    }
+
+    public void showResults() {
+        print(getNameList(currentGame.getResults()));
+    }
+
+    public String inputWantToSee() {
+        print("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
+    }
+
+    public void resultLoop() {
+        String wantToSee = "";
+        while (!wantToSee.equals("춘식이")) {
+            wantToSee = inputWantToSee();
+            showGameResult(wantToSee);
+        }
+    }
+
+    public int showGameResult(String wantToSee) {
+        if (wantToSee.equals("춘식이")) {
+            print("게임을 종료합니다.");
+            return 0;
+        }
+        if (wantToSee.equals("all")) {
+            showAllResult();
+            return 0;
+        }
+        showSingleResult(wantToSee);
+        return 0;
+    }
+
+
+    private void showSingleResult(String wantToSee) {
+        int participantIndex = currentGame.getParticipants().indexOf(wantToSee);
+        print(wantToSee + " : " + currentGame.getGameResult().get(participantIndex));
+    }
+
+    private void showAllResult() {
+        for (String participant : currentGame.getParticipants()) {
+            showSingleResult(participant);
+        }
     }
 
     public void showLadder() {
