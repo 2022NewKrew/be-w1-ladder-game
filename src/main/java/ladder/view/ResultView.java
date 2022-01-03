@@ -4,7 +4,9 @@ import ladder.domain.Line;
 import ladder.message.GameMessage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 public class ResultView {
@@ -15,6 +17,10 @@ public class ResultView {
 
     public static void printGameResultMessage() {
         System.out.println(GameMessage.GAME_RESULT.getMessage());
+    }
+
+    public static void printEndGameMessage() {
+        System.out.println(GameMessage.END_GAME.getMessage());
     }
 
     /**
@@ -72,5 +78,16 @@ public class ResultView {
             System.out.printf("%s", names.get(i));
         }
         System.out.println();
+    }
+
+    public static void printPlayerResults(HashMap<String, String> playerResults) {
+        for (Entry result : playerResults.entrySet()) {
+            System.out.println(result.getKey() + " : " + result.getValue());
+        }
+    }
+
+    public static void printPlayerResult(String result) {
+        System.out.println(GameMessage.RESULT_OF_PLAYER.getMessage());
+        System.out.println(result);
     }
 }

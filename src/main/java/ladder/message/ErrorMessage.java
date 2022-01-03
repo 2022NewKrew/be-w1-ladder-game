@@ -8,7 +8,8 @@ public enum ErrorMessage {
     EMPTY_LADDER_RESULTS("주어진 결과가 없습니다"),
     EMPTY_LADDER_RESULT("결과가 비었습니다"),
     EXCEED_MAX_LADDER_RESULT("결과 길이는 5자 이하여야 합니다"),
-    NAME_AND_RESULT_SIZE_ARE_DIFFERENT("이름 개수와 결과 개수가 다릅니다");
+    NAME_AND_RESULT_SIZE_ARE_DIFFERENT("이름 개수와 결과 개수가 다릅니다"),
+    PLAYER_NOT_EXIST("존재하지 않는 사용자입니다");
 
 
     private final String message;

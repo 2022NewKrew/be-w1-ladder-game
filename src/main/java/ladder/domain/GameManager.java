@@ -4,12 +4,16 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GameManager {
     private static ArrayList<String> names;
     private static ArrayList<String> ladderResults;
     private static int height;
     private static Ladder ladder;
+    private static final HashMap<String, String> playerResults = new HashMap<String, String>();
+    private static final String END_COMMAND = "춘식이";
+    private static final String SHOW_ALL_RESULT_COMMAND = "all";
 
     private static void inputInfo() {
         names = InputView.inputName();
@@ -25,16 +29,43 @@ public class GameManager {
         ladder = ladderBuilder.makeLadder();
     }
 
-    private static void viewGameResult() {
+    private static void viewLadderGameResult() {
         ResultView.printGameResultMessage();
         ResultView.printNameOrResult(names);
         ResultView.printLadder(ladder.getLadder());
         ResultView.printNameOrResult(ladderResults);
     }
 
+    private static void playerLadder() {
+        for (int i = 0; i < names.size(); i++) {
+            int resultIndex = ladder.play(i);
+            playerResults.put(names.get(i), ladderResults.get(resultIndex));
+        }
+    }
+
+    private static void viewPlayerResult() {
+        // TODO - depth 줄이기
+        while (true) {
+            String command = InputView.inputCommand();
+            Validation.validateName(command, playerResults);
+
+            if (command.equals(END_COMMAND)) {
+                ResultView.printEndGameMessage();
+                return;
+            }
+            if (command.equals(SHOW_ALL_RESULT_COMMAND)) {
+                ResultView.printPlayerResults(playerResults);
+                continue;
+            }
+            ResultView.printPlayerResult(playerResults.get(command));
+        }
+    }
+
     public static void startGame() {
         inputInfo();
         buildLadder();
-        viewGameResult();
+        viewLadderGameResult();
+        playerLadder();
+        viewPlayerResult();
     }
 }

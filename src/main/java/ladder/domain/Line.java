@@ -12,6 +12,14 @@ public class Line {
         this.line = Collections.unmodifiableList(line);
     }
 
+    int move(int idx) {
+        if (idx != 0 && line.get(idx - 1))
+            return idx - 1;
+        if (idx != line.size() && line.get(idx))
+            return idx + 1;
+        return idx;
+    }
+
     public List<Boolean> getLine() {
         return line;
     }
