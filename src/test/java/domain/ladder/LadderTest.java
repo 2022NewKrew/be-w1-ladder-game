@@ -3,12 +3,16 @@ package domain.ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.Arguments;
+
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Ladder 테스트")
 class LadderTest {
-
+    
     @DisplayName("Ladder클래스 생성자 테스트")
     @Nested
     class ConstructorTest {
@@ -44,5 +48,7 @@ class LadderTest {
                     .isEqualTo(TEST_FRAME_LENGTH - 1);
         }
     }
+
+
 
 }
