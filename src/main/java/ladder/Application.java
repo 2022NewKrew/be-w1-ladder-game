@@ -1,8 +1,8 @@
 package ladder;
 
 import java.util.Map;
-import java.util.Objects;
 import ladder.dto.InfoDto;
+import ladder.dto.PlayerDto;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -16,16 +16,17 @@ public class Application {
         final InfoDto infoDto = ladderController.info();
         OutputView.printLadderInfo(infoDto);
 
-        final Map<String, String> results = ladderController.foundResult();
+        final Map<PlayerDto, String> results = ladderController.foundResult();
 
-        String userInput = "";
+        String userInput;
         do {
             userInput = InputView.inputRewardPlayerName();
-            printResult(userInput, results);
+            printResult(userInput, results, ladderController);
         } while (isEnd(userInput));
     }
 
-    private static void printResult(String userInput,Map<String, String> results) {
+    private static void printResult(String userInput, Map<PlayerDto, String> results,
+        LadderController ladderController) {
         if (ALL.equalsIgnoreCase(userInput)) {
             OutputView.printResultAll(results);
             return;
@@ -33,14 +34,14 @@ public class Application {
         if (CHUNSHIK.equals(userInput)) {
             return;
         }
-        printSingleResult(userInput, results);
+        printSingleResult(userInput, results, ladderController);
     }
 
-    private static void printSingleResult(String userInput, Map<String, String> results) {
+    private static void printSingleResult(String userInput, Map<PlayerDto, String> results,
+        LadderController ladderController) {
         try {
-            String reward = results.get(userInput);
-            validate(reward);
-            OutputView.printResult(reward);
+            PlayerDto playerDto = ladderController.findPlayer(userInput);
+            OutputView.printResult(results.get(playerDto));
         } catch (Exception e) {
             OutputView.printBadInput();
         }
@@ -56,11 +57,5 @@ public class Application {
         final int ladderHeight = InputView.inputLadderHeight();
 
         return new LadderController(players, rewards, ladderHeight);
-    }
-
-    private static void validate(String reward) {
-        if (Objects.isNull(reward)) {
-            throw new IllegalArgumentException("존재하지 않는 유저입니다.");
-        }
     }
 }
