@@ -25,7 +25,7 @@ public class LadderView {
 
     private String generateResultListView(Map<String, String> resultFromName, List<String> names) {
         StringBuilder ret = new StringBuilder();
-        for(String name : names) {
+        for (String name : names) {
             ret.append(String.format("%s : %s%n", name, resultFromName.get(name)));
         }
         return ret.toString();
@@ -56,6 +56,7 @@ public class LadderView {
     }
 
     protected String getPaddedName(String name, int size) {
+        name = name.substring(0, Math.min(5, name.length()));
         int frontSpace = (size - name.length()) / 2;
         int backSpace = size - frontSpace - name.length();
         return " ".repeat(frontSpace) + name + " ".repeat(backSpace);

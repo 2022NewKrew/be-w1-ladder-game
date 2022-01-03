@@ -9,9 +9,9 @@ public class LadderDTO {
     private final List<String> ladderInfo;
     private final Map<String, String> resultFromName;
 
-    public LadderDTO(List<String> names, List<String> results, List<String> ladderInfo, Map<String, String> resultFromName) {
-        this.names = names;
-        this.results = results;
+    public LadderDTO(String[] names, String[] results, List<String> ladderInfo, Map<String, String> resultFromName) {
+        this.names = List.of(names);
+        this.results = List.of(results);
         this.ladderInfo = ladderInfo;
         this.resultFromName = resultFromName;
     }
