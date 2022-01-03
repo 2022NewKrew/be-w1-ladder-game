@@ -8,6 +8,7 @@ import ladder.domain.ladder.LadderInfo;
 import ladder.domain.ladder.LadderResult;
 import ladder.view.LadderRenderer;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class LadderGame {
@@ -39,7 +40,7 @@ public class LadderGame {
         int height = sc.nextInt();
 
         try {
-            ladderInfo = new LadderInfo(participants, results, height);
+            ladderInfo = new LadderInfo(List.of(participants), List.of(results), height);
         } catch (LadderException e) {
             System.out.println(e.getErrorMessage());
             ladderInfo = getInput(sc);

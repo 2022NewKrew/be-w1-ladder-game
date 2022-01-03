@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 import ladder.config.LadderGameConfig;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LadderResult {
@@ -14,11 +15,11 @@ public class LadderResult {
 
     private Map<String, String> process(Ladder ladder) {
         Map<String, String> resultMap = new HashMap<>();
-        String[] participants = ladder.getParticipants();
+        List<String> participants = ladder.getParticipants();
 
-        for (int currentParticipant = 0; currentParticipant < participants.length; currentParticipant++) {
+        for (int currentParticipant = 0; currentParticipant < participants.size(); currentParticipant++) {
             String result = startLadderFlow(ladder, currentParticipant);
-            resultMap.put(participants[currentParticipant], result);
+            resultMap.put(participants.get(currentParticipant), result);
         }
         return resultMap;
     }
@@ -29,7 +30,7 @@ public class LadderResult {
 
     private String ladderFlow(Ladder ladder, int currentPosition, int currentHeight, boolean isPassed) {
         if (currentHeight == ladder.getHeight()) {
-            return ladder.getResults()[currentPosition];
+            return ladder.getResults().get(currentPosition);
         }
         if (currentPosition == 0) {
             return leftSide(ladder, currentPosition, currentHeight, isPassed);

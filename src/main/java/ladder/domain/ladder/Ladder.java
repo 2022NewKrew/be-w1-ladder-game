@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Ladder {
 
-    private final String[] participants;
-    private final String[] results;
+    private final List<String> participants;
+    private final List<String> results;
     private final int height;
     private final List<Bridge> bridges;
 
@@ -18,11 +18,11 @@ public class Ladder {
         this.bridges = bridges;
     }
 
-    public String[] getParticipants() {
+    public List<String> getParticipants() {
         return participants;
     }
 
-    public String[] getResults() {
+    public List<String> getResults() {
         return results;
     }
 
@@ -35,6 +35,6 @@ public class Ladder {
     }
 
     public int getNumOfParticipants() {
-        return participants.length;
+        return participants.size();
     }
 }

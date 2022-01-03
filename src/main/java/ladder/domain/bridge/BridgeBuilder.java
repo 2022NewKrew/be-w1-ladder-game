@@ -13,7 +13,7 @@ public class BridgeBuilder {
     private final RandomBridgeProvider randomBridgeProvider;
 
     public BridgeBuilder(LadderInfo ladderInfo, RandomBridgeProvider randomBridgeProvider) {
-        this.numOfParticipants = ladderInfo.getParticipants().length;
+        this.numOfParticipants = ladderInfo.getParticipants().size();
         this.bridges = new ArrayList<>();
         this.height = ladderInfo.getHeight();
         this.randomBridgeProvider = randomBridgeProvider;
