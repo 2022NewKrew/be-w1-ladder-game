@@ -1,23 +1,17 @@
 package domain.gameResult;
 
-import dao.GameResultDAO;
-import dao.LadderDAO;
+import domain.ladder.Ladder;
 import dto.gameResultDto.AllResultDTO;
 import dto.gameResultDto.TargetResultDTO;
-import dto.ladderDto.LadderDTO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import utility.RandomGenerator;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,15 +21,16 @@ public class GameResultTest {
     private static final int TEST_HEIGHT = 10;
     private static final int TEST_SEED = 5;
 
-    private static final LadderDAO ladderDAO = new LadderDAO();
-    private static final GameResultDAO gameResultDAO = new GameResultDAO();
+    private static Ladder ladder;
+    private static GameResult gameResult;
     public static final String EXPECTED_RESULT = "1";
     public static final String TARGET = "a";
 
     @BeforeAll
     static void generateLadder() {
         RandomGenerator.setSeed(TEST_SEED);
-        ladderDAO.saveLadder(TEST_FRAME_LENGTH, TEST_HEIGHT);
+        Ladder.makeLadder(TEST_FRAME_LENGTH, TEST_HEIGHT);
+        ladder = Ladder.getInstance();
     }
 
     @DisplayName("올바른 결과값을 가지고 게임결과를 생성했을 때 올바른 결과값과 생성된 결과값이 같다.")
@@ -45,11 +40,11 @@ public class GameResultTest {
         Map<String, String> expected = getExpectedMap();
         List<String> users = getUsers();
         List<String> results = getResults();
-        LadderDTO ladderDTO = ladderDAO.getLadderDTO();
         //When
-        gameResultDAO.saveGameResult(ladderDTO, users, results);
+        GameResult.makeGameResult(ladder.getBridgeIndexes(), users, results);
+        gameResult = GameResult.getInstance();
         //Then
-        assertThat(isSame(gameResultDAO.getAllResultDto(), expected)).isTrue();
+        assertThat(isSame(new AllResultDTO(gameResult.getResult().entrySet()), expected)).isTrue();
 
     }
 
@@ -59,11 +54,11 @@ public class GameResultTest {
         //Give : 기대값, 유저 목록, 결과 목록
         List<String> users = getUsers();
         List<String> results = getResults();
-        LadderDTO ladderDTO = ladderDAO.getLadderDTO();
         //When
-        gameResultDAO.saveGameResult(ladderDTO, users, results);
+        GameResult.makeGameResult(ladder.getBridgeIndexes(), users, results);
+        gameResult = GameResult.getInstance();
         //Then
-        assertThat(isSame(gameResultDAO.getTargetResultDto(TARGET), EXPECTED_RESULT)).isTrue();
+        assertThat(isSame(new TargetResultDTO(gameResult.getResult().get(TARGET)), EXPECTED_RESULT)).isTrue();
 
     }
 

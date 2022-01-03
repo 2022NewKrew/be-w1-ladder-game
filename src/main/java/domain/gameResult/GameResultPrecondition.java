@@ -1,7 +1,5 @@
 package domain.gameResult;
 
-import dto.ladderDto.LadderDTO;
-
 import java.util.List;
 
 public class GameResultPrecondition {
@@ -14,12 +12,6 @@ public class GameResultPrecondition {
         isNotEmptyList(results);
         isLegal(results, maxLength);
         checkSize(results, expectedResultLength);
-    }
-
-    public static void checkLadderDto(LadderDTO ladderDTO, int numberOfUser) {
-        if (!isSameInformation(ladderDTO, numberOfUser)) {
-            throw new IllegalArgumentException("사다리의 정보와 유저의 정보가 다릅니다.");
-        }
     }
 
     private static void isLegal(List<String> users, int maxLength) {
@@ -44,11 +36,4 @@ public class GameResultPrecondition {
         }
     }
 
-    private static boolean isSameInformation(LadderDTO ladderDTO, int numberOfUser) {
-        return getFramesLength(ladderDTO) == numberOfUser - 1;
-    }
-
-    private static int getFramesLength(LadderDTO ladderDTO) {
-        return ladderDTO.getLines().get(0).getFrames().size();
-    }
 }

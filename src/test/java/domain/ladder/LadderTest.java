@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Ladder 테스트")
 class LadderTest {
-    
+
     @DisplayName("Ladder클래스 생성자 테스트")
     @Nested
     class ConstructorTest {
@@ -19,12 +19,13 @@ class LadderTest {
             final int TEST_LADDER_HEIGHT = 10;
             final int TEST_FRAME_LENGTH = 10;
             //When
-            final Ladder testLadder = new Ladder(TEST_FRAME_LENGTH, TEST_LADDER_HEIGHT);
+            Ladder.makeLadder(TEST_FRAME_LENGTH, TEST_LADDER_HEIGHT);
+            final Ladder testLadder = Ladder.getInstance();
             //Then
             assertThat(testLadder
                     .getLines()
-                    .size())
-                    .isEqualTo(TEST_LADDER_HEIGHT);
+                    .size()
+            ).isEqualTo(TEST_LADDER_HEIGHT);
         }
 
         @DisplayName("Ladder 넓이가 올바른지 확인")
@@ -34,7 +35,8 @@ class LadderTest {
             final int TEST_LADDER_HEIGHT = 10;
             final int TEST_FRAME_LENGTH = 10;
             //When
-            final Ladder testLadder = new Ladder(TEST_FRAME_LENGTH, TEST_LADDER_HEIGHT);
+            Ladder.makeLadder(TEST_FRAME_LENGTH, TEST_LADDER_HEIGHT);
+            final Ladder testLadder = Ladder.getInstance();
             //Then
             assertThat(testLadder
                     .getLines()

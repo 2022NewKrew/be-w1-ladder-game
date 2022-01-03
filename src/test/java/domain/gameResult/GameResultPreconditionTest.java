@@ -1,17 +1,11 @@
 package domain.gameResult;
 
-import domain.ladder.Ladder;
-import dto.ladderDto.LadderDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -44,32 +38,6 @@ class GameResultPreconditionTest {
         //When : LadderGamePrecondition.checkUsers 메소드에 TEST_MAX_LENGTH와 testIllegalUsers 인자로 넘어갔을 때
         //Then
         assertThatThrownBy(() -> GameResultPrecondition.checkUsers(testIllegalUsers, TEST_MAX_LENGTH))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("올바른 LadderDTO와 Users의 길이로 GameResultPrecondition.checkLadderDto 메서드를 실행하면 예외를 던지지 않는다.")
-    @Test
-    public void checkLegalDTO() {
-        //Give
-        Ladder testLegalLadder = new Ladder(TEST_LEGAL_NUBMER_OF_FRAME, TEST_LADDER_HEIGHT);
-        final LadderDTO ladderDTO = new LadderDTO(testLegalLadder);
-        final int testUserLength = 6;
-        //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, testUserLength 인자로 넘어갔을 때
-        //Then
-        assertThatCode(() -> GameResultPrecondition.checkLadderDto(ladderDTO, testUserLength))
-                .doesNotThrowAnyException();
-    }
-
-    @DisplayName("올바르지 못한 LadderDTO와 Users의 길이로 GameResultPrecondition.checkLadderDto 메서드를 실행하면 IllegalArgumentException 예외를 던진다.")
-    @Test
-    public void checkIllegalDTO() {
-        //Give
-        Ladder testIllegalLadder = new Ladder(TEST_ILLEGAL_NUMBER_OF_FRAME, TEST_LADDER_HEIGHT);
-        final LadderDTO ladderDTO = new LadderDTO(testIllegalLadder);
-        final int testUserLength = 6;
-        //When : GameResultPrecondition.checkLadderDto 메소드에 ladderDTO, TEST_USER_LENGTH 인자로 넘어갔을 때
-        //Then
-        assertThatThrownBy(() -> GameResultPrecondition.checkLadderDto(ladderDTO, testUserLength))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
