@@ -8,6 +8,7 @@ public class Ladder {
     private static final String PILLAR = "|";
     private static final String BRIDGE = "-----";
     private static final String BLANK = "     ";
+    private static final Random random = new Random();
 
     private int numOfPerson;
     private int height;
@@ -20,9 +21,9 @@ public class Ladder {
         this.numOfPerson = numOfPerson;
         this.height = height;
 
-        ladder = new ArrayList<>();
+        this.ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladder.add(new Ladder.LadderRow(numOfPerson));
+            this.ladder.add(new Ladder.LadderRow(numOfPerson));
         }
     }
 
@@ -30,7 +31,7 @@ public class Ladder {
 
         int currentIdx = startIdx;
 
-        for(LadderRow row : ladder){
+        for(LadderRow row : this.ladder){
             currentIdx = row.travel(currentIdx);
         }
         return currentIdx;
@@ -39,7 +40,7 @@ public class Ladder {
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
-        for (LadderRow row : ladder) {
+        for (LadderRow row : this.ladder) {
             builder.append("  "); //왼쪽 패딩 2칸 공백
             builder.append(row);
             builder.append("\n");
@@ -54,16 +55,18 @@ public class Ladder {
     //
     private class LadderRow {
 
+
         private List<Boolean> points;
 
         public LadderRow(int numOfPerson) {
-            Random random = new Random();
-            points = new ArrayList<>(numOfPerson - 1);
+            this.points = new ArrayList<>(numOfPerson - 1);
 
             Boolean lastPoint = false;
             for (int i = 0; i < numOfPerson - 1; i++) {
-                lastPoint = random.nextBoolean() && (!lastPoint);
-                points.add(lastPoint);
+                Boolean isAvailable = !lastPoint;
+                Boolean newPoint = random.nextBoolean() && isAvailable;
+                this.points.add(newPoint);
+                lastPoint = newPoint;
             }
 
             if (!isValidRow())
@@ -76,7 +79,7 @@ public class Ladder {
         //
         public Boolean isValidRow(){
             Boolean prevPoint = false;
-            for(Boolean currentPoint : points){
+            for(Boolean currentPoint : this.points){
                 if (currentPoint && prevPoint){
                     return false;
                 }
@@ -86,25 +89,19 @@ public class Ladder {
         }
 
         public int travel(int fromIdx){
-            if (fromIdx > 0 && points.get(fromIdx-1))
+            if (fromIdx > 0 && this.points.get(fromIdx-1))
                 return fromIdx - 1;
-            if (fromIdx < numOfPerson-1 && points.get(fromIdx))
+            if (fromIdx < numOfPerson-1 && this.points.get(fromIdx))
                 return fromIdx + 1;
             return fromIdx;
         }
 
-        public List<Boolean> getPoints(){
-            return this.points;
-        }
 
-        //
-        // 외부 클래스의 지정된 문자를 가져와 현재 row 상태를 문자열로 반환합니다.
-        //
         public String toString() {
             StringBuilder builder = new StringBuilder();
 
             builder.append(PILLAR);
-            for (Boolean point : points) {
+            for (Boolean point : this.points) {
                 builder.append(point ? BRIDGE : BLANK);
                 builder.append(PILLAR);
             }

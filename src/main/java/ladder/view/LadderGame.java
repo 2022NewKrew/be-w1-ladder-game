@@ -18,10 +18,10 @@ public class LadderGame {
         this.participants = new Participants(inputParticipants());
         this.results = new Results(inputResults());
 
-        if (participants.size() != results.size())
+        if (this.participants.size() != this.results.size())
             throw new IllegalArgumentException("참여자 수 만큼 결과를 입력하세요");
 
-        this.ladder = new Ladder(participants.size(), inputHeights());
+        this.ladder = new Ladder(this.participants.size(), inputHeights());
 
         printLadder();
 
@@ -48,27 +48,27 @@ public class LadderGame {
 
     public void printResult(String participant){
         System.out.println("실행 결과");
-        int startIdx = participants.indexOf(participant);
+        int startIdx = this.participants.indexOf(participant);
         if (startIdx == -1){
             System.out.println("이름을 다시 입력하세요");
             return;
         }
-        int resultIdx = ladder.travel(startIdx);
-        System.out.println(results.get(resultIdx));
+        int resultIdx = this.ladder.travel(startIdx);
+        System.out.println(this.results.get(resultIdx));
     }
 
     public void printResultAll(){
         System.out.println("실행 결과");
-        for(String participant : participants.getParticipants()){
-            int startIdx = participants.indexOf(participant);
-            System.out.println(participant + " : " +results.get(ladder.travel(startIdx)));
+        for(String participant : this.participants.getParticipants()){
+            int startIdx = this.participants.indexOf(participant);
+            System.out.println(participant + " : " +results.get(this.ladder.travel(startIdx)));
         }
     }
 
     public void printLadder() {
-        System.out.println(participants);
-        System.out.print(ladder);
-        System.out.println(results);
+        System.out.println(this.participants);
+        System.out.print(this.ladder);
+        System.out.println(this.results);
     }
 
     private List<String> inputParticipants() {
@@ -128,8 +128,6 @@ public class LadderGame {
         public int indexOf(String participant){
             return participants.indexOf(participant);
         }
-
-
 
     }
 
