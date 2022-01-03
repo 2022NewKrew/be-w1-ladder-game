@@ -4,13 +4,14 @@ import ladder.domain.ladder.LadderInfo;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeBuilderTest {
 
-    private static final String[] PARTICIPANTS = new String[]{"a", "bb", "ccc", "dddd", "eeeee"};
-    private static final String[] RESULTS = new String[]{"1", "2", "3", "4", "5"};
+    private static final List<String> PARTICIPANTS = List.of("a", "bb", "ccc", "dddd", "eeeee");
+    private static final List<String> RESULTS = List.of("1", "2", "3", "4", "5");
     private static final int HEIGHT = 5;
 
     @Test
