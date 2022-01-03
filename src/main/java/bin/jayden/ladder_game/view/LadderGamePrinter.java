@@ -1,38 +1,88 @@
 package bin.jayden.ladder_game.view;
 
-import bin.jayden.ladder_game.domain.Constants;
-import bin.jayden.ladder_game.domain.Ladder;
-import bin.jayden.ladder_game.domain.LadderInfo;
-import bin.jayden.ladder_game.domain.LadderRow;
+import bin.jayden.ladder_game.domain.*;
+import bin.jayden.ladder_game.exception.InvalidParticipantException;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class LadderGamePrinter {
-    private LadderGamePrinter() {
-        //instance 생성 제한용 생성자
+    private final Ladder ladder;
+    private final LadderGameInfo info;
+    private final Map<String, String> resultMap;
+
+    public LadderGamePrinter(Ladder ladder, LadderGameInfo info, Map<String, String> resultMap) {
+        this.ladder = ladder;
+        this.info = info;
+        this.resultMap = Collections.unmodifiableMap(resultMap);
     }
 
-    public static void printGame(Ladder ladder, LadderInfo info) {
-        printParticipants(info.getParticipants());
+    private static void printLine(boolean isLine) {
+        char ladderCharacter = isLine ? Constants.LADDER_LINE_CHARACTER : Constants.LADDER_EMPTY_CHARACTER;
+        for (int i = 0; i < Constants.MAX_NAME_SIZE; i++) {
+            System.out.print(ladderCharacter);
+        }
+        System.out.print(Constants.LADDER_SEPARATION_CHARACTER);
+    }
+
+    public void printGame() {
+        System.out.print(listToFormattedString(info.getParticipants()));
         printLadder(ladder);
+        System.out.println("\n" + listToFormattedString(info.getResults()));
     }
 
-    private static void printParticipants(List<String> participants) {
-        participants.forEach(participant -> System.out.printf("%" + Constants.MAX_NAME_SIZE + "s ", participant));
+    public boolean printResult() {
+        String result;
+        try {
+            System.out.println("\n결과를 보고 싶은 사람은?");
+            String name = LadderGame.scanner.nextLine();
+            result = getResult(name);
+        } catch (InvalidParticipantException exception) {
+            result = exception.getMessage();
+        }
+        if (result != null)
+            System.out.println(result);
+
+        return result != null;
     }
 
-    private static void printLadder(Ladder ladder) {
+    public String getResult(String name) throws InvalidParticipantException {
+        switch (name) {
+            case "춘식이":
+                return null;
+            case "all":
+                return getAllResults();
+            default:
+                return getOneResult(name);
+        }
+    }
+
+    public String getAllResults() {
+        StringBuilder stringBuilder = new StringBuilder("\n실행 결과");
+        info.getParticipants().forEach(participant -> stringBuilder.append(String.format("\n%s : %s", participant, resultMap.get(participant))));
+        return stringBuilder.toString();
+    }
+
+    public String getOneResult(String name) throws InvalidParticipantException {
+        if (!resultMap.containsKey(name))
+            throw new InvalidParticipantException();
+
+        return String.format("\n실행 결과\n%s", resultMap.get(name));
+    }
+
+    private String listToFormattedString(List<String> list) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        list.forEach(element -> stringBuilder.append(String.format("%" + Constants.MAX_NAME_SIZE + "s ", element)));
+        return stringBuilder.toString();
+    }
+
+    private void printLadder(Ladder ladder) {
         List<LadderRow> ladderRows = ladder.getLadderRows();
         for (LadderRow row : ladderRows) {
             System.out.printf("\n%" + Constants.PREFIX_SIZE + "s", "|");
             row.getRow().forEach(LadderGamePrinter::printLine);
         }
-    }
-
-    private static void printLine(boolean isLine) {
-        char ladderCharacter = isLine ? Constants.LADDER_LINE_CHARACTER : Constants.LADDER_EMPTY_CHARACTER;
-        for (int i = 0; i < Constants.MAX_NAME_SIZE; i++)
-            System.out.print(ladderCharacter);
-        System.out.print(Constants.LADDER_SEPARATION_CHARACTER);
     }
 }

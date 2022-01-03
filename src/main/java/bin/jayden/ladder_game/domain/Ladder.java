@@ -17,7 +17,7 @@ public class Ladder {
         List<LadderRow> ladderRows = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            LadderRow ladderRow = new LadderRow(width);
+            LadderRow ladderRow = new LadderRow(width, new RandomLineGenerator());
             ladderRows.add(ladderRow);
         }
         return Collections.unmodifiableList(ladderRows);
