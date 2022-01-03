@@ -1,6 +1,5 @@
 package com.kakao.model;
 
-import com.kakao.exception.IntegerFormatException;
 import com.kakao.random.RandomStrategy;
 
 import java.util.ArrayList;

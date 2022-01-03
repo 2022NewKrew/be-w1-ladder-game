@@ -14,7 +14,7 @@ public class GamePlayers {
     // 생성자
     public GamePlayers(String[] players) throws PlayerFormatException {
         checkFormatOfPlayers(players);
-        this.players = Arrays.asList(players);
+        this.players = new ArrayList<>(Arrays.asList(players));
     }
 
     // Getter

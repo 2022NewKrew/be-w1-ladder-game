@@ -3,16 +3,18 @@ package com.kakao.model;
 import com.kakao.data.LadderOption;
 import com.kakao.exception.RewardFormatException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// 보상 정보
 public class GameRewards {
     List<String> rewards;
 
     // 생성자
     public GameRewards(String[] rewards, int arrayLength) throws RewardFormatException {
         checkFormatOfRewards(rewards, arrayLength);
-        this.rewards = Arrays.asList(rewards);
+        this.rewards = new ArrayList<>(Arrays.asList(rewards));
     }
 
     // Getter
