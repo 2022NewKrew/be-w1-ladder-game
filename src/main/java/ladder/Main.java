@@ -15,8 +15,10 @@ public class Main {
         final List<Result> results = engine.inputResult();
         final int ladderHeight = engine.inputLadderHeight();
         final Ladder ladder = new Ladder(users.size(), ladderHeight);
-        engine.printUsers(users);
+        engine.printUsers();
         ladder.print();
-        engine.printResults(results);
+        engine.printResults();
+        engine.run(ladder, users, results);
+        engine.inputUserResult();
     }
 }

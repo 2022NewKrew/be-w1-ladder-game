@@ -18,6 +18,13 @@ public class LadderRow {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    public int getNextRowIndex(int curBridgeIdx) {
+        if (bridges.get(curBridgeIdx).isConnected()) return curBridgeIdx + 1;
+        if (curBridgeIdx == 0) return curBridgeIdx;
+        if (bridges.get(curBridgeIdx - 1).isConnected()) return curBridgeIdx - 1;
+        return curBridgeIdx;
+    }
+
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner(Ladder.LADDER_LINE, Ladder.LADDER_LINE, Ladder.LADDER_LINE);

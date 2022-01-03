@@ -20,4 +20,8 @@ public class Ladder {
         rows.forEach(row -> joiner.add(row.toString()));
         System.out.println(joiner);
     }
+
+    public List<LadderRow> getRows() {
+        return rows;
+    }
 }
