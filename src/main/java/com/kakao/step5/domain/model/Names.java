@@ -26,7 +26,7 @@ public class Names {
     }
 
     private void checkBeforeMakeNamesList(String namesStr) {
-        if (namesStr.trim().isEmpty()) {
+        if (StringUtils.isBlank(namesStr)) {
             throw new EmptyInputException("입력하신 이름에 빈 칸만 존재합니다.");
         }
     }

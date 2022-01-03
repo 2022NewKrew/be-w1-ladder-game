@@ -19,11 +19,7 @@ public class Lines {
             lines.add(new Line(countOfPeople));
         }
     }
-
-    public int getSize() {
-        return lines.size();
-    }
-
+  
     public Line lineOf(int i) {
         return lines.get(i);
     }
