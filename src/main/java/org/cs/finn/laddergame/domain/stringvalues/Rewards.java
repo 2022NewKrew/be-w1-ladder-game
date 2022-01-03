@@ -10,7 +10,7 @@ public class Rewards extends AbstractStringValues<Reward> {
     public static final List<Reward> DEFAULT_REWARD_LIST = List.of(new Reward("X"), new Reward("O"), new Reward("X"));
     public static final int INIT = DEFAULT_REWARD_LIST.size();
     public static final int MIN = 1;
-    public static final int MAX = 50;
+    public static final int MAX = Members.MAX * 3;
 
     private static final Reward DEFAULT_REWARD = new Reward("X");
 
