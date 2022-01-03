@@ -3,13 +3,12 @@ package domain.gameResult;
 import java.util.*;
 
 public class GameResult {
-    public static GameResult INSTANCE;
 
     private static final int MAX_LENGTH = 5;
     private final Map<String, String> result;
     private final List<String> terminal;
 
-    private GameResult(List<Integer> indexes, List<String> users, List<String> results) {
+    public GameResult(List<Integer> indexes, List<String> users, List<String> results) {
         GameResultPrecondition.checkUsers(users, MAX_LENGTH);
         GameResultPrecondition.checkResults(results, MAX_LENGTH, users.size());
         terminal = new ArrayList<>(users);
@@ -17,14 +16,6 @@ public class GameResult {
 
         moveByIndexes(indexes);
         makeResult(users, results);
-    }
-
-    public static synchronized GameResult getInstance() {
-        return INSTANCE;
-    }
-
-    public static synchronized void makeGameResult(List<Integer> indexes, List<String> users, List<String> results) {
-        INSTANCE = new GameResult(indexes, users, results);
     }
 
     private void moveByIndexes(List<Integer> indexes) {
@@ -43,7 +34,11 @@ public class GameResult {
         }
     }
 
-    public Map<String, String> getResult() {
-        return Collections.unmodifiableMap(result);
+    public Set<Map.Entry<String, String>> getResult() {
+        return Collections.unmodifiableSet(result.entrySet());
+    }
+
+    public String getTargetResult(String target) {
+        return result.get(target);
     }
 }

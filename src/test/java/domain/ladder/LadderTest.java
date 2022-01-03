@@ -19,8 +19,7 @@ class LadderTest {
             final int TEST_LADDER_HEIGHT = 10;
             final int TEST_FRAME_LENGTH = 10;
             //When
-            Ladder.makeLadder(TEST_FRAME_LENGTH, TEST_LADDER_HEIGHT);
-            final Ladder testLadder = Ladder.getInstance();
+            Ladder testLadder = new Ladder(TEST_FRAME_LENGTH, TEST_LADDER_HEIGHT);
             //Then
             assertThat(testLadder
                     .getLines()
@@ -35,8 +34,7 @@ class LadderTest {
             final int TEST_LADDER_HEIGHT = 10;
             final int TEST_FRAME_LENGTH = 10;
             //When
-            Ladder.makeLadder(TEST_FRAME_LENGTH, TEST_LADDER_HEIGHT);
-            final Ladder testLadder = Ladder.getInstance();
+            Ladder testLadder = new Ladder(TEST_FRAME_LENGTH, TEST_LADDER_HEIGHT);
             //Then
             assertThat(testLadder
                     .getLines()

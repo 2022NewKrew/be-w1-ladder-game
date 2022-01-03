@@ -29,8 +29,7 @@ public class GameResultTest {
     @BeforeAll
     static void generateLadder() {
         RandomGenerator.setSeed(TEST_SEED);
-        Ladder.makeLadder(TEST_FRAME_LENGTH, TEST_HEIGHT);
-        ladder = Ladder.getInstance();
+        ladder = new Ladder(TEST_FRAME_LENGTH, TEST_HEIGHT);
     }
 
     @DisplayName("올바른 결과값을 가지고 게임결과를 생성했을 때 올바른 결과값과 생성된 결과값이 같다.")
@@ -41,10 +40,10 @@ public class GameResultTest {
         List<String> users = getUsers();
         List<String> results = getResults();
         //When
-        GameResult.makeGameResult(ladder.getBridgeIndexes(), users, results);
-        gameResult = GameResult.getInstance();
+        gameResult = ladder.getGameResult(users, results);
         //Then
-        assertThat(isSame(new AllResultDTO(gameResult.getResult().entrySet()), expected)).isTrue();
+        assertThat(isSame(new AllResultDTO(gameResult.getResult()), expected))
+                .isTrue();
 
     }
 
@@ -55,10 +54,10 @@ public class GameResultTest {
         List<String> users = getUsers();
         List<String> results = getResults();
         //When
-        GameResult.makeGameResult(ladder.getBridgeIndexes(), users, results);
-        gameResult = GameResult.getInstance();
+        gameResult = ladder.getGameResult(users, results);
         //Then
-        assertThat(isSame(new TargetResultDTO(gameResult.getResult().get(TARGET)), EXPECTED_RESULT)).isTrue();
+        assertThat(isSame(new TargetResultDTO(gameResult.getTargetResult(TARGET)), EXPECTED_RESULT))
+                .isTrue();
 
     }
 

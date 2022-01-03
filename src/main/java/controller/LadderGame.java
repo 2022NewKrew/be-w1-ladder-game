@@ -1,7 +1,10 @@
 package controller;
 
-import service.GameResultService;
-import service.LadderService;
+import domain.gameResult.GameResult;
+import domain.ladder.Ladder;
+import dto.gameResultDto.AllResultDTO;
+import dto.gameResultDto.TargetResultDTO;
+import dto.ladderDto.LadderDTO;
 import view.UserInput;
 import view.UserOutput;
 
@@ -10,13 +13,11 @@ import java.util.List;
 public class LadderGame {
 
     private static LadderGame INSTANCE;
-    private final LadderService ladderService;
-    private final GameResultService gameResultService;
 
+    private GameResult gameResult;
+    private Ladder ladder;
 
     private LadderGame() {
-        this.ladderService = new LadderService();
-        this.gameResultService = new GameResultService();
     }
 
     public static synchronized LadderGame getInstance() {
@@ -29,29 +30,42 @@ public class LadderGame {
     public void run() {
         List<String> users = UserInput.getUserList();
         List<String> results = UserInput.getLadderResult();
-        ladderService.generateLadder(users.size() - 1, UserInput.getLadderHeight());
-        gameResultService.calculateGameResult(users, results);
+        generateLadder(users.size() - 1, UserInput.getLadderHeight());
+        generateGameResult(users, results);
         printLadder(users, results);
-        String target = "";
-        while (!target.equals("춘식이")) {
-            target = UserInput.getTarget();
-            printGameResult(target);
-        }
+        showGameResult();
+    }
+
+    public void generateLadder(int frameLength, int ladderHeight) {
+        ladder = new Ladder(frameLength, ladderHeight);
+    }
+
+    public void generateGameResult(List<String> users, List<String> results) {
+        gameResult = ladder.getGameResult(users, results);
     }
 
     private void printLadder(List<String> users, List<String> results) {
-        UserOutput.printLadderToConsole(ladderService.getLadderDto(), users, results);
+        UserOutput.printLadderToConsole(LadderDTO.getLadderDTO(ladder), users, results);
+    }
+
+    private void showGameResult() {
+        String target = UserInput.getTarget();
+        while (isContinue(target)) {
+            printGameResult(target);
+            target = UserInput.getTarget();
+        }
     }
 
     private void printGameResult(String target) {
-        if (target.equals("춘식이")) {
-            return;
-        }
         if (target.equals("all")) {
-            UserOutput.printAllResult(gameResultService.getAllResult());
+            UserOutput.printAllResult(AllResultDTO.getAllResultDTO(gameResult));
             return;
         }
-        UserOutput.printTargetResult(gameResultService.getTargetResult(target));
+        UserOutput.printTargetResult(TargetResultDTO.getTargetResultDTO(gameResult, target));
+    }
+
+    private boolean isContinue(String target) {
+        return !target.equals("춘식이");
     }
 
 }

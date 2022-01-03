@@ -13,6 +13,10 @@ public class LadderDTO {
         lines = Collections.unmodifiableList(ladder.getLines());
     }
 
+    public static LadderDTO getLadderDTO(Ladder ladder) {
+        return new LadderDTO(ladder);
+    }
+
     public List<LadderFrameLine> getLines() {
         return lines;
     }
