@@ -7,9 +7,11 @@ import java.util.Arrays;
 /*
 *   비즈니스 로직 관련 메소드를 모아놓은 클래스입니다.
 * */
-public class Input {
-    private static final String MSG_INPUT_PLAYERS = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String MSG_INPUT_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
+public final class Input {
+    private static final String MSG_INPUT_PLAYERS = "\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String MSG_INPUT_HEIGHT = "\n최대 사다리 높이는 몇 개인가요?";
+    private static final String MSG_INPUT_RESULT = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String MSG_INPUT_SELECT = "\n결과를 보고 싶은 사람은?";
     private static final Scanner scanner = new Scanner(System.in);
 
     // 인스턴스 생성 막기
@@ -25,16 +27,28 @@ public class Input {
         return Arrays.asList(playersArr);
     }
 
+    public static final List<String> getResult(int numberOfPlayers) {
+        String[] result;
+        do {
+            System.out.println(MSG_INPUT_RESULT);
+            result = scanner.nextLine().split(",");
+        } while(result.length != numberOfPlayers);
+        return Arrays.asList(result);
+    }
+
     public static final int getHeight() {
-        final int height;
         System.out.println(MSG_INPUT_HEIGHT);
-        height = scanner.nextInt();
-        return height;
+        return scanner.nextInt();
+    }
+
+    public static final String getSelectedPlayer() {
+        System.out.println(MSG_INPUT_SELECT);
+        return scanner.next();
     }
 
     public static final void closeScanner() { scanner.close(); }
 
-    private static final boolean checkPlayersName(String[] players) {
+    private static boolean checkPlayersName(String[] players) {
         boolean result = true;
         for(String player : players) {
             result &= (player.length() < 6);

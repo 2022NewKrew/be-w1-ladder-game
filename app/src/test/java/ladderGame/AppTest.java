@@ -20,7 +20,8 @@ public class AppTest {
     public void lineTest() {
         // given
         List<String> playersTest = Arrays.asList("p1", "p2", "p3", "p4", "p5");
-        LadderGame classUnderTest = new LadderGame(playersTest, 6);
+        List<String> result = Arrays.asList("1", "2", "3", "4", "5");
+        LadderGame classUnderTest = LadderGame.of(playersTest, result, 6);
 
         for(int i = 0; i < 6 ; i++) { // ?
             // when ..?
