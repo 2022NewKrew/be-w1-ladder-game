@@ -36,6 +36,7 @@ public class Points {
         }
 
         return rightIndex;
+
     }
 
     @Override
