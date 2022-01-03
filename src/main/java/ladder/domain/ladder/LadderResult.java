@@ -1,7 +1,6 @@
 package ladder.domain.ladder;
 
 import ladder.config.LadderGameConfig;
-
 import java.util.HashMap;
 import java.util.Map;
 
