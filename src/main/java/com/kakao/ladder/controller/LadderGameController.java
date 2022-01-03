@@ -35,10 +35,10 @@ public class LadderGameController {
      */
     private void resultCheck() {
         String checkName = "";
-        while (!checkName.equals(ConstStringSpace.END_CONDITION)) {
-            checkName = UserInput.showResult(ladder.getNames());
+        while (!ConstStringSpace.END_CONDITION.equals(checkName)) {
+            checkName = UserInput.stringManufacture(ladder.getNames());
 
-            isAllOrName(checkName);
+            processInputName(checkName);
         }
     }
 
@@ -47,14 +47,9 @@ public class LadderGameController {
      *
      * @param name 입력된 문자열 ( 유저 이름 or all or 춘식이 )
      */
-    private void isAllOrName(String name) {
-        if (name.equals(ConstStringSpace.END_CONDITION))
+    private void processInputName(String name) {
+        if (ConstStringSpace.END_CONDITION.equals(name))
             return;
-
-        if (name.equals(ConstStringSpace.ALL_PRINT_CONDITION)) {
-            ladder.printAllResult();
-            return;
-        }
 
         ladder.printResult(name);
     }

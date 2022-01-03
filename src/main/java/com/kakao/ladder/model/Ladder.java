@@ -4,12 +4,15 @@ import com.kakao.ladder.controller.ConstStringSpace;
 import com.kakao.ladder.view.UserInput;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * author    : brody.moon
@@ -61,16 +64,26 @@ public class Ladder {
     }
 
     /**
+     * 사다리 모양을 결정하는 무한스트림용 create 함수입니다.
+     * @param preState  이전 생성된 State
+     * @return          새로 생성한 State
+     */
+    private State createState(State preState){
+        if(preState == State.EXIST)
+            return State.NONEXIST;
+
+        return random.nextBoolean() ? State.EXIST : State.NONEXIST;
+    }
+
+    /**
      * 사다리 모양 결정 메서드입니다.
      *
      * @return immutable List 객체 반환 ( 2D List)
      */
     private List<List<State>> initLadderStatus() {
-        List<List<State>> temp2DList = new ArrayList<>();
-
-        for (int i = 0; i < ladderHeight; i++) {
-            temp2DList.add(initLadderColStatus());
-        }
+        List<List<State>> temp2DList = Stream.generate(this::initLadderColStatus)
+                .limit(this.ladderHeight)
+                .collect(Collectors.toList());
 
         return Collections.unmodifiableList(temp2DList);
     }
@@ -82,14 +95,10 @@ public class Ladder {
      * @return immutable List 객체를 반환 ( 1D List)
      */
     private List<State> initLadderColStatus() {
-        List<State> tempList = new ArrayList<>();
-
-        tempList.add(0, random.nextBoolean() ? State.EXIST : State.NONEXIST);
-        for (int i = 1; i < memberNum; i++) {
-            tempList.add(i, tempList.get(i - 1) == State.EXIST ?
-                    State.NONEXIST : random.nextBoolean() ?
-                    State.EXIST : State.NONEXIST);
-        }
+        List<State> tempList = Stream.iterate(State.NONEXIST, this::createState)
+                .skip(1)
+                .limit(this.memberNum)
+                .collect(Collectors.toList());
 
         return Collections.unmodifiableList(tempList);
     }
@@ -148,14 +157,7 @@ public class Ladder {
         printNames(names);
 
         for (int i = 0; i < ladderHeight; i++) {
-            System.out.print("  |");
-
-            //ladderStatus.get(i).stream().forEach(
-            //        s -> System.out.print("" + (s == State.EXIST ? "-----" : "     ") + "|")
-            //);
             printLadderRow(i);
-
-            System.out.println();
         }
 
         printNames(resultNames);
@@ -167,10 +169,14 @@ public class Ladder {
      * @param row 처리할 행번호
      */
     private void printLadderRow(int row) {
+        System.out.print("  |");
+
         for (int i = 0; i < memberNum; i++) {
             System.out.print(ladderStatus.get(row).get(i) == State.EXIST ? ConstStringSpace.LADDER_BRIDGE : ConstStringSpace.LADDER_NONCONECT);
             System.out.print("|");
         }
+
+        System.out.println();
     }
 
     /**
@@ -189,26 +195,21 @@ public class Ladder {
     }
 
     /**
-     * 전체 결과를 보여주는 로직입니다.
-     */
-    public void printAllResult() {
-        System.out.println(ConstStringSpace.SHOW_RESULT);
-
-        for (String key : result.keySet()) {
-            System.out.println(key + ConstStringSpace.KEY_VALUE_SEPERATOR + result.get(key));
-        }
-        System.out.println();
-    }
-
-    /**
-     * 특정 이름의 결과를 보여주는 로직입니다.
-     *
-     * @param name 보고 싶은 유저의 이름
+     * 결과를 보여주는 로직입니다.
      */
     public void printResult(String name) {
         System.out.println(ConstStringSpace.SHOW_RESULT);
 
-        System.out.println(result.get(name));
+        if (names.contains(name)) {
+            System.out.println(result.get(name));
+            System.out.println();
+
+            return;
+        }
+
+        for (String key : result.keySet()) {
+            System.out.println(key + ConstStringSpace.KEY_VALUE_SEPERATOR + result.get(key));
+        }
         System.out.println();
     }
 
