@@ -1,8 +1,5 @@
 package controller;
 
-import dao.LadderDAO;
-import domain.gameResult.GameResultPrecondition;
-import domain.ladder.Ladder;
 import service.GameResultService;
 import service.LadderService;
 import view.UserInput;
@@ -18,7 +15,6 @@ public class LadderGame {
 
 
     private LadderGame() {
-        List<String> users = UserInput.getUserList();
         this.ladderService = new LadderService();
         this.gameResultService = new GameResultService();
     }
@@ -45,6 +41,17 @@ public class LadderGame {
 
     private void printLadder(List<String> users, List<String> results) {
         UserOutput.printLadderToConsole(ladderService.getLadderDto(), users, results);
+    }
+
+    private void printGameResult(String target) {
+        if (target.equals("춘식이")) {
+            return;
+        }
+        if (target.equals("all")) {
+            UserOutput.printAllResult(gameResultService.getAllResult());
+            return;
+        }
+        UserOutput.printTargetResult(gameResultService.getTargetResult(target));
     }
 
 }

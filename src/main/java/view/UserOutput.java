@@ -1,14 +1,11 @@
 package view;
 
+import domain.ladder.Ladder;
 import domain.ladder.LadderFrame;
 import domain.ladder.LadderFrameLine;
 import dto.gameResultDto.AllResultDTO;
 import dto.gameResultDto.TargetResultDTO;
 import dto.ladderDto.LadderDTO;
-<<<<<<< HEAD
-
-=======
->>>>>>> 6cc2af7 (LadderService, GameResultService, LadderGame 코드 및 테스트케이스 정리)
 
 import java.util.List;
 import java.util.Map;
@@ -30,6 +27,7 @@ public class UserOutput {
         for (LadderFrameLine ladderFrameLine : ladder.getLines()) {
             System.out.println(ladderLineToShapeLine(ladderFrameLine));
         }
+        printLadderResult(results);
     }
 
     public static void printTargetResult(TargetResultDTO result) {
@@ -42,12 +40,20 @@ public class UserOutput {
         }
     }
 
+
     private static String ladderLineToShapeLine(LadderFrameLine ladderFrameLine) {
         StringJoiner stringJoiner = new StringJoiner(PILLAR, LEFT_PILLAR, RIGHT_PILLAR);
         for (LadderFrame frame : ladderFrameLine.getFrames()) {
             stringJoiner.add(ladderFrameToShape(frame));
         }
         return stringJoiner.toString();
+    }
+
+    private static void printLadderResult(List<String> results) {
+        for (String result : results) {
+            formattedPrint(result);
+        }
+        System.out.println();
     }
 
     private static String ladderFrameToShape(LadderFrame ladderFrame) {

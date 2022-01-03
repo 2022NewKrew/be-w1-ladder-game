@@ -40,8 +40,8 @@ class LadderTest {
                     .getLines()
                     .get(0)
                     .getFrames()
-                    .size())
-                    .isEqualTo(TEST_FRAME_LENGTH - 1);
+                    .size()
+            ).isEqualTo(TEST_FRAME_LENGTH);
         }
     }
 
