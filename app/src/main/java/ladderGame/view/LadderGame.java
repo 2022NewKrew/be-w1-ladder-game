@@ -20,10 +20,10 @@ public class LadderGame {
     private final List<String> players;
     private final List<String> results;
 
-    private LadderGame(List<String> players, List<String> result, int height) {
+    private LadderGame(List<String> players, List<String> results, int height) {
         this.players = players;
         this.numberOfPlayers = players.size();
-        this.results = result;
+        this.results = results;
         this.height = height;
         ladder = generateLadder();
     }

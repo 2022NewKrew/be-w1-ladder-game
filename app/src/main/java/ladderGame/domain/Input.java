@@ -18,7 +18,7 @@ public final class Input {
     private Input() {
     }
 
-    public static final List<String> getPlayers() {
+    public static List<String> getPlayers() {
         String[] playersArr;
         do {
             System.out.println(MSG_INPUT_PLAYERS);
@@ -27,7 +27,7 @@ public final class Input {
         return Arrays.asList(playersArr);
     }
 
-    public static final List<String> getResult(int numberOfPlayers) {
+    public static List<String> getResult(int numberOfPlayers) {
         String[] result;
         do {
             System.out.println(MSG_INPUT_RESULT);
@@ -36,17 +36,17 @@ public final class Input {
         return Arrays.asList(result);
     }
 
-    public static final int getHeight() {
+    public static int getHeight() {
         System.out.println(MSG_INPUT_HEIGHT);
         return scanner.nextInt();
     }
 
-    public static final String getSelectedPlayer() {
+    public static String getSelectedPlayer() {
         System.out.println(MSG_INPUT_SELECT);
         return scanner.next();
     }
 
-    public static final void closeScanner() { scanner.close(); }
+    public static void closeScanner() { scanner.close(); }
 
     private static boolean checkPlayersName(String[] players) {
         boolean result = true;
