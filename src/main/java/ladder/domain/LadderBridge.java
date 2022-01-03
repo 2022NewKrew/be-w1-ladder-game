@@ -7,4 +7,9 @@ public enum LadderBridge {
     LadderBridge(String line) {
         this.line = line;
     }
+
+    public boolean isConnected() {
+        return BRIDGE_CONNECTED.line.equals(line);
+    }
+    
 }

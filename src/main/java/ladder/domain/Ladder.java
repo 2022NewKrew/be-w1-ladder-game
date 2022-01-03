@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -10,18 +10,18 @@ public class Ladder {
     private final List<LadderRow> rows;
 
     public Ladder(int userNum, int height) {
-        this.rows = Collections.unmodifiableList(IntStream.range(0, height)
+        this.rows = IntStream.range(0, height)
                 .mapToObj(e -> new LadderRow(userNum))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        for (LadderRow row : rows) {
-            builder.append(row).append("\n");
-        }
-        return builder.toString();
+    public void print() {
+        StringJoiner joiner = new StringJoiner("\n");
+        rows.forEach(row -> joiner.add(row.toString()));
+        System.out.println(joiner);
     }
 
+    public List<LadderRow> getRows() {
+        return rows;
+    }
 }
