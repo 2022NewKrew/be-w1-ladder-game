@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Level {
     private final List<Boolean> points = new ArrayList<>();
-    final int numPlayers;
+    private final int numPlayers;
     private final String rung = "-----|";
     private final String empty = "     |";
     static final Random random = new Random();
