@@ -9,8 +9,12 @@ import java.util.List;
 public class LadderDTO {
     private final List<LadderFrameLine> lines;
 
-    public LadderDTO(Ladder ladder) {
+    private LadderDTO(Ladder ladder) {
         lines = Collections.unmodifiableList(ladder.getLines());
+    }
+
+    public static LadderDTO getLadderDTO(Ladder ladder) {
+        return new LadderDTO(ladder);
     }
 
     public List<LadderFrameLine> getLines() {

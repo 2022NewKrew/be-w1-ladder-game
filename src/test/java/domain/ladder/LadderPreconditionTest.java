@@ -23,7 +23,8 @@ class LadderPreconditionTest {
             final int testMinFrameLength = 1;
             //When : LadderPrecondition.checkFrameLength 메서드에 testLegalFrameLength, testMinFrameLength 인자로 넘겼을 때
             //Then
-            assertThatCode(() -> LadderPrecondition.checkFrameLength(testLegalFrameLength, testMinFrameLength)).doesNotThrowAnyException();
+            assertThatCode(() -> LadderPrecondition.checkFrameLength(testLegalFrameLength, testMinFrameLength))
+                    .doesNotThrowAnyException();
         }
 
         @DisplayName("올바르지 못한 프레임 길이가 주어졌을때 LadderPrecondition.checkFrameLength 메서드를 실행하면 IllegalArgumentException 예외를 던진다.")
@@ -51,7 +52,8 @@ class LadderPreconditionTest {
             final int testMinLadderHeight = 1;
             //When : LadderPrecondition.checkLadderHeight 메서드에 testLegalLadderHeight, testMinLadderHeight 인자로 넘겼을 때
             //Then
-            assertThatCode(() -> LadderPrecondition.checkLadderHeight(testLegalLadderHeight, testMinLadderHeight)).doesNotThrowAnyException();
+            assertThatCode(() -> LadderPrecondition.checkLadderHeight(testLegalLadderHeight, testMinLadderHeight))
+                    .doesNotThrowAnyException();
         }
 
         @DisplayName("올바르지 못한 높이가 주어졌을 때 LadderPrecondition.checkLadderHeight 메서드를 실행하면 IllegalArgumentException 예외를 던진다.")

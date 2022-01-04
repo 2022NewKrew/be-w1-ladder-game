@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 public class UserOutput {
-
     private static final String EMPTY_SPACE = " ";
     private static final String BRIDGE = "-";
     private static final String PILLAR = "|";
@@ -38,7 +37,6 @@ public class UserOutput {
             System.out.println(result.getKey() + " : " + result.getValue());
         }
     }
-
 
     private static String ladderLineToShapeLine(LadderFrameLine ladderFrameLine) {
         StringJoiner stringJoiner = new StringJoiner(PILLAR, LEFT_PILLAR, RIGHT_PILLAR);
