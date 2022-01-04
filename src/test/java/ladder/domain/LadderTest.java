@@ -20,13 +20,13 @@ public class LadderTest {
         System.setOut(new PrintStream(outStream));
         List<String> testPlayerList = Arrays.asList("alpha", "beta", "charlie", "delta", "echo");
         int testLadderHeight = 7;
-        ladder = new Ladder(testLadderHeight, testPlayerList);
+        List<String> result = Arrays.asList("5000", "0", "3000", "0", "10000");
+        ladder = new Ladder(testLadderHeight, testPlayerList, result);
     }
 
     @Test
     void testPlayerNamePrint() {
-        ladder.printLadder();
-        assertTrue(outStream.toString().startsWith("alpha  beta charl delta  echo "));
+        assertTrue(outStream.toString().startsWith("사다리 결과\nalpha  beta charl delta  echo "));
     }
 
 }
