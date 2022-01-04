@@ -20,10 +20,10 @@ public class Ladder {
     }
 
     private List<LadderFrameLine> generateLines(int frameLength, int height) {
-        return
-                Stream.generate(() -> new LadderFrameLine(frameLength))
-                        .limit(height)
-                        .toList();
+        return Stream
+                .generate(() -> new LadderFrameLine(frameLength))
+                .limit(height)
+                .toList();
     }
 
     public List<LadderFrameLine> getLines() {

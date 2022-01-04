@@ -42,7 +42,7 @@ public class GameResultTest {
         //When
         gameResult = ladder.getGameResult(users, results);
         //Then
-        assertThat(isSame(new AllResultDTO(gameResult.getResult()), expected))
+        assertThat(isSame(AllResultDTO.getAllResultDTO(gameResult), expected))
                 .isTrue();
 
     }
@@ -56,7 +56,7 @@ public class GameResultTest {
         //When
         gameResult = ladder.getGameResult(users, results);
         //Then
-        assertThat(isSame(new TargetResultDTO(gameResult.getTargetResult(TARGET)), EXPECTED_RESULT))
+        assertThat(isSame(TargetResultDTO.getTargetResultDTO(gameResult, TARGET), EXPECTED_RESULT))
                 .isTrue();
 
     }

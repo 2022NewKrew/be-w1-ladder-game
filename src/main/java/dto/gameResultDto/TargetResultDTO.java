@@ -5,7 +5,7 @@ import domain.gameResult.GameResult;
 public class TargetResultDTO {
     private final String result;
 
-    public TargetResultDTO(String result) {
+    private TargetResultDTO(String result) {
         this.result = result;
     }
 

@@ -14,11 +14,11 @@ public class LadderFrameLine {
     }
 
     private List<LadderFrame> generateFrames(int numberOfFrame) {
-        return
-                Stream.iterate(LadderFrame.SPACE, this::generateBridge)
-                        .skip(1)
-                        .limit(numberOfFrame)
-                        .toList();
+        return Stream
+                .iterate(LadderFrame.SPACE, this::generateBridge)
+                .skip(1)
+                .limit(numberOfFrame)
+                .toList();
     }
 
     private LadderFrame generateBridge(LadderFrame previousFrame) {
@@ -33,11 +33,11 @@ public class LadderFrameLine {
     }
 
     public List<Integer> getBridgeIndexes() {
-        return
-                IntStream.range(0, frames.size())
-                        .filter(index -> frames.get(index) == LadderFrame.BRIDGE)
-                        .boxed()
-                        .toList();
+        return IntStream
+                .range(0, frames.size())
+                .filter(index -> frames.get(index) == LadderFrame.BRIDGE)
+                .boxed()
+                .toList();
     }
 
 }

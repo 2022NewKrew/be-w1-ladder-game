@@ -10,7 +10,7 @@ import java.util.Set;
 public class AllResultDTO {
     public List<Map.Entry<String, String>> results;
 
-    public AllResultDTO(Set<Map.Entry<String, String>> results) {
+    private AllResultDTO(Set<Map.Entry<String, String>> results) {
         this.results = new ArrayList<>(results);
     }
 

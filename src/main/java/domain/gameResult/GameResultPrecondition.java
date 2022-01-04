@@ -21,10 +21,10 @@ public class GameResultPrecondition {
     }
 
     private static boolean isIllegal(List<String> users, int maxLength) {
-        return
-                users.stream()
-                        .map(String::length)
-                        .anyMatch(length -> length > maxLength);
+        return users
+                .stream()
+                .map(String::length)
+                .anyMatch(length -> length > maxLength);
     }
 
     private static void isNotEmptyList(List<String> users) {
