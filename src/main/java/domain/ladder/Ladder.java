@@ -26,10 +26,6 @@ public class Ladder {
                 .toList();
     }
 
-    public List<LadderFrameLine> getLines() {
-        return lines;
-    }
-
     private List<Integer> getBridgeIndexes() {
         List<Integer> indexes = new ArrayList<>();
         for (LadderFrameLine line : lines) {
@@ -38,7 +34,13 @@ public class Ladder {
         return Collections.unmodifiableList(indexes);
     }
 
+    public List<LadderFrameLine> getLines() {
+        return lines;
+    }
+
     public GameResult getGameResult(List<String> users, List<String> results) {
-        return new GameResult(getBridgeIndexes(), users, results);
+        GameResult gameResult = new GameResult(users, results);
+        gameResult.makeResult(getBridgeIndexes());
+        return gameResult;
     }
 }
