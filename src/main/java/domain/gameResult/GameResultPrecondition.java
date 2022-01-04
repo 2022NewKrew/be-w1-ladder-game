@@ -38,5 +38,4 @@ public class GameResultPrecondition {
             throw new IllegalArgumentException("결과값의 수는 입력한 유저수와 동일해야 합니다.");
         }
     }
-
 }

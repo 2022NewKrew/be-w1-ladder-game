@@ -12,59 +12,35 @@ import java.util.List;
 
 public class LadderGame {
 
-    private static LadderGame INSTANCE;
-
-    private GameResult gameResult;
-    private Ladder ladder;
-
-    private LadderGame() {
-    }
-
-    public static synchronized LadderGame getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new LadderGame();
-        }
-        return INSTANCE;
-    }
-
-    public void run() {
+    public static void run() {
         List<String> users = UserInput.getUserList();
         List<String> results = UserInput.getLadderResult();
-        generateLadder(users.size() - 1, UserInput.getLadderHeight());
-        generateGameResult(users, results);
-        printLadder(users, results);
-        showGameResult();
+        Ladder ladder = new Ladder(users.size() - 1, UserInput.getLadderHeight());
+        printLadder(users, results, ladder);
+        showGameResult(ladder.getGameResult(users, results));
     }
 
-    public void generateLadder(int frameLength, int ladderHeight) {
-        ladder = new Ladder(frameLength, ladderHeight);
-    }
-
-    public void generateGameResult(List<String> users, List<String> results) {
-        gameResult = ladder.getGameResult(users, results);
-    }
-
-    private void printLadder(List<String> users, List<String> results) {
+    private static void printLadder(List<String> users, List<String> results, Ladder ladder) {
         UserOutput.printLadderToConsole(LadderDTO.getLadderDTO(ladder), users, results);
     }
 
-    private void showGameResult() {
-        String target = UserInput.getTarget();
-        while (isContinue(target)) {
-            printGameResult(target);
-            target = UserInput.getTarget();
+    private static void showGameResult(GameResult gameResult) {
+        String keyWord = UserInput.getTarget();
+        while (isContinue(keyWord)) {
+            printGameResult(gameResult, keyWord);
+            keyWord = UserInput.getTarget();
         }
     }
 
-    private void printGameResult(String target) {
-        if (target.equals("all")) {
+    private static void printGameResult(GameResult gameResult, String keyWord) {
+        if (keyWord.equals("all")) {
             UserOutput.printAllResult(AllResultDTO.getAllResultDTO(gameResult));
             return;
         }
-        UserOutput.printTargetResult(TargetResultDTO.getTargetResultDTO(gameResult, target));
+        UserOutput.printTargetResult(TargetResultDTO.getTargetResultDTO(gameResult, keyWord));
     }
 
-    private boolean isContinue(String target) {
+    private static boolean isContinue(String target) {
         return !target.equals("춘식이");
     }
 

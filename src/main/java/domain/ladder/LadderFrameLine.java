@@ -3,6 +3,7 @@ package domain.ladder;
 import utility.RandomGenerator;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -18,7 +19,7 @@ public class LadderFrameLine {
                 .iterate(LadderFrame.SPACE, this::generateBridge)
                 .skip(1)
                 .limit(numberOfFrame)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     private LadderFrame generateBridge(LadderFrame previousFrame) {
@@ -37,7 +38,7 @@ public class LadderFrameLine {
                 .range(0, frames.size())
                 .filter(index -> frames.get(index) == LadderFrame.BRIDGE)
                 .boxed()
-                .toList();
+                .collect(Collectors.toList());
     }
 
 }
