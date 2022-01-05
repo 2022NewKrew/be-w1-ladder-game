@@ -48,7 +48,7 @@ public class Line {
     }
 
     private boolean getRandomBridgeByPercent(int percent) {
-        return random.nextInt(100) >= percent;
+        return random.nextInt(100) <= percent;
     }
 
     public List<String> getPoints() {
