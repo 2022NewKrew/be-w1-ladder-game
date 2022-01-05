@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class UserList {
     // 클래스 변수 및 상수
-    public static int firstNameLength;
+    private static int firstNameLength;
 
     // 인스턴스 변수
     private final List<User> userList;
@@ -57,6 +57,10 @@ public class UserList {
             result.append(user.getNameResult()).append("\n");
         }
         return result.toString();
+    }
+
+    public static int getFirstNameLength(){
+        return firstNameLength;
     }
 
 }
