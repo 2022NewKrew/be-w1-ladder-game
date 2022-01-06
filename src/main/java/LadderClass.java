@@ -1,47 +1,43 @@
+import java.lang.reflect.Array;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class LadderClass {
 
     static Random random = new Random();
-    char[][] ladderArray;
+    ArrayList listPeople;
+    ArrayList ladderArray;
+    int printLadderRows;
+    int numberPeople;
 
-    LadderClass(int numberPeople, int ladderHeight){
-        int printLadderColumns;
-        int printLadderRows;
-
-        printLadderColumns = numberPeople + numberPeople -1;
-        printLadderRows = ladderHeight;
-        ladderArray = new char[printLadderRows][printLadderColumns];
+    LadderClass(ArrayList listPeople, int ladderHeight){
+        this.listPeople = listPeople;
+        this.numberPeople = listPeople.size();
+        this.printLadderRows = ladderHeight;
+        ladderArray = new ArrayList<LadderRow>();
     }
 
     public void assignLadderArray() {
-        for (int row = 0; row < ladderArray.length; row++) {
-            assignLadderRow(row);
+        assignNameRow();
+        for (int row = 0; row < printLadderRows; row++) {
+            assignLadderRow();
         }
     }
 
-    public void assignLadderRow(int row){
-        for (int col = 0; col < ladderArray[row].length; col++) {
-            assignLadderElement(row, col);
-        }
+    public void assignNameRow(){
+        ladderArray.add(new LadderRow(listPeople));
     }
 
-    public void assignLadderElement(int row, int col){
-        if (col%2 == 1){
-            ladderArray[row][col] = assignRandomBridge();
-            return;
-        }
-        ladderArray[row][col] = '|';
-    }
-
-    public char assignRandomBridge(){
-        return (random.nextBoolean()) ? '-' : ' ';
+    public void assignLadderRow(){
+        ladderArray.add(new LadderRow(numberPeople));
     }
 
     public void printLadder(){
-        for (int row = 0; row < ladderArray.length; row++){
-            System.out.println(ladderArray[row]);
+        System.out.print("\n");
+        for (int row=0; row < ladderArray.size();row++){
+            LadderRow printRow = (LadderRow) ladderArray.get(row);
+            printRow.printLadderRow();
+            System.out.print("\n");
         }
     }
-
 }

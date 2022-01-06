@@ -1,12 +1,14 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args){
-        int numberPeople;
         int maxLadderHeight;
+        ArrayList listPeople;
 
-        numberPeople = InterfaceClass.getNumberPeople();
+        listPeople = InterfaceClass.getPeopleList();
         maxLadderHeight = InterfaceClass.getLadderHeight();
 
-        LadderClass ladder = new LadderClass(numberPeople, maxLadderHeight);
+        LadderClass ladder = new LadderClass(listPeople, maxLadderHeight);
         ladder.assignLadderArray();
         ladder.printLadder();
     }
