@@ -1,10 +1,6 @@
-import java.lang.reflect.Array;
-import java.util.Random;
 import java.util.ArrayList;
 
 public class LadderClass {
-
-    static Random random = new Random();
     ArrayList listPeople;
     ArrayList ladderArray;
     int printLadderRows;
