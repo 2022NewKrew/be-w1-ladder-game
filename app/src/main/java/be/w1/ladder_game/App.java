@@ -6,6 +6,7 @@ package be.w1.ladder_game;
 import java.util.List;
 
 import be.w1.ladder_game.model.Ladder;
+import be.w1.ladder_game.model.Player;
 import be.w1.ladder_game.view.OutputView;
 import be.w1.ladder_game.controller.LadderController;
 import be.w1.ladder_game.view.InputView;
@@ -22,7 +23,8 @@ public class App {
         LadderController ladderController = new LadderController(playersName, ladderHeight);
 
         Ladder ladder = ladderController.getLadder();
-        List<String> players = ladderController.getPlayers();
+        List<Player> players = ladderController.getPlayers();
+
         outputView.printPlayers(players);
         outputView.printLadder(ladder);
     }

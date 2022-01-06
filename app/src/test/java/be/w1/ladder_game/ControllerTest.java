@@ -18,31 +18,37 @@ import org.junit.jupiter.api.Test;
 import be.w1.ladder_game.controller.LadderController;
 
 class ControllerTest {
+
     @Test
     void ladderControllerConstructorSuccessTest() {
         List<Pair> testCaseList = new ArrayList<Pair>();
         testCaseList.add(new Pair("a,b,c,d,e", 5));
         testCaseList.add(new Pair("a,bc,def,ghij,klmno", 5));
+        testCaseList.add(new Pair("john,albus,dante,jace,kylie", 5));
+        testCaseList.add(new Pair("leean,moka,noah,rein,seed", 5));
 
-        for (Pair testCase: testCaseList) {
+        for (Pair testCase : testCaseList) {
             String playersName = testCase.getPlayersName();
             int ladderHeight = testCase.getLadderHeight();
 
             assertDoesNotThrow(() -> new LadderController(playersName, ladderHeight));
         }
     }
+
     @Test
-    void ladderControllerConstructorFailTest() {
-        List<Pair> testCaseList = new ArrayList<Pair>();
-        testCaseList.add(new Pair("a,bc,def,ghij,klmnop", 5));
-        testCaseList.add(new Pair("a,b,c,d,e", 0));
+    void invalidPlayerNameTest() {
+        String playersName = "john,albus,dante,jace,kylie,pharrell";
+        int ladderHeight = 5;
 
-        for (Pair testCase: testCaseList) {
-            String playersName = testCase.getPlayersName();
-            int ladderHeight = testCase.getLadderHeight();
+        assertThrows(RuntimeException.class, () -> new LadderController(playersName, ladderHeight));
+    }
 
-            assertThrows(RuntimeException.class, () -> new LadderController(playersName, ladderHeight));
-        }
+    @Test
+    void invalidLadderHeightTest() {
+        String playersName = "leean,moka,noah,rein,seed";
+        int ladderHeight = 0;
+
+        assertThrows(RuntimeException.class, () -> new LadderController(playersName, ladderHeight));
     }
 }
 

@@ -13,16 +13,8 @@ public class Pair {
         return playersName;
     }
 
-    public void setPlayersName(String playersName) {
-        this.playersName = playersName;
-    }
-
     public int getLadderHeight() {
         return ladderHeight;
-    }
-
-    public void setLadderHeight(int ladderHeight) {
-        this.ladderHeight = ladderHeight;
     }
 }
 
