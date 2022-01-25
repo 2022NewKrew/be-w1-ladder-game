@@ -26,7 +26,7 @@ public class LadderGameInfo {
 
     private static void participantsValidationCheck(List<String> participants) throws InvalidNameSizeException, InvalidParticipantsSizeException {
         if (participants.size() < Constants.MIN_PARTICIPANT_SIZE)
-            throw new InvalidParticipantsSizeException();
+            throw new InvalidParticipantsSizeException(Constants.INVALID_PARTICIPANTS_SIZE_MESSAGE);
 
         for (String participant : participants) {
             checkParticipantNameSize(participant);
@@ -35,17 +35,17 @@ public class LadderGameInfo {
 
     private static void checkParticipantNameSize(String participant) throws InvalidNameSizeException {
         if (participant.isEmpty() || participant.length() > Constants.MAX_NAME_SIZE)
-            throw new InvalidNameSizeException();
+            throw new InvalidNameSizeException(Constants.INVALID_NAME_SIZE_MESSAGE);
     }
 
     private static void ResultSizeValidationCheck(int participantsSize, int resultsSize) throws InvalidResultSizeException {
         if (participantsSize != resultsSize)
-            throw new InvalidResultSizeException();
+            throw new InvalidResultSizeException(Constants.INVALID_RESULT_SIZE_MESSAGE);
     }
 
     private static void ladderHeightValidationCheck(int height) throws InvalidLadderHeightException {
         if (height < Constants.MIN_LADDER_HEIGHT)
-            throw new InvalidLadderHeightException();
+            throw new InvalidLadderHeightException(Constants.INVALID_LADDER_HEIGHT_MESSAGE);
     }
 
     public int getHeight() {
