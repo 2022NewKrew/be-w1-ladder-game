@@ -1,6 +1,9 @@
 package bin.jayden.ladder_game.domain;
 
+import java.util.ResourceBundle;
+
 public class Constants {
+    public final static ResourceBundle bundle = ResourceBundle.getBundle("MessageBundle");
     public final static int MIN_PARTICIPANT_SIZE = 2;
     public final static int MAX_NAME_SIZE = 5;
     public final static int MIN_LADDER_HEIGHT = 1;
@@ -14,10 +17,17 @@ public class Constants {
     public final static char LADDER_EMPTY_CHARACTER = ' ';
     public final static char LADDER_SEPARATION_CHARACTER = '|';
 
-    public final static String INVALID_PARTICIPANT_MESSAGE = "존재하지 않는 사용자";
-    public final static String INVALID_RESULT_SIZE_MESSAGE = "참가자 수와 결과의 개수가 같지않습니다.";
-    public final static String INVALID_PARTICIPANTS_SIZE_MESSAGE = String.format("잘못된 크기의 참가자 수 입니다. (최소 : %d)", Constants.MIN_PARTICIPANT_SIZE);
-    public final static String INVALID_NAME_SIZE_MESSAGE = String.format("잘못된 크기의 이름을 가진 참가자가 존재합니다. (최대 : %d)", Constants.MAX_NAME_SIZE);
-    public final static String INVALID_LADDER_HEIGHT_MESSAGE = String.format("잘못된 크기의 사다리 높이입니다. (최소 : %d)", Constants.MIN_LADDER_HEIGHT);
+    public final static String INVALID_PARTICIPANT_MESSAGE = getI18NString("INVALID_PARTICIPANT_MESSAGE");
+    public final static String INVALID_RESULT_SIZE_MESSAGE = getI18NString("INVALID_RESULT_SIZE_MESSAGE");
+    public final static String INVALID_PARTICIPANTS_SIZE_MESSAGE = String.format(getI18NString("INVALID_PARTICIPANTS_SIZE_MESSAGE"), Constants.MIN_PARTICIPANT_SIZE);
+    public final static String INVALID_NAME_SIZE_MESSAGE = String.format(getI18NString("INVALID_NAME_SIZE_MESSAGE"), Constants.MAX_NAME_SIZE);
+    public final static String INVALID_LADDER_HEIGHT_MESSAGE = String.format(getI18NString("INVALID_LADDER_HEIGHT_MESSAGE"), Constants.MIN_LADDER_HEIGHT);
 
+
+    public final static String INPUT_PARTICIPANTS_MESSAGE = String.format("참여할 사람 이름을 입력하세요. (이름은 %s(%s)로 구분하세요)\n", Constants.PARTICIPANT_DELIMITER_NAME, Constants.PARTICIPANT_DELIMITER);
+    public final static String INPUT_RESULTS_MESSAGE = String.format("실행 결과를 입력하세요. (결과는 %s(%s)로 구분하세요)\n", Constants.RESULT_DELIMITER_NAME, Constants.RESULT_DELIMITER);
+
+    public static String getI18NString(String key) {
+        return bundle.getString(key);
+    }
 }
